@@ -106,20 +106,42 @@
     <!-- Navbar End -->
 
     <!-- Header Start -->
+    <style>
+      .header-link {
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      border-radius: 8px;
+      display: inline-block;
+      }
+      .header-link:hover, .header-link:focus {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      background: rgba(255,255,255,0.08);
+      text-decoration: none;
+      }
+      .header-link:hover p, .header-link:focus p {
+      color: #ffd700 !important;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      }
+    </style>
     <div
       class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom"
-      style="margin-bottom: 90px"
+      style="margin-bottom: 60px; padding-top: 30px; padding-bottom: 30px;"
     >
-      <div class="container text-center py-5">
-        <a href="/python.html"
-          ><p class="text-white display-3">Lập trình PYTHON</p></a
-        >
-        <a href="/cpp.html"
-          ><p class="text-white display-3">Lập trình C++</p></a
-        >
-        <a href="/scratch.html"
-          ><p class="text-white display-3">Lập trình SCRATCH</p></a
-        >
+      <div class="container text-center py-3">
+      <div class="d-flex justify-content-center flex-wrap">
+        <a href="/python.html" class="mx-3 my-1 header-link">
+        <p class="text-white h3 mb-2 mb-0">Lập trình PYTHON</p>
+        </a>
+        <a href="/stem.html" class="mx-3 my-1 header-link">
+        <p class="text-white h3 mb-2 mb-0">Lập trình STEM</p>
+        </a>
+        <a href="/cpp.html" class="mx-3 my-1 header-link">
+        <p class="text-white h3 mb-2 mb-0">Lập trình C++</p>
+        </a>
+        <a href="/scratch.html" class="mx-3 my-1 header-link">
+        <p class="text-white h3 mb-2 mb-0">Lập trình SCRATCH</p>
+        </a>
+      </div>
       </div>
     </div>
     <!-- Header End -->
