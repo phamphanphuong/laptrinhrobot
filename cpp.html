@@ -1,441 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chi Tiết - C++ Cơ Bản</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="LapTrinhRobot.com" name="keywords" />
+    <meta content="LapTrinhRobot.com" name="description" />
 
-<head>
-  <meta charset="utf-8" />
-  <title>LậpTrìnhRobot.com</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <meta content="LapTrinhRobot.com" name="keywords" />
-  <meta content="LapTrinhRobot.com" name="description" />
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
 
-  <!-- Favicon -->
-  <link href="img/favicon.ico" rel="icon" />
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Web Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap"
-    rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Font Awesome -->
-  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" /> -->
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
-  <!-- Libraries Stylesheet -->
-  <!-- <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" /> -->
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
 
-  <!-- Customized Bootstrap Stylesheet -->
-  <link href="css/style.css" rel="stylesheet" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <body>
+    <!-- Header Start -->
+    <div id="header-placeholder"></div>
+    <!-- Header End -->
 
-    h2 {
-      text-align: center;
-      padding: 20px 0;
-    }
+    <!-- Detail Start -->
+    <div class="container-fluid py-5">
+      <div class="container py-5">
+        <div class="row">
+          <div class="section-title position-relative mb-5">
+            <h6
+              class="d-inline-block position-relative text-secondary text-uppercase pb-2"
+            >
+              LẬP TRÌNH C++
+            </h6>
+            <h1 class="display-4">C++ Cơ Bản: Thuật Toán - Hướng Đối Tượng - Cấu Trúc Dữ Liệu</h1>
+          </div>
+          <div class="col-md-6 mb-4">
+            <img
+              class="img-fluid rounded w-100"
+              src="img/courses-1.jpg"
+              alt="C++ Programming 1"
+            />
+          </div>
+          <div class="col-md-6 mb-4">
+            <img
+              class="img-fluid rounded w-100"
+              src="img/courses-2.jpg"
+              alt="C++ Programming 2"
+            />
+          </div>
+          <div class="col-lg-12">
+            <div class="mb-5">
+              <p>
+                <strong>Đối Tượng:</strong>
+                <br />- Học sinh từ 12-18 tuổi (lớp 7 - lớp 12) có kiến thức cơ bản về toán học và logic. 
+                <br />- Có các kỹ năng cần thiết: 
+                <br />+ Sử dụng máy tính và các phần mềm cơ bản. 
+                <br />+ Hiểu các khái niệm toán học cơ bản (số học, hình học, logic). 
+                <br />+ Có khả năng đọc hiểu tiếng Anh cơ bản (từ vựng lập trình). 
+                <br />+ Có tư duy logic và kiên nhẫn trong việc giải quyết vấn đề.
+              </p>
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
+              <p>
+                <strong>Mục Tiêu:</strong>
+                <br />- Nắm vững ngôn ngữ lập trình C++ từ cơ bản đến nâng cao, bao gồm cú pháp và các khái niệm cốt lõi.
+                <br />- Hiểu và áp dụng các nguyên tắc lập trình hướng đối tượng (OOP) trong C++.
+                <br />- Làm quen với các cấu trúc dữ liệu cơ bản và cách sử dụng chúng hiệu quả.
+                <br />- Phát triển kỹ năng giải quyết vấn đề thông qua việc thiết kế và cài đặt thuật toán.
+                <br />- Rèn luyện tư duy logic và kỹ năng phân tích bài toán.
+                <br />- Phát triển kỹ năng debug và tối ưu hóa code.
+                <br />- Chuẩn bị nền tảng vững chắc cho việc học lập trình nâng cao và các ngôn ngữ khác.
+                <br />- Xây dựng portfolio với các dự án thực tế sử dụng C++.
+              </p>
+            </div>
+            <div>
+              <h6>Chương Trình Khóa Học</h6>
+              <p>
+                Chương trình được thiết kế theo 4 phần chính với 20 buổi học, mỗi buổi 90 phút, kết hợp lý thuyết và thực hành.
+              </p>
+              <ul>
+                <li>
+                  <strong>Phần 1: Ngôn Ngữ Lập Trình C++ (8 buổi)</strong><br>
+                  <strong>Buổi 1:</strong> Tổng quan về C++ và môi trường lập trình - Giới thiệu lịch sử và ưu điểm của C++, cài đặt IDE.<br>
+                  <strong>Buổi 2:</strong> Cấu trúc chương trình C++ - Cú pháp cơ bản, viết chương trình đầu tiên.<br>
+                  <strong>Buổi 3:</strong> Biến, hằng và kiểu dữ liệu - Khái niệm về bộ nhớ, các kiểu dữ liệu cơ bản.<br>
+                  <strong>Buổi 4:</strong> Toán tử và biểu thức - Các phép toán, độ ưu tiên, biểu thức logic.<br>
+                  <strong>Buổi 5:</strong> Cấu trúc điều khiển if-else - Rẽ nhánh, nested if, switch-case.<br>
+                  <strong>Buổi 6:</strong> Cấu trúc switch-case - Ứng dụng thực tế, so sánh với if-else.<br>
+                  <strong>Buổi 7:</strong> Vòng lặp for và while - Nguyên tắc hoạt động, ứng dụng thực tế.<br>
+                  <strong>Buổi 8:</strong> Vòng lặp do-while - Đặc điểm riêng, khi nào sử dụng.
+                </li>
+                <li>
+                  <strong>Phần 2: Lập Trình Hướng Đối Tượng (4 buổi)</strong><br>
+                  <strong>Buổi 9:</strong> Khái niệm cơ bản về OOP - Tư duy hướng đối tượng, lợi ích của OOP.<br>
+                  <strong>Buổi 10:</strong> Lớp và đối tượng - Định nghĩa class, tạo object, access modifiers.<br>
+                  <strong>Buổi 11:</strong> Kế thừa (Inheritance) - Quan hệ cha-con, protected members, virtual functions.<br>
+                  <strong>Buổi 12:</strong> Đa hình và phương thức ảo - Overriding, virtual functions, abstract classes.
+                </li>
+                <li>
+                  <strong>Phần 3: Cấu Trúc Dữ Liệu (4 buổi)</strong><br>
+                  <strong>Buổi 13:</strong> Mảng và thao tác cơ bản - Khai báo, khởi tạo, duyệt mảng.<br>
+                  <strong>Buổi 14:</strong> Danh sách liên kết - Linked list, dynamic memory allocation.<br>
+                  <strong>Buổi 15:</strong> Ngăn xếp (Stack) - LIFO principle, ứng dụng thực tế.<br>
+                  <strong>Buổi 16:</strong> Hàng đợi (Queue) - FIFO principle, circular queue.
+                </li>
+                <li>
+                  <strong>Phần 4: Thuật Toán (4 buổi)</strong><br>
+                  <strong>Buổi 17:</strong> Thuật toán sắp xếp cơ bản - Bubble sort, Selection sort, Insertion sort.<br>
+                  <strong>Buổi 18:</strong> Thuật toán sắp xếp nâng cao - Quick sort, Merge sort, phân tích độ phức tạp.<br>
+                  <strong>Buổi 19:</strong> Thuật toán tìm kiếm - Linear search, Binary search, Hash table basics.<br>
+                  <strong>Buổi 20:</strong> Đệ quy và tổng kết - Khái niệm đệ quy, bài toán kinh điển, review toàn khóa.
+                </li>
+              </ul>
+              <p>
+                <strong>Phương pháp giảng dạy:</strong> Kết hợp lý thuyết và thực hành với tỷ lệ 40-60. Mỗi buổi học đều có bài tập thực hành và project mini để củng cố kiến thức.
+              </p>
+              <p>
+                <strong>Công cụ học tập:</strong> Code::Blocks hoặc Visual Studio, hệ thống chấm bài tự động, GitHub để quản lý source code.
+              </p>
+            </div>
+          </div>
 
-    th,
-    td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: center;
-    }
+        
+        
+          <div class="col-lg-12">
+            <h2 class="mb-3">Các Khóa Học Khác</h2>
+            <div
+              class="owl-carousel related-carousel position-relative"
+              style="padding: 0 30px"
+            >
+              <a
+                class="courses-list-item position-relative d-block overflow-hidden mb-2"
+                href="stem.html"
+              >
+                <img class="img-fluid" src="img/courses-stem.jpg" alt="" />
+                <div class="courses-text">
+                  <h4 class="text-center text-white px-3">Python: STEM, Robotics</h4>
+                  <div class="border-top w-100 mt-3">
+                    <div class="d-flex justify-content-between p-4">
+                      <span class="text-white"
+                        ><i class="fa fa-user mr-2"></i>Mr. Phương</span
+                      >
+                      <span class="text-white"
+                        ><i class="fa fa-star mr-2"></i>4.5
+                        <small>(250)</small></span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </a>
+             
+              <a
+                class="courses-list-item position-relative d-block overflow-hidden mb-2"
+                href="python.html"
+              >
+                <img class="img-fluid" src="img/courses-pygame.png" alt="" />
+                <div class="courses-text">
+                  <h4 class="text-center text-white px-3">Lập trình Python: Game Vui Vẻ</h4>
+                  <div class="border-top w-100 mt-3">
+                    <div class="d-flex justify-content-between p-4">
+                      <span class="text-white"
+                        ><i class="fa fa-user mr-2"></i>Mr. Phương</span
+                      >
+                      <span class="text-white"
+                        ><i class="fa fa-star mr-2"></i>4.5
+                        <small>(250)</small></span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Detail End -->
 
-    th {
-      background-color: #f4f4f4;
-    }
+    <div id="footer-placeholder"></div>
+    <!-- Back to Top -->
+    <a
+      href="#"
+      class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"
+      ><i class="fa fa-angle-double-up"></i
+    ></a>
 
-    .completed {
-      background-color: #c6efce;
-    }
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    .in-progress {
-      background-color: #ffeb9c;
-    }
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
 
-    .not-started {
-      background-color: #ffc7ce;
-    }
+    <script>
+      // Tải header
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
 
-    /* Responsive adjustments */
-    @media screen and (max-width: 768px) {
-
-      table,
-      thead,
-      tbody,
-      th,
-      td,
-      tr {
-        display: block;
-      }
-
-      thead tr {
-        display: none;
-      }
-
-      tr {
-        margin-bottom: 15px;
-      }
-
-      td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
-      }
-
-      td:before {
-        content: attr(data-label);
-        position: absolute;
-        left: 0;
-        width: 45%;
-        padding-left: 15px;
-        font-weight: bold;
-        text-align: left;
-      }
-
-      td:first-child {
-        border-top: 1px solid #ddd;
-      }
-
-      td:last-child {
-        border-bottom: 1px solid #ddd;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      h2 {
-        font-size: 1.2em;
-      }
-
-      td {
-        font-size: 0.9em;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <!-- Header Start -->
-  <div id="header-placeholder"></div>
-  <!-- Header End -->
-
-  <!-- Phuc Start-->
-
-
-
-  <h2>Khóa Lập Trình Cơ Bản với C++: Thuật Toán - Hướng Đối Tượng - Cấu Trúc Dữ Liệu</h2>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Phần</th>
-        <th>Buổi</th>
-        <th>Chủ Đề</th>
-        <th>Thời Gian</th>
-        <th>Nội Dung</th>
-        <th>Tiến Độ</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Phần 1: Ngôn ngữ lập trình C++ -->
-      <tr>
-        <td rowspan="8">Ngôn ngữ lập trình C++</td>
-        <td>Buổi 1</td>
-        <td>Tổng quan về C++ và môi trường lập trình</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Giới thiệu C++ (30 phút)</li>
-            <li>Môi trường lập trình (60 phút)</li>
-          </ul>
-        </td>
-        <td class="completed">Hoàn thành</td>
-      </tr>
-      <tr>
-        <td>Buổi 2</td>
-        <td>Cấu trúc chương trình C++</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Cấu trúc của một chương trình C++ (45 phút)</li>
-            <li>Thực hành: Viết chương trình "Hello World" và tính toán đơn giản (45 phút)</li>
-          </ul>
-        </td>
-        <td class="in-progress">Đang học</td>
-      </tr>
-      <tr>
-        <td>Buổi 3</td>
-        <td>Biến, hằng và kiểu dữ liệu cơ bản</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Biến và hằng (45 phút)</li>
-            <li>Kiểu dữ liệu cơ bản (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 4</td>
-        <td>Toán tử và biểu thức</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Toán tử số học (30 phút)</li>
-            <li>Toán tử so sánh và logic (30 phút)</li>
-            <li>Thực hành: Bài tập tính toán và so sánh (30 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 5</td>
-        <td>Cấu trúc điều khiển - Phần 1 (if-else)</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Cấu trúc điều khiển if-else (45 phút)</li>
-            <li>Thực hành: Bài tập điều kiện đơn giản (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 6</td>
-        <td>Cấu trúc điều khiển - Phần 2 (switch-case)</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Cấu trúc điều khiển switch-case (45 phút)</li>
-            <li>Thực hành: Bài tập áp dụng switch-case (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 7</td>
-        <td>Vòng lặp - Phần 1 (for, while)</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Vòng lặp for và while (60 phút)</li>
-            <li>Thực hành: In bảng cửu chương, tính tổng dãy số (30 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 8</td>
-        <td>Vòng lặp - Phần 2 (do-while)</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Vòng lặp do-while (45 phút)</li>
-            <li>Thực hành: Bài tập với vòng lặp do-while (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-
-      <!-- Phần 2: Lập trình hướng đối tượng -->
-      <tr>
-        <td rowspan="4">Lập trình hướng đối tượng</td>
-        <td>Buổi 9</td>
-        <td>Khái niệm cơ bản về lập trình hướng đối tượng (OOP)</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Giới thiệu về OOP (45 phút)</li>
-            <li>Thực hành: Xây dựng lớp đơn giản với các thuộc tính và phương thức (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 10</td>
-        <td>Lớp (Class) và đối tượng (Object)</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Khái niệm lớp và đối tượng (45 phút)</li>
-            <li>Thực hành: Xây dựng lớp với các phương thức và thuộc tính (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 11</td>
-        <td>Kế thừa (Inheritance)</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Kế thừa (45 phút)</li>
-            <li>Thực hành: Xây dựng lớp kế thừa và mở rộng chức năng (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 12</td>
-        <td>Đa hình (Polymorphism) và phương thức ảo</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Đa hình và phương thức ảo (45 phút)</li>
-            <li>Thực hành: Ví dụ về đa hình, ghi đè phương thức (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-
-      <!-- Phần 3: Cấu trúc dữ liệu -->
-      <tr>
-        <td rowspan="4">Cấu trúc dữ liệu</td>
-        <td>Buổi 13</td>
-        <td>Mảng (Array) và các thao tác cơ bản</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Khái niệm mảng (45 phút)</li>
-            <li>Thực hành: Tính tổng các phần tử trong mảng (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 14</td>
-        <td>Danh sách liên kết (Linked List)</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Khái niệm danh sách liên kết (45 phút)</li>
-            <li>Thực hành: Thêm/xóa phần tử trong danh sách liên kết (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 15</td>
-        <td>Ngăn xếp (Stack)</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Khái niệm ngăn xếp (45 phút)</li>
-            <li>Thực hành: Xây dựng ngăn xếp, ứng dụng chuyển đổi biểu thức (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 16</td>
-        <td>Hàng đợi (Queue)</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Khái niệm hàng đợi (45 phút)</li>
-            <li>Thực hành: Xây dựng hàng đợi, ứng dụng trong quản lý tiến trình (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-
-      <!-- Phần 4: Thuật toán -->
-      <tr>
-        <td rowspan="4">Thuật toán</td>
-        <td>Buổi 17</td>
-        <td>Thuật toán sắp xếp cơ bản</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Thuật toán sắp xếp cơ bản (45 phút)</li>
-            <li>Thực hành: Cài đặt các thuật toán sắp xếp cơ bản trên mảng (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 18</td>
-        <td>Thuật toán sắp xếp nâng cao</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Thuật toán sắp xếp nâng cao (45 phút)</li>
-            <li>Thực hành: So sánh hiệu suất giữa các thuật toán sắp xếp (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 19</td>
-        <td>Thuật toán tìm kiếm</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Tìm kiếm tuần tự và nhị phân (45 phút)</li>
-            <li>Thực hành: Cài đặt các thuật toán tìm kiếm trên mảng (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-      <tr>
-        <td>Buổi 20</td>
-        <td>Đệ quy và tổng kết</td>
-        <td>90 phút</td>
-        <td>
-          <ul>
-            <li>Đệ quy (45 phút)</li>
-            <li>Tổng kết và ôn tập (45 phút)</li>
-          </ul>
-        </td>
-        <td class="not-started">Chưa bắt đầu</td>
-      </tr>
-    </tbody>
-  </table>
-  <!-- Phuc End -->
-
-  <!-- Footer Start -->
-  <div id="footer-placeholder"></div>
-  <!-- Footer End -->
-
-  <!-- Back to Top -->
-  <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i
-      class="fa fa-angle-double-up"></i></a>
-
-  <!-- JavaScript Libraries -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-  <!-- Template Javascript -->
-  <script src="js/main.js"></script>
-
-  <script>
-    // Tải header
-    fetch("header.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document.getElementById("header-placeholder").innerHTML = data;
-      });
-
-    // Tải footer
-    fetch("footer.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document.getElementById("footer-placeholder").innerHTML = data;
-      });
-  </script>
-</body>
-
+      // Tải footer
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+        });
+    </script>
+  </body>
 </html>
