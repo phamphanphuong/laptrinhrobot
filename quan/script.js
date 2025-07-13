@@ -89,22 +89,48 @@ function updateLedStatus(ledId, status) {
 
 
 // --- Hàm cập nhật trạng thái Button trên giao diện ---
+// function updateButtonStatus(buttonId, status) {
+//     const indicator = buttonId === 1 ? button1Indicator : button2Indicator;
+//     indicator.textContent = status;
+//     indicator.className = 'status-indicator';
+//     if (status === 'PRESSED') {
+//         indicator.classList.add('pressed');
+//         // Nút sẽ tự trở về IDLE sau một thời gian ngắn
+//         setTimeout(() => {
+//             indicator.textContent = 'IDLE';
+//             indicator.className = 'status-indicator idle';
+//         }, 500); // 0.5 giây
+//     } else {
+//         indicator.classList.add('idle');
+//     }
+//     logToDashboard(`Button ${buttonId} status: ${status}`);
+// }
+
 function updateButtonStatus(buttonId, status) {
-    const indicator = buttonId === 1 ? button1Indicator : button2Indicator;
-    indicator.textContent = status;
+    const indicator = buttonId === 1 ? document.getElementById('button1Indicator') : document.getElementById('button2Indicator');
+    const label = indicator.nextElementSibling; // Lấy <span class="status-label">
+
     indicator.className = 'status-indicator';
+    label.textContent = '';
+    label.style.display = 'none';
+
     if (status === 'PRESSED') {
         indicator.classList.add('pressed');
-        // Nút sẽ tự trở về IDLE sau một thời gian ngắn
+        label.textContent = 'PRESSED';
+        label.style.display = 'inline';
         setTimeout(() => {
-            indicator.textContent = 'IDLE';
-            indicator.className = 'status-indicator idle';
-        }, 500); // 0.5 giây
+            label.textContent = '';
+            label.style.display = 'none';
+            indicator.className = 'status-indicator idle'; // vẫn giữ màu xám
+        }, 500);
     } else {
         indicator.classList.add('idle');
+        // Không hiện gì cả
     }
+
     logToDashboard(`Button ${buttonId} status: ${status}`);
 }
+
 
 // --- Kết nối MQTT ---
 function connectMqtt() {
