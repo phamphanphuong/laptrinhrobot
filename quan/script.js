@@ -12,7 +12,7 @@ const TOPIC_BUTTON1_STATUS = "esp32/button1_status"; // Để nhận trạng th�
 const TOPIC_BUTTON2_STATUS = "esp32/button2_status"; // Để nhận trạng thái nút 2
 const TOPIC_LED1_STATUS = "esp32/led1_status"; // Để nhận trạng thái LED1 từ ESP32 (do nút bấm thay đổi)
 const TOPIC_LED2_STATUS = "esp32/led2_status"; // Để nhận trạng thái LED2 từ ESP32 (do nút bấm thay đổi)
-
+const TOPIC_OLED_TEXT_CONTROL = "esp32/oled_text";
 
 // --- Các phần tử HTML ---
 const mqttStatusSpan = document.getElementById('mqttStatus');
@@ -25,6 +25,8 @@ const led2StatusIndicator = document.getElementById('led2Status');
 const button1Indicator = document.getElementById('button1Indicator');
 const button2Indicator = document.getElementById('button2Indicator');
 const mqttLogDiv = document.getElementById('mqttLog');
+const oledTextInput = document.getElementById('oledTextInput');
+const sendOledTextBtn = document.getElementById('sendOledTextBtn');
 
 let client; // Biến client MQTT
 
@@ -52,19 +54,39 @@ function updateMqttStatus(status) {
 }
 
 // --- Hàm cập nhật trạng thái LED trên giao diện ---
+// function updateLedStatus(ledId, status) {
+//     const indicator = ledId === 1 ? led1StatusIndicator : led2StatusIndicator;
+//     indicator.textContent = status;
+//     indicator.className = 'status-indicator'; // Xóa các class cũ
+//     if (status === 'ON') {
+//         indicator.classList.add('on');
+//     } else if (status === 'OFF') {
+//         indicator.classList.add('off');
+//     } else {
+//         indicator.classList.add('unknown');
+//     }
+//     logToDashboard(`LED ${ledId} status updated: ${status}`);
+// }
+
 function updateLedStatus(ledId, status) {
-    const indicator = ledId === 1 ? led1StatusIndicator : led2StatusIndicator;
-    indicator.textContent = status;
-    indicator.className = 'status-indicator'; // Xóa các class cũ
+    const indicator = ledId === 1 ? document.getElementById('led1Status') : document.getElementById('led2Status');
+    const label = ledId === 1 ? document.getElementById('led1Label') : document.getElementById('led2Label');
+
+    indicator.className = 'status-indicator';
     if (status === 'ON') {
         indicator.classList.add('on');
+        label.textContent = 'ON';
     } else if (status === 'OFF') {
         indicator.classList.add('off');
+        label.textContent = 'OFF';
     } else {
         indicator.classList.add('unknown');
+        label.textContent = '?';
     }
+
     logToDashboard(`LED ${ledId} status updated: ${status}`);
 }
+
 
 // --- Hàm cập nhật trạng thái Button trên giao diện ---
 function updateButtonStatus(buttonId, status) {
@@ -217,6 +239,26 @@ led2OffBtn.addEventListener('click', () => {
         updateLedStatus(2, 'OFF'); // Cập nhật ngay trên giao diện
     } else {
         logToDashboard('Error: MQTT not connected to publish LED 2 OFF.');
+    }
+});
+
+sendOledTextBtn.addEventListener('click', () => {
+    if (client && client.connected) {
+        const textToSend = oledTextInput.value.trim(); // Lấy văn bản và loại bỏ khoảng trắng thừa
+        if (textToSend) { // Chỉ gửi nếu có văn bản
+            client.publish(TOPIC_OLED_TEXT_CONTROL, textToSend, (err) => {
+                if (err) {
+                    logToDashboard(`Error publishing to OLED: ${err}`);
+                } else {
+                    logToDashboard(`Published to OLED: "${textToSend}"`);
+                    oledTextInput.value = ''; // Xóa nội dung ô nhập sau khi gửi
+                }
+            });
+        } else {
+            logToDashboard('Vui lòng nhập văn bản để gửi tới OLED.');
+        }
+    } else {
+        logToDashboard('Error: MQTT not connected to publish text to OLED.');
     }
 });
 

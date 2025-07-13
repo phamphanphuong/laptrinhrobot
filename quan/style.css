@@ -26,16 +26,34 @@ h2 {
     margin-bottom: 20px;
 }
 
+/* Kiểu dáng chung cho các phần (connection, control, status, log) */
 .connection-status,
 .control-section,
 .status-section,
-.log-section {
+.log-section,
+.text-input-section {
     margin-bottom: 25px;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    background-color: #fff;
+        /* Đảm bảo nền là trắng hoặc rất nhạt */
 }
 
+/* Đảm bảo tiêu đề trong các phần này cũng được căn giữa hoặc căn đều */
+.connection-status h2,
+.control-section h2,
+.status-section h2,
+.log-section h2,
+.text-input-section h3 {
+    /* Sử dụng h3 cho text-input-section */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    /* Điều chỉnh khoảng cách dưới tiêu đề */
+    color: #0056b3;
+    /* Đồng bộ màu sắc tiêu đề */
+}
 .connection-status p {
     text-align: center;
     font-weight: bold;
@@ -53,19 +71,19 @@ h2 {
 
 .connected {
     background-color: #28a745;
+        /* Green */
 }
 
-/* Green */
 .disconnected {
     background-color: #dc3545;
+        /* Red */
 }
 
-/* Red */
 .unknown {
     background-color: #ffc107;
+        /* Yellow */
 }
 
-/* Yellow */
 .on {
     background-color: #28a745;
 }
@@ -76,18 +94,17 @@ h2 {
 
 .idle {
     background-color: #6c757d;
+        /* Grey */
 }
 
-/* Grey */
 .pressed {
     background-color: #007bff;
+        /* Blue */
 }
 
-/* Blue */
-
-
-.led-control,
-.button-status p {
+/* Cải tiến cho led-control (giữ nguyên logic flex) */
+.led-control {
+    /* Loại bỏ .button-status p khỏi đây để xử lý riêng */
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -123,6 +140,104 @@ h2 {
     opacity: 0.9;
 }
 
+/* BẮT ĐẦU CẢI THIỆN CHO BUTTON STATUS */
+.status-section {
+    background-color: #f9f9f9;
+    /* Nền nhạt để phân biệt với các phần trắng khác */
+}
+
+.button-status {
+    display: flex;
+    flex-direction: column;
+    /* Sắp xếp các dòng nút theo chiều dọc */
+    gap: 10px;
+    /* Khoảng cách giữa các dòng */
+    align-items: flex-start;
+    /* Căn chỉnh các mục con sang trái */
+    /* justify-content: center; /* Bỏ cái này để không ép chúng vào giữa nếu không cần */
+}
+
+.button-status p {
+    display: flex;
+    /* Biến mỗi <p> thành một flex container */
+    align-items: center;
+    /* Căn giữa nội dung trong <p> theo chiều dọc */
+    justify-content: flex-start;
+    /* Căn chỉnh nội dung trong <p> sang trái */
+    margin: 0;
+    /* Loại bỏ margin mặc định của thẻ p */
+    font-size: 1.1em;
+    width: 100%;
+    /* Đảm bảo mỗi dòng chiếm toàn bộ chiều rộng */
+}
+
+/* KẾT THÚC CẢI THIỆN CHO BUTTON STATUS */
+
+
+/* BỔ SUNG: Kiểu dáng cho text-input-section */
+.text-input-section {
+    background-color: #f9f9f9;
+    /* Nền màu nhạt để phân biệt */
+}
+
+.text-input-section h3 {
+    /* Đã chuyển màu và margin-bottom lên nhóm chung .connection-status h2, h3 */
+    color: #007bff;
+    /* Giữ màu xanh dương riêng cho tiêu đề này nếu muốn nổi bật */
+}
+
+.text-input-section .control-group {
+    display: flex;
+    flex-direction: column;
+    /* Sắp xếp các mục theo chiều dọc */
+    gap: 10px;
+    align-items: stretch;
+    /* Mở rộng các mục con để lấp đầy chiều rộng của container */
+}
+
+.text-input-section input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.text-input-section input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* BỔ SUNG: Kiểu dáng cho nút "Gửi tới OLED" (action-button) */
+.action-button {
+    width: 100%;
+    /* Mở rộng nút để khớp với chiều rộng của input */
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+    flex-shrink: 0;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.action-button:active {
+    background-color: #004085;
+    transform: translateY(0);
+}
 .log-box {
     background-color: #e9ecef;
     border: 1px solid #ced4da;
@@ -133,7 +248,16 @@ h2 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9em;
     white-space: pre-wrap;
-    /* Preserve whitespace and wrap long lines */
     word-wrap: break-word;
-    /* Break long words */
+}
+.status-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-label {
+    font-weight: bold;
+    font-size: 0.95em;
+    color: #333;
 }
