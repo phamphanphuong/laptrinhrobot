@@ -26,7 +26,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Kiểu dáng chung cho các phần (connection, control, status, log) */
+/* Kiểu dáng chung cho các phần (connection, control, status, log, text-input) */
 .connection-status,
 .control-section,
 .status-section,
@@ -50,38 +50,74 @@ h2 {
     text-align: center;
     margin-top: 0;
     margin-bottom: 15px;
-    /* Điều chỉnh khoảng cách dưới tiêu đề */
-    color: #0056b3;
-    /* Đồng bộ màu sắc tiêu đề */
-}
-.connection-status p {
-    text-align: center;
-    font-weight: bold;
-    margin: 0;
+        /* Điều chỉnh khoảng cách dưới tiêu đề */
+        color: #0056b3;
+        /* Đồng bộ màu sắc tiêu đề */
 }
 
+.connection-status p {
+    text-align: center;
+        /* Vẫn giữ căn giữa */
+    font-weight: bold;
+    margin: 0;
+    padding: 2px 0;
+        /* Thêm padding nhỏ để giãn cách các dòng */
+        display: block;
+        /* Đảm bảo mỗi dòng chiếm một khối riêng */
+    }
+    
+    /* Kiểu dáng cho giá trị cảm biến trong connection-status */
+    .connection-status p .value {
+        color: #007bff;
+        /* Màu xanh dương cho giá trị */
+        margin-left: 5px;
+        font-weight: normal;
+        /* Đặt lại font-weight cho riêng giá trị */
+}
+
+/* Kiểu dáng cho chấm trạng thái và nhãn bên cạnh (chung cho LED và Button) */
+.status-wrapper {
+    display: flex;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    justify-content: flex-start;
+    /* Mặc định căn trái */
+    min-width: 40px;
+    /* Đảm bảo không gian tối thiểu cho chấm và nhãn */
+}
+
+.status-label {
+    margin-left: 5px;
+    /* Khoảng cách giữa chấm và nhãn (nếu có) */
+    font-weight: normal;
+}
+
+
+/* === CÁC MÀU SẮC TRẠNG THÁI === */
 .status-indicator {
     display: inline-block;
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    margin-left: 10px;
+    /* margin-left: 10px; Bỏ margin-left ở đây, dùng trong status-wrapper/label */
     vertical-align: middle;
+    flex-shrink: 0;
+        /* Ngăn chấm co lại */
 }
 
 .connected {
     background-color: #28a745;
-        /* Green */
+    /* Green */
 }
 
 .disconnected {
     background-color: #dc3545;
-        /* Red */
+    /* Red */
 }
 
 .unknown {
     background-color: #ffc107;
-        /* Yellow */
+    /* Yellow */
 }
 
 .on {
@@ -94,17 +130,17 @@ h2 {
 
 .idle {
     background-color: #6c757d;
-        /* Grey */
+    /* Grey */
 }
 
 .pressed {
     background-color: #007bff;
-        /* Blue */
+    /* Blue */
 }
 
-/* Cải tiến cho led-control (giữ nguyên logic flex) */
+
+/* === LED Control Section === */
 .led-control {
-    /* Loại bỏ .button-status p khỏi đây để xử lý riêng */
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -113,7 +149,10 @@ h2 {
 
 .led-control label {
     flex: 1;
+        /* Cho phép label chiếm hết không gian còn lại */
     font-weight: bold;
+    text-align: left;
+        /* Căn trái nhãn */
 }
 
 .led-control .btn {
@@ -123,6 +162,7 @@ h2 {
     cursor: pointer;
     font-size: 0.9em;
     margin-left: 10px;
+        /* Khoảng cách giữa nút và các phần tử khác */
     transition: background-color 0.2s;
 }
 
@@ -140,59 +180,55 @@ h2 {
     opacity: 0.9;
 }
 
-/* BẮT ĐẦU CẢI THIỆN CHO BUTTON STATUS */
+/* === Button Status Section === */
 .status-section {
     background-color: #f9f9f9;
-    /* Nền nhạt để phân biệt với các phần trắng khác */
+        /* Nền nhạt để phân biệt với các phần trắng khác */
 }
 
 .button-status {
     display: flex;
     flex-direction: column;
-    /* Sắp xếp các dòng nút theo chiều dọc */
-    gap: 10px;
-    /* Khoảng cách giữa các dòng */
-    align-items: flex-start;
-    /* Căn chỉnh các mục con sang trái */
-    /* justify-content: center; /* Bỏ cái này để không ép chúng vào giữa nếu không cần */
+        /* Sắp xếp các dòng nút theo chiều dọc */
+        gap: 10px;
+        /* Khoảng cách giữa các dòng */
+        align-items: flex-start;
+        /* Căn chỉnh các mục con sang trái */
 }
 
 .button-status p {
     display: flex;
-    /* Biến mỗi <p> thành một flex container */
-    align-items: center;
-    /* Căn giữa nội dung trong <p> theo chiều dọc */
-    justify-content: flex-start;
-    /* Căn chỉnh nội dung trong <p> sang trái */
-    margin: 0;
-    /* Loại bỏ margin mặc định của thẻ p */
+        /* Biến mỗi <p> thành một flex container */
+        align-items: center;
+        /* Căn giữa nội dung trong <p> theo chiều dọc */
+        justify-content: flex-start;
+        /* Căn chỉnh nội dung trong <p> sang trái */
+        margin: 0;
+        /* Loại bỏ margin mặc định của thẻ p */
     font-size: 1.1em;
     width: 100%;
-    /* Đảm bảo mỗi dòng chiếm toàn bộ chiều rộng */
+        /* Đảm bảo mỗi dòng chiếm toàn bộ chiều rộng */
 }
 
-/* KẾT THÚC CẢI THIỆN CHO BUTTON STATUS */
 
-
-/* BỔ SUNG: Kiểu dáng cho text-input-section */
+/* === Text Input Section (Send message to OLED) === */
 .text-input-section {
     background-color: #f9f9f9;
-    /* Nền màu nhạt để phân biệt */
+        /* Nền màu nhạt để phân biệt */
 }
 
 .text-input-section h3 {
-    /* Đã chuyển màu và margin-bottom lên nhóm chung .connection-status h2, h3 */
     color: #007bff;
-    /* Giữ màu xanh dương riêng cho tiêu đề này nếu muốn nổi bật */
+        /* Màu xanh dương riêng cho tiêu đề này nếu muốn nổi bật */
 }
 
 .text-input-section .control-group {
     display: flex;
     flex-direction: column;
-    /* Sắp xếp các mục theo chiều dọc */
+        /* Sắp xếp các mục theo chiều dọc */
     gap: 10px;
     align-items: stretch;
-    /* Mở rộng các mục con để lấp đầy chiều rộng của container */
+        /* Mở rộng các mục con để lấp đầy chiều rộng của container */
 }
 
 .text-input-section input[type="text"] {
@@ -213,10 +249,10 @@ h2 {
     outline: none;
 }
 
-/* BỔ SUNG: Kiểu dáng cho nút "Gửi tới OLED" (action-button) */
+/* === Kiểu dáng cho nút "Gửi tới OLED" và các nút hành động khác === */
 .action-button {
     width: 100%;
-    /* Mở rộng nút để khớp với chiều rộng của input */
+        /* Mở rộng nút để khớp với chiều rộng của input */
     box-sizing: border-box;
     padding: 10px 20px;
     border: none;
@@ -238,6 +274,7 @@ h2 {
     background-color: #004085;
     transform: translateY(0);
 }
+/* === MQTT Log Section === */
 .log-box {
     background-color: #e9ecef;
     border: 1px solid #ced4da;
@@ -249,15 +286,4 @@ h2 {
     font-size: 0.9em;
     white-space: pre-wrap;
     word-wrap: break-word;
-}
-.status-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.status-label {
-    font-weight: bold;
-    font-size: 0.95em;
-    color: #333;
 }

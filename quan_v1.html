@@ -12,10 +12,7 @@
         <h1>Connect People</h1>
 
         <div class="connection-status">
-            <p>Server: <span id="mqttStatus" class="disconnected">Disconnected</span></p>
-            <p>Doremon: <span id="esp32OnlineStatus" class="disconnected">Offline</span></p> 
-            <p>Nhiệt độ: <span id="temperatureValue" class="value">--</span> °C</p>
-            <p>Độ ẩm: <span id="humidityValue" class="value">--</span> %</p>
+            <p>MQTT Status: <span id="mqttStatus" class="disconnected">Disconnected</span></p>
         </div>
 
         <div class="control-section">
@@ -25,18 +22,18 @@
                 <button id="led1On" class="btn on">ON</button>
                 <button id="led1Off" class="btn off">OFF</button>
                 <span class="status-wrapper">
-                    <span id="led1Status" class="status-indicator unknown"></span>
-                    <span id="led1Label" class="status-label"></span>
-                </span>
+    <span id="led1Status" class="status-indicator unknown"></span>
+<span id="led1Label" class="status-label">?</span>
+</span>
             </div>
             <div class="led-control">
                 <label for="led2Toggle">Led NO:</label>
                 <button id="led2On" class="btn on">ON</button>
                 <button id="led2Off" class="btn off">OFF</button>
                 <span class="status-wrapper">
-                    <span id="led2Status" class="status-indicator unknown"></span>
-                    <span id="led2Label" class="status-label"></span>
-                </span>
+    <span id="led2Status" class="status-indicator unknown"></span>
+<span id="led2Label" class="status-label">?</span>
+</span>
             </div>
         </div>
 
@@ -46,13 +43,13 @@
                 <p>Button YES: 
                     <span class="status-wrapper">
                         <span id="button1Indicator" class="status-indicator idle"></span>
-                        <span id="button1Label" class="status-label"></span>
+                        <span class="status-label">IDLE</span>
                     </span>
                 </p>
                 <p>Button NO: 
                     <span class="status-wrapper">
                         <span id="button2Indicator" class="status-indicator idle"></span>
-                        <span id="button2Label" class="status-label"></span>
+                        <span class="status-label">IDLE</span>
                     </span>
                 </p>
             </div>
