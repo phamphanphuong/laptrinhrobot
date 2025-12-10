@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robot Coding Academy - Lập Trình Robot cho Thế Hệ 4.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom CSS Variables */
+      :root {
+        --primary-color: #4f46e5;
+        --secondary-color: #7c3aed;
+        --accent-color: #f59e0b;
+        --success-color: #10b981;
+        --danger-color: #ef4444;
+      }
+
+      /* Custom animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes pulse-slow {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+      .animate-pulse-slow {
+        animation: pulse-slow 2s ease-in-out infinite;
+      }
+
+      /* Custom gradients */
+      .bg-gradient-hero {
+        background: linear-gradient(
+          135deg,
+          rgba(79, 70, 229, 0.9),
+          rgba(124, 58, 237, 0.9)
+        );
+      }
+
+      .bg-gradient-primary {
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+      }
+
+      .bg-gradient-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      }
+
+      /* Custom shadows */
+      .shadow-glow {
+        box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.3);
+      }
+
+      .shadow-card {
+        box-shadow: 0 4px 20px -2px rgba(79, 70, 229, 0.1);
+      }
+
+      /* Button styles */
+      .btn-hero {
+        background: linear-gradient(135deg, var(--accent-color), #fbbf24);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 0.75rem;
+        font-weight: bold;
+        font-size: 1.125rem;
+        transition: all 0.3s ease;
+      }
+
+      .btn-hero:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px -8px rgba(245, 158, 11, 0.4);
+      }
+
+      .btn-cta {
+        background: linear-gradient(135deg, var(--danger-color), #f87171);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 0.75rem;
+        font-weight: bold;
+        font-size: 1.125rem;
+        transition: all 0.3s ease;
+      }
+
+      .btn-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px -8px rgba(239, 68, 68, 0.4);
+      }
+
+      /* Card styles */
+      .card {
+        background: white;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: var(--shadow-card);
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-glow);
+      }
+
+      /* Badge styles */
+      .badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .badge-primary {
+        background-color: rgba(79, 70, 229, 0.1);
+        color: var(--primary-color);
+        border: 1px solid rgba(79, 70, 229, 0.2);
+      }
+
+      .badge-danger {
+        background-color: rgba(239, 68, 68, 0.1);
+        color: var(--danger-color);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+      }
+
+      .badge-secondary {
+        background-color: rgba(124, 58, 237, 0.1);
+        color: var(--secondary-color);
+        border: 1px solid rgba(124, 58, 237, 0.2);
+      }
+
+      /* Responsive utilities */
+      @media (max-width: 768px) {
+        .text-5xl {
+          font-size: 2.5rem;
+        }
+        .text-7xl {
+          font-size: 3.5rem;
+        }
+        .text-4xl {
+          font-size: 2rem;
+        }
+        .text-6xl {
+          font-size: 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      <!-- Background with overlay -->
+      <div class="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=2426&q=80"
+          alt="Students learning robotics and programming"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-hero"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="relative z-10 max-w-6xl mx-auto px-6 text-center text-white">
+        <span class="badge badge-secondary mb-6 animate-pulse-slow">
+          🚀 Chương trình STEM hàng đầu cho thế hệ 4.0
+        </span>
+
+        <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+          Con Em Có Sẵn Sàng Cho
+          <span
+            class="block bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent"
+          >
+            Tương Lai Công Nghệ?
+          </span>
+        </h1>
+
+        <p
+          class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed opacity-90"
+        >
+          Trong khi các bạn cùng lớp vẫn đang học theo cách truyền thống,
+          <strong class="text-yellow-400">
+            con em sẽ học lập trình Robot với Python</strong
+          >
+          - kỹ năng then chốt của thời đại số
+        </p>
+
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+        >
+          <button class="btn-hero animate-float">
+            🎯 Đăng Ký Ngay - Chỉ 20 Suất
+          </button>
+          <button
+            class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300"
+          >
+            📋 Xem Chương Trình Chi Tiết
+          </button>
+        </div>
+
+        <!-- Statistics -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-400">12</div>
+            <div class="text-sm opacity-80">Học Phần Thực Hành</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-400">11-15</div>
+            <div class="text-sm opacity-80">Tuổi Lý Tưởng</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-400">100%</div>
+            <div class="text-sm opacity-80">Thực Hành</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-400">∞</div>
+            <div class="text-sm opacity-80">Cơ Hội Tương Lai</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating elements -->
+      <div
+        class="absolute top-20 left-10 w-20 h-20 bg-blue-500/20 rounded-full animate-float"
+      ></div>
+      <div
+        class="absolute bottom-20 right-10 w-16 h-16 bg-yellow-400/20 rounded-full animate-float"
+        style="animation-delay: 1s"
+      ></div>
+      <div
+        class="absolute top-1/2 left-1/4 w-12 h-12 bg-purple-500/20 rounded-full animate-float"
+        style="animation-delay: 2s"
+      ></div>
+    </section>
+
+    <!-- Pain Point Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            Nỗi Lo Thầm Kín Của
+            <span class="text-blue-600"> Mọi Phụ Huynh</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Bạn có cảm thấy lo lắng khi nhìn con mình và tự hỏi: "Liệu con có
+            sẵn sàng cho tương lai không?"
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+          <div>
+            <img
+              src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+              alt="Parent concerned about child's future"
+              class="rounded-2xl shadow-card w-full"
+            />
+          </div>
+
+          <div class="space-y-6">
+            <div class="card border-l-4 border-l-yellow-500">
+              <div class="flex items-start gap-4">
+                <div class="text-3xl">😰</div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">
+                    Lo Lắng Con Bị Tụt Hậu
+                  </h3>
+                  <p class="text-gray-600 leading-relaxed">
+                    Trong khi thế giới đang bước vào kỷ nguyên AI và Robot, con
+                    em vẫn học theo phương pháp 20 năm trước
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card border-l-4 border-l-yellow-500">
+              <div class="flex items-start gap-4">
+                <div class="text-3xl">📱</div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">
+                    Con Chỉ Biết Chơi Game
+                  </h3>
+                  <p class="text-gray-600 leading-relaxed">
+                    Thay vì chỉ tiêu thụ công nghệ, tại sao không để con tạo ra
+                    và điều khiển công nghệ?
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card border-l-4 border-l-yellow-500">
+              <div class="flex items-start gap-4">
+                <div class="text-3xl">🎓</div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">
+                    Áp Lực Thi Cử Khốc Liệt
+                  </h3>
+                  <p class="text-gray-600 leading-relaxed">
+                    Điểm số cao nhưng thiếu kỹ năng thực tế. Con cần lợi thế
+                    cạnh tranh THẬT SỰ cho tương lai
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card border-l-4 border-l-yellow-500">
+              <div class="flex items-start gap-4">
+                <div class="text-3xl">💼</div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">
+                    Nghề Nghiệp Tương Lai
+                  </h3>
+                  <p class="text-gray-600 leading-relaxed">
+                    Nhiều nghề hiện tại sẽ bị thay thế bởi AI. Con cần học những
+                    kỹ năng không thể thay thế
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reality Check -->
+        <div
+          class="bg-gradient-card border-2 border-red-200 rounded-2xl p-8 text-center shadow-card"
+        >
+          <h3 class="text-2xl font-bold mb-4 text-red-600">
+            🚨 Thực Tế Đáng Báo Động
+          </h3>
+          <div class="grid md:grid-cols-3 gap-6 mb-6">
+            <div>
+              <div class="text-3xl font-bold text-red-600">70%</div>
+              <p class="text-sm text-gray-600">
+                Nghề nghiệp hiện tại sẽ thay đổi hoàn toàn trong 10 năm tới
+              </p>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-red-600">5x</div>
+              <p class="text-sm text-gray-600">
+                Mức lương của lập trình viên so với nghề truyền thống
+              </p>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-red-600">2030</div>
+              <p class="text-sm text-gray-600">
+                AI sẽ thay thế hàng triệu việc làm cơ bản
+              </p>
+            </div>
+          </div>
+          <p class="text-lg mb-6 text-gray-600">
+            <strong>Câu hỏi quan trọng:</strong> Con bạn sẽ ở đâu trong cuộc
+            cách mạng này?
+          </p>
+          <button class="btn-cta">🎯 Đừng Để Con Bị Bỏ Lại Phía Sau!</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-100 to-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="badge badge-primary mb-6">
+            🎯 Chương Trình Được Thiết Kế Khoa Học
+          </span>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            12 Học Phần
+            <span class="text-blue-600">Từ Cơ Bản Đến Chuyên Sâu</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Mỗi học phần được xây dựng dựa trên nền tảng khoa học, phù hợp với
+            nhận thức của trẻ 11-15 tuổi
+          </p>
+        </div>
+
+        <!-- Learning Path -->
+        <div class="mb-12">
+          <h3 class="text-2xl font-bold text-center mb-8">
+            🚀 Hành Trình Học Tập
+          </h3>
+          <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <span class="badge badge-secondary">Cơ Bản (Học phần 1-3)</span>
+            <span class="badge badge-primary">Nâng Cao (Học phần 4-8)</span>
+            <span
+              class="badge"
+              style="
+                background-color: rgba(245, 158, 11, 0.1);
+                color: var(--accent-color);
+                border: 1px solid rgba(245, 158, 11, 0.2);
+              "
+              >Chuyên Sâu (Học phần 9-12)</span
+            >
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <!-- Module 1 -->
+          <div class="card group">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="text-3xl">🐍</div>
+              <span
+                class="badge"
+                style="
+                  background-color: rgba(156, 163, 175, 0.1);
+                  color: rgb(75, 85, 99);
+                  border: 1px solid rgba(156, 163, 175, 0.2);
+                  font-size: 0.75rem;
+                "
+              >
+                Học phần 1
+              </span>
+            </div>
+            <h3
+              class="text-lg font-bold group-hover:text-blue-600 transition-colors mb-3"
+            >
+              Làm quen với lập trình Python & phần cứng
+            </h3>
+            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+              Cài đặt Thonny IDE, kết nối Pi Pico/ESP32, học về biến và kiểu dữ
+              liệu
+            </p>
+            <div class="flex flex-wrap gap-1">
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Python cơ bản</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Thonny IDE</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Raspberry Pi Pico</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >ESP32</span
+              >
+            </div>
+          </div>
+
+          <!-- Module 2 -->
+          <div class="card group">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="text-3xl">💡</div>
+              <span
+                class="badge"
+                style="
+                  background-color: rgba(156, 163, 175, 0.1);
+                  color: rgb(75, 85, 99);
+                  border: 1px solid rgba(156, 163, 175, 0.2);
+                  font-size: 0.75rem;
+                "
+              >
+                Học phần 2
+              </span>
+            </div>
+            <h3
+              class="text-lg font-bold group-hover:text-blue-600 transition-colors mb-3"
+            >
+              Điều khiển thiết bị đầu ra
+            </h3>
+            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+              Làm việc với đèn LED, RGB, Buzzer và tạo các hiệu ứng thú vị
+            </p>
+            <div class="flex flex-wrap gap-1">
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >LED Control</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >RGB</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Buzzer</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Effects</span
+              >
+            </div>
+          </div>
+
+          <!-- Module 3 -->
+          <div class="card group">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="text-3xl">🔘</div>
+              <span
+                class="badge"
+                style="
+                  background-color: rgba(156, 163, 175, 0.1);
+                  color: rgb(75, 85, 99);
+                  border: 1px solid rgba(156, 163, 175, 0.2);
+                  font-size: 0.75rem;
+                "
+              >
+                Học phần 3
+              </span>
+            </div>
+            <h3
+              class="text-lg font-bold group-hover:text-blue-600 transition-colors mb-3"
+            >
+              Nhận tín hiệu đầu vào
+            </h3>
+            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+              Học cách sử dụng nút nhấn, cảm biến ánh sáng và logic điều kiện
+            </p>
+            <div class="flex flex-wrap gap-1">
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Button Input</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >LDR Sensor</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >If-Else Logic</span
+              >
+            </div>
+          </div>
+
+          <!-- Module 4 -->
+          <div class="card group">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="text-3xl">🔄</div>
+              <span
+                class="badge"
+                style="
+                  background-color: rgba(156, 163, 175, 0.1);
+                  color: rgb(75, 85, 99);
+                  border: 1px solid rgba(156, 163, 175, 0.2);
+                  font-size: 0.75rem;
+                "
+              >
+                Học phần 4
+              </span>
+            </div>
+            <h3
+              class="text-lg font-bold group-hover:text-blue-600 transition-colors mb-3"
+            >
+              Vòng lặp & thời gian
+            </h3>
+            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+              Làm chủ vòng lặp For/While và tạo hiệu ứng đèn chạy
+            </p>
+            <div class="flex flex-wrap gap-1">
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >For Loop</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >While Loop</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Time Control</span
+              >
+            </div>
+          </div>
+
+          <!-- Module 5 -->
+          <div class="card group">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="text-3xl">📡</div>
+              <span
+                class="badge"
+                style="
+                  background-color: rgba(156, 163, 175, 0.1);
+                  color: rgb(75, 85, 99);
+                  border: 1px solid rgba(156, 163, 175, 0.2);
+                  font-size: 0.75rem;
+                "
+              >
+                Học phần 5
+              </span>
+            </div>
+            <h3
+              class="text-lg font-bold group-hover:text-blue-600 transition-colors mb-3"
+            >
+              Cảm biến khoảng cách & servo
+            </h3>
+            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+              Sử dụng cảm biến siêu âm HC-SR04 và điều khiển servo
+            </p>
+            <div class="flex flex-wrap gap-1">
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Ultrasonic Sensor</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Servo Control</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >PWM</span
+              >
+            </div>
+          </div>
+
+          <!-- Module 6 -->
+          <div class="card group">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="text-3xl">🤖</div>
+              <span
+                class="badge"
+                style="
+                  background-color: rgba(156, 163, 175, 0.1);
+                  color: rgb(75, 85, 99);
+                  border: 1px solid rgba(156, 163, 175, 0.2);
+                  font-size: 0.75rem;
+                "
+              >
+                Học phần 6
+              </span>
+            </div>
+            <h3
+              class="text-lg font-bold group-hover:text-blue-600 transition-colors mb-3"
+            >
+              Xe robot tự chế
+            </h3>
+            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+              Lắp ráp và lập trình xe robot 2 bánh hoàn chỉnh
+            </p>
+            <div class="flex flex-wrap gap-1">
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Robot Assembly</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Motor Control</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Navigation</span
+              >
+            </div>
+          </div>
+
+          <!-- Module 7-12 abbreviated for space -->
+          <div class="card group">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="text-3xl">🌡️</div>
+              <span
+                class="badge"
+                style="
+                  background-color: rgba(156, 163, 175, 0.1);
+                  color: rgb(75, 85, 99);
+                  border: 1px solid rgba(156, 163, 175, 0.2);
+                  font-size: 0.75rem;
+                "
+                >Học phần 7-12</span
+              >
+            </div>
+            <h3
+              class="text-lg font-bold group-hover:text-blue-600 transition-colors mb-3"
+            >
+              Nâng cao: IoT, AI & Dự án
+            </h3>
+            <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+              UART, WiFi, Web Interface, Algorithms, IoT Systems, và Dự án
+              thuyết trình
+            </p>
+            <div class="flex flex-wrap gap-1">
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >IoT</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >WiFi</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Algorithms</span
+              >
+              <span class="badge badge-secondary" style="font-size: 0.75rem"
+                >Final Project</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- What Students Get -->
+        <div
+          class="bg-gradient-primary text-white rounded-2xl p-8 text-center shadow-glow"
+        >
+          <h3 class="text-2xl font-bold mb-6">
+            🎯 Sau 12 Học Phần, Con Bạn Sẽ Có Được
+          </h3>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div>
+              <div class="text-4xl mb-2">🧠</div>
+              <h4 class="font-semibold mb-2">Tư Duy Logic</h4>
+              <p class="text-sm opacity-90">
+                Giải quyết vấn đề theo cách có hệ thống
+              </p>
+            </div>
+            <div>
+              <div class="text-4xl mb-2">👨‍💻</div>
+              <h4 class="font-semibold mb-2">Kỹ Năng Lập Trình</h4>
+              <p class="text-sm opacity-90">
+                Python chuyên nghiệp, làm chủ công nghệ
+              </p>
+            </div>
+            <div>
+              <div class="text-4xl mb-2">🚀</div>
+              <h4 class="font-semibold mb-2">Tự Tin Tương Lai</h4>
+              <p class="text-sm opacity-90">
+                Sẵn sàng cho mọi thách thức công nghệ
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Global Compatibility Section -->
+    <section class="py-20 bg-gradient-to-br from-white to-gray-50">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="badge badge-primary mb-6"> 🌍 Tương Thích Quốc Tế </span>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            Chương Trình Được
+            <span class="text-blue-600"> Công Nhận Toàn Cầu</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Học Python Robot ở Việt Nam - Dễ dàng chuyển tiếp du học tại bất kỳ
+            quốc gia nào
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- USA -->
+          <div class="card">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="text-3xl">🇺🇸</div>
+              <div>
+                <h3 class="font-bold">Hoa Kỳ (Mỹ)</h3>
+                <span class="badge badge-primary" style="font-size: 0.75rem"
+                  >Rất cao</span
+                >
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">
+              CS Principles (AP), Python, robotics trong chương trình middle &
+              high school
+            </p>
+            <p class="text-sm font-semibold text-green-600">
+              ✅ Chuẩn bị cho CS, Robotics, Electrical Engineering. Dễ tích hợp
+              SAT/ACT
+            </p>
+          </div>
+
+          <!-- UK -->
+          <div class="card">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="text-3xl">🇬🇧</div>
+              <div>
+                <h3 class="font-bold">Anh Quốc (UK)</h3>
+                <span class="badge badge-primary" style="font-size: 0.75rem"
+                  >Rất cao</span
+                >
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">
+              National Curriculum yêu cầu học Python từ Key Stage 3. Sử dụng
+              Raspberry Pi
+            </p>
+            <p class="text-sm font-semibold text-green-600">
+              ✅ Chuẩn bị cho A-level Computer Science, AI, Mechatronics
+            </p>
+          </div>
+
+          <!-- Singapore -->
+          <div class="card">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="text-3xl">🇸🇬</div>
+              <div>
+                <h3 class="font-bold">Singapore</h3>
+                <span class="badge badge-primary" style="font-size: 0.75rem"
+                  >Rất cao</span
+                >
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">
+              Applied Learning Programme cho phép học Python, IoT. STEM là định
+              hướng quốc gia
+            </p>
+            <p class="text-sm font-semibold text-green-600">
+              ✅ Chuyển tiếp tốt sang Polytechnic hoặc Đại học công nghệ
+            </p>
+          </div>
+
+          <!-- Australia -->
+          <div class="card">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="text-3xl">🇦🇺</div>
+              <div>
+                <h3 class="font-bold">Úc (Australia)</h3>
+                <span class="badge badge-secondary" style="font-size: 0.75rem"
+                  >Cao</span
+                >
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">
+              Digital Technologies Curriculum: thiết kế mạch điện tử, viết code
+              điều khiển
+            </p>
+            <p class="text-sm font-semibold text-green-600">
+              ✅ Tham gia STEM competitions, theo học IT tại đại học
+            </p>
+          </div>
+
+          <!-- Korea & Japan -->
+          <div class="card">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="text-3xl">🇰🇷🇯🇵</div>
+              <div>
+                <h3 class="font-bold">Hàn Quốc & Nhật</h3>
+                <span
+                  class="badge"
+                  style="
+                    background-color: rgba(245, 158, 11, 0.1);
+                    color: var(--accent-color);
+                    border: 1px solid rgba(245, 158, 11, 0.2);
+                    font-size: 0.75rem;
+                  "
+                  >Trung bình - cao</span
+                >
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">
+              Dạy lập trình Python ở THCS. Tích hợp robot Arduino, ESP32
+            </p>
+            <p class="text-sm font-semibold text-green-600">
+              ✅ Dễ thi vào các trường kỹ thuật như KAIST, Tokyo Tech
+            </p>
+          </div>
+
+          <!-- Vietnam -->
+          <div class="card">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="text-3xl">🇻🇳</div>
+              <div>
+                <h3 class="font-bold">Việt Nam</h3>
+                <span
+                  class="badge"
+                  style="
+                    background-color: rgba(16, 185, 129, 0.1);
+                    color: var(--success-color);
+                    border: 1px solid rgba(16, 185, 129, 0.2);
+                    font-size: 0.75rem;
+                  "
+                  >Đang tăng nhanh</span
+                >
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mb-3">
+              Chương trình STEM mới. Các trường THPT chuyên đã bắt đầu dạy
+              Python & Robotics
+            </p>
+            <p class="text-sm font-semibold text-green-600">
+              ✅ Lợi thế thi Olympic Tin học, xét tuyển đại học
+            </p>
+          </div>
+        </div>
+
+        <!-- Global Statistics -->
+        <div
+          class="mt-16 bg-gradient-card border border-blue-200 rounded-2xl p-8 text-center shadow-card"
+        >
+          <h3 class="text-2xl font-bold mb-6 text-blue-600">
+            📊 Thống Kê Toàn Cầu
+          </h3>
+          <div class="grid md:grid-cols-4 gap-6">
+            <div>
+              <div class="text-3xl font-bold text-blue-600">150+</div>
+              <p class="text-sm text-gray-600">
+                Quốc gia dạy Python trong trường học
+              </p>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-blue-600">85%</div>
+              <p class="text-sm text-gray-600">
+                Đại học hàng đầu có chương trình Robotics
+              </p>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-blue-600">#1</div>
+              <p class="text-sm text-gray-600">
+                Python là ngôn ngữ được học nhiều nhất
+              </p>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-blue-600">2025</div>
+              <p class="text-sm text-gray-600">
+                Robotics Engineer là nghề hot nhất
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Main CTA -->
+        <div class="text-center mb-16">
+          <span class="badge badge-danger mb-6 animate-pulse-slow">
+            🔥 KHUYẾN MÃI CÓ HẠN - KẾT THÚC TRONG 3 NGÀY
+          </span>
+
+          <h2 class="text-4xl md:text-6xl font-bold mb-6">
+            Đăng Ký Ngay
+            <span class="block text-yellow-500">Trước Khi Quá Muộn!</span>
+          </h2>
+
+          <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            Mỗi ngày trì hoãn là một ngày con bạn
+            <strong class="text-red-600">tụt hậu</strong> so với bạn bè. Hãy cho
+            con cơ hội <strong class="text-blue-600">dẫn đầu</strong> ngay từ
+            bây giờ!
+          </p>
+        </div>
+
+        <!-- Urgency Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div class="card text-center border-2 border-yellow-200">
+            <div class="text-4xl mb-4">⏰</div>
+            <h3 class="font-bold text-lg mb-2 text-yellow-600">
+              Chỉ còn 20 suất
+            </h3>
+            <p class="text-sm text-gray-600">
+              Lớp học nhỏ để đảm bảo chất lượng
+            </p>
+          </div>
+
+          <div class="card text-center border-2 border-yellow-200">
+            <div class="text-4xl mb-4">💰</div>
+            <h3 class="font-bold text-lg mb-2 text-yellow-600">
+              Ưu đãi sớm 30%
+            </h3>
+            <p class="text-sm text-gray-600">
+              Chỉ dành cho 10 phụ huynh đăng ký đầu tiên
+            </p>
+          </div>
+
+          <div class="card text-center border-2 border-yellow-200">
+            <div class="text-4xl mb-4">🎁</div>
+            <h3 class="font-bold text-lg mb-2 text-yellow-600">
+              Tặng kit robot
+            </h3>
+            <p class="text-sm text-gray-600">
+              Trị giá 1.500.000đ để con thực hành tại nhà
+            </p>
+          </div>
+
+          <div class="card text-center border-2 border-yellow-200">
+            <div class="text-4xl mb-4">📞</div>
+            <h3 class="font-bold text-lg mb-2 text-yellow-600">Tư vấn 1-1</h3>
+            <p class="text-sm text-gray-600">
+              Với chuyên gia về chương trình học
+            </p>
+          </div>
+        </div>
+
+        <!-- Main CTA Card -->
+        <div
+          class="bg-gradient-primary text-white rounded-3xl p-12 shadow-glow text-center mb-12"
+        >
+          <h3 class="text-3xl font-bold mb-6">
+            🚀 Con Bạn Xứng Đáng Có Tương Lai Tốt Nhất!
+          </h3>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div class="space-y-4">
+              <h4 class="text-xl font-semibold mb-4">✅ Con sẽ có được:</h4>
+              <ul class="text-left space-y-2 text-sm opacity-90">
+                <li>🎯 Kỹ năng lập trình Python chuyên nghiệp</li>
+                <li>🤖 Khả năng thiết kế và điều khiển robot</li>
+                <li>🌟 Tư duy logic và giải quyết vấn đề</li>
+                <li>🎓 Nền tảng vững chắc cho đại học quốc tế</li>
+                <li>💼 Lợi thế cạnh tranh trong tương lai</li>
+              </ul>
+            </div>
+
+            <div class="space-y-4">
+              <h4 class="text-xl font-semibold mb-4">❌ Nếu bỏ lỡ:</h4>
+              <ul class="text-left space-y-2 text-sm opacity-90">
+                <li>😰 Con sẽ tụt hậu so với bạn bè</li>
+                <li>📱 Chỉ biết tiêu thụ thay vì sáng tạo</li>
+                <li>🎯 Thiếu kỹ năng then chốt thời đại 4.0</li>
+                <li>💼 Khó cạnh tranh trong tương lai</li>
+                <li>⏰ Mất cơ hội vàng chỉ có một lần</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300"
+            >
+              🎯 ĐĂNG KÝ NGAY - CHỈ 20 SUẤT
+            </button>
+            <button
+              class="bg-transparent text-white hover:bg-white/10 border border-white/50 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300"
+            >
+              📞 TƯ VẤN MIỄN PHÍ
+            </button>
+          </div>
+        </div>
+
+        <!-- Countdown Timer -->
+        <div
+          class="bg-red-600 text-white rounded-2xl p-6 text-center shadow-glow"
+        >
+          <h4 class="text-xl font-bold mb-3">⏰ THỜI GIAN ƯU ĐÃI CÒN LẠI</h4>
+          <div class="grid grid-cols-4 gap-4 max-w-md mx-auto">
+            <div>
+              <div class="text-2xl font-bold">02</div>
+              <div class="text-xs">NGÀY</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold">15</div>
+              <div class="text-xs">GIỜ</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold">32</div>
+              <div class="text-xs">PHÚT</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold">45</div>
+              <div class="text-xs">GIÂY</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white py-12">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">🤖 Robot Coding Academy</h3>
+            <p class="text-sm opacity-90 mb-4">
+              Đào tạo thế hệ lập trình viên robot tương lai
+            </p>
+            <div class="flex gap-2">
+              <button
+                class="bg-transparent hover:bg-white/10 px-3 py-2 rounded text-sm transition-all duration-300"
+              >
+                📧 Email
+              </button>
+              <button
+                class="bg-transparent hover:bg-white/10 px-3 py-2 rounded text-sm transition-all duration-300"
+              >
+                📞 Hotline
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Thông Tin Khóa Học</h4>
+            <ul class="space-y-2 text-sm opacity-90">
+              <li>📚 12 học phần thực hành</li>
+              <li>👥 Lớp nhỏ 8-10 học viên</li>
+              <li>⏰ 24 buổi học (3 tháng)</li>
+              <li>🎁 Tặng kit robot về nhà</li>
+              <li>📜 Chứng chỉ hoàn thành</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Liên Hệ Ngay</h4>
+            <div class="space-y-3">
+              <button
+                class="w-full border border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2 rounded transition-all duration-300 text-sm"
+              >
+                📞 Hotline: 0900 123 456
+              </button>
+              <button
+                class="w-full border border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2 rounded transition-all duration-300 text-sm"
+              >
+                📧 info@robotacademy.edu.vn
+              </button>
+              <button
+                class="w-full border border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2 rounded transition-all duration-300 text-sm"
+              >
+                📍 123 Đường ABC, Q1, TP.HCM
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-white/20 pt-8 text-center">
+          <p class="text-sm opacity-75">
+            © 2024 Robot Coding Academy. Bản quyền thuộc về chúng tôi.
+          </p>
+          <p class="text-xs opacity-60 mt-2">
+            🚀 Đầu tư cho tương lai con em - Đầu tư cho tương lai đất nước
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript for interactive elements -->
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Simple countdown timer
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const countDownDate = now + 3 * 24 * 60 * 60 * 1000; // 3 days from now
+
+        setInterval(function () {
+          const currentTime = new Date().getTime();
+          const distance = countDownDate - currentTime;
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Update countdown display if elements exist
+          const dayEl = document.querySelector(".countdown-days");
+          const hourEl = document.querySelector(".countdown-hours");
+          const minEl = document.querySelector(".countdown-minutes");
+          const secEl = document.querySelector(".countdown-seconds");
+
+          if (dayEl) dayEl.textContent = days.toString().padStart(2, "0");
+          if (hourEl) hourEl.textContent = hours.toString().padStart(2, "0");
+          if (minEl) minEl.textContent = minutes.toString().padStart(2, "0");
+          if (secEl) secEl.textContent = seconds.toString().padStart(2, "0");
+        }, 1000);
+      }
+
+      // Initialize countdown on page load
+      updateCountdown();
+
+      // Add click handlers for CTA buttons
+      document
+        .querySelectorAll(".btn-hero, .btn-cta, button")
+        .forEach((button) => {
+          button.addEventListener("click", function () {
+            if (
+              this.textContent.includes("ĐĂNG KÝ") ||
+              this.textContent.includes("TƯ VẤN")
+            ) {
+              alert(
+                "🎉 Cảm ơn bạn quan tâm! Vui lòng liên hệ:\n📞 Hotline: 0900 123 456\n📧 Email: info@robotacademy.edu.vn"
+              );
+            }
+          });
+        });
+
+      // Add scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe all cards and sections
+      document.querySelectorAll(".card, section").forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(20px)";
+        el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>
