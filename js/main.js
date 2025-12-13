@@ -2,9 +2,14 @@
   ("use strict");
 
   $(document).ready(function () {
+    // Detect base path for GitHub Pages compatibility
+    var basePath = window.location.pathname.includes("/laptrinhrobot/")
+      ? "/laptrinhrobot/"
+      : "/";
+
     // Load header dynamically
     $("#header-placeholder").load(
-      "header.html",
+      basePath + "header.html",
       function (response, status, xhr) {
         if (status == "error") {
           console.warn(
@@ -16,7 +21,7 @@
 
     // Load footer dynamically
     $("#footer-placeholder").load(
-      "footer.html",
+      basePath + "footer.html",
       function (response, status, xhr) {
         if (status == "error") {
           console.warn(
