@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giai Đoạn Khởi Động (7-9 Tuổi) | Lập Trình Robot</title>
+    <meta name="description"
+        content="Chi tiết lộ trình học Lập trình và Khám phá Robotics dành cho độ tuổi 7-9 tuổi tại Lập Trình Robot.">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
+                        accent: { 50: '#fefce8', 100: '#fef9c3', 500: '#eab308', 600: '#ca8a04' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans text-gray-800 antialiased bg-gray-50 pt-20">
+
+    <!-- NAVIGATION -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html"
+                    class="flex-shrink-0 flex items-center cursor-pointer hover:opacity-80 transition-opacity">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <span class="font-bold text-xl md:text-2xl tracking-tight text-gray-900">Lập Trình <span
+                            class="text-primary-600">Robot</span></span>
+                </a>
+                <div class="flex items-center">
+                    <a href="index.html#lo-trinh"
+                        class="text-sm font-medium text-gray-600 hover:text-primary-600 flex items-center bg-gray-50 px-4 py-2 rounded-full border border-gray-200 transition-colors">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Về Lộ Trình Tổng Thể
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-24 pb-32 lg:pt-28 lg:pb-40 bg-green-50 overflow-hidden">
+        <div class="absolute inset-0 opacity-20"
+            style="background-image: radial-gradient(#22c55e 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-green-50 to-transparent opacity-80 z-0">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span
+                class="inline-block py-1 px-4 rounded-full bg-primary-500/20 text-primary-700 text-sm font-bold tracking-wider mb-6 border border-primary-500/30">DÀNH
+                CHO ĐỘ TUỔI 7 - 9</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6">Giai Đoạn Khởi Động</h1>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-10 font-light">Bước Chạm Công Nghệ Đầu Tiên
+            </p>
+
+            <div
+                class="flex flex-col md:flex-row justify-center gap-6 text-sm md:text-base text-left max-w-4xl mx-auto bg-white p-8 rounded-3xl backdrop-blur-md border border-gray-100 shadow-xl">
+                <div class="flex-1">
+                    <div
+                        class="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center text-primary-600 mb-4">
+                        <i class="fa-solid fa-bullseye"></i></div>
+                    <p class="text-gray-900 font-semibold mb-2">Mục tiêu cốt lõi</p>
+                    <p class="text-gray-600 leading-relaxed">Kích thích sự tò mò, hình thành tư duy thuật toán trực quan
+                        qua kéo thả.</p>
+                </div>
+                <div class="flex-1">
+                    <div
+                        class="w-10 h-10 rounded-full bg-accent-500/20 flex items-center justify-center text-accent-600 mb-4">
+                        <i class="fa-solid fa-book-open"></i></div>
+                    <p class="text-gray-900 font-semibold mb-2">Chương trình học</p>
+                    <p class="text-gray-600 leading-relaxed">Lập trình kéo thả (Scratch) và Nhập môn Robotics
+                        (Lego/VEX).</p>
+                </div>
+                <div class="flex-1">
+                    <div
+                        class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-600 mb-4">
+                        <i class="fa-solid fa-trophy"></i></div>
+                    <p class="text-gray-900 font-semibold mb-2">Sản phẩm Đầu ra</p>
+                    <p class="text-gray-600 leading-relaxed">Tự làm game giải trí, video kể chuyện, lập trình robot né
+                        vật cản.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO EMBED SECTION -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-20 mb-20">
+        <div
+            class="bg-gray-200 rounded-3xl shadow-2xl overflow-hidden border-4 border-white aspect-video relative group">
+            <!-- Dummy YouTube Video Link per User Request -->
+            <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0"
+                title="Course Trailer" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- MODULES DETAIL -->
+    <section class="py-12 bg-gray-50 mb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Chi Tiết Lộ Trình Học</h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto">Chương trình được thiết kế khoa học, chia làm 2 học
+                    phần chuyên sâu giúp học sinh nắm vững nền tảng ngay từ những bước đầu tiên.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                <!-- MODULE 1 -->
+                <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="bg-gradient-to-r from-accent-500 to-accent-600 p-8 text-white">
+                        <span
+                            class="bg-white/20 px-3 py-1 rounded-full text-sm font-semibold mb-3 inline-block backdrop-blur-sm">Mô-đun
+                            1</span>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-2">SCRATCH CREATOR</h3>
+                        <p class="text-accent-100 font-medium">Tư duy Phần mềm & Logic</p>
+                    </div>
+
+                    <div class="p-8 flex-grow">
+                        <div class="flex flex-col sm:flex-row gap-4 mb-8 text-sm">
+                            <span
+                                class="bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-100 text-gray-700 font-medium"><i
+                                    class="fa-regular fa-clock text-accent-500 mr-2"></i>12 buổi (1.5 - 2h/buổi)</span>
+                            <span
+                                class="bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-100 text-gray-700 font-medium whitespace-normal"><i
+                                    class="fa-solid fa-bullseye text-accent-500 mr-2"></i>Tuần tự, Vòng lặp,
+                                If-Else</span>
+                        </div>
+
+                        <div
+                            class="space-y-8 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-accent-100 text-accent-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    1-2
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Nhập môn & Chuyển động cơ bản</h4>
+                                    <p class="text-gray-600 text-sm">Làm quen giao diện Scratch, hệ tọa độ X-Y (đơn giản
+                                        hóa). Lập trình nhân vật di chuyển, nhảy múa.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-accent-100 text-accent-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    3-5
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Kể chuyện tương tác</h4>
+                                    <p class="text-gray-600 text-sm">Sử dụng hội thoại, chuyển Backdrop, chèn âm thanh.
+                                        Sản phẩm: Video hoạt hình/cổ tích.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-accent-100 text-accent-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    6-9
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Lập trình Game cơ bản</h4>
+                                    <p class="text-gray-600 text-sm">Xử lý va chạm, dùng biến số đếm điểm/thời gian.
+                                        Game Mèo vờn chuột, Bảo vệ Trái Đất.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-accent-100 text-accent-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    10+
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-accent-50 p-5 rounded-2xl border border-accent-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-accent-700 mb-1">Demo Day & Báo Cáo</h4>
+                                    <p class="text-gray-700 text-sm">Tự lên ý tưởng và code 1 tựa game hoàn chỉnh.
+                                        Thuyết trình trước phụ huynh tại trung tâm.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div
+                    class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col mt-8 lg:mt-0">
+                    <div class="bg-gradient-to-br from-primary-500 to-teal-500 p-8 text-white">
+                        <span
+                            class="bg-white/20 px-3 py-1 rounded-full text-sm font-semibold mb-3 inline-block backdrop-blur-sm">Mô-đun
+                            2</span>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-2">KỸ SƯ ROBOT NHÍ</h3>
+                        <p class="text-primary-100 font-medium">Tương tác Phần cứng (Cơ khí & Cảm biến)</p>
+                    </div>
+
+                    <div class="p-8 flex-grow">
+                        <div class="flex flex-col sm:flex-row gap-4 mb-8 text-sm">
+                            <span
+                                class="bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-100 text-gray-700 font-medium"><i
+                                    class="fa-regular fa-clock text-primary-500 mr-2"></i>12 buổi (1.5 - 2h/buổi)</span>
+                            <span
+                                class="bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-100 text-gray-700 font-medium"><i
+                                    class="fa-solid fa-microchip text-primary-500 mr-2"></i>Thiết bị: Lego/VEX Go</span>
+                        </div>
+
+                        <div
+                            class="space-y-8 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-primary-100 text-primary-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    1-3
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Cơ khí cơ bản & Động cơ</h4>
+                                    <p class="text-gray-600 text-sm">Nhận biết linh kiện cơ bản (Não, Động cơ, Bánh
+                                        răng). Lắp ráp và lập trình xe di chuyển cơ bản.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-primary-100 text-primary-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    4-6
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Cảm biến khoảng cách</h4>
+                                    <p class="text-gray-600 text-sm">Cách robot "nhìn" thấy vật cản nhờ mắt thần. Lập
+                                        trình xe tự động dừng khi gặp chướng ngại vật.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-primary-100 text-primary-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    7-9
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Giải Mã Mê Cung</h4>
+                                    <p class="text-gray-600 text-sm">Kết hợp di chuyển & cảm biến (Vòng lặp Forever + If
+                                        Else) để robot tự tìm đường ra khỏi mê cung.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-primary-100 text-primary-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    10+
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-primary-50 p-5 rounded-2xl border border-primary-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-primary-700 mb-1">Mini Robocon</h4>
+                                    <p class="text-gray-700 text-sm">Thi đấu giao hữu trên sa bàn: Dọn rác, đẩy bóng.
+                                        Nhận chứng nhận Kỹ sư nhí ngay cuối khóa.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Registration -->
+    <section class="py-16 bg-white border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Bạn đã sẵn sàng cho con một bước khởi đầu hoàn hảo?
+            </h2>
+            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Nhận ngay một buổi học thử miễn phí và đánh giá tư duy logic
+                cho học sinh (trị giá 500,000đ) khi đăng ký tư vấn lộ trình 7-9 tuổi.</p>
+            <a href="index.html#dang-ky"
+                class="inline-flex items-center justify-center px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 text-lg">
+                ĐĂNG KÝ XẾP LỚP NGAY
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-50 pt-16 pb-8 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 Hành Trình Kỹ Sư Công Nghệ 4.0. All rights reserved.</p>
+                <div class="space-x-4 mt-4 md:mt-0">
+                    <a href="privacy.html" class="hover:text-primary-600 transition-colors">Chính sách bảo mật</a>
+                    <a href="terms.html" class="hover:text-primary-600 transition-colors">Điều khoản dịch vụ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

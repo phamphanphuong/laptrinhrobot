@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ & Bảng Giá | Lập Trình Robot</title>
+    <meta name="description"
+        content="Xem chi tiết bảng giá khóa học, học phí lập trình, tư vấn khóa học và thông tin liên hệ của Lập Trình Robot.">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
+                        accent: { 50: '#fefce8', 100: '#fef9c3', 500: '#eab308', 600: '#ca8a04' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans text-gray-800 antialiased bg-gray-50 pt-20">
+
+    <!-- NAVIGATION -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html"
+                    class="flex-shrink-0 flex items-center cursor-pointer hover:opacity-80 transition-opacity">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <span class="font-bold text-xl md:text-2xl tracking-tight text-gray-900">Lập Trình <span
+                            class="text-primary-600">Robot</span></span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html"
+                        class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Trang Chủ</a>
+                    <a href="lien-he.html" class="text-primary-600 font-bold transition-colors">Liên Hệ & Học Phí</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-20 pb-20 bg-green-50 overflow-hidden border-b border-gray-200">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-green-100/50 to-transparent z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span
+                class="inline-block py-1 px-4 rounded-full bg-primary-100 text-primary-700 text-sm font-bold tracking-wider mb-6 border border-primary-200">GHI
+                DANH LỚP MỚI</span>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Bảng Giá & Liên Hệ</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">Thiết kế học phí linh hoạt cho cả mô hình
+                giảng dạy 1:1 và Học nhóm chất lượng cao.</p>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Package 1: Dạy ghép nhóm -->
+                <div
+                    class="bg-white rounded-3xl shadow-md border border-gray-200 p-8 flex flex-col hover:-translate-y-2 transition-transform duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Học Chung (3-8 HS)</h3>
+                    <p class="text-gray-500 text-sm mb-6">Mô hình lớp nhỏ tối ưu tương tác</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-extrabold text-gray-900">100.000<span
+                                class="text-lg text-gray-500 font-medium">đ</span></span>
+                        <span class="text-gray-500">/ buổi</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-primary-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Lớp chuẩn: 3 - 8 Học sinh</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-primary-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Học trực tiếp tại trung tâm</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-primary-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Lịch học định kỳ ổn định</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-primary-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Hợp tác & Thi đấu mini Robotic</span></li>
+                    </ul>
+                </div>
+
+                <!-- Package 2: Dạy tại lớp -->
+                <div
+                    class="bg-white rounded-3xl shadow-xl border-2 border-primary-500 p-8 flex flex-col relative transform scale-105 z-10 hover:-translate-y-2 transition-transform duration-300">
+                    <div
+                        class="absolute top-0 right-[-2px] bg-primary-500 text-white font-bold text-xs uppercase px-3 py-1 rounded-bl-xl rounded-tr-3xl">
+                        Lựa Chọn Phổ Biến</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Dạy Kèm 1:1 Tại Khoá Học</h3>
+                    <p class="text-gray-500 text-sm mb-6">Theo sát năng lực học sinh triệt để</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-extrabold text-gray-900">200.000<span
+                                class="text-lg text-gray-500 font-medium">đ</span></span>
+                        <span class="text-gray-500">/ buổi</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-primary-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Dạy kèm cá nhân hóa (1 Thầy 1 Trò)</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-primary-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Học trực tiếp tại Phòng LapTrinhRobot</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-primary-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Kiểm tra bài cũ liên tục & định hướng riêng</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-primary-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Hỗ trợ code bài tập trên trường 24/7</span></li>
+                    </ul>
+                </div>
+
+                <!-- Package 3: Tận nhà -->
+                <div
+                    class="bg-white rounded-3xl shadow-lg border-2 border-teal-500 p-8 flex flex-col hover:-translate-y-2 transition-transform duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Dạy Kèm 1:1 Tận Nhà</h3>
+                    <p class="text-gray-500 text-sm mb-6">Tiện lợi, an toàn, tiết kiệm thời gian đi lại</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-extrabold text-gray-900">500.000<span
+                                class="text-lg text-gray-500 font-medium">đ</span></span>
+                        <span class="text-gray-500">/ 1.5 tiếng</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Dạy kèm độc quyền (1 Thầy 1 Trò)</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Giáo viên đến trực tiếp khu vực TP.HCM</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Thời gian linh hoạt theo gia đình yêu cầu</span></li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-500 mt-1 mr-3"></i><span
+                                class="text-gray-700">Bộ thiết bị Kit Thực Hành tận cửa</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT INFO & MAP SECTION -->
+    <section class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!-- Info -->
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Thông Tin Liên Hệ</h2>
+                    <p class="text-gray-600 mb-10 leading-relaxed">Chúng tôi luôn sẵn sàng hỗ trợ bạn. Hãy liên hệ với
+                        chuyên viên giáo dục để nhận được lịch học thử miễn phí gần nhất và lộ trình phù hợp với học
+                        sinh.</p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-primary-100 flex items-center justify-center text-primary-600 text-2xl mr-5 shadow-sm">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-semibold mb-1">Địa chỉ (Trụ sở)</p>
+                                <a href="https://maps.app.goo.gl/ww659skBdHiN7NkD7" target="_blank"
+                                    class="text-gray-900 font-medium hover:text-primary-600 transition-colors">Quận 12,
+                                    Thành phố Hồ Chí Minh</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-teal-100 flex items-center justify-center text-teal-600 text-2xl mr-5 shadow-sm">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-semibold mb-1">Hotline tư vấn nhanh</p>
+                                <a href="tel:0915514419"
+                                    class="text-gray-900 font-medium hover:text-teal-600 transition-colors text-lg tracking-wide">09
+                                    155 144 19</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-accent-100 flex items-center justify-center text-accent-600 text-2xl mr-5 shadow-sm">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 font-semibold mb-1">Email chăm sóc</p>
+                                <a href="mailto:LapTrinhROBOT.com@gmail.com"
+                                    class="text-gray-900 font-medium hover:text-accent-600 transition-colors">LapTrinhROBOT.com@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maps -->
+                <div class="bg-white p-4 rounded-3xl shadow-xl border border-gray-100">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15674.317635211939!2d106.6255665!3d10.8434638!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752bd58f95534b%3A0x70aa55286dff7411!2zROG6oXkgTOG6rXAgVHLDrG5oIChQeXRob24sIEMrKywgU2NyYXRjaCk!5e0!3m2!1sen!2s!4v1720171361136!5m2!1sen!2s"
+                        width="100%" height="400" class="rounded-2xl border-0" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Registration -->
+    <section class="py-16 bg-white border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Đã tìm thấy lộ trình ưng ý?</h2>
+            <a href="index.html#dang-ky"
+                class="inline-flex items-center justify-center px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 text-lg">
+                ĐĂNG KÝ HỌC NGAY
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-50 pt-16 pb-8 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 Hành Trình Kỹ Sư Công Nghệ 4.0. All rights reserved.</p>
+                <div class="space-x-4 mt-4 md:mt-0">
+                    <a href="privacy.html" class="hover:text-primary-600 transition-colors">Chính sách bảo mật</a>
+                    <a href="terms.html" class="hover:text-primary-600 transition-colors">Điều khoản dịch vụ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
