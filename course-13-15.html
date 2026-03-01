@@ -343,6 +343,99 @@
         </div>
     </section>
 
+    
+    <!-- NĂNG LỰC CỐT LÕI SECTION -->
+    <section class="py-16 bg-white border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Năng Lực Cốt Lõi & Chuẩn Đầu Ra</h2>
+                <p class="text-lg text-gray-600">Đầu ra cụ thể học sinh đạt được sau khi hoàn thành lộ trình.</p>
+            </div>
+
+            <!-- AlpineJS Accordion -->
+            <div class="space-y-4" x-data="{ selected: 1 }">
+                <!-- Item 1 -->
+                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                    <button @click="selected !== 1 ? selected = 1 : selected = null"
+                        class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-cubes text-primary-500 mr-4 text-xl"></i>
+                            <span class="font-bold text-gray-900 md:text-lg">Lập trình Hướng đối tượng (OOP)</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-primary-500 transition-transform duration-300"
+                            :class="selected === 1 ? 'transform rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="selected === 1" x-collapse x-cloak>
+                        <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
+                            <p class="text-gray-600 font-sans mb-4">Hiểu khái niệm Class, Object, thuộc tính và phương thức. Biết cách đóng gói code.</p>
+                            <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
+                                        <p class="text-gray-700 text-sm">Tiêu chuẩn viết code của các tập đoàn Big Tech, giúp làm việc nhóm dễ dàng.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                    <button @click="selected !== 2 ? selected = 2 : selected = null"
+                        class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-globe text-primary-500 mr-4 text-xl"></i>
+                            <span class="font-bold text-gray-900 md:text-lg">Giao diện Web & Bất đồng bộ</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-primary-500 transition-transform duration-300"
+                            :class="selected === 2 ? 'transform rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="selected === 2" x-collapse x-cloak>
+                        <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
+                            <p class="text-gray-600 font-sans mb-4">Thao tác DOM bằng JavaScript, dùng Fetch API kéo dữ liệu JSON từ Server về Web mà không cần tải lại trang.</p>
+                            <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
+                                        <p class="text-gray-700 text-sm">Kỹ năng bắt buộc để làm các App mượt mà như Shopee/TikTok. Có thể nhận việc Freelance làm web sớm.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                    <button @click="selected !== 3 ? selected = 3 : selected = null"
+                        class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-wifi text-primary-500 mr-4 text-xl"></i>
+                            <span class="font-bold text-gray-900 md:text-lg">Hệ thống nhúng Internet (ESP32)</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-primary-500 transition-transform duration-300"
+                            :class="selected === 3 ? 'transform rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="selected === 3" x-collapse x-cloak>
+                        <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
+                            <p class="text-gray-600 font-sans mb-4">Cấu hình ESP32 kết nối Wi-Fi, lập trình điều khiển Cánh tay robot 4 bậc đồng bộ, truyền dữ liệu qua MQTT.</p>
+                            <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
+                                        <p class="text-gray-700 text-sm">Tiền đề làm kỹ sư Robot công nghiệp, tự động hóa nhà máy và chế tạo thiết bị giám sát từ xa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Registration -->
     <section class="py-16 bg-white border-t border-gray-200">
         <div class="max-w-4xl mx-auto px-4 text-center">

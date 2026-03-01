@@ -354,6 +354,99 @@
         </div>
     </section>
 
+    
+    <!-- NĂNG LỰC CỐT LÕI SECTION -->
+    <section class="py-16 bg-white border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Năng Lực Cốt Lõi & Chuẩn Đầu Ra</h2>
+                <p class="text-lg text-gray-600">Đầu ra cụ thể học sinh đạt được sau khi hoàn thành lộ trình.</p>
+            </div>
+
+            <!-- AlpineJS Accordion -->
+            <div class="space-y-4" x-data="{ selected: 1 }">
+                <!-- Item 1 -->
+                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                    <button @click="selected !== 1 ? selected = 1 : selected = null"
+                        class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-network-wired text-primary-500 mr-4 text-xl"></i>
+                            <span class="font-bold text-gray-900 md:text-lg">Kiến trúc Mạng & Xử lý Dữ liệu lớn</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-primary-500 transition-transform duration-300"
+                            :class="selected === 1 ? 'transform rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="selected === 1" x-collapse x-cloak>
+                        <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
+                            <p class="text-gray-600 font-sans mb-4">Hiểu sâu cách Internet hoạt động (IP, Routing). Dùng Pandas/Matplotlib xử lý và vẽ biểu đồ dữ liệu lớn (Big Data).</p>
+                            <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
+                                        <p class="text-gray-700 text-sm">Kiến thức chuẩn Đại học (giúp thi chứng chỉ AP CSP). Kỹ năng cốt lõi của Data Analyst lương cao.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                    <button @click="selected !== 2 ? selected = 2 : selected = null"
+                        class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-brain text-primary-500 mr-4 text-xl"></i>
+                            <span class="font-bold text-gray-900 md:text-lg">Huấn luyện AI</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-primary-500 transition-transform duration-300"
+                            :class="selected === 2 ? 'transform rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="selected === 2" x-collapse x-cloak>
+                        <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
+                            <p class="text-gray-600 font-sans mb-4">Tự thu thập dataset, gán nhãn và huấn luyện mô hình nhận diện (YOLO), sau đó đưa AI xuống chạy trên phần cứng biên (Edge AI).</p>
+                            <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
+                                        <p class="text-gray-700 text-sm">Nắm bắt công nghệ dẫn dắt tương lai, chạm trình độ kỹ sư R&D phần cứng, lợi thế tuyệt đối xin việc.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                    <button @click="selected !== 3 ? selected = 3 : selected = null"
+                        class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-file-signature text-primary-500 mr-4 text-xl"></i>
+                            <span class="font-bold text-gray-900 md:text-lg">Chuẩn mực Báo cáo Kỹ thuật (IEEE)</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-primary-500 transition-transform duration-300"
+                            :class="selected === 3 ? 'transform rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="selected === 3" x-collapse x-cloak>
+                        <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
+                            <p class="text-gray-600 font-sans mb-4">Quản lý version bằng Git/GitHub. Trình bày báo cáo kỹ thuật (White Paper) đúng format chuẩn quốc tế.</p>
+                            <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
+                                        <p class="text-gray-700 text-sm">Xây dựng Portfolio học thuật hoàn hảo để săn học bổng du học Mỹ / tuyển thẳng Đại học top đầu.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Registration -->
     <section class="py-16 bg-white border-t border-gray-200">
         <div class="max-w-4xl mx-auto px-4 text-center">
