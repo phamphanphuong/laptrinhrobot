@@ -8,6 +8,10 @@
     <meta name="description"
         content="Chi tiết lộ trình học Lập trình và Khám phá Robotics dành cho độ tuổi 7-9 tuổi tại Lập Trình Robot.">
 
+<!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +22,11 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js (Core & Collapse Plugin) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -352,7 +361,7 @@
         </div>
     </section>
 
-    
+
     <!-- NĂNG LỰC CỐT LÕI SECTION -->
     <section class="py-16 bg-white border-t border-gray-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -364,7 +373,8 @@
             <!-- AlpineJS Accordion -->
             <div class="space-y-4" x-data="{ selected: 1 }">
                 <!-- Item 1 -->
-                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
                     <button @click="selected !== 1 ? selected = 1 : selected = null"
                         class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
                         <div class="flex items-center">
@@ -376,13 +386,15 @@
                     </button>
                     <div x-show="selected === 1" x-collapse x-cloak>
                         <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
-                            <p class="text-gray-600 font-sans mb-4">Biết cách chia bài toán khó thành các bước nhỏ, sử dụng vòng lặp và lệnh rẽ nhánh if-else.</p>
+                            <p class="text-gray-600 font-sans mb-4">Biết cách chia bài toán khó thành các bước nhỏ, sử
+                                dụng vòng lặp và lệnh rẽ nhánh if-else.</p>
                             <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
                                 <div class="flex items-start">
                                     <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
                                     <div>
                                         <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
-                                        <p class="text-gray-700 text-sm">Rèn luyện tính cẩn thận, nền tảng quản lý dự án và tư duy nguyên nhân - kết quả.</p>
+                                        <p class="text-gray-700 text-sm">Rèn luyện tính cẩn thận, nền tảng quản lý dự án
+                                            và tư duy nguyên nhân - kết quả.</p>
                                     </div>
                                 </div>
                             </div>
@@ -390,7 +402,8 @@
                     </div>
                 </div>
                 <!-- Item 2 -->
-                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
                     <button @click="selected !== 2 ? selected = 2 : selected = null"
                         class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
                         <div class="flex items-center">
@@ -402,13 +415,15 @@
                     </button>
                     <div x-show="selected === 2" x-collapse x-cloak>
                         <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
-                            <p class="text-gray-600 font-sans mb-4">Hiểu cách thế giới vật lý vận hành, nhận biết chức năng của động cơ, bánh răng và cảm biến trên bộ Lego/VEX.</p>
+                            <p class="text-gray-600 font-sans mb-4">Hiểu cách thế giới vật lý vận hành, nhận biết chức
+                                năng của động cơ, bánh răng và cảm biến trên bộ Lego.</p>
                             <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
                                 <div class="flex items-start">
                                     <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
                                     <div>
                                         <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
-                                        <p class="text-gray-700 text-sm">Phát triển tư duy không gian, tiền đề để chế tạo thiết bị tự động hóa và hiểu các thiết bị thông minh.</p>
+                                        <p class="text-gray-700 text-sm">Phát triển tư duy không gian, tiền đề để chế
+                                            tạo thiết bị tự động hóa và hiểu các thiết bị thông minh.</p>
                                     </div>
                                 </div>
                             </div>
@@ -425,7 +440,7 @@
             <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Bạn đã sẵn sàng cho con một bước khởi đầu hoàn hảo?
             </h2>
             <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Nhận ngay một buổi học thử miễn phí và đánh giá tư duy logic
-                cho học sinh (trị giá 500,000đ) khi đăng ký tư vấn lộ trình 7-9 tuổi.</p>
+                cho học sinh khi đăng ký tư vấn lộ trình 7-9 tuổi.</p>
             <a href="index.html#dang-ky"
                 class="inline-flex items-center justify-center px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 text-lg">
                 ĐĂNG KÝ XẾP LỚP NGAY

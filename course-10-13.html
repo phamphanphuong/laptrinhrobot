@@ -8,69 +8,89 @@
     <meta name="description"
         content="Khóa học Python và IoT (Internet of Things) chuyên sâu dành cho học sinh từ 10-13 tuổi. Định hướng chứng chỉ PCEP.">
 
+<!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js (Core & Collapse Plugin) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Montserrat', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
                     colors: {
-            primary: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              200: '#bbf7d0',
-              300: '#86efac',
-              400: '#4ade80',
-              500: '#22c55e',
-              600: '#16a34a',
-              700: '#15803d',
-              800: '#166534',
-              900: '#14532d',
-            },
-            secondary: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              200: '#bfdbfe',
-              300: '#93c5fd',
-              400: '#60a5fa',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af',
-              900: '#1e3a8a',
-            },
-            accent: {
-              50: '#fff7ed',
-              100: '#ffedd5',
-              200: '#fed7aa',
-              300: '#fdba74',
-              400: '#fb923c',
-              500: '#f97316',
-              600: '#ea580c',
-              700: '#c2410c',
-              800: '#9a3412',
-              900: '#7c2d12',
-            }
-          }
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        secondary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        }
+                    }
                 }
             }
         }
     </script>
-<style>
-    h1, h2, h3, h4, h5, h6, .font-heading {
-      font-family: 'Montserrat', sans-serif;
-    }
-    code, pre, .font-mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
-  </style>
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        code,
+        pre,
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
 </head>
 
 <body class="font-sans text-gray-800 antialiased bg-gray-50 pt-20">
@@ -343,7 +363,7 @@
         </div>
     </section>
 
-    
+
     <!-- NĂNG LỰC CỐT LÕI SECTION -->
     <section class="py-16 bg-white border-t border-gray-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -355,7 +375,8 @@
             <!-- AlpineJS Accordion -->
             <div class="space-y-4" x-data="{ selected: 1 }">
                 <!-- Item 1 -->
-                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
                     <button @click="selected !== 1 ? selected = 1 : selected = null"
                         class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
                         <div class="flex items-center">
@@ -367,13 +388,15 @@
                     </button>
                     <div x-show="selected === 1" x-collapse x-cloak>
                         <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
-                            <p class="text-gray-600 font-sans mb-4">Làm chủ ngôn ngữ lập trình, nắm vững Integer, String, List, Dictionary và Hàm (Function).</p>
+                            <p class="text-gray-600 font-sans mb-4">Làm chủ ngôn ngữ lập trình, nắm vững Integer,
+                                String, List, Dictionary và Hàm (Function).</p>
                             <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
                                 <div class="flex items-start">
                                     <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
                                     <div>
                                         <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
-                                        <p class="text-gray-700 text-sm">Thành thạo ngôn ngữ lập trình Top 1 thế giới, bước đệm bắt buộc để học AI và Khoa học dữ liệu.</p>
+                                        <p class="text-gray-700 text-sm">Thành thạo ngôn ngữ lập trình Top 1 thế giới,
+                                            bước đệm bắt buộc để học AI và Khoa học dữ liệu.</p>
                                     </div>
                                 </div>
                             </div>
@@ -381,7 +404,8 @@
                     </div>
                 </div>
                 <!-- Item 2 -->
-                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
                     <button @click="selected !== 2 ? selected = 2 : selected = null"
                         class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
                         <div class="flex items-center">
@@ -393,13 +417,15 @@
                     </button>
                     <div x-show="selected === 2" x-collapse x-cloak>
                         <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
-                            <p class="text-gray-600 font-sans mb-4">Nắm vững tư duy không gian, tọa độ X-Y và xử lý logic va chạm vật lý.</p>
+                            <p class="text-gray-600 font-sans mb-4">Nắm vững tư duy không gian, tọa độ X-Y và xử lý
+                                logic va chạm vật lý.</p>
                             <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
                                 <div class="flex items-start">
                                     <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
                                     <div>
                                         <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
-                                        <p class="text-gray-700 text-sm">Hiểu logic phía sau các sản phẩm giải trí số, rèn tư duy xây dựng sản phẩm (Product Mindset).</p>
+                                        <p class="text-gray-700 text-sm">Hiểu logic phía sau các sản phẩm giải trí số,
+                                            rèn tư duy xây dựng sản phẩm (Product Mindset).</p>
                                     </div>
                                 </div>
                             </div>
@@ -407,7 +433,8 @@
                     </div>
                 </div>
                 <!-- Item 3 -->
-                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
                     <button @click="selected !== 3 ? selected = 3 : selected = null"
                         class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
                         <div class="flex items-center">
@@ -419,13 +446,15 @@
                     </button>
                     <div x-show="selected === 3" x-collapse x-cloak>
                         <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
-                            <p class="text-gray-600 font-sans mb-4">Sử dụng an toàn Breadboard, phân biệt Digital/Analog, đọc dữ liệu cảm biến bằng Raspberry Pi Pico và MicroPython.</p>
+                            <p class="text-gray-600 font-sans mb-4">Sử dụng an toàn Breadboard, phân biệt
+                                Digital/Analog, đọc dữ liệu cảm biến bằng Raspberry Pi Pico và MicroPython.</p>
                             <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
                                 <div class="flex items-start">
                                     <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
                                     <div>
                                         <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
-                                        <p class="text-gray-700 text-sm">Tư duy sửa chữa đồ điện tử và là lõi của các hệ thống Nhà thông minh (Smart Home) hiện đại.</p>
+                                        <p class="text-gray-700 text-sm">Tư duy sửa chữa đồ điện tử và là lõi của các hệ
+                                            thống Nhà thông minh (Smart Home) hiện đại.</p>
                                     </div>
                                 </div>
                             </div>
@@ -442,7 +471,7 @@
             <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Bạn đã sẵn sàng cho con một bước khởi đầu hoàn hảo?
             </h2>
             <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Nhận ngay một buổi học thử miễn phí và đánh giá tư duy logic
-                cho học sinh (trị giá 500,000đ) khi đăng ký tư vấn lộ trình.</p>
+                cho học sinh khi đăng ký tư vấn lộ trình.</p>
             <a href="index.html#dang-ky"
                 class="inline-flex items-center justify-center px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 text-lg">
                 ĐĂNG KÝ XẾP LỚP NGAY
