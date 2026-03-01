@@ -11,7 +11,9 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Tailwind CSS -->
@@ -20,23 +22,66 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Space Grotesk', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Montserrat', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
                     colors: {
-                        primary: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
-                        accent: { 50: '#fefce8', 100: '#fef9c3', 500: '#eab308', 600: '#ca8a04' }
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        secondary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        }
                     }
                 }
             }
         }
     </script>
-<style>
-    h1, h2, h3, h4, h5, h6, .font-heading {
-      font-family: 'Space Grotesk', sans-serif;
-    }
-    code, pre, .font-mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
-  </style>
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        code,
+        pre,
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
 </head>
 
 <body class="font-sans text-gray-800 antialiased bg-gray-50 pt-20">
@@ -48,7 +93,7 @@
                 <a href="index.html"
                     class="flex-shrink-0 flex items-center cursor-pointer hover:opacity-80 transition-opacity">
                     <div
-                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
+                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
                         <i class="fa-solid fa-robot"></i>
                     </div>
                     <span class="font-bold text-xl md:text-2xl tracking-tight text-gray-900">Lập Trình <span
@@ -100,11 +145,11 @@
                     </div>
                     <p class="text-gray-900 font-semibold mb-2">Chương trình học</p>
                     <p class="text-gray-600 leading-relaxed">AP Computer Science Principles & Nhập môn AI, Machine
-                        Learning (LSTM, Vision).</p>
+                        Learning.</p>
                 </div>
                 <div class="flex-1">
                     <div
-                        class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-600 mb-4">
+                        class="w-10 h-10 rounded-full bg-secondary-500/20 flex items-center justify-center text-secondary-600 mb-4">
                         <i class="fa-solid fa-award"></i>
                     </div>
                     <p class="text-gray-900 font-semibold mb-2">Bằng cấp & Sản phẩm</p>
@@ -224,7 +269,7 @@
                 <!-- MODULE 8 -->
                 <div
                     class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col mt-8 lg:mt-0">
-                    <div class="bg-gradient-to-br from-primary-500 to-teal-500 p-8 text-white">
+                    <div class="bg-gradient-to-br from-secondary-600 to-primary-500 p-8 text-white">
                         <span
                             class="bg-white/20 px-3 py-1 rounded-full text-sm font-semibold mb-3 inline-block backdrop-blur-sm">Mô-đun
                             8</span>
@@ -239,7 +284,7 @@
                                     class="fa-regular fa-clock text-primary-500 mr-2"></i>16 buổi (1.5 - 2h/buổi)</span>
                             <span
                                 class="bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-100 text-gray-700 font-medium"><i
-                                    class="fa-solid fa-brain text-primary-500 mr-2"></i>Vision & LSTM</span>
+                                    class="fa-solid fa-brain text-primary-500 mr-2"></i>Vision & Time Series</span>
                         </div>
 
                         <div
@@ -267,8 +312,8 @@
                                 </div>
                                 <div
                                     class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
-                                    <h4 class="font-bold text-gray-900 mb-1">Chuỗi thời gian với LSTM</h4>
-                                    <p class="text-gray-600 text-sm">Dùng mạng LSTM dự đoán tương lai từ dữ liệu quá khứ
+                                    <h4 class="font-bold text-gray-900 mb-1">Chuỗi thời gian</h4>
+                                    <p class="text-gray-600 text-sm">Dự đoán tương lai từ dữ liệu quá khứ
                                         (Nhiệt độ, chứng khoán). Core AI cho Trading Bot.</p>
                                 </div>
                             </div>

@@ -11,7 +11,7 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Tailwind CSS -->
@@ -20,18 +20,52 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Space Grotesk', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Montserrat', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
                     colors: {
-                        primary: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
-                        accent: { 50: '#fefce8', 100: '#fef9c3', 500: '#eab308', 600: '#ca8a04' }
-                    }
+            primary: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            },
+            secondary: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            accent: {
+              50: '#fff7ed',
+              100: '#ffedd5',
+              200: '#fed7aa',
+              300: '#fdba74',
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+              800: '#9a3412',
+              900: '#7c2d12',
+            }
+          }
                 }
             }
         }
     </script>
 <style>
     h1, h2, h3, h4, h5, h6, .font-heading {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Montserrat', sans-serif;
     }
     code, pre, .font-mono {
       font-family: 'JetBrains Mono', monospace;
@@ -49,7 +83,7 @@
                 <a href="index.html"
                     class="flex-shrink-0 flex items-center cursor-pointer hover:opacity-80 transition-opacity">
                     <div
-                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
+                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
                         <i class="fa-solid fa-robot"></i>
                     </div>
                     <span class="font-bold text-xl md:text-2xl tracking-tight text-gray-900">Lập Trình <span
@@ -133,7 +167,7 @@
 
                 <!-- Package 3: Tận nhà -->
                 <div
-                    class="bg-white rounded-3xl shadow-lg border-2 border-teal-500 p-8 flex flex-col hover:-translate-y-2 transition-transform duration-300">
+                    class="bg-white rounded-3xl shadow-lg border-2 border-secondary-500 p-8 flex flex-col hover:-translate-y-2 transition-transform duration-300">
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Dạy Kèm 1:1 Tận Nhà</h3>
                     <p class="text-gray-500 text-sm mb-6">Tiện lợi, an toàn, tiết kiệm thời gian đi lại</p>
                     <div class="mb-6">
@@ -142,13 +176,13 @@
                         <span class="text-gray-500">/ 1.5 tiếng</span>
                     </div>
                     <ul class="space-y-4 mb-8 flex-grow">
-                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-500 mt-1 mr-3"></i><span
+                        <li class="flex items-start"><i class="fa-solid fa-check text-secondary-500 mt-1 mr-3"></i><span
                                 class="text-gray-700">Dạy kèm độc quyền (1 Thầy 1 Trò)</span></li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-500 mt-1 mr-3"></i><span
+                        <li class="flex items-start"><i class="fa-solid fa-check text-secondary-500 mt-1 mr-3"></i><span
                                 class="text-gray-700">Giáo viên đến trực tiếp khu vực TP.HCM</span></li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-500 mt-1 mr-3"></i><span
+                        <li class="flex items-start"><i class="fa-solid fa-check text-secondary-500 mt-1 mr-3"></i><span
                                 class="text-gray-700">Thời gian linh hoạt theo gia đình yêu cầu</span></li>
-                        <li class="flex items-start"><i class="fa-solid fa-check text-teal-500 mt-1 mr-3"></i><span
+                        <li class="flex items-start"><i class="fa-solid fa-check text-secondary-500 mt-1 mr-3"></i><span
                                 class="text-gray-700">Bộ thiết bị Kit Thực Hành tận cửa</span></li>
                     </ul>
                 </div>
@@ -184,13 +218,13 @@
 
                         <div class="flex items-center">
                             <div
-                                class="w-14 h-14 rounded-2xl bg-teal-100 flex items-center justify-center text-teal-600 text-2xl mr-5 shadow-sm">
+                                class="w-14 h-14 rounded-2xl bg-secondary-100 flex items-center justify-center text-secondary-600 text-2xl mr-5 shadow-sm">
                                 <i class="fa-solid fa-phone"></i>
                             </div>
                             <div>
                                 <p class="text-sm text-gray-500 font-semibold mb-1">Hotline tư vấn nhanh</p>
                                 <a href="tel:0915514419"
-                                    class="text-gray-900 font-medium hover:text-teal-600 transition-colors text-lg tracking-wide">09
+                                    class="text-gray-900 font-medium hover:text-secondary-600 transition-colors text-lg tracking-wide">09
                                     155 144 19</a>
                             </div>
                         </div>
@@ -227,7 +261,7 @@
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Đã tìm thấy lộ trình ưng ý?</h2>
             <a href="index.html#dang-ky"
-                class="inline-flex items-center justify-center px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 text-lg">
+                class="inline-flex items-center justify-center px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white font-bold rounded-full shadow-xl hover:shadow-2xl hover:shadow-accent-500/30 transition-all transform hover:-translate-y-1 text-lg">
                 ĐĂNG KÝ HỌC NGAY
             </a>
         </div>

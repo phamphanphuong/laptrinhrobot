@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <!-- Icons -->
@@ -26,7 +26,7 @@
         extend: {
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
-            heading: ['Space Grotesk', 'sans-serif'],
+            heading: ['Montserrat', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
@@ -42,9 +42,29 @@
               800: '#166534',
               900: '#14532d',
             },
+            secondary: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
             accent: {
-              500: '#eab308',
-              600: '#ca8a04',
+              50: '#fff7ed',
+              100: '#ffedd5',
+              200: '#fed7aa',
+              300: '#fdba74',
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+              800: '#9a3412',
+              900: '#7c2d12',
             }
           },
           animation: {
@@ -77,7 +97,7 @@
     h5,
     h6,
     .font-heading {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Montserrat', sans-serif;
     }
 
     code,
@@ -93,7 +113,7 @@
     }
 
     .hero-bg {
-      background-image: linear-gradient(rgba(240, 253, 244, 0.85), rgba(255, 255, 255, 0.95)), url('https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-image: linear-gradient(rgba(239, 246, 255, 0.80), rgba(255, 247, 237, 0.90)), url('https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -145,7 +165,7 @@
         <!-- Logo -->
         <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
           <div
-            class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
+            class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
             <i class="fa-solid fa-robot"></i>
           </div>
           <span class="font-bold text-xl md:text-2xl tracking-tight text-gray-900">Lập Trình <span
@@ -164,7 +184,7 @@
         <!-- CTA Button -->
         <div class="hidden md:flex items-center">
           <a href="#dang-ky"
-            class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-full shadow-md text-white bg-primary-600 hover:bg-primary-700 hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+            class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-full shadow-md text-white bg-secondary-600 hover:bg-secondary-700 hover:shadow-lg transition-all transform hover:-translate-y-0.5">
             ĐĂNG KÝ
           </a>
         </div>
@@ -199,7 +219,7 @@
         class="block px-6 py-4 text-base font-medium text-gray-700 hover:text-primary-500 hover:bg-gray-50 border-b border-gray-50">FAQ</a>
       <div class="p-6">
         <a href="#dang-ky" @click="mobileMenuOpen = false"
-          class="w-full flex justify-center py-3 border border-transparent rounded-full shadow-sm text-base font-semibold text-white bg-primary-500 hover:bg-primary-600">
+          class="w-full flex justify-center py-3 border border-transparent rounded-full shadow-sm text-base font-semibold text-white bg-secondary-600 hover:bg-secondary-700">
           ĐĂNG KÝ
         </a>
       </div>
@@ -213,7 +233,7 @@
       class="absolute top-1/4 left-10 w-32 h-32 bg-primary-200 rounded-full mix-blend-multiply filter blur-2xl opacity-60 animate-float">
     </div>
     <div
-      class="absolute bottom-1/4 right-10 w-48 h-48 bg-teal-200 rounded-full mix-blend-multiply filter blur-2xl opacity-60 animate-float"
+      class="absolute bottom-1/4 right-10 w-48 h-48 bg-secondary-200 rounded-full mix-blend-multiply filter blur-2xl opacity-60 animate-float"
       style="animation-delay: 2s;"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -225,7 +245,7 @@
         class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-6 animate-fade-in-up drop-shadow-sm"
         style="animation-delay: 0.1s;">
         HÀNH TRÌNH TRỞ THÀNH <br class="hidden md:block" />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-teal-500">KỸ SƯ CÔNG NGHỆ
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary-600 to-primary-500">KỸ SƯ CÔNG NGHỆ
           4.0</span>
       </h1>
       <p class="mt-4 max-w-2xl mx-auto text-xl md:text-2xl text-gray-600 font-light animate-fade-in-up"
@@ -242,7 +262,7 @@
       <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up"
         style="animation-delay: 0.4s;">
         <a href="#dang-ky"
-          class="px-8 py-4 border border-transparent text-lg font-bold rounded-full text-white bg-primary-500 hover:bg-primary-600 hover:scale-105 transition-all shadow-[0_10px_20px_rgba(34,197,94,0.3)] flex items-center justify-center group">
+          class="px-8 py-4 border border-transparent text-lg font-bold rounded-full text-white bg-accent-500 hover:bg-accent-600 hover:scale-105 transition-all shadow-[0_10px_20px_rgba(249,115,22,0.3)] flex items-center justify-center group">
           <span>ĐẶT LỊCH ĐÁNH GIÁ NĂNG LỰC NGAY</span>
           <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
         </a>
@@ -265,7 +285,7 @@
         <div
           class="bg-gray-50 rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:shadow-xl hover:border-primary-100 group">
           <div
-            class="w-16 h-16 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors shadow-sm">
+            class="w-16 h-16 rounded-xl bg-secondary-100 text-secondary-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-secondary-600 group-hover:text-white transition-colors shadow-sm">
             <i class="fa-solid fa-laptop-code"></i>
           </div>
           <h4 class="text-xl font-bold bg-clip-text text-gray-900 mb-3">Học Thực Chất <br /><span
@@ -276,9 +296,9 @@
 
         <!-- Pillar 2 -->
         <div
-          class="bg-gray-50 rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:shadow-xl hover:border-purple-100 group">
+          class="bg-gray-50 rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:shadow-xl hover:border-accent-100 group">
           <div
-            class="w-16 h-16 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors shadow-sm">
+            class="w-16 h-16 rounded-xl bg-accent-100 text-accent-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-accent-600 group-hover:text-white transition-colors shadow-sm">
             <i class="fa-solid fa-award"></i>
           </div>
           <h4 class="text-xl font-bold text-gray-900 mb-3">Chứng Chỉ Quốc Tế <br /><span
@@ -289,9 +309,9 @@
 
         <!-- Pillar 3 -->
         <div
-          class="bg-gray-50 rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:shadow-xl hover:border-emerald-100 group">
+          class="bg-gray-50 rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:shadow-xl hover:border-primary-100 group">
           <div
-            class="w-16 h-16 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-sm">
+            class="w-16 h-16 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center text-3xl mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors shadow-sm">
             <i class="fa-solid fa-graduation-cap"></i>
           </div>
           <h4 class="text-xl font-bold text-gray-900 mb-3">Chuẩn Bị Cho Đại Học <br /><span
@@ -386,15 +406,15 @@
         <!-- Giai đoạn 2 -->
         <div class="relative pl-16 md:pl-0 mb-16 md:w-1/2 md:-ml-[2px] md:pr-16 md:text-right group">
           <div
-            class="timeline-dot bg-teal-500 top-2 transition-transform group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(20,184,166,0.5)]">
+            class="timeline-dot bg-secondary-500 top-2 transition-transform group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]">
           </div>
           <div
-            class="bg-white rounded-2xl p-6 border border-gray-200 hover:border-teal-300 transition-colors shadow-sm hover:shadow-md">
+            class="bg-white rounded-2xl p-6 border border-gray-200 hover:border-secondary-300 transition-colors shadow-sm hover:shadow-md">
             <span
-              class="inline-block py-1 px-3 rounded-full bg-teal-100 text-teal-700 text-xs font-bold tracking-wider mb-4 border border-teal-200">13
+              class="inline-block py-1 px-3 rounded-full bg-secondary-100 text-secondary-700 text-xs font-bold tracking-wider mb-4 border border-secondary-200">13
               - 15 TUỔI</span>
             <h4 class="text-2xl font-bold mb-2 text-gray-900">Giai đoạn 2</h4>
-            <p class="text-teal-600 font-medium mb-4">Lập Trình Chuyên Nghiệp & Robotics</p>
+            <p class="text-secondary-600 font-medium mb-4">Lập Trình Chuyên Nghiệp & Robotics</p>
             <div class="text-gray-600 text-sm space-y-3 leading-relaxed md:ml-auto">
               <p><strong class="text-gray-900">Mục tiêu:</strong> Lập trình hướng đối tượng (OOP) và Hệ thống nhúng phức
                 tạp.</p>
@@ -411,7 +431,7 @@
               </div>
               <div class="mt-5">
                 <a href="course-13-15.html"
-                  class="inline-flex items-center text-teal-600 hover:text-teal-700 font-bold text-sm transition-colors group-hover:underline">
+                  class="inline-flex items-center text-secondary-600 hover:text-secondary-700 font-bold text-sm transition-colors group-hover:underline">
                   Xem chi tiết lộ trình 13-15 tuổi <i
                     class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                 </a>
@@ -423,25 +443,25 @@
         <!-- Giai đoạn 3 -->
         <div class="relative pl-16 md:pl-0 md:w-1/2 md:ml-auto md:pl-16 group">
           <div
-            class="timeline-dot bg-red-500 top-2 transition-transform group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(239,68,68,0.5)]">
+            class="timeline-dot bg-accent-500 top-2 transition-transform group-hover:scale-125 group-hover:shadow-[0_0_15px_rgba(249,115,22,0.5)]">
           </div>
           <div
-            class="bg-white rounded-2xl p-6 border border-red-200 hover:border-red-400 transition-colors shadow-sm hover:shadow-md">
+            class="bg-white rounded-2xl p-6 border border-accent-200 hover:border-accent-400 transition-colors shadow-sm hover:shadow-md">
             <span
-              class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-xs font-bold tracking-wider mb-4 border border-red-200 animate-pulse">15
+              class="inline-block py-1 px-3 rounded-full bg-accent-100 text-accent-700 text-xs font-bold tracking-wider mb-4 border border-accent-200 animate-pulse">15
               - 18 TUỔI (VỀ ĐÍCH)</span>
             <h4 class="text-2xl font-bold mb-2 text-gray-900">Giai đoạn 3</h4>
-            <p class="text-red-600 font-medium mb-4">Khoa Học Máy Tính & Trí Tuệ Nhân Tạo (AI)</p>
+            <p class="text-accent-600 font-medium mb-4">Khoa Học Máy Tính & Trí Tuệ Nhân Tạo (AI)</p>
             <div class="text-gray-600 text-sm space-y-3 leading-relaxed">
               <p><strong class="text-gray-900">Mục tiêu:</strong> Xây dựng nền tảng Khoa học Máy tính vững chắc cho
                 chương trình Đại học bằng các chứng chỉ học thuật
                 trọng số cao.</p>
               <p><strong class="text-gray-900">Học gì:</strong> AP Computer Science Principles & Nhập môn AI, Machine
-                Learning (LSTM, Vision).</p>
+                Learning.</p>
               <p><strong class="text-gray-900">Dự án:</strong> <span class="text-accent-600 font-semibold">📑 Portfolio
                   & White
                   Paper</span> - Báo cáo dự án nghiên cứu chuyên nghiệp.</p>
-              <div class="mt-4 p-4 bg-red-50 rounded-lg border border-red-100 flex items-start">
+              <div class="mt-4 p-4 bg-accent-50 rounded-lg border border-accent-100 flex items-start">
                 <i class="fa-solid fa-trophy text-accent-500 mt-1 mr-4 text-xl"></i>
                 <span class="text-gray-800"><strong>Khoa Học Máy Tính Đại Học:</strong> Chứng chỉ AP CSP (Tiết kiệm tín
                   chỉ Đại học)
@@ -449,7 +469,7 @@
               </div>
               <div class="mt-5">
                 <a href="course-15-18.html"
-                  class="inline-flex items-center text-red-600 hover:text-red-700 font-bold text-sm transition-colors group-hover:underline">
+                  class="inline-flex items-center text-accent-600 hover:text-accent-700 font-bold text-sm transition-colors group-hover:underline">
                   Xem chi tiết lộ trình 15-18 tuổi <i
                     class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                 </a>
@@ -477,19 +497,19 @@
           </p>
           <ul class="space-y-4">
             <li class="flex items-center text-gray-700 font-medium">
-              <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-4">
+              <div class="w-8 h-8 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center mr-4">
                 <i class="fa-solid fa-check"></i>
               </div>
               Kinh nghiệm thực chiến tại các doanh nghiệp lớn
             </li>
             <li class="flex items-center text-gray-700 font-medium">
-              <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-4">
+              <div class="w-8 h-8 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center mr-4">
                 <i class="fa-solid fa-check"></i>
               </div>
               Phương pháp sư phạm truyền cảm hứng
             </li>
             <li class="flex items-center text-gray-700 font-medium">
-              <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-4">
+              <div class="w-8 h-8 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center mr-4">
                 <i class="fa-solid fa-check"></i>
               </div>
               Đồng hành định hướng nghề nghiệp và nền tảng Đại học
@@ -595,7 +615,7 @@
       <div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row">
         <!-- Info Side -->
         <div
-          class="lg:w-5/12 bg-primary-500 p-10 md:p-12 text-white flex flex-col justify-center relative overflow-hidden">
+          class="lg:w-5/12 bg-secondary-600 p-10 md:p-12 text-white flex flex-col justify-center relative overflow-hidden">
           <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div>
           <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div>
 
@@ -666,7 +686,7 @@
               </div>
 
               <button type="submit" id="submitBtn"
-                class="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-lg flex items-center justify-center">
+                class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-lg flex items-center justify-center">
                 <span id="btnText">TIẾN HÀNH ĐĂNG KÝ</span>
                 <svg id="btnSpinner" class="animate-spin ml-3 h-5 w-5 text-white hidden"
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -690,7 +710,7 @@
         <div>
           <div class="flex items-center cursor-pointer mb-6">
             <div
-              class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-sm">
+              class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-sm">
               <i class="fa-solid fa-robot"></i>
             </div>
             <span class="font-bold text-2xl tracking-tight text-gray-900">Lập Trình <span
