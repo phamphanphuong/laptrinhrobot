@@ -10,8 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,8 +22,10 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
                     colors: {
                         primary: {
                             50: '#f0fdf4',
@@ -43,6 +44,14 @@
             }
         }
     </script>
+<style>
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    code, pre, .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
 </head>
 
 <body class="font-sans text-gray-800 antialiased bg-gray-50 overflow-x-hidden">
@@ -117,7 +126,7 @@
 
                 <div class="mt-12 bg-primary-50 p-6 rounded-lg border border-primary-100 italic">
                     <p class="m-0">Mọi câu hỏi, thắc mắc về chính sách, vui lòng liên hệ qua số hotline
-                        <strong>0900.xxx.xxx</strong> hoặc email <strong>LapTrinhROBOT.com@gmail.com</strong>.
+                        <strong>09 155 144 19</strong> hoặc email <strong>LapTrinhRobot.com@gmail.com</strong>.
                     </p>
                 </div>
             </div>
@@ -152,11 +161,11 @@
                         </li>
                         <li class="flex items-center">
                             <i class="fa-solid fa-phone mr-3 text-primary-500"></i>
-                            <span>0900.xxx.xxx</span>
+                            <span>09 155 144 19</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fa-solid fa-envelope mr-3 text-primary-500"></i>
-                            <span>LapTrinhROBOT.com@gmail.com</span>
+                            <span>LapTrinhRobot.com@gmail.com</span>
                         </li>
                     </ul>
                 </div>
@@ -168,7 +177,7 @@
 
             <div
                 class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <p>&copy; 2026 Hành Trình Kỹ Sư Công Nghệ 4.0. All rights reserved.</p>
+                <p>&copy; 2026 Lập Trình Robot.</p>
                 <div class="space-x-4 mt-4 md:mt-0">
                     <a href="privacy.html" class="hover:text-primary-600 transition-colors">Chính sách bảo mật</a>
                     <a href="terms.html" class="hover:text-primary-600 transition-colors">Điều khoản dịch vụ</a>

@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liên Hệ & Bảng Giá | Lập Trình Robot</title>
+    <title>Liên Hệ | Lập Trình Robot</title>
     <meta name="description"
         content="Xem chi tiết bảng giá khóa học, học phí lập trình, tư vấn khóa học và thông tin liên hệ của Lập Trình Robot.">
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Tailwind CSS -->
@@ -21,7 +20,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Space Grotesk', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
                     colors: {
                         primary: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
                         accent: { 50: '#fefce8', 100: '#fef9c3', 500: '#eab308', 600: '#ca8a04' }
@@ -30,6 +29,14 @@
             }
         }
     </script>
+<style>
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    code, pre, .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
 </head>
 
 <body class="font-sans text-gray-800 antialiased bg-gray-50 pt-20">
@@ -53,7 +60,7 @@
                 <nav class="hidden md:flex space-x-8 items-center">
                     <a href="index.html"
                         class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Trang Chủ</a>
-                    <a href="lien-he.html" class="text-primary-600 font-bold transition-colors">Liên Hệ & Học Phí</a>
+                    <a href="lien-he.html" class="text-primary-600 font-bold transition-colors">Liên Hệ</a>
                 </nav>
             </div>
         </div>
@@ -66,7 +73,7 @@
             <span
                 class="inline-block py-1 px-4 rounded-full bg-primary-100 text-primary-700 text-sm font-bold tracking-wider mb-6 border border-primary-200">GHI
                 DANH LỚP MỚI</span>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Bảng Giá & Liên Hệ</h1>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Học Phí</h1>
             <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">Thiết kế học phí linh hoạt cho cả mô hình
                 giảng dạy 1:1 và Học nhóm chất lượng cao.</p>
         </div>
@@ -156,7 +163,7 @@
 
                 <!-- Info -->
                 <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Thông Tin Liên Hệ</h2>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Liên Hệ</h2>
                     <p class="text-gray-600 mb-10 leading-relaxed">Chúng tôi luôn sẵn sàng hỗ trợ bạn. Hãy liên hệ với
                         chuyên viên giáo dục để nhận được lịch học thử miễn phí gần nhất và lộ trình phù hợp với học
                         sinh.</p>
@@ -168,7 +175,7 @@
                                 <i class="fa-solid fa-location-dot"></i>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-500 font-semibold mb-1">Địa chỉ (Trụ sở)</p>
+                                <p class="text-sm text-gray-500 font-semibold mb-1">Địa chỉ</p>
                                 <a href="https://maps.app.goo.gl/ww659skBdHiN7NkD7" target="_blank"
                                     class="text-gray-900 font-medium hover:text-primary-600 transition-colors">Quận 12,
                                     Thành phố Hồ Chí Minh</a>
@@ -195,8 +202,8 @@
                             </div>
                             <div>
                                 <p class="text-sm text-gray-500 font-semibold mb-1">Email chăm sóc</p>
-                                <a href="mailto:LapTrinhROBOT.com@gmail.com"
-                                    class="text-gray-900 font-medium hover:text-accent-600 transition-colors">LapTrinhROBOT.com@gmail.com</a>
+                                <a href="mailto:LapTrinhRobot.com@gmail.com"
+                                    class="text-gray-900 font-medium hover:text-accent-600 transition-colors">LapTrinhRobot.com@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -230,7 +237,7 @@
     <footer class="bg-gray-50 pt-16 pb-8 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <p>&copy; 2026 Hành Trình Kỹ Sư Công Nghệ 4.0. All rights reserved.</p>
+                <p>&copy; 2026 Lập Trình Robot.</p>
                 <div class="space-x-4 mt-4 md:mt-0">
                     <a href="privacy.html" class="hover:text-primary-600 transition-colors">Chính sách bảo mật</a>
                     <a href="terms.html" class="hover:text-primary-600 transition-colors">Điều khoản dịch vụ</a>

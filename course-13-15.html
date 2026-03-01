@@ -11,8 +11,7 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Tailwind CSS -->
@@ -21,7 +20,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Space Grotesk', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
                     colors: {
                         primary: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
                         accent: { 50: '#fefce8', 100: '#fef9c3', 500: '#eab308', 600: '#ca8a04' }
@@ -30,6 +29,14 @@
             }
         }
     </script>
+<style>
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    code, pre, .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
 </head>
 
 <body class="font-sans text-gray-800 antialiased bg-gray-50 pt-20">
@@ -50,7 +57,7 @@
                 <div class="flex items-center">
                     <a href="index.html#lo-trinh"
                         class="text-sm font-medium text-gray-600 hover:text-primary-600 flex items-center bg-gray-50 px-4 py-2 rounded-full border border-gray-200 transition-colors">
-                        <i class="fa-solid fa-arrow-left mr-2"></i> Về Lộ Trình Tổng Thể
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Quay Về
                     </a>
                 </div>
             </div>
@@ -91,7 +98,8 @@
                     </div>
                     <p class="text-gray-900 font-semibold mb-2">Chương trình học</p>
                     <p class="text-gray-600 leading-relaxed">Kết nối vi điều khiển <strong>ESP32</strong>, điều khiển
-                        <strong>Cánh tay Robot 4 bậc</strong> và xây dựng Web Frontend giao tiếp qua API.</p>
+                        <strong>Cánh tay Robot 4 bậc</strong> và xây dựng Web Frontend giao tiếp qua API.
+                    </p>
                 </div>
                 <div class="flex-1">
                     <div
@@ -319,7 +327,7 @@
     <footer class="bg-gray-50 pt-16 pb-8 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <p>&copy; 2026 Hành Trình Kỹ Sư Công Nghệ 4.0. All rights reserved.</p>
+                <p>&copy; 2026 Lập Trình Robot.</p>
                 <div class="space-x-4 mt-4 md:mt-0">
                     <a href="privacy.html" class="hover:text-primary-600 transition-colors">Chính sách bảo mật</a>
                     <a href="terms.html" class="hover:text-primary-600 transition-colors">Điều khoản dịch vụ</a>
