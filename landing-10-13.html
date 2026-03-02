@@ -585,65 +585,50 @@
 
     <!-- Form Handler Script (Mock Webhook + Pixel Tracking) -->
     <script>
-        document.getElementById('registrationForm').addEventListener('submit', async function (e) {
-            e.e.preventDefault();
+        document.getElementById('registrationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
             const btn = document.getElementById('submitBtn');
             const btnText = document.getElementById('btnText');
             const originalText = btnText.innerText;
 
             btn.disabled = true;
-            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Đang gửi...';
+            btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Đang xử lý...';
             btn.classList.add('opacity-80', 'cursor-not-allowed');
 
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
 
-            // Format log for Google Sheets / Webhook Endpoint
-            const webhookUrl = 'https://hook.us2.make.com/xxxxxxxxxxx'; // Replace with actual Make/Zapier webhook URL
+            // Google Apps Script Web App URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwEKybmzijmYIydFQpDcibCPej9N7AmAXhTJNAwqUPUD8xFq5HIdjcArO3RcGNGjvtX/exec';
 
-            try {
-                // Tracking Event Submit for Pixel (if fbq is available)
-                if (typeof fbq === 'function') {
-                    fbq('track', 'Lead');
-                }
-
-                // Call Webhook
-                // const response = await fetch(webhookUrl, {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify(data)
-                // });
-
-                // Mock delay
-                await new Promise(resolve => setTimeout(resolve, 1500));
-
-                btnText.innerText = 'ĐÃ ĐĂNG KÝ THÀNH CÔNG!';
-                btn.classList.replace('from-accent-500', 'from-green-500');
-                btn.classList.replace('to-accent-600', 'to-green-600');
-                btn.classList.replace('hover:from-accent-600', 'hover:from-green-600');
-                btn.classList.replace('hover:to-accent-700', 'hover:to-green-700');
-
-                this.reset();
-
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btnText.innerText = originalText;
-                    btn.classList.replace('from-green-500', 'from-accent-500');
-                    btn.classList.replace('to-green-600', 'to-accent-600');
-                    btn.classList.replace('hover:from-green-600', 'hover:from-accent-600');
-                    btn.classList.replace('hover:to-green-700', 'hover:to-accent-700');
-                    btn.classList.remove('opacity-80', 'cursor-not-allowed');
-                }, 3000);
-
-            } catch (error) {
-                console.error('Error:', error);
-                btnText.innerText = 'LỖI MẠNG, THỬ LẠI SAU';
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btnText.innerText = originalText;
-                    btn.classList.remove('opacity-80', 'cursor-not-allowed');
-                }, 3000);
+            // Tracking Event Submit for Pixel (if fbq is available)
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead');
             }
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Essential for Google Apps Script to work across domains
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+                .then(() => {
+                    // Success: Redirect to thank you page
+                    window.location.href = 'thank-you.html';
+                })
+                .catch((error) => {
+                    console.error('Error!', error);
+                    btnText.innerText = 'LỖI MẠNG, THỬ LẠI SAU';
+                    setTimeout(() => {
+                        btn.disabled = false;
+                        btnText.innerText = originalText;
+                        btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                    }, 3000);
+                });
         });
     </script>
 
