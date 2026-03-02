@@ -8,7 +8,7 @@
     <meta name="description"
         content="Khóa học Khoa học Máy Tính (AP CSP) và Trí tuệ Nhân tạo thực chiến. Tối ưu nền tảng Đại học với bằng cấp quốc tế và dự án White Paper định chuẩn IEEE.">
 
-<!-- Favicon -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="favicon.svg">
 
@@ -178,6 +178,53 @@
                 title="Course Trailer" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- ĐIỀU KIỆN THAM GIA & YÊU CẦU ĐẦU VÀO -->
+    <section class="py-12 bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Điều Kiện Tham Gia & Yêu Cầu Đầu Vào
+                </h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto">Hành trang cần thiết để học sinh chinh phục bứt phá
+                    lộ trình Khoa học Máy Tính & AI.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md hover:border-primary-300 transition-all text-center">
+                    <div
+                        class="w-16 h-16 mx-auto bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-laptop"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Tư Duy Lập Trình</h3>
+                    <p class="text-gray-600">Nắm vững Tư duy hướng đối tượng (OOP) và nền tảng lập trình cơ bản.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md hover:border-primary-300 transition-all text-center">
+                    <div
+                        class="w-16 h-16 mx-auto bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Ngoại Ngữ</h3>
+                    <p class="text-gray-600">Có khả năng Tiếng Anh đọc hiểu tài liệu chuyên ngành tốt.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md hover:border-primary-300 transition-all text-center">
+                    <div
+                        class="w-16 h-16 mx-auto bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Nền Tảng Toán Học</h3>
+                    <p class="text-gray-600">Trang bị nền tảng toán giải tích cơ bản để huấn luyện AI (YOLO).</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -363,7 +410,7 @@
         </div>
     </section>
 
-    
+
     <!-- NĂNG LỰC CỐT LÕI SECTION -->
     <section class="py-16 bg-white border-t border-gray-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -375,7 +422,8 @@
             <!-- AlpineJS Accordion -->
             <div class="space-y-4" x-data="{ selected: 1 }">
                 <!-- Item 1 -->
-                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
                     <button @click="selected !== 1 ? selected = 1 : selected = null"
                         class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
                         <div class="flex items-center">
@@ -387,13 +435,15 @@
                     </button>
                     <div x-show="selected === 1" x-collapse x-cloak>
                         <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
-                            <p class="text-gray-600 font-sans mb-4">Hiểu sâu cách Internet hoạt động (IP, Routing). Dùng Pandas/Matplotlib xử lý và vẽ biểu đồ dữ liệu lớn (Big Data).</p>
+                            <p class="text-gray-600 font-sans mb-4">Hiểu sâu cách Internet hoạt động (IP, Routing). Dùng
+                                Pandas/Matplotlib xử lý và vẽ biểu đồ dữ liệu lớn (Big Data).</p>
                             <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
                                 <div class="flex items-start">
                                     <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
                                     <div>
                                         <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
-                                        <p class="text-gray-700 text-sm">Kiến thức chuẩn Đại học (giúp thi chứng chỉ AP CSP). Kỹ năng cốt lõi của Data Analyst lương cao.</p>
+                                        <p class="text-gray-700 text-sm">Kiến thức chuẩn Đại học (giúp thi chứng chỉ AP
+                                            CSP). Kỹ năng cốt lõi của Data Analyst lương cao.</p>
                                     </div>
                                 </div>
                             </div>
@@ -401,7 +451,8 @@
                     </div>
                 </div>
                 <!-- Item 2 -->
-                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
                     <button @click="selected !== 2 ? selected = 2 : selected = null"
                         class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
                         <div class="flex items-center">
@@ -413,13 +464,15 @@
                     </button>
                     <div x-show="selected === 2" x-collapse x-cloak>
                         <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
-                            <p class="text-gray-600 font-sans mb-4">Tự thu thập dataset, gán nhãn và huấn luyện mô hình nhận diện (YOLO), sau đó đưa AI xuống chạy trên phần cứng biên (Edge AI).</p>
+                            <p class="text-gray-600 font-sans mb-4">Tự thu thập dataset, gán nhãn và huấn luyện mô hình
+                                nhận diện (YOLO), sau đó đưa AI xuống chạy trên phần cứng biên (Edge AI).</p>
                             <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
                                 <div class="flex items-start">
                                     <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
                                     <div>
                                         <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
-                                        <p class="text-gray-700 text-sm">Nắm bắt công nghệ dẫn dắt tương lai, chạm trình độ kỹ sư R&D phần cứng, lợi thế tuyệt đối xin việc.</p>
+                                        <p class="text-gray-700 text-sm">Nắm bắt công nghệ dẫn dắt tương lai, chạm trình
+                                            độ kỹ sư R&D phần cứng, lợi thế tuyệt đối xin việc.</p>
                                     </div>
                                 </div>
                             </div>
@@ -427,7 +480,8 @@
                     </div>
                 </div>
                 <!-- Item 3 -->
-                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
                     <button @click="selected !== 3 ? selected = 3 : selected = null"
                         class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
                         <div class="flex items-center">
@@ -439,13 +493,15 @@
                     </button>
                     <div x-show="selected === 3" x-collapse x-cloak>
                         <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
-                            <p class="text-gray-600 font-sans mb-4">Quản lý version bằng Git/GitHub. Trình bày báo cáo kỹ thuật (White Paper) đúng format chuẩn quốc tế.</p>
+                            <p class="text-gray-600 font-sans mb-4">Quản lý version bằng Git/GitHub. Trình bày báo cáo
+                                kỹ thuật (White Paper) đúng format chuẩn quốc tế.</p>
                             <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
                                 <div class="flex items-start">
                                     <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
                                     <div>
                                         <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
-                                        <p class="text-gray-700 text-sm">Xây dựng Portfolio học thuật hoàn hảo để săn học bổng du học Mỹ / tuyển thẳng Đại học top đầu.</p>
+                                        <p class="text-gray-700 text-sm">Xây dựng Portfolio học thuật hoàn hảo để săn
+                                            học bổng du học Mỹ / tuyển thẳng Đại học top đầu.</p>
                                     </div>
                                 </div>
                             </div>
