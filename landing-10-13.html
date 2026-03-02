@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khóa học Lập Trình Robot | Landing Page</title>
+    <meta name="description"
+        content="Khóa học Python và IoT (Internet of Things) chuyên sâu dành cho học sinh từ 10-13 tuổi. Định hướng chứng chỉ PCEP.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js (Core & Collapse Plugin) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Montserrat', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        secondary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        code,
+        pre,
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 antialiased bg-gray-50 pt-20">
+
+    <!-- NAVIGATION (Removed for Landing Page) -->
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-24 pb-32 lg:pt-28 lg:pb-40 bg-green-50 overflow-hidden">
+        <div class="absolute inset-0 opacity-20"
+            style="background-image: radial-gradient(#22c55e 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-green-50 to-transparent opacity-80 z-0">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span
+                class="inline-block py-1 px-4 rounded-full bg-primary-500/20 text-primary-700 text-sm font-bold tracking-wider mb-6 border border-primary-500/30">DÀNH
+                CHO ĐỘ TUỔI 10 - 13</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6">Khóa học Lập Trình Robot</h1>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-10 font-light">Làm Chủ Python & Internet of
+                Things (IoT)</p>
+
+            <div
+                class="flex flex-col md:flex-row justify-center gap-6 text-sm md:text-base text-left max-w-4xl mx-auto bg-white p-8 rounded-3xl backdrop-blur-md border border-gray-100 shadow-xl">
+                <div class="flex-1">
+                    <div
+                        class="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center text-primary-600 mb-4">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <p class="text-gray-900 font-semibold mb-2">Mục tiêu cốt lõi</p>
+                    <p class="text-gray-600 leading-relaxed">Chuyển từ lập trình kéo thả sang gõ mã lệnh (Python) và
+                        hiểu cách điều khiển phần cứng.</p>
+                </div>
+                <div class="flex-1">
+                    <div
+                        class="w-10 h-10 rounded-full bg-accent-500/20 flex items-center justify-center text-accent-600 mb-4">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <p class="text-gray-900 font-semibold mb-2">Chương trình học</p>
+                    <p class="text-gray-600 leading-relaxed">Nền tảng Python (làm game với <strong>Pygame</strong>) &
+                        Tương tác phần cứng (Micro:bit / <strong>Raspberry Pi Pico</strong>).</p>
+                </div>
+                <div class="flex-1">
+                    <div
+                        class="w-10 h-10 rounded-full bg-secondary-500/20 flex items-center justify-center text-secondary-600 mb-4">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <p class="text-gray-900 font-semibold mb-2">Bằng cấp & Sản phẩm</p>
+                    <p class="text-gray-600 leading-relaxed">Chứng chỉ quốc tế PCEP và Dự án 🎮 Game 2D & 🏠 Smart Home.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO EMBED SECTION -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-20 mb-20">
+        <div
+            class="bg-gray-200 rounded-3xl shadow-2xl overflow-hidden border-4 border-white aspect-video relative group">
+            <!-- Dummy YouTube Video Link per User Request -->
+            <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/rYVlGQqgVyM?autoplay=0"
+                title="Course Trailer" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- ĐIỀU KIỆN THAM GIA & YÊU CẦU ĐẦU VÀO -->
+    <section class="py-12 bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Điều Kiện Tham Gia & Yêu Cầu Đầu Vào
+                </h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto">Hành trang cần thiết để học sinh chuyển tiếp mượt mà
+                    từ khối lệnh sang mã lệnh thực thụ.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md hover:border-primary-300 transition-all text-center">
+                    <div
+                        class="w-16 h-16 mx-auto bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-laptop"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Thiết Bị Học Tập</h3>
+                    <p class="text-gray-600">Yêu cầu có laptop cá nhân để cài đặt Python/Thonny.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md hover:border-primary-300 transition-all text-center">
+                    <div
+                        class="w-16 h-16 mx-auto bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Kiến Thức Nền Tảng</h3>
+                    <p class="text-gray-600">Ưu tiên HS đã làm quen với Scratch hoặc đạt bài test logic cơ bản.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md hover:border-primary-300 transition-all text-center">
+                    <div
+                        class="w-16 h-16 mx-auto bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-3xl mb-6">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Tư Duy Logic</h3>
+                    <p class="text-gray-600">Trang bị tư duy logic cấp độ 1 để tiếp thu và hiểu thuật toán lập trình.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULES DETAIL -->
+    <section class="py-12 bg-gray-50 mb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Chi Tiết Lộ Trình Học</h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto">Kết hợp hoàn hảo giữa phần mềm và phần cứng để đánh
+                    thức niềm đam mê Công nghệ ở trẻ.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                <!-- MODULE 3 -->
+                <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="bg-gradient-to-r from-accent-500 to-accent-600 p-8 text-white">
+                        <span
+                            class="bg-white/20 px-3 py-1 rounded-full text-sm font-semibold mb-3 inline-block backdrop-blur-sm">Mô-đun
+                            3</span>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-2">NỀN TẢNG PYTHON</h3>
+                        <p class="text-accent-100 font-medium">Làm chủ Mã lệnh & Chinh phục PCEP</p>
+                    </div>
+
+                    <div class="p-8 flex-grow">
+                        <div class="flex flex-col sm:flex-row gap-4 mb-8 text-sm">
+                            <span
+                                class="bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-100 text-gray-700 font-medium"><i
+                                    class="fa-regular fa-clock text-accent-500 mr-2"></i>16 buổi (1.5 - 2h/buổi)</span>
+                            <span
+                                class="bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-100 text-gray-700 font-medium whitespace-normal"><i
+                                    class="fa-solid fa-code text-accent-500 mr-2"></i>Thuần Phần mềm</span>
+                        </div>
+
+                        <div
+                            class="space-y-8 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-accent-100 text-accent-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    1-4
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Nhập môn & Biến số</h4>
+                                    <p class="text-gray-600 text-sm">Chuyển đổi tư duy từ khối Scratch sang dòng lệnh.
+                                        Các kiểu dữ liệu cơ bản (String, Int, Float, Boolean).</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-accent-100 text-accent-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    5-8
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Câu lệnh điều kiện & Vòng lặp</h4>
+                                    <p class="text-gray-600 text-sm">Cú pháp if, elif, else, for, while. Làm quen với
+                                        <strong>Pygame</strong> để vẽ hình cơ bản.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-accent-100 text-accent-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    9-12
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Cấu trúc dữ liệu & Hàm</h4>
+                                    <p class="text-gray-600 text-sm">Lưu trữ dữ liệu với List, Tuple, Dictionary. Cách
+                                        định nghĩa và tái sử dụng Hàm (def).</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-accent-100 text-accent-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    13+
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-accent-50 p-5 rounded-2xl border border-accent-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-accent-700 mb-1">Luyện thi PCEP & Dự án</h4>
+                                    <p class="text-gray-700 text-sm">Vượt qua bài thi và lấy chứng chỉ quốc tế PCEP. Xây
+                                        dựng một tựa game 2D hoàn chỉnh với <strong>Pygame</strong>.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div
+                    class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col mt-8 lg:mt-0">
+                    <div class="bg-gradient-to-br from-secondary-600 to-primary-500 p-8 text-white">
+                        <span
+                            class="bg-white/20 px-3 py-1 rounded-full text-sm font-semibold mb-3 inline-block backdrop-blur-sm">Mô-đun
+                            4</span>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-2">INTERNET OF THINGS (IoT)</h3>
+                        <p class="text-primary-100 font-medium">Tương tác Phần cứng với MicroPython</p>
+                    </div>
+
+                    <div class="p-8 flex-grow">
+                        <div class="flex flex-col sm:flex-row gap-4 mb-8 text-sm">
+                            <span
+                                class="bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-100 text-gray-700 font-medium"><i
+                                    class="fa-regular fa-clock text-primary-500 mr-2"></i>16 buổi (1.5 - 2h/buổi)</span>
+                            <span
+                                class="bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-100 text-gray-700 font-medium"><i
+                                    class="fa-solid fa-microchip text-primary-500 mr-2"></i>Thiết bị: Raspberry Pi
+                                Pico</span>
+                        </div>
+
+                        <div
+                            class="space-y-8 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-primary-100 text-primary-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    1-4
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Mạch điện & Chạm linh kiện</h4>
+                                    <p class="text-gray-600 text-sm">Giới thiệu vi điều khiển. Khái niệm GPIO (Digital
+                                        In/Out). Lập trình đèn giao thông, nút nhấn.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-primary-100 text-primary-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    5-8
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">ADC & Thế giới cảm biến</h4>
+                                    <p class="text-gray-600 text-sm">Đọc giá trị môi trường thực bằng Cảm biến ánh sáng
+                                        (LDR) và Cảm biến nhiệt độ/độ ẩm.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-primary-100 text-primary-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    9-12
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-white p-5 rounded-2xl border border-gray-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-1">Security System (Báo động)</h4>
+                                    <p class="text-gray-600 text-sm">Giao tiếp PWM điều khiển cửa Servo. Két hợp cảm
+                                        biến hồng ngoại PIR cảnh báo chống trộm.</p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                <div
+                                    class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-primary-100 text-primary-600 font-bold shadow shrink-0 z-10 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                    13+
+                                </div>
+                                <div
+                                    class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-primary-50 p-5 rounded-2xl border border-primary-100 shadow-sm ml-4 md:ml-0 md:group-odd:mr-6 md:group-even:ml-6 transition-all hover:shadow-md">
+                                    <h4 class="font-bold text-primary-700 mb-1">Dự án 🏠 Smart Home Mini</h4>
+                                    <p class="text-gray-700 text-sm">Tự tích hợp tự động hóa nhà ở thành hệ thống hoàn
+                                        chỉnh. Triển lãm chạy thử sản phẩm.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- NĂNG LỰC CỐT LÕI SECTION -->
+    <section class="py-16 bg-white border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Năng Lực Cốt Lõi & Chuẩn Đầu Ra</h2>
+                <p class="text-lg text-gray-600">Đầu ra cụ thể học sinh đạt được sau khi hoàn thành lộ trình.</p>
+            </div>
+
+            <!-- AlpineJS Accordion -->
+            <div class="space-y-4" x-data="{ selected: 1 }">
+                <!-- Item 1 -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                    <button @click="selected !== 1 ? selected = 1 : selected = null"
+                        class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-code text-primary-500 mr-4 text-xl"></i>
+                            <span class="font-bold text-gray-900 md:text-lg">Cú pháp & Cấu trúc dữ liệu Python</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-primary-500 transition-transform duration-300"
+                            :class="selected === 1 ? 'transform rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="selected === 1" x-collapse x-cloak>
+                        <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
+                            <p class="text-gray-600 font-sans mb-4">Làm chủ ngôn ngữ lập trình, nắm vững Integer,
+                                String, List, Dictionary và Hàm (Function).</p>
+                            <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
+                                        <p class="text-gray-700 text-sm">Thành thạo ngôn ngữ lập trình Top 1 thế giới,
+                                            bước đệm bắt buộc để học AI và Khoa học dữ liệu.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                    <button @click="selected !== 2 ? selected = 2 : selected = null"
+                        class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-gamepad text-primary-500 mr-4 text-xl"></i>
+                            <span class="font-bold text-gray-900 md:text-lg">Lập trình Game 2D với Pygame</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-primary-500 transition-transform duration-300"
+                            :class="selected === 2 ? 'transform rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="selected === 2" x-collapse x-cloak>
+                        <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
+                            <p class="text-gray-600 font-sans mb-4">Nắm vững tư duy không gian, tọa độ X-Y và xử lý
+                                logic va chạm vật lý.</p>
+                            <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
+                                        <p class="text-gray-700 text-sm">Hiểu logic phía sau các sản phẩm giải trí số,
+                                            rèn tư duy xây dựng sản phẩm (Product Mindset).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div
+                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 transition-colors shadow-sm">
+                    <button @click="selected !== 3 ? selected = 3 : selected = null"
+                        class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-microchip text-primary-500 mr-4 text-xl"></i>
+                            <span class="font-bold text-gray-900 md:text-lg">Điện tử & Tương tác IoT</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-primary-500 transition-transform duration-300"
+                            :class="selected === 3 ? 'transform rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="selected === 3" x-collapse x-cloak>
+                        <div class="px-6 pb-5 pt-0 text-base leading-relaxed bg-white mt-2">
+                            <p class="text-gray-600 font-sans mb-4">Sử dụng an toàn Breadboard, phân biệt
+                                Digital/Analog, đọc dữ liệu cảm biến bằng Raspberry Pi Pico và MicroPython.</p>
+                            <div class="bg-primary-50 border-l-4 border-primary-500 p-4 rounded-r-lg">
+                                <div class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-primary-600 mt-1 mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold text-gray-900 mb-1">Ứng dụng thực tế</p>
+                                        <p class="text-gray-700 text-sm">Tư duy sửa chữa đồ điện tử và là lõi của các hệ
+                                            thống Nhà thông minh (Smart Home) hiện đại.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Registration -->
+    <section class="py-16 bg-white border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Bạn đã sẵn sàng cho con một bước khởi đầu hoàn hảo?
+            </h2>
+            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Nhận ngay một buổi học thử miễn phí và đánh giá tư duy logic
+                cho học sinh khi đăng ký tư vấn lộ trình.</p>
+            <a href="index.html#dang-ky"
+                class="inline-flex items-center justify-center px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 text-lg">
+                ĐĂNG KÝ XẾP LỚP NGAY
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-50 pt-16 pb-8 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 Lập Trình Robot.</p>
+                <div class="space-x-4 mt-4 md:mt-0">
+                    <a href="privacy.html" class="hover:text-primary-600 transition-colors">Chính sách bảo mật</a>
+                    <a href="terms.html" class="hover:text-primary-600 transition-colors">Điều khoản dịch vụ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
