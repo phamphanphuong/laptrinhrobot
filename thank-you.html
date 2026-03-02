@@ -15,7 +15,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,10 +29,10 @@
             theme: {
                 extend: {
                     fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            heading: ['Montserrat', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
                     colors: {
                         primary: {
                             50: '#f0fdf4',
@@ -46,14 +48,23 @@
             }
         }
     </script>
-<style>
-    h1, h2, h3, h4, h5, h6, .font-heading {
-      font-family: 'Montserrat', sans-serif;
-    }
-    code, pre, .font-mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
-  </style>
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        code,
+        pre,
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
 </head>
 
 <body class="font-sans text-gray-800 antialiased bg-gray-50 overflow-x-hidden min-h-screen flex flex-col">
@@ -116,6 +127,31 @@
             <p>&copy; 2026 Lập Trình Robot. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Floating Contact Buttons -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <!-- Zalo Button -->
+        <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
+            class="group flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <span class="font-bold text-lg">Z</span>
+            <!-- Tooltip -->
+            <span
+                class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                Nhắn Zalo
+            </span>
+        </a>
+
+        <!-- Call Button -->
+        <a href="tel:0915514419"
+            class="group flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-full shadow-md hover:bg-green-600 hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <i class="fa-solid fa-phone"></i>
+            <!-- Tooltip -->
+            <span
+                class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                0915.514.419
+            </span>
+        </a>
+    </div>
 
 </body>
 
