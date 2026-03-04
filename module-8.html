@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Mô-đun 8: Applied Machine Learning | Lập Trình Robot</title>
+    <meta name="description"
+        content="Chi tiết chương trình học Mô-đun 8: Applied Machine Learning dành cho học sinh 15-18 tuổi.">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Montserrat', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: {
+                        primary: { 50: '#f0fdf4', 100: '#dcfce7', 300: '#86efac', 500: '#22c55e', 600: '#16a34a', 700: '#15803d' },
+                        secondary: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+                        rose: { 50: '#fff1f2', 100: '#ffe4e6', 500: '#f43f5e', 600: '#e11d48', 700: '#be123c' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        code,
+        pre,
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .collapse-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        .collapse-toggle[aria-expanded="true"] i {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 antialiased bg-gray-50 pt-20">
+
+    <!-- NAVIGATION -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <span class="font-bold text-xl md:text-2xl text-gray-900">Lập Trình <span
+                            class="text-primary-600">Robot</span></span>
+                </a>
+                <a href="course-15-18.html"
+                    class="text-sm font-medium text-gray-600 hover:text-primary-600 flex items-center bg-gray-50 px-4 py-2 rounded-full border border-gray-200 transition-colors">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Trở về lộ trình
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section
+        class="relative pt-16 pb-20 bg-gradient-to-br from-rose-50 to-white border-b border-gray-200 lg:pt-24 lg:pb-28">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span
+                class="inline-block py-1.5 px-5 rounded-full bg-rose-100 text-rose-700 text-sm font-bold tracking-wider mb-6 border border-rose-200 shadow-sm">
+                CHI TIẾT CHƯƠNG TRÌNH &bull; VỀ ĐÍCH
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">Mô-đun 8:
+                Applied <span class="text-rose-600">Machine Learning</span></h1>
+
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <div class="flex items-center bg-white px-5 py-3 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-500 uppercase tracking-wide font-bold">Thời lượng</p>
+                        <p class="font-bold text-gray-900">16 buổi (1.5 - 2h/buổi)</p>
+                    </div>
+                </div>
+                <div class="flex items-center bg-white px-5 py-3 rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mr-3">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-500 uppercase tracking-wide font-bold">Công cụ</p>
+                        <p class="font-bold text-gray-900">TensorFlow, YOLOv8</p>
+                    </div>
+                </div>
+                <div class="flex items-center bg-white px-5 py-3 rounded-xl shadow-sm border border-gray-100">
+                    <div
+                        class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">
+                        <i class="fa-solid fa-scroll"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-500 uppercase tracking-wide font-bold">Sản phẩm đầu ra</p>
+                        <p class="font-bold text-gray-900">Báo cáo chuẩn IEEE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT TIMELINE -->
+    <section class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-4 font-heading">Phân Bổ Nội Dung Chi Tiết</h2>
+            <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">Tạo ra các dự án Capstone và Báo cáo nghiên cứu
+                (White Paper) xuất sắc.</p>
+
+            <div class="space-y-6">
+                <!-- Chặng I -->
+                <div
+                    class="bg-white border hover:border-rose-300 border-gray-200 shadow-sm rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 transition-all duration-300 hover:shadow-md">
+                    <div class="md:w-1/4 flex-shrink-0">
+                        <span class="text-xs font-bold text-rose-600 tracking-wider uppercase mb-2 block">Chặng I &bull;
+                            Buổi 1-4</span>
+                        <h3 class="text-xl font-bold text-gray-900">Computer Vision</h3>
+                        <p class="text-rose-600 font-medium mt-1">Thị giác máy tính nâng cao</p>
+                    </div>
+                    <div class="md:w-3/4 grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Mục tiêu kiến thức
+                            </h4>
+                            <p class="text-gray-700">Tự thu thập Dataset, gán nhãn (Labeling) và huấn luyện mô hình
+                                YOLO.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                            <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Sản phẩm</h4>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-camera text-gray-400 mt-1 mr-2"></i>
+                                <span class="text-gray-800 font-medium">Edge AI Camera: Nhận diện vật thể thực tế trên
+                                    phần cứng biên.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chặng II -->
+                <div
+                    class="bg-white border hover:border-rose-300 border-gray-200 shadow-sm rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 transition-all duration-300 hover:shadow-md">
+                    <div class="md:w-1/4 flex-shrink-0">
+                        <span class="text-xs font-bold text-rose-600 tracking-wider uppercase mb-2 block">Chặng II
+                            &bull; Buổi 5-8</span>
+                        <h3 class="text-xl font-bold text-gray-900">Time Series</h3>
+                        <p class="text-rose-600 font-medium mt-1">Dữ liệu chuỗi thời gian</p>
+                    </div>
+                    <div class="md:w-3/4 grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Mục tiêu kiến thức
+                            </h4>
+                            <p class="text-gray-700">Dự đoán tương lai từ dữ liệu quá khứ (Nhiệt độ, Tài chính).</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                            <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Sản phẩm</h4>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-chart-line text-gray-400 mt-1 mr-2"></i>
+                                <span class="text-gray-800 font-medium">Trading Bot Core: Xây dựng thuật toán lõi dự báo
+                                    xu hướng.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chặng III -->
+                <div
+                    class="bg-white border hover:border-rose-300 border-gray-200 shadow-sm rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 transition-all duration-300 hover:shadow-md">
+                    <div class="md:w-1/4 flex-shrink-0">
+                        <span class="text-xs font-bold text-rose-600 tracking-wider uppercase mb-2 block">Chặng III
+                            &bull; Buổi 9-12</span>
+                        <h3 class="text-xl font-bold text-gray-900">Integration</h3>
+                        <p class="text-rose-600 font-medium mt-1">Dự án Tốt nghiệp (Capstone)</p>
+                    </div>
+                    <div class="md:w-3/4 grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Mục tiêu kiến thức
+                            </h4>
+                            <p class="text-gray-700">Tích hợp mô hình AI đã huấn luyện vào ESP32 hoặc Web App.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                            <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Sản phẩm</h4>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-microchip text-gray-400 mt-1 mr-2"></i>
+                                <span class="text-gray-800 font-medium">Hệ thống IoT + AI: Robot thông minh tự ra quyết
+                                    định trên hình ảnh.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chặng IV -->
+                <div
+                    class="bg-gradient-to-br from-rose-50 to-red-100 border border-rose-200 shadow-md rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4 flex-shrink-0">
+                        <span class="text-xs font-bold text-rose-700 tracking-wider uppercase mb-2 block">Chặng IV
+                            &bull; Buổi 13-16</span>
+                        <h3 class="text-xl font-bold text-gray-900">Publication</h3>
+                        <p class="text-rose-700 font-semibold mt-1">White Paper & Portfolio</p>
+                    </div>
+                    <div class="md:w-3/4 grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-sm font-bold text-rose-700/70 uppercase tracking-wider mb-2">Mục tiêu kiến
+                                thức</h4>
+                            <p class="text-gray-800">Viết báo cáo kỹ thuật, quản lý version bằng Git/GitHub, thuyết
+                                trình tiếng Anh.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-rose-200 shadow-sm">
+                            <h4 class="text-sm font-bold text-rose-700/70 uppercase tracking-wider mb-2">Sản phẩm cuối
+                                khóa</h4>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-file-pdf text-rose-600 mt-1 mr-2"></i>
+                                <span class="text-gray-900 font-bold">IEEE Style Report: Công bố dự án chuyên nghiệp để
+                                    săn học bổng.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVALUATION CRITERIA -->
+    <section class="py-16 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-10 font-heading">Tiêu Chí Đánh Giá Năng Lực (Chuẩn R&D)</h2>
+            <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">Đánh giá học sinh dựa trên tư duy của một nhà
+                nghiên cứu (Research & Development).</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Training -->
+                <div class="bg-white rounded-2xl p-8 border-t-4 border-rose-500 shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-gray-900">Năng lực huấn luyện<br /><span
+                                class="text-sm font-normal text-gray-500">(Training Skills)</span></h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start"><i class="fa-solid fa-gears text-rose-500 mt-1 mr-2"></i> <span
+                                class="leading-tight">Biết tối ưu hóa độ chính xác (Accuracy) và giảm thiểu sai số
+                                (Loss) của mô hình.</span></li>
+                        <li class="flex items-start"><i
+                                class="fa-solid fa-screwdriver-wrench text-rose-500 mt-1 mr-2"></i> <span
+                                class="leading-tight">Hiểu cách xử lý khi mô hình bị Overfitting hoặc
+                                Underfitting.</span></li>
+                    </ul>
+                </div>
+
+                <!-- Deployment -->
+                <div class="bg-white rounded-2xl p-8 border-t-4 border-blue-500 shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-gray-900">Kỹ năng thực thi<br /><span
+                                class="text-sm font-normal text-gray-500">(Deployment)</span></h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start"><i class="fa-solid fa-rocket text-blue-500 mt-1 mr-2"></i> <span
+                                class="leading-tight">Đưa được mô hình AI xuống chạy trên các thiết bị tài nguyên thấp
+                                (Edge AI) như ESP32.</span></li>
+                    </ul>
+                </div>
+
+                <!-- Academic -->
+                <div class="bg-white rounded-2xl p-8 border-t-4 border-emerald-500 shadow-sm">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-gray-900">Tính chuyên nghiệp<br /><span
+                                class="text-sm font-normal text-gray-500">(Academic Integrity)</span></h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start"><i
+                                class="fa-solid fa-file-contract text-emerald-500 mt-1 mr-2"></i> <span
+                                class="leading-tight">Trình bày báo cáo đúng cấu trúc: Abstract, Methodology, Results,
+                                Conclusion.</span></li>
+                        <li class="flex items-start"><i class="fa-brands fa-github text-emerald-500 mt-1 mr-2"></i>
+                            <span class="leading-tight">Quản lý mã nguồn sạch sẽ trên GitHub cá nhân.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGBOOK STRUCTURE (ACCORDION) -->
+    <section class="py-16 bg-white border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4 font-heading text-gray-900">Hồ Sơ Năng Lực Trực Tuyến</h2>
+                <p class="text-gray-500">Mẫu vinh danh các dự án xuất sắc của học sinh trên hệ thống
+                    Edu.LapTrinhRobot.com</p>
+            </div>
+
+            <div x-data="{ expanded: false }"
+                class="bg-gray-900 border border-gray-800 shadow-2xl rounded-2xl overflow-hidden">
+                <button @click="expanded = ! expanded" :aria-expanded="expanded"
+                    class="w-full flex justify-between items-center p-6 bg-gray-800 hover:bg-gray-700 transition-colors focus:outline-none collapse-toggle border-b border-gray-700">
+                    <div class="flex items-center text-white font-bold text-lg">
+                        <i class="fa-solid fa-certificate text-rose-400 mr-3"></i>
+                        <span>Xem mẫu xác nhận hồ sơ năng lực</span>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-chevron-down text-sm"></i>
+                    </div>
+                </button>
+
+                <div x-show="expanded" x-collapse x-cloak>
+                    <div class="p-8 font-mono relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-10 pointer-events-none"
+                            style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;">
+                        </div>
+
+                        <div class="flex items-center pb-4 border-b border-gray-700 mb-6 font-sans relative z-10">
+                            <div
+                                class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center mr-4 shadow-sm border border-gray-600">
+                                <i class="fa-solid fa-user-graduate text-rose-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-gray-400 text-sm">Học viên xuất sắc</div>
+                                <div class="text-white font-bold text-lg">[Tên học sinh] <span
+                                        class="text-gray-500 font-normal mx-2">-</span> <span
+                                        class="text-rose-400">Mô-đun: 8</span></div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6 text-sm md:text-base relative z-10">
+                            <div
+                                class="flex flex-col md:flex-row md:items-start gap-2 md:gap-4 bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                                <span class="text-blue-400 font-bold shrink-0 md:w-48 xl:w-56"><i
+                                        class="fa-solid fa-star mr-2"></i>Thành tựu:</span>
+                                <span class="text-gray-300">Đã huấn luyện thành công mô hình nhận diện hành vi lạ trong
+                                    lớp học với độ chính xác 95%.</span>
+                            </div>
+                            <div
+                                class="flex flex-col md:flex-row md:items-start gap-2 md:gap-4 bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                                <span class="text-green-400 font-bold shrink-0 md:w-48 xl:w-56"><i
+                                        class="fa-solid fa-box-open mr-2"></i>Sản phẩm:</span>
+                                <span class="text-gray-300">Dự án "AI-Edge Security System" tích hợp ESP32 và
+                                    YOLO.</span>
+                            </div>
+                            <div
+                                class="flex flex-col md:flex-row md:items-start gap-2 md:gap-4 bg-gray-800/50 p-4 rounded-xl border border-gray-700">
+                                <span class="text-yellow-400 font-bold shrink-0 md:w-48 xl:w-56"><i
+                                        class="fa-solid fa-medal mr-2"></i>Chứng nhận:</span>
+                                <span class="text-gray-300">Hoàn thành lộ trình 18 năm - Kỹ sư Công nghệ 4.0.</span>
+                            </div>
+                            <div
+                                class="flex flex-col md:flex-row md:items-start gap-2 md:gap-4 bg-rose-900/40 p-4 rounded-xl border border-rose-500/30">
+                                <span class="text-rose-400 font-bold shrink-0 md:w-48 xl:w-56"><i
+                                        class="fa-solid fa-link mr-2"></i>Hồ sơ năng lực:</span>
+                                <span class="text-white font-medium hover:underline cursor-pointer"><i
+                                        class="fa-brands fa-github mr-1"></i>Link GitHub Portfolio và White Paper báo
+                                    cáo chuẩn IEEE.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-50 py-8 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+            <p>&copy; 2026 Lập Trình Robot. Tất cả các quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
