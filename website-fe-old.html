@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khóa Học Web - 5 Buổi từ A đến Z</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="teach-style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index-teach.html">
+                <i class="fas fa-code"></i> Web Development - 7 Buổi + Nâng Cao
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#buoi1">Buổi 1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#buoi2">Buổi 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#buoi3">Buổi 3</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#buoi4">Buổi 4</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#buoi5">Buổi 5</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#buoi6">Buổi 6</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#buoi7">Buổi 7</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#advanced">Nâng Cao</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Khóa Học Lập Trình Web</h1>
+            <p class="lead mb-4">Từ HTML, CSS, JavaScript, ES6 đến localStorage & Deployment - 7 buổi học từ A đến Z</p>
+            <p class="text-warning fs-5">Dành cho học sinh lớp 10 - Không cần kinh nghiệm trước đó</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5 fw-bold">📚 Tổng Quan Khóa Học</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card lesson-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-layer-group text-warning"></i> Buổi 1: HTML</h5>
+                        <p class="card-text">Dựng khung xương website - HTML cơ bản</p>
+                        <small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card lesson-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-palette text-info"></i> Buổi 2: CSS</h5>
+                        <p class="card-text">Trang trí & CSS Box Model</p>
+                        <small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card lesson-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-border-all text-success"></i> Buổi 3: Layout</h5>
+                        <p class="card-text">Flexbox, Grid & Responsive Design</p>
+                        <small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card lesson-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-bolt text-danger"></i> Buổi 4: JavaScript</h5>
+                        <p class="card-text">DOM & Tương tác người dùng</p>
+                        <small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card lesson-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-cloud-upload-alt text-primary"></i> Buổi 5: Deploy</h5>
+                        <p class="card-text">GitHub Pages & Đưa lên Internet</p>
+                        <small class="text-muted">⏱️ 75 phút | 📝 Thực hành + Vấn đáp</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card lesson-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-database text-secondary"></i> Buổi 6: localStorage</h5>
+                        <p class="card-text">Quản lý dữ liệu & lưu trữ cục bộ</p>
+                        <small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card lesson-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-cube text-warning"></i> Buổi 7: ES6 Modern</h5>
+                        <p class="card-text">ES6 Modules, Destructuring & Spread</p>
+                        <small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buổi 1 -->
+    <section id="buoi1" class="container py-5 border-top">
+        <h2 class="mb-4 fw-bold"><i class="fas fa-layer-group text-warning"></i> Buổi 1: Dựng Khung Xương Website (HTML)</h2>
+        
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">🎯 Mục Tiêu Buổi 1</h5>
+                        <ul class="mb-0">
+                            <li><strong>Tư duy:</strong> Website = Ngôi nhà, HTML = Viên gạch</li>
+                            <li><strong>Kỹ năng:</strong> Viết thẻ HTML cơ bản</li>
+                            <li><strong>Sản phẩm:</strong> File index.html hoàn chỉnh</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">🛠️ Công Cụ Cần Dùng</h5>
+                        <ul class="mb-0">
+                            <li>VS Code (hoặc Editor khác)</li>
+                            <li>Extension Live Server</li>
+                            <li>Trình duyệt Chrome/Firefox</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LÝ THUYẾT -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark fw-bold">
+                <i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+            <div class="card-body">
+                <h5 class="mb-3">1️⃣ Bản Chất Thẻ HTML - Nguyên Tắc "Bánh Kẹp"</h5>
+                <div class="alert alert-info">
+                    HTML hoạt động đơn giản: <code>&lt;tên_thẻ&gt; Nội dung ở giữa &lt;/tên_thẻ&gt;</code>
+                </div>
+                
+                <h5 class="mb-3 mt-4">2️⃣ Các Thẻ Chính Cần Dùng Hôm Nay:</h5>
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Thẻ</th>
+                            <th>Tên gọi</th>
+                            <th>Ví dụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>&lt;h1&gt; đến &lt;h6&gt;</code></td>
+                            <td>Heading (Tiêu đề)</td>
+                            <td><code>&lt;h1&gt;Tựa Đề Lớn&lt;/h1&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;p&gt;</code></td>
+                            <td>Paragraph (Đoạn văn)</td>
+                            <td><code>&lt;p&gt;Đoạn văn bản...&lt;/p&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;img&gt;</code></td>
+                            <td>Image (Hình ảnh)</td>
+                            <td><code>&lt;img src="anh.jpg" alt="Ảnh"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;a&gt;</code></td>
+                            <td>Anchor (Liên kết)</td>
+                            <td><code>&lt;a href="link"&gt;Click&lt;/a&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;button&gt;</code></td>
+                            <td>Button (Nút bấm)</td>
+                            <td><code>&lt;button&gt;Bấm tôi&lt;/button&gt;</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5 class="mb-3 mt-4">3️⃣ Cấu Trúc HTML5 Cơ Bản:</h5>
+                <div class="code-block">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-secondary">HTML Skeleton</span>
+                        <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Tiêu đề Trang Web&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Nội dung trang web ở đây --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- THỰC HÀNH -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white fw-bold">
+                <i class="fas fa-code"></i> THỰC HÀNH TỪNG BƯỚC (60 Phút)
+            </div>
+            <div class="card-body">
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 1</span> Tạo File HTML</h5>
+                    <ol>
+                        <li>Mở VS Code</li>
+                        <li>Tạo folder mới: <code>TeeGenZ_Project</code></li>
+                        <li>Tạo file mới: <code>index.html</code></li>
+                        <li>Gõ <code>!</code> rồi ấn <code>Tab</code> để tự động sinh khung HTML5</li>
+                    </ol>
+                </div>
+
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 2</span> Copy Code Dưới Đây Vào Body</h5>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">index.html - Nội dung body</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>&lt;header&gt;
+    &lt;h1&gt;TeeGenZ 👕&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Trang chủ&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Mẫu áo&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Bảng giá&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Giỏ hàng (0)&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;hr&gt;
+
+&lt;section&gt;
+    &lt;h2&gt;In Áo Thun Thể Hiện Cá Tính Của Bạn&lt;/h2&gt;
+    &lt;p&gt;Tự do thiết kế, in ấn sắc nét, giao hàng toàn quốc chỉ trong 2 ngày.&lt;/p&gt;
+    &lt;button&gt;Khám phá các mẫu áo&lt;/button&gt;
+&lt;/section&gt;
+
+&lt;hr&gt;
+
+&lt;section&gt;
+    &lt;h2&gt;Các Mẫu Áo Phôi Bán Chạy&lt;/h2&gt;
+
+    &lt;div&gt;
+        &lt;img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300" alt="Áo thun trắng basic" width="200"&gt;
+        &lt;h3&gt;Áo Thun Trắng Basic&lt;/h3&gt;
+        &lt;p&gt;Giá: 150.000 VNĐ&lt;/p&gt;
+        &lt;button&gt;Thêm vào giỏ&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;br&gt;
+
+    &lt;div&gt;
+        &lt;img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300" alt="Áo Hoodie đen" width="200"&gt;
+        &lt;h3&gt;Áo Hoodie Đen Dày Dặn&lt;/h3&gt;
+        &lt;p&gt;Giá: 350.000 VNĐ&lt;/p&gt;
+        &lt;button&gt;Thêm vào giỏ&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;hr&gt;
+
+&lt;footer&gt;
+    &lt;h2&gt;Bạn đã có thiết kế riêng?&lt;/h2&gt;
+    &lt;p&gt;Hãy tải file ảnh của bạn lên đây, chúng tôi sẽ in nó lên áo!&lt;/p&gt;
+    
+    &lt;form action="#"&gt;
+        &lt;label for="customerName"&gt;Tên của bạn:&lt;/label&gt;
+        &lt;input type="text" id="customerName" placeholder="Nhập tên..."&gt;&lt;br&gt;&lt;br&gt;
+
+        &lt;label for="designFile"&gt;Tải ảnh thiết kế (PNG/JPG):&lt;/label&gt;
+        &lt;input type="file" id="designFile"&gt;&lt;br&gt;&lt;br&gt;
+
+        &lt;button type="submit"&gt;Gửi yêu cầu in&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;br&gt;
+    &lt;p&gt;© 2026 Bản quyền thuộc về TeeGenZ.&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 3</span> Lưu File & Chạy Live Server</h5>
+                    <ol>
+                        <li>Nhấn <code>Ctrl + S</code> để lưu file</li>
+                        <li>Chuột phải vào file → Chọn "Open with Live Server"</li>
+                        <li>Trình duyệt sẽ mở tự động tại <code>http://localhost:5500</code></li>
+                        <li>Khi sửa code, trang web sẽ cập nhật tự động!</li>
+                    </ol>
+                </div>
+
+                <div class="alert alert-warning mt-4">
+                    <h5><i class="fas fa-lightbulb"></i> 💡 Lưu Ý Quan Trọng</h5>
+                    <ul class="mb-0">
+                        <li>Giao diện sẽ trông xấu khi chưa có CSS - <strong>Điều này là BÌNH THƯỜNG!</strong></li>
+                        <li>Ở Buổi 2, chúng ta sẽ dùng CSS để trang trí và làm đẹp</li>
+                        <li>Học sinh hay quên thẻ đóng - kiểm tra kỹ mỗi thẻ mở đều có thẻ đóng</li>
+                        <li><strong>Khuyến khích học sinh thay đổi nội dung:</strong> Đổi tên áo, link ảnh, v.v. để thấy sự thay đổi tức thì</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- KIẾN THỨC MỞ RỘNG -->
+        <div class="card">
+            <div class="card-header bg-info text-white fw-bold">
+                <i class="fas fa-star"></i> KIẾN THỨC MỞ RỘNG
+            </div>
+            <div class="card-body">
+                <h6>Các Thẻ HTML Thường Gặp Khác:</h6>
+                <ul>
+                    <li><code>&lt;div&gt;</code> - Tạo khối chứa nội dung (dùng để bao bọc và tổ chức)</li>
+                    <li><code>&lt;span&gt;</code> - Tạo khối inline (dùng bên trong đoạn văn)</li>
+                    <li><code>&lt;ul&gt; &lt;li&gt;</code> - Danh sách dấu chấm</li>
+                    <li><code>&lt;ol&gt; &lt;li&gt;</code> - Danh sách có số thứ tự</li>
+                    <li><code>&lt;strong&gt;</code> - In đậm (semantic)</li>
+                    <li><code>&lt;em&gt;</code> - In nghiêng (semantic)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buổi 2 -->
+    <section id="buoi2" class="container py-5 border-top">
+        <h2 class="mb-4 fw-bold"><i class="fas fa-palette text-info"></i> Buổi 2: Đổ Khuôn Giao Diện & Trang Trí (CSS & Box Model)</h2>
+        
+        <div class="alert alert-success mb-4">
+            <strong>🎯 Mục Tiêu:</strong> Nếu HTML là gạch xây nhà, thì CSS chính là lớp sơn, giấy dán tường và cách bố trí nội thất để ngôi nhà đẹp mắt.
+        </div>
+
+        <!-- LÝ THUYẾT -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark fw-bold">
+                <i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+            <div class="card-body">
+                <h5 class="mb-3">1️⃣ Cách Nhúng CSS Vào HTML</h5>
+                <div class="code-block">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-secondary">Thêm vào thẻ &lt;head&gt;</span>
+                        <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">2️⃣ Cú Pháp CSS - Quy Tắc "Chọn → Đổi → Thành"</h5>
+                <div class="code-block">
+                    <pre><code>h1 {
+    color: red;          /* Chọn: h1, Đổi: màu chữ, Thành: đỏ */
+    font-size: 32px;     /* Chọn: h1, Đổi: kích cỡ chữ, Thành: 32px */
+}</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">3️⃣ CSS Box Model - Mô Hình Hộp (Quan Trọng Nhất!)</h5>
+                <p>Mọi thứ trên web đều là hộp hình chữ nhật. Hộp có 4 lớp:</p>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="box-model-demo">
+                            <div class="margin-layer">
+                                <div class="border-layer">
+                                    <div class="padding-layer">
+                                        <div class="content-layer">Content</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ul>
+                            <li><strong>Content (Nội dung):</strong> Chữ, ảnh, v.v.</li>
+                            <li><strong>Padding (Vùng đệm):</strong> Khoảng trống bên trong, giữa nội dung và viền</li>
+                            <li><strong>Border (Đường viền):</strong> Cạnh bên ngoài</li>
+                            <li><strong>Margin (Khoảng cách ngoài):</strong> Khoảng trống bên ngoài viền</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h5 class="mb-3 mt-4">4️⃣ Class & ID - "Biển Tên" Cho HTML</h5>
+                <p>Để CSS không sơn nhầm chỗ, ta gắn "biển tên" (class/id) vào HTML:</p>
+                <div class="code-block">
+                    <pre><code>&lt;div class="product-card"&gt;
+    &lt;img src="..."&gt;
+    &lt;h3&gt;Áo Thun Trắng Basic&lt;/h3&gt;
+    &lt;p class="price"&gt;Giá: 150.000 VNĐ&lt;/p&gt;
+    &lt;button class="btn-buy"&gt;Thêm vào giỏ&lt;/button&gt;
+&lt;/div&gt;
+
+/* CSS: Sơn các thẻ có class tương ứng */
+.product-card { /* Chọn class product-card */ }
+.price { /* Chọn class price */ }
+.btn-buy { /* Chọn class btn-buy */ }</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- THỰC HÀNH -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white fw-bold">
+                <i class="fas fa-code"></i> THỰC HÀNH TỪNG BƯỚC (60 Phút)
+            </div>
+            <div class="card-body">
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 1</span> Cập Nhật File HTML - Thêm Class</h5>
+                    <p>Mở file index.html từ Buổi 1, tìm phần sản phẩm áo thun và cập nhật:</p>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">Cập nhật phần sản phẩm</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>&lt;section&gt;
+    &lt;h2&gt;Các Mẫu Áo Phôi Bán Chạy&lt;/h2&gt;
+
+    &lt;div class="product-card"&gt;
+        &lt;img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300" alt="Áo thun trắng basic" width="200"&gt;
+        &lt;h3&gt;Áo Thun Trắng Basic&lt;/h3&gt;
+        &lt;p class="price"&gt;Giá: 150.000 VNĐ&lt;/p&gt;
+        &lt;button class="btn-buy"&gt;Thêm vào giỏ&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class="product-card"&gt;
+        &lt;img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300" alt="Áo Hoodie đen" width="200"&gt;
+        &lt;h3&gt;Áo Hoodie Đen Dày Dặn&lt;/h3&gt;
+        &lt;p class="price"&gt;Giá: 350.000 VNĐ&lt;/p&gt;
+        &lt;button class="btn-buy"&gt;Thêm vào giỏ&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 2</span> Tạo File CSS</h5>
+                    <ol>
+                        <li>Tạo file mới: <code>style.css</code> cùng thư mục với index.html</li>
+                        <li>Copy đoạn CSS dưới đây vào file</li>
+                    </ol>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">style.css - Buổi 2</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>/* 1. RESET CSS (Xóa lề thừa mặc định) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* 2. TRANG TRÍ HEADER */
+header {
+    background-color: #111;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header a {
+    color: #f39c12;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+/* 3. TRANG TRÍ BANNER */
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* 4. TRANG TRÍ THẺ SẢN PHẨM - BOX MODEL THỰC CHIẾN */
+.product-card {
+    background-color: white;
+    width: 250px;
+    margin: 20px auto;
+    padding: 15px;          /* Đệm bên trong */
+    border: 2px solid #ddd; /* Viền ngoài */
+    border-radius: 10px;    /* Bo góc */
+}
+
+.product-card img {
+    border-radius: 8px;
+}
+
+.price {
+    color: #e74c3c;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* 5. TRANG TRÍ NÚT MUA HÀNG */
+.btn-buy {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hiệu ứng khi di chuột vào nút */
+.btn-buy:hover {
+    background-color: #d68910;
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning mt-4">
+                    <h5><i class="fas fa-lightbulb"></i> 💡 Lưu Ý Quan Trọng</h5>
+                    <ul class="mb-0">
+                        <li><strong>Thứ tự import CSS:</strong> File style.css của mình phải được link DƯỚI bootstrap (nếu dùng)</li>
+                        <li><strong>Margin vs Padding:</strong> Margin = đẩy ra ngoài, Padding = khoảng trống bên trong</li>
+                        <li><strong>box-sizing: border-box:</strong> Rất quan trọng! Giúp padding không làm hộp to ra</li>
+                        <li><strong>Hiệu ứng Hover:</strong> Dạy học sinh cách thay đổi border-radius, margin, padding để thấy sự thay đổi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buổi 3 -->
+    <section id="buoi3" class="container py-5 border-top">
+        <h2 class="mb-4 fw-bold"><i class="fas fa-border-all text-success"></i> Buổi 3: Dàn Trang & Responsive Design (Flexbox, Grid, Bootstrap)</h2>
+        
+        <div class="alert alert-success mb-4">
+            <strong>🎯 Mục Tiêu:</strong> Làm cho trang web xếp ngang hàng (desktop) và co giãn trên điện thoại (mobile)
+        </div>
+
+        <!-- LÝ THUYẾT -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark fw-bold">
+                <i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+            <div class="card-body">
+                <h5 class="mb-3">1️⃣ Container & Item - "Mẹ Bọc Con"</h5>
+                <p>Flexbox và Grid đều tuân theo nguyên tắc: Cần một thẻ cha (Container) bao bọc các thẻ con (Items)</p>
+                <div class="code-block">
+                    <pre><code>&lt;div class="product-list"&gt;  &lt;!-- Container --&gt;
+    &lt;div class="product-card"&gt;...&lt;/div&gt;  &lt;!-- Item 1 --&gt;
+    &lt;div class="product-card"&gt;...&lt;/div&gt;  &lt;!-- Item 2 --&gt;
+    &lt;div class="product-card"&gt;...&lt;/div&gt;  &lt;!-- Item 3 --&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">2️⃣ Flexbox (1 Chiều) vs Grid (2 Chiều)</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Tính Năng</th>
+                                <th>Flexbox</th>
+                                <th>Grid</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Số chiều</td>
+                                <td>1 chiều (hàng hoặc cột)</td>
+                                <td>2 chiều (hàng + cột)</td>
+                            </tr>
+                            <tr>
+                                <td>Dùng cho</td>
+                                <td>Menu, thanh điều hướng</td>
+                                <td>Danh sách sản phẩm</td>
+                            </tr>
+                            <tr>
+                                <td>Ví dụ</td>
+                                <td><code>display: flex;</code></td>
+                                <td><code>display: grid;</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5 class="mb-3 mt-4">3️⃣ Bootstrap 5 - "Mì Ăn Liền" CSS</h5>
+                <p>Thay vì tự viết CSS từng chút một, dùng Bootstrap để có class sẵn:</p>
+                <div class="code-block">
+                    <pre><code>&lt;!-- Nhúng Bootstrap vào &lt;head&gt; --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Sử dụng class của Bootstrap --&gt;
+&lt;button class="btn btn-warning fw-bold"&gt;Nút vàng đậm&lt;/button&gt;
+&lt;div class="container text-center"&gt;Căn giữa&lt;/div&gt;</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">4️⃣ Media Query - Làm Responsive</h5>
+                <p>Khi màn hình co lại, layout cần tự động thích ứng:</p>
+                <div class="code-block">
+                    <pre><code>@media (max-width: 768px) {
+    /* CSS này chỉ chạy khi màn hình nhỏ hơn 768px (Điện thoại) */
+    .product-list {
+        grid-template-columns: 1fr; /* Từ 3 cột → 1 cột */
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- THỰC HÀNH -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white fw-bold">
+                <i class="fas fa-code"></i> THỰC HÀNH TỪNG BƯỚC (60 Phút)
+            </div>
+            <div class="card-body">
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 1</span> Cập Nhật HTML - Nhúng Bootstrap & Thêm Class</h5>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">Thêm vào &lt;head&gt;</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+                    </div>
+
+                    <p class="mt-3">Thêm class vào các phần:</p>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">Thêm vào body</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>&lt;section&gt;
+    &lt;h2 class="text-center mb-4"&gt;Các Mẫu Áo Phôi Bán Chạy&lt;/h2&gt;
+    &lt;div class="product-list"&gt; &lt;!-- Container --&gt;
+
+        &lt;div class="product-card"&gt;...&lt;/div&gt;
+        &lt;div class="product-card"&gt;...&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 2</span> Cập Nhật CSS - Thêm Flexbox & Grid</h5>
+                    <p>Thêm đoạn này vào cuối file style.css:</p>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">style.css - Thêm phần Buổi 3</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>/* ================== BUỔI 3: FLEXBOX & GRID ================== */
+
+/* 1. Flexbox cho Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+}
+
+/* 2. Grid cho Sản phẩm */
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 40px;
+}
+
+.product-card {
+    margin: 0;
+    width: 100%;
+}
+
+/* 3. RESPONSIVE - Khi màn hình nhỏ */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+    
+    .product-list {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="alert alert-info mt-4">
+                    <h5><i class="fas fa-info-circle"></i> Cách Kiểm Tra Responsive</h5>
+                    <ol>
+                        <li>Mở trình duyệt → Nhấn <code>F12</code></li>
+                        <li>Click biểu tượng <strong>Toggle device toolbar</strong> (mộp điện thoại)</li>
+                        <li>Kéo mép màn hình nhỏ lại từ từ</li>
+                        <li>Khi qua mốc 768px, layout sẽ tự động biến đổi!</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buổi 4 -->
+    <section id="buoi4" class="container py-5 border-top">
+        <h2 class="mb-4 fw-bold"><i class="fas fa-bolt text-danger"></i> Buổi 4: Lập Trình Tương Tác (JavaScript DOM)</h2>
+        
+        <div class="alert alert-danger mb-4">
+            <strong>🎯 Mục Tiêu:</strong> JavaScript = Bộ não của website. Bấm nút → Giỏ hàng tăng số
+        </div>
+
+        <!-- LÝ THUYẾT -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark fw-bold">
+                <i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+            <div class="card-body">
+                <h5 class="mb-3">1️⃣ Biến (Variable) - Cái Hộp Lưu Số</h5>
+                <p>Biến như một cái hộp có dán nhãn, lưu trữ dữ liệu tạm thời:</p>
+                <div class="code-block">
+                    <pre><code>let cartQuantity = 0;      // Biến chứa số lượng giỏ hàng, ban đầu = 0
+let userName = "An";       // Biến chứa tên
+let isLoggedIn = true;    // Biến chứa true/false</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">2️⃣ DOM (Document Object Model) - Cầu Nối HTML ↔ JavaScript</h5>
+                <p>JavaScript không tự biết HTML ở đâu. DOM là cầu nối:</p>
+                <div class="code-block">
+                    <pre><code>/* Tìm kiếm (Query) */
+const spanCartCount = document.getElementById("cartCount");
+const buttons = document.querySelectorAll(".btn-buy");
+
+/* Hành động (Action) */
+spanCartCount.innerText = "5";  // Đổi chữ trong span
+button.style.color = "red";     // Đổi màu nút</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">3️⃣ Sự Kiện (Event) - Máy Nghe Lén</h5>
+                <p>Gắn "máy nghe lén" vào nút, khi click sẽ chạy code:</p>
+                <div class="code-block">
+                    <pre><code>button.addEventListener("click", function() {
+    // Code ở đây chạy khi nút được click
+    cartQuantity = cartQuantity + 1;
+    console.log("Giỏ hàng:", cartQuantity);
+});</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">4️⃣ forEach - Vòng Lặp Qua Danh Sách</h5>
+                <p>Khi có nhiều nút, không thể gắn sự kiện cho từng cái một. Dùng forEach:</p>
+                <div class="code-block">
+                    <pre><code>const buttons = document.querySelectorAll(".btn-buy");
+
+buttons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        // Code này sẽ chạy cho TỪNG nút
+        console.log("Nút được bấm!");
+    });
+});</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- THỰC HÀNH -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white fw-bold">
+                <i class="fas fa-code"></i> THỰC HÀNH TỪNG BƯỚC (60 Phút)
+            </div>
+            <div class="card-body">
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 1</span> Cập Nhật HTML - Gắn ID & Nhúng JS</h5>
+                    <p>Mở index.html, tìm phần Giỏ hàng trong Header:</p>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">Cập nhật Header</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>&lt;header&gt;
+    &lt;h1&gt;TeeGenZ 👕&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Trang chủ&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Mẫu áo&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#" class="fw-bold text-warning"&gt;
+                Giỏ hàng (&lt;span id="cartCountDisplay"&gt;0&lt;/span&gt;)
+            &lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+                    </div>
+
+                    <p class="mt-3">Cuối file HTML, ngay trước &lt;/body&gt;, thêm:</p>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">Nhúng file JS - Ngay trước &lt;/body&gt;</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 2</span> Tạo File JavaScript</h5>
+                    <ol>
+                        <li>Tạo file: <code>script.js</code> cùng thư mục với index.html</li>
+                        <li>Copy đoạn code dưới vào</li>
+                    </ol>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">script.js - Buổi 4</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>// ==========================================
+// BƯỚC 1: KHAI BÁO BIẾN LƯU SỐ LƯỢNG ÁO
+// ==========================================
+let cartQuantity = 0;
+
+// ==========================================
+// BƯỚC 2: TÌM CÁC THÀNH PHẦN TRÊN HTML
+// ==========================================
+const spanCartCount = document.getElementById("cartCountDisplay");
+const buyButtons = document.querySelectorAll(".btn-buy");
+
+// ==========================================
+// BƯỚC 3: GẮN SỰ KIỆN CLICK CHO CÁC NÚT
+// ==========================================
+buyButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        // 3.1. Tăng số lượng lên 1
+        cartQuantity = cartQuantity + 1;
+        
+        // 3.2. Cập nhật lại thẻ HTML
+        spanCartCount.innerText = cartQuantity;
+        
+        // 3.3. Hiện thông báo
+        alert("Tuyệt vời! Bạn vừa thêm 1 chiếc áo vào giỏ hàng 👕");
+    });
+});</code></pre>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning mt-4">
+                    <h5><i class="fas fa-bug"></i> Debug - Cách Tìm Lỗi</h5>
+                    <ol>
+                        <li>Mở trình duyệt → Nhấn <code>F12</code> → Tab <code>Console</code></li>
+                        <li>Nếu có lỗi chữ đỏ, kiểm tra file JS xem sai chính tả ở dòng nào</li>
+                        <li>Học sinh hay quên: chữ <code>document</code>, <code>getElementById</code>, v.v.</li>
+                        <li>Lưu ý: <code>innerText</code> (không phải <code>innerHTML</code>) để thay đổi chữ</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buổi 5 -->
+    <section id="buoi5" class="container py-5 border-top">
+        <h2 class="mb-4 fw-bold"><i class="fas fa-cloud-upload-alt text-primary"></i> Buổi 5: Đưa Lên Internet (GitHub Pages & Vấn Đáp)</h2>
+        
+        <div class="alert alert-primary mb-4">
+            <strong>🎯 Mục Tiêu:</strong> Từ code offline → Website online với link .github.io
+        </div>
+
+        <!-- LÝ THUYẾT -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark fw-bold">
+                <i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+            <div class="card-body">
+                <h5 class="mb-3">1️⃣ Website Sống Ở Đâu?</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>❌ Hiện Tại (Offline)</h6>
+                        <p>Code chạy trong máy tính nhà mình, chỉ mình thấy</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>✅ GitHub Pages (Online)</h6>
+                        <p>Code lưu trên máy chủ của GitHub, ai cũng truy cập được qua link</p>
+                    </div>
+                </div>
+
+                <h5 class="mb-3 mt-4">2️⃣ GitHub Là Gì?</h5>
+                <ul>
+                    <li>Mạng xã hội của lập trình viên (như Facebook nhưng của dev)</li>
+                    <li>Lưu trữ code (như Google Drive)</li>
+                    <li>Chia sẻ code với nhau</li>
+                    <li>GitHub Pages = Tính năng biến code thành website</li>
+                </ul>
+
+                <h5 class="mb-3 mt-4">3️⃣ 3 Khái Niệm Quan Trọng</h5>
+                <table class="table table-sm table-hover">
+                    <tr>
+                        <td><strong>Repository (Kho Chứa)</strong></td>
+                        <td>Thư mục lưu trữ code trên GitHub (giống folder)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Commit (Chốt Lưu)</strong></td>
+                        <td>Lưu thay đổi vào kho chứa (checkpoint)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GitHub Pages</strong></td>
+                        <td>Bật tính năng này để biến repo thành website</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- THỰC HÀNH -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white fw-bold">
+                <i class="fas fa-code"></i> THỰC HÀNH TỪNG BƯỚC (45 Phút)
+            </div>
+            <div class="card-body">
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 1</span> Tạo Tài Khoản & Repository Trên GitHub</h5>
+                    <ol>
+                        <li>Truy cập <a href="https://github.com" target="_blank" class="text-decoration-none">github.com</a></li>
+                        <li>Nhấn <strong>Sign Up</strong> (nếu chưa có tài khoản)</li>
+                        <li>Sau khi đăng nhập, nhấn <strong>New Repository</strong> (nút xanh)</li>
+                        <li>Điền thông tin:
+                            <ul>
+                                <li>Repository name: <code>teegenz-shop</code> (không viết hoa, không dấu)</li>
+                                <li>Description: "Trang web xưởng in áo thun"</li>
+                                <li>Public (chọn để ai cũng xem được)</li>
+                                <li>Nhấn <strong>Create repository</strong></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 2</span> Đưa Code Lên GitHub (Upload)</h5>
+                    <ol>
+                        <li>Trong trang Repository vừa tạo, tìm dòng chữ <strong>"uploading an existing file"</strong></li>
+                        <li>Click vào → Khung kéo thả sẽ hiện ra</li>
+                        <li>Kéo 3 file từ máy tính thả vào:
+                            <ul>
+                                <li>index.html</li>
+                                <li>style.css</li>
+                                <li>script.js</li>
+                            </ul>
+                        </li>
+                        <li>Đợi chút để upload xong</li>
+                        <li>Nhấn nút <strong class="text-success">Commit changes</strong> (xanh lá)</li>
+                    </ol>
+                </div>
+
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 3</span> Bật GitHub Pages</h5>
+                    <ol>
+                        <li>Trong Repository, click tab <strong>Settings</strong> (hình bánh răng)</li>
+                        <li>Menu bên trái, chọn <strong>Pages</strong></li>
+                        <li>Ở phần "Build and deployment" → "Source", chọn <strong>main</strong> (từ sổ xuống)</li>
+                        <li>Nhấn <strong>Save</strong></li>
+                        <li>Đợi 1-2 phút để GitHub xử lý</li>
+                        <li>Tải lại trang (F5), sẽ thấy thông báo xanh:
+                            <div class="alert alert-success mt-2">
+                                Your site is live at https://[tên-của-em].github.io/teegenz-shop
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="alert alert-info mt-4">
+                    <h5>✅ Thành Công!</h5>
+                    <p>Click vào link và tận hưởng! Website của em đã lên mạng rồi 🎉</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VẤN ĐÁP -->
+        <div class="card">
+            <div class="card-header bg-danger text-white fw-bold">
+                <i class="fas fa-comments"></i> PHẦN VẤN ĐÁP (30 Phút)
+            </div>
+            <div class="card-body">
+                <p>Anh/cô giáo đóng vai "Khách hàng" và hỏi học sinh những câu sau:</p>
+
+                <div class="question-item mb-4">
+                    <h6><span class="badge bg-danger">Câu 1 - HTML</span> Cấu Trúc & Ngữ Nghĩa</h6>
+                    <p><strong>Hỏi:</strong> "Em thấy form ở cuối trang có tên và file upload. Nếu thầy muốn thêm ô nhập 'Số điện thoại', em sẽ gõ code gì và chèn vào dòng nào?"</p>
+                    <p><strong>Kỳ vọng:</strong> Học sinh biết tìm thẻ <code>&lt;form&gt;</code>, viết <code>&lt;input type="tel"&gt;</code> hoặc <code>&lt;input type="number"&gt;</code></p>
+                </div>
+
+                <div class="question-item mb-4">
+                    <h6><span class="badge bg-danger">Câu 2 - CSS</span> Box Model & Margin/Padding</h6>
+                    <p><strong>Hỏi:</strong> "Thầy thấy các thẻ áo thun dính sát vào nhau (nếu trên mobile). Em đã học Box Model rồi, vậy em dùng <code>Margin</code> hay <code>Padding</code> để đẩy chúng cách xa? Sửa ở class nào?"</p>
+                    <p><strong>Kỳ vọng:</strong> Học sinh biết Margin (đẩy ra ngoài), chỉ ra class <code>.product-card</code></p>
+                </div>
+
+                <div class="question-item mb-4">
+                    <h6><span class="badge bg-danger">Câu 3 - CSS</span> Grid & Responsive</h6>
+                    <p><strong>Hỏi:</strong> "Làm sao trang web của em biết khi nào màn hình bị nhỏ lại để chuyển từ 3 cột thành 1 cột? Giải thích dòng code đó."</p>
+                    <p><strong>Kỳ vọng:</strong> Học sinh chỉ vào <code>@media (max-width: 768px)</code> và giải thích <code>grid-template-columns</code></p>
+                </div>
+
+                <div class="question-item">
+                    <h6><span class="badge bg-danger">Câu 4 - JavaScript</span> DOM & Event Listener</h6>
+                    <p><strong>Hỏi:</strong> "Giải thích: Bằng phép màu gì khi thầy bấm nút 'Thêm vào giỏ', con số trên Menu lại tăng lên? Dùng hàm nào để tìm tất cả nút bấm?"</p>
+                    <p><strong>Kỳ vọng:</strong> Học sinh chỉ vào script.js, giải thích 3 bước:
+                        <ul>
+                            <li><code>querySelectorAll(".btn-buy")</code> = Tìm tất cả nút</li>
+                            <li><code>forEach</code> = Duyệt từng nút</li>
+                            <li><code>addEventListener("click")</code> = Gắn máy nghe lén</li>
+                            <li>Tăng <code>cartQuantity</code> → Gán lại vào DOM</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-success mt-4">
+            <h5><i class="fas fa-congratulations"></i> 🎉 Kết Thúc Khóa Học</h5>
+            <p>Học sinh vừa hoàn thành chặng đường HTML → CSS → JavaScript → Deploy!</p>
+            <p><strong>Định hướng tương lai:</strong> Sau này học tiếp Backend (Python/Node.js) + Database, sẽ có thể làm giỏ hàng lưu vĩnh viễn, đặt hàng, v.v. giống hệ thống thực tế!</p>
+        </div>
+    </section>
+
+    <!-- Buổi 6 -->
+    <section id="buoi6" class="container py-5 border-top">
+        <h2 class="mb-4 fw-bold"><i class="fas fa-database text-secondary"></i> Buổi 6: Quản Lý Dữ Liệu & localStorage</h2>
+        
+        <div class="alert alert-info mb-4">
+            <strong>🎯 Mục Tiêu:</strong> Lưu dữ liệu giỏ hàng trên máy tính, khi F5 trang web vẫn có dữ liệu
+        </div>
+
+        <!-- LÝ THUYẾT -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark fw-bold">
+                <i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+            <div class="card-body">
+                <h5 class="mb-3">1️⃣ localStorage - Kho Lưu Trữ Trên Máy Tính</h5>
+                <div class="code-block">
+                    <pre><code>// Lưu dữ liệu
+localStorage.setItem("cartItems", "5");
+
+// Lấy dữ liệu
+const items = localStorage.getItem("cartItems");
+console.log(items); // "5"
+
+// Xóa dữ liệu
+localStorage.removeItem("cartItems");
+
+// Xóa tất cả
+localStorage.clear();</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">2️⃣ JSON - Biến Object Thành String</h5>
+                <p>localStorage chỉ lưu string, nên cần convert Object → JSON:</p>
+                <div class="code-block">
+                    <pre><code>// Object
+const cart = { items: 5, total: 500000 };
+
+// Convert thành JSON string
+const jsonString = JSON.stringify(cart);
+localStorage.setItem("myCart", jsonString);
+
+// Lấy lại và convert thành Object
+const retrieved = localStorage.getItem("myCart");
+const cartObject = JSON.parse(retrieved);
+console.log(cartObject.items); // 5</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">3️⃣ Flow Control - if/else & for</h5>
+                <p>Kiểm tra điều kiện và lặp qua mảng:</p>
+                <div class="code-block">
+                    <pre><code>// if/else
+if (localStorage.getItem("cartItems")) {
+    console.log("Có dữ liệu lưu");
+} else {
+    console.log("Chưa có dữ liệu");
+}
+
+// for lặp qua mảng
+const products = ["Áo 1", "Áo 2", "Áo 3"];
+for (let i = 0; i < products.length; i++) {
+    console.log(products[i]);
+}</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">4️⃣ Array Methods - map, filter, reduce</h5>
+                <div class="code-block">
+                    <pre><code>const products = [
+    { name: "Áo 1", price: 150000 },
+    { name: "Áo 2", price: 200000 },
+];
+
+// map: biến đổi mảng
+const prices = products.map(p => p.price);
+console.log(prices); // [150000, 200000]
+
+// filter: lọc phần tử
+const expensive = products.filter(p => p.price > 150000);
+
+// reduce: gộp thành 1 giá trị
+const total = products.reduce((sum, p) => sum + p.price, 0);</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- THỰC HÀNH -->
+        <div class="card">
+            <div class="card-header bg-success text-white fw-bold">
+                <i class="fas fa-code"></i> THỰC HÀNH - NÂNG CẬP GIỎ HÀNG
+            </div>
+            <div class="card-body">
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 1</span> Cập Nhật script.js - Lưu Vào localStorage</h5>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">script.js - Buổi 6</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>// Lấy từ localStorage, nếu không có thì mặc định = 0
+let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
+
+const spanCartCount = document.getElementById("cartCountDisplay");
+const buyButtons = document.querySelectorAll(".btn-buy");
+
+// Cập nhật giao diện từ localStorage
+spanCartCount.innerText = cartQuantity;
+
+buyButtons.forEach(button => {
+    button.addEventListener("click", function() {
+        // Tăng số lượng
+        cartQuantity = cartQuantity + 1;
+        
+        // Lưu vào localStorage
+        localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
+        
+        // Cập nhật giao diện
+        spanCartCount.innerText = cartQuantity;
+        
+        alert("Thêm vào giỏ! Tổng: " + cartQuantity);
+    });
+});</code></pre>
+                    </div>
+                </div>
+
+                <div class="alert alert-info mt-4">
+                    <h5>🧪 Kiểm Thử</h5>
+                    <ol>
+                        <li>Mở Developer Tools (F12) → Tab "Application" → localStorage</li>
+                        <li>Bấm nút "Thêm vào giỏ"</li>
+                        <li>Trong localStorage sẽ thấy key "cartQuantity" với giá trị số</li>
+                        <li>F5 tải lại trang - số lượng giỏ hàng vẫn được giữ! 🎉</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buổi 7 -->
+    <section id="buoi7" class="container py-5 border-top">
+        <h2 class="mb-4 fw-bold"><i class="fas fa-cube text-warning"></i> Buổi 7: ES6 Modern JavaScript & Modules</h2>
+        
+        <div class="alert alert-warning mb-4">
+            <strong>🎯 Mục Tiêu:</strong> Viết JavaScript hiện đại, sạch sẽ và tách code thành module
+        </div>
+
+        <!-- LÝ THUYẾT -->
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark fw-bold">
+                <i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+            <div class="card-body">
+                <h5 class="mb-3">1️⃣ Template Literals - Chuỗi Thông Minh</h5>
+                <div class="code-block">
+                    <pre><code>// Cách cũ (ES5)
+const name = "An";
+const msg = "Xin chào " + name + "!";
+
+// Cách mới (ES6) - dùng backtick
+const msg = \`Xin chào \${name}!\`;
+console.log(msg); // "Xin chào An!"</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">2️⃣ Arrow Functions - Hàm Mũi Tên</h5>
+                <div class="code-block">
+                    <pre><code>// Cách cũ
+function add(a, b) {
+    return a + b;
+}
+
+// Cách mới
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // 5
+
+// Với forEach
+products.forEach(p => console.log(p));</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">3️⃣ Destructuring - Bóc Tách Biến</h5>
+                <div class="code-block">
+                    <pre><code>// Object
+const product = { name: "Áo", price: 150000 };
+const { name, price } = product;
+console.log(name); // "Áo"
+
+// Array
+const colors = ["red", "green", "blue"];
+const [first, second] = colors;
+console.log(first); // "red"</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">4️⃣ Modules - import/export</h5>
+                <div class="code-block">
+                    <pre><code>// utils.js
+export function formatCurrency(num) {
+    return num.toLocaleString('vi-VN') + " VNĐ";
+}
+
+// script.js
+import { formatCurrency } from './utils.js';
+console.log(formatCurrency(150000)); // "150.000 VNĐ"</code></pre>
+                </div>
+
+                <h5 class="mb-3 mt-4">5️⃣ Spread Operator - Lan Tỏa</h5>
+                <div class="code-block">
+                    <pre><code>// Mảng
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+
+// Object
+const user = { name: "An", age: 16 };
+const newUser = { ...user, city: "Hà Nội" };
+// { name: "An", age: 16, city: "Hà Nội" }</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- THỰC HÀNH -->
+        <div class="card">
+            <div class="card-header bg-success text-white fw-bold">
+                <i class="fas fa-code"></i> THỰC HÀNH - VIẾT LẠI BẰNG ES6
+            </div>
+            <div class="card-body">
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 1</span> Tạo File utils.js - Hàm Dùng Chung</h5>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">utils.js</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>// Định dạng tiền tệ
+export const formatCurrency = (num) => {
+    return num.toLocaleString('vi-VN') + " VNĐ";
+};
+
+// Lấy năm hiện tại
+export const getCurrentYear = () => new Date().getFullYear();
+
+// Kiểm tra email
+export const isValidEmail = (email) => {
+    return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+};</code></pre>
+                    </div>
+                </div>
+
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 2</span> Cập Nhật script.js - Sử Dụng ES6</h5>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">script.js - ES6 Version</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>// import các hàm
+import { formatCurrency, getCurrentYear } from './utils.js';
+
+// Khai báo biến
+let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
+
+// DOM Query
+const spanCartCount = document.getElementById("cartCountDisplay");
+const buyButtons = document.querySelectorAll(".btn-buy");
+
+// Khởi tạo
+spanCartCount.innerText = cartQuantity;
+
+// Arrow function để xử lý click
+buyButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        cartQuantity++;
+        localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
+        spanCartCount.innerText = cartQuantity;
+        alert(\`Thêm vào giỏ! Tổng: \${cartQuantity}\`);
+    });
+});</code></pre>
+                    </div>
+                </div>
+
+                <div class="step-item mb-4">
+                    <h5><span class="badge bg-success">Bước 3</span> Cập Nhật HTML - Thêm type="module"</h5>
+                    <div class="code-block">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-secondary">index.html - cuối file</span>
+                            <button class="btn btn-sm btn-outline-primary copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code>&lt;!-- Đổi từ cái cũ --&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;!-- Thành ES6 Module --&gt;
+&lt;script type="module" src="script.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="alert alert-info mt-4">
+                    <h5>🎯 Ưu Điểm ES6 Modules</h5>
+                    <ul class="mb-0">
+                        <li>✅ Code dễ đọc hơn (arrow functions, template literals)</li>
+                        <li>✅ Tái sử dụng code (import/export)</li>
+                        <li>✅ Quản lý biến tốt hơn (scope)</li>
+                        <li>✅ Chuẩn bị sẵn cho các framework như React, Vue</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bài Tập Nâng Cao -->
+    <section id="advanced" class="container py-5 border-top">
+        <h2 class="mb-4 fw-bold"><i class="fas fa-rocket text-success"></i> Bài Tập Nâng Cao & Mở Rộng</h2>
+        
+        <div class="alert alert-success mb-4">
+            <strong>💪 Thử Thách:</strong> Những bài tập này giúp bạn trở thành lập trình viên thực thụ!
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header bg-info text-white fw-bold">
+                        <i class="fas fa-tasks"></i> 🔧 Bài Tập Nâng Cao - HTML & CSS
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-3">1. HTML Semantic (Bài 2 nâng cao)</h6>
+                        <ul class="mb-3">
+                            <li>Thay <code>&lt;div&gt;</code> thành <code>&lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;</code></li>
+                            <li>Thêm <code>&lt;img alt=""&gt;</code> cho tất cả hình ảnh (SEO)</li>
+                            <li>Dùng <code>&lt;figure&gt;</code> và <code>&lt;figcaption&gt;</code> cho hình ảnh có chú thích</li>
+                        </ul>
+
+                        <h6 class="mb-3">2. CSS Box Model Nâng Cao (Bài 4)</h6>
+                        <ul class="mb-3">
+                            <li>Làm Header sticky: <code>position: sticky; top: 0;</code></li>
+                            <li>Thêm hiệu ứng Shadow: <code>box-shadow: 0 4px 6px rgba(0,0,0,0.1);</code></li>
+                            <li>Làm Button có transition: <code>transition: all 0.3s ease;</code></li>
+                        </ul>
+
+                        <h6 class="mb-3">3. Position & Transform</h6>
+                        <ul>
+                            <li>Tạo Modal (popup) bằng <code>position: fixed</code></li>
+                            <li>Thêm icon loading spinner bằng <code>animation</code></li>
+                            <li>Làm Carousel (slide) ảnh</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header bg-danger text-white fw-bold">
+                        <i class="fas fa-code"></i> 📱 Bài Tập Nâng Cao - JavaScript
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-3">1. Tìm Kiếm & Lọc Sản Phẩm (Bài 8)</h6>
+                        <ul class="mb-3">
+                            <li>Thêm ô input tìm kiếm</li>
+                            <li>Dùng <code>.filter()</code> để lọc sản phẩm theo tên</li>
+                            <li>Lọc theo giá: từ 100k → 500k</li>
+                        </ul>
+
+                        <h6 class="mb-3">2. Tính Năng Giỏ Hàng Đầy Đủ (Bài 9-11)</h6>
+                        <ul class="mb-3">
+                            <li>Lưu giỏ hàng dạng mảng object: <code>[{id, name, price, qty}]</code></li>
+                            <li>Tính tổng tiền: <code>.reduce((sum, item) => sum + item.price * item.qty, 0)</code></li>
+                            <li>Tăng/giảm số lượng sản phẩm trong giỏ</li>
+                            <li>Xóa sản phẩm khỏi giỏ hàng</li>
+                        </ul>
+
+                        <h6 class="mb-3">3. Validation Form (Nâng Cao)</h6>
+                        <ul>
+                            <li>Kiểm tra Email hợp lệ (regex)</li>
+                            <li>Kiểm tra Số điện thoại Việt Nam (10 số, bắt đầu 0)</li>
+                            <li>Hiển thị lỗi inline (dưới từng ô input)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white fw-bold">
+                        <i class="fas fa-database"></i> 💾 Bài Tập Nâng Cao - Quản Lý Dữ Liệu
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-3">1. Sử Dụng localStorage Nâng Cao</h6>
+                        <ul class="mb-3">
+                            <li>Lưu toàn bộ giỏ hàng thành JSON</li>
+                            <li>Thêm tính năng "Lịch sử mua hàng" lưu trên máy</li>
+                            <li>Tạo nút "Xóa tất cả dữ liệu" (confirm trước)</li>
+                        </ul>
+
+                        <h6 class="mb-3">2. Mock Data & Rendering (Bài 9)</h6>
+                        <ul class="mb-3">
+                            <li>Tạo file <code>data/products.js</code> chứa mảng 10 sản phẩm</li>
+                            <li>Dùng <code>.map()</code> để render HTML từ dữ liệu</li>
+                            <li>Thay thế HTML cứng thành động HTML</li>
+                        </ul>
+
+                        <h6 class="mb-3">3. Pagination (Phân Trang)</h6>
+                        <ul>
+                            <li>Hiển thị 6 sản phẩm/trang</li>
+                            <li>Thêm nút "Trang trước" / "Trang sau"</li>
+                            <li>Hiển thị "Trang 1/5"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header bg-warning text-dark fw-bold">
+                        <i class="fas fa-gem"></i> ✨ Bài Tập Nâng Cao - UX/UI & Hiệu Năng
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-3">1. Toast Notification</h6>
+                        <ul class="mb-3">
+                            <li>Thay <code>alert()</code> bằng popup tùy chỉnh</li>
+                            <li>Hiển thị 3 giây rồi tự động ẩn</li>
+                            <li>Style đẹp với icon check/error</li>
+                        </ul>
+
+                        <h6 class="mb-3">2. Loading & Skeleton</h6>
+                        <ul class="mb-3">
+                            <li>Thêm loading spinner khi tải dữ liệu</li>
+                            <li>Dùng Skeleton screen (placeholder xám)</li>
+                            <li>Animate khi HTML render</li>
+                        </ul>
+
+                        <h6 class="mb-3">3. Dark Mode</h6>
+                        <ul>
+                            <li>Thêm nút toggle Dark/Light mode</li>
+                            <li>Lưu preferences vào localStorage</li>
+                            <li>Dùng CSS variables: <code>--primary-color</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-success text-white fw-bold">
+                        <i class="fas fa-star"></i> 🏆 Dự Án Hoàn Chỉnh - Checklist
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-3">Sau khi hoàn thành, website của bạn sẽ có:</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul>
+                                    <li>✅ HTML semantic & cấu trúc tốt</li>
+                                    <li>✅ CSS đẹp & responsive trên mobile</li>
+                                    <li>✅ Giỏ hàng lưu dữ liệu trên máy</li>
+                                    <li>✅ Tìm kiếm & lọc sản phẩm</li>
+                                    <li>✅ Pagination / phân trang</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul>
+                                    <li>✅ Form validation & xử lý lỗi</li>
+                                    <li>✅ Code ES6 modern & modules</li>
+                                    <li>✅ Dark mode toggle</li>
+                                    <li>✅ Toast notification</li>
+                                    <li>✅ Deploy lên GitHub Pages 🚀</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <div class="alert alert-success mt-4">
+            <h5><i class="fas fa-congratulations"></i> 🎉 Kết Thúc Khóa Học</h5>
+            <p>Học sinh vừa hoàn thành chặng đường HTML → CSS → JavaScript → Deploy!</p>
+            <p><strong>Định hướng tương lai:</strong> Sau này học tiếp Backend (Python/Node.js) + Database, sẽ có thể làm giỏ hàng lưu vĩnh viễn, đặt hàng, v.v. giống hệ thống thực tế!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2026 - Khóa Học Lập Trình Web cho Lớp 10</p>
+            <p class="text-muted">Được tạo bởi NhátAnh Education</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function copyCode(btn) {
+            const codeBlock = btn.parentElement.nextElementSibling;
+            const code = codeBlock.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Đã copy!';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

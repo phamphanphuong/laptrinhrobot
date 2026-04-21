@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Khóa Học Web - 5 Buổi từ A đến Z | Lập Trình Robot</title>
+<!-- Favicon -->
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="favicon.svg" rel="apple-touch-icon"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Montserrat', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            primary: {
+              50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80',
+              500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d',
+            },
+            secondary: {
+              50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
+              500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a',
+            },
+            accent: {
+              50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c',
+              500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- Alpine.js -->
+<script defer="" src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<style>
+    h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Montserrat', sans-serif; }
+    code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    
+    /* Scrollbar for pre */
+    pre::-webkit-scrollbar { height: 8px; width: 8px; }
+    pre::-webkit-scrollbar-track { background: #1e293b; border-radius: 4px; }
+    pre::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    pre::-webkit-scrollbar-thumb:hover { background: #64748b; }
+    
+    [x-cloak] { display: none !important; }
+  </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-white flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
+<!-- Mobile Sidebar overlay -->
+<div @click="sidebarOpen = false" class="fixed inset-0 z-40 bg-gray-900 bg-opacity-50 lg:hidden" x-cloak="" x-show="sidebarOpen"></div>
+<!-- Sidebar -->
+<aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed inset-y-0 left-0 z-50 w-72 bg-gray-900 text-white transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto lg:flex lg:w-72 lg:flex-col overflow-y-auto">
+<div class="flex items-center justify-center p-6 border-b border-gray-800">
+<a class="flex items-center gap-3" href="index.html">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+<i class="fa-solid fa-code"></i>
+</div>
+<span class="font-bold text-xl tracking-tight">Học Web</span>
+</a>
+</div>
+<nav class="flex-1 px-4 py-6 space-y-2">
+<a @click="sidebarOpen = false" class="block px-4 py-3 text-gray-300 rounded-lg hover:bg-gray-800 hover:text-white transition-colors" href="#tongquan"><i class="fas fa-list-ul w-6"></i> Tổng Quan</a>
+<a @click="sidebarOpen = false" class="block px-4 py-3 text-gray-300 rounded-lg hover:bg-gray-800 hover:text-white transition-colors" href="#buoi1"><i class="fas fa-layer-group w-6 text-emerald-400"></i> Buổi 1: HTML</a>
+<a @click="sidebarOpen = false" class="block px-4 py-3 text-gray-300 rounded-lg hover:bg-gray-800 hover:text-white transition-colors" href="#buoi2"><i class="fas fa-palette w-6 text-sky-400"></i> Buổi 2: CSS</a>
+<a @click="sidebarOpen = false" class="block px-4 py-3 text-gray-300 rounded-lg hover:bg-gray-800 hover:text-white transition-colors" href="#buoi3"><i class="fas fa-border-all w-6 text-green-400"></i> Buổi 3: Layout</a>
+<a @click="sidebarOpen = false" class="block px-4 py-3 text-gray-300 rounded-lg hover:bg-gray-800 hover:text-white transition-colors" href="#buoi4"><i class="fas fa-bolt w-6 text-rose-400"></i> Buổi 4: JavaScript</a>
+<a @click="sidebarOpen = false" class="block px-4 py-3 text-gray-300 rounded-lg hover:bg-gray-800 hover:text-white transition-colors" href="#buoi5"><i class="fas fa-cloud-upload-alt w-6 text-blue-400"></i> Buổi 5: Deploy</a>
+<a @click="sidebarOpen = false" class="block px-4 py-3 text-gray-300 rounded-lg hover:bg-gray-800 hover:text-white transition-colors" href="#buoi6"><i class="fas fa-database w-6 text-gray-400"></i> Buổi 6: localStorage</a>
+<a @click="sidebarOpen = false" class="block px-4 py-3 text-gray-300 rounded-lg hover:bg-gray-800 hover:text-white transition-colors" href="#buoi7"><i class="fas fa-cube w-6 text-amber-400"></i> Buổi 7: ES6 Modern</a>
+<div class="pt-4 mt-4 border-t border-gray-800">
+<a @click="sidebarOpen = false" class="block px-4 py-3 text-yellow-500 font-semibold rounded-lg hover:bg-gray-800 hover:text-yellow-400 transition-colors" href="#advanced"><i class="fas fa-rocket w-6"></i> Nâng Cao</a>
+</div>
+<div class="pt-4 mt-4 border-t border-gray-800 flex justify-center">
+<a class="px-4 py-2 border border-gray-700 text-sm rounded-full text-gray-400 hover:text-white hover:border-gray-500 transition-colors" href="index.html">Về trang chủ</a>
+</div>
+</nav>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col h-screen overflow-hidden bg-white relative">
+<!-- Mobile Header -->
+<header class="bg-white border-b border-gray-200 lg:hidden flex items-center justify-between px-4 py-3 z-30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-sm">
+<i class="fa-solid fa-code"></i>
+</div>
+<span class="font-bold text-lg text-gray-900">Học Web</span>
+</div>
+<button @click="sidebarOpen = true" class="p-2 text-gray-600 focus:outline-none">
+<i class="fa-solid fa-bars text-xl"></i>
+</button>
+</header>
+<!-- Main Scrollable Content -->
+<main class="flex-1 overflow-x-hidden overflow-y-auto w-full scroll-smooth" id="mainScrollArea">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full" id="content-container">
+<section class="mb-20 scroll-mt-20">
+<div class="text-center">
+<h1 class="text-3xl md:text-5xl font-extrabold mb-4 font-heading">Khóa Học Lập Trình Web</h1>
+<p class="text-lg md:text-2xl text-slate-300 font-light mb-6">Từ HTML, CSS, JavaScript, ES6 đến localStorage &amp; Deployment - 7 buổi học từ A đến Z</p>
+<p class="text-amber-400 font-semibold text-lg">Dành cho học sinh lớp 10 - Không cần kinh nghiệm trước đó</p>
+</div>
+</section><section class="mb-20 scroll-mt-20" id="tongquan">
+<h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-8 border-b border-gray-200 pb-4 flex items-center font-heading">📚 Tổng Quan Khóa Học</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="p-6 flex-1">
+<h5 class="text-xl font-bold mb-3 text-gray-900"><i class="fas fa-layer-group text-warning"></i> Buổi 1: HTML</h5>
+<p class="card-text">Dựng khung xương website - HTML cơ bản</p>
+<small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="p-6 flex-1">
+<h5 class="text-xl font-bold mb-3 text-gray-900"><i class="fas fa-palette text-info"></i> Buổi 2: CSS</h5>
+<p class="card-text">Trang trí &amp; CSS Box Model</p>
+<small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="p-6 flex-1">
+<h5 class="text-xl font-bold mb-3 text-gray-900"><i class="fas fa-border-all text-success"></i> Buổi 3: Layout</h5>
+<p class="card-text">Flexbox, Grid &amp; Responsive Design</p>
+<small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="p-6 flex-1">
+<h5 class="text-xl font-bold mb-3 text-gray-900"><i class="fas fa-bolt text-danger"></i> Buổi 4: JavaScript</h5>
+<p class="card-text">DOM &amp; Tương tác người dùng</p>
+<small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="p-6 flex-1">
+<h5 class="text-xl font-bold mb-3 text-gray-900"><i class="fas fa-cloud-upload-alt text-primary"></i> Buổi 5: Deploy</h5>
+<p class="card-text">GitHub Pages &amp; Đưa lên Internet</p>
+<small class="text-muted">⏱️ 75 phút | 📝 Thực hành + Vấn đáp</small>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="p-6 flex-1">
+<h5 class="text-xl font-bold mb-3 text-gray-900"><i class="fas fa-database text-secondary"></i> Buổi 6: localStorage</h5>
+<p class="card-text">Quản lý dữ liệu &amp; lưu trữ cục bộ</p>
+<small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="p-6 flex-1">
+<h5 class="text-xl font-bold mb-3 text-gray-900"><i class="fas fa-cube text-warning"></i> Buổi 7: ES6 Modern</h5>
+<p class="card-text">ES6 Modules, Destructuring &amp; Spread</p>
+<small class="text-muted">⏱️ 75 phút | 📝 Thực hành</small>
+</div>
+</div>
+</div>
+</div>
+</section><section class="mb-20 scroll-mt-20" id="buoi1">
+<h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-8 border-b border-gray-200 pb-4 flex items-center font-heading"><i class="fas fa-layer-group text-warning"></i> Buổi 1: Dựng Khung Xương Website (HTML)</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<div class="">
+<div class="bg-gray-50 rounded-xl shadow-sm border border-gray-100 overflow-hidden h-full flex flex-col">
+<div class="p-6 flex-1">
+<h5 class="text-xl font-bold mb-3 text-gray-900">🎯 Mục Tiêu Buổi 1</h5>
+<ul class="mb-0 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li><strong>Tư duy:</strong> Website = Ngôi nhà, HTML = Viên gạch</li>
+<li><strong>Kỹ năng:</strong> Viết thẻ HTML cơ bản</li>
+<li><strong>Sản phẩm:</strong> File index.html hoàn chỉnh</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-gray-50 rounded-xl shadow-sm border border-gray-100 overflow-hidden h-full flex flex-col">
+<div class="p-6 flex-1">
+<h5 class="text-xl font-bold mb-3 text-gray-900">🛠️ Công Cụ Cần Dùng</h5>
+<ul class="mb-0 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>VS Code (hoặc Editor khác)</li>
+<li>Extension Live Server</li>
+<li>Trình duyệt Chrome/Firefox</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- LÝ THUYẾT -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-amber-100 text-amber-900 border-b border-amber-200">
+<i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+<div class="p-6 flex-1">
+<h5 class="mb-3">1️⃣ Bản Chất Thẻ HTML - Nguyên Tắc "Bánh Kẹp"</h5>
+<div class="rounded-xl p-5 mb-8 border bg-blue-50 border-blue-200 text-blue-800">
+                    HTML hoạt động đơn giản: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;tên_thẻ&gt; Nội dung ở giữa &lt;/tên_thẻ&gt;</code>
+</div>
+<h5 class="mb-3 mt-4">2️⃣ Các Thẻ Chính Cần Dùng Hôm Nay:</h5>
+<table class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-xl overflow-hidden my-6 block md:table overflow-x-auto">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Thẻ</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Tên gọi</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Ví dụ</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200">
+<tr class="bg-white">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;h1&gt; đến &lt;h6&gt;</code></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Heading (Tiêu đề)</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;h1&gt;Tựa Đề Lớn&lt;/h1&gt;</code></td>
+</tr>
+<tr class="bg-gray-50">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;p&gt;</code></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Paragraph (Đoạn văn)</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;p&gt;Đoạn văn bản...&lt;/p&gt;</code></td>
+</tr>
+<tr class="bg-white">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;img&gt;</code></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Image (Hình ảnh)</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;img src="anh.jpg" alt="Ảnh"&gt;</code></td>
+</tr>
+<tr class="bg-gray-50">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;a&gt;</code></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Anchor (Liên kết)</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;a href="link"&gt;Click&lt;/a&gt;</code></td>
+</tr>
+<tr class="bg-white">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;button&gt;</code></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Button (Nút bấm)</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;button&gt;Bấm tôi&lt;/button&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 class="mb-3 mt-4">3️⃣ Cấu Trúc HTML5 Cơ Bản:</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">HTML Skeleton</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                        </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Tiêu đề Trang Web&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Nội dung trang web ở đây --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+</div>
+<!-- THỰC HÀNH -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-emerald-100 text-emerald-900 border-b border-emerald-200">
+<i class="fas fa-code"></i> THỰC HÀNH TỪNG BƯỚC (60 Phút)
+            </div>
+<div class="p-6 flex-1">
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 1</span> Tạo File HTML</h5>
+<ol class="list-decimal list-inside space-y-3 text-gray-700 mb-4 ml-2">
+<li>Mở VS Code</li>
+<li>Tạo folder mới: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">TeeGenZ_Project</code></li>
+<li>Tạo file mới: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">index.html</code></li>
+<li>Gõ <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">!</code> rồi ấn <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">Tab</code> để tự động sinh khung HTML5</li>
+</ol>
+</div>
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 2</span> Copy Code Dưới Đây Vào Body</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">index.html - Nội dung body</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;header&gt;
+    &lt;h1&gt;TeeGenZ 👕&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Trang chủ&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Mẫu áo&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Bảng giá&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Giỏ hàng (0)&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;hr&gt;
+
+&lt;section&gt;
+    &lt;h2&gt;In Áo Thun Thể Hiện Cá Tính Của Bạn&lt;/h2&gt;
+    &lt;p&gt;Tự do thiết kế, in ấn sắc nét, giao hàng toàn quốc chỉ trong 2 ngày.&lt;/p&gt;
+    &lt;button&gt;Khám phá các mẫu áo&lt;/button&gt;
+&lt;/section&gt;
+
+&lt;hr&gt;
+
+&lt;section&gt;
+    &lt;h2&gt;Các Mẫu Áo Phôi Bán Chạy&lt;/h2&gt;
+
+    &lt;div&gt;
+        &lt;img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300" alt="Áo thun trắng basic" width="200"&gt;
+        &lt;h3&gt;Áo Thun Trắng Basic&lt;/h3&gt;
+        &lt;p&gt;Giá: 150.000 VNĐ&lt;/p&gt;
+        &lt;button&gt;Thêm vào giỏ&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;br&gt;
+
+    &lt;div&gt;
+        &lt;img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300" alt="Áo Hoodie đen" width="200"&gt;
+        &lt;h3&gt;Áo Hoodie Đen Dày Dặn&lt;/h3&gt;
+        &lt;p&gt;Giá: 350.000 VNĐ&lt;/p&gt;
+        &lt;button&gt;Thêm vào giỏ&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;hr&gt;
+
+&lt;footer&gt;
+    &lt;h2&gt;Bạn đã có thiết kế riêng?&lt;/h2&gt;
+    &lt;p&gt;Hãy tải file ảnh của bạn lên đây, chúng tôi sẽ in nó lên áo!&lt;/p&gt;
+    
+    &lt;form action="#"&gt;
+        &lt;label for="customerName"&gt;Tên của bạn:&lt;/label&gt;
+        &lt;input type="text" id="customerName" placeholder="Nhập tên..."&gt;&lt;br&gt;&lt;br&gt;
+
+        &lt;label for="designFile"&gt;Tải ảnh thiết kế (PNG/JPG):&lt;/label&gt;
+        &lt;input type="file" id="designFile"&gt;&lt;br&gt;&lt;br&gt;
+
+        &lt;button type="submit"&gt;Gửi yêu cầu in&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;br&gt;
+    &lt;p&gt;© 2026 Bản quyền thuộc về TeeGenZ.&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+</div>
+</div>
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 3</span> Lưu File &amp; Chạy Live Server</h5>
+<ol class="list-decimal list-inside space-y-3 text-gray-700 mb-4 ml-2">
+<li>Nhấn <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">Ctrl + S</code> để lưu file</li>
+<li>Chuột phải vào file → Chọn "Open with Live Server"</li>
+<li>Trình duyệt sẽ mở tự động tại <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">http://localhost:5500</code></li>
+<li>Khi sửa code, trang web sẽ cập nhật tự động!</li>
+</ol>
+</div>
+<div class="rounded-xl p-5 mb-8 border bg-amber-50 border-amber-200 text-amber-800">
+<h5><i class="fas fa-lightbulb"></i> 💡 Lưu Ý Quan Trọng</h5>
+<ul class="mb-0 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Giao diện sẽ trông xấu khi chưa có CSS - <strong>Điều này là BÌNH THƯỜNG!</strong></li>
+<li>Ở Buổi 2, chúng ta sẽ dùng CSS để trang trí và làm đẹp</li>
+<li>Học sinh hay quên thẻ đóng - kiểm tra kỹ mỗi thẻ mở đều có thẻ đóng</li>
+<li><strong>Khuyến khích học sinh thay đổi nội dung:</strong> Đổi tên áo, link ảnh, v.v. để thấy sự thay đổi tức thì</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- KIẾN THỨC MỞ RỘNG -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="px-6 py-4 font-bold text-lg bg-blue-100 text-blue-900 border-b border-blue-200">
+<i class="fas fa-star"></i> KIẾN THỨC MỞ RỘNG
+            </div>
+<div class="p-6 flex-1">
+<h6>Các Thẻ HTML Thường Gặp Khác:</h6>
+<ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;div&gt;</code> - Tạo khối chứa nội dung (dùng để bao bọc và tổ chức)</li>
+<li><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;span&gt;</code> - Tạo khối inline (dùng bên trong đoạn văn)</li>
+<li><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;ul&gt; &lt;li&gt;</code> - Danh sách dấu chấm</li>
+<li><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;ol&gt; &lt;li&gt;</code> - Danh sách có số thứ tự</li>
+<li><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;strong&gt;</code> - In đậm (semantic)</li>
+<li><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;em&gt;</code> - In nghiêng (semantic)</li>
+</ul>
+</div>
+</div>
+</section><section class="mb-20 scroll-mt-20" id="buoi2">
+<h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-8 border-b border-gray-200 pb-4 flex items-center font-heading"><i class="fas fa-palette text-info"></i> Buổi 2: Đổ Khuôn Giao Diện &amp; Trang Trí (CSS &amp; Box Model)</h2>
+<div class="rounded-xl p-5 mb-8 border bg-emerald-50 border-emerald-200 text-emerald-800">
+<strong>🎯 Mục Tiêu:</strong> Nếu HTML là gạch xây nhà, thì CSS chính là lớp sơn, giấy dán tường và cách bố trí nội thất để ngôi nhà đẹp mắt.
+        </div>
+<!-- LÝ THUYẾT -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-amber-100 text-amber-900 border-b border-amber-200">
+<i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+<div class="p-6 flex-1">
+<h5 class="mb-3">1️⃣ Cách Nhúng CSS Vào HTML</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">Thêm vào thẻ &lt;head&gt;</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                        </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+</div>
+<h5 class="mb-3 mt-4">2️⃣ Cú Pháp CSS - Quy Tắc "Chọn → Đổi → Thành"</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">h1 {
+    color: red;          /* Chọn: h1, Đổi: màu chữ, Thành: đỏ */
+    font-size: 32px;     /* Chọn: h1, Đổi: kích cỡ chữ, Thành: 32px */
+}</code></pre>
+</div>
+<h5 class="mb-3 mt-4">3️⃣ CSS Box Model - Mô Hình Hộp (Quan Trọng Nhất!)</h5>
+<p>Mọi thứ trên web đều là hộp hình chữ nhật. Hộp có 4 lớp:</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="">
+<div class="box-model-demo">
+<div class="margin-layer">
+<div class="border-layer">
+<div class="padding-layer">
+<div class="content-layer">Content</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="">
+<ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li><strong>Content (Nội dung):</strong> Chữ, ảnh, v.v.</li>
+<li><strong>Padding (Vùng đệm):</strong> Khoảng trống bên trong, giữa nội dung và viền</li>
+<li><strong>Border (Đường viền):</strong> Cạnh bên ngoài</li>
+<li><strong>Margin (Khoảng cách ngoài):</strong> Khoảng trống bên ngoài viền</li>
+</ul>
+</div>
+</div>
+<h5 class="mb-3 mt-4">4️⃣ Class &amp; ID - "Biển Tên" Cho HTML</h5>
+<p>Để CSS không sơn nhầm chỗ, ta gắn "biển tên" (class/id) vào HTML:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;div class="product-card"&gt;
+    &lt;img src="..."&gt;
+    &lt;h3&gt;Áo Thun Trắng Basic&lt;/h3&gt;
+    &lt;p class="price"&gt;Giá: 150.000 VNĐ&lt;/p&gt;
+    &lt;button class="btn-buy"&gt;Thêm vào giỏ&lt;/button&gt;
+&lt;/div&gt;
+
+/* CSS: Sơn các thẻ có class tương ứng */
+.product-card { /* Chọn class product-card */ }
+.price { /* Chọn class price */ }
+.btn-buy { /* Chọn class btn-buy */ }</code></pre>
+</div>
+</div>
+</div>
+<!-- THỰC HÀNH -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-emerald-100 text-emerald-900 border-b border-emerald-200">
+<i class="fas fa-code"></i> THỰC HÀNH TỪNG BƯỚC (60 Phút)
+            </div>
+<div class="p-6 flex-1">
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 1</span> Cập Nhật File HTML - Thêm Class</h5>
+<p>Mở file index.html từ Buổi 1, tìm phần sản phẩm áo thun và cập nhật:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">Cập nhật phần sản phẩm</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;section&gt;
+    &lt;h2&gt;Các Mẫu Áo Phôi Bán Chạy&lt;/h2&gt;
+
+    &lt;div class="product-card"&gt;
+        &lt;img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300" alt="Áo thun trắng basic" width="200"&gt;
+        &lt;h3&gt;Áo Thun Trắng Basic&lt;/h3&gt;
+        &lt;p class="price"&gt;Giá: 150.000 VNĐ&lt;/p&gt;
+        &lt;button class="btn-buy"&gt;Thêm vào giỏ&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class="product-card"&gt;
+        &lt;img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300" alt="Áo Hoodie đen" width="200"&gt;
+        &lt;h3&gt;Áo Hoodie Đen Dày Dặn&lt;/h3&gt;
+        &lt;p class="price"&gt;Giá: 350.000 VNĐ&lt;/p&gt;
+        &lt;button class="btn-buy"&gt;Thêm vào giỏ&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+</div>
+</div>
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 2</span> Tạo File CSS</h5>
+<ol class="list-decimal list-inside space-y-3 text-gray-700 mb-4 ml-2">
+<li>Tạo file mới: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">style.css</code> cùng thư mục với index.html</li>
+<li>Copy đoạn CSS dưới đây vào file</li>
+</ol>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">style.css - Buổi 2</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">/* 1. RESET CSS (Xóa lề thừa mặc định) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* 2. TRANG TRÍ HEADER */
+header {
+    background-color: #111;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header a {
+    color: #f39c12;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+/* 3. TRANG TRÍ BANNER */
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* 4. TRANG TRÍ THẺ SẢN PHẨM - BOX MODEL THỰC CHIẾN */
+.product-card {
+    background-color: white;
+    width: 250px;
+    margin: 20px auto;
+    padding: 15px;          /* Đệm bên trong */
+    border: 2px solid #ddd; /* Viền ngoài */
+    border-radius: 10px;    /* Bo góc */
+}
+
+.product-card img {
+    border-radius: 8px;
+}
+
+.price {
+    color: #e74c3c;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* 5. TRANG TRÍ NÚT MUA HÀNG */
+.btn-buy {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hiệu ứng khi di chuột vào nút */
+.btn-buy:hover {
+    background-color: #d68910;
+}</code></pre>
+</div>
+</div>
+<div class="rounded-xl p-5 mb-8 border bg-amber-50 border-amber-200 text-amber-800">
+<h5><i class="fas fa-lightbulb"></i> 💡 Lưu Ý Quan Trọng</h5>
+<ul class="mb-0 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li><strong>Thứ tự import CSS:</strong> File style.css của mình phải được link DƯỚI bootstrap (nếu dùng)</li>
+<li><strong>Margin vs Padding:</strong> Margin = đẩy ra ngoài, Padding = khoảng trống bên trong</li>
+<li><strong>box-sizing: border-box:</strong> Rất quan trọng! Giúp padding không làm hộp to ra</li>
+<li><strong>Hiệu ứng Hover:</strong> Dạy học sinh cách thay đổi border-radius, margin, padding để thấy sự thay đổi</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section class="mb-20 scroll-mt-20" id="buoi3">
+<h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-8 border-b border-gray-200 pb-4 flex items-center font-heading"><i class="fas fa-border-all text-success"></i> Buổi 3: Dàn Trang &amp; Responsive Design (Flexbox, Grid, Bootstrap)</h2>
+<div class="rounded-xl p-5 mb-8 border bg-emerald-50 border-emerald-200 text-emerald-800">
+<strong>🎯 Mục Tiêu:</strong> Làm cho trang web xếp ngang hàng (desktop) và co giãn trên điện thoại (mobile)
+        </div>
+<!-- LÝ THUYẾT -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-amber-100 text-amber-900 border-b border-amber-200">
+<i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+<div class="p-6 flex-1">
+<h5 class="mb-3">1️⃣ Container &amp; Item - "Mẹ Bọc Con"</h5>
+<p>Flexbox và Grid đều tuân theo nguyên tắc: Cần một thẻ cha (Container) bao bọc các thẻ con (Items)</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;div class="product-list"&gt;  &lt;!-- Container --&gt;
+    &lt;div class="product-card"&gt;...&lt;/div&gt;  &lt;!-- Item 1 --&gt;
+    &lt;div class="product-card"&gt;...&lt;/div&gt;  &lt;!-- Item 2 --&gt;
+    &lt;div class="product-card"&gt;...&lt;/div&gt;  &lt;!-- Item 3 --&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<h5 class="mb-3 mt-4">2️⃣ Flexbox (1 Chiều) vs Grid (2 Chiều)</h5>
+<div class="table-responsive">
+<table class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-xl overflow-hidden my-6 block md:table overflow-x-auto">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Tính Năng</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Flexbox</th>
+<th class="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Grid</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200">
+<tr class="bg-white">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Số chiều</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">1 chiều (hàng hoặc cột)</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2 chiều (hàng + cột)</td>
+</tr>
+<tr class="bg-gray-50">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Dùng cho</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Menu, thanh điều hướng</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Danh sách sản phẩm</td>
+</tr>
+<tr class="bg-white">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Ví dụ</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">display: flex;</code></td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">display: grid;</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 class="mb-3 mt-4">3️⃣ Bootstrap 5 - "Mì Ăn Liền" CSS</h5>
+<p>Thay vì tự viết CSS từng chút một, dùng Bootstrap để có class sẵn:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;!-- Nhúng Bootstrap vào &lt;head&gt; --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Sử dụng class của Bootstrap --&gt;
+&lt;button class="btn btn-warning fw-bold"&gt;Nút vàng đậm&lt;/button&gt;
+&lt;div class="container text-center"&gt;Căn giữa&lt;/div&gt;</code></pre>
+</div>
+<h5 class="mb-3 mt-4">4️⃣ Media Query - Làm Responsive</h5>
+<p>Khi màn hình co lại, layout cần tự động thích ứng:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">@media (max-width: 768px) {
+    /* CSS này chỉ chạy khi màn hình nhỏ hơn 768px (Điện thoại) */
+    .product-list {
+        grid-template-columns: 1fr; /* Từ 3 cột → 1 cột */
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<!-- THỰC HÀNH -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-emerald-100 text-emerald-900 border-b border-emerald-200">
+<i class="fas fa-code"></i> THỰC HÀNH TỪNG BƯỚC (60 Phút)
+            </div>
+<div class="p-6 flex-1">
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 1</span> Cập Nhật HTML - Nhúng Bootstrap &amp; Thêm Class</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">Thêm vào &lt;head&gt;</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+</div>
+<p class="mt-3">Thêm class vào các phần:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">Thêm vào body</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;section&gt;
+    &lt;h2 class="text-center mb-4"&gt;Các Mẫu Áo Phôi Bán Chạy&lt;/h2&gt;
+    &lt;div class="product-list"&gt; &lt;!-- Container --&gt;
+
+        &lt;div class="product-card"&gt;...&lt;/div&gt;
+        &lt;div class="product-card"&gt;...&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+</div>
+</div>
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 2</span> Cập Nhật CSS - Thêm Flexbox &amp; Grid</h5>
+<p>Thêm đoạn này vào cuối file style.css:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">style.css - Thêm phần Buổi 3</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">/* ================== BUỔI 3: FLEXBOX &amp; GRID ================== */
+
+/* 1. Flexbox cho Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+}
+
+/* 2. Grid cho Sản phẩm */
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 40px;
+}
+
+.product-card {
+    margin: 0;
+    width: 100%;
+}
+
+/* 3. RESPONSIVE - Khi màn hình nhỏ */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+    
+    .product-list {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="rounded-xl p-5 mb-8 border bg-blue-50 border-blue-200 text-blue-800">
+<h5><i class="fas fa-info-circle"></i> Cách Kiểm Tra Responsive</h5>
+<ol class="list-decimal list-inside space-y-3 text-gray-700 mb-4 ml-2">
+<li>Mở trình duyệt → Nhấn <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">F12</code></li>
+<li>Click biểu tượng <strong>Toggle device toolbar</strong> (mộp điện thoại)</li>
+<li>Kéo mép màn hình nhỏ lại từ từ</li>
+<li>Khi qua mốc 768px, layout sẽ tự động biến đổi!</li>
+</ol>
+</div>
+</div>
+</div>
+</section><section class="mb-20 scroll-mt-20" id="buoi4">
+<h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-8 border-b border-gray-200 pb-4 flex items-center font-heading"><i class="fas fa-bolt text-danger"></i> Buổi 4: Lập Trình Tương Tác (JavaScript DOM)</h2>
+<div class="rounded-xl p-5 mb-8 border bg-rose-50 border-rose-200 text-rose-800">
+<strong>🎯 Mục Tiêu:</strong> JavaScript = Bộ não của website. Bấm nút → Giỏ hàng tăng số
+        </div>
+<!-- LÝ THUYẾT -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-amber-100 text-amber-900 border-b border-amber-200">
+<i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+<div class="p-6 flex-1">
+<h5 class="mb-3">1️⃣ Biến (Variable) - Cái Hộp Lưu Số</h5>
+<p>Biến như một cái hộp có dán nhãn, lưu trữ dữ liệu tạm thời:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">let cartQuantity = 0;      // Biến chứa số lượng giỏ hàng, ban đầu = 0
+let userName = "An";       // Biến chứa tên
+let isLoggedIn = true;    // Biến chứa true/false</code></pre>
+</div>
+<h5 class="mb-3 mt-4">2️⃣ DOM (Document Object Model) - Cầu Nối HTML ↔ JavaScript</h5>
+<p>JavaScript không tự biết HTML ở đâu. DOM là cầu nối:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">/* Tìm kiếm (Query) */
+const spanCartCount = document.getElementById("cartCount");
+const buttons = document.querySelectorAll(".btn-buy");
+
+/* Hành động (Action) */
+spanCartCount.innerText = "5";  // Đổi chữ trong span
+button.style.color = "red";     // Đổi màu nút</code></pre>
+</div>
+<h5 class="mb-3 mt-4">3️⃣ Sự Kiện (Event) - Máy Nghe Lén</h5>
+<p>Gắn "máy nghe lén" vào nút, khi click sẽ chạy code:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">button.addEventListener("click", function() {
+    // Code ở đây chạy khi nút được click
+    cartQuantity = cartQuantity + 1;
+    console.log("Giỏ hàng:", cartQuantity);
+});</code></pre>
+</div>
+<h5 class="mb-3 mt-4">4️⃣ forEach - Vòng Lặp Qua Danh Sách</h5>
+<p>Khi có nhiều nút, không thể gắn sự kiện cho từng cái một. Dùng forEach:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">const buttons = document.querySelectorAll(".btn-buy");
+
+buttons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        // Code này sẽ chạy cho TỪNG nút
+        console.log("Nút được bấm!");
+    });
+});</code></pre>
+</div>
+</div>
+</div>
+<!-- THỰC HÀNH -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-emerald-100 text-emerald-900 border-b border-emerald-200">
+<i class="fas fa-code"></i> THỰC HÀNH TỪNG BƯỚC (60 Phút)
+            </div>
+<div class="p-6 flex-1">
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 1</span> Cập Nhật HTML - Gắn ID &amp; Nhúng JS</h5>
+<p>Mở index.html, tìm phần Giỏ hàng trong Header:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">Cập nhật Header</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;header&gt;
+    &lt;h1&gt;TeeGenZ 👕&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Trang chủ&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Mẫu áo&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#" class="fw-bold text-warning"&gt;
+                Giỏ hàng (&lt;span id="cartCountDisplay"&gt;0&lt;/span&gt;)
+            &lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+</div>
+<p class="mt-3">Cuối file HTML, ngay trước &lt;/body&gt;, thêm:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">Nhúng file JS - Ngay trước &lt;/body&gt;</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+</div>
+</div>
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 2</span> Tạo File JavaScript</h5>
+<ol class="list-decimal list-inside space-y-3 text-gray-700 mb-4 ml-2">
+<li>Tạo file: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">script.js</code> cùng thư mục với index.html</li>
+<li>Copy đoạn code dưới vào</li>
+</ol>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">script.js - Buổi 4</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// ==========================================
+// BƯỚC 1: KHAI BÁO BIẾN LƯU SỐ LƯỢNG ÁO
+// ==========================================
+let cartQuantity = 0;
+
+// ==========================================
+// BƯỚC 2: TÌM CÁC THÀNH PHẦN TRÊN HTML
+// ==========================================
+const spanCartCount = document.getElementById("cartCountDisplay");
+const buyButtons = document.querySelectorAll(".btn-buy");
+
+// ==========================================
+// BƯỚC 3: GẮN SỰ KIỆN CLICK CHO CÁC NÚT
+// ==========================================
+buyButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        // 3.1. Tăng số lượng lên 1
+        cartQuantity = cartQuantity + 1;
+        
+        // 3.2. Cập nhật lại thẻ HTML
+        spanCartCount.innerText = cartQuantity;
+        
+        // 3.3. Hiện thông báo
+        alert("Tuyệt vời! Bạn vừa thêm 1 chiếc áo vào giỏ hàng 👕");
+    });
+});</code></pre>
+</div>
+</div>
+<div class="rounded-xl p-5 mb-8 border bg-amber-50 border-amber-200 text-amber-800">
+<h5><i class="fas fa-bug"></i> Debug - Cách Tìm Lỗi</h5>
+<ol class="list-decimal list-inside space-y-3 text-gray-700 mb-4 ml-2">
+<li>Mở trình duyệt → Nhấn <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">F12</code> → Tab <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">Console</code></li>
+<li>Nếu có lỗi chữ đỏ, kiểm tra file JS xem sai chính tả ở dòng nào</li>
+<li>Học sinh hay quên: chữ <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">document</code>, <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">getElementById</code>, v.v.</li>
+<li>Lưu ý: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">innerText</code> (không phải <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">innerHTML</code>) để thay đổi chữ</li>
+</ol>
+</div>
+</div>
+</div>
+</section><section class="mb-20 scroll-mt-20" id="buoi5">
+<h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-8 border-b border-gray-200 pb-4 flex items-center font-heading"><i class="fas fa-cloud-upload-alt text-primary"></i> Buổi 5: Đưa Lên Internet (GitHub Pages &amp; Vấn Đáp)</h2>
+<div class="rounded-xl p-5 mb-8 border bg-blue-50 border-blue-200 text-blue-800">
+<strong>🎯 Mục Tiêu:</strong> Từ code offline → Website online với link .github.io
+        </div>
+<!-- LÝ THUYẾT -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-amber-100 text-amber-900 border-b border-amber-200">
+<i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+<div class="p-6 flex-1">
+<h5 class="mb-3">1️⃣ Website Sống Ở Đâu?</h5>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="">
+<h6>❌ Hiện Tại (Offline)</h6>
+<p>Code chạy trong máy tính nhà mình, chỉ mình thấy</p>
+</div>
+<div class="">
+<h6>✅ GitHub Pages (Online)</h6>
+<p>Code lưu trên máy chủ của GitHub, ai cũng truy cập được qua link</p>
+</div>
+</div>
+<h5 class="mb-3 mt-4">2️⃣ GitHub Là Gì?</h5>
+<ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Mạng xã hội của lập trình viên (như Facebook nhưng của dev)</li>
+<li>Lưu trữ code (như Google Drive)</li>
+<li>Chia sẻ code với nhau</li>
+<li>GitHub Pages = Tính năng biến code thành website</li>
+</ul>
+<h5 class="mb-3 mt-4">3️⃣ 3 Khái Niệm Quan Trọng</h5>
+<table class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-xl overflow-hidden my-6 block md:table overflow-x-auto">
+<tr>
+<td><strong>Repository (Kho Chứa)</strong></td>
+<td>Thư mục lưu trữ code trên GitHub (giống folder)</td>
+</tr>
+<tr>
+<td><strong>Commit (Chốt Lưu)</strong></td>
+<td>Lưu thay đổi vào kho chứa (checkpoint)</td>
+</tr>
+<tr>
+<td><strong>GitHub Pages</strong></td>
+<td>Bật tính năng này để biến repo thành website</td>
+</tr>
+</table>
+</div>
+</div>
+<!-- THỰC HÀNH -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-emerald-100 text-emerald-900 border-b border-emerald-200">
+<i class="fas fa-code"></i> THỰC HÀNH TỪNG BƯỚC (45 Phút)
+            </div>
+<div class="p-6 flex-1">
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 1</span> Tạo Tài Khoản &amp; Repository Trên GitHub</h5>
+<ol class="list-decimal list-inside space-y-3 text-gray-700 mb-4 ml-2">
+<li>Truy cập <a class="text-decoration-none" href="https://github.com" target="_blank">github.com</a></li>
+<li>Nhấn <strong>Sign Up</strong> (nếu chưa có tài khoản)</li>
+<li>Sau khi đăng nhập, nhấn <strong>New Repository</strong> (nút xanh)</li>
+<li>Điền thông tin:
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Repository name: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">teegenz-shop</code> (không viết hoa, không dấu)</li>
+<li>Description: "Trang web xưởng in áo thun"</li>
+<li>Public (chọn để ai cũng xem được)</li>
+<li>Nhấn <strong>Create repository</strong></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 2</span> Đưa Code Lên GitHub (Upload)</h5>
+<ol class="list-decimal list-inside space-y-3 text-gray-700 mb-4 ml-2">
+<li>Trong trang Repository vừa tạo, tìm dòng chữ <strong>"uploading an existing file"</strong></li>
+<li>Click vào → Khung kéo thả sẽ hiện ra</li>
+<li>Kéo 3 file từ máy tính thả vào:
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>index.html</li>
+<li>style.css</li>
+<li>script.js</li>
+</ul>
+</li>
+<li>Đợi chút để upload xong</li>
+<li>Nhấn nút <strong class="text-success">Commit changes</strong> (xanh lá)</li>
+</ol>
+</div>
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 3</span> Bật GitHub Pages</h5>
+<ol class="list-decimal list-inside space-y-3 text-gray-700 mb-4 ml-2">
+<li>Trong Repository, click tab <strong>Settings</strong> (hình bánh răng)</li>
+<li>Menu bên trái, chọn <strong>Pages</strong></li>
+<li>Ở phần "Build and deployment" → "Source", chọn <strong>main</strong> (từ sổ xuống)</li>
+<li>Nhấn <strong>Save</strong></li>
+<li>Đợi 1-2 phút để GitHub xử lý</li>
+<li>Tải lại trang (F5), sẽ thấy thông báo xanh:
+                            <div class="rounded-xl p-5 mb-8 border bg-emerald-50 border-emerald-200 text-emerald-800">
+                                Your site is live at https://[tên-của-em].github.io/teegenz-shop
+                            </div>
+</li>
+</ol>
+</div>
+<div class="rounded-xl p-5 mb-8 border bg-blue-50 border-blue-200 text-blue-800">
+<h5>✅ Thành Công!</h5>
+<p>Click vào link và tận hưởng! Website của em đã lên mạng rồi 🎉</p>
+</div>
+</div>
+</div>
+<!-- VẤN ĐÁP -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="px-6 py-4 font-bold text-lg bg-rose-100 text-rose-900 border-b border-rose-200">
+<i class="fas fa-comments"></i> PHẦN VẤN ĐÁP (30 Phút)
+            </div>
+<div class="p-6 flex-1">
+<p>Anh/cô giáo đóng vai "Khách hàng" và hỏi học sinh những câu sau:</p>
+<div class="mb-6 p-6 bg-gray-50 rounded-xl border border-gray-200 shadow-sm">
+<h6 class="text-base font-bold text-gray-900 mb-3 flex flex-col md:flex-row md:items-center gap-2"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-rose-100 text-rose-800">Câu 1 - HTML</span> Cấu Trúc &amp; Ngữ Nghĩa</h6>
+<p><strong>Hỏi:</strong> "Em thấy form ở cuối trang có tên và file upload. Nếu thầy muốn thêm ô nhập 'Số điện thoại', em sẽ gõ code gì và chèn vào dòng nào?"</p>
+<p><strong>Kỳ vọng:</strong> Học sinh biết tìm thẻ <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;form&gt;</code>, viết <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;input type="tel"&gt;</code> hoặc <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;input type="number"&gt;</code></p>
+</div>
+<div class="mb-6 p-6 bg-gray-50 rounded-xl border border-gray-200 shadow-sm">
+<h6 class="text-base font-bold text-gray-900 mb-3 flex flex-col md:flex-row md:items-center gap-2"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-rose-100 text-rose-800">Câu 2 - CSS</span> Box Model &amp; Margin/Padding</h6>
+<p><strong>Hỏi:</strong> "Thầy thấy các thẻ áo thun dính sát vào nhau (nếu trên mobile). Em đã học Box Model rồi, vậy em dùng <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">Margin</code> hay <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">Padding</code> để đẩy chúng cách xa? Sửa ở class nào?"</p>
+<p><strong>Kỳ vọng:</strong> Học sinh biết Margin (đẩy ra ngoài), chỉ ra class <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">.product-card</code></p>
+</div>
+<div class="mb-6 p-6 bg-gray-50 rounded-xl border border-gray-200 shadow-sm">
+<h6 class="text-base font-bold text-gray-900 mb-3 flex flex-col md:flex-row md:items-center gap-2"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-rose-100 text-rose-800">Câu 3 - CSS</span> Grid &amp; Responsive</h6>
+<p><strong>Hỏi:</strong> "Làm sao trang web của em biết khi nào màn hình bị nhỏ lại để chuyển từ 3 cột thành 1 cột? Giải thích dòng code đó."</p>
+<p><strong>Kỳ vọng:</strong> Học sinh chỉ vào <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">@media (max-width: 768px)</code> và giải thích <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">grid-template-columns</code></p>
+</div>
+<div class="mb-6 p-6 bg-gray-50 rounded-xl border border-gray-200 shadow-sm">
+<h6 class="text-base font-bold text-gray-900 mb-3 flex flex-col md:flex-row md:items-center gap-2"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-rose-100 text-rose-800">Câu 4 - JavaScript</span> DOM &amp; Event Listener</h6>
+<p><strong>Hỏi:</strong> "Giải thích: Bằng phép màu gì khi thầy bấm nút 'Thêm vào giỏ', con số trên Menu lại tăng lên? Dùng hàm nào để tìm tất cả nút bấm?"</p>
+<p><strong>Kỳ vọng:</strong> Học sinh chỉ vào script.js, giải thích 3 bước:
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">querySelectorAll(".btn-buy")</code> = Tìm tất cả nút</li>
+<li><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">forEach</code> = Duyệt từng nút</li>
+<li><code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">addEventListener("click")</code> = Gắn máy nghe lén</li>
+<li>Tăng <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">cartQuantity</code> → Gán lại vào DOM</li>
+</ul>
+</p>
+</div>
+</div>
+</div>
+<div class="rounded-xl p-5 mb-8 border bg-emerald-50 border-emerald-200 text-emerald-800">
+<h5><i class="fas fa-congratulations"></i> 🎉 Kết Thúc Khóa Học</h5>
+<p>Học sinh vừa hoàn thành chặng đường HTML → CSS → JavaScript → Deploy!</p>
+<p><strong>Định hướng tương lai:</strong> Sau này học tiếp Backend (Python/Node.js) + Database, sẽ có thể làm giỏ hàng lưu vĩnh viễn, đặt hàng, v.v. giống hệ thống thực tế!</p>
+</div>
+</section><section class="mb-20 scroll-mt-20" id="buoi6">
+<h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-8 border-b border-gray-200 pb-4 flex items-center font-heading"><i class="fas fa-database text-secondary"></i> Buổi 6: Quản Lý Dữ Liệu &amp; localStorage</h2>
+<div class="rounded-xl p-5 mb-8 border bg-blue-50 border-blue-200 text-blue-800">
+<strong>🎯 Mục Tiêu:</strong> Lưu dữ liệu giỏ hàng trên máy tính, khi F5 trang web vẫn có dữ liệu
+        </div>
+<!-- LÝ THUYẾT -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-amber-100 text-amber-900 border-b border-amber-200">
+<i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+<div class="p-6 flex-1">
+<h5 class="mb-3">1️⃣ localStorage - Kho Lưu Trữ Trên Máy Tính</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// Lưu dữ liệu
+localStorage.setItem("cartItems", "5");
+
+// Lấy dữ liệu
+const items = localStorage.getItem("cartItems");
+console.log(items); // "5"
+
+// Xóa dữ liệu
+localStorage.removeItem("cartItems");
+
+// Xóa tất cả
+localStorage.clear();</code></pre>
+</div>
+<h5 class="mb-3 mt-4">2️⃣ JSON - Biến Object Thành String</h5>
+<p>localStorage chỉ lưu string, nên cần convert Object → JSON:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// Object
+const cart = { items: 5, total: 500000 };
+
+// Convert thành JSON string
+const jsonString = JSON.stringify(cart);
+localStorage.setItem("myCart", jsonString);
+
+// Lấy lại và convert thành Object
+const retrieved = localStorage.getItem("myCart");
+const cartObject = JSON.parse(retrieved);
+console.log(cartObject.items); // 5</code></pre>
+</div>
+<h5 class="mb-3 mt-4">3️⃣ Flow Control - if/else &amp; for</h5>
+<p>Kiểm tra điều kiện và lặp qua mảng:</p>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// if/else
+if (localStorage.getItem("cartItems")) {
+    console.log("Có dữ liệu lưu");
+} else {
+    console.log("Chưa có dữ liệu");
+}
+
+// for lặp qua mảng
+const products = ["Áo 1", "Áo 2", "Áo 3"];
+for (let i = 0; i &lt; products.length; i++) {
+    console.log(products[i]);
+}</code></pre>
+</div>
+<h5 class="mb-3 mt-4">4️⃣ Array Methods - map, filter, reduce</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">const products = [
+    { name: "Áo 1", price: 150000 },
+    { name: "Áo 2", price: 200000 },
+];
+
+// map: biến đổi mảng
+const prices = products.map(p =&gt; p.price);
+console.log(prices); // [150000, 200000]
+
+// filter: lọc phần tử
+const expensive = products.filter(p =&gt; p.price &gt; 150000);
+
+// reduce: gộp thành 1 giá trị
+const total = products.reduce((sum, p) =&gt; sum + p.price, 0);</code></pre>
+</div>
+</div>
+</div>
+<!-- THỰC HÀNH -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="px-6 py-4 font-bold text-lg bg-emerald-100 text-emerald-900 border-b border-emerald-200">
+<i class="fas fa-code"></i> THỰC HÀNH - NÂNG CẬP GIỎ HÀNG
+            </div>
+<div class="p-6 flex-1">
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 1</span> Cập Nhật script.js - Lưu Vào localStorage</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">script.js - Buổi 6</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// Lấy từ localStorage, nếu không có thì mặc định = 0
+let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
+
+const spanCartCount = document.getElementById("cartCountDisplay");
+const buyButtons = document.querySelectorAll(".btn-buy");
+
+// Cập nhật giao diện từ localStorage
+spanCartCount.innerText = cartQuantity;
+
+buyButtons.forEach(button =&gt; {
+    button.addEventListener("click", function() {
+        // Tăng số lượng
+        cartQuantity = cartQuantity + 1;
+        
+        // Lưu vào localStorage
+        localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
+        
+        // Cập nhật giao diện
+        spanCartCount.innerText = cartQuantity;
+        
+        alert("Thêm vào giỏ! Tổng: " + cartQuantity);
+    });
+});</code></pre>
+</div>
+</div>
+<div class="rounded-xl p-5 mb-8 border bg-blue-50 border-blue-200 text-blue-800">
+<h5>🧪 Kiểm Thử</h5>
+<ol class="list-decimal list-inside space-y-3 text-gray-700 mb-4 ml-2">
+<li>Mở Developer Tools (F12) → Tab "Application" → localStorage</li>
+<li>Bấm nút "Thêm vào giỏ"</li>
+<li>Trong localStorage sẽ thấy key "cartQuantity" với giá trị số</li>
+<li>F5 tải lại trang - số lượng giỏ hàng vẫn được giữ! 🎉</li>
+</ol>
+</div>
+</div>
+</div>
+</section><section class="mb-20 scroll-mt-20" id="buoi7">
+<h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-8 border-b border-gray-200 pb-4 flex items-center font-heading"><i class="fas fa-cube text-warning"></i> Buổi 7: ES6 Modern JavaScript &amp; Modules</h2>
+<div class="rounded-xl p-5 mb-8 border bg-amber-50 border-amber-200 text-amber-800">
+<strong>🎯 Mục Tiêu:</strong> Viết JavaScript hiện đại, sạch sẽ và tách code thành module
+        </div>
+<!-- LÝ THUYẾT -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col mb-8">
+<div class="px-6 py-4 font-bold text-lg bg-amber-100 text-amber-900 border-b border-amber-200">
+<i class="fas fa-book"></i> LÝ THUYẾT CỐT LÕI (15 Phút)
+            </div>
+<div class="p-6 flex-1">
+<h5 class="mb-3">1️⃣ Template Literals - Chuỗi Thông Minh</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// Cách cũ (ES5)
+const name = "An";
+const msg = "Xin chào " + name + "!";
+
+// Cách mới (ES6) - dùng backtick
+const msg = \`Xin chào \${name}!\`;
+console.log(msg); // "Xin chào An!"</code></pre>
+</div>
+<h5 class="mb-3 mt-4">2️⃣ Arrow Functions - Hàm Mũi Tên</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// Cách cũ
+function add(a, b) {
+    return a + b;
+}
+
+// Cách mới
+const add = (a, b) =&gt; a + b;
+console.log(add(2, 3)); // 5
+
+// Với forEach
+products.forEach(p =&gt; console.log(p));</code></pre>
+</div>
+<h5 class="mb-3 mt-4">3️⃣ Destructuring - Bóc Tách Biến</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// Object
+const product = { name: "Áo", price: 150000 };
+const { name, price } = product;
+console.log(name); // "Áo"
+
+// Array
+const colors = ["red", "green", "blue"];
+const [first, second] = colors;
+console.log(first); // "red"</code></pre>
+</div>
+<h5 class="mb-3 mt-4">4️⃣ Modules - import/export</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// utils.js
+export function formatCurrency(num) {
+    return num.toLocaleString('vi-VN') + " VNĐ";
+}
+
+// script.js
+import { formatCurrency } from './utils.js';
+console.log(formatCurrency(150000)); // "150.000 VNĐ"</code></pre>
+</div>
+<h5 class="mb-3 mt-4">5️⃣ Spread Operator - Lan Tỏa</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// Mảng
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+
+// Object
+const user = { name: "An", age: 16 };
+const newUser = { ...user, city: "Hà Nội" };
+// { name: "An", age: 16, city: "Hà Nội" }</code></pre>
+</div>
+</div>
+</div>
+<!-- THỰC HÀNH -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="px-6 py-4 font-bold text-lg bg-emerald-100 text-emerald-900 border-b border-emerald-200">
+<i class="fas fa-code"></i> THỰC HÀNH - VIẾT LẠI BẰNG ES6
+            </div>
+<div class="p-6 flex-1">
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 1</span> Tạo File utils.js - Hàm Dùng Chung</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">utils.js</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// Định dạng tiền tệ
+export const formatCurrency = (num) =&gt; {
+    return num.toLocaleString('vi-VN') + " VNĐ";
+};
+
+// Lấy năm hiện tại
+export const getCurrentYear = () =&gt; new Date().getFullYear();
+
+// Kiểm tra email
+export const isValidEmail = (email) =&gt; {
+    return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+};</code></pre>
+</div>
+</div>
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 2</span> Cập Nhật script.js - Sử Dụng ES6</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">script.js - ES6 Version</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">// import các hàm
+import { formatCurrency, getCurrentYear } from './utils.js';
+
+// Khai báo biến
+let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || 0;
+
+// DOM Query
+const spanCartCount = document.getElementById("cartCountDisplay");
+const buyButtons = document.querySelectorAll(".btn-buy");
+
+// Khởi tạo
+spanCartCount.innerText = cartQuantity;
+
+// Arrow function để xử lý click
+buyButtons.forEach(button =&gt; {
+    button.addEventListener("click", () =&gt; {
+        cartQuantity++;
+        localStorage.setItem("cartQuantity", JSON.stringify(cartQuantity));
+        spanCartCount.innerText = cartQuantity;
+        alert(\`Thêm vào giỏ! Tổng: \${cartQuantity}\`);
+    });
+});</code></pre>
+</div>
+</div>
+<div class="mb-10 pl-6 border-l-4 border-emerald-500">
+<h5 class="text-lg font-bold text-gray-900 mb-4 flex flex-col md:flex-row md:items-center gap-2 md:gap-3"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold shadow-sm bg-emerald-100 text-emerald-800">Bước 3</span> Cập Nhật HTML - Thêm type="module"</h5>
+<div class="my-6 rounded-xl overflow-hidden bg-[#0d1117] border border-gray-800 shadow-lg">
+<div class="flex justify-between items-center px-4 py-3 bg-[#161b22] border-b border-gray-800">
+<span class="text-xs font-semibold text-gray-300 uppercase tracking-wide">index.html - cuối file</span>
+<button class="text-xs font-medium px-3 py-1.5 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-500" onclick="copyCode(this)">
+<i class="fas fa-copy"></i> Copy
+                            </button>
+</div>
+<pre class="p-5 overflow-x-auto text-sm text-gray-300 font-mono code-quote"><code class="text-gray-300">&lt;!-- Đổi từ cái cũ --&gt;
+&lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;!-- Thành ES6 Module --&gt;
+&lt;script type="module" src="script.js"&gt;&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="rounded-xl p-5 mb-8 border bg-blue-50 border-blue-200 text-blue-800">
+<h5>🎯 Ưu Điểm ES6 Modules</h5>
+<ul class="mb-0 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>✅ Code dễ đọc hơn (arrow functions, template literals)</li>
+<li>✅ Tái sử dụng code (import/export)</li>
+<li>✅ Quản lý biến tốt hơn (scope)</li>
+<li>✅ Chuẩn bị sẵn cho các framework như React, Vue</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section class="mb-20 scroll-mt-20" id="advanced">
+<h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-8 border-b border-gray-200 pb-4 flex items-center font-heading"><i class="fas fa-rocket text-success"></i> Bài Tập Nâng Cao &amp; Mở Rộng</h2>
+<div class="rounded-xl p-5 mb-8 border bg-emerald-50 border-emerald-200 text-emerald-800">
+<strong>💪 Thử Thách:</strong> Những bài tập này giúp bạn trở thành lập trình viên thực thụ!
+        </div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="px-6 py-4 font-bold text-lg bg-blue-100 text-blue-900 border-b border-blue-200">
+<i class="fas fa-tasks"></i> 🔧 Bài Tập Nâng Cao - HTML &amp; CSS
+                    </div>
+<div class="p-6 flex-1">
+<h6 class="mb-3">1. HTML Semantic (Bài 2 nâng cao)</h6>
+<ul class="mb-3 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Thay <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;div&gt;</code> thành <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;</code></li>
+<li>Thêm <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;img alt=""&gt;</code> cho tất cả hình ảnh (SEO)</li>
+<li>Dùng <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;figure&gt;</code> và <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">&lt;figcaption&gt;</code> cho hình ảnh có chú thích</li>
+</ul>
+<h6 class="mb-3">2. CSS Box Model Nâng Cao (Bài 4)</h6>
+<ul class="mb-3 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Làm Header sticky: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">position: sticky; top: 0;</code></li>
+<li>Thêm hiệu ứng Shadow: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">box-shadow: 0 4px 6px rgba(0,0,0,0.1);</code></li>
+<li>Làm Button có transition: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">transition: all 0.3s ease;</code></li>
+</ul>
+<h6 class="mb-3">3. Position &amp; Transform</h6>
+<ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Tạo Modal (popup) bằng <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">position: fixed</code></li>
+<li>Thêm icon loading spinner bằng <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">animation</code></li>
+<li>Làm Carousel (slide) ảnh</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="px-6 py-4 font-bold text-lg bg-rose-100 text-rose-900 border-b border-rose-200">
+<i class="fas fa-code"></i> 📱 Bài Tập Nâng Cao - JavaScript
+                    </div>
+<div class="p-6 flex-1">
+<h6 class="mb-3">1. Tìm Kiếm &amp; Lọc Sản Phẩm (Bài 8)</h6>
+<ul class="mb-3 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Thêm ô input tìm kiếm</li>
+<li>Dùng <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">.filter()</code> để lọc sản phẩm theo tên</li>
+<li>Lọc theo giá: từ 100k → 500k</li>
+</ul>
+<h6 class="mb-3">2. Tính Năng Giỏ Hàng Đầy Đủ (Bài 9-11)</h6>
+<ul class="mb-3 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Lưu giỏ hàng dạng mảng object: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">[{id, name, price, qty}]</code></li>
+<li>Tính tổng tiền: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">.reduce((sum, item) =&gt; sum + item.price * item.qty, 0)</code></li>
+<li>Tăng/giảm số lượng sản phẩm trong giỏ</li>
+<li>Xóa sản phẩm khỏi giỏ hàng</li>
+</ul>
+<h6 class="mb-3">3. Validation Form (Nâng Cao)</h6>
+<ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Kiểm tra Email hợp lệ (regex)</li>
+<li>Kiểm tra Số điện thoại Việt Nam (10 số, bắt đầu 0)</li>
+<li>Hiển thị lỗi inline (dưới từng ô input)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="px-6 py-4 font-bold text-lg bg-blue-100 text-blue-900 border-b border-blue-200">
+<i class="fas fa-database"></i> 💾 Bài Tập Nâng Cao - Quản Lý Dữ Liệu
+                    </div>
+<div class="p-6 flex-1">
+<h6 class="mb-3">1. Sử Dụng localStorage Nâng Cao</h6>
+<ul class="mb-3 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Lưu toàn bộ giỏ hàng thành JSON</li>
+<li>Thêm tính năng "Lịch sử mua hàng" lưu trên máy</li>
+<li>Tạo nút "Xóa tất cả dữ liệu" (confirm trước)</li>
+</ul>
+<h6 class="mb-3">2. Mock Data &amp; Rendering (Bài 9)</h6>
+<ul class="mb-3 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Tạo file <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">data/products.js</code> chứa mảng 10 sản phẩm</li>
+<li>Dùng <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">.map()</code> để render HTML từ dữ liệu</li>
+<li>Thay thế HTML cứng thành động HTML</li>
+</ul>
+<h6 class="mb-3">3. Pagination (Phân Trang)</h6>
+<ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Hiển thị 6 sản phẩm/trang</li>
+<li>Thêm nút "Trang trước" / "Trang sau"</li>
+<li>Hiển thị "Trang 1/5"</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="px-6 py-4 font-bold text-lg bg-amber-100 text-amber-900 border-b border-amber-200">
+<i class="fas fa-gem"></i> ✨ Bài Tập Nâng Cao - UX/UI &amp; Hiệu Năng
+                    </div>
+<div class="p-6 flex-1">
+<h6 class="mb-3">1. Toast Notification</h6>
+<ul class="mb-3 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Thay <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">alert()</code> bằng popup tùy chỉnh</li>
+<li>Hiển thị 3 giây rồi tự động ẩn</li>
+<li>Style đẹp với icon check/error</li>
+</ul>
+<h6 class="mb-3">2. Loading &amp; Skeleton</h6>
+<ul class="mb-3 list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Thêm loading spinner khi tải dữ liệu</li>
+<li>Dùng Skeleton screen (placeholder xám)</li>
+<li>Animate khi HTML render</li>
+</ul>
+<h6 class="mb-3">3. Dark Mode</h6>
+<ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>Thêm nút toggle Dark/Light mode</li>
+<li>Lưu preferences vào localStorage</li>
+<li>Dùng CSS variables: <code class="font-mono px-1.5 py-0.5 bg-gray-100 rounded text-rose-600 border border-gray-200 font-semibold">--primary-color</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="">
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col">
+<div class="px-6 py-4 font-bold text-lg bg-emerald-100 text-emerald-900 border-b border-emerald-200">
+<i class="fas fa-star"></i> 🏆 Dự Án Hoàn Chỉnh - Checklist
+                    </div>
+<div class="p-6 flex-1">
+<h6 class="mb-3">Sau khi hoàn thành, website của bạn sẽ có:</h6>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="">
+<ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>✅ HTML semantic &amp; cấu trúc tốt</li>
+<li>✅ CSS đẹp &amp; responsive trên mobile</li>
+<li>✅ Giỏ hàng lưu dữ liệu trên máy</li>
+<li>✅ Tìm kiếm &amp; lọc sản phẩm</li>
+<li>✅ Pagination / phân trang</li>
+</ul>
+</div>
+<div class="">
+<ul class="list-disc list-inside space-y-2 text-gray-700 mb-4 ml-2">
+<li>✅ Form validation &amp; xử lý lỗi</li>
+<li>✅ Code ES6 modern &amp; modules</li>
+<li>✅ Dark mode toggle</li>
+<li>✅ Toast notification</li>
+<li>✅ Deploy lên GitHub Pages 🚀</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></div>
+<footer class="bg-gray-50 border-t border-gray-200 py-8 mt-12 w-full">
+<div class="max-w-5xl mx-auto px-4 text-center">
+<p class="text-gray-600">© 2026 - Khóa Học Lập Trình Web cho Lớp 10</p>
+<p class="text-gray-400 text-sm mt-2">Dự án Lập Trình Robot</p>
+</div>
+</footer>
+</main>
+</div>
+
+<script>
+        function copyCode(btn) {
+            const codeBlock = btn.parentElement.nextElementSibling;
+            const code = codeBlock.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.classList.add('bg-emerald-600', 'text-white');
+                btn.classList.remove('bg-gray-700', 'text-gray-300');
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.classList.remove('bg-emerald-600', 'text-white');
+                    btn.classList.add('bg-gray-700', 'text-gray-300');
+                }, 2000);
+            });
+        }
+        
+        // Highlight active sidebar link on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('aside nav a[href^="#"]');
+            const mainArea = document.getElementById('mainScrollArea');
+            
+            mainArea.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Adjust offset based on padding
+                    if (mainArea.scrollTop >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(a => {
+                    if (a.getAttribute('href') === '#' + current) {
+                        a.classList.add('bg-gray-800', 'text-white');
+                        a.classList.remove('text-gray-300');
+                    } else {
+                        a.classList.remove('bg-gray-800', 'text-white');
+                        a.classList.add('text-gray-300');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
