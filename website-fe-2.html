@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo Trình Đồ Án Frontend: Dự Án TeeGenZ</title>
+    <!-- Thư viện giao diện Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Thư viện Highlight Code -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+
+        #sidebar {
+            width: 300px;
+            background: #212529;
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        #sidebar h4 {
+            color: #f39c12;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid #444;
+            padding-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            color: #adb5bd;
+            cursor: pointer;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: all 0.2s ease-in-out;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(243, 156, 18, 0.2);
+            color: #f39c12;
+        }
+
+        .nav-link.active {
+            background: #f39c12;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #main-content {
+            flex: 1;
+            padding: 40px 60px;
+            overflow-y: auto;
+            background: white;
+        }
+
+        .lesson-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+
+        .lesson-section.active {
+            display: block;
+        }
+
+        h1 {
+            color: #1a252f;
+            font-weight: 800;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: "👉";
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            color: #e67e22;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+
+        ul,
+        ol {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        pre {
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            margin: 25px 0;
+            border-left: 5px solid #f39c12;
+        }
+
+        code {
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            font-size: 1rem;
+        }
+
+        blockquote {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        hr {
+            margin: 40px 0;
+            border-color: #ddd;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="sidebar">
+        <h4>TeeGenZ<br><small style="font-size: 0.8rem; color: #adb5bd;">Đồ Án Full Tính Năng</small></h4>
+        <nav class="nav flex-column" id="menu">
+            <a class="nav-link active" onclick="showLesson('buoi1', this)">Buổi 1: Trang chủ & Data SP</a>
+            <a class="nav-link" onclick="showLesson('buoi2', this)">Buổi 2: Đăng nhập & Admin</a>
+            <a class="nav-link" onclick="showLesson('buoi3', this)">Buổi 3: Dàn Trang Flex/Grid</a>
+            <a class="nav-link" onclick="showLesson('buoi4', this)">Buổi 4: Logic User & Phân Quyền</a>
+            <a class="nav-link" onclick="showLesson('buoi5', this)">Buổi 5: Giỏ hàng, Lịch sử & OTP</a>
+        </nav>
+        <div style="margin-top: auto; padding-top: 40px; text-align: center; font-size: 0.8rem; color: #6c757d;">
+            <p>Biên soạn cho dạy học thực chiến</p>
+        </div>
+    </div>
+
+    <div id="main-content"></div>
+
+    <!-- ========================================================= -->
+    <!-- SOẠN THẢO GIÁO TRÌNH (Sử dụng Textarea để chống lỗi HTML) -->
+    <!-- ========================================================= -->
+
+    <textarea id="md-buoi1" style="display: none;">
+# Buổi 1: Đặt Móng Giao Diện & Dữ liệu Sản Phẩm
+
+> **💡 Lời dẫn giảng:** "Để làm một đồ án thương mại điện tử qua môn, chúng ta không thể code tay từng HTML cho 50 sản phẩm được. Hôm nay chúng ta sẽ tạo khung `index.html` và học cách cấu trúc file `data.js` chuẩn kỹ sư."
+
+## 1. Dựng khung HTML cơ bản
+Yêu cầu HS tạo file `index.html`. Sử dụng bộ khung chuẩn với Header, Banner, và Lưới sản phẩm.
+
+~~~html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>TeeGenZ - Mua sắm</title>
+</head>
+<body>
+    <header>
+        <h1>TeeGenZ</h1>
+        <nav>
+            <a href="login.html">Đăng nhập</a> | 
+            <a href="cart.html">Giỏ hàng</a>
+        </nav>
+    </header>
+    
+    <!-- Div rỗng này sẽ được JavaScript đổ 50 sản phẩm vào -->
+    <div id="product-container" class="product-list"></div>
+    
+    <!-- Nhúng file JS -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+~~~
+
+## 2. Thiết kế Cấu trúc Dữ liệu Sản Phẩm (File data.js)
+*(Đáp ứng yêu cầu đồ án: Mã sp, mô tả chi tiết, phân loại, 50sp)*
+
+Tạo file `data.js`. Hãy dạy học sinh định nghĩa cấu trúc Object thật chuẩn xác:
+
+~~~javascript
+// Cấu trúc 1 sản phẩm chuẩn đồ án
+const mockProducts = [
+    {
+        id: "SP001", // Mã SP
+        name: "Áo Thun Trắng Basic",
+        category: "Áo Thun", // Phân loại
+        price: 150000,
+        desc: "Chất liệu cotton 100%, thấm hút mồ hôi tốt.", // Mô tả
+        image: "https://images.unsplash.com/photo-1521572163474"
+    },
+    {
+        id: "SP002",
+        name: "Áo Hoodie Đen",
+        category: "Hoodie",
+        price: 350000,
+        desc: "Hoodie form rộng unisex, nỉ bông ấm áp.",
+        image: "https://images.unsplash.com/photo-1556821840"
+    }
+    // Ghi chú: Yêu cầu HS copy paste ra để có đủ 50 sản phẩm
+];
+
+// Lưu mảng này vào LocalStorage để các trang khác có thể lấy xài
+if (!localStorage.getItem("productsDB")) {
+    localStorage.setItem("productsDB", JSON.stringify(mockProducts));
+}
+~~~
+</textarea>
+
+    <textarea id="md-buoi2" style="display: none;">
+# Buổi 2: Giao diện Đăng Nhập & Tổng Quan Admin
+
+> **💡 Lời dẫn giảng:** "Website bán hàng đồ án bắt buộc phải có chức năng Đăng nhập/Đăng ký. Hơn nữa, Admin cần một Dashboard riêng để quản lý, khác biệt hoàn toàn với trang của khách mua hàng."
+
+## 1. Tạo trang Đăng Nhập / Đăng Ký
+Yêu cầu HS tạo file `login.html`. Trang này gồm 2 form cơ bản.
+*(Đáp ứng yêu cầu: Trang đn đk)*
+
+~~~html
+<!-- Form Đăng Nhập -->
+<div class="login-box">
+    <h2>Đăng Nhập</h2>
+    <input type="text" id="loginUsername" placeholder="Tên đăng nhập">
+    <input type="password" id="loginPassword" placeholder="Mật khẩu">
+    <button onclick="handleLogin()">Đăng nhập</button>
+    <br>
+    <a href="#" onclick="forgotPassword()">Quên mật khẩu? (Xác thực Gmail)</a>
+</div>
+
+<!-- Form Đăng Ký -->
+<div class="register-box">
+    <h2>Đăng Ký Tài Khoản</h2>
+    <input type="text" id="regUsername" placeholder="Tên đăng nhập">
+    <input type="password" id="regPassword" placeholder="Mật khẩu">
+    <button onclick="handleRegister()">Đăng Ký</button>
+</div>
+~~~
+
+## 2. Giao diện Tổng quan (Admin Dashboard)
+Yêu cầu HS tạo file `admin.html`.
+*(Đáp ứng yêu cầu: Giao diện tổng quan)*
+
+- Cần có Thanh Menu bên trái (Sidebar) chứa: Quản lý Sản phẩm, Quản lý Đơn hàng.
+- Khung nội dung bên phải hiển thị Bảng (`<table>`).
+
+~~~html
+<div class="admin-layout">
+    <!-- Cột Menu Trái -->
+    <aside class="sidebar">
+        <h3>Quản Trị Viên</h3>
+        <ul>
+            <li>Quản lý Sản phẩm</li>
+            <li>Lịch sử Giao dịch</li>
+            <li><a href="#" onclick="logout()">Đăng xuất</a></li>
+        </ul>
+    </aside>
+
+    <!-- Cột Nội Dung Phải -->
+    <main class="content">
+        <h2>Danh sách Sản Phẩm (Kho)</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Mã SP</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá</th>
+                </tr>
+            </thead>
+            <tbody id="adminProductList">
+                <!-- Data đổ vào đây -->
+            </tbody>
+        </table>
+    </main>
+</div>
+~~~
+</textarea>
+
+    <textarea id="md-buoi3" style="display: none;">
+# Buổi 3: Nghệ Thuật Dàn Trang (Flexbox/Grid)
+
+> **💡 Lời dẫn giảng:** "Hôm nay chúng ta sẽ dùng CSS Grid để ép trang Admin vừa tạo hiển thị đúng chuẩn: Menu bên trái nhỏ, nội dung bên phải to. Đồng thời dùng Flexbox để gom form đăng nhập ra giữa màn hình."
+
+## 1. Bố cục trang Admin bằng CSS Grid
+Tạo file `style.css` và nhúng vào HTML.
+
+~~~css
+/* Layout cho Admin Dashboard */
+.admin-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* Menu trái 250px, nội dung chiếm phần còn lại */
+    height: 100vh; /* Cao bằng 100% màn hình */
+}
+
+.sidebar {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+}
+
+.content {
+    padding: 20px;
+    background-color: #f1f2f6;
+}
+~~~
+
+## 2. Căn giữa Form Đăng Nhập bằng Flexbox
+Chiêu thức "thần thánh" của dân làm Web để đẩy mọi thứ ra chính giữa.
+
+~~~css
+/* Đặt class này cho thẻ <body> của file login.html */
+.login-page-body {
+    display: flex;
+    justify-content: center; /* Căn giữa chiều ngang */
+    align-items: center;     /* Căn giữa chiều dọc */
+    height: 100vh;
+    background-color: #ecf0f1;
+}
+
+.login-box, .register-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+~~~
+</textarea>
+
+    <textarea id="md-buoi4" style="display: none;">
+# Buổi 4: Logic Đăng Nhập & Phân Quyền (JavaScript)
+
+> **💡 Lời dẫn giảng:** "Phần 'não bộ' đây rồi. Vì chúng ta không có máy chủ thật (Backend), chúng ta sẽ dùng bộ nhớ của trình duyệt (LocalStorage) làm Database. Nếu sai tài khoản, chặn không cho vào. Nếu là Admin, mở cửa cho vào trang quản trị."
+
+## 1. Xử lý Đăng Ký & Đăng Nhập (File login.js)
+*(Đáp ứng yêu cầu: Phân quyền giữa ng dùng và admin, lưu file JS)*
+
+~~~javascript
+// ĐĂNG KÝ
+function handleRegister() {
+    let u = document.getElementById("regUsername").value;
+    let p = document.getElementById("regPassword").value;
+    
+    // Đọc data cũ, nếu chưa có thì tạo mảng []
+    let users = JSON.parse(localStorage.getItem("usersDB")) || [];
+    
+    // Push tk mới vào (mặc định role là user)
+    users.push({ username: u, password: p, role: "user" }); 
+    localStorage.setItem("usersDB", JSON.stringify(users));
+    
+    alert("Đăng ký thành công!");
+}
+
+// ĐĂNG NHẬP
+function handleLogin() {
+    let u = document.getElementById("loginUsername").value;
+    let p = document.getElementById("loginPassword").value;
+    
+    // 1. Hardcode tài khoản Admin (Mẹo qua môn)
+    if(u === "admin" && p === "admin123") {
+        localStorage.setItem("currentUser", JSON.stringify({username: u, role: "admin"}));
+        window.location.href = "admin.html"; // Chuyển hướng
+        return;
+    }
+
+    // 2. Kiểm tra tài khoản khách hàng
+    let users = JSON.parse(localStorage.getItem("usersDB")) || [];
+    let validUser = users.find(x => x.username === u && x.password === p);
+    
+    if(validUser) {
+        localStorage.setItem("currentUser", JSON.stringify(validUser));
+        window.location.href = "index.html"; // Chuyển ra trang mua sắm
+    } else {
+        alert("Sai tài khoản hoặc mật khẩu!");
+    }
+}
+~~~
+
+## 2. Code bảo vệ trang Admin
+Ở ĐẦU file `<script>` của trang `admin.html`, hãy viết đoạn này để chặn người dùng thường:
+~~~javascript
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+// Nếu chưa đăng nhập HOẶC không phải admin -> Đá văng ra login
+if(!currentUser || currentUser.role !== "admin") {
+    alert("CẢNH BÁO: Bạn không có quyền truy cập trang quản trị!");
+    window.location.href = "login.html"; 
+}
+~~~
+</textarea>
+
+    <textarea id="md-buoi5" style="display: none;">
+# Buổi 5: Giỏ hàng, OTP Gmail & Lịch sử Giao dịch
+
+> **💡 Lời dẫn giảng:** "Buổi cuối cùng, chúng ta xử lý nốt khâu thanh toán. Đặc biệt, thầy sẽ dạy các em 1 'Cheat Code' để giả lập chức năng gửi OTP Gmail mà không cần phải viết code Backend phức tạp."
+
+## 1. Tích chọn sản phẩm trong giỏ hàng
+*(Đáp ứng yêu cầu đồ án: Lưu vào giỏ hàng, có khả năng tích SP đã lưu)*
+
+Khi hiển thị giỏ hàng trên trang `cart.html`, nhớ chèn thêm checkbox:
+
+~~~html
+<!-- Mẫu HTML 1 dòng giỏ hàng sinh ra bởi JS -->
+<div class="cart-item">
+    <input type="checkbox" class="cart-checkbox" data-price="150000" onchange="calculateTotal()">
+    <span>Áo Thun Trắng</span>
+    <span>150.000đ</span>
+</div>
+~~~
+
+~~~javascript
+// JS Tính tiền theo checkbox
+function calculateTotal() {
+    let total = 0;
+    let boxes = document.querySelectorAll('.cart-checkbox');
+    boxes.forEach(box => {
+        if(box.checked) {
+            total += parseInt(box.getAttribute('data-price'));
+        }
+    });
+    document.getElementById("totalPrice").innerText = total;
+}
+~~~
+
+## 2. Thanh toán & Lịch sử giao dịch
+*(Đáp ứng yêu cầu: Lịch sử giao dịch)*
+
+Khi bấm "Thanh Toán", ta đẩy dữ liệu vào `orderHistory`:
+~~~javascript
+function checkout() {
+    let history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+    let currentCart = JSON.parse(localStorage.getItem("cart"));
+    
+    let newOrder = {
+        orderId: "DH" + Math.floor(Math.random() * 1000), // Tạo mã đơn ngẫu nhiên
+        date: new Date().toLocaleString(), // Lấy ngày giờ hiện tại
+        items: currentCart
+    };
+    
+    history.push(newOrder);
+    localStorage.setItem("orderHistory", JSON.stringify(history));
+    
+    // Xóa giỏ hàng sau khi thanh toán
+    localStorage.removeItem("cart"); 
+    alert("Thanh toán thành công! Hãy xem trong mục Lịch sử.");
+}
+~~~
+
+## 3. Giả lập OTP Gmail (Cheat Code qua môn)
+*(Đáp ứng yêu cầu: Xác thực 2 bước, Quên pass gửi OTP)*
+
+> **GV Giải thích cho HS:** Gửi Email thật cần có máy chủ NodeJS. Ở Frontend, ta dùng `alert` và `prompt` để mô phỏng luồng (Flow) nhằm chấm điểm tư duy.
+
+~~~javascript
+// Đặt vào trang login.html (Chức năng quên mật khẩu)
+function forgotPassword() {
+    let email = prompt("Vui lòng nhập Gmail của bạn để nhận mã OTP:");
+    if(email) {
+        // Sinh ra mã 4 số ngẫu nhiên
+        let fakeOTP = Math.floor(1000 + Math.random() * 9000); 
+        
+        // BƯỚC GIẢ LẬP GMAIL:
+        alert(`[THÔNG BÁO TỪ GMAIL] Hệ thống đã gửi mã OTP là: ${ fakeOTP } tới hòm thư ${ email }`);
+        
+        // Mở popup xác thực
+        let userOTP = prompt("Vui lòng kiểm tra Gmail và nhập mã OTP vào đây:");
+        
+        if(userOTP == fakeOTP) {
+            let newPass = prompt("✅ Xác thực thành công! Nhập mật khẩu mới của bạn:");
+            alert("Đã đổi mật khẩu. Vui lòng đăng nhập lại!");
+            // (Thực tế sẽ update mảng Users trong LocalStorage)
+        } else {
+            alert("❌ Mã OTP không đúng!");
+        }
+    }
+}
+~~~
+</textarea>
+
+    <!-- Các thư viện Core -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
+    <script>
+        marked.setOptions({
+            highlight: function(code, lang) {
+                const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+                return hljs.highlight(code, { language }).value;
+            }
+        });
+
+        const mainContent = document.getElementById('main-content');
+
+        function showLesson(lessonId, element) {
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            if(element) element.classList.add('active');
+
+            const mdContent = document.getElementById('md-' + lessonId).value;
+            mainContent.innerHTML = `< div class="lesson-section active" > ${ marked.parse(mdContent) }</div >`;
+            mainContent.scrollTop = 0;
+        }
+
+        window.onload = () => showLesson('buoi1', document.querySelector('.nav-link.active'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo trình Web Thực Chiến | T-Shirt E-Commerce</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Prism.js (Syntax Highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+
+        .lesson-btn.active {
+            background-color: #2563eb;
+            color: white;
+            border-right: 4px solid #1e3a8a;
+        }
+
+        .lesson-btn {
+            transition: all 0.2s;
+        }
+
+        .lesson-btn:hover:not(.active) {
+            background-color: #e2e8f0;
+        }
+
+        .lesson-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .lesson-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom scrollbar for code blocks */
+        pre[class*="language-"] {
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 font-sans flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-80 bg-white shadow-xl flex flex-col h-full z-10 relative">
+        <div class="p-6 border-b bg-blue-600 text-white">
+            <h1 class="text-2xl font-bold tracking-tight"><i class="fa-solid fa-shirt"></i> CustomTee Edu</h1>
+            <p class="text-sm text-blue-200 mt-1">Giáo trình thực chiến cho HS 15 tuổi</p>
+        </div>
+        <div class="overflow-y-auto flex-grow py-4" id="sidebar-menu">
+            <!-- Render by JS -->
+        </div>
+        <div class="p-4 border-t bg-gray-50 text-xs text-gray-500 text-center">
+            Biên soạn: Kỹ sư Nguyễn Hùng
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 overflow-y-auto p-8 relative">
+        <div id="content-container" class="max-w-5xl mx-auto pb-20">
+            <!-- Render by JS -->
+        </div>
+    </main>
+
+    <script>
+        const lessons = [
+            {
+                id: 1,
+                title: "Khởi tạo Dự án & Fake Database (50 Mẫu Áo)",
+                theory: `
+                    <h3 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-book-open"></i> Lý thuyết (15 phút)</h3>
+                    <ul class="list-disc pl-5 space-y-1 mb-4">
+                        <li><b>Mảng (Array) & Đối tượng (Object):</b> Tưởng tượng Object là 1 chiếc áo thun (có thuộc tính như: màu sắc, size, giá). Mảng là cái tủ quần áo chứa 50 chiếc áo đó.</li>
+                        <li><b>LocalStorage:</b> Giống như thẻ nhớ của điện thoại, tắt trình duyệt đi mở lại dữ liệu vẫn còn (khác với biến thông thường).</li>
+                        <li><b>JSON:</b> Định dạng đóng gói dữ liệu để vận chuyển. Khi cất vào tủ (LocalStorage) phải đóng gói (<code>JSON.stringify</code>), khi lấy ra phải mở gói (<code>JSON.parse</code>).</li>
+                    </ul>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                        <p class="font-bold text-yellow-800"><i class="fa-solid fa-lightbulb"></i> Mẹo cho giáo viên:</p>
+                        <p class="text-sm text-yellow-700">Hãy hỏi học sinh: "Nếu em chơi game mà không có nút Save, chơi lại từ đầu em có tức không?". LocalStorage chính là nút Save của Web chúng ta.</p>
+                    </div>
+                `,
+                practice: `
+                    <h3 class="text-xl font-bold text-green-700 mb-2"><i class="fa-solid fa-laptop-code"></i> Thực hành: Tạo file <code>data.js</code></h3>
+                    <p class="mb-2">Khởi tạo 50 mẫu áo thun in sẵn theo yêu cầu:</p>
+                    <pre><code class="language-javascript">
+// Khởi tạo Database nếu chưa có
+if (!localStorage.getItem('DB_PRODUCTS')) {
+    let products = [];
+    const categories = ['Áo form rộng (Oversize)', 'Áo thể thao', 'Áo Polo'];
+
+    for(let i = 1; i <= 50; i++) {
+        let cat = categories[i % 3];
+        products.push({
+            id: 'TEE' + i.toString().padStart(3, '0'),
+            name: 'Áo thun Custom ' + cat + ' Mẫu ' + i,
+            price: 150000 + (Math.floor(Math.random() * 5) * 20000), // Giá từ 150k - 250k
+            category: cat,
+            description: 'Chất liệu Cotton 100%, thấm hút mồ hôi. Nhận in logo, tên theo yêu cầu riêng.',
+            image: 'https://via.placeholder.com/300x400/eeeeee/333333?text=Mau+Ao+' + i
+        });
+    }
+    localStorage.setItem('DB_PRODUCTS', JSON.stringify(products));
+}
+
+// Khởi tạo bảng User (có sẵn Admin)
+if (!localStorage.getItem('DB_USERS')) {
+    localStorage.setItem('DB_USERS', JSON.stringify([
+        { username: 'admin', email: 'admin@customtee.vn', password: '123', role: 'admin' }
+    ]));
+}
+// Khởi tạo bảng Đơn hàng
+if (!localStorage.getItem('DB_ORDERS')) {
+    localStorage.setItem('DB_ORDERS', JSON.stringify([]));
+}
+                    </code></pre>
+                `
+            },
+            {
+                id: 2,
+                title: "Giao diện Tổng quan & Render Sản phẩm",
+                theory: `
+                    <h3 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-book-open"></i> Lý thuyết (20 phút)</h3>
+                    <ul class="list-disc pl-5 space-y-1 mb-4">
+                        <li><b>DOM (Document Object Model):</b> Cách JS thò tay vào trang HTML để thay đổi nội dung. Dùng <code>document.getElementById()</code>.</li>
+                        <li><b>Vòng lặp forEach:</b> Duyệt qua tủ quần áo, lấy từng chiếc áo ra treo lên kệ (giao diện).</li>
+                        <li><b>Template Literal (\` \`):</b> Dấu backtick giúp nhúng biến JS vào chuỗi HTML cực nhanh bằng <code>\${bien}</code>.</li>
+                    </ul>
+                `,
+                practice: `
+                    <h3 class="text-xl font-bold text-green-700 mb-2"><i class="fa-solid fa-laptop-code"></i> Thực hành: Tạo lưới sản phẩm <code>index.html</code></h3>
+                    <pre><code class="language-javascript">
+function renderProducts() {
+    // 1. Lấy dữ liệu từ tủ ra (Mở gói JSON)
+    const products = JSON.parse(localStorage.getItem('DB_PRODUCTS'));
+    const container = document.getElementById('product-grid');
+    let html = '';
+
+    // 2. Lặp qua 50 cái áo và tạo HTML
+    products.forEach(p => {
+        html += \`
+            &lt;div class="product-card border p-4 rounded shadow hover:shadow-lg"&gt;
+                &lt;img src="\${p.image}" class="w-full h-48 object-cover rounded"&gt;
+                &lt;h3 class="font-bold mt-2"\&gt;\${p.name}&lt;/h3&gt;
+                &lt;p class="text-sm text-gray-500"&gt;Phân loại: \${p.category}&lt;/p&gt;
+                &lt;div class="flex justify-between mt-3"&gt;
+                    &lt;span class="text-red-500 font-bold"&gt;\${p.price.toLocaleString()}đ&lt;/span&gt;
+                    &lt;button onclick="addToCart('\${p.id}')" class="bg-black text-white px-3 py-1 rounded"&gt;Chọn In&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        \`;
+    });
+
+    // 3. Đổ HTML vào thẻ div trên giao diện
+    container.innerHTML = html;
+}
+// Chạy hàm khi mở web
+renderProducts();
+                    </code></pre>
+                `
+            },
+            {
+                id: 3,
+                title: "Phân loại Áo & Xem chi tiết Mô tả",
+                theory: `
+                    <h3 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-book-open"></i> Lý thuyết (15 phút)</h3>
+                    <ul class="list-disc pl-5 space-y-1 mb-4">
+                        <li><b>Hàm Array.filter():</b> Màng lọc thần thánh. Cho phép lọc tủ quần áo để lấy ra đúng loại áo cần tìm.</li>
+                        <li><b>Sự kiện Onclick:</b> Bắt hành động bấm chuột của người dùng. Gửi kèm Mã SP (ID) vào hàm để biết đang bấm vào cái áo nào.</li>
+                    </ul>
+                `,
+                practice: `
+                    <h3 class="text-xl font-bold text-green-700 mb-2"><i class="fa-solid fa-laptop-code"></i> Thực hành: Viết hàm Lọc & Xem chi tiết</h3>
+                    <pre><code class="language-javascript">
+// Nâng cấp hàm renderProducts để nhận tham số lọc
+function renderProducts(filterCategory = 'All') {
+    const products = JSON.parse(localStorage.getItem('DB_PRODUCTS'));
+    
+    // Áp dụng bộ lọc
+    let filteredList = products;
+    if (filterCategory !== 'All') {
+        filteredList = products.filter(p => p.category === filterCategory);
+    }
+    
+    // ... logic render HTML giống Buổi 2 nhưng dùng filteredList ...
+}
+
+// Hàm hiển thị Popup chi tiết (Dùng thư viện SweetAlert2 cho đẹp)
+function showDetail(id) {
+    const products = JSON.parse(localStorage.getItem('DB_PRODUCTS'));
+    const p = products.find(x => x.id === id); // Tìm đúng áo
+    
+    Swal.fire({
+        title: p.name,
+        html: \`
+            &lt;img src="\${p.image}" class="mx-auto rounded mb-3"&gt;
+            &lt;p&gt;&lt;b&gt;Mã SP:&lt;/b&gt; \${p.id}&lt;/p&gt;
+            &lt;p&gt;&lt;b&gt;Mô tả:&lt;/b&gt; \${p.description}&lt;/p&gt;
+            &lt;p class="text-red-500 font-bold mt-2"&gt;Giá in: \${p.price.toLocaleString()}đ&lt;/p&gt;
+        \`,
+        confirmButtonText: 'Bỏ vào giỏ hàng'
+    }).then((result) => {
+        if(result.isConfirmed) addToCart(p.id);
+    });
+}
+                    </code></pre>
+                `
+            },
+            {
+                id: 4,
+                title: "Đăng ký, Đăng nhập & Phân quyền",
+                theory: `
+                    <h3 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-book-open"></i> Lý thuyết (20 phút)</h3>
+                    <ul class="list-disc pl-5 space-y-1 mb-4">
+                        <li><b>Luồng Authentication:</b> Nhập liệu -> So sánh với DB_USERS -> Nếu đúng thì tạo 1 biến "Phiên đăng nhập" lưu vào LocalStorage (<code>CURRENT_USER</code>).</li>
+                        <li><b>Phân quyền (Role):</b> Ai cũng là user, nhưng có 1 trường <code>role: 'admin'</code> để hệ thống nhận diện quản lý, cho phép vào trang Dashboard.</li>
+                    </ul>
+                `,
+                practice: `
+                    <h3 class="text-xl font-bold text-green-700 mb-2"><i class="fa-solid fa-laptop-code"></i> Thực hành: Logic Đăng Nhập</h3>
+                    <pre><code class="language-javascript">
+function handleLogin() {
+    const u = document.getElementById('user').value;
+    const p = document.getElementById('pass').value;
+    
+    const users = JSON.parse(localStorage.getItem('DB_USERS'));
+    // Tìm user khớp tài khoản & mật khẩu
+    const foundUser = users.find(x => x.username === u && x.password === p);
+    
+    if (foundUser) {
+        // Lưu phiên đăng nhập
+        localStorage.setItem('CURRENT_USER', JSON.stringify(foundUser));
+        alert('Đăng nhập thành công!');
+        
+        // Điều hướng dựa vào Role
+        if (foundUser.role === 'admin') {
+            document.getElementById('view-admin').style.display = 'block';
+        } else {
+            document.getElementById('view-home').style.display = 'block';
+        }
+    } else {
+        alert('Sai thông tin!');
+    }
+}
+                    </code></pre>
+                `
+            },
+            {
+                id: 5,
+                title: "Quên mật khẩu & Tích hợp Gửi Email (EmailJS)",
+                theory: `
+                    <h3 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-book-open"></i> Lý thuyết (20 phút)</h3>
+                    <ul class="list-disc pl-5 space-y-1 mb-4">
+                        <li><b>Vì sao dùng EmailJS?</b> Ở Frontend (JS thuần), ta không thể bắt Gmail gửi thư (lỗi bảo mật CORS). Phải dùng dịch vụ trung gian như EmailJS.</li>
+                        <li><b>Mã OTP (One Time Password):</b> Sinh ra 1 số ngẫu nhiên 6 chữ số bằng hàm <code>Math.random()</code>.</li>
+                    </ul>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                        <p class="font-bold text-yellow-800"><i class="fa-solid fa-lightbulb"></i> Mẹo Upsell khóa học:</p>
+                        <p class="text-sm text-yellow-700">"Hôm nay thầy chỉ các em dùng EmailJS tạm. Để làm 1 hệ thống ngân hàng thật, các em phải học khóa Backend Spring Boot/Python của thầy, tự build Server gửi mail mới chuẩn bảo mật!".</p>
+                    </div>
+                `,
+                practice: `
+                    <h3 class="text-xl font-bold text-green-700 mb-2"><i class="fa-solid fa-laptop-code"></i> Thực hành: Sinh OTP & Gọi API Gửi Mail</h3>
+                    <p class="mb-2 text-sm text-gray-600">Lưu ý: Học sinh phải nhúng script EmailJS vào HTML trước.</p>
+                    <pre><code class="language-javascript">
+function sendOTP(userEmail) {
+    // 1. Sinh số ngẫu nhiên từ 100000 đến 999999
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    
+    // 2. Lưu tạm OTP vào LocalStorage để lát xác minh
+    localStorage.setItem('TEMP_OTP', otp);
+    
+    // 3. Gửi qua EmailJS (Cần thay Service ID & Template ID của Giáo viên)
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        to_email: userEmail,
+        otp_code: otp,
+    }).then(function(res) {
+        alert('Đã gửi mã OTP đến ' + userEmail);
+        // Hiển thị Form nhập OTP lên giao diện
+        document.getElementById('form-otp').style.display = 'block';
+    }).catch(function(err) {
+        alert('Lỗi gửi mail: ' + err);
+    });
+}
+                    </code></pre>
+                `
+            },
+            {
+                id: 6,
+                title: "Xác thực 2 Bước (2FA) & Khôi phục MK",
+                theory: `
+                    <h3 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-book-open"></i> Lý thuyết (15 phút)</h3>
+                    <p class="mb-4">Học sinh hiểu luồng: Lấy mã học sinh nhập -> So sánh với mã <code>TEMP_OTP</code> lưu lúc nãy. Nếu khớp thì cho phép đổi Mật khẩu trong Mảng <code>DB_USERS</code>, ghi đè lại LocalStorage.</p>
+                `,
+                practice: `
+                    <h3 class="text-xl font-bold text-green-700 mb-2"><i class="fa-solid fa-laptop-code"></i> Thực hành: Validate OTP</h3>
+                    <pre><code class="language-javascript">
+function verifyOTP() {
+    const userInputOTP = document.getElementById('input-otp').value;
+    const realOTP = localStorage.getItem('TEMP_OTP');
+    
+    if (userInputOTP === realOTP) {
+        // Xóa OTP tạm đi cho an toàn
+        localStorage.removeItem('TEMP_OTP');
+        
+        const newPass = prompt("Xác thực thành công! Nhập mật khẩu MỚI:");
+        if (newPass) {
+            // Cập nhật Database
+            let users = JSON.parse(localStorage.getItem('DB_USERS'));
+            let emailDangTim = document.getElementById('email-quen-pass').value;
+            
+            let userIndex = users.findIndex(u => u.email === emailDangTim);
+            users[userIndex].password = newPass;
+            
+            localStorage.setItem('DB_USERS', JSON.stringify(users));
+            alert("Đổi mật khẩu thành công!");
+        }
+    } else {
+        alert("Mã OTP sai!");
+    }
+}
+                    </code></pre>
+                `
+            },
+            {
+                id: 7,
+                title: "Giỏ hàng cá nhân (Tích sản phẩm đã lưu)",
+                theory: `
+                    <h3 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-book-open"></i> Lý thuyết (25 phút)</h3>
+                    <ul class="list-disc pl-5 space-y-1 mb-4">
+                        <li><b>Lỗi kinh điển:</b> Cả web dùng chung 1 giỏ hàng? KHÔNG! Phải lưu giỏ hàng gắn với Tên Đăng Nhập.</li>
+                        <li><b>Key động:</b> Tên file lưu trong LocalStorage sẽ là <code>CART_ten_user</code>. Mỗi người có 1 balo riêng. Tắt trình duyệt, giỏ hàng vẫn giữ nguyên.</li>
+                        <li><b>Logic thêm SP:</b> Tìm trong mảng CART xem có áo này chưa. Có rồi -> Tăng số lượng. Chưa có -> push() object mới vào.</li>
+                    </ul>
+                `,
+                practice: `
+                    <h3 class="text-xl font-bold text-green-700 mb-2"><i class="fa-solid fa-laptop-code"></i> Thực hành: Logic Add to Cart</h3>
+                    <pre><code class="language-javascript">
+function addToCart(productId) {
+    const user = JSON.parse(localStorage.getItem('CURRENT_USER'));
+    if (!user) return alert('Phải đăng nhập mới được mua áo!');
+
+    // Tạo khóa riêng cho từng user
+    const cartKey = 'CART_' + user.username;
+    
+    // Lấy giỏ hàng cũ ra (Nếu chưa có thì tạo mảng rỗng)
+    let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+    
+    // Yêu cầu nhập nội dung muốn in lên áo
+    const customText = prompt('Nhập chữ bạn muốn in lên áo (Bỏ trống nếu không in):') || 'Không có';
+
+    // Kiểm tra áo đã có trong giỏ chưa
+    let existingItem = cart.find(x => x.id === productId && x.printText === customText);
+    
+    if (existingItem) {
+        existingItem.qty += 1;
+    } else {
+        cart.push({ id: productId, qty: 1, printText: customText });
+    }
+
+    // Cất lại vào LocalStorage
+    localStorage.setItem(cartKey, JSON.stringify(cart));
+    alert('Đã thêm vào giỏ hàng!');
+}
+                    </code></pre>
+                `
+            },
+            {
+                id: 8,
+                title: "Thanh toán & Lịch sử Giao dịch",
+                theory: `
+                    <h3 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-book-open"></i> Lý thuyết (20 phút)</h3>
+                    <p class="mb-4">Thanh toán bản chất là: Lấy dữ liệu Giỏ hàng -> Đóng gói thành 1 object Đơn Hàng (thêm Ngày, Giờ, Tên KH, Tổng tiền) -> Bỏ vào mảng <code>DB_ORDERS</code> -> Xóa sạch Giỏ hàng hiện tại.</p>
+                `,
+                practice: `
+                    <h3 class="text-xl font-bold text-green-700 mb-2"><i class="fa-solid fa-laptop-code"></i> Thực hành: Nút Thanh Toán</h3>
+                    <pre><code class="language-javascript">
+function checkout() {
+    const user = JSON.parse(localStorage.getItem('CURRENT_USER'));
+    const cartKey = 'CART_' + user.username;
+    const cart = JSON.parse(localStorage.getItem(cartKey));
+    
+    if(!cart || cart.length === 0) return alert('Giỏ hàng rỗng!');
+
+    // Lấy dữ liệu sản phẩm để tính tổng tiền
+    const products = JSON.parse(localStorage.getItem('DB_PRODUCTS'));
+    let totalAmt = 0;
+    
+    let orderDetail = cart.map(item => {
+        let p = products.find(x => x.id === item.id);
+        totalAmt += p.price * item.qty;
+        return p.name + ' (In: ' + item.printText + ') x' + item.qty;
+    });
+
+    const newOrder = {
+        orderId: 'ORD-' + Date.now(), // Mã đơn ngẫu nhiên theo thời gian
+        username: user.username,
+        date: new Date().toLocaleDateString('vi-VN'),
+        items: orderDetail.join(' | '),
+        total: totalAmt,
+        status: 'Chờ in ấn'
+    };
+
+    // Lưu vào hệ thống
+    const orders = JSON.parse(localStorage.getItem('DB_ORDERS'));
+    orders.push(newOrder);
+    localStorage.setItem('DB_ORDERS', JSON.stringify(orders));
+
+    // Xóa giỏ hàng
+    localStorage.removeItem(cartKey);
+    alert('Đặt in áo thành công! Vào lịch sử để xem.');
+}
+                    </code></pre>
+                `
+            },
+            {
+                id: 9,
+                title: "Giao diện Admin (Quản trị hệ thống)",
+                theory: `
+                    <h3 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-book-open"></i> Lý thuyết (15 phút)</h3>
+                    <p class="mb-4">Admin Dashboard là nơi duyệt đơn hàng. Ta sẽ đọc từ <code>DB_ORDERS</code>, hiển thị tất cả đơn hàng (không lọc theo user như trang Lịch sử của khách).</p>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                        <p class="font-bold text-yellow-800"><i class="fa-solid fa-lightbulb"></i> Mẹo kết hợp IoT của anh Hùng:</p>
+                        <p class="text-sm text-yellow-700">"Khi có Đơn hàng mới ở màn hình Admin này, nếu anh kết nối nó qua MQTT (Javascript), mạch ESP32 ở bàn giáo viên sẽ hú còi và in ra biên lai nhiệt. Tuyệt chiêu này chốt sale phụ huynh 100%!"</p>
+                    </div>
+                `,
+                practice: `
+                    <h3 class="text-xl font-bold text-green-700 mb-2"><i class="fa-solid fa-laptop-code"></i> Thực hành: Thống kê Admin</h3>
+                    <pre><code class="language-javascript">
+function renderAdminDashboard() {
+    const orders = JSON.parse(localStorage.getItem('DB_ORDERS'));
+    const container = document.getElementById('admin-order-list');
+    
+    // Tính tổng doanh thu bằng hàm reduce()
+    const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
+    document.getElementById('doanh-thu').innerText = totalRevenue.toLocaleString() + ' VNĐ';
+
+    // Đổ danh sách đơn ra bảng
+    let html = '';
+    orders.reverse().forEach(o => {
+        html += \`
+            &lt;tr&gt;
+                &lt;td&gt;\${o.orderId}&lt;/td&gt;
+                &lt;td&gt;\${o.username}&lt;/td&gt;
+                &lt;td&gt;\${o.items}&lt;/td&gt;
+                &lt;td class="text-red-500 font-bold"&gt;\${o.total.toLocaleString()}đ&lt;/td&gt;
+                &lt;td&gt;&lt;button class="bg-green-500 text-white px-2 py-1"&gt;Duyệt In&lt;/button&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        \`;
+    });
+    container.innerHTML = html;
+}
+                    </code></pre>
+                `
+            },
+            {
+                id: 10,
+                title: "Hoàn thiện UI & Triển khai (Deploy)",
+                theory: `
+                    <h3 class="text-xl font-bold text-blue-700 mb-2"><i class="fa-solid fa-book-open"></i> Lý thuyết & Tổng kết (30 phút)</h3>
+                    <ul class="list-disc pl-5 space-y-2 mb-4">
+                        <li>Sử dụng <b>Github Pages</b>: Đưa file HTML lên Internet miễn phí để học sinh khoe bạn bè và bố mẹ.</li>
+                        <li><b>Git cơ bản:</b> add, commit, push.</li>
+                        <li><b>Tổng kết khóa:</b> Tặng Giấy chứng nhận hoàn thành dự án E-commerce Web.</li>
+                    </ul>
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mt-6">
+                        <p class="font-bold text-green-800"><i class="fa-solid fa-sack-dollar"></i> Kịch bản Up-sell (Giáo viên đọc kỹ):</p>
+                        <p class="text-sm text-green-700 mt-1">"Các em đã làm được 1 web Front-end. Nhưng nếu người dùng lấy máy khác mở lên thì giỏ hàng mất! Vì LocalStorage chỉ lưu ở máy đó. Để trở thành kỹ sư thật sự, làm app như Shopee, các em cần 1 Backend Server ở giữa (Database thật). Hẹn gặp các em ở khóa Python/Spring Boot nâng cao nhé!"</p>
+                    </div>
+                `,
+                practice: `
+                    <h3 class="text-xl font-bold text-green-700 mb-2"><i class="fa-solid fa-laptop-code"></i> Thực hành: Cấu trúc File cuối cùng</h3>
+                    <pre><code class="language-html">
+&lt;!-- File: index.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;!-- Link Tailwind CSS, EmailJS, SweetAlert2 --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;Menu Điều hướng&lt;/nav&gt;
+    
+    &lt;div id="view-home"&gt;Danh sách Áo&lt;/div&gt;
+    &lt;div id="view-auth" class="hidden"&gt;Form Đăng Nhập/Đăng ký/OTP&lt;/div&gt;
+    &lt;div id="view-cart" class="hidden"&gt;Giỏ hàng&lt;/div&gt;
+    &lt;div id="view-history" class="hidden"&gt;Lịch sử mua&lt;/div&gt;
+    &lt;div id="view-admin" class="hidden"&gt;Trang quản trị&lt;/div&gt;
+
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                `
+            }
+        ];
+
+        // Khởi tạo giao diện
+        const menuContainer = document.getElementById('sidebar-menu');
+        const contentContainer = document.getElementById('content-container');
+
+        function renderApp() {
+            // Render menu
+            menuContainer.innerHTML = lessons.map(l => `
+                <button class="lesson-btn w-full text-left px-6 py-4 border-b font-medium focus:outline-none flex items-center justify-between group ${l.id === 1 ? 'active' : ''}" 
+                        onclick="selectLesson(${l.id}, this)">
+                    <span><span class="text-xs text-gray-500 group-hover:text-gray-600 block mb-1">Buổi ${l.id}</span> ${l.title}</span>
+                    <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+                </button>
+            `).join('');
+
+            // Render contents
+            contentContainer.innerHTML = lessons.map(l => `
+                <div id="content-${l.id}" class="lesson-content bg-white p-8 rounded-xl shadow-sm border border-gray-100 ${l.id === 1 ? 'active' : ''}">
+                    <div class="mb-8 border-b pb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full tracking-wide">BUỔI ${l.id} / 10</span>
+                        <h2 class="text-3xl font-extrabold text-gray-900 mt-3">${l.title}</h2>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <section class="prose max-w-none">
+                            ${l.theory}
+                        </section>
+                        
+                        <section>
+                            ${l.practice}
+                        </section>
+                    </div>
+                </div>
+            `).join('');
+
+            // Cập nhật Highlight cho code sau khi render HTML
+            Prism.highlightAll();
+        }
+
+        // Logic chuyển tab
+        window.selectLesson = function (id, btnElement) {
+            // Update button styles
+            document.querySelectorAll('.lesson-btn').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // Update content display
+            document.querySelectorAll('.lesson-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(`content-${id}`).classList.add('active');
+
+            // Scroll to top
+            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        renderApp();
+    </script>
+</body>
+
+</html>

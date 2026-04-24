@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiến Lược Phát Triển & Bản Đồ Thực Thi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            pointer-events: none;
+            transform: scale(0.95);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        .bg-overlay {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+        }
+
+        .glow-card {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .glow-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .task-checkbox:checked+div {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .chart-container-doughnut {
+            position: relative;
+            width: 100%;
+            height: 250px;
+        }
+
+        .chart-container-line {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            min-height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Controls -->
+    <div class="fixed bottom-5 right-5 z-50 flex gap-4">
+        <button onclick="prevSlide()"
+            class="bg-blue-600 hover:bg-blue-700 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-lg transition transform hover:scale-110">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button onclick="nextSlide()"
+            class="bg-blue-600 hover:bg-blue-700 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-lg transition transform hover:scale-110">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Tiến trình -->
+    <div class="fixed top-0 left-0 w-full h-1 z-50 bg-slate-200">
+        <div id="progress-bar" class="h-full bg-blue-600 transition-all duration-300 w-0"></div>
+    </div>
+
+    <!-- SLIDE 0: BÌA -->
+    <div id="slide-0" class="slide active">
+        <div class="w-full h-full bg-cover bg-center"
+            style="background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070');">
+            <div class="w-full h-full bg-overlay flex flex-col items-center justify-center text-center p-10">
+                <div class="text-6xl text-blue-600 mb-6"><i class="fas fa-microchip"></i></div>
+                <h1 class="text-6xl md:text-8xl font-bold font-extrabold tracking-tight mb-4 text-slate-900">LỚP HỌC LẬP
+                    TRÌNH</h1>
+                <h2 class="text-2xl md:text-4xl text-blue-700 font-medium tracking-wide uppercase">Kiến tạo Kỹ sư & Nhà
+                    sáng tạo tương lai</h2>
+                <div
+                    class="mt-12 inline-block bg-blue-100 border border-blue-300 text-blue-800 px-8 py-3 rounded-full text-xl font-semibold shadow-sm">
+                    Kế hoạch Chiến lược 3 Năm (2026 - 2029)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 1: NĂNG LỰC LÕI -->
+    <div id="slide-1" class="slide">
+        <div class="w-full min-h-full flex flex-col justify-center px-10 md:px-20 py-10 bg-slate-50">
+            <h2
+                class="text-4xl md:text-5xl font-bold mb-16 text-center text-slate-900 border-b-2 border-blue-600 pb-4 inline-block mx-auto">
+                VÌ SAO CHÚNG TÔI KHÁC BIỆT?</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto w-full">
+                <div class="bg-white p-8 rounded-2xl text-center glow-card border border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070" alt=""
+                        class="w-full h-48 object-cover rounded-xl mb-6">
+                    <div class="text-5xl text-blue-500 mb-4"><i class="fas fa-cogs"></i></div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2">12 Năm Thực Chiến</h3>
+                    <p class="text-slate-600 text-lg">Kinh nghiệm chuyên sâu về Kỹ thuật, Điện tử & Robot công nghiệp.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl text-center glow-card border border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070" alt=""
+                        class="w-full h-48 object-cover rounded-xl mb-6">
+                    <div class="text-5xl text-emerald-500 mb-4"><i class="fas fa-laptop-code"></i></div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2">Tư Duy Phần Mềm</h3>
+                    <p class="text-slate-600 text-lg">Làm chủ Web (Spring Boot), Game (Python) & Trí tuệ nhân tạo (AI).
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl text-center glow-card border border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070" alt=""
+                        class="w-full h-48 object-cover rounded-xl mb-6">
+                    <div class="text-5xl text-purple-500 mb-4"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2">Giáo Trình Quốc Tế</h3>
+                    <p class="text-slate-600 text-lg">Học qua dự án thực tế (Project-based) từ căn bản đến mức độ nghiên
+                        cứu (PhD).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: HỆ SINH THÁI 5 LỚP -->
+    <div id="slide-2" class="slide">
+        <div class="w-full min-h-full flex flex-col justify-center px-10 md:px-20 py-10 bg-slate-50">
+            <div class="max-w-7xl mx-auto w-full">
+                <div class="flex flex-wrap justify-between items-end mb-12 border-b-2 border-blue-600 pb-4 gap-4">
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900">HỆ SINH THÁI HIỆN TẠI</h2>
+                    <div class="text-2xl text-blue-600 font-semibold"><i class="fas fa-users"></i> Học viên: 11 - 15
+                        tuổi</div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="relative rounded-2xl overflow-hidden group h-80 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070" alt=""
+                            class="absolute w-full h-full object-cover transition transform duration-500 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6">
+                            <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded w-max mb-2">2 LỚP
+                                HIỆN TẠI</span>
+                            <h3 class="text-3xl font-bold text-white">PyGame</h3>
+                            <p class="text-slate-200 text-lg">Lập trình Game bằng Python</p>
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden group h-80 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022" alt=""
+                            class="absolute w-full h-full object-cover transition transform duration-500 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6">
+                            <span class="bg-emerald-600 text-white text-xs font-bold px-2 py-1 rounded w-max mb-2">1 LỚP
+                                HIỆN TẠI</span>
+                            <h3 class="text-3xl font-bold text-white">Scratch</h3>
+                            <p class="text-slate-200 text-lg">Tư duy logic cơ bản</p>
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden group h-80 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070" alt=""
+                            class="absolute w-full h-full object-cover transition transform duration-500 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6">
+                            <span class="bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded w-max mb-2">1 LỚP
+                                HIỆN TẠI</span>
+                            <h3 class="text-3xl font-bold text-white">ESP32 & IoT</h3>
+                            <p class="text-slate-200 text-lg">Phần cứng & Thiết bị thông minh</p>
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden group h-80 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072"
+                            alt="Web Design"
+                            class="absolute w-full h-full object-cover transition transform duration-500 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6">
+                            <span class="bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded w-max mb-2">1 LỚP
+                                HIỆN TẠI</span>
+                            <h3 class="text-3xl font-bold text-white">Làm Website</h3>
+                            <p class="text-slate-200 text-lg">HTML/CSS/JS Thực chiến</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: BỨC TRANH TỔNG THỂ -->
+    <div id="slide-3" class="slide">
+        <div
+            class="w-full min-h-full flex flex-col justify-center px-10 md:px-20 py-10 bg-white bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072')] bg-cover bg-center bg-blend-overlay">
+            <div class="absolute inset-0 bg-white/90"></div>
+
+            <h2
+                class="text-4xl md:text-5xl font-bold mb-12 text-center text-slate-900 border-b-2 border-blue-600 pb-4 inline-block mx-auto z-10 relative">
+                BỨC TRANH TỔNG THỂ DỰ ÁN</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mx-auto items-center relative z-10">
+                <div
+                    class="hidden md:block absolute top-1/2 left-10 right-10 h-1 bg-blue-200 -z-10 transform -translate-y-1/2">
+                </div>
+
+                <div class="flex flex-col gap-10">
+                    <div
+                        class="bg-white border-l-4 border-emerald-500 p-6 rounded-xl text-center md:text-right glow-card relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 text-emerald-100 text-8xl opacity-50"><i
+                                class="fas fa-chalkboard-teacher"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2 relative z-10">Hệ Thống Đào Tạo</h3>
+                        <p class="text-slate-600 relative z-10">Chuỗi trung tâm Offline, mô hình nhượng quyền
+                            (Franchise) & Cơ sở lõi tại Q.12.</p>
+                    </div>
+                    <div
+                        class="bg-white border-l-4 border-orange-500 p-6 rounded-xl text-center md:text-right glow-card relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 text-orange-100 text-8xl opacity-50"><i
+                                class="fas fa-box-open"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2 relative z-10">Sản Phẩm & Kit</h3>
+                        <p class="text-slate-600 relative z-10">Sản xuất, đóng gói bộ thực hành phần cứng (ESP32, Smart
+                            City) phân phối toàn quốc.</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center py-6 md:py-0">
+                    <div
+                        class="w-56 h-56 bg-blue-600 rounded-full flex flex-col items-center justify-center border-8 border-white shadow-2xl z-20 relative glow-card">
+                        <i
+                            class="fas fa-microchip text-5xl text-white mb-3 transform hover:rotate-180 transition duration-700"></i>
+                        <span class="text-white font-black text-2xl text-center leading-tight">HỆ SINH THÁI<br>CỐT
+                            LÕI</span>
+                        <div class="absolute inset-0 rounded-full border-2 border-blue-300 animate-ping opacity-50">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-10">
+                    <div
+                        class="bg-white border-r-4 border-purple-500 p-6 rounded-xl text-center md:text-left glow-card relative overflow-hidden">
+                        <div class="absolute -left-4 -top-4 text-purple-100 text-8xl opacity-50"><i
+                                class="fas fa-globe"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2 relative z-10">Nền Tảng Online</h3>
+                        <p class="text-slate-600 relative z-10">Hệ thống khóa học E-learning tự động, Video bài giảng &
+                            Kênh YouTube Giáo dục.</p>
+                    </div>
+                    <div
+                        class="bg-white border-r-4 border-blue-500 p-6 rounded-xl text-center md:text-left glow-card relative overflow-hidden">
+                        <div class="absolute -left-4 -top-4 text-blue-100 text-8xl opacity-50"><i
+                                class="fas fa-brain"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2 relative z-10">R&D & Tự Động Hóa</h3>
+                        <p class="text-slate-600 relative z-10">Nghiên cứu AI/Robotics & tối ưu thuật toán hệ thống
+                            (Công cụ, Bot lõi).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: CHIẾN LƯỢC 3 NĂM -->
+    <div id="slide-4" class="slide">
+        <div class="w-full min-h-full flex flex-col justify-center px-10 md:px-20 py-10 bg-slate-50">
+            <h2
+                class="text-4xl md:text-5xl font-bold mb-16 text-center text-slate-900 border-b-2 border-blue-600 pb-4 inline-block mx-auto">
+                CHIẾN LƯỢC PHÁT TRIỂN 3 NĂM</h2>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 relative max-w-6xl mx-auto w-full">
+                <div
+                    class="hidden md:block absolute top-1/2 left-10 right-10 h-2 bg-slate-200 -z-10 transform -translate-y-1/2">
+                </div>
+
+                <div
+                    class="bg-white p-8 rounded-full md:rounded-2xl w-full md:w-1/3 z-10 border-t-8 border-blue-500 glow-card text-center relative">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?q=80&w=2070" alt=""
+                            class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-3xl font-bold text-blue-600 mb-2">NĂM 1</h3>
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">ĐÓNG GÓI & CHUẨN HÓA</h4>
+                    <ul class="text-slate-600 text-lg text-left list-disc list-inside">
+                        <li>Chuẩn hóa giáo trình</li>
+                        <li>Sản xuất Bộ Kit phần cứng bán kèm</li>
+                        <li>Tối ưu lợi nhuận cơ sở lõi</li>
+                    </ul>
+                </div>
+
+                <div
+                    class="bg-white p-8 rounded-full md:rounded-2xl w-full md:w-1/3 z-10 border-t-8 border-emerald-500 glow-card text-center relative">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974" alt=""
+                            class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-3xl font-bold text-emerald-600 mb-2">NĂM 2</h3>
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">SỐ HÓA & THƯƠNG MẠI</h4>
+                    <ul class="text-slate-600 text-lg text-left list-disc list-inside">
+                        <li>Kênh YouTube giáo dục số lượng lớn</li>
+                        <li>Bán khóa học Online toàn quốc</li>
+                        <li>Phân phối Kit phần cứng trên TMĐT</li>
+                    </ul>
+                </div>
+
+                <div
+                    class="bg-white p-8 rounded-full md:rounded-2xl w-full md:w-1/3 z-10 border-t-8 border-purple-500 glow-card text-center relative">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932" alt=""
+                            class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-3xl font-bold text-purple-600 mb-2">NĂM 3</h3>
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">NHÂN BẢN & SCALE-UP</h4>
+                    <ul class="text-slate-600 text-lg text-left list-disc list-inside">
+                        <li>Mở chuỗi chi nhánh vật lý</li>
+                        <li>Nhượng quyền giáo trình (B2B Franchise)</li>
+                        <li>Tự động hóa vận hành doanh nghiệp</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: LỘ TRÌNH CHI TIẾT -->
+    <div id="slide-5" class="slide bg-slate-50">
+        <div class="w-full min-h-full py-16 px-10 md:px-20 max-w-5xl mx-auto">
+            <div class="mb-12 text-center">
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 border-b-2 border-blue-600 pb-4 inline-block">
+                    LỘ TRÌNH CHI TIẾT (2026 - 2029)</h2>
+                <p class="text-slate-600 text-xl mx-auto mt-4">Chia nhỏ thành từng Năm và từng Quý để theo dõi sát tiến
+                    độ.</p>
+            </div>
+            <div class="space-y-8" id="roadmap-container">
+                <!-- Data injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: THÓI QUEN THỰC THI -->
+    <div id="slide-6" class="slide bg-slate-50">
+        <div class="w-full min-h-full py-16 px-10 md:px-20 max-w-6xl mx-auto flex flex-col justify-center">
+            <div class="mb-12 text-center">
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 border-b-2 border-blue-600 pb-4 inline-block">
+                    THÓI QUEN THỰC THI (ROUTINES)</h2>
+                <p class="text-slate-600 text-xl mx-auto mt-4">Kỷ luật hàng ngày và hàng tuần là yếu tố quyết định thành
+                    bại của chiến lược.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 glow-card">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2"><span
+                                class="text-3xl">☀️</span> Hàng ngày (Daily)</h3>
+                        <div class="space-y-3" id="daily-tasks-container"></div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 glow-card">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2"><span
+                                class="text-3xl">🗓️</span> Hàng tuần (Weekly - Chủ Nhật)</h3>
+                        <div class="space-y-3" id="weekly-tasks-container"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center justify-center glow-card">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2 text-center">Tiến độ Thói quen</h3>
+                    <p class="text-base text-slate-500 mb-6 text-center">Biểu đồ cập nhật tự động khi tick chọn.</p>
+                    <div class="chart-container-doughnut">
+                        <canvas id="routineProgressChart"></canvas>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <p class="text-5xl font-extrabold text-blue-600" id="progress-percentage">0%</p>
+                        <p class="text-slate-500 font-medium mt-2 text-lg">Hoàn thành</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: DỰ PHÓNG -->
+    <div id="slide-7" class="slide bg-slate-50">
+        <div class="w-full min-h-full py-16 px-10 md:px-20 max-w-6xl mx-auto flex flex-col justify-center">
+            <div class="mb-12 text-center">
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 border-b-2 border-blue-600 pb-4 inline-block">
+                    DỰ PHÓNG CHUYỂN DỊCH MÔ HÌNH</h2>
+                <p class="text-slate-600 text-xl mx-auto mt-4">Sự dịch chuyển cơ cấu doanh thu từ Offline sang Online và
+                    B2B/Franchise.</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 glow-card w-full">
+                <div class="chart-container-line">
+                    <canvas id="projectionChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: CƠ HỘI HỢP TÁC -->
+    <div id="slide-8" class="slide">
+        <div class="w-full h-full bg-cover bg-center"
+            style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070');">
+            <div class="w-full h-full bg-white/95 flex flex-col justify-center items-center px-10 text-center">
+                <h2 class="text-5xl md:text-6xl font-bold mb-8 text-slate-900">CƠ HỘI HỢP TÁC</h2>
+                <p class="text-2xl text-slate-600 mb-16 max-w-4xl">Chúng tôi tìm kiếm những đối tác chiến lược để cùng
+                    xây dựng hệ sinh thái công nghệ giáo dục quy mô lớn nhất Việt Nam.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
+                    <div class="bg-blue-50 border border-blue-200 p-8 rounded-xl shadow-md glow-card">
+                        <div class="text-5xl text-blue-600 mb-4"><i class="fas fa-handshake"></i></div>
+                        <h3 class="text-3xl font-bold text-slate-800 mb-2">ĐẦU TƯ</h3>
+                        <p class="text-lg text-slate-600">Đồng hành mở rộng quy mô phòng Lab, sản xuất thiết bị và chi
+                            nhánh mới.</p>
+                    </div>
+
+                    <div class="bg-emerald-50 border border-emerald-200 p-8 rounded-xl shadow-md glow-card">
+                        <div class="text-5xl text-emerald-600 mb-4"><i class="fas fa-microchip"></i></div>
+                        <h3 class="text-3xl font-bold text-slate-800 mb-2">CÔNG NGHỆ</h3>
+                        <p class="text-lg text-slate-600">Cung ứng linh kiện IoT, gia công Board mạch, hợp tác phát
+                            triển dự án AI.</p>
+                    </div>
+
+                    <div class="bg-purple-50 border border-purple-200 p-8 rounded-xl shadow-md glow-card">
+                        <div class="text-5xl text-purple-600 mb-4"><i class="fas fa-school"></i></div>
+                        <h3 class="text-3xl font-bold text-slate-800 mb-2">GIÁO DỤC</h3>
+                        <p class="text-lg text-slate-600">Tích hợp chương trình lập trình thực chiến vào trường học tư
+                            thục, trung tâm Anh ngữ.</p>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-3xl font-bold text-blue-700">
+                    "Hãy cùng nhau tạo ra thế hệ thay đổi tương lai"
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State từ plan.html
+        const state = {
+            routines: {
+                daily: [
+                    { id: 'd1', text: 'Khối Giáo dục (1 giờ): Soạn giáo án/Cập nhật code mẫu cho các lớp hiện tại. Chấm bài hoặc review project của học viên.', checked: false },
+                    { id: 'd2', text: 'Khối R&D/Cá nhân (1-2 giờ): Giữ nhịp độ nghiên cứu AI Trading, viết script Python, hoặc tìm hiểu thêm về Edge Computing.', checked: false },
+                    { id: 'd3', text: 'Vận hành (30 phút): Trả lời tin nhắn phụ huynh, đăng 1 post cập nhật tình hình lớp học lên Zalo/Fanpage.', checked: false }
+                ],
+                weekly: [
+                    { id: 'w1', text: 'Đóng gói sản phẩm (2-3 giờ): Dành riêng sáng Chủ Nhật để thiết kế mạch, hàn linh kiện, hoặc viết tài liệu cho bộ Kit "Smart City".', checked: false },
+                    { id: 'w2', text: 'Review Tài chính (30 phút): Tổng kết thu/chi của trung tâm trong tuần.', checked: false },
+                    { id: 'w3', text: 'Lên lịch tuần mới (30 phút): Xác định 3 việc quan trọng nhất (Top 3 Priorities) phải hoàn thành trong tuần tiếp theo.', checked: false }
+                ]
+            },
+            roadmap: [
+                {
+                    year: 'NĂM 1: ĐÓNG GÓI & CHUẨN HÓA (2026)',
+                    goal: 'Tối ưu 5 lớp hiện tại ở Q.12, ra mắt Bộ Kit phần cứng đầu tiên, xây dựng quy trình chuẩn.',
+                    color: 'blue',
+                    quarters: [
+                        { name: 'Quý 1: Chuẩn hóa Giáo trình (Tháng 1 - Tháng 3)', tasks: ['Tháng 1: Chuẩn hóa giáo án 2 lớp Pygame và 1 lớp Web. Viết lại đề cương chi tiết từng buổi theo chuẩn CMRA.', 'Tháng 2: Chuẩn hóa giáo án lớp ESP32 & Scratch.', 'Tháng 3: Thiết kế form mẫu đánh giá năng lực học viên định kỳ. Áp dụng ngay cho 5 lớp hiện tại.'] },
+                        { name: 'Quý 2: Phát triển "Smart City Kit" (Tháng 4 - Tháng 6)', tasks: ['Tháng 4: Chốt danh sách linh kiện cho Kit. Đặt hàng linh kiện mẫu.', 'Tháng 5: Thiết kế PCB shield và in 3D các mô hình cơ bản. Viết code firmware test.', 'Tháng 6: Viết "Tài liệu hướng dẫn lắp ráp & Code". Cho học viên lớp ESP32 hiện tại dùng thử.'] },
+                        { name: 'Quý 3: Tối ưu Không gian & Tuyển sinh Hè (Tháng 7 - Tháng 9)', tasks: ['Tháng 7: Decor lại phòng Lab tại Q.12 (poster, tủ kính, góc quay video).', 'Tháng 8: Chạy chiến dịch tuyển sinh "Trại hè Lập trình Thực chiến". Dùng Kit làm mồi câu.', 'Tháng 9: Bắt đầu hệ thống hóa "Kịch bản tư vấn phụ huynh" (Quy trình chốt sale).'] },
+                        { name: 'Quý 4: Thương mại hóa Kit & Setup Online (Tháng 10 - Tháng 12)', tasks: ['Tháng 10: Sản xuất hàng loạt 50-100 bộ Kit Smart City. Thiết kế bao bì chuyên nghiệp.', 'Tháng 11: Mở gian hàng Shopee và tạo landing page trên website để bán Kit.', 'Tháng 12: Đánh giá lợi nhuận. Bắt đầu tuyển 1-2 trợ giảng.'] }
+                    ]
+                },
+                {
+                    year: 'NĂM 2: SỐ HÓA & THƯƠNG MẠI (2027)',
+                    goal: 'Đưa thương hiệu lên Internet, tạo nguồn thu thụ động từ bán Kit và Khóa học Online.',
+                    color: 'emerald',
+                    quarters: [
+                        { name: 'Quý 1: Xây kênh YouTube (Tháng 1 - Tháng 3)', tasks: ['Lên kịch bản 10 video đầu tiên (Tips code Python, Hướng dẫn ESP32, Review STEM).', 'Quay và edit 1 video/tuần.', 'Đặt link mua Kit và thông tin khóa học dưới mỗi video.'] },
+                        { name: 'Quý 2: Quay Khóa học Online E-learning (Tháng 4 - Tháng 6)', tasks: ['Quay các video bài giảng chi tiết (Screen record + Facecam) cho khóa "ESP32 & IoT Thực chiến".', 'Đẩy khóa học lên các nền tảng (Unica, Edumall) hoặc tự host.', 'Setup phễu Marketing: Xem YouTube -> Mua Kit -> Tặng kèm Khóa học.'] },
+                        { name: 'Quý 3 & 4: Đào tạo nhân sự & Tự động hóa Offline (Tháng 7 - Tháng 12)', tasks: ['Giao dần các lớp Scratch, Web cơ bản cho trợ giảng đứng lớp chính.', 'Đẩy mạnh quảng cáo Facebook/Google Ads bán Kit toàn quốc.', 'Nghiên cứu và thiết kế Bộ Kit V2 (Robot tự hành/AI với Raspberry Pi).'] }
+                    ]
+                },
+                {
+                    year: 'NĂM 3: NHÂN BẢN & SCALE-UP (2028 - 2029)',
+                    goal: 'Thoát khỏi vận hành trực tiếp, mở rộng hệ thống.',
+                    color: 'purple',
+                    quarters: [
+                        { name: 'Quý 1 - Quý 2: B2B & Nhượng Quyền (Franchise)', tasks: ['Đóng gói toàn bộ: Giáo trình + Quy trình + Kit thành "Gói Giải pháp Giáo dục STEM".', 'Tiếp cận 5-10 trường tư thục, trung tâm Tiếng Anh tại TP.HCM để chào bán gói.', 'Ký kết đối tác B2B đầu tiên, triển khai dạy tại cơ sở đối tác.'] },
+                        { name: 'Quý 3 - Quý 4: Mở Chi Nhánh & Đỉnh cao Tự động hóa', tasks: ['Dùng lợi nhuận tích lũy mở Chi nhánh 2 (Tân Bình, Gò Vấp, Quận 7).', 'Tuyển Quản lý Trung tâm để lo vận hành, marketing, lịch học.', 'Rút hoàn toàn về vai trò Giám đốc R&D và Nhà Đầu Tư: Tập trung 100% vào AI Trading Bot.'] }
+                    ]
+                }
+            ]
+        };
+
+        // UI Code từ plan.html
+        let routineChartInstance = null;
+        let projectionChartInstance = null;
+
+        function renderRoutines() {
+            const createHtml = (tasks, type) => tasks.map(task => `
+                <label class="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 cursor-pointer transition-colors border border-transparent hover:border-slate-200">
+                    <input type="checkbox" class="task-checkbox mt-1 w-5 h-5 text-blue-600 rounded focus:ring-blue-500 cursor-pointer" 
+                        data-id="${task.id}" data-type="${type}" ${task.checked ? 'checked' : ''} onchange="handleTaskToggle(this)">
+                    <div class="text-slate-700 leading-relaxed font-medium transition-all duration-300 select-none">${task.text}</div>
+                </label>
+            `).join('');
+
+            document.getElementById('daily-tasks-container').innerHTML = createHtml(state.routines.daily, 'daily');
+            document.getElementById('weekly-tasks-container').innerHTML = createHtml(state.routines.weekly, 'weekly');
+        }
+
+        window.handleTaskToggle = function (checkbox) {
+            const id = checkbox.dataset.id;
+            const type = checkbox.dataset.type;
+            const task = state.routines[type].find(t => t.id === id);
+            if (task) {
+                task.checked = checkbox.checked;
+                updateRoutineChart();
+            }
+        }
+
+        function updateRoutineChart() {
+            const allTasks = [...state.routines.daily, ...state.routines.weekly];
+            const total = allTasks.length;
+            const completed = allTasks.filter(t => t.checked).length;
+            const remaining = total - completed;
+            const percent = Math.round((completed / total) * 100);
+
+            document.getElementById('progress-percentage').innerText = `${percent}%`;
+
+            if (routineChartInstance) {
+                routineChartInstance.data.datasets[0].data = [completed, remaining];
+                routineChartInstance.update();
+            } else {
+                const ctx = document.getElementById('routineProgressChart').getContext('2d');
+                routineChartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Hoàn thành', 'Chưa hoàn thành'],
+                        datasets: [{
+                            data: [completed, remaining],
+                            backgroundColor: ['#2563eb', '#e2e8f0'],
+                            borderWidth: 0,
+                            cutout: '75%'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return ` ${context.label}: ${context.raw} công việc`;
+                                    }
+                                }
+                            }
+                        },
+                        animation: { animateScale: true, animateRotate: true }
+                    }
+                });
+            }
+        }
+
+        function renderRoadmap() {
+            const container = document.getElementById('roadmap-container');
+            let html = '';
+
+            const colorMap = {
+                'blue': { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-700', marker: 'bg-blue-600' },
+                'emerald': { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700', marker: 'bg-emerald-600' },
+                'purple': { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-700', marker: 'bg-purple-600' }
+            };
+
+            state.roadmap.forEach((yearData, index) => {
+                const colors = colorMap[yearData.color];
+
+                let quartersHtml = yearData.quarters.map((q, qIndex) => `
+                    <div class="border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm mb-3">
+                        <button class="w-full text-left px-5 py-4 font-semibold text-slate-800 hover:bg-slate-50 flex justify-between items-center focus:outline-none" onclick="toggleAccordion('y${index}q${qIndex}')">
+                            <span class="flex items-center gap-2"><span class="text-xl">👉</span> ${q.name}</span>
+                            <span class="text-slate-400 transform transition-transform duration-200" id="icon-y${index}q${qIndex}">▼</span>
+                        </button>
+                        <div id="content-y${index}q${qIndex}" class="hidden px-5 py-4 bg-slate-50 border-t border-slate-100">
+                            <ul class="space-y-2">
+                                ${q.tasks.map(task => `
+                                    <li class="flex items-start gap-2 text-slate-700">
+                                        <span class="text-${yearData.color}-500 mt-1">▪</span>
+                                        <span>${task}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `).join('');
+
+                html += `
+                    <div class="relative pl-8 md:pl-0">
+                        <div class="hidden md:block absolute left-[50%] top-0 bottom-0 w-0.5 bg-slate-200 transform -translate-x-1/2"></div>
+                        
+                        <div class="md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:ml-0' : 'md:pl-12 md:ml-auto'} relative mb-12">
+                            <div class="absolute left-[-32px] md:left-auto ${index % 2 === 0 ? 'md:right-[-48px]' : 'md:left-[-48px]'} top-6 w-6 h-6 rounded-full border-4 border-white ${colors.marker} shadow flex justify-center items-center z-10"></div>
+                            
+                            <div class="${colors.bg} ${colors.border} border rounded-xl p-6 shadow-sm relative z-0">
+                                <h3 class="text-2xl font-bold ${colors.text} mb-2">${yearData.year}</h3>
+                                <p class="text-slate-600 font-medium mb-6 italic">Mục tiêu: ${yearData.goal}</p>
+                                
+                                <div class="space-y-1">
+                                    ${quartersHtml}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        window.toggleAccordion = function (id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        };
+
+        function renderProjectionChart() {
+            if (projectionChartInstance) return;
+
+            const ctx = document.getElementById('projectionChart').getContext('2d');
+            projectionChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Q1 2026', 'Q2 2026', 'Q3 2026', 'Q4 2026', 'Q1 2027', 'Q2 2027', 'Q3 2027', 'Q4 2027', 'Q1 2028', 'Q2 2028', 'Q3 2028', 'Q4 2029'],
+                    datasets: [
+                        {
+                            label: 'Lớp Offline Trực Tiếp',
+                            data: [100, 100, 95, 90, 80, 70, 60, 50, 40, 30, 20, 10],
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Bán Kit & Khóa Online',
+                            data: [0, 0, 5, 20, 40, 60, 70, 80, 85, 90, 95, 100],
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Nhượng Quyền (B2B/Franchise)',
+                            data: [0, 0, 0, 0, 0, 0, 0, 5, 20, 40, 60, 80],
+                            borderColor: '#8b5cf6',
+                            backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + ' Đơn vị';
+                                    }
+                                    return label;
+                                }
+                            }
+                        },
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: { family: "'Segoe UI', sans-serif", size: 14 }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            stacked: false,
+                            beginAtZero: true,
+                            title: { display: true, text: 'Mức độ đóng góp kỳ vọng (%)' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Slide logic từ strategy.html
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const progressBar = document.getElementById('progress-bar');
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            // Update Progress bar
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        window.nextSlide = function () {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlide();
+                // Scroll to top when changing slide
+                slides[currentSlide].scrollTop = 0;
+            }
+        }
+
+        window.prevSlide = function () {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+                // Scroll to top when changing slide
+                slides[currentSlide].scrollTop = 0;
+            }
+        }
+
+        document.addEventListener('keydown', function (event) {
+            // Only trigger if focus is not on input/checkbox
+            if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
+
+            if (event.key === 'ArrowRight') {
+                nextSlide();
+                event.preventDefault();
+            } else if (event.key === 'ArrowLeft') {
+                prevSlide();
+                event.preventDefault();
+            }
+        });
+
+        // Initialize Everything
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRoutines();
+            updateRoutineChart();
+            renderRoadmap();
+            renderProjectionChart();
+            updateSlide();
+        });
+    </script>
+</body>
+
+</html>
