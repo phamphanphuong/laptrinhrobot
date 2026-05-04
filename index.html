@@ -17,7 +17,7 @@
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="theme-color" content="#16a34a">
   <link rel="canonical" href="https://laptrinhrobot.com/">
-  <link rel="preload" as="image" href="images/seo/class.webp">
+  <link rel="preload" as="image" href="images/seo/class-7-9.webp" fetchpriority="high">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Lập Trình Robot">
@@ -392,26 +392,22 @@
           <div class="absolute -top-6 -left-6 w-24 h-24 bg-primary-200/70 rounded-full blur-3xl"></div>
           <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-accent-200/70 rounded-full blur-3xl"></div>
           <div
-            class="relative rounded-[2rem] overflow-hidden border border-white/60 shadow-2xl bg-white/70 backdrop-blur"
+            class="relative rounded-[2rem] overflow-hidden border border-white/60 shadow-2xl bg-white/70 backdrop-blur flex flex-col md:block"
             x-data="{ 
               slides: [
                 {
-                  img: 'images/seo/class-7-9.webp',
                   title: '7-9 Tuổi: Bước chạm công nghệ',
                   desc: 'Khơi dậy tò mò, hình thành tư duy thuật toán với Scratch và Lego Robotics.'
                 },
                 {
-                  img: 'images/seo/class-10-13.webp',
                   title: '10-13 Tuổi: Khởi tạo đam mê',
                   desc: 'Làm chủ Python, tự lập trình game 2D và dự án nhà thông minh (Smart Home).'
                 },
                 {
-                  img: 'images/seo/class-13-15.webp',
                   title: '13-15 Tuổi: Lập trình chuyên nghiệp',
                   desc: 'Lập trình hướng đối tượng (OOP), IoT nâng cao và điều khiển cánh tay robot.'
                 },
                 {
-                  img: 'images/seo/class-15-18.webp',
                   title: '15-18 Tuổi: Sẵn sàng Đại học',
                   desc: 'Khoa học Máy tính AP CSP, Trí tuệ nhân tạo (AI) và chuẩn bị hồ sơ du học.'
                 }
@@ -420,32 +416,39 @@
             }"
             x-init="setInterval(() => { activeSlide = (activeSlide === slides.length - 1) ? 0 : activeSlide + 1 }, 4000)">
             
-            <template x-for="(slide, index) in slides" :key="index">
-              <img :src="slide.img" alt="Học sinh đang học lập trình và robotics" width="896" height="568"
-                class="absolute inset-0 w-full h-[420px] md:h-[500px] object-cover transition-opacity duration-1000 ease-in-out"
-                :class="activeSlide === index ? 'opacity-100 z-0' : 'opacity-0 -z-10'">
-            </template>
-            <!-- Spacer for absolute positioned images -->
-            <div class="w-full h-[420px] md:h-[500px]"></div>
+            <div class="relative w-full h-[320px] sm:h-[420px] md:h-[500px] shrink-0 bg-gray-100">
+              <img src="images/seo/class-7-9.webp" alt="7-9 Tuổi: Bước chạm công nghệ" width="896" height="568" fetchpriority="high"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+                :class="activeSlide === 0 ? 'opacity-100 z-0' : 'opacity-0 -z-10'">
+              <img src="images/seo/class-10-13.webp" alt="10-13 Tuổi: Khởi tạo đam mê" width="896" height="568" loading="lazy" decoding="async"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+                :class="activeSlide === 1 ? 'opacity-100 z-0' : 'opacity-0 -z-10'">
+              <img src="images/seo/class-13-15.webp" alt="13-15 Tuổi: Lập trình chuyên nghiệp" width="896" height="568" loading="lazy" decoding="async"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+                :class="activeSlide === 2 ? 'opacity-100 z-0' : 'opacity-0 -z-10'">
+              <img src="images/seo/class-15-18.webp" alt="15-18 Tuổi: Sẵn sàng Đại học" width="896" height="568" loading="lazy" decoding="async"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+                :class="activeSlide === 3 ? 'opacity-100 z-0' : 'opacity-0 -z-10'">
 
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/45 via-transparent to-transparent z-10 pointer-events-none"></div>
-            
-            <!-- Indicators -->
-            <div class="absolute bottom-[90px] left-0 right-0 flex justify-center gap-2 z-20">
-              <template x-for="(slide, index) in slides" :key="index">
-                <button @click="activeSlide = index" class="w-2.5 h-2.5 rounded-full transition-all duration-300"
-                  :class="activeSlide === index ? 'bg-primary-500 w-8' : 'bg-white/70 hover:bg-white'"></button>
-              </template>
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/45 via-transparent to-transparent z-10 pointer-events-none hidden md:block"></div>
+              
+              <!-- Indicators -->
+              <div class="absolute bottom-4 md:bottom-[90px] left-0 right-0 flex justify-center gap-2 z-20">
+                <template x-for="(_, index) in slides" :key="index">
+                  <button aria-label="Đổi slide" @click="activeSlide = index" class="w-2.5 h-2.5 rounded-full transition-all duration-300 shadow-sm"
+                    :class="activeSlide === index ? 'bg-primary-500 w-8' : 'bg-white/90 hover:bg-white'"></button>
+                </template>
+              </div>
             </div>
 
-            <div class="absolute left-4 right-4 bottom-4 z-20">
-              <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-lg border border-white/80">
+            <div class="relative md:absolute md:left-4 md:right-4 md:bottom-4 z-20 bg-white md:bg-transparent">
+              <div class="bg-white md:bg-white/90 md:backdrop-blur md:rounded-2xl p-5 md:p-4 shadow-none md:shadow-lg border-t md:border border-gray-100 md:border-white/80">
                 <div class="flex items-start gap-3">
                   <div class="w-11 h-11 rounded-xl bg-primary-500 text-white flex items-center justify-center shrink-0">
                     <i class="fa-solid fa-layer-group"></i>
                   </div>
                   <div>
-                    <p class="text-sm font-bold text-gray-900" x-text="slides[activeSlide].title">Lộ trình học tập toàn diện</p>
+                    <p class="text-base md:text-sm font-bold text-gray-900" x-text="slides[activeSlide].title">Lộ trình học tập toàn diện</p>
                     <p class="text-sm text-gray-600 mt-1" x-text="slides[activeSlide].desc">Phát triển theo từng giai đoạn, từ tò mò khám phá đến định hình nghề nghiệp.</p>
                   </div>
                 </div>
