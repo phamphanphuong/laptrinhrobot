@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trại Code Chuyên Tin | Hệ Thống Giáo Án 72 Buổi</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Montserrat', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'], },
+                    colors: {
+                        primary: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
+                        secondary: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+                        accent: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12' }
+                    },
+                    animation: { 'float': 'float 4s ease-in-out infinite', 'fade-in-up': 'fadeInUp 0.8s ease-out forwards' },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Montserrat', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #eef2f7; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        body {
+            background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 30%), radial-gradient(circle at top right, rgba(59, 130, 246, 0.10), transparent 28%), linear-gradient(180deg, #f8fbff 0%, #f8fafc 45%, #f1f5f9 100%);
+        }
+        .hero-panel {
+            background-image: linear-gradient(rgba(240, 253, 244, 0.92), rgba(255, 255, 255, 0.92)), url('images/seo/background.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        .soft-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+        }
+        
+        .accordion-content { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
+        .accordion-content.expanded { max-height: 8000px; opacity: 1; }
+        .chevron { transition: transform 0.3s ease; }
+        .expanded-btn .chevron { transform: rotate(180deg); }
+        
+        .code-block {
+            background-color: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 0.5rem;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; overflow-x: auto;
+            margin-top: 0.5rem; margin-bottom: 1rem; border: 1px solid #333; white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen overflow-x-hidden">
+
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-primary-500/20">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <span class="font-heading font-bold text-xl tracking-tight text-slate-900">CodeCamp<span class="text-primary-600">PTNK</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="index.html" class="text-slate-500 font-medium hover:text-primary-600 transition px-4 py-2 rounded-full hover:bg-slate-50">Trang chủ</a>
+                    <button onclick="switchTab('home')" class="nav-btn text-primary-700 font-semibold hover:text-primary-600 transition px-4 py-2 rounded-full bg-primary-50" data-target="home">Lộ Trình Tổng Thể</button>
+                    <button onclick="switchTab('syllabus')" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-4 py-2 rounded-full hover:bg-slate-50" data-target="syllabus">Giáo Án & Code Mẫu</button>
+                    <button onclick="switchTab('exams')" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-4 py-2 rounded-full hover:bg-slate-50" data-target="exams">Đề Thi Mẫu</button>
+                    <a href="index.html#dang-ky" class="bg-gradient-to-r from-secondary-600 to-primary-600 text-white px-5 py-2 rounded-full font-semibold hover:from-secondary-700 hover:to-primary-700 transition shadow-md shadow-secondary-500/20">Đăng Ký Học</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex flex-col">
+        <div id="tab-home" class="tab-content active flex-grow">
+            <div class="relative hero-panel overflow-hidden py-20 lg:py-24">
+                <div class="absolute top-10 left-8 w-32 h-32 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float"></div>
+                <div class="absolute bottom-10 right-10 w-44 h-44 bg-secondary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float" style="animation-delay: 1.8s;"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                    <span class="inline-block py-1 px-4 rounded-full bg-white border border-primary-200 text-primary-700 shadow-sm text-sm font-semibold tracking-wider mb-6 uppercase">Chuyên trang ôn thi chuyên tin</span>
+                    <h1 class="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl animate-fade-in-up">
+                        <span class="block">Luyện Thi Chuyên Tin</span>
+                        <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-secondary-600 to-primary-500">Hệ Thống Giáo Án Độc Quyền</span>
+                    </h1>
+                    <p class="mt-4 text-base text-slate-600 sm:mt-5 sm:text-lg sm:max-w-2xl mx-auto animate-fade-in-up leading-relaxed" style="animation-delay: 0.15s;">
+                        Lộ trình 72 buổi đào tạo học sinh từ con số 0 đến tự tin chinh phục kỳ thi Chuyên Tin PTNK, Lê Hồng Phong bằng ngôn ngữ Python.
+                    </p>
+                    <div class="mt-7 flex flex-col sm:flex-row justify-center gap-4">
+                        <button onclick="switchTab('syllabus')" class="px-8 py-3 border border-transparent text-lg font-semibold rounded-full text-white bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 transition shadow-lg shadow-primary-500/20 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-book-open"></i> Xem Giáo Án Chi Tiết
+                        </button>
+                        <button onclick="switchTab('exams')" class="px-8 py-3 border border-slate-200 text-lg font-semibold rounded-full text-slate-700 bg-white hover:bg-slate-50 transition shadow-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-lines"></i> Xem Đề Thi Mẫu
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nơi chứa Lộ trình được vẽ bằng Javascript -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="overview-container">
+                    <!-- Javascript sẽ điền các thẻ Lộ trình vào đây -->
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-syllabus" class="tab-content py-12 flex-grow">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Tài Liệu Cấp Giáo Viên</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 font-heading">Chi Tiết 72 Buổi Học (Python)</p>
+                </div>
+                
+                <!-- Nơi chứa Giáo án được vẽ bằng Javascript -->
+                <div id="syllabus-container">
+                    <!-- Javascript sẽ điền các bài giảng vào đây -->
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-exams" class="tab-content py-12 flex-grow">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Thư Viện Đề Thi</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 font-heading">Đề Thi Mẫu & Luyện Tập</p>
+                </div>
+
+                <!-- Nơi chứa đề thi được vẽ bằng Javascript -->
+                <div id="exams-container">
+                    <!-- Javascript sẽ điền các đề thi vào đây -->
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-8 border-t border-slate-200 bg-white/80 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+                <p>© 2026 CodeCampPTNK.</p>
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="hover:text-primary-600 transition-colors">Về trang chủ</a>
+                    <a href="index.html#dang-ky" class="hover:text-primary-600 transition-colors">Đăng ký tư vấn</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- ============================================================================== -->
+    <!--  HƯỚNG DẪN TÁCH FILE:                                                          -->
+    <!--  1. Tạo một file tên là competition.js cùng thư mục.                           -->
+    <!--  2. Cắt (Cut) toàn bộ nội dung từ "const database = [" đến hết ngoặc "];"     -->
+    <!--  3. Dán vào file competition.js vừa tạo và lưu lại.                            -->
+    <!--  4. Thay thế đoạn script bên dưới bằng: <script src="competition.js"></script> -->
+    <!-- ============================================================================== -->
+    <script src="competition.js"></script>
+    
+    <script>
+        // Hàm chuyển tab
+        function switchTab(tabName) {
+            // Ẩn tất cả tab
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-primary', 'font-medium');
+                btn.classList.add('text-slate-500');
+            });
+            
+            // Hiển thị tab được chọn
+            document.getElementById('tab-' + tabName).classList.add('active');
+            document.querySelector(`[data-target="${tabName}"]`).classList.remove('text-slate-500');
+            document.querySelector(`[data-target="${tabName}"]`).classList.add('text-primary', 'font-medium');
+            
+            // Render dữ liệu nếu lần đầu tiên
+            if (tabName === 'home' && document.getElementById('overview-container').innerHTML.trim().length < 100) {
+                renderOverview();
+            }
+            if (tabName === 'syllabus' && document.getElementById('syllabus-container').innerHTML.trim().length < 100) {
+                renderSyllabus();
+            }
+            if (tabName === 'exams' && document.getElementById('exams-container').innerHTML.trim().length < 100) {
+                renderExams();
+            }
+        }
+
+        // Hàm hiển thị lộ trình tổng quát
+        function renderOverview() {
+            const container = document.getElementById('overview-container');
+            container.innerHTML = database.map(phase => `
+                <div class="soft-card rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-xl cursor-pointer border-l-4" style="border-left-color: var(--phase-color)" onclick="switchTab('syllabus')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold ${phase.textClass} font-heading">${phase.title}</h3>
+                            <p class="text-sm text-slate-500 mt-1">${phase.time}</p>
+                        </div>
+                        <i class="fa-solid ${phase.icon} text-2xl ${phase.textClass}"></i>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed">${phase.desc}</p>
+                    <div class="mt-4 pt-4 border-t border-slate-200">
+                        <div class="text-xs text-slate-600">
+                            <p><strong>Yêu cầu:</strong> ${phase.requirements}</p>
+                            <p class="mt-2"><strong>Chủ đề:</strong> ${phase.topics}</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-xs font-semibold text-white ${phase.bgClass} py-2 px-3 rounded-full inline-block">
+                        ${phase.duration}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Hàm hiển thị giáo án chi tiết
+        function renderSyllabus() {
+            const container = document.getElementById('syllabus-container');
+            container.innerHTML = database.map(phase => `
+                <div class="soft-card rounded-3xl p-6 mb-8 border-l-4 border-l-slate-300">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="${phase.bgClass} text-white w-12 h-12 rounded-2xl flex items-center justify-center text-xl shadow-md">
+                            <i class="fa-solid ${phase.icon}"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold ${phase.textClass} font-heading">${phase.title}</h2>
+                            <p class="text-sm text-slate-600">${phase.time} • ${phase.duration}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-white rounded-2xl p-4 border border-slate-100">
+                            <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Yêu cầu tiên quyết</p>
+                            <p class="text-sm text-slate-800 mt-2">${phase.requirements}</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-4 border border-slate-100">
+                            <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Chủ đề chính</p>
+                            <p class="text-sm text-slate-800 mt-2">${phase.topics}</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-4 border border-slate-100">
+                            <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Kết quả đạt được</p>
+                            <p class="text-sm text-slate-800 mt-2">${phase.output}</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        ${phase.lessons.map((lesson, idx) => `
+                            <details class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                                <summary class="px-4 py-3 font-semibold cursor-pointer ${phase.textClass} bg-slate-50 hover:bg-slate-100 flex justify-between items-center font-heading">
+                                    <span>${lesson.session} - ${lesson.name}</span>
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </summary>
+                                <div class="px-4 py-4 bg-white border-t border-slate-200">
+                                    <div class="space-y-3">
+                                        <div>
+                                            <p class="text-xs font-bold text-slate-700 uppercase mb-2">Timeline:</p>
+                                            <ul class="text-sm text-slate-700 space-y-1">
+                                                ${lesson.timeline.map(t => `<li class="flex items-start gap-2"><span class="text-primary">✓</span> ${t}</li>`).join('')}
+                                            </ul>
+                                        </div>
+                                        ${lesson.code ? `
+                                            <div>
+                                                <p class="text-xs font-bold text-slate-700 uppercase mb-2">Code Mẫu:</p>
+                                                <pre class="code-block"><code>${escapeHtml(lesson.code)}</code></pre>
+                                            </div>
+                                        ` : ''}
+                                        ${lesson.tasks ? `
+                                            <div>
+                                                <p class="text-xs font-bold text-slate-700 uppercase mb-2">Nhiệm vụ:</p>
+                                                <p class="text-sm text-slate-700 whitespace-pre-line">${escapeHtml(lesson.tasks)}</p>
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            </details>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Hàm escape HTML để tránh XSS
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Hàm hiển thị đề thi mẫu
+        function renderExams() {
+            const container = document.getElementById('exams-container');
+            let html = '';
+
+            // Duyệt qua từng trường trong examLibrary
+            for (const [school, exams] of Object.entries(examLibrary)) {
+                html += `
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6 pb-4 border-b-4 border-primary-500 font-heading">
+                            ${school === 'PTNK' ? '🏆 Phổ Thông Năng Khiếu (PTNK)' : '📚 Sở GD&ĐT TP.HCM'}
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            ${exams.map(exam => `
+                                <div class="soft-card rounded-2xl p-6 border-l-4 border-primary-500 hover:-translate-y-1 transition">
+                                    <div class="mb-4">
+                                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Năm: ${exam.year}</p>
+                                        <h4 class="text-lg font-bold text-slate-900 mt-2 font-heading">${exam.name}</h4>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <div class="flex flex-wrap gap-2">
+                                            ${exam.tags.map(tag => `
+                                                <span class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs font-semibold rounded-full border border-primary-100">${tag}</span>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                    
+                                    <details class="mb-4">
+                                        <summary class="cursor-pointer font-semibold text-primary-600 hover:text-primary-700 flex items-center gap-2">
+                                            <i class="fa-solid fa-chevron-right"></i> Xem Chi Tiết
+                                        </summary>
+                                        <div class="mt-4 text-sm text-slate-700 bg-slate-50 p-4 rounded-2xl whitespace-pre-wrap border border-slate-100">
+                                            ${escapeHtml(exam.description)}
+                                        </div>
+                                    </details>
+                                    
+                                    ${exam.realExams ? `
+                                        <div class="bg-accent-50 border border-accent-100 p-3 rounded-2xl text-sm text-slate-800">
+                                            <p class="font-bold text-accent-700 mb-2">🎯 Ứng dụng thực chiến:</p>
+                                            ${exam.realExams.map(real => `<p>✓ ${escapeHtml(real)}</p>`).join('')}
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        // Render lộ trình lần đầu tiên
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOverview();
+        });
+    </script>
+</body>
+</html>
