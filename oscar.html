@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trại Code Chuyên Tin C++ | Hệ Thống Giáo Án & Đề Thi</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Montserrat', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: {
+                        primary: { 50: '#eefbff', 100: '#d9f4ff', 200: '#b9e9ff', 300: '#8edcff', 400: '#57c8ff', 500: '#28b4f6', 600: '#1293d5', 700: '#1376ad', 800: '#165f8b', 900: '#164f73' },
+                        secondary: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+                        accent: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12' }
+                    },
+                    animation: { 'float': 'float 4s ease-in-out infinite', 'fade-in-up': 'fadeInUp 0.8s ease-out forwards' },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="oscar.css">
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <a href="#" onclick="switchTab('home')" class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary-500 to-primary-500 text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-primary-500/20">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <span class="font-heading font-bold text-xl tracking-tight text-slate-900">CodeCamp<span class="text-primary-600">Chuyên Tin</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-2 lg:space-x-3 overflow-x-auto">
+                    <button onclick="switchTab('home')" class="nav-btn active text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full whitespace-nowrap" data-target="home">Lộ Trình Tổng Thể</button>
+                    <button onclick="switchTab('syllabus')" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full whitespace-nowrap" data-target="syllabus">Giáo Án & Code</button>
+                    <button onclick="switchTab('strategy')" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full whitespace-nowrap" data-target="strategy">Chiến Thuật Thi</button>
+                    <button onclick="switchTab('exams')" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full whitespace-nowrap" data-target="exams">Thư Viện Đề Thi</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow flex flex-col">
+        <!-- TAB 1: HOME -->
+        <div id="tab-home" class="tab-content active flex-grow">
+            <div class="relative hero-panel overflow-hidden py-20 lg:py-24">
+                <div class="absolute top-10 left-8 w-32 h-32 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float"></div>
+                <div class="absolute bottom-10 right-10 w-44 h-44 bg-secondary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float" style="animation-delay: 1.8s;"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                    <span class="inline-block py-1 px-4 rounded-full bg-white border border-primary-200 text-primary-700 shadow-sm text-sm font-semibold tracking-wider mb-6 uppercase">Giáo án luyện thi C++ chuyên sâu</span>
+                    <h1 class="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl animate-fade-in-up">
+                        <span class="block">Luyện Thi Chuyên Tin C++</span>
+                        <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-secondary-600 to-primary-500">Hệ Thống 48 Buổi Thực Chiến</span>
+                    </h1>
+                    <p class="mt-4 text-base text-slate-600 sm:mt-5 sm:text-lg sm:max-w-2xl mx-auto animate-fade-in-up leading-relaxed" style="animation-delay: 0.15s;">
+                        Lộ trình toàn diện từ nền tảng C++ đến các thuật toán đỉnh cao (Đồ thị, DP, Fenwick Tree, Trie) dựa trên kho tàng đề thi chuyên Tin thực tế trên toàn quốc.
+                    </p>
+                    <div class="mt-7 flex flex-col sm:flex-row justify-center gap-4">
+                        <button onclick="switchTab('syllabus')" class="px-8 py-3 border border-transparent text-lg font-semibold rounded-full text-white bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 transition shadow-lg flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-book-open"></i> Xem Giáo Án Chi Tiết
+                        </button>
+                        <button onclick="switchTab('exams')" class="px-8 py-3 border border-slate-200 text-lg font-semibold rounded-full text-slate-700 bg-white hover:bg-slate-50 transition shadow-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-code"></i> Khám Phá Kho Đề Thi
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="overview-container"></div>
+            </div>
+        </div>
+
+        <!-- TAB 2: SYLLABUS -->
+        <div id="tab-syllabus" class="tab-content py-12 flex-grow">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Tài Liệu Cấp Giáo Viên</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 font-heading">Chi Tiết 48 Buổi Học (C++)</p>
+                    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Tất cả các thuật toán chuyên sâu (Kruskal, DSU, Fenwick Tree, Trie, DP) đều được cung cấp <strong>Code mẫu hoàn chỉnh có thể biên dịch (Compilable) và Comment chi tiết</strong>.</p>
+                </div>
+                <div id="syllabus-container" class="space-y-12"></div>
+            </div>
+        </div>
+
+        <!-- TAB 3: STRATEGY -->
+        <div id="tab-strategy" class="tab-content py-12 flex-grow">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-base text-accent-600 font-semibold tracking-wide uppercase">Cẩm Nang Giáo Viên</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 font-heading">Phân Tích Đề & Chiến Thuật</p>
+                </div>
+                <div class="soft-card rounded-3xl p-8 mb-8 border-t-4 border-t-accent-500">
+                    <h3 class="text-2xl font-bold text-slate-900 font-heading mb-6 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center"><i class="fa-solid fa-chart-line"></i></div>
+                        1. Xu Hướng Đề Thi Chuyên Tin (Cập nhật mới)
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+                            <i class="fa-solid fa-triangle-exclamation text-rose-500 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Chấm dứt thời đại thuật toán "Trâu" (Brute-force)</h4>
+                                <p class="text-sm text-slate-600 mt-1">Chấm thi theo Subtask đã thành chuẩn mực (PTNK, Chuyên KHTN, Vĩnh Phúc). Nếu chỉ dùng thuật toán ngây thơ O(N²), học sinh chỉ lấy được tối đa 30% số điểm.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+                            <i class="fa-solid fa-bolt text-amber-500 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-800">Cấu Trúc Dữ Liệu Nâng Cao & Đồ Thị</h4>
+                                <p class="text-sm text-slate-600 mt-1">DSU, Kruskal, Fenwick Tree (BIT) và Trie xuất hiện ngày càng nhiều ở câu 3 và câu 4 phân loại học sinh giỏi xuất sắc. Không có các cấu trúc này, học sinh dễ bị TLE.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="soft-card rounded-3xl p-8 border-t-4 border-t-secondary-500">
+                    <h3 class="text-2xl font-bold text-slate-900 font-heading mb-6 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-secondary-100 text-secondary-600 flex items-center justify-center"><i class="fa-solid fa-brain"></i></div>
+                        2. Rèn "Phản Xạ Dữ Liệu" 
+                    </h3>
+                    <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                        <table class="w-full text-left text-sm text-slate-600">
+                            <thead class="bg-slate-100 text-slate-700 font-bold uppercase text-xs">
+                                <tr>
+                                    <th class="px-6 py-4">Nếu đề cho giới hạn (Constraints)</th>
+                                    <th class="px-6 py-4">Thuật toán cần nghĩ tới ngay</th>
+                                    <th class="px-6 py-4">Độ phức tạp an toàn</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-6 py-4 font-mono font-bold text-rose-600">N ≤ 20</td>
+                                    <td class="px-6 py-4">Đệ quy quay lui (Backtracking), Bitmask</td>
+                                    <td class="px-6 py-4 font-mono">O(2^N) hoặc O(N!)</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-6 py-4 font-mono font-bold text-blue-600">N ≤ 100,000 (10^5)</td>
+                                    <td class="px-6 py-4">Sắp xếp (Sort), Binary Search, Fenwick Tree, Two Pointers</td>
+                                    <td class="px-6 py-4 font-mono">O(N log N)</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="px-6 py-4 font-mono font-bold text-purple-600">N ≥ 10^9</td>
+                                    <td class="px-6 py-4">Toán học thuần túy, Lũy thừa nhị phân, Nghịch đảo Modulo</td>
+                                    <td class="px-6 py-4 font-mono">O(1) hoặc O(log N)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: EXAMS -->
+        <div id="tab-exams" class="tab-content py-12 flex-grow">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Thư Viện Đề Thi</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 font-heading">Kho Dữ Liệu Đề Chuyên Thực Tế</p>
+                    <p class="mt-4 text-slate-600">Tuyển tập 27 đề thi Chuyên Tin học lớp 10 từ các Tỉnh/Thành phố và Trường chuyên Đại học hàng đầu trên toàn quốc. Đã được làm sạch và chuẩn hóa.</p>
+                </div>
+                <div id="exams-container" class="space-y-10"></div>
+            </div>
+        </div>
+
+        <footer class="mt-8 border-t border-slate-200 bg-white/80 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+                <p>© 2026 Code Camp Chuyên Tin 10. Hệ thống Giáo án Thực chiến.</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- SCRIPTS FOR DATA AND RENDERING -->
+    <script src="oscar.js"></script>
+</body>
+</html>
