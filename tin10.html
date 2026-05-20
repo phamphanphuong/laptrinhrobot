@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trại Code Chuyên Tin C++ | Hệ Thống Giáo Án & Đề Thi</title>
+    <meta name="description" content="Lộ trình 48 buổi luyện thi chuyên Tin C++ toàn diện từ nền tảng đến thuật toán đỉnh cao. Kho đề thi thực tế từ các tỉnh thành toàn quốc.">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,10 +23,10 @@
                         secondary: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
                         accent: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12' }
                     },
-                    animation: { 'float': 'float 4s ease-in-out infinite', 'fade-in-up': 'fadeInUp 0.8s ease-out forwards' },
+                    animation: { 'float': 'float 4s ease-in-out infinite', 'fade-in-up': 'fadeInUp 0.6s ease-out forwards' },
                     keyframes: {
-                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
-                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(16px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
                     }
                 }
             }
@@ -32,149 +34,316 @@
     </script>
 
     <style>
+        /* ===== BASE ===== */
+        *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Montserrat', sans-serif; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeInUp 0.5s ease-out forwards; }
         html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        body {
+            background: radial-gradient(circle at top left, rgba(37,99,235,.07), transparent 34%),
+                        radial-gradient(circle at top right, rgba(14,165,233,.07), transparent 30%),
+                        linear-gradient(180deg, #f7fbff 0%, #f8fafc 50%, #eef4fb 100%);
+            padding-bottom: 72px; /* room for bottom nav on mobile */
+        }
+        @media (min-width: 768px) { body { padding-bottom: 0; } }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #eef2f7; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        body { background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 32%), radial-gradient(circle at top right, rgba(14, 165, 233, 0.08), transparent 28%), linear-gradient(180deg, #f7fbff 0%, #f8fafc 48%, #eef4fb 100%); }
-        .hero-panel { background-image: linear-gradient(rgba(238, 251, 255, 0.94), rgba(255, 255, 255, 0.93)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; }
-        .soft-card { background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(14px); border: 1px solid rgba(226, 232, 240, 0.9); box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06); }
-        .code-block { background-color: #0f172a; color: #d4d4d4; padding: 1rem; border-radius: 0.75rem; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; overflow-x: auto; margin-top: 0.5rem; margin-bottom: 1rem; border: 1px solid #1f2937; white-space: pre-wrap; }
+
+        /* ===== TABS ===== */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeInUp 0.45s ease-out forwards; }
+
+        /* ===== CARDS ===== */
+        .soft-card { background: rgba(255,255,255,.9); backdrop-filter: blur(14px); border: 1px solid rgba(226,232,240,.9); box-shadow: 0 12px 32px rgba(15,23,42,.06); }
+
+        /* ===== HERO ===== */
+        .hero-panel {
+            background-image: linear-gradient(rgba(238,251,255,.94), rgba(255,255,255,.93)),
+                url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* ===== TOP NAVBAR ===== */
         .nav-btn.active { color: #1293d5; background-color: #eefbff; font-weight: 700; }
-        .exam-card { transition: all 0.5s ease; }
-        .exam-highlight { box-shadow: 0 0 0 4px #28b4f6, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); transform: translateY(-5px); border-color: #28b4f6;}
+
+        /* ===== BOTTOM NAV (mobile only) ===== */
+        #bottom-nav {
+            display: flex;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(255,255,255,.97);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(226,232,240,.9);
+            box-shadow: 0 -4px 20px rgba(15,23,42,.08);
+            z-index: 100;
+            padding: 0;
+            height: 64px;
+        }
+        @media (min-width: 768px) { #bottom-nav { display: none; } }
+
+        .bnav-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            color: #94a3b8;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: color .2s ease;
+            padding: 8px 4px;
+            min-height: 44px;
+            border: none;
+            background: transparent;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bnav-btn i { font-size: 18px; transition: transform .2s ease; }
+        .bnav-btn.active { color: #1293d5; }
+        .bnav-btn.active i { transform: translateY(-2px); }
+        .bnav-dot {
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: #1293d5;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+        .bnav-btn.active .bnav-dot { opacity: 1; }
+
+        /* ===== CODE BLOCK ===== */
+        .code-wrap {
+            background: #0f172a;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            overflow: hidden;
+        }
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-bottom: 1px solid #1f2937;
+        }
+        .code-body {
+            padding: 14px;
+            overflow-x: auto;
+        }
+        .code-body pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1.65;
+            color: #d4d4d4;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin: 0;
+        }
+        @media (min-width: 640px) { .code-body pre { font-size: 13px; } }
+
+        /* Copy button */
+        .copy-btn {
+            font-size: 11px;
+            color: #64748b;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 3px 10px;
+            cursor: pointer;
+            transition: all .2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .copy-btn:hover { background: #334155; color: #e2e8f0; }
+        .copy-btn.copied { color: #34d399; border-color: #34d399; }
+
+        /* ===== LESSON ACCORDION (timeline toggle) ===== */
+        .timeline-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .timeline-body.open { max-height: 600px; }
+        .timeline-toggle i { transition: transform .25s ease; }
+        .timeline-toggle.open i { transform: rotate(180deg); }
+
+        /* ===== EXAM HIGHLIGHT ===== */
+        .exam-card { transition: box-shadow .4s ease, transform .4s ease; }
+        .exam-highlight {
+            box-shadow: 0 0 0 3px #28b4f6, 0 16px 32px rgba(0,0,0,.12);
+            transform: translateY(-3px);
+        }
+
+        /* ===== STRATEGY TABLE responsive ===== */
+        .strategy-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+        /* ===== TOUCH ===== */
+        button, a { cursor: pointer; }
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen overflow-x-hidden">
+<body class="text-slate-800 antialiased font-sans min-h-screen overflow-x-hidden">
 
-    <!-- NAVBAR -->
+    <!-- ===== TOP NAVBAR ===== -->
     <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <a href="#" onclick="switchTab('home')" class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary-500 to-primary-500 text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-primary-500/20">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <span class="font-heading font-bold text-xl tracking-tight text-slate-900">CodeCamp<span class="text-primary-600">Chuyên Tin</span></span>
-                    </a>
-                </div>
-                <div class="hidden md:flex items-center space-x-2 lg:space-x-3 overflow-x-auto">
-                    <button onclick="switchTab('home')" class="nav-btn active text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full whitespace-nowrap" data-target="home">Lộ Trình Tổng Thể</button>
-                    <button onclick="switchTab('syllabus')" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full whitespace-nowrap" data-target="syllabus">Giáo Án & Code</button>
-                    <button onclick="switchTab('strategy')" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full whitespace-nowrap" data-target="strategy">Chiến Thuật Thi</button>
-                    <button onclick="switchTab('exams')" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full whitespace-nowrap" data-target="exams">Thư Viện Đề Thi</button>
+            <div class="flex justify-between h-14 sm:h-16 items-center">
+                <!-- Logo -->
+                <a href="#" onclick="switchTab('home')" class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-secondary-500 to-primary-500 text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary-500/20">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <span class="font-heading font-bold text-lg sm:text-xl tracking-tight text-slate-900">CodeCamp<span class="text-primary-600">Chuyên Tin</span></span>
+                </a>
+                <!-- Desktop nav tabs -->
+                <div class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <button onclick="switchTab('home')" id="desktop-btn-home" class="nav-btn active text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full text-sm whitespace-nowrap" data-target="home">
+                        <i class="fa-solid fa-map mr-1"></i>Lộ Trình
+                    </button>
+                    <button onclick="switchTab('syllabus')" id="desktop-btn-syllabus" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full text-sm whitespace-nowrap" data-target="syllabus">
+                        <i class="fa-solid fa-book-open mr-1"></i>Giáo Án & Code
+                    </button>
+                    <button onclick="switchTab('strategy')" id="desktop-btn-strategy" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full text-sm whitespace-nowrap" data-target="strategy">
+                        <i class="fa-solid fa-chess mr-1"></i>Chiến Thuật Thi
+                    </button>
+                    <button onclick="switchTab('exams')" id="desktop-btn-exams" class="nav-btn text-slate-500 font-medium hover:text-primary-600 transition px-3 py-2 rounded-full text-sm whitespace-nowrap" data-target="exams">
+                        <i class="fa-solid fa-file-code mr-1"></i>Thư Viện Đề
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow flex flex-col">
-        <!-- TAB 1: HOME -->
+    <!-- ===== MAIN ===== -->
+    <main class="flex flex-col min-h-[calc(100vh-56px)]">
+
+        <!-- ===== TAB 1: HOME ===== -->
         <div id="tab-home" class="tab-content active flex-grow">
-            <div class="relative hero-panel overflow-hidden py-20 lg:py-24">
-                <div class="absolute top-10 left-8 w-32 h-32 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float"></div>
-                <div class="absolute bottom-10 right-10 w-44 h-44 bg-secondary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float" style="animation-delay: 1.8s;"></div>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                    <span class="inline-block py-1 px-4 rounded-full bg-white border border-primary-200 text-primary-700 shadow-sm text-sm font-semibold tracking-wider mb-6 uppercase">Giáo án luyện thi C++ chuyên sâu</span>
-                    <h1 class="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl animate-fade-in-up">
+            <!-- Hero -->
+            <div class="relative hero-panel overflow-hidden py-12 sm:py-16 lg:py-24">
+                <div class="absolute top-6 left-6 w-24 h-24 sm:w-32 sm:h-32 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float"></div>
+                <div class="absolute bottom-6 right-6 w-28 h-28 sm:w-44 sm:h-44 bg-secondary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-float" style="animation-delay: 1.8s;"></div>
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                    <span class="inline-block py-1 px-4 rounded-full bg-white border border-primary-200 text-primary-700 shadow-sm text-xs sm:text-sm font-semibold tracking-wider mb-4 sm:mb-6 uppercase">Giáo án luyện thi C++ chuyên sâu</span>
+                    <h1 class="font-extrabold text-slate-900 animate-fade-in-up leading-tight" style="font-size: clamp(1.75rem, 6vw, 4.5rem);">
                         <span class="block">Luyện Thi Chuyên Tin C++</span>
-                        <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-secondary-600 to-primary-500">Hệ Thống 48 Buổi Thực Chiến</span>
+                        <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-secondary-600 to-primary-500" style="font-size: clamp(1.25rem, 4.5vw, 3.25rem);">Hệ Thống 48 Buổi Thực Chiến</span>
                     </h1>
-                    <p class="mt-4 text-base text-slate-600 sm:mt-5 sm:text-lg sm:max-w-2xl mx-auto animate-fade-in-up leading-relaxed" style="animation-delay: 0.15s;">
+                    <p class="mt-4 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay:.15s">
                         Lộ trình toàn diện từ nền tảng C++ đến các thuật toán đỉnh cao (Đồ thị, DP, Fenwick Tree, Trie) dựa trên kho tàng đề thi chuyên Tin thực tế trên toàn quốc.
                     </p>
-                    <div class="mt-7 flex flex-col sm:flex-row justify-center gap-4">
-                        <button onclick="switchTab('syllabus')" class="px-8 py-3 border border-transparent text-lg font-semibold rounded-full text-white bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 transition shadow-lg flex items-center justify-center gap-2">
+                    <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                        <button onclick="switchTab('syllabus')" class="w-full sm:w-auto px-6 py-3 text-base font-semibold rounded-full text-white bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 transition shadow-lg flex items-center justify-center gap-2">
                             <i class="fa-solid fa-book-open"></i> Xem Giáo Án Chi Tiết
                         </button>
-                        <button onclick="switchTab('exams')" class="px-8 py-3 border border-slate-200 text-lg font-semibold rounded-full text-slate-700 bg-white hover:bg-slate-50 transition shadow-sm flex items-center justify-center gap-2">
+                        <button onclick="switchTab('exams')" class="w-full sm:w-auto px-6 py-3 text-base font-semibold rounded-full text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition shadow-sm flex items-center justify-center gap-2">
                             <i class="fa-solid fa-file-code"></i> Khám Phá Kho Đề Thi
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="overview-container"></div>
+
+            <!-- Overview Cards -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" id="overview-container"></div>
             </div>
         </div>
 
-        <!-- TAB 2: SYLLABUS -->
-        <div id="tab-syllabus" class="tab-content py-12 flex-grow">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10">
-                    <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Tài Liệu Cấp Giáo Viên</h2>
-                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 font-heading">Chi Tiết 48 Buổi Học (C++)</p>
-                    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Tất cả các thuật toán chuyên sâu (Kruskal, DSU, Fenwick Tree, Trie, DP) đều được cung cấp <strong>Code mẫu hoàn chỉnh có thể biên dịch (Compilable) và Comment chi tiết</strong>.</p>
+        <!-- ===== TAB 2: SYLLABUS ===== -->
+        <div id="tab-syllabus" class="tab-content py-8 sm:py-12 flex-grow">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-8 sm:mb-10">
+                    <h2 class="text-sm sm:text-base text-primary-600 font-semibold tracking-wide uppercase">Tài Liệu Cấp Giáo Viên</h2>
+                    <p class="mt-2 font-extrabold tracking-tight text-slate-900 font-heading" style="font-size: clamp(1.4rem, 4vw, 2rem);">Chi Tiết 48 Buổi Học (C++)</p>
+                    <p class="mt-3 text-sm text-slate-600 max-w-2xl mx-auto">Tất cả thuật toán chuyên sâu đều kèm <strong>Code mẫu hoàn chỉnh có thể biên dịch và Comment chi tiết</strong>.</p>
                 </div>
-                <div id="syllabus-container" class="space-y-12"></div>
+                <div id="syllabus-container" class="space-y-10 sm:space-y-14"></div>
             </div>
         </div>
 
-        <!-- TAB 3: STRATEGY -->
-        <div id="tab-strategy" class="tab-content py-12 flex-grow">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10">
-                    <h2 class="text-base text-accent-600 font-semibold tracking-wide uppercase">Cẩm Nang Giáo Viên</h2>
-                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 font-heading">Phân Tích Đề & Chiến Thuật</p>
+        <!-- ===== TAB 3: STRATEGY ===== -->
+        <div id="tab-strategy" class="tab-content py-8 sm:py-12 flex-grow">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-8 sm:mb-10">
+                    <h2 class="text-sm sm:text-base text-accent-600 font-semibold tracking-wide uppercase">Cẩm Nang Giáo Viên</h2>
+                    <p class="mt-2 font-extrabold tracking-tight text-slate-900 font-heading" style="font-size: clamp(1.4rem, 4vw, 2rem);">Phân Tích Đề & Chiến Thuật</p>
                 </div>
-                <div class="soft-card rounded-3xl p-8 mb-8 border-t-4 border-t-accent-500">
-                    <h3 class="text-2xl font-bold text-slate-900 font-heading mb-6 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center"><i class="fa-solid fa-chart-line"></i></div>
-                        1. Xu Hướng Đề Thi Chuyên Tin (Cập nhật mới)
+
+                <!-- Card 1: Xu hướng -->
+                <div class="soft-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 mb-6 border-t-4 border-t-accent-500">
+                    <h3 class="text-lg sm:text-2xl font-bold text-slate-900 font-heading mb-5 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-chart-line text-sm"></i></div>
+                        <span>1. Xu Hướng Đề Thi Chuyên Tin</span>
                     </h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
-                            <i class="fa-solid fa-triangle-exclamation text-rose-500 mt-1"></i>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                            <i class="fa-solid fa-triangle-exclamation text-rose-500 mt-0.5 flex-shrink-0"></i>
                             <div>
-                                <h4 class="font-bold text-slate-800">Chấm dứt thời đại thuật toán "Trâu" (Brute-force)</h4>
-                                <p class="text-sm text-slate-600 mt-1">Chấm thi theo Subtask đã thành chuẩn mực (PTNK, Chuyên KHTN, Vĩnh Phúc). Nếu chỉ dùng thuật toán ngây thơ O(N²), học sinh chỉ lấy được tối đa 30% số điểm.</p>
+                                <h4 class="font-bold text-slate-800 text-sm sm:text-base">Chấm dứt thời đại thuật toán "Trâu"</h4>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-1">Chấm thi theo Subtask đã thành chuẩn mực (PTNK, KHTN, Vĩnh Phúc). Chỉ dùng O(N²) → tối đa 30% điểm.</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
-                            <i class="fa-solid fa-bolt text-amber-500 mt-1"></i>
+                        <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                            <i class="fa-solid fa-bolt text-amber-500 mt-0.5 flex-shrink-0"></i>
                             <div>
-                                <h4 class="font-bold text-slate-800">Cấu Trúc Dữ Liệu Nâng Cao & Đồ Thị</h4>
-                                <p class="text-sm text-slate-600 mt-1">DSU, Kruskal, Fenwick Tree (BIT) và Trie xuất hiện ngày càng nhiều ở câu 3 và câu 4 phân loại học sinh giỏi xuất sắc. Không có các cấu trúc này, học sinh dễ bị TLE.</p>
+                                <h4 class="font-bold text-slate-800 text-sm sm:text-base">Cấu Trúc Dữ Liệu Nâng Cao & Đồ Thị</h4>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-1">DSU, Kruskal, Fenwick Tree (BIT) và Trie xuất hiện ngày càng nhiều ở câu 3–4 phân loại học sinh xuất sắc.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="soft-card rounded-3xl p-8 border-t-4 border-t-secondary-500">
-                    <h3 class="text-2xl font-bold text-slate-900 font-heading mb-6 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-secondary-100 text-secondary-600 flex items-center justify-center"><i class="fa-solid fa-brain"></i></div>
-                        2. Rèn "Phản Xạ Dữ Liệu" 
+
+                <!-- Card 2: Phản xạ dữ liệu -->
+                <div class="soft-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-t-4 border-t-secondary-500">
+                    <h3 class="text-lg sm:text-2xl font-bold text-slate-900 font-heading mb-5 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-secondary-100 text-secondary-600 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-brain text-sm"></i></div>
+                        <span>2. Rèn "Phản Xạ Dữ Liệu"</span>
                     </h3>
-                    <div class="overflow-x-auto rounded-2xl border border-slate-200">
+
+                    <!-- Mobile: Cards view -->
+                    <div class="flex flex-col gap-3 sm:hidden">
+                        <div class="bg-white rounded-xl border border-slate-100 p-4">
+                            <p class="font-mono font-bold text-rose-600 text-base mb-2">N ≤ 20</p>
+                            <p class="text-sm text-slate-700 mb-1"><span class="font-semibold">Thuật toán:</span> Đệ quy quay lui, Bitmask</p>
+                            <p class="font-mono text-xs text-slate-500">O(2^N) hoặc O(N!)</p>
+                        </div>
+                        <div class="bg-white rounded-xl border border-slate-100 p-4">
+                            <p class="font-mono font-bold text-blue-600 text-base mb-2">N ≤ 10<sup>5</sup></p>
+                            <p class="text-sm text-slate-700 mb-1"><span class="font-semibold">Thuật toán:</span> Sort, Binary Search, Fenwick Tree, Two Pointers</p>
+                            <p class="font-mono text-xs text-slate-500">O(N log N)</p>
+                        </div>
+                        <div class="bg-white rounded-xl border border-slate-100 p-4">
+                            <p class="font-mono font-bold text-purple-600 text-base mb-2">N ≥ 10<sup>9</sup></p>
+                            <p class="text-sm text-slate-700 mb-1"><span class="font-semibold">Thuật toán:</span> Toán học, Lũy thừa nhị phân, Nghịch đảo Modulo</p>
+                            <p class="font-mono text-xs text-slate-500">O(1) hoặc O(log N)</p>
+                        </div>
+                    </div>
+
+                    <!-- Desktop: Table view -->
+                    <div class="hidden sm:block strategy-table-wrap rounded-2xl border border-slate-200">
                         <table class="w-full text-left text-sm text-slate-600">
                             <thead class="bg-slate-100 text-slate-700 font-bold uppercase text-xs">
                                 <tr>
-                                    <th class="px-6 py-4">Nếu đề cho giới hạn (Constraints)</th>
-                                    <th class="px-6 py-4">Thuật toán cần nghĩ tới ngay</th>
-                                    <th class="px-6 py-4">Độ phức tạp an toàn</th>
+                                    <th class="px-5 py-4">Nếu đề cho giới hạn</th>
+                                    <th class="px-5 py-4">Thuật toán cần nghĩ tới ngay</th>
+                                    <th class="px-5 py-4">Độ phức tạp an toàn</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-200 bg-white">
                                 <tr class="hover:bg-slate-50">
-                                    <td class="px-6 py-4 font-mono font-bold text-rose-600">N ≤ 20</td>
-                                    <td class="px-6 py-4">Đệ quy quay lui (Backtracking), Bitmask</td>
-                                    <td class="px-6 py-4 font-mono">O(2^N) hoặc O(N!)</td>
+                                    <td class="px-5 py-4 font-mono font-bold text-rose-600">N ≤ 20</td>
+                                    <td class="px-5 py-4">Đệ quy quay lui (Backtracking), Bitmask</td>
+                                    <td class="px-5 py-4 font-mono">O(2^N) hoặc O(N!)</td>
                                 </tr>
                                 <tr class="hover:bg-slate-50">
-                                    <td class="px-6 py-4 font-mono font-bold text-blue-600">N ≤ 100,000 (10^5)</td>
-                                    <td class="px-6 py-4">Sắp xếp (Sort), Binary Search, Fenwick Tree, Two Pointers</td>
-                                    <td class="px-6 py-4 font-mono">O(N log N)</td>
+                                    <td class="px-5 py-4 font-mono font-bold text-blue-600">N ≤ 100,000</td>
+                                    <td class="px-5 py-4">Sắp xếp, Binary Search, Fenwick Tree, Two Pointers</td>
+                                    <td class="px-5 py-4 font-mono">O(N log N)</td>
                                 </tr>
                                 <tr class="hover:bg-slate-50">
-                                    <td class="px-6 py-4 font-mono font-bold text-purple-600">N ≥ 10^9</td>
-                                    <td class="px-6 py-4">Toán học thuần túy, Lũy thừa nhị phân, Nghịch đảo Modulo</td>
-                                    <td class="px-6 py-4 font-mono">O(1) hoặc O(log N)</td>
+                                    <td class="px-5 py-4 font-mono font-bold text-purple-600">N ≥ 10^9</td>
+                                    <td class="px-5 py-4">Toán học thuần túy, Lũy thừa nhị phân, Nghịch đảo Modulo</td>
+                                    <td class="px-5 py-4 font-mono">O(1) hoặc O(log N)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -183,28 +352,53 @@
             </div>
         </div>
 
-        <!-- TAB 4: EXAMS -->
-        <div id="tab-exams" class="tab-content py-12 flex-grow">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10">
-                    <h2 class="text-base text-primary-600 font-semibold tracking-wide uppercase">Thư Viện Đề Thi</h2>
-                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 font-heading">Kho Dữ Liệu Đề Chuyên Thực Tế</p>
-                    <p class="mt-4 text-slate-600">Tuyển tập 27 đề thi Chuyên Tin học lớp 10 từ các Tỉnh/Thành phố và Trường chuyên Đại học hàng đầu trên toàn quốc. Đã được làm sạch và chuẩn hóa.</p>
+        <!-- ===== TAB 4: EXAMS ===== -->
+        <div id="tab-exams" class="tab-content py-8 sm:py-12 flex-grow">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-8 sm:mb-10">
+                    <h2 class="text-sm sm:text-base text-primary-600 font-semibold tracking-wide uppercase">Thư Viện Đề Thi</h2>
+                    <p class="mt-2 font-extrabold tracking-tight text-slate-900 font-heading" style="font-size: clamp(1.4rem, 4vw, 2rem);">Kho Đề Chuyên Thực Tế</p>
+                    <p class="mt-3 text-sm text-slate-600 max-w-2xl mx-auto">Tuyển tập 27 đề thi Chuyên Tin lớp 10 từ các tỉnh/thành phố và trường chuyên đại học hàng đầu. Đã được làm sạch và chuẩn hóa.</p>
                 </div>
-                <div id="exams-container" class="space-y-10"></div>
+                <div id="exams-container" class="space-y-6 sm:space-y-10"></div>
             </div>
         </div>
 
-        <footer class="mt-8 border-t border-slate-200 bg-white/80 backdrop-blur-md">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+        <!-- Footer (desktop only, hidden on mobile by bottom nav) -->
+        <footer class="mt-8 border-t border-slate-200 bg-white/80 backdrop-blur-md hidden md:block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
                 <p>© 2026 Code Camp Chuyên Tin 10. Hệ thống Giáo án Thực chiến.</p>
             </div>
         </footer>
     </main>
 
-    <!-- SCRIPTS FOR DATA AND RENDERING -->
+    <!-- ===== BOTTOM NAV (mobile) ===== -->
+    <nav id="bottom-nav" role="navigation" aria-label="Mobile navigation">
+        <button id="bnav-home" onclick="switchTab('home')" class="bnav-btn active" aria-label="Lộ Trình">
+            <i class="fa-solid fa-map"></i>
+            <span>Lộ Trình</span>
+            <div class="bnav-dot"></div>
+        </button>
+        <button id="bnav-syllabus" onclick="switchTab('syllabus')" class="bnav-btn" aria-label="Giáo Án">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Giáo Án</span>
+            <div class="bnav-dot"></div>
+        </button>
+        <button id="bnav-strategy" onclick="switchTab('strategy')" class="bnav-btn" aria-label="Chiến Thuật">
+            <i class="fa-solid fa-chess"></i>
+            <span>Chiến Thuật</span>
+            <div class="bnav-dot"></div>
+        </button>
+        <button id="bnav-exams" onclick="switchTab('exams')" class="bnav-btn" aria-label="Đề Thi">
+            <i class="fa-solid fa-file-code"></i>
+            <span>Đề Thi</span>
+            <div class="bnav-dot"></div>
+        </button>
+    </nav>
+
+    <!-- ===== SCRIPTS ===== -->
     <script>
-        // --- 1. DATA: RAW EXAMS ---
+        // ---- DATA: RAW EXAMS ----
         const rawExamDatabase = [
             {
                 "id": "EXAM_KIEN_GIANG_2025",
@@ -213,9 +407,9 @@
                 "subject": "MÔN THI: TIN HỌC (chuyên)",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 1. Tính tiền Taxi (2,5 điểm)", "context": "Tính tổng số tiền thanh toán dựa trên quãng đường và thời gian chờ (Giá cước + Giá dịch vụ) theo bảng giá phân nấc.", "requirement": "Lập trình tính tổng số tiền thanh toán.", "input": "n (số km), t (thời gian chờ)", "output": "Số tiền tương ứng" },
-                    { "name": "Bài 2. Bộ ba số (2,5 điểm)", "context": "Số tự nhiên n biến đổi bằng cách xóa các chữ số giống nhau. Tìm các bộ ba số abc thỏa mãn a = b + c (b > c).", "requirement": "Biến đổi n và tìm các bộ 3 số thỏa mãn.", "input": "Số tự nhiên n.", "output": "Số n sau biến đổi và các bộ ba tìm được." },
-                    { "name": "Bài 3. Bội số nguyên tố (2,5 điểm)", "context": "Tìm trong khoảng từ 1 đến n có bao nhiêu số chia hết cho ít nhất một trong k số nguyên tố phân biệt đã cho.", "requirement": "Tìm số lượng số chia hết.", "input": "n, k và k số nguyên tố.", "output": "Số lượng các số tìm được." },
+                    { "name": "Bài 1. Tính tiền Taxi (2,5 điểm)", "context": "Tính tổng số tiền thanh toán dựa trên quãng đường và thời gian chờ theo bảng giá phân nấc.", "requirement": "Lập trình tính tổng số tiền thanh toán.", "input": "n (số km), t (thời gian chờ)", "output": "Số tiền tương ứng" },
+                    { "name": "Bài 2. Bộ ba số (2,5 điểm)", "context": "Tìm các bộ ba số abc thỏa mãn a = b + c (b > c).", "requirement": "Biến đổi n và tìm các bộ 3 số thỏa mãn.", "input": "Số tự nhiên n.", "output": "Số n sau biến đổi và các bộ ba tìm được." },
+                    { "name": "Bài 3. Bội số nguyên tố (2,5 điểm)", "context": "Tìm trong khoảng 1 đến n có bao nhiêu số chia hết cho ít nhất một trong k số nguyên tố đã cho.", "requirement": "Tìm số lượng số chia hết.", "input": "n, k và k số nguyên tố.", "output": "Số lượng các số tìm được." },
                     { "name": "Bài 4. Căn hộ (2,5 điểm)", "context": "Phân bổ m căn hộ cho n khách hàng sao cho diện tích đáp ứng chênh lệch k nhỏ nhất.", "requirement": "Tìm số khách hàng nhận được căn hộ thỏa mãn.", "input": "n, m, k và mảng diện tích mong muốn, diện tích bán.", "output": "Số khách hàng thỏa mãn." }
                 ]
             },
@@ -226,11 +420,11 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 1: Three", "context": "Tìm mã lỗi nghiêm trọng có giá trị nhỏ nhất (xuất hiện ít nhất 3 lần).", "input": "Số lượng bản ghi n (<= 10^5) và dãy số Ai.", "output": "Mã lỗi nhỏ nhất." },
-                    { "name": "Bài 2: Move", "context": "Chuỗi ký tự '+' và '-' biểu thị tăng giảm cao độ.", "requirement": "Tính chênh lệch lớn nhất giữa điểm cao nhất và thấp nhất.", "input": "Chuỗi dài n <= 10^5.", "output": "Chênh lệch cao độ lớn nhất." },
-                    { "name": "Bài 3: Aba", "context": "Tìm kịch bản cảnh báo chung dài nhất từ 2 chuỗi nhị phân.", "requirement": "Sử dụng quy hoạch động chuỗi con chung LCS.", "input": "Hai chuỗi nhị phân dài <= 5000.", "output": "Độ dài lớn nhất kịch bản chung." },
-                    { "name": "Bài 4: Duo", "context": "Hai mảng A, B. Tìm đoạn liên tiếp dài nhất sao cho trung bình cộng (A) + trung bình cộng (B) >= M.", "input": "Mảng A, B độ dài <= 10^5.", "output": "Độ dài lớn nhất." },
-                    { "name": "Bài 5: Pain", "context": "Tìm khoảng thời gian liên tục dài nhất thỏa: Max <= X, Min >= Y, Max 2nd <= Z.", "input": "Mảng nhiệt độ dài <= 10^5, X, Y, Z.", "output": "Độ dài lớn nhất." }
+                    { "name": "Bài 1: Three", "context": "Tìm mã lỗi nghiêm trọng có giá trị nhỏ nhất (xuất hiện ít nhất 3 lần).", "input": "Số lượng bản ghi n (≤ 10^5) và dãy số Ai.", "output": "Mã lỗi nhỏ nhất." },
+                    { "name": "Bài 2: Move", "context": "Chuỗi ký tự '+' và '-' biểu thị tăng giảm cao độ.", "requirement": "Tính chênh lệch lớn nhất giữa điểm cao nhất và thấp nhất.", "input": "Chuỗi dài n ≤ 10^5.", "output": "Chênh lệch cao độ lớn nhất." },
+                    { "name": "Bài 3: Aba", "context": "Tìm kịch bản cảnh báo chung dài nhất từ 2 chuỗi nhị phân.", "requirement": "Sử dụng quy hoạch động chuỗi con chung LCS.", "input": "Hai chuỗi nhị phân dài ≤ 5000.", "output": "Độ dài lớn nhất kịch bản chung." },
+                    { "name": "Bài 4: Duo", "context": "Hai mảng A, B. Tìm đoạn liên tiếp dài nhất sao cho trung bình cộng (A) + trung bình cộng (B) ≥ M.", "input": "Mảng A, B độ dài ≤ 10^5.", "output": "Độ dài lớn nhất." },
+                    { "name": "Bài 5: Pain", "context": "Tìm khoảng thời gian liên tục dài nhất thỏa: Max ≤ X, Min ≥ Y, Max 2nd ≤ Z.", "input": "Mảng nhiệt độ dài ≤ 10^5, X, Y, Z.", "output": "Độ dài lớn nhất." }
                 ]
             },
             {
@@ -240,10 +434,10 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Câu 1. Dãy vô hạn [KXKBLOCK]", "context": "Dãy vô hạn xây dựng theo block. Nhóm thứ k gồm k khối, mỗi khối có k phần tử.", "requirement": "Tìm giá trị của phần tử thứ n.", "input": "n <= 10^18.", "output": "Số nguyên an." },
+                    { "name": "Câu 1. Dãy vô hạn [KXKBLOCK]", "context": "Dãy vô hạn xây dựng theo block. Nhóm thứ k gồm k khối, mỗi khối có k phần tử.", "requirement": "Tìm giá trị của phần tử thứ n.", "input": "n ≤ 10^18.", "output": "Số nguyên an." },
                     { "name": "Câu 2. Số mềm [SOFTNUM]", "context": "Tìm số nguyên dương nhỏ nhất dựa trên chuỗi quy tắc +, -, =.", "requirement": "Tìm số mềm nhỏ nhất có xâu mã hóa tương ứng.", "input": "Chuỗi S gồm +, -, =.", "output": "Số tìm được." },
-                    { "name": "Câu 3. Truy vấn chia hết [DIVQUERY]", "context": "Dãy N phần tử. Q truy vấn: Đếm số phần tử trong đoạn [L, R] là ước hoặc bội của d.", "input": "Mảng A (N <= 10^5). Q truy vấn (L, R, d).", "output": "Q dòng kết quả." },
-                    { "name": "Câu 4. Phần tử nhìn thấy [VISIBLE]", "context": "Tính tổng các phần tử 'nhìn thấy được' từ 2 phía cho mọi đoạn con [L, R].", "input": "Mảng A (N <= 10^5).", "output": "Tổng giá trị." }
+                    { "name": "Câu 3. Truy vấn chia hết [DIVQUERY]", "context": "Dãy N phần tử. Q truy vấn: Đếm số phần tử trong đoạn [L, R] là ước hoặc bội của d.", "input": "Mảng A (N ≤ 10^5). Q truy vấn (L, R, d).", "output": "Q dòng kết quả." },
+                    { "name": "Câu 4. Phần tử nhìn thấy [VISIBLE]", "context": "Tính tổng các phần tử 'nhìn thấy được' từ 2 phía cho mọi đoạn con [L, R].", "input": "Mảng A (N ≤ 10^5).", "output": "Tổng giá trị." }
                 ]
             },
             {
@@ -254,10 +448,10 @@
                 "duration": "150 phút",
                 "questions": [
                     { "name": "Bài 1. BẰNG NHAU", "context": "Chia 4 quả cam cho 2 em sao cho tổng khối lượng 2 phần bằng nhau.", "input": "a, b, c, d.", "output": "CO / KHONG." },
-                    { "name": "Bài 2. KHÁC NHAU", "context": "Tìm tất cả số y <= n sao cho ước chung lớn nhất của x và y bằng 1.", "input": "x, n (<= 1000).", "output": "Các số y." },
-                    { "name": "Bài 3. CẮT DÂY", "context": "Sợi dây dài n. K lần cắt đoạn dài nhất chia đôi.", "input": "n, k <= 10^18.", "output": "Độ dài đoạn lớn nhất và số lượng đoạn đó." },
-                    { "name": "Bài 4. CHÍNH PHƯƠNG", "context": "Tập k phần tử tổng bằng n, tổng bất kỳ k-1 phần tử là số chính phương.", "input": "n <= 10000, k <= 10.", "output": "Số lượng tập hợp." },
-                    { "name": "Bài 5. CHỤP ẢNH", "context": "Xếp hàng N1 nam, N2 nữ xen kẽ nhau.", "input": "N1, N2 <= 100.", "output": "Số cách lấy modulo 10^9+7." }
+                    { "name": "Bài 2. KHÁC NHAU", "context": "Tìm tất cả số y ≤ n sao cho ước chung lớn nhất của x và y bằng 1.", "input": "x, n (≤ 1000).", "output": "Các số y." },
+                    { "name": "Bài 3. CẮT DÂY", "context": "Sợi dây dài n. K lần cắt đoạn dài nhất chia đôi.", "input": "n, k ≤ 10^18.", "output": "Độ dài đoạn lớn nhất và số lượng đoạn đó." },
+                    { "name": "Bài 4. CHÍNH PHƯƠNG", "context": "Tập k phần tử tổng bằng n, tổng bất kỳ k-1 phần tử là số chính phương.", "input": "n ≤ 10000, k ≤ 10.", "output": "Số lượng tập hợp." },
+                    { "name": "Bài 5. CHỤP ẢNH", "context": "Xếp hàng N1 nam, N2 nữ xen kẽ nhau.", "input": "N1, N2 ≤ 100.", "output": "Số cách lấy modulo 10^9+7." }
                 ]
             },
             {
@@ -269,8 +463,8 @@
                 "questions": [
                     { "name": "Bài 1: CHUỖI ONLINE BẠN BÈ", "context": "Tìm khoảng thời gian ONLINE liên tục dài nhất.", "input": "T phút, dãy trạng thái.", "output": "Độ dài Max." },
                     { "name": "Bài 2: HÀNH TRÌNH XE ĐIỆN", "context": "Xe điện từ 0 đến D_target. Trạm sạc tại D_i. Pin chứa được P_max.", "requirement": "Tính số lần sạc tối thiểu (Greedy).", "input": "N, P_max, D_target và N vị trí trạm.", "output": "Số lần sạc." },
-                    { "name": "Bài 3: TRÒ CHƠI XẾP CHỮ", "context": "Xóa kí tự để thành Palindrome (Quy hoạch động LCS ngược).", "input": "Chuỗi S <= 2000.", "output": "Số lượt ít nhất." },
-                    { "name": "Bài 4: TỐI ƯU GIAO DỊCH BLOCKCHAIN", "context": "Chọn giao dịch (Fi, Si) cho vào khối S_max. Có ràng buộc (A chọn thì B phải chọn).", "requirement": "Quy hoạch động Ba lô biến thể trên Cây / Đồ thị.", "input": "N, S_max, D ràng buộc.", "output": "Tổng phí lớn nhất." }
+                    { "name": "Bài 3: TRÒ CHƠI XẾP CHỮ", "context": "Xóa kí tự để thành Palindrome (Quy hoạch động LCS ngược).", "input": "Chuỗi S ≤ 2000.", "output": "Số lượt ít nhất." },
+                    { "name": "Bài 4: TỐI ƯU GIAO DỊCH BLOCKCHAIN", "context": "Chọn giao dịch (Fi, Si) cho vào khối S_max. Có ràng buộc (A chọn thì B phải chọn).", "requirement": "Quy hoạch động Ba lô biến thể.", "input": "N, S_max, D ràng buộc.", "output": "Tổng phí lớn nhất." }
                 ]
             },
             {
@@ -280,10 +474,10 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 1: SỐ CHÍNH PHƯƠNG", "context": "Đếm cặp (i, j) với 1 <= i < j <= n sao cho i*j là số chính phương.", "input": "n <= 10^5.", "output": "Số lượng cặp." },
-                    { "name": "Bài 2: HỘI THAO", "context": "Đếm số cách chọn 2 VĐV có tổng trọng lượng <= p.", "requirement": "Sắp xếp và Two Pointers / Binary Search.", "input": "n <= 2*10^5, mảng trọng lượng.", "output": "Số cách." },
+                    { "name": "Bài 1: SỐ CHÍNH PHƯƠNG", "context": "Đếm cặp (i, j) với 1 ≤ i < j ≤ n sao cho i*j là số chính phương.", "input": "n ≤ 10^5.", "output": "Số lượng cặp." },
+                    { "name": "Bài 2: HỘI THAO", "context": "Đếm số cách chọn 2 VĐV có tổng trọng lượng ≤ p.", "requirement": "Sắp xếp và Two Pointers / Binary Search.", "input": "n ≤ 2*10^5, mảng trọng lượng.", "output": "Số cách." },
                     { "name": "Bài 3: ROBOT", "context": "Tìm chuỗi bằng cách di chuyển qua lại hoặc nhảy đến vị trí có ký tự giống nhau.", "requirement": "BFS / DP.", "input": "Chuỗi nguồn, chuỗi đích.", "output": "Thời gian ngắn nhất." },
-                    { "name": "Bài 4: TINH THỂ", "context": "Đi từ 1 đến N, thu thập tinh thể (âm/dương), tổng không bao giờ được âm. Tìm max tinh thể.", "input": "Mảng A_i (N <= 2*10^5).", "output": "Số lượng tối đa." }
+                    { "name": "Bài 4: TINH THỂ", "context": "Đi từ 1 đến N, thu thập tinh thể (âm/dương), tổng không bao giờ được âm. Tìm max tinh thể.", "input": "Mảng A_i (N ≤ 2*10^5).", "output": "Số lượng tối đa." }
                 ]
             },
             {
@@ -293,9 +487,9 @@
                 "subject": "TIN HỌC",
                 "duration": "150 Phút",
                 "questions": [
-                    { "name": "vali", "context": "Kem và cá sấu Kẹp cõng nhau và mang vali nặng Z. Trọng lượng vali có thể vứt bớt. Tìm trọng lượng hàng lớn nhất có thể mang.", "input": "A, B, C, D, Z <= 10^18.", "output": "Khối lượng tối đa hoặc -1." },
+                    { "name": "vali", "context": "Kem và cá sấu Kẹp cõng nhau và mang vali nặng Z. Tìm trọng lượng hàng lớn nhất có thể mang.", "input": "A, B, C, D, Z ≤ 10^18.", "output": "Khối lượng tối đa hoặc -1." },
                     { "name": "politik", "context": "Sắp xếp phòng 3 người cho đảng viên 3 đảng. 2 người cùng đảng sẽ thuyết phục được người kia.", "input": "a, b, c.", "output": "Số đảng viên lớn nhất sau xếp phòng." },
-                    { "name": "number", "context": "Tìm độ dài cấp số cộng dài nhất chứa a_i và a_j.", "input": "n <= 1000, mảng a.", "output": "Độ dài Max cho Q truy vấn." }
+                    { "name": "number", "context": "Tìm độ dài cấp số cộng dài nhất chứa a_i và a_j.", "input": "n ≤ 1000, mảng a.", "output": "Độ dài Max cho Q truy vấn." }
                 ]
             },
             {
@@ -307,7 +501,7 @@
                 "questions": [
                     { "name": "Câu 3. WATER", "context": "3 chiếc cốc, rót nước qua lại N lần.", "input": "Dung tích A,B,C và N truy vấn rót.", "output": "Lượng nước cuối cùng." },
                     { "name": "Câu 4. FARM", "context": "Chọn các thửa ruộng thu hoạch để Max giá trị. Chọn 1 thửa phải bỏ qua K thửa tiếp.", "input": "N, K và mảng A_i.", "output": "Tổng max." },
-                    { "name": "Câu 6. TUI", "context": "Chọn đá quý vào túi S kg sao cho tổng giá trị lớn nhất (Ba lô 0/1).", "input": "N <= 100, S <= 10^5.", "output": "Lợi nhuận lớn nhất." }
+                    { "name": "Câu 6. TUI", "context": "Chọn đá quý vào túi S kg sao cho tổng giá trị lớn nhất (Ba lô 0/1).", "input": "N ≤ 100, S ≤ 10^5.", "output": "Lợi nhuận lớn nhất." }
                 ]
             },
             {
@@ -317,8 +511,8 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Câu 2. Đếm kí tự", "context": "Đếm số lần xuất hiện của kí tự ch trong xâu S.", "input": "Xâu S độ dài <= 10^6.", "output": "Số lần đếm được." },
-                    { "name": "Câu 4. Robot tìm đường đi", "context": "Di chuyển trên lưới (i x j). Phải tìm đường đến ô có giá trị K với số bước ít nhất.", "input": "K <= 10^10.", "output": "Số ô ít nhất." }
+                    { "name": "Câu 2. Đếm kí tự", "context": "Đếm số lần xuất hiện của kí tự ch trong xâu S.", "input": "Xâu S độ dài ≤ 10^6.", "output": "Số lần đếm được." },
+                    { "name": "Câu 4. Robot tìm đường đi", "context": "Di chuyển trên lưới (i x j). Phải tìm đường đến ô có giá trị K với số bước ít nhất.", "input": "K ≤ 10^10.", "output": "Số ô ít nhất." }
                 ]
             },
             {
@@ -328,8 +522,8 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 3. Tặng quà", "context": "Mua 2 món quà có tổng giá trị lớn nhất nhưng <= X.", "input": "N <= 10^5, X <= 10^9.", "output": "Số tiền cần chi trả." },
-                    { "name": "Bài 4. Xâu đối xứng", "context": "Thêm ký tự vào TRÁI xâu để tạo thành xâu đối xứng ngắn nhất.", "input": "Xâu S <= 500,000 ký tự.", "output": "Độ dài xâu mới." }
+                    { "name": "Bài 3. Tặng quà", "context": "Mua 2 món quà có tổng giá trị lớn nhất nhưng ≤ X.", "input": "N ≤ 10^5, X ≤ 10^9.", "output": "Số tiền cần chi trả." },
+                    { "name": "Bài 4. Xâu đối xứng", "context": "Thêm ký tự vào TRÁI xâu để tạo thành xâu đối xứng ngắn nhất.", "input": "Xâu S ≤ 500,000 ký tự.", "output": "Độ dài xâu mới." }
                 ]
             },
             {
@@ -339,8 +533,8 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Câu 1. Số thú vị", "context": "Đếm số lượng số trong [a, b] có 2 chữ số tận cùng chia hết cho k.", "input": "T test, a, b <= 10^18.", "output": "Số lượng số." },
-                    { "name": "Câu 4. Đầu tư tài chính", "context": "Chọn K thời điểm đầu tư trong N ngày để đạt tổng lợi nhuận S lớn nhất.", "input": "N <= 10^5, K <= 100.", "output": "Tổng max và số cách." }
+                    { "name": "Câu 1. Số thú vị", "context": "Đếm số lượng số trong [a, b] có 2 chữ số tận cùng chia hết cho k.", "input": "T test, a, b ≤ 10^18.", "output": "Số lượng số." },
+                    { "name": "Câu 4. Đầu tư tài chính", "context": "Chọn K thời điểm đầu tư trong N ngày để đạt tổng lợi nhuận S lớn nhất.", "input": "N ≤ 10^5, K ≤ 100.", "output": "Tổng max và số cách." }
                 ]
             },
             {
@@ -350,7 +544,7 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 1. Chữ số tận cùng", "context": "Tìm chữ số tận cùng của a^b.", "input": "a, b <= 10^8.", "output": "Chữ số tận cùng." },
+                    { "name": "Bài 1. Chữ số tận cùng", "context": "Tìm chữ số tận cùng của a^b.", "input": "a, b ≤ 10^8.", "output": "Chữ số tận cùng." },
                     { "name": "Bài 4. Trò chơi xóa số", "context": "Xóa đi một số chữ số liên tiếp của N để tạo thành số chia hết cho 3. Đếm số cách xóa.", "input": "N dài tới 10^5 chữ số.", "output": "Số cách xóa." }
                 ]
             },
@@ -361,8 +555,8 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 3. Danh sách", "context": "Hoán đổi tối đa 2 chữ cái để tên công ty có thứ tự từ điển nhỏ nhất.", "input": "Xâu độ dài <= 10^6.", "output": "Xâu tối ưu." },
-                    { "name": "Bài 4. Chiến tranh vì sao", "context": "Đi từ hành tinh i đến j (j>i) nhận sức mạnh gcd(a_i, a_j). Tìm đường đi có tổng sức mạnh Max.", "input": "N <= 2*10^5.", "output": "Tổng Max." }
+                    { "name": "Bài 3. Danh sách", "context": "Hoán đổi tối đa 2 chữ cái để tên công ty có thứ tự từ điển nhỏ nhất.", "input": "Xâu độ dài ≤ 10^6.", "output": "Xâu tối ưu." },
+                    { "name": "Bài 4. Chiến tranh vì sao", "context": "Đi từ hành tinh i đến j (j>i) nhận sức mạnh gcd(a_i, a_j). Tìm đường đi có tổng sức mạnh Max.", "input": "N ≤ 2*10^5.", "output": "Tổng Max." }
                 ]
             },
             {
@@ -372,19 +566,8 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 2. Tổng dãy", "context": "Đếm số cặp (i,j) sao cho tổng đoạn [i, j] là số chẵn.", "input": "N <= 10^5, mảng A.", "output": "Số cặp." },
-                    { "name": "Bài 4. Dãy con chung", "context": "Tìm độ dài LỚN NHẤT của dãy con chung KHÔNG GIẢM của A và B (Chỉ gồm số 0, 1).", "input": "Mảng A, B độ dài <= 2*10^5.", "output": "Độ dài LCS." }
-                ]
-            },
-            {
-                "id": "EXAM_UNNAMED_01",
-                "province": "SƯU TẦM",
-                "title": "Đề Khảo Sát Định Kỳ",
-                "subject": "TIN HỌC",
-                "duration": "120 phút",
-                "questions": [
-                    { "name": "Bài 2", "context": "Tính số dư của 2^(3^N) khi chia cho 5.", "input": "N", "output": "Số dư" },
-                    { "name": "Bài 3", "context": "Tìm khoảng cách nhỏ nhất giữa hai số bằng nhau trong dãy.", "input": "Mảng A độ dài <= 10^5.", "output": "Khoảng cách." }
+                    { "name": "Bài 2. Tổng dãy", "context": "Đếm số cặp (i,j) sao cho tổng đoạn [i, j] là số chẵn.", "input": "N ≤ 10^5, mảng A.", "output": "Số cặp." },
+                    { "name": "Bài 4. Dãy con chung", "context": "Tìm độ dài LỚN NHẤT của dãy con chung KHÔNG GIẢM của A và B (Chỉ gồm số 0, 1).", "input": "Mảng A, B độ dài ≤ 2*10^5.", "output": "Độ dài LCS." }
                 ]
             },
             {
@@ -394,8 +577,8 @@
                 "subject": "TIN HỌC CHUYÊN",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 2: Đắp núi", "context": "Tăng độ cao mảng A để tạo thành cấu trúc ngọn núi (Tăng trái, giảm phải). Tìm chi phí tối thiểu.", "input": "N <= 10^5.", "output": "Chi phí Min." },
-                    { "name": "Bài 3: Lọc nước", "context": "N hệ thống, M bồn chứa. Mô phỏng luồng nước chảy.", "input": "N <= 2*10^5, M <= 10^9.", "output": "Lượng nước thu được." }
+                    { "name": "Bài 2: Đắp núi", "context": "Tăng độ cao mảng A để tạo thành cấu trúc ngọn núi (Tăng trái, giảm phải). Tìm chi phí tối thiểu.", "input": "N ≤ 10^5.", "output": "Chi phí Min." },
+                    { "name": "Bài 3: Lọc nước", "context": "N hệ thống, M bồn chứa. Mô phỏng luồng nước chảy.", "input": "N ≤ 2*10^5, M ≤ 10^9.", "output": "Lượng nước thu được." }
                 ]
             },
             {
@@ -405,8 +588,8 @@
                 "subject": "TIN HỌC CHUYÊN",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 2: Giao hàng", "context": "Robot di chuyển giao N đơn hàng trên trục tọa độ 1D.", "input": "N <= 3*10^5, M <= 10^9.", "output": "Đường đi Min." },
-                    { "name": "Bài 3: Đào vàng", "context": "Dùng máy khoan bán kính R, đào tối đa K lần lấy hết N thỏi vàng. Tìm R nhỏ nhất.", "input": "N <= 50000, K <= 20.", "output": "Bán kính R Min." }
+                    { "name": "Bài 2: Giao hàng", "context": "Robot di chuyển giao N đơn hàng trên trục tọa độ 1D.", "input": "N ≤ 3*10^5, M ≤ 10^9.", "output": "Đường đi Min." },
+                    { "name": "Bài 3: Đào vàng", "context": "Dùng máy khoan bán kính R, đào tối đa K lần lấy hết N thỏi vàng. Tìm R nhỏ nhất.", "input": "N ≤ 50000, K ≤ 20.", "output": "Bán kính R Min." }
                 ]
             },
             {
@@ -416,8 +599,8 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Câu 1. Số đặc biệt", "context": "Đếm số có đúng 4 ước trong đoạn [L, R].", "input": "L, R <= 10^6.", "output": "Số lượng." },
-                    { "name": "Câu 3. Số đẹp", "context": "S = a * (a+1) * ... * b. Hỏi cần xóa bao nhiêu số 0 tận cùng để S không còn số 0 tận cùng.", "input": "a < b <= 10^16.", "output": "Số lượng số 0." }
+                    { "name": "Câu 1. Số đặc biệt", "context": "Đếm số có đúng 4 ước trong đoạn [L, R].", "input": "L, R ≤ 10^6.", "output": "Số lượng." },
+                    { "name": "Câu 3. Số đẹp", "context": "S = a * (a+1) * ... * b. Hỏi cần xóa bao nhiêu số 0 tận cùng để S không còn số 0 tận cùng.", "input": "a < b ≤ 10^16.", "output": "Số lượng số 0." }
                 ]
             },
             {
@@ -427,7 +610,7 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 3. Bài tập về nhà", "context": "Đếm có bao nhiêu số có ĐÚNG 3 ước dương trong dãy A.", "input": "N <= 10^4.", "output": "Số lượng." }
+                    { "name": "Bài 3. Bài tập về nhà", "context": "Đếm có bao nhiêu số có ĐÚNG 3 ước dương trong dãy A.", "input": "N ≤ 10^4.", "output": "Số lượng." }
                 ]
             },
             {
@@ -437,8 +620,8 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 2. Mã hóa", "context": "Đưa 1 ký tự vào xâu Y rồi đảo ngược Y.", "input": "Xâu X <= 10^6.", "output": "Xâu Y cuối cùng." },
-                    { "name": "Bài 4. Lựa chọn cấu hình", "context": "Chọn 4 bộ phận máy tính sao cho tổng điểm Max và chi phí <= M.", "input": "M <= 10^9.", "output": "Tổng điểm Max." }
+                    { "name": "Bài 2. Mã hóa", "context": "Đưa 1 ký tự vào xâu Y rồi đảo ngược Y.", "input": "Xâu X ≤ 10^6.", "output": "Xâu Y cuối cùng." },
+                    { "name": "Bài 4. Lựa chọn cấu hình", "context": "Chọn 4 bộ phận máy tính sao cho tổng điểm Max và chi phí ≤ M.", "input": "M ≤ 10^9.", "output": "Tổng điểm Max." }
                 ]
             },
             {
@@ -448,9 +631,9 @@
                 "subject": "TIN HỌC",
                 "duration": "150 phút",
                 "questions": [
-                    { "name": "Bài 1. Số song nguyên tố", "context": "Số n nguyên tố và tổng chữ số cũng là nguyên tố. Đếm trong [L, R].", "input": "L <= R <= 10^6.", "output": "Số lượng." },
-                    { "name": "Bài 3. Mật khẩu", "context": "Mật khẩu là xâu con gồm các ký tự phân biệt dài nhất.", "input": "N xâu <= 256 ký tự.", "output": "Mật khẩu." },
-                    { "name": "Bài 4. Robot mang quà", "context": "Đi trên lưới từ cột 1 đến cột M. Tại mỗi bước đi sang cột kế tiếp (chéo lên, chéo xuống, hoặc ngang).", "input": "Lưới N x M <= 1000.", "output": "Tổng quà Max." }
+                    { "name": "Bài 1. Số song nguyên tố", "context": "Số n nguyên tố và tổng chữ số cũng là nguyên tố. Đếm trong [L, R].", "input": "L ≤ R ≤ 10^6.", "output": "Số lượng." },
+                    { "name": "Bài 3. Mật khẩu", "context": "Mật khẩu là xâu con gồm các ký tự phân biệt dài nhất.", "input": "N xâu ≤ 256 ký tự.", "output": "Mật khẩu." },
+                    { "name": "Bài 4. Robot mang quà", "context": "Đi trên lưới từ cột 1 đến cột M. Tại mỗi bước đi sang cột kế tiếp (chéo lên, chéo xuống, hoặc ngang).", "input": "Lưới N x M ≤ 1000.", "output": "Tổng quà Max." }
                 ]
             },
             {
@@ -460,307 +643,343 @@
                 "subject": "TIN HỌC",
                 "duration": "120 phút",
                 "questions": [
-                    { "name": "Bài 1. Tổng lớn nhất", "context": "Tìm m (1 <= m < n-1) để GCD(m, n) + m lớn nhất.", "input": "n <= 10^14.", "output": "Số m." },
-                    { "name": "Bài 3. Trò chơi", "context": "Tìm kích thước khung 1xk nhỏ nhất trượt trên mảng sao cho tổng luôn >= M.", "input": "n <= 10^6, M <= 10^9.", "output": "Số k." }
+                    { "name": "Bài 1. Tổng lớn nhất", "context": "Tìm m (1 ≤ m < n-1) để GCD(m, n) + m lớn nhất.", "input": "n ≤ 10^14.", "output": "Số m." },
+                    { "name": "Bài 3. Trò chơi", "context": "Tìm kích thước khung 1xk nhỏ nhất trượt trên mảng sao cho tổng luôn ≥ M.", "input": "n ≤ 10^6, M ≤ 10^9.", "output": "Số k." }
                 ]
             }
         ];
 
-        // --- HÀM LÀM SẠCH DỮ LIỆU [CITE] ---
-        const cleanDB = (db) => {
-            const regex = /\+\]/g;
-            const strip = (str) => typeof str === 'string' ? str.replace(regex, '').trim() : str;
-            return JSON.parse(JSON.stringify(db), (key, value) => typeof value === 'string' ? strip(value) : value);
-        };
-        const examDatabaseCleaned = cleanDB(rawExamDatabase);
-
-        // --- 2. DATA: SYLLABUS PHASES ---
+        // ---- DATA: SYLLABUS ----
         const lesson = (session, name, timeline, code, tasks, realExams = []) => ({ session, name, timeline, code, tasks, realExams });
 
-        // Phase 1 with Real Exams Links
+        // Color map for each phase (used in inline styles to avoid Tailwind purge issues)
+        const phaseColorMap = [
+            { bg: '#0284c7', light: '#f0f9ff', text: '#0284c7', border: '#0284c7', icon: 'fa-seedling' },   // sky
+            { bg: '#059669', light: '#ecfdf5', text: '#059669', border: '#059669', icon: 'fa-layer-group' }, // emerald
+            { bg: '#7c3aed', light: '#f5f3ff', text: '#7c3aed', border: '#7c3aed', icon: 'fa-calculator' }, // violet
+            { bg: '#ea580c', light: '#fff7ed', text: '#ea580c', border: '#ea580c', icon: 'fa-diagram-project' }, // orange
+            { bg: '#4338ca', light: '#eef2ff', text: '#4338ca', border: '#4338ca', icon: 'fa-wand-magic-sparkles' }, // indigo
+            { bg: '#e11d48', light: '#fff1f2', text: '#e11d48', border: '#e11d48', icon: 'fa-trophy' }      // rose
+        ];
+
         const phase1 = {
             phaseId: 1, title: "GIAI ĐOẠN 1: NỀN TẢNG C++ & TƯ DUY LẬP TRÌNH CHUẨN", time: "THÁNG 1 - 2", duration: "8 Buổi (24 Giờ)",
-            bgClass: "bg-sky-600", textClass: "text-sky-600", lightBgClass: "bg-sky-50",
             desc: "Xây dựng nền móng lập trình vững chắc, làm quen môi trường thi offline và xử lý các bài toán số học cơ bản.",
             lessons: [
-                lesson("BUỔI 1", "Môi trường lập trình & Template chuẩn thi chuyên", ["[00:00 - 00:30] Cài đặt Dev-C++ hoặc Code::Blocks.", "[00:30 - 01:15] Cấu trúc khung, Tối ưu I/O.", "[01:15 - 03:00] Thực hành freopen đọc/ghi file .INP, .OUT."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // Tối ưu hóa I/O trong C++ giúp đọc ghi dữ liệu nhanh như C\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n    // Mở file (Bỏ comment khi nộp bài trên hệ thống Themis)\n    // freopen("BAI1.INP", "r", stdin);\n    // freopen("BAI1.OUT", "w", stdout);\n\n    long long a, b;\n    if (cin >> a >> b) {\n        cout << a + b << "\\n";\n    }\n    return 0;\n}`, "Viết template chuẩn 5 lần.", []),
-                lesson("BUỔI 2", "Kiểu dữ liệu & Bẫy tràn số (Overflow)", ["[00:00 - 01:30] Phân tích phạm vi int (10^9) vs long long (10^18).", "[01:30 - 03:00] Ép kiểu, làm tròn số thập phân."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n    long long a, b;\n    cin >> a >> b;\n    // Bẫy: Tích a*b có thể vượt 10^9, phải ép kiểu sang long long\n    long long area = (long long)a * b;\n    cout << area << "\\n";\n\n    // Làm tròn 2 chữ số thập phân\n    double r;\n    if(cin >> r) {\n        cout << fixed << setprecision(2) << 3.14159 * r * r << "\\n";\n    }\n    return 0;\n}`, "Bài tập: Diện tích, chu vi dữ liệu lớn.", [{text: "Kiên Giang 2025 - Bài 1: Tính tiền Taxi", id: "EXAM_KIEN_GIANG_2025"}]),
-                lesson("BUỔI 3", "Cấu trúc rẽ nhánh If/Else & Logic biên", ["[00:00 - 01:30] If/else, toán tử logic (&&, ||, !).", "[01:30 - 03:00] Gộp điều kiện, bẫy ưu tiên."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n    long long year;\n    cin >> year;\n    // Kiểm tra năm nhuận bằng cách gộp điều kiện logic\n    if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)) {\n        cout << "Nam nhuan\\n";\n    } else {\n        cout << "Khong nhuan\\n";\n    }\n    return 0;\n}`, "Giải phương trình bậc nhất.", [{text: "Nam Định 2026 - Bằng nhau", id: "EXAM_NAM_DINH_2025_2026"}]),
-                lesson("BUỔI 4", "Vòng lặp For & Độ phức tạp Big O", ["[00:00 - 01:30] Giới thiệu O(N). Quy tắc 1 giây chạy ~10^8 phép tính.", "[01:30 - 03:00] Đếm ước số bằng O(sqrt(N))."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n    long long n;\n    cin >> n;\n    int cnt = 0;\n    // O(sqrt(N)) - Chạy được với N lên đến 10^14\n    for (long long i = 1; i * i <= n; i++) {\n        if (n % i == 0) {\n            cnt++;\n            if (i * i != n) cnt++; // Đếm cả ước đối xứng\n        }\n    }\n    cout << cnt << "\\n";\n    return 0;\n}`, "Kiểm tra số nguyên tố.", [{text: "Hạ Long 2025 - Bài 1: Ước số", id: "EXAM_QUANG_NINH_CHUYEN_HA_LONG_2025_2026"}, {text: "Nghệ An PBC 2015 - Số đặc biệt", id: "EXAM_NGHE_AN_PBC_2014_2025"}]),
-                lesson("BUỔI 5", "Vòng lặp While & Xử lý chữ số", ["[00:00 - 01:30] Khi nào dùng while. Tách chữ số n%10.", "[01:30 - 03:00] Tìm UCLN (GCD)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n    long long n, tmp, res = 0;\n    cin >> n;\n    tmp = n;\n    // Vòng lặp tách từng chữ số của n\n    while (tmp > 0) {\n        res = res * 10 + tmp % 10;\n        tmp /= 10;\n    }\n    if (res == n) cout << "Doi xung\\n";\n    else cout << "Khong\\n";\n    return 0;\n}`, "Số đảo ngược, Số đối xứng.", [{text: "Nghệ An PBC 2026 - Câu 1: Số thú vị", id: "EXAM_NGHE_AN_PBC_2025_2026"}, {text: "Quảng Bình 2026 - Đếm kí tự", id: "EXAM_QUANG_BINH_2025_2026"}]),
-                lesson("BUỔI 6", "Hàm (Function) & Tham chiếu (Reference)", ["[00:00 - 01:30] Xây dựng hàm isPrime().", "[01:30 - 03:00] Truyền tham trị vs tham chiếu (&)."], `#include <bits/stdc++.h>\nusing namespace std;\n\n// Hàm truyền tham chiếu để hoán đổi 2 số trực tiếp trong bộ nhớ\nvoid custom_swap(int &a, int &b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n\n// Hàm kiểm tra số nguyên tố chuẩn\nbool is_prime(long long n) {\n    if (n < 2) return false;\n    for (long long i = 2; i * i <= n; i++) {\n        if (n % i == 0) return false;\n    }\n    return true;\n}\n\nint main() {\n    int x = 5, y = 10;\n    custom_swap(x, y);\n    cout << x << " " << y << "\\n";\n    return 0;\n}`, "Viết hàm kiểm tra chính phương.", []),
-                lesson("BUỔI 7", "Mảng 1 chiều & Mảng đánh dấu", ["[00:00 - 01:30] Mảng tĩnh, Duyệt mảng, Tìm Max/Min.", "[01:30 - 03:00] Mảng tần suất (Frequency Array)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAX_VAL = 1000005;\n// Khai báo mảng toàn cục giúp tự động khởi tạo bằng 0 và tránh tràn Stack\nint cnt[MAX_VAL]; \n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n\n    int n;\n    cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) {\n        cin >> a[i];\n        if (a[i] < MAX_VAL) cnt[a[i]]++;\n    }\n    // In ra số lần xuất hiện của số 5\n    cout << cnt[5] << "\\n";\n    return 0;\n}`, "Tìm phần tử xuất hiện nhiều nhất.", [{text: "Tiền Giang 2023 - Bài 3: Bài tập về nhà", id: "EXAM_TIEN_GIANG_2022_2023"}, {text: "Hạ Long 2026 - Tổng dãy", id: "EXAM_QUANG_NINH_CHUYEN_HA_LONG_2025_2026"}]),
-                lesson("BUỔI 8", "Mock Test Giai Đoạn 1", ["[00:00 - 03:00] Thi thử 4 câu cơ bản 150 phút."], `// Template cơ bản dành cho các kỳ thi thi offline (VD: HSG Tỉnh/Thành phố)\n#include <bits/stdc++.h>\nusing namespace std;\n\nvoid solve() {\n    // Bắt đầu viết logic giải quyết bài toán ở đây\n    \n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n    \n    // Nếu hệ thống yêu cầu nộp file thì bỏ comment 2 dòng này\n    // freopen("TEST.INP", "r", stdin);\n    // freopen("TEST.OUT", "w", stdout);\n    \n    int t = 1;\n    // cin >> t; // Bỏ comment nếu bài có nhiều test cases\n    while (t--) {\n        solve();\n    }\n    return 0;\n}`, "Chấm bằng Themis.", [])
+                lesson("BUỔI 1", "Môi trường lập trình & Template chuẩn thi chuyên", ["[00:00-01:30] Cài đặt Dev-C++ hoặc Code::Blocks.", "[01:30-03:00] Cấu trúc khung, Tối ưu I/O, freopen file .INP/.OUT."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // Tối ưu hóa I/O - bắt buộc trong mọi bài thi\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n    // freopen("BAI1.INP", "r", stdin);\n    // freopen("BAI1.OUT", "w", stdout);\n    long long a, b;\n    cin >> a >> b;\n    cout << a + b << "\\n";\n    return 0;\n}`, "Viết template chuẩn 5 lần.", []),
+                lesson("BUỔI 2", "Kiểu dữ liệu & Bẫy tràn số (Overflow)", ["[00:00-01:30] Phân tích int (10^9) vs long long (10^18).", "[01:30-03:00] Ép kiểu, làm tròn số thập phân."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n    long long a, b;\n    cin >> a >> b;\n    // Bẫy: tích có thể vượt 10^9, phải ép sang long long\n    long long area = (long long)a * b;\n    cout << area << "\\n";\n    // Làm tròn 2 chữ số thập phân\n    double r;\n    cin >> r;\n    cout << fixed << setprecision(2) << 3.14159 * r * r << "\\n";\n    return 0;\n}`, "Bài tập: Diện tích, chu vi dữ liệu lớn.", [{text: "Kiên Giang 2025 - Bài 1: Tính tiền Taxi", id: "EXAM_KIEN_GIANG_2025"}]),
+                lesson("BUỔI 3", "Cấu trúc rẽ nhánh If/Else & Logic biên", ["[00:00-01:30] If/else, toán tử logic (&&, ||, !).", "[01:30-03:00] Gộp điều kiện, bẫy ưu tiên."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long year;\n    cin >> year;\n    if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0))\n        cout << "Nam nhuan\\n";\n    else\n        cout << "Khong nhuan\\n";\n    return 0;\n}`, "Giải phương trình bậc nhất.", [{text: "Nam Định 2026 - Bằng nhau", id: "EXAM_NAM_DINH_2025_2026"}]),
+                lesson("BUỔI 4", "Vòng lặp For & Độ phức tạp Big O", ["[00:00-01:30] Giới thiệu O(N). Quy tắc 1 giây ~10^8 phép tính.", "[01:30-03:00] Đếm ước số bằng O(sqrt(N))."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long n; cin >> n;\n    int cnt = 0;\n    // O(sqrt(N)) - chạy được với N lên đến 10^14\n    for (long long i = 1; i * i <= n; i++) {\n        if (n % i == 0) {\n            cnt++;\n            if (i * i != n) cnt++;\n        }\n    }\n    cout << cnt << "\\n";\n    return 0;\n}`, "Kiểm tra số nguyên tố.", [{text: "Nghệ An PBC 2025 - Số đặc biệt", id: "EXAM_NGHE_AN_PBC_2014_2025"}]),
+                lesson("BUỔI 5", "Vòng lặp While & Xử lý chữ số", ["[00:00-01:30] Khi nào dùng while. Tách chữ số n%10.", "[01:30-03:00] Tìm UCLN (GCD)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long n, tmp, res = 0;\n    cin >> n; tmp = n;\n    while (tmp > 0) {\n        res = res * 10 + tmp % 10;\n        tmp /= 10;\n    }\n    cout << (res == n ? "Doi xung" : "Khong") << "\\n";\n    return 0;\n}`, "Số đảo ngược, Số đối xứng.", [{text: "Nghệ An PBC 2026 - Câu 1: Số thú vị", id: "EXAM_NGHE_AN_PBC_2025_2026"}]),
+                lesson("BUỔI 6", "Hàm (Function) & Tham chiếu (Reference)", ["[00:00-01:30] Xây dựng hàm isPrime().", "[01:30-03:00] Truyền tham trị vs tham chiếu (&)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nvoid custom_swap(int &a, int &b) {\n    int temp = a; a = b; b = temp;\n}\n\nbool is_prime(long long n) {\n    if (n < 2) return false;\n    for (long long i = 2; i * i <= n; i++)\n        if (n % i == 0) return false;\n    return true;\n}\n\nint main() {\n    int x = 5, y = 10;\n    custom_swap(x, y);\n    cout << x << " " << y << "\\n";\n    return 0;\n}`, "Viết hàm kiểm tra chính phương.", []),
+                lesson("BUỔI 7", "Mảng 1 chiều & Mảng đánh dấu", ["[00:00-01:30] Mảng tĩnh, Duyệt mảng, Tìm Max/Min.", "[01:30-03:00] Mảng tần suất (Frequency Array)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAX_VAL = 1000005;\nint cnt[MAX_VAL]; // khai báo toàn cục = tự động 0\n\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) {\n        cin >> a[i];\n        if (a[i] < MAX_VAL) cnt[a[i]]++;\n    }\n    cout << cnt[5] << "\\n"; // số lần xuất hiện của 5\n    return 0;\n}`, "Tìm phần tử xuất hiện nhiều nhất.", [{text: "Tiền Giang 2023 - Bài tập về nhà", id: "EXAM_TIEN_GIANG_2022_2023"}]),
+                lesson("BUỔI 8", "Mock Test Giai Đoạn 1", ["[00:00-03:00] Thi thử 4 câu cơ bản 150 phút, chấm bằng Themis."], `// Template chuẩn dùng khi nộp bài\n#include <bits/stdc++.h>\nusing namespace std;\n\nvoid solve() {\n    // logic bài toán\n}\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL);\n    // freopen("TEST.INP", "r", stdin);\n    // freopen("TEST.OUT", "w", stdout);\n    int t = 1;\n    // cin >> t;\n    while (t--) solve();\n    return 0;\n}`, "Chấm bằng Themis.", [])
             ]
         };
 
         const phase2 = {
             phaseId: 2, title: "GIAI ĐOẠN 2: STL VÀ KỸ THUẬT TỐI ƯU MẢNG", time: "THÁNG 3 - 4", duration: "8 Buổi (24 Giờ)",
-            bgClass: "bg-emerald-600", textClass: "text-emerald-600", lightBgClass: "bg-emerald-50",
-            desc: "Làm chủ bộ thư viện chuẩn STL C++, rút ngắn thời gian code và nắm vững kỹ thuật mảng cộng dồn, Fenwick Tree.",
+            desc: "Làm chủ thư viện STL C++, rút ngắn thời gian code và nắm vững kỹ thuật Prefix Sum, Fenwick Tree.",
             lessons: [
-                lesson("BUỔI 9", "Gom nhóm dữ liệu: Struct và Pair", ["[00:00 - 01:30] std::pair và Struct.", "[01:30 - 03:00] Vector chứa Struct."], `#include <bits/stdc++.h>\nusing namespace std;\n\n// Khai báo kiểu dữ liệu mới gom nhóm nhiều thuộc tính\nstruct Point {\n    int x, y, id;\n};\n\nint main() {\n    // Sử dụng pair có sẵn trong STL\n    pair<int, int> p1 = make_pair(3, 4);\n    pair<int, int> p2 = {5, 12}; \n    \n    // Sử dụng struct tự định nghĩa\n    Point p3 = {10, 20, 1};\n    cout << "Toa do X: " << p3.x << ", ID: " << p3.id << "\\n";\n    \n    return 0;\n}`, "Lưu tọa độ.", []),
-                lesson("BUỔI 10", "Xử lý Chuỗi (String) & Bẫy trôi lệnh", ["[00:00 - 01:30] string, getline(), cin.ignore().", "[01:30 - 03:00] Xử lý chuỗi (Đảo ngược, đối xứng)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    \n    // BẪY: cin để lại ký tự '\\n' trong bộ đệm. Phải ignore() trước khi getline\n    cin.ignore(); \n    \n    string s;\n    getline(cin, s); // Đọc cả dòng chứa khoảng trắng\n    \n    // Đảo ngược chuỗi bằng hàm STL\n    string rev_s = s;\n    reverse(rev_s.begin(), rev_s.end());\n    \n    if (s == rev_s) cout << "Doi xung\\n";\n    else cout << "Khong doi xung\\n";\n    \n    return 0;\n}`, "Chuẩn hóa họ tên.", [{text: "Đà Nẵng 2026 - Bài 2: Mã hóa", id: "EXAM_DA_NANG_2025_2026"}]),
-                lesson("BUỔI 11", "Sắp xếp O(N log N) & Comparator", ["[00:00 - 01:30] std::sort().", "[01:30 - 03:00] Viết hàm cmp so sánh nhiều tiêu chí."], `#include <bits/stdc++.h>\nusing namespace std;\n\nstruct Student {\n    string name;\n    int math, lit;\n};\n\n// Hàm cmp sắp xếp: Tổng điểm giảm dần. Nếu bằng nhau thì tên tăng dần (theo từ điển).\nbool cmp(const Student& a, const Student& b) {\n    int sum_a = a.math + a.lit;\n    int sum_b = b.math + b.lit;\n    if (sum_a != sum_b) return sum_a > sum_b; // Tiêu chí 1\n    return a.name < b.name;                   // Tiêu chí 2\n}\n\nint main() {\n    vector<Student> a = {{"An", 8, 9}, {"Binh", 9, 8}, {"Chi", 7, 7}};\n    sort(a.begin(), a.end(), cmp);\n    cout << "Thu khoa: " << a[0].name << "\\n"; \n    return 0;\n}`, "Bài toán ghép số (PTNK).", [{text: "PTNK 2025 - Bài 4: Tối ưu Blockchain", id: "EXAM_PTNK_2025"}, {text: "KHTN Khảo Sát 2026 - Number", id: "EXAM_KHTN_08032026"}]),
-                lesson("BUỔI 12", "Map & Set: O(log N)", ["[00:00 - 01:30] Set (duy nhất), Map (Key-Value).", "[01:30 - 03:00] Đếm tần suất với Key = 10^18."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    if(cin >> n) {\n        map<long long, int> freq; // Đếm tần suất các số rất lớn\n        set<long long> unique_nums; // Lưu các số không trùng lặp\n\n        for (int i = 0; i < n; i++) {\n            long long x; cin >> x;\n            freq[x]++;\n            unique_nums.insert(x);\n        }\n\n        cout << "So luong phan tu khac nhau: " << unique_nums.size() << "\\n";\n    }\n    return 0;\n}`, "Bài toán 2Sum.", [{text: "Nam Định 2026 - Bài 2: Khác nhau", id: "EXAM_NAM_DINH_2025_2026"}, {text: "ĐH Vinh 2025 - Dãy số tương tự", id: "EXAM_DH_VINH_2024_2025"}]),
-                lesson("BUỔI 13", "Prefix Sum 1D (Mảng cộng dồn)", ["[00:00 - 01:30] Xây dựng P[i] = P[i-1] + A[i].", "[01:30 - 03:00] Truy vấn O(1): P[R] - P[L-1]."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(0); cin.tie(0);\n    int n, q;\n    if(cin >> n >> q) {\n        // Luôn dùng 1-based index (kích thước n + 1)\n        vector<long long> a(n + 1), P(n + 1, 0);\n        \n        for (int i = 1; i <= n; i++) {\n            cin >> a[i];\n            P[i] = P[i - 1] + a[i]; // Mảng cộng dồn O(N)\n        }\n        \n        while (q--) {\n            int l, r; cin >> l >> r;\n            // Trả lời truy vấn O(1)\n            cout << P[r] - P[l - 1] << "\\n"; \n        }\n    }\n    return 0;\n}`, "Tổng đoạn liên tiếp.", [{text: "Vĩnh Phúc 2026 - Câu 3: Truy vấn chia hết", id: "EXAM_VINH_PHUC_2026"}]),
-                lesson("BUỔI 14", "Prefix Sum 2D & Fenwick Tree (BIT)", ["[00:00 - 01:30] Prefix Sum trên lưới 2D.", "[01:30 - 03:00] Nâng cao: Fenwick Tree (Binary Indexed Tree) cập nhật O(log N)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 100005;\nlong long bit[MAXN];\nint n;\n\n// Cập nhật giá trị tại vị trí i thêm val (O(log N))\nvoid update(int i, long long val) {\n    for (; i <= n; i += i & -i) {\n        bit[i] += val;\n    }\n}\n\n// Tính tổng tiền tố từ 1 đến i (O(log N))\nlong long query(int i) {\n    long long sum = 0;\n    for (; i > 0; i -= i & -i) {\n        sum += bit[i];\n    }\n    return sum;\n}\n\n// Tính tổng đoạn [L, R]\nlong long query_range(int l, int r) {\n    return query(r) - query(l - 1);\n}`, "Tổng HCN con, Update dãy số.", [{text: "HCM 2025 - Lọc nước", id: "EXAM_HCM_2024_2025"}]),
-                lesson("BUỔI 15", "Hai Con Trỏ & Cửa Sổ Trượt", ["[00:00 - 01:30] Kỹ thuật L, R trên mảng đã sort.", "[01:30 - 03:00] Cửa sổ trượt (Sliding Window)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, k; cin >> n >> k;\n    vector<int> a(n);\n    for(int i=0; i<n; i++) cin >> a[i];\n    \n    int L = 0, max_len = 0;\n    long long cur_sum = 0;\n    \n    for (int R = 0; R < n; R++) {\n        cur_sum += a[R];\n        // Cửa sổ trượt: Thu hẹp L nếu tổng vượt K\n        while (cur_sum > k && L <= R) {\n            cur_sum -= a[L];\n            L++;\n        }\n        max_len = max(max_len, R - L + 1);\n    }\n    cout << max_len << "\\n";\n    return 0;\n}`, "Đoạn con liên tiếp <= K.", [{text: "KHTN Lần 1 2026 - Bài 4: Duo", id: "EXAM_KHTN_LAN1_2025"}]),
-                lesson("BUỔI 16", "Mock Test Giai Đoạn 2", ["[00:00 - 03:00] Thi 150 phút (Sort, String, Pointers, BIT)."], `// Sinh viên tự thực hành dưới áp lực thời gian (150 phút)\n// Template làm bài chung:\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(0); cin.tie(0);\n    // Đọc kỹ giới hạn dữ liệu trước khi code!\n    return 0;\n}`, "Test tốc độ code.", [])
+                lesson("BUỔI 9", "Gom nhóm dữ liệu: Struct và Pair", ["[00:00-01:30] std::pair và Struct.", "[01:30-03:00] Vector chứa Struct."], `#include <bits/stdc++.h>\nusing namespace std;\n\nstruct Point { int x, y, id; };\n\nint main() {\n    pair<int,int> p1 = {3, 4};\n    Point p3 = {10, 20, 1};\n    cout << "X: " << p3.x << ", ID: " << p3.id << "\\n";\n    return 0;\n}`, "Lưu tọa độ.", []),
+                lesson("BUỔI 10", "Xử lý Chuỗi (String) & Bẫy trôi lệnh", ["[00:00-01:30] string, getline(), cin.ignore().", "[01:30-03:00] Đảo ngược, kiểm tra đối xứng."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n; cin >> n;\n    cin.ignore(); // BẪY: xóa '\\n' còn lại trong buffer\n    string s;\n    getline(cin, s); // đọc cả dòng có khoảng trắng\n    string rev_s = s;\n    reverse(rev_s.begin(), rev_s.end());\n    cout << (s == rev_s ? "Doi xung" : "Khong") << "\\n";\n    return 0;\n}`, "Chuẩn hóa họ tên.", [{text: "Đà Nẵng 2026 - Bài 2: Mã hóa", id: "EXAM_DA_NANG_2025_2026"}]),
+                lesson("BUỔI 11", "Sắp xếp O(N log N) & Comparator", ["[00:00-01:30] std::sort().", "[01:30-03:00] Viết hàm cmp so sánh nhiều tiêu chí."], `#include <bits/stdc++.h>\nusing namespace std;\n\nstruct Student { string name; int math, lit; };\n\nbool cmp(const Student& a, const Student& b) {\n    int sa = a.math + a.lit, sb = b.math + b.lit;\n    if (sa != sb) return sa > sb; // Tiêu chí 1\n    return a.name < b.name;      // Tiêu chí 2\n}\n\nint main() {\n    vector<Student> v = {{"An",8,9},{"Binh",9,8}};\n    sort(v.begin(), v.end(), cmp);\n    cout << "Thu khoa: " << v[0].name << "\\n";\n    return 0;\n}`, "Bài toán ghép số.", [{text: "PTNK 2025 - Bài 4: Blockchain", id: "EXAM_PTNK_2025"}]),
+                lesson("BUỔI 12", "Map & Set: O(log N)", ["[00:00-01:30] Set (duy nhất), Map (Key-Value).", "[01:30-03:00] Đếm tần suất với Key = 10^18."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n; cin >> n;\n    map<long long,int> freq;\n    set<long long> unique_nums;\n    for (int i = 0; i < n; i++) {\n        long long x; cin >> x;\n        freq[x]++;\n        unique_nums.insert(x);\n    }\n    cout << unique_nums.size() << "\\n";\n    return 0;\n}`, "Bài toán 2Sum.", [{text: "Nam Định 2026 - Bài 2: Khác nhau", id: "EXAM_NAM_DINH_2025_2026"}]),
+                lesson("BUỔI 13", "Prefix Sum 1D (Mảng cộng dồn)", ["[00:00-01:30] Xây dựng P[i] = P[i-1] + A[i].", "[01:30-03:00] Truy vấn O(1): P[R] - P[L-1]."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, q; cin >> n >> q;\n    vector<long long> a(n+1), P(n+1,0);\n    for (int i = 1; i <= n; i++) {\n        cin >> a[i];\n        P[i] = P[i-1] + a[i];\n    }\n    while (q--) {\n        int l, r; cin >> l >> r;\n        cout << P[r] - P[l-1] << "\\n";\n    }\n    return 0;\n}`, "Tổng đoạn liên tiếp.", [{text: "Vĩnh Phúc 2026 - Câu 3: Truy vấn chia hết", id: "EXAM_VINH_PHUC_2026"}]),
+                lesson("BUỔI 14", "Prefix Sum 2D & Fenwick Tree (BIT)", ["[00:00-01:30] Prefix Sum trên lưới 2D.", "[01:30-03:00] Fenwick Tree - cập nhật O(log N)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 100005;\nlong long bit[MAXN];\nint n;\n\nvoid update(int i, long long val) {\n    for (; i <= n; i += i & -i) bit[i] += val;\n}\n\nlong long query(int i) {\n    long long s = 0;\n    for (; i > 0; i -= i & -i) s += bit[i];\n    return s;\n}\n\nlong long range(int l, int r) { return query(r) - query(l-1); }`, "Tổng HCN con, Update dãy số.", [{text: "HCM 2025 - Lọc nước", id: "EXAM_HCM_2024_2025"}]),
+                lesson("BUỔI 15", "Hai Con Trỏ & Cửa Sổ Trượt", ["[00:00-01:30] Kỹ thuật L, R trên mảng đã sort.", "[01:30-03:00] Cửa sổ trượt (Sliding Window)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, k; cin >> n >> k;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    int L = 0, max_len = 0;\n    long long cur = 0;\n    for (int R = 0; R < n; R++) {\n        cur += a[R];\n        while (cur > k && L <= R) { cur -= a[L++]; }\n        max_len = max(max_len, R - L + 1);\n    }\n    cout << max_len << "\\n";\n    return 0;\n}`, "Đoạn con liên tiếp ≤ K.", [{text: "KHTN Lần 1 2026 - Bài 4: Duo", id: "EXAM_KHTN_LAN1_2025"}]),
+                lesson("BUỔI 16", "Mock Test Giai Đoạn 2", ["[00:00-03:00] Thi 150 phút (Sort, String, Pointers, BIT)."], `// Sinh viên tự thực hành dưới áp lực thời gian\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios_base::sync_with_stdio(0); cin.tie(0);\n    // Đọc kỹ giới hạn dữ liệu trước khi code!\n    return 0;\n}`, "Test tốc độ code.", [])
             ]
         };
 
         const phase3 = {
             phaseId: 3, title: "GIAI ĐOẠN 3: TOÁN SỐ HỌC VÀ TÌM KIẾM NHỊ PHÂN", time: "THÁNG 5 - 6", duration: "8 Buổi (24 Giờ)",
-            bgClass: "bg-violet-600", textClass: "text-violet-600", lightBgClass: "bg-violet-50",
-            desc: "Nắm vững Sàng nguyên tố, Nghịch đảo Modulo và thuật toán 'Chặt nhị phân' (Binary Search on Answer).",
+            desc: "Nắm vững Sàng nguyên tố, Nghịch đảo Modulo và thuật toán Chặt nhị phân (Binary Search on Answer).",
             lessons: [
-                lesson("BUỔI 17", "Sàng Nguyên Tố Eratosthenes", ["[00:00 - 01:30] Nguyên lý Sàng, O(N log log N).", "[01:30 - 03:00] Cài đặt mảng toàn cục tránh tràn RAM."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 10000000;\n// Khai báo mảng toàn cục, mặc định là true\nvector<bool> isPrime(MAXN + 1, true);\n\nvoid sieve() {\n    isPrime[0] = isPrime[1] = false;\n    for (int p = 2; p * p <= MAXN; p++) {\n        if (isPrime[p]) {\n            // Đánh dấu các bội số của p\n            for (int i = p * p; i <= MAXN; i += p)\n                isPrime[i] = false;\n        }\n    }\n}\n\nint main() {\n    sieve(); // Chỉ gọi 1 lần\n    // ... truy vấn isPrime[x] trong O(1)\n    return 0;\n}`, "Sàng đoạn.", [{text: "Kiên Giang 2025 - Bài 3: Bội số NT", id: "EXAM_KIEN_GIANG_2025"}, {text: "ĐH Vinh 2025 - Bài 1: Số song NT", id: "EXAM_DH_VINH_2024_2025"}]),
-                lesson("BUỔI 18", "Phân tích Thừa số Nguyên tố", ["[00:00 - 01:30] Định lý cơ bản. Tính số lượng ước.", "[01:30 - 03:00] Công thức: (a+1)*(b+1)..."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint countDivisors(long long n) {\n    int total = 1;\n    for (long long d = 2; d * d <= n; d++) {\n        if (n % d == 0) {\n            int count = 0;\n            while (n % d == 0) {\n                count++;\n                n /= d;\n            }\n            total *= (count + 1); // Công thức nhân\n        }\n    }\n    if (n > 1) total *= 2; \n    return total;\n}`, "Đếm ước số.", []),
-                lesson("BUỔI 19", "Lũy thừa nhanh & Nghịch đảo Modulo", ["[00:00 - 01:30] Tính A^B % M bằng Binary Exponentiation.", "[01:30 - 03:00] Nghịch đảo Modulo (Fermat nhỏ) để tính tổ hợp nCk."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long MOD = 1e9 + 7;\n\n// Tính (a^b) % mod trong O(log b)\nlong long fast_pow(long long a, long long b, long long mod) {\n    long long res = 1;\n    a %= mod;\n    while (b > 0) {\n        if (b % 2 == 1) res = (res * a) % mod;\n        a = (a * a) % mod;\n        b /= 2;\n    }\n    return res;\n}\n\n// Nghịch đảo Modulo\nlong long modInverse(long long n, long long m) {\n    return fast_pow(n, m - 2, m);\n}`, "Tổ hợp chập K của N % MOD.", [{text: "Đề Khảo Sát - Bài 2: Tính số dư", id: "EXAM_UNNAMED_01"}]),
-                lesson("BUỔI 20", "Toán tử Bit & Bitmask", ["[00:00 - 01:30] AND, OR, XOR. Dịch bit.", "[01:30 - 03:00] Dùng Bitmask sinh tập con O(2^N)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n = 3;\n    vector<int> a = {10, 20, 30};\n    \n    // In tất cả các tập con bằng Bitmask (2^N trường hợp)\n    for (int mask = 0; mask < (1 << n); mask++) {\n        long long sum = 0;\n        for (int i = 0; i < n; i++) {\n            // Nếu bit thứ i của mask được bật\n            if ((mask >> i) & 1) {\n                sum += a[i];\n            }\n        }\n        cout << sum << "\\n";\n    }\n    return 0;\n}`, "Duyệt tập con N <= 20.", []),
-                lesson("BUỔI 21", "Đệ Quy & Backtracking", ["[00:00 - 01:30] Khái niệm Call Stack, Base Case.", "[01:30 - 03:00] Thử -> Đệ quy -> Xóa dấu vết."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint n;\nint x[100];\nbool used[100];\n\n// Quay lui sinh hoán vị\nvoid Try(int i) {\n    for (int j = 1; j <= n; j++) {\n        if (!used[j]) {\n            x[i] = j;      // Thử chọn j\n            used[j] = true;\n            \n            if (i == n) {  // Base case\n                for (int k = 1; k <= n; k++) cout << x[k] << " ";\n                cout << "\\n";\n            } else {\n                Try(i + 1); // Đệ quy bước tiếp theo\n            }\n            used[j] = false; // QUAY LUI: Xóa dấu vết\n        }\n    }\n}`, "Sinh hoán vị, Xếp Hậu.", [{text: "Vĩnh Phúc 2026 - Câu 4: Chọn", id: "EXAM_VINH_PHUC_2026"}, {text: "Nam Định 2026 - Chụp ảnh", id: "EXAM_NAM_DINH_2025_2026"}]),
-                lesson("BUỔI 22", "Nhánh Cận (Branch & Bound)", ["[00:00 - 01:30] Cắt nhánh đệ quy sớm.", "[01:30 - 03:00] Bài toán Người du lịch."], `// Ý tưởng cắt nhánh trong Backtracking\nvoid Try(int i, long long current_cost) {\n    // CẮT NHÁNH: Nếu chi phí hiện tại >= kỷ lục tốt nhất, DỪNG LẠI!\n    if (current_cost >= min_cost_ever) return;\n    \n    // ... tiếp tục duyệt các khả năng khác\n}`, "Tối ưu Backtracking.", []),
-                lesson("BUỔI 23", "Binary Search on Answer", ["[00:00 - 01:00] lower_bound, upper_bound.", "[01:00 - 03:00] Chặt nhị phân trên kết quả (Tìm max của min)."], `#include <bits/stdc++.h>\nusing namespace std;\n\n// Hàm check logic (Ví dụ: Bài Xếp Bò)\nbool check(long long mid, const vector<long long>& a, int C) {\n    int count = 1;\n    long long last = a[0];\n    for (int i = 1; i < a.size(); i++) {\n        if (a[i] - last >= mid) {\n            count++;\n            last = a[i];\n            if (count >= C) return true;\n        }\n    }\n    return false;\n}\n\n// Mẫu Chặt nhị phân tìm Max\n// long long L = 0, R = 1e18, ans = 0;\n// while (L <= R) {\n//     long long mid = L + (R - L) / 2;\n//     if (check(mid, a, C)) { ans = mid; L = mid + 1; }\n//     else { R = mid - 1; }\n// }`, "Xếp bò (Aggressive Cows).", [{text: "HCM 2024 - Bài Đào vàng", id: "EXAM_HCM_2023_2024"}]),
-                lesson("BUỔI 24", "Mock Test Giai Đoạn 3", ["[00:00 - 03:00] Thi 150 phút chuyên đề Toán + BS."], `// Sinh viên tự thực chiến. Giáo viên đóng vai trò giám thị.\n// Nhớ nguyên tắc: Binary Search On Answer khi bài có chữ "Nhỏ nhất của Lớn nhất".`, "Mô phỏng đề cấp Sở.", [])
+                lesson("BUỔI 17", "Sàng Nguyên Tố Eratosthenes", ["[00:00-01:30] Nguyên lý Sàng, O(N log log N).", "[01:30-03:00] Cài đặt mảng toàn cục tránh tràn RAM."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 10000000;\nvector<bool> isPrime(MAXN + 1, true);\n\nvoid sieve() {\n    isPrime[0] = isPrime[1] = false;\n    for (int p = 2; p * p <= MAXN; p++) {\n        if (isPrime[p])\n            for (int i = p*p; i <= MAXN; i += p)\n                isPrime[i] = false;\n    }\n}\n\nint main() {\n    sieve(); // gọi 1 lần duy nhất\n    // isPrime[x] = true/false trong O(1)\n    return 0;\n}`, "Sàng đoạn.", [{text: "Kiên Giang 2025 - Bài 3: Bội số NT", id: "EXAM_KIEN_GIANG_2025"}, {text: "ĐH Vinh 2025 - Bài 1: Số song NT", id: "EXAM_DH_VINH_2024_2025"}]),
+                lesson("BUỔI 18", "Phân tích Thừa số Nguyên tố", ["[00:00-01:30] Định lý cơ bản. Tính số lượng ước.", "[01:30-03:00] Công thức: (a+1)*(b+1)..."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint countDivisors(long long n) {\n    int total = 1;\n    for (long long d = 2; d * d <= n; d++) {\n        if (n % d == 0) {\n            int cnt = 0;\n            while (n % d == 0) { cnt++; n /= d; }\n            total *= (cnt + 1);\n        }\n    }\n    if (n > 1) total *= 2;\n    return total;\n}`, "Đếm ước số.", []),
+                lesson("BUỔI 19", "Lũy thừa nhanh & Nghịch đảo Modulo", ["[00:00-01:30] Tính A^B % M bằng Binary Exponentiation.", "[01:30-03:00] Nghịch đảo Modulo (Fermat nhỏ) để tính tổ hợp nCk."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long MOD = 1e9 + 7;\n\nlong long fast_pow(long long a, long long b, long long mod) {\n    long long res = 1; a %= mod;\n    while (b > 0) {\n        if (b & 1) res = res * a % mod;\n        a = a * a % mod; b >>= 1;\n    }\n    return res;\n}\n\nlong long modInverse(long long n, long long m) {\n    return fast_pow(n, m - 2, m);\n}`, "Tổ hợp chập K của N % MOD.", []),
+                lesson("BUỔI 20", "Toán tử Bit & Bitmask", ["[00:00-01:30] AND, OR, XOR. Dịch bit.", "[01:30-03:00] Dùng Bitmask sinh tập con O(2^N)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n = 3;\n    vector<int> a = {10, 20, 30};\n    // In tất cả tập con (2^N trường hợp)\n    for (int mask = 0; mask < (1 << n); mask++) {\n        long long sum = 0;\n        for (int i = 0; i < n; i++)\n            if ((mask >> i) & 1) sum += a[i];\n        cout << sum << "\\n";\n    }\n    return 0;\n}`, "Duyệt tập con N ≤ 20.", []),
+                lesson("BUỔI 21", "Đệ Quy & Backtracking", ["[00:00-01:30] Khái niệm Call Stack, Base Case.", "[01:30-03:00] Thử → Đệ quy → Xóa dấu vết."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint n, x[100];\nbool used[100];\n\nvoid Try(int i) {\n    for (int j = 1; j <= n; j++) {\n        if (!used[j]) {\n            x[i] = j; used[j] = true;\n            if (i == n) {\n                for (int k = 1; k <= n; k++) cout << x[k] << " ";\n                cout << "\\n";\n            } else Try(i + 1);\n            used[j] = false; // QUAY LUI\n        }\n    }\n}`, "Sinh hoán vị, Xếp Hậu.", [{text: "Nam Định 2026 - Chụp ảnh", id: "EXAM_NAM_DINH_2025_2026"}]),
+                lesson("BUỔI 22", "Nhánh Cận (Branch & Bound)", ["[00:00-01:30] Cắt nhánh đệ quy sớm.", "[01:30-03:00] Bài toán Người du lịch."], `// Ý tưởng cắt nhánh trong Backtracking\nvoid Try(int i, long long current_cost) {\n    // CẮT NHÁNH: nếu chi phí >= kỷ lục tốt nhất thì dừng\n    if (current_cost >= min_cost_ever) return;\n    // ... tiếp tục duyệt các khả năng\n}`, "Tối ưu Backtracking.", []),
+                lesson("BUỔI 23", "Binary Search on Answer", ["[00:00-01:00] lower_bound, upper_bound.", "[01:00-03:00] Chặt nhị phân trên kết quả (Tìm max của min)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nbool check(long long mid, const vector<long long>& a, int C) {\n    int count = 1; long long last = a[0];\n    for (int i = 1; i < a.size(); i++) {\n        if (a[i] - last >= mid) { count++; last = a[i]; }\n        if (count >= C) return true;\n    }\n    return false;\n}\n// Mẫu chặt nhị phân tìm Max:\n// long long L=0, R=1e18, ans=0;\n// while (L<=R) {\n//   long long mid = L+(R-L)/2;\n//   if (check(mid,a,C)) { ans=mid; L=mid+1; }\n//   else R=mid-1;\n// }`, "Xếp bò (Aggressive Cows).", [{text: "HCM 2024 - Bài Đào vàng", id: "EXAM_HCM_2023_2024"}]),
+                lesson("BUỔI 24", "Mock Test Giai Đoạn 3", ["[00:00-03:00] Thi 150 phút chuyên đề Toán + BS."], `// Nhớ nguyên tắc:\n// Binary Search On Answer khi bài có chữ\n// "Nhỏ nhất của Lớn nhất" hoặc "Lớn nhất của Nhỏ nhất"`, "Mô phỏng đề cấp Sở.", [])
             ]
         };
 
         const phase4 = {
             phaseId: 4, title: "GIAI ĐOẠN 4: LÝ THUYẾT ĐỒ THỊ VÀ QUY HOẠCH ĐỘNG", time: "THÁNG 7 - 8", duration: "8 Buổi (24 Giờ)",
-            bgClass: "bg-orange-500", textClass: "text-orange-500", lightBgClass: "bg-orange-50",
             desc: "Chinh phục Duyệt đồ thị (BFS/DFS), DSU, Kruskal và Tư duy Quy hoạch động (DP).",
             lessons: [
-                lesson("BUỔI 25", "Đồ thị & Duyệt theo chiều sâu (DFS)", ["[00:00 - 01:30] Danh sách kề. Đệ quy DFS.", "[01:30 - 03:00] Đếm thành phần liên thông."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 100005;\nvector<int> adj[MAXN];\nbool visited[MAXN];\n\n// Đệ quy DFS\nvoid dfs(int u) {\n    visited[u] = true;\n    for (int v : adj[u]) {\n        if (!visited[v]) {\n            dfs(v);\n        }\n    }\n}`, "Kiểm tra liên thông.", [{text: "KHTN Lần 3 2026 - Câu 3: WATER", id: "EXAM_KHTN_LAN3_2025_2026"}]),
-                lesson("BUỔI 26", "Duyệt theo chiều rộng (BFS)", ["[00:00 - 01:30] Queue. Đường đi ngắn nhất không trọng số.", "[01:30 - 03:00] Loang trên bảng 2D."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint dx[] = {-1, 1, 0, 0};\nint dy[] = {0, 0, -1, 1};\nint dist[1005][1005];\nint N, M;\n\n// BFS trên lưới 2D\nvoid bfs(int sx, int sy) {\n    queue<pair<int, int>> q;\n    q.push({sx, sy});\n    dist[sx][sy] = 0;\n    \n    while (!q.empty()) {\n        auto [x, y] = q.front(); q.pop();\n        for (int i = 0; i < 4; i++) {\n            int nx = x + dx[i], ny = y + dy[i];\n            if (nx >= 1 && nx <= N && ny >= 1 && ny <= M && dist[nx][ny] == -1) {\n                dist[nx][ny] = dist[x][y] + 1;\n                q.push({nx, ny});\n            }\n        }\n    }\n}`, "Bài toán Mê cung.", [{text: "Quảng Bình 2026 - Câu 4: Robot tìm đường", id: "EXAM_QUANG_BINH_2025_2026"}]),
-                lesson("BUỔI 27", "Thuật toán Dijkstra", ["[00:00 - 01:30] Hàng đợi ưu tiên (Priority Queue).", "[01:30 - 03:00] Relaxation và bẫy TLE."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long INF = 1e18;\nvector<pair<int, int>> adj[100005]; \nlong long dist_arr[100005];\n\nvoid dijkstra(int start, int n) {\n    for (int i = 1; i <= n; i++) dist_arr[i] = INF;\n    dist_arr[start] = 0;\n    \n    priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> pq;\n    pq.push({0, start});\n    \n    while (!pq.empty()) {\n        auto [du, u] = pq.top(); pq.pop();\n        if (du > dist_arr[u]) continue; // TRÁNH TLE!\n        \n        for (auto edge : adj[u]) {\n            int v = edge.first;\n            long long uv = edge.second;\n            if (dist_arr[v] > du + uv) {\n                dist_arr[v] = du + uv;\n                pq.push({dist_arr[v], v});\n            }\n        }\n    }\n}`, "Đường đi có trọng số.", [{text: "Đà Nẵng 2026 - Lựa chọn cấu hình", id: "EXAM_DA_NANG_2025_2026"}]),
-                lesson("BUỔI 28", "DSU & Cây khung nhỏ nhất (Kruskal)", ["[00:00 - 01:30] Cấu trúc Disjoint Set Union (Find, Union).", "[01:30 - 03:00] Thuật toán Kruskal tìm Minimum Spanning Tree."], `#include <bits/stdc++.h>\nusing namespace std;\n\nstruct Edge { int u, v; long long weight; };\nbool cmp(Edge a, Edge b) { return a.weight < b.weight; }\n\nint root[100005];\nint find(int u) { return u == root[u] ? u : root[u] = find(root[u]); }\nvoid unite(int u, int v) { root[find(u)] = find(v); }\n\n// Kruskal's MST (Cây khung nhỏ nhất)\n// B1: Sort mảng Edge theo weight tăng dần\n// B2: Nếu find(u) != find(v) thì unite(u, v) và cộng weight vào MST`, "Xây dựng trạm phát sóng rẻ nhất.", []),
-                lesson("BUỔI 29", "Bản chất Quy hoạch động (DP)", ["[00:00 - 01:30] Memoization vs Tabulation.", "[01:30 - 03:00] Bài toán Bậc thang, Ếch nhảy."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n; cin >> n;\n    vector<long long> dp(n + 1, 0);\n    dp[1] = 1;\n    if (n >= 2) dp[2] = 2;\n    \n    for (int i = 3; i <= n; i++) {\n        dp[i] = (dp[i-1] + dp[i-2]) % 1000000007; \n    }\n    cout << dp[n] << "\\n";\n    return 0;\n}`, "Tìm công thức truy hồi.", [{text: "Vĩnh Phúc 2026 - Câu 4: Chọn", id: "EXAM_VINH_PHUC_2026"}]),
-                lesson("BUỔI 30", "Ba lô 0/1 (0/1 Knapsack)", ["[00:00 - 01:30] Bảng phương án 2D.", "[01:30 - 03:00] Tối ưu mảng 1D (Vòng lặp NGƯỢC)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, M; cin >> n >> M;\n    vector<int> w(n), v(n);\n    for (int i = 0; i < n; i++) cin >> w[i] >> v[i];\n    \n    vector<long long> dp(M + 1, 0);\n    \n    for (int i = 0; i < n; i++) {\n        // BẮT BUỘC LẶP NGƯỢC để vật không bị chọn lại nhiều lần\n        for (int j = M; j >= w[i]; j--) {\n            dp[j] = max(dp[j], dp[j - w[i]] + v[i]);\n        }\n    }\n    cout << dp[M] << "\\n";\n    return 0;\n}`, "Chia tài sản.", [{text: "PTNK 2025 - Bài 4: Blockchain", id: "EXAM_PTNK_2025"}, {text: "KHTN Lần 3 2026 - Câu 6: TUI", id: "EXAM_KHTN_LAN3_2025_2026"}]),
-                lesson("BUỔI 31", "LIS & LCS", ["[00:00 - 01:30] Dãy con tăng dài nhất O(N log N) (Lower Bound).", "[01:30 - 03:00] Chuỗi con chung LCS 2D."], `#include <bits/stdc++.h>\nusing namespace std;\n\n// LIS O(N log N)\nint main() {\n    int n; cin >> n;\n    vector<int> tail;\n    for (int i = 0; i < n; i++) {\n        int x; cin >> x;\n        auto it = lower_bound(tail.begin(), tail.end(), x);\n        if (it == tail.end()) tail.push_back(x);\n        else *it = x;\n    }\n    cout << tail.size() << "\\n";\n    return 0;\n}`, "Xếp hộp.", [{text: "Hạ Long 2026 - Bài 4: Dãy con chung", id: "EXAM_QUANG_NINH_CHUYEN_HA_LONG_2025_2026"}]),
-                lesson("BUỔI 32", "Mock Test Giai Đoạn 4", ["[00:00 - 03:00] Đề thi khó (Đồ thị & DP)."], `// Giả lập kỳ thi chuyên, không hỗ trợ trong phòng thi.`, "Test kỹ năng debug.", [])
+                lesson("BUỔI 25", "Đồ thị & Duyệt theo chiều sâu (DFS)", ["[00:00-01:30] Danh sách kề. Đệ quy DFS.", "[01:30-03:00] Đếm thành phần liên thông."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 100005;\nvector<int> adj[MAXN];\nbool visited[MAXN];\n\nvoid dfs(int u) {\n    visited[u] = true;\n    for (int v : adj[u])\n        if (!visited[v]) dfs(v);\n}`, "Kiểm tra liên thông.", [{text: "KHTN Lần 3 2026 - Câu 3: WATER", id: "EXAM_KHTN_LAN3_2025_2026"}]),
+                lesson("BUỔI 26", "Duyệt theo chiều rộng (BFS)", ["[00:00-01:30] Queue. Đường đi ngắn nhất không trọng số.", "[01:30-03:00] Loang trên bảng 2D."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint dx[] = {-1,1,0,0}, dy[] = {0,0,-1,1};\nint dist[1005][1005], N, M;\n\nvoid bfs(int sx, int sy) {\n    queue<pair<int,int>> q;\n    q.push({sx, sy}); dist[sx][sy] = 0;\n    while (!q.empty()) {\n        auto [x, y] = q.front(); q.pop();\n        for (int i = 0; i < 4; i++) {\n            int nx = x+dx[i], ny = y+dy[i];\n            if (nx>=1&&nx<=N&&ny>=1&&ny<=M&&dist[nx][ny]==-1) {\n                dist[nx][ny] = dist[x][y]+1;\n                q.push({nx,ny});\n            }\n        }\n    }\n}`, "Bài toán Mê cung.", [{text: "Quảng Bình 2026 - Câu 4: Robot", id: "EXAM_QUANG_BINH_2025_2026"}]),
+                lesson("BUỔI 27", "Thuật toán Dijkstra", ["[00:00-01:30] Hàng đợi ưu tiên (Priority Queue).", "[01:30-03:00] Relaxation và bẫy TLE."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long INF = 1e18;\nvector<pair<int,int>> adj[100005];\nlong long dist_arr[100005];\n\nvoid dijkstra(int start, int n) {\n    fill(dist_arr+1, dist_arr+n+1, INF);\n    dist_arr[start] = 0;\n    priority_queue<pair<long long,int>,\n        vector<pair<long long,int>>,\n        greater<>> pq;\n    pq.push({0, start});\n    while (!pq.empty()) {\n        auto [du, u] = pq.top(); pq.pop();\n        if (du > dist_arr[u]) continue; // TRÁNH TLE\n        for (auto [v, uv] : adj[u]) {\n            if (dist_arr[v] > du + uv) {\n                dist_arr[v] = du + uv;\n                pq.push({dist_arr[v], v});\n            }\n        }\n    }\n}`, "Đường đi có trọng số.", []),
+                lesson("BUỔI 28", "DSU & Cây khung nhỏ nhất (Kruskal)", ["[00:00-01:30] Cấu trúc Disjoint Set Union (Find, Union).", "[01:30-03:00] Thuật toán Kruskal tìm Minimum Spanning Tree."], `#include <bits/stdc++.h>\nusing namespace std;\n\nstruct Edge { int u, v; long long w; };\n\nint root[100005];\nint find(int u) { return u==root[u]?u:root[u]=find(root[u]); }\nvoid unite(int u, int v) { root[find(u)] = find(v); }\n\n// Kruskal MST:\n// 1. Sort edge theo w tăng dần\n// 2. Nếu find(u) != find(v): unite + cộng w vào MST`, "Xây dựng trạm phát sóng rẻ nhất.", []),
+                lesson("BUỔI 29", "Bản chất Quy hoạch động (DP)", ["[00:00-01:30] Memoization vs Tabulation.", "[01:30-03:00] Bài toán Bậc thang, Ếch nhảy."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n; cin >> n;\n    vector<long long> dp(n+1, 0);\n    dp[1] = 1;\n    if (n >= 2) dp[2] = 2;\n    for (int i = 3; i <= n; i++)\n        dp[i] = (dp[i-1] + dp[i-2]) % 1000000007;\n    cout << dp[n] << "\\n";\n    return 0;\n}`, "Tìm công thức truy hồi.", []),
+                lesson("BUỔI 30", "Ba lô 0/1 (0/1 Knapsack)", ["[00:00-01:30] Bảng phương án 2D.", "[01:30-03:00] Tối ưu mảng 1D (Vòng lặp NGƯỢC)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, M; cin >> n >> M;\n    vector<int> w(n), v(n);\n    for (int i = 0; i < n; i++) cin >> w[i] >> v[i];\n    vector<long long> dp(M+1, 0);\n    for (int i = 0; i < n; i++)\n        // BẮT BUỘC lặp NGƯỢC để không chọn vật lại nhiều lần\n        for (int j = M; j >= w[i]; j--)\n            dp[j] = max(dp[j], dp[j-w[i]] + v[i]);\n    cout << dp[M] << "\\n";\n    return 0;\n}`, "Chia tài sản.", [{text: "KHTN Lần 3 2026 - Câu 6: TUI", id: "EXAM_KHTN_LAN3_2025_2026"}]),
+                lesson("BUỔI 31", "LIS & LCS", ["[00:00-01:30] Dãy con tăng dài nhất O(N log N).", "[01:30-03:00] Chuỗi con chung LCS 2D."], `#include <bits/stdc++.h>\nusing namespace std;\n\n// LIS O(N log N)\nint main() {\n    int n; cin >> n;\n    vector<int> tail;\n    for (int i = 0; i < n; i++) {\n        int x; cin >> x;\n        auto it = lower_bound(tail.begin(), tail.end(), x);\n        if (it == tail.end()) tail.push_back(x);\n        else *it = x;\n    }\n    cout << tail.size() << "\\n";\n    return 0;\n}`, "Xếp hộp.", [{text: "Hạ Long 2026 - Bài 4: Dãy con chung", id: "EXAM_QUANG_NINH_CHUYEN_HA_LONG_2025_2026"}]),
+                lesson("BUỔI 32", "Mock Test Giai Đoạn 4", ["[00:00-03:00] Đề thi khó (Đồ thị & DP)."], `// Giả lập kỳ thi chuyên, không hỗ trợ trong phòng thi.`, "Test kỹ năng debug.", [])
             ]
         };
 
         const phase5 = {
             phaseId: 5, title: "GIAI ĐOẠN 5: DP NÂNG CAO & XỬ LÝ CHUỖI", time: "THÁNG 9", duration: "8 Buổi (24 Giờ)",
-            bgClass: "bg-indigo-600", textClass: "text-indigo-600", lightBgClass: "bg-indigo-50",
-            desc: "Làm chủ DP trên lưới, Trace vết và các cấu trúc dữ liệu chuỗi (Hashing, Trie) siêu tốc.",
+            desc: "Làm chủ DP trên lưới, Trace vết và các cấu trúc chuỗi (Hashing, Trie) siêu tốc.",
             lessons: [
-                lesson("BUỔI 33", "Grid DP - Đếm đường đi", ["[00:00 - 01:30] Bảng 2D. Ô cản.", "[01:30 - 03:00] Min Path Sum."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long MOD = 1e9 + 7;\nstring grid[1005];\nlong long dp[1005][1005];\n\nint main() {\n    int n, m; cin >> n >> m;\n    for(int i = 0; i < n; i++) cin >> grid[i];\n\n    if (grid[0][0] == '.') dp[0][0] = 1;\n\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < m; j++) {\n            if (grid[i][j] == '#') dp[i][j] = 0;\n            else {\n                if (i > 0) dp[i][j] = (dp[i][j] + dp[i-1][j]) % MOD;\n                if (j > 0) dp[i][j] = (dp[i][j] + dp[i][j-1]) % MOD;\n            }\n        }\n    }\n    return 0;\n}`, "Thu thập táo.", [{text: "ĐH Vinh 2025 - Bài 4: Robot mang quà", id: "EXAM_DH_VINH_2024_2025"}]),
-                lesson("BUỔI 34", "Kỹ thuật Truy vết (Trace) trong DP", ["[00:00 - 01:30] Mảng Trace vs Lùi ngược.", "[01:30 - 03:00] In ra đường đi thực sự."], `// Lùi ngược từ Đích về Nguồn trong Grid DP\nint i = n - 1, j = m - 1;\nstring path = "";\n\nwhile (i > 0 || j > 0) {\n    if (i == 0) {\n        path += "R"; j--;\n    } else if (j == 0) {\n        path += "D"; i--;\n    } else {\n        if (dp[i][j] == dp[i-1][j] + grid_value[i][j]) {\n            path += "D"; i--;\n        } else {\n            path += "R"; j--;\n        }\n    }\n}\nreverse(path.begin(), path.end());`, "In cấu hình Ba Lô.", []),
-                lesson("BUỔI 35", "Edit Distance (Levenshtein)", ["[00:00 - 01:30] Chèn, Xóa, Thay thế.", "[01:30 - 03:00] DP chuỗi thành Palindrome."], `#include <bits/stdc++.h>\nusing namespace std;\n\n// Khoảng cách chỉnh sửa giữa S1 và S2\nint main() {\n    string s1, s2; cin >> s1 >> s2;\n    int m = s1.length(), n = s2.length();\n    vector<vector<int>> dp(m + 1, vector<int>(n + 1));\n    \n    for (int i = 0; i <= m; i++) dp[i][0] = i;\n    for (int j = 0; j <= n; j++) dp[0][j] = j;\n    \n    for (int i = 1; i <= m; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (s1[i - 1] == s2[j - 1]) dp[i][j] = dp[i - 1][j - 1];\n            else dp[i][j] = 1 + min({dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]});\n        }\n    }\n    return 0;\n}`, "Chuỗi tương đồng.", []),
-                lesson("BUỔI 36", "Thuật toán Băm Chuỗi (Rolling Hash)", ["[00:00 - 01:30] Biến chuỗi thành số nguyên O(1).", "[01:30 - 03:00] Chọn BASE (311) và MOD (1e9+7)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long BASE = 311;\nconst long long MOD = 1e9 + 7;\n\nlong long getHash(string s) {\n    long long hash_val = 0;\n    for (char c : s) {\n        hash_val = (hash_val * BASE + c) % MOD;\n    }\n    return hash_val;\n}`, "So sánh chuỗi.", []),
-                lesson("BUỔI 37", "Hashing Đoạn Con & Rabin-Karp", ["[00:00 - 01:30] Hash cộng dồn & POW[].", "[01:30 - 03:00] Tìm chuỗi O(1)."], `// Lấy Hash đoạn [L, R] (1-based) trong O(1)\nlong long getHashRange(int l, int r) {\n    long long res = (H[r] - H[l - 1] * POW[r - l + 1] % MOD + MOD) % MOD;\n    return res;\n}`, "Đếm chuỗi con phân biệt.", []),
-                lesson("BUỔI 38", "Hash Xuôi Ngược & Palindrome O(1)", ["[00:00 - 01:30] 2 mảng Hash.", "[01:30 - 03:00] Đếm chuỗi Palindrome."], `// Logic kiểm tra Palindrome siêu tốc bằng 2 mảng Hash\nbool isPalindrome(int L, int R, int N) {\n    long long h_forward = getHashForward(L, R);\n    \n    int rev_L = N - R + 1;\n    int rev_R = N - L + 1;\n    long long h_backward = getHashBackward(rev_L, rev_R);\n    \n    return h_forward == h_backward;\n}`, "Palindrome siêu tốc.", [{text: "Quảng Trị 2022 - Bài 4: Xâu đối xứng", id: "EXAM_QUANG_TRI_2022"}, {text: "PTNK 2025 - Bài 3: Trò chơi xếp chữ", id: "EXAM_PTNK_2025"}]),
-                lesson("BUỔI 39", "Cấu trúc dữ liệu Trie (Cây tiền tố)", ["[00:00 - 01:30] Xây dựng TrieNode, insert(), search().", "[01:30 - 03:00] Ứng dụng: Từ điển, Tiền tố chung."], `#include <bits/stdc++.h>\nusing namespace std;\n\nstruct TrieNode {\n    TrieNode* child[26];\n    bool isEnd;\n    TrieNode() {\n        for(int i = 0; i < 26; i++) child[i] = nullptr;\n        isEnd = false;\n    }\n};\n\nvoid insert(TrieNode* root, string word) {\n    TrieNode* curr = root;\n    for (char c : word) {\n        int idx = c - 'a';\n        if (curr->child[idx] == nullptr) {\n            curr->child[idx] = new TrieNode();\n        }\n        curr = curr->child[idx];\n    }\n    curr->isEnd = true;\n}`, "Gợi ý từ khóa (Autocomplete).", []),
-                lesson("BUỔI 40", "Mock Test Giai Đoạn 5", ["[00:00 - 03:00] Thi 150 phút (Hash, Trie, Trace DP)."], `// Luyện tập kiểm soát thời gian.`, "Test PTNK.", [])
+                lesson("BUỔI 33", "Grid DP - Đếm đường đi", ["[00:00-01:30] Bảng 2D. Ô cản.", "[01:30-03:00] Min Path Sum."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long MOD = 1e9 + 7;\nstring grid[1005];\nlong long dp[1005][1005];\n\nint main() {\n    int n, m; cin >> n >> m;\n    for (int i = 0; i < n; i++) cin >> grid[i];\n    if (grid[0][0] == '.') dp[0][0] = 1;\n    for (int i = 0; i < n; i++)\n        for (int j = 0; j < m; j++) {\n            if (grid[i][j] == '#') { dp[i][j]=0; continue; }\n            if (i > 0) dp[i][j] = (dp[i][j]+dp[i-1][j])%MOD;\n            if (j > 0) dp[i][j] = (dp[i][j]+dp[i][j-1])%MOD;\n        }\n    return 0;\n}`, "Thu thập táo.", [{text: "ĐH Vinh 2025 - Bài 4: Robot mang quà", id: "EXAM_DH_VINH_2024_2025"}]),
+                lesson("BUỔI 34", "Kỹ thuật Truy vết (Trace) trong DP", ["[00:00-01:30] Mảng Trace vs Lùi ngược.", "[01:30-03:00] In ra đường đi thực sự."], `// Lùi ngược từ đích về nguồn trong Grid DP\nint i = n-1, j = m-1;\nstring path = "";\nwhile (i > 0 || j > 0) {\n    if (i == 0) { path += "R"; j--; }\n    else if (j == 0) { path += "D"; i--; }\n    else {\n        if (dp[i][j] == dp[i-1][j] + val[i][j]) {\n            path += "D"; i--;\n        } else { path += "R"; j--; }\n    }\n}\nreverse(path.begin(), path.end());`, "In cấu hình Ba Lô.", []),
+                lesson("BUỔI 35", "Edit Distance (Levenshtein)", ["[00:00-01:30] Chèn, Xóa, Thay thế.", "[01:30-03:00] DP chuỗi thành Palindrome."], `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    string s1, s2; cin >> s1 >> s2;\n    int m = s1.size(), n = s2.size();\n    vector<vector<int>> dp(m+1, vector<int>(n+1));\n    for (int i = 0; i <= m; i++) dp[i][0] = i;\n    for (int j = 0; j <= n; j++) dp[0][j] = j;\n    for (int i = 1; i <= m; i++)\n        for (int j = 1; j <= n; j++) {\n            if (s1[i-1] == s2[j-1]) dp[i][j] = dp[i-1][j-1];\n            else dp[i][j] = 1 + min({dp[i-1][j], dp[i][j-1], dp[i-1][j-1]});\n        }\n    return 0;\n}`, "Chuỗi tương đồng.", []),
+                lesson("BUỔI 36", "Thuật toán Băm Chuỗi (Rolling Hash)", ["[00:00-01:30] Biến chuỗi thành số nguyên O(1).", "[01:30-03:00] Chọn BASE (311) và MOD (1e9+7)."], `#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long BASE = 311, MOD = 1e9 + 7;\n\nlong long getHash(string s) {\n    long long h = 0;\n    for (char c : s)\n        h = (h * BASE + c) % MOD;\n    return h;\n}`, "So sánh chuỗi O(1).", []),
+                lesson("BUỔI 37", "Hashing Đoạn Con & Rabin-Karp", ["[00:00-01:30] Hash cộng dồn & POW[].", "[01:30-03:00] Tìm chuỗi O(N)."], `// Lấy Hash đoạn [L, R] (1-based) trong O(1)\nlong long getHashRange(int l, int r) {\n    return (H[r] - H[l-1] * POW[r-l+1] % MOD + MOD) % MOD;\n}`, "Đếm chuỗi con phân biệt.", []),
+                lesson("BUỔI 38", "Hash Xuôi Ngược & Palindrome O(1)", ["[00:00-01:30] 2 mảng Hash.", "[01:30-03:00] Đếm chuỗi Palindrome."], `// Kiểm tra Palindrome siêu tốc bằng 2 mảng Hash\nbool isPalin(int L, int R, int N) {\n    long long hf = getHashForward(L, R);\n    long long hb = getHashBackward(N-R+1, N-L+1);\n    return hf == hb;\n}`, "Palindrome siêu tốc.", [{text: "Quảng Trị 2022 - Bài 4: Xâu đối xứng", id: "EXAM_QUANG_TRI_2022"}, {text: "PTNK 2025 - Bài 3: Trò chơi xếp chữ", id: "EXAM_PTNK_2025"}]),
+                lesson("BUỔI 39", "Cấu trúc dữ liệu Trie (Cây tiền tố)", ["[00:00-01:30] Xây dựng TrieNode, insert(), search().", "[01:30-03:00] Ứng dụng: Từ điển, Tiền tố chung."], `#include <bits/stdc++.h>\nusing namespace std;\n\nstruct TrieNode {\n    TrieNode* child[26];\n    bool isEnd;\n    TrieNode() {\n        fill(child, child+26, nullptr);\n        isEnd = false;\n    }\n};\n\nvoid insert(TrieNode* root, string word) {\n    TrieNode* curr = root;\n    for (char c : word) {\n        int idx = c - 'a';\n        if (!curr->child[idx]) curr->child[idx] = new TrieNode();\n        curr = curr->child[idx];\n    }\n    curr->isEnd = true;\n}`, "Gợi ý từ khóa (Autocomplete).", []),
+                lesson("BUỔI 40", "Mock Test Giai Đoạn 5", ["[00:00-03:00] Thi 150 phút (Hash, Trie, Trace DP)."], `// Luyện tập kiểm soát thời gian.`, "Test PTNK.", [])
             ]
         };
 
         const phase6 = {
             phaseId: 6, title: "GIAI ĐOẠN 6: TỔNG ÔN THỰC CHIẾN & MOCK TEST", time: "THÁNG 10 - 11", duration: "8 Buổi (24 Giờ)",
-            bgClass: "bg-rose-600", textClass: "text-rose-600", lightBgClass: "bg-rose-50",
-            desc: "Chiến thuật phòng thi, sinh test tự động (Stress Testing) và rèn luyện tâm lý thép qua các bài thi thử thực tế.",
+            desc: "Chiến thuật phòng thi, sinh test tự động (Stress Testing) và rèn luyện tâm lý thép.",
             lessons: [
-                lesson("BUỔI 41", "Nghệ thuật lấy điểm Subtask", ["[00:00 - 01:30] Phân loại câu Dễ-Khó.", "[01:30 - 03:00] Kỹ thuật 'Code Trâu' vét điểm."], `#include <bits/stdc++.h>\nusing namespace std;\n\nvoid subtask1() { /* O(N^2) cho N <= 1000 */ }\nvoid subtask_full() { /* O(N) cho N <= 10^5 */ }\n\nint main() {\n    int n; cin >> n;\n    if(n <= 1000) subtask1();\n    else subtask_full();\n    return 0;\n}`, "Tránh 0 điểm toàn bài.", []),
-                lesson("BUỔI 42", "Stress Testing & Debug offline", ["[00:00 - 01:30] Viết Generator sinh test ngẫu nhiên.", "[01:30 - 03:00] Viết Script so sánh 2 file Code."], `#include <bits/stdc++.h>\nusing namespace std;\n\nlong long Rand(long long l, long long r) {\n    return l + (1LL * rand() * (RAND_MAX + 1) + rand()) % (r - l + 1);\n}\n\nint main() {\n    srand(time(NULL));\n    int n = Rand(1, 100000);\n    cout << n << "\\n";\n    return 0;\n}`, "Hack test case.", []),
-                lesson("BUỔI 43", "Tổng Ôn Tốc Độ 1: Mảng, Chuỗi", ["[00:00 - 03:00] Gõ nhanh Prefix Sum, Two Pointers."], `// Code tốc độ - Không suy nghĩ nhiều`, "Phản xạ O(N).", []),
-                lesson("BUỔI 44", "Tổng Ôn Tốc Độ 2: Số học, Tìm kiếm", ["[00:00 - 03:00] Gõ nhanh Sàng, Backtracking, Binary Search."], `// Code tốc độ - Binary Search on Answer`, "Phản xạ O(log N).", []),
-                lesson("BUỔI 45", "Tổng Ôn Tốc Độ 3: Đồ thị, DP", ["[00:00 - 03:00] Gõ nhanh Dijkstra, Ba Lô 0/1."], `// Ghi nhớ mảng 1 chiều DP Ba lô: Lặp NGƯỢC`, "Phản xạ thuật toán khó.", []),
-                lesson("BUỔI 46", "Mock Test 1: Đề Sở GD&ĐT", ["[00:00 - 03:00] Thi giả lập 150 phút (Chuẩn Lê Hồng Phong)."], `// 150 phút tập trung cao độ.`, "Mục tiêu 60-70đ.", []),
-                lesson("BUỔI 47", "Mock Test 2: Đề PTNK", ["[00:00 - 03:00] Thi giả lập 150 phút (Khó, Nặng Toán/Hash)."], `// Không nộp bài trắng.`, "Mục tiêu: Có điểm mọi câu.", []),
-                lesson("BUỔI 48", "Review Lỗi & Định Hướng Tâm Lý", ["[00:00 - 03:00] Phân tích log lỗi Themis, Rà soát Cheatsheet."], `// 1. Array luôn GLOBAL \n// 2. LONG LONG`, "Chạm tay vào giấc mơ!", [])
+                lesson("BUỔI 41", "Nghệ thuật lấy điểm Subtask", ["[00:00-01:30] Phân loại câu Dễ-Khó.", "[01:30-03:00] Kỹ thuật 'Code Trâu' vét điểm Subtask."], `#include <bits/stdc++.h>\nusing namespace std;\n\nvoid subtask1() { /* O(N^2) cho N <= 1000 */ }\nvoid subtask_full() { /* O(N) cho N <= 10^5 */ }\n\nint main() {\n    int n; cin >> n;\n    if (n <= 1000) subtask1();\n    else subtask_full();\n    return 0;\n}`, "Tránh 0 điểm toàn bài.", []),
+                lesson("BUỔI 42", "Stress Testing & Debug offline", ["[00:00-01:30] Viết Generator sinh test ngẫu nhiên.", "[01:30-03:00] Script so sánh 2 file Code."], `#include <bits/stdc++.h>\nusing namespace std;\n\nlong long Rand(long long l, long long r) {\n    return l + (1LL*rand()*(RAND_MAX+1)+rand())%(r-l+1);\n}\n\nint main() {\n    srand(time(NULL));\n    int n = Rand(1, 100000);\n    cout << n << "\\n";\n    return 0;\n}`, "Hack test case.", []),
+                lesson("BUỔI 43", "Tổng Ôn Tốc Độ 1: Mảng, Chuỗi", ["[00:00-03:00] Gõ nhanh Prefix Sum, Two Pointers."], `// Code tốc độ - Phản xạ O(N)`, "Phản xạ O(N).", []),
+                lesson("BUỔI 44", "Tổng Ôn Tốc Độ 2: Số học, Tìm kiếm", ["[00:00-03:00] Gõ nhanh Sàng, Backtracking, Binary Search."], `// Code tốc độ - Binary Search on Answer`, "Phản xạ O(log N).", []),
+                lesson("BUỔI 45", "Tổng Ôn Tốc Độ 3: Đồ thị, DP", ["[00:00-03:00] Gõ nhanh Dijkstra, Ba Lô 0/1."], `// Ghi nhớ: Ba lô 1D phải lặp NGƯỢC`, "Phản xạ thuật toán khó.", []),
+                lesson("BUỔI 46", "Mock Test 1: Đề Sở GD&ĐT", ["[00:00-03:00] Thi giả lập 150 phút."], `// 150 phút tập trung cao độ.`, "Mục tiêu 60-70đ.", []),
+                lesson("BUỔI 47", "Mock Test 2: Đề PTNK", ["[00:00-03:00] Thi giả lập 150 phút (Khó, Nặng Toán/Hash)."], `// Không nộp bài trắng.`, "Mục tiêu: Có điểm mọi câu.", []),
+                lesson("BUỔI 48", "Review Lỗi & Định Hướng Tâm Lý", ["[00:00-03:00] Phân tích log lỗi Themis, Rà soát Cheatsheet."], `// 1. Array luôn GLOBAL\n// 2. LONG LONG\n// 3. MOD khi cần\n// 4. Đọc kỹ giới hạn trước khi code`, "Chạm tay vào giấc mơ!", [])
             ]
         };
 
         const phases = [phase1, phase2, phase3, phase4, phase5, phase6];
 
-        // --- 3. RENDERING LOGIC ---
+        // ---- RENDER: OVERVIEW ----
         function renderOverview() {
             const container = document.getElementById('overview-container');
             let html = '';
-            phases.forEach(phase => {
+            phases.forEach((phase, idx) => {
+                const c = phaseColorMap[idx];
                 html += `
-                <div class="soft-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex flex-col h-full border-t-4 border-t-${phase.bgClass.replace('bg-', '')}">
-                    <div class="${phase.lightBgClass} px-6 py-5 border-b border-slate-100 flex justify-between items-center">
-                        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-white text-xs font-bold ${phase.textClass} uppercase tracking-wider shadow-sm">Giai đoạn ${phase.phaseId}</span>
-                        <span class="text-sm font-semibold text-slate-500 bg-white/60 px-3 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i>${phase.time}</span>
+                <div class="soft-card rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col" style="border-top: 4px solid ${c.border}">
+                    <div class="px-5 py-4 border-b border-slate-100 flex justify-between items-center" style="background:${c.light}">
+                        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-white text-xs font-bold uppercase tracking-wider shadow-sm" style="color:${c.text}">Giai đoạn ${phase.phaseId}</span>
+                        <span class="text-xs font-semibold text-slate-500 bg-white/70 px-3 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i>${phase.time}</span>
                     </div>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <div class="flex items-start gap-4 mb-4">
-                            <div class="w-12 h-12 rounded-xl ${phase.bgClass} text-white flex items-center justify-center text-xl flex-shrink-0 shadow-md transform group-hover:scale-110 transition-transform">
-                                <i class="fa-solid ${phase.icon || 'fa-code'}"></i>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <div class="flex items-start gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-xl text-white flex items-center justify-center text-lg flex-shrink-0 shadow-md transform group-hover:scale-110 transition-transform" style="background:${c.bg}">
+                                <i class="fa-solid ${c.icon}"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-slate-800 leading-tight">${phase.title.split(': ')[1] || phase.title}</h3>
+                            <h3 class="text-base font-bold text-slate-800 leading-snug pt-1">${phase.title.split(': ')[1] || phase.title}</h3>
                         </div>
-                        <p class="text-slate-600 text-sm mb-6 flex-grow">${phase.desc}</p>
-                        <button onclick="switchTab('syllabus')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-50 hover:bg-${phase.bgClass.replace('bg-', 'bg-')}/10 text-${phase.textClass.replace('text-', 'text-')}-700 font-semibold text-sm transition-colors border border-slate-200">Xem Chi Tiết Lộ Trình</button>
+                        <p class="text-slate-600 text-sm mb-5 flex-grow leading-relaxed">${phase.desc}</p>
+                        <button onclick="switchTab('syllabus')" class="w-full py-2.5 rounded-xl font-semibold text-sm transition border border-slate-200 hover:opacity-80" style="background:${c.light};color:${c.text}">Xem Chi Tiết →</button>
                     </div>
                 </div>`;
             });
             container.innerHTML = html;
         }
 
+        // ---- RENDER: SYLLABUS ----
         function renderSyllabus() {
             const container = document.getElementById('syllabus-container');
             let html = '';
-            phases.forEach(phase => {
+            phases.forEach((phase, phaseIdx) => {
+                const c = phaseColorMap[phaseIdx];
                 html += `
-                <div class="soft-card rounded-3xl overflow-hidden mb-12 shadow-sm border border-slate-200">
-                    <div class="${phase.bgClass} px-8 py-6 text-white relative overflow-hidden">
-                        <div class="absolute -right-10 -top-10 text-white/10 text-9xl"><i class="fa-solid ${phase.icon || 'fa-code'}"></i></div>
+                <div class="soft-card rounded-2xl overflow-hidden border border-slate-200">
+                    <div class="px-5 sm:px-8 py-5 sm:py-6 text-white relative overflow-hidden" style="background:${c.bg}">
                         <div class="relative z-10">
-                            <div class="flex flex-wrap items-center gap-3 mb-2">
-                                <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase">Phase ${phase.phaseId}</span>
-                                <span class="bg-black/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium"><i class="fa-regular fa-calendar mr-1"></i>${phase.time}</span>
-                                <span class="bg-black/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium"><i class="fa-regular fa-hourglass-half mr-1"></i>${phase.duration}</span>
+                            <div class="flex flex-wrap items-center gap-2 mb-2">
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase">Phase ${phase.phaseId}</span>
+                                <span class="bg-black/20 px-3 py-1 rounded-full text-xs"><i class="fa-regular fa-calendar mr-1"></i>${phase.time}</span>
+                                <span class="bg-black/20 px-3 py-1 rounded-full text-xs"><i class="fa-regular fa-hourglass-half mr-1"></i>${phase.duration}</span>
                             </div>
-                            <h3 class="text-2xl font-bold font-heading">${phase.title}</h3>
+                            <h3 class="text-base sm:text-xl font-bold font-heading leading-snug">${phase.title}</h3>
                         </div>
                     </div>
-                    <div class="p-8">
-                `;
-                
-                phase.lessons.forEach((lesson, index) => {
+                    <div class="p-4 sm:p-8 space-y-8">`;
+
+                phase.lessons.forEach((les, index) => {
                     let examLinksHTML = '';
-                    if (lesson.realExams && lesson.realExams.length > 0) {
+                    if (les.realExams && les.realExams.length > 0) {
                         examLinksHTML = `
-                            <div class="mt-4 pt-4 border-t border-slate-200">
-                                <h5 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center"><i class="fa-solid fa-link mr-1.5 text-primary-500"></i>Liên kết đề thi thực chiến</h5>
-                                <div class="flex flex-wrap gap-2">
-                                    ${lesson.realExams.map(ex => `<button onclick="scrollToExam('${ex.id}')" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-50 text-primary-700 hover:bg-primary-100 hover:text-primary-800 text-xs font-semibold rounded-lg transition-colors border border-primary-100 shadow-sm"><i class="fa-regular fa-file-code"></i> ${ex.text}</button>`).join('')}
-                                </div>
+                        <div class="mt-4 pt-4 border-t border-slate-200">
+                            <h5 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center"><i class="fa-solid fa-link mr-1.5 text-primary-500"></i>Đề thi liên kết</h5>
+                            <div class="flex flex-wrap gap-2">
+                                ${les.realExams.map(ex => `<button onclick="scrollToExam('${ex.id}')" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-50 text-primary-700 hover:bg-primary-100 text-xs font-semibold rounded-lg transition border border-primary-100 shadow-sm"><i class="fa-regular fa-file-code"></i>${ex.text}</button>`).join('')}
                             </div>
-                        `;
+                        </div>`;
                     }
 
+                    const codeId = `code-${phase.phaseId}-${index}`;
+                    const toggleId = `toggle-${phase.phaseId}-${index}`;
+                    const bodyId = `body-${phase.phaseId}-${index}`;
+
                     html += `
-                        <div class="mb-10 last:mb-0 relative">
-                            ${index !== phase.lessons.length - 1 ? '<div class="absolute left-[1.15rem] top-10 bottom-[-2.5rem] w-[2px] bg-slate-100"></div>' : ''}
-                            <div class="flex gap-5 relative z-10">
-                                <div class="w-10 h-10 rounded-full ${phase.lightBgClass} ${phase.textClass} flex items-center justify-center font-bold flex-shrink-0 border-4 border-white shadow-sm ring-1 ring-slate-100">${index + 1}</div>
-                                <div class="flex-grow pt-1">
-                                    <h4 class="text-lg font-bold text-slate-800 mb-1 flex items-center flex-wrap gap-2">
-                                        ${lesson.session}: ${lesson.name}
-                                    </h4>
-                                    
-                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
-                                        <div class="space-y-4 flex flex-col justify-between">
-                                            <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100 flex-grow">
-                                                <h5 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center"><i class="fa-regular fa-clock mr-2"></i>Tiến trình giảng dạy</h5>
-                                                <ul class="space-y-2">
-                                                    ${lesson.timeline.map(t => `<li class="text-sm text-slate-700 flex items-start gap-2"><i class="fa-solid fa-chevron-right text-slate-300 mt-1 text-xs"></i><span>${t}</span></li>`).join('')}
-                                                </ul>
-                                            </div>
-                                            <div class="bg-amber-50 rounded-2xl p-5 border border-amber-100">
-                                                <h5 class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-2 flex items-center"><i class="fa-solid fa-dumbbell mr-2"></i>Bài tập thực hành</h5>
-                                                <p class="text-sm text-amber-800 whitespace-pre-line">${lesson.tasks}</p>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="bg-[#1e1e1e] rounded-2xl p-5 shadow-inner border border-slate-800 flex flex-col h-full">
-                                            <div class="flex items-center justify-between mb-3 border-b border-slate-700 pb-3">
-                                                <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center"><i class="fa-solid fa-terminal mr-2 text-emerald-400"></i>Code Mẫu / Cấu Trúc C++</h5>
-                                                <div class="flex gap-1.5">
-                                                    <div class="w-3 h-3 rounded-full bg-rose-500"></div>
-                                                    <div class="w-3 h-3 rounded-full bg-amber-500"></div>
-                                                    <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                                                </div>
-                                            </div>
-                                            <pre class="text-[13px] font-mono text-slate-300 whitespace-pre-wrap overflow-x-auto custom-scrollbar flex-grow leading-relaxed"><code>${lesson.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
+                    <div class="relative">
+                        ${index !== phase.lessons.length - 1 ? '<div class="absolute left-[18px] top-10 bottom-[-2rem] w-0.5 bg-slate-100"></div>' : ''}
+                        <div class="flex gap-3 sm:gap-4 relative z-10">
+                            <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold flex-shrink-0 border-4 border-white shadow-sm ring-1 ring-slate-100 text-sm" style="background:${c.light};color:${c.text}">${index + 1}</div>
+                            <div class="flex-grow min-w-0 pt-0.5">
+                                <h4 class="text-sm sm:text-base font-bold text-slate-800 leading-snug mb-3">${les.session}: ${les.name}</h4>
+
+                                <!-- Timeline toggle (mobile collapsible) -->
+                                <button id="${toggleId}" onclick="toggleTimeline('${toggleId}','${bodyId}')" class="timeline-toggle w-full flex items-center justify-between text-xs font-bold text-slate-500 uppercase tracking-wider bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-100 mb-2 hover:bg-slate-100 transition">
+                                    <span><i class="fa-regular fa-clock mr-1.5"></i>Tiến trình giảng dạy</span>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                                <div id="${bodyId}" class="timeline-body">
+                                    <ul class="space-y-1.5 px-4 pb-3">
+                                        ${les.timeline.map(t => `<li class="text-xs sm:text-sm text-slate-700 flex items-start gap-2"><i class="fa-solid fa-chevron-right text-slate-300 mt-1 text-[10px] flex-shrink-0"></i><span>${t}</span></li>`).join('')}
+                                    </ul>
+                                </div>
+
+                                <!-- Code block -->
+                                <div class="code-wrap mt-3">
+                                    <div class="code-header">
+                                        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-terminal text-emerald-400"></i>Code Mẫu C++</span>
+                                        <div class="flex items-center gap-2">
+                                            <div class="hidden sm:flex gap-1"><div class="w-2.5 h-2.5 rounded-full bg-rose-500"></div><div class="w-2.5 h-2.5 rounded-full bg-amber-500"></div><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div></div>
+                                            <button class="copy-btn" onclick="copyCode('${codeId}', this)">Copy</button>
                                         </div>
                                     </div>
-                                    ${examLinksHTML}
+                                    <div class="code-body">
+                                        <pre id="${codeId}"><code>${les.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
+                                    </div>
                                 </div>
+
+                                <!-- Tasks -->
+                                <div class="mt-3 bg-amber-50 rounded-xl px-4 py-3 border border-amber-100 flex items-start gap-2">
+                                    <i class="fa-solid fa-dumbbell text-amber-500 mt-0.5 flex-shrink-0 text-xs"></i>
+                                    <p class="text-xs sm:text-sm text-amber-800 font-medium">${les.tasks}</p>
+                                </div>
+
+                                ${examLinksHTML}
                             </div>
                         </div>
-                    `;
+                    </div>`;
                 });
-                
+
                 html += `</div></div>`;
             });
             container.innerHTML = html;
         }
 
+        // ---- RENDER: EXAMS ----
         function renderExams() {
             const container = document.getElementById('exams-container');
-            let html = '<div class="grid grid-cols-1 gap-8">';
-            examDatabaseCleaned.forEach((exam) => {
+            let html = '';
+            rawExamDatabase.forEach(exam => {
                 html += `
-                <div id="${exam.id}" class="exam-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden scroll-mt-24">
-                    <div class="bg-slate-50 p-6 border-b border-slate-200">
-                        <div class="flex flex-wrap items-center gap-3 mb-2">
-                            <span class="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">${exam.province}</span>
-                            <span class="text-sm text-slate-500 whitespace-nowrap"><i class="fa-regular fa-clock"></i> ${exam.duration || '150 phút'}</span>
+                <div id="${exam.id}" class="exam-card bg-white rounded-2xl border border-slate-200 overflow-hidden scroll-mt-24 shadow-sm">
+                    <div class="bg-slate-50 px-4 sm:px-6 py-4 sm:py-5 border-b border-slate-200">
+                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                            <span class="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-xs font-bold">${exam.province}</span>
+                            <span class="text-xs text-slate-500"><i class="fa-regular fa-clock"></i> ${exam.duration || '150 phút'}</span>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-800">${exam.title}</h3>
-                        ${exam.subject ? `<p class="text-slate-600 mt-1 font-semibold text-sm">${exam.subject}</p>` : ''}
+                        <h3 class="text-sm sm:text-base font-bold text-slate-800 leading-snug">${exam.title}</h3>
+                        ${exam.subject ? `<p class="text-xs sm:text-sm text-slate-500 mt-1 font-semibold">${exam.subject}</p>` : ''}
                     </div>
-                    <div class="p-6">
-                        <h4 class="font-bold text-slate-700 mb-4 flex items-center gap-2 border-b pb-2"><i class="fa-solid fa-list-check text-slate-400"></i> Danh sách bài tập</h4>
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                `;
-                exam.questions.forEach((q) => {
+                    <div class="p-4 sm:p-6">
+                        <h4 class="font-bold text-slate-700 mb-4 flex items-center gap-2 text-sm border-b pb-3"><i class="fa-solid fa-list-check text-slate-400"></i> Danh sách bài tập</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">`;
+                exam.questions.forEach(q => {
                     html += `
-                            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100 flex flex-col h-full hover:shadow-md transition-shadow">
-                                <h5 class="font-bold text-primary-700 mb-2">${q.name}</h5>
-                                <p class="text-sm text-slate-700 mb-3 whitespace-pre-line flex-grow">${q.context || ''}</p>
-                                ${q.requirement ? `<p class="text-sm font-semibold text-slate-800 mb-3 p-3 bg-rose-50 border-l-4 border-rose-400 rounded-r-lg"><i class="fa-solid fa-bullseye text-rose-500 mr-1"></i> ${q.requirement}</p>` : ''}
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-auto pt-3 border-t border-slate-200">
-                                    <div class="bg-white p-3 rounded-lg border border-slate-200">
-                                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Input Data</p>
-                                        <div class="text-xs font-mono text-slate-700 whitespace-pre-wrap">${q.input || 'Theo mô tả'}</div>
+                            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 hover:shadow-md transition-shadow flex flex-col">
+                                <h5 class="font-bold text-primary-700 mb-2 text-sm leading-snug">${q.name}</h5>
+                                <p class="text-xs sm:text-sm text-slate-700 mb-3 flex-grow leading-relaxed">${q.context || ''}</p>
+                                ${q.requirement ? `<p class="text-xs font-semibold text-slate-800 mb-3 px-3 py-2 bg-rose-50 border-l-4 border-rose-400 rounded-r-lg"><i class="fa-solid fa-bullseye text-rose-500 mr-1"></i>${q.requirement}</p>` : ''}
+                                <div class="flex flex-col gap-2 mt-auto pt-3 border-t border-slate-200">
+                                    <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Input</p>
+                                        <div class="text-xs font-mono text-slate-700">${q.input || 'Theo mô tả'}</div>
                                     </div>
-                                    <div class="bg-white p-3 rounded-lg border border-slate-200">
-                                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Output Data</p>
-                                        <div class="text-xs font-mono text-slate-700 whitespace-pre-wrap">${q.output || 'Theo mô tả'}</div>
+                                    <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Output</p>
+                                        <div class="text-xs font-mono text-slate-700">${q.output || 'Theo mô tả'}</div>
                                     </div>
                                 </div>
-                            </div>
-                    `;
+                            </div>`;
                 });
                 html += `</div></div></div>`;
             });
-            html += '</div>';
             container.innerHTML = html;
         }
 
+        // ---- SWITCH TAB ----
         function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            // Deactivate desktop nav
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('active');
+                b.classList.add('text-slate-500');
             });
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active', 'text-primary-700', 'bg-primary-50');
-                btn.classList.add('text-slate-500');
-            });
-            
+            // Deactivate bottom nav
+            document.querySelectorAll('.bnav-btn').forEach(b => b.classList.remove('active'));
+
+            // Activate tab
             document.getElementById('tab-' + tabId).classList.add('active');
-            
-            const activeBtn = document.querySelector(`.nav-btn[data-target="${tabId}"]`);
-            if(activeBtn) {
-                activeBtn.classList.remove('text-slate-500');
-                activeBtn.classList.add('active', 'text-primary-700', 'bg-primary-50');
-            }
+
+            // Activate desktop btn
+            const dBtn = document.getElementById('desktop-btn-' + tabId);
+            if (dBtn) { dBtn.classList.add('active'); dBtn.classList.remove('text-slate-500'); }
+
+            // Activate bottom btn
+            const bBtn = document.getElementById('bnav-' + tabId);
+            if (bBtn) bBtn.classList.add('active');
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Jump to exam and highlight it
+        // ---- SCROLL TO EXAM ----
         function scrollToExam(examId) {
             switchTab('exams');
             setTimeout(() => {
                 const el = document.getElementById(examId);
-                if(el) {
+                if (el) {
                     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     el.classList.add('exam-highlight');
-                    setTimeout(() => {
-                        el.classList.remove('exam-highlight');
-                    }, 2500); // Remove highlight after 2.5s
+                    setTimeout(() => el.classList.remove('exam-highlight'), 2500);
                 }
-            }, 100);
+            }, 120);
         }
 
-        // INIT
+        // ---- TIMELINE TOGGLE ----
+        function toggleTimeline(toggleId, bodyId) {
+            const toggle = document.getElementById(toggleId);
+            const body = document.getElementById(bodyId);
+            const isOpen = body.classList.contains('open');
+            body.classList.toggle('open', !isOpen);
+            toggle.classList.toggle('open', !isOpen);
+        }
+
+        // ---- COPY CODE ----
+        function copyCode(codeId, btn) {
+            const el = document.getElementById(codeId);
+            if (!el) return;
+            const text = el.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+            }).catch(() => {
+                // fallback
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+            });
+        }
+
+        // ---- INIT ----
         document.addEventListener('DOMContentLoaded', () => {
             renderOverview();
             renderSyllabus();
