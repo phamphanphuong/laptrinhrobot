@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo trình Web 10 Buổi: Thực Chiến Giao Diện</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#121212',
+                        darker: '#0a0a0a',
+                        primary: '#00ff80',
+                        secondary: '#e94560',
+                        accent: '#0f3460'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Highlight.js for code blocks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #121212; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00ff80; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        pre code { border-radius: 0.5rem; font-size: 0.9rem; }
+        .nav-link.active { color: #00ff80; border-left-color: #00ff80; background-color: rgba(0, 255, 128, 0.1); }
+    </style>
+</head>
+<body class="bg-darker text-gray-300 flex flex-col md:flex-row min-h-screen">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-72 bg-dark h-auto md:h-screen sticky top-0 border-r border-gray-800 overflow-y-auto flex-shrink-0 z-10">
+        <div class="p-6">
+            <h1 class="text-2xl font-bold text-white mb-2 tracking-tight"><span class="text-primary">WEB</span> MASTER</h1>
+            <p class="text-xs text-gray-500 mb-6 uppercase tracking-wider">Giáo trình thực chiến 10 buổi</p>
+            <nav class="space-y-1" id="toc">
+                <a href="#buoi-1" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 1: "Hack" giao diện cơ bản</a>
+                <a href="#buoi-2" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 2: Nền móng HTML & Đa trang</a>
+                <a href="#buoi-3" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 3: CSS External & Box Model</a>
+                <a href="#buoi-4" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 4: Đội hình với Flexbox</a>
+                <a href="#buoi-5" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 5: JS & Cú click đầu tiên</a>
+                <a href="#buoi-6" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 6: Thao tác DOM & Thuật toán</a>
+                <a href="#buoi-7-8" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 7 & 8: Responsive Mobile</a>
+                <a href="#buoi-9" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 9: Chế độ Sáng/Tối (Dark Mode)</a>
+                <a href="#buoi-10" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 10: Launching với GitHub</a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 md:p-12 lg:p-20 overflow-y-auto w-full max-w-5xl mx-auto">
+        
+        <!-- Header Section -->
+        <header class="mb-16 border-b border-gray-800 pb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Khóa Học: <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">HTML, CSS & JS Thực Chiến</span></h1>
+            <p class="text-lg text-gray-400 leading-relaxed bg-gray-800/50 p-6 rounded-xl border border-gray-700">
+                <strong class="text-white">Mục tiêu khóa học:</strong> Loại bỏ các khái niệm lý thuyết hàn lâm để tập trung "thực chiến". Bạn sẽ thấy việc lập trình web thực ra rất logic, thú vị và có thể tạo ra sản phẩm mang tên mình ngay từ buổi đầu tiên. Kết thúc 10 buổi, bạn sẽ tự tay hoàn thiện một trang Portfolio cá nhân, ứng dụng tính BMI và đưa lên mạng Internet toàn cầu.
+            </p>
+        </header>
+
+        <!-- Buổi 1 -->
+        <section id="buoi-1" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 1</span> NHẬP MÔN - "HACK" GIAO DIỆN (90 Phút)</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Khởi động & Mindset (15 Phút)</h3>
+                    <div class="bg-gray-800 p-5 rounded-lg border border-gray-700 mb-4">
+                        <h4 class="font-bold text-white mb-2">1. Lời mở đầu:</h4>
+                        <p class="italic text-gray-300">"Chào bạn. Có thể bạn đam mê công nghệ, thích thể thao, mê game, nhưng chưa từng viết code. Không sao cả! Hôm nay chúng ta sẽ không học lý thuyết khô khan. Mục tiêu của buổi hôm nay là sau 90 phút, bạn sẽ có một trang hồ sơ cá nhân mang phong cách cực ngầu, chạy ngay trên máy tính của mình."</p>
+                    </div>
+                    
+                    <h4 class="font-bold text-white mb-2 mt-4">2. Hiểu bản chất Web qua góc nhìn Game thủ/Kỹ sư:</h4>
+                    <p class="mb-2">Việc xây dựng một trang web giống hệt như việc bạn tự build một dàn PC:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-4 text-gray-400">
+                        <li><strong class="text-white">HTML:</strong> Chính là bộ khung xương, là Mainboard, CPU, vỏ case. Nó tạo ra cấu trúc nền tảng.</li>
+                        <li><strong class="text-white">CSS:</strong> Là thiết kế bên ngoài, là đèn LED RGB, tản nhiệt nước. CSS giúp web có màu sắc, bố cục và hiệu ứng đẹp mắt.</li>
+                        <li><strong class="text-white">JavaScript (JS):</strong> Là hệ điều hành, là luồng xử lý. JS giúp web 'sống' và có thể tương tác (bấm nút tính toán, chuyển động...).</li>
+                    </ul>
+
+                    <h4 class="font-bold text-white mb-2">3. Setup công cụ làm việc:</h4>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400">
+                        <li><strong>Phần mềm code:</strong> Tải và cài đặt trình soạn thảo Visual Studio Code (VS Code).</li>
+                        <li><strong>Cài Extension:</strong> Tìm và cài đặt tiện ích <code>Live Server</code> (Tiện ích này giúp web tự động cập nhật ngay khi bạn vừa gõ code xong mà không cần tải lại trang).</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Viết những dòng code đầu tiên (45 Phút)</h3>
+                    <h4 class="font-bold text-white mb-2">1. Tạo thư mục làm việc:</h4>
+                    <p class="mb-2">Tạo một thư mục tên <code>Buoi_1_Web</code> ngoài Desktop. Kéo thả thư mục đó vào giao diện VS Code.</p>
+                    <p class="mb-4">Trong VS Code, tạo một file tên là <code>index.html</code>. <em>(File mang tên index.html luôn được các máy chủ ngầm hiểu là trang chủ của mọi website).</em></p>
+
+                    <h4 class="font-bold text-white mb-2">2. Khởi tạo cấu trúc xương (HTML Boilerplate):</h4>
+                    <p class="mb-2"><strong>Mẹo:</strong> Gõ dấu <code>!</code> rồi ấn Enter. VS Code sẽ tự sinh ra bộ khung chuẩn của mọi trang web.</p>
+                    <p class="mb-2"><strong>Giải thích chi tiết các thẻ:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt; &lt;!-- Báo cho trình duyệt biết đây là file HTML5 mới nhất --&gt;
+&lt;html lang="en"&gt; &lt;!-- Ngôn ngữ web là tiếng Anh --&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt; &lt;!-- Giúp hiển thị tiếng Việt có dấu, không bị lỗi font --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; &lt;!-- Hỗ trợ xem tốt trên điện thoại --&gt;
+    &lt;title&gt;Document&lt;/title&gt; &lt;!-- Tiêu đề hiển thị trên tab trình duyệt --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- MỌI THỨ NGƯỜI DÙNG NHÌN THẤY SẼ NẰM TRONG KHU VỰC THẺ BODY NÀY --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                    <h4 class="font-bold text-white mb-2 mt-6">3. Đưa nội dung vào <code>&lt;body&gt;</code>:</h4>
+                    <p class="mb-2"><strong>Thực hành:</strong> Sửa lại phần <code>&lt;title&gt;Document&lt;/title&gt;</code> thành <code>&lt;title&gt;Hồ sơ của [Tên bạn]&lt;/title&gt;</code>. Sau đó click chuột phải vào màn hình code, chọn <strong>Open with Live Server</strong>.</p>
+                    <p class="mb-2"><strong>Gõ đoạn mã sau vào giữa thẻ <code>&lt;body&gt;</code> và <code>&lt;/body&gt;</code>:</strong></p>
+<pre><code class="language-html">&lt;div class="card"&gt;
+    &lt;img src="https://i.pinimg.com/736x/88/5c/15/885c15f48cd114ea0f69f212f845d050.jpg" alt="Avatar"&gt;
+    &lt;h1&gt;Xin chào, mình là [Tên Của Bạn]&lt;/h1&gt;
+    &lt;p&gt;Học sinh trường XYZ | Đam mê công nghệ &amp; Thể thao&lt;/p&gt;
+    &lt;div&gt;
+        &lt;span class="tag"&gt;🎮 Gamer&lt;/span&gt;
+        &lt;span class="tag"&gt;🏸 Cầu lông&lt;/span&gt;
+        &lt;span class="tag"&gt;🏋️‍♂️ Gym&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    <div class="mt-4 bg-gray-800 p-4 rounded border border-gray-700">
+                        <p class="font-bold text-white">💡 Từ vựng HTML:</p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-400 text-sm mt-2">
+                            <li><code>&lt;div&gt;</code>: Cái hộp chứa đồ (Box). Dùng để gom nhóm các phần tử.</li>
+                            <li><code>&lt;img&gt;</code>: Chèn hình ảnh. Sử dụng thuộc tính <code>src=""</code> để dán link ảnh.</li>
+                            <li><code>&lt;h1&gt;</code>: Heading 1 - Tiêu đề lớn nhất trang.</li>
+                            <li><code>&lt;p&gt;</code>: Paragraph - Đoạn văn bản bình thường.</li>
+                            <li><code>&lt;span&gt;</code>: Thẻ nhãn dùng cho các khối văn bản nhỏ, nằm trên cùng một hàng.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 3: Mặc áo cho Web bằng CSS (30 Phút)</h3>
+                    <p class="mb-2"><strong>Phân tích:</strong> Trang web hiện tại chỉ có chữ đen nền trắng. Chúng ta sẽ dùng CSS để tạo phong cách giao diện Dark Mode xịn xò.</p>
+                    <p class="mb-2"><strong>Thực hành:</strong> Chèn đoạn mã CSS sau vào trong thẻ <code>&lt;head&gt;</code>, ngay dưới <code>&lt;title&gt;</code>. <em>Lưu ý gõ cẩn thận từng ngoặc nhọn { }</em>.</p>
+<pre><code class="language-html">&lt;style&gt;
+body {
+    background-color: #121212; /* Nền màu đen nhám */
+    color: #ffffff; /* Chữ màu trắng */
+    font-family: Arial, sans-serif; /* Đổi font chữ cho hiện đại */
+    text-align: center; /* Căn giữa mọi thứ */
+    padding: 50px; /* Cách mép màn hình 50px */
+}
+
+.card {
+    background-color: #1e1e1e; /* Hộp màu xám đen */
+    padding: 30px;
+    border-radius: 15px; /* Bo góc hộp cho tròn trịa giống app iPhone */
+    box-shadow: 0 4px 15px rgba(0,255,128,0.2); /* Đổ bóng màu xanh lá cây */
+    max-width: 400px;
+    margin: auto; /* Đẩy cái hộp ra giữa màn hình */
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Cắt hình thành hình tròn */
+    border: 3px solid #00ff80; /* Viền màu xanh lá */
+    object-fit: cover;
+}
+
+h1 { color: #00ff80; } /* Tên sẽ sáng màu xanh */
+
+.tag {
+    background: #333;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 5px;
+}
+&lt;/style&gt;</code></pre>
+                </div>
+
+                <div class="bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl border border-primary/30 mt-8">
+                    <h4 class="font-bold text-primary text-xl mb-2 flex items-center">🔥 Tổng kết buổi 1:</h4>
+                    <p class="text-gray-300 italic">Chỉ với vài dòng lệnh cơ bản, giao diện đã thay đổi hoàn toàn. Xuyên suốt lộ trình này, bạn sẽ tự tay thiết kế giao diện từ trang giấy trắng, tạo ra bộ công cụ tính toán riêng, và đưa website này lên mạng Internet bằng tên miền để gửi cho bạn bè.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 2 -->
+        <section id="buoi-2" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 2</span> XÂY DỰNG NỀN MÓNG HTML & LIÊN KẾT ĐA TRANG (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Ôn tập & Setup Dự án Portfolio (20 Phút)</h3>
+                    <p class="mb-2"><strong>Giới thiệu:</strong> Buổi trước chúng ta đã "thử sức" với code. Hôm nay, chúng ta sẽ bắt đầu xây dựng dự án Portfolio (Hồ sơ năng lực) chuẩn mực.</p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400 mb-4">
+                        <li><strong>Tạo thư mục:</strong> Tạo thư mục mới <code>My_Portfolio</code>. Bên trong tạo 2 file: <code>index.html</code> (Trang chủ) và <code>hobbies.html</code> (Trang sở thích).</li>
+                        <li><strong>Khởi tạo:</strong> Gõ <code>!</code> ở <code>index.html</code> để tạo bộ khung cơ bản.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Phân tích và code Header & Menu Navigation (35 Phút)</h3>
+                    <p class="mb-2"><strong>Khái niệm HTML Semantic (Ngữ nghĩa):</strong></p>
+                    <blockquote class="border-l-4 border-gray-600 pl-4 py-2 mb-4 italic text-gray-400 bg-gray-800/50">"Để Google dễ dàng lập chỉ mục (SEO) cho trang web của bạn, chúng ta cần dùng các thẻ có ý nghĩa rõ ràng thay vì nhét mọi thứ vào thẻ <code>&lt;div&gt;</code> chung chung: <code>&lt;header&gt;</code> (phần đầu trang), <code>&lt;nav&gt;</code> (thanh điều hướng), <code>&lt;main&gt;</code> (nội dung chính), <code>&lt;footer&gt;</code> (cuối trang)."</blockquote>
+                    
+                    <p class="mb-2"><strong>Thực hành:</strong> Gõ đoạn code sau vào trong thẻ <code>&lt;body&gt;</code> của file <code>index.html</code>:</p>
+<pre><code class="language-html">&lt;!-- Phần thanh menu điều hướng --&gt;
+&lt;nav&gt;
+    &lt;h2&gt;OSCAR.DEV&lt;/h2&gt; &lt;!-- Thay bằng Tên viết tắt của bạn --&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Trang Chủ&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="hobbies.html"&gt;Sở Thích Của Tôi&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#contact"&gt;Liên Hệ&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;!-- Phần Giới thiệu bản thân --&gt;
+&lt;header&gt;
+    &lt;h1&gt;Hey, I'm &lt;br&gt; [Tên Bạn]&lt;/h1&gt;
+    &lt;p&gt;17 tuổi | Sinh viên tương lai | Đam mê Cầu Lông &amp; IT&lt;/p&gt;
+    &lt;img src="link_anh_cua_ban.jpg" alt="Hình chân dung" width="200"&gt;
+&lt;/header&gt;</code></pre>
+                    <div class="mt-4 bg-gray-800 p-4 rounded border border-gray-700">
+                        <p class="font-bold text-white mb-2">💡 Giải thích chi tiết:</p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-400 text-sm">
+                            <li><code>&lt;ul&gt;</code> (Unordered List): Danh sách không có số thứ tự (dạng dấu chấm bi).</li>
+                            <li><code>&lt;li&gt;</code> (List Item): Từng mục bên trong danh sách. <code>&lt;ul&gt;</code> là thẻ cha, <code>&lt;li&gt;</code> là thẻ con.</li>
+                            <li><code>&lt;a&gt;</code> (Anchor): Thẻ quan trọng bậc nhất tạo nên khái niệm "Web". Dùng để tạo link bấm chuyển trang. Thuộc tính <code>href="link_đích"</code> chỉ đường dẫn đến nơi cần tới.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 3: Tạo trang con và liên kết (35 Phút)</h3>
+                    <p class="mb-2"><strong>Quan sát:</strong> Khi bạn bấm vào chữ 'Sở Thích Của Tôi' ở trang chủ, nó báo lỗi vì trang <code>hobbies.html</code> đang trống. Chúng ta sẽ mở file <code>hobbies.html</code> lên và viết code cho nó.</p>
+                    <p class="mb-2"><strong>Thực hành ở <code>hobbies.html</code>:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Sở Thích - [Tên Bạn]&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- Copy lại Menu để từ trang con có thể quay về trang chủ --&gt;
+&lt;nav&gt;
+    &lt;h2&gt;OSCAR.DEV&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Quay Lại Trang Chủ&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;main&gt;
+    &lt;h1&gt;Sở Thích Của Tôi&lt;/h1&gt;
+    
+    &lt;!-- Sở thích 1 --&gt;
+    &lt;div&gt;
+        &lt;h2&gt;1. Chơi Game&lt;/h2&gt;
+        &lt;p&gt;Tôi thích chơi các thể loại game đối kháng và FPS.&lt;/p&gt;
+        &lt;!-- Mẹo nhúng video Youtube --&gt;
+        &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/v=dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Sở thích 2 --&gt;
+    &lt;div&gt;
+        &lt;h2&gt;2. Cầu Lông &amp; Thể Thao&lt;/h2&gt;
+        &lt;p&gt;Cao 1m80 là lợi thế lớn trên lưới. Vị trí sở trường: Smash.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/main&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <p class="mt-4 mb-4 text-gray-400"><strong>💡 Kỹ năng phụ:</strong> Để nhúng một video vào web, bạn hãy lên Youtube, chọn nút "Share" (Chia sẻ) -> "Embed" (Mã nhúng) để copy thẻ <code>&lt;iframe&gt;</code> và dán vào HTML.</p>
+                    
+                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 mt-4">
+                        <p class="text-white"><strong>Tổng kết Buổi 2:</strong> Bạn đã hiểu cách tạo ra nhiều trang HTML và liên kết chúng lại với nhau thành một website thống nhất. Ở bước này, website chỉ như một bản phác thảo nháp đen trắng. Buổi tiếp theo, chúng ta sẽ áp dụng CSS External để tô màu và quy hoạch lại kiến trúc.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 3 -->
+        <section id="buoi-3" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 3</span> MẶC ÁO CHO WEB VỚI CSS EXTERNAL & BOX MODEL (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Tách file CSS và Kết nối (20 Phút)</h3>
+                    <p class="mb-2"><strong>Giới thiệu:</strong> Nếu viết CSS thẳng vào file HTML như buổi 1, mã nguồn sẽ trở nên cực kỳ rối mắt khi dự án lớn lên. Việc này giống như việc bạn đi dây cáp (Cable Management) cho PC, mọi thứ cần được giấu gọn gàng. Do đó, chúng ta sẽ tách CSS ra một file hoàn toàn riêng biệt.</p>
+                    
+                    <p class="mb-2 mt-4"><strong>Thực hành:</strong></p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400 mb-4">
+                        <li>Tạo một file mới tên là <code>style.css</code> nằm cùng thư mục với <code>index.html</code>.</li>
+                        <li>Mở file <code>index.html</code>. Ở trong khu vực <code>&lt;head&gt;</code>, gõ chữ <code>link</code> rồi ấn nút Tab để VS Code tự động tạo dòng liên kết file.</li>
+                    </ul>
+<pre><code class="language-html">&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My Portfolio&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: "Thiết quân luật" & Khái niệm Box Model (40 Phút)</h3>
+                    <h4 class="font-bold text-white mb-2">1. Reset CSS cơ bản:</h4>
+                    <p class="mb-2">Mỗi trình duyệt web (Chrome, Safari, Edge) có một kiểu hiển thị lề mặc định khác nhau. Việc đầu tiên của mọi lập trình viên Front-end là phải 'Reset' lại thông số về 0 để làm chủ hoàn toàn giao diện.</p>
+<pre><code class="language-css">/* Dấu sao (*) đại diện cho TẤT CẢ các thẻ trên trang web */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}</code></pre>
+
+                    <h4 class="font-bold text-white mb-2 mt-6">2. Giải thích Box Model (RẤT QUAN TRỌNG):</h4>
+                    <blockquote class="border-l-4 border-accent pl-4 py-2 mb-4 italic text-gray-300 bg-gray-800/50">"Trong thiết kế Web, mọi phần tử đều là những cái hộp hình chữ nhật. Hãy tưởng tượng bạn mua một đôi giày đựng trong hộp carton:
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-sm not-italic">
+                            <li><strong>Content (Nội dung):</strong> Chính là đôi giày.</li>
+                            <li><strong>Padding (Lớp lót):</strong> Là mút xốp chống sốc nhét bên TRONG hộp để bảo vệ giày. Khoảng cách này nới rộng nội dung ra mép viền.</li>
+                            <li><strong>Border (Đường viền):</strong> Là lớp vỏ carton cứng của cái hộp.</li>
+                            <li><strong>Margin (Khoảng cách):</strong> Là khoảng cách từ hộp giày này đến hộp giày khác khi xếp trên kệ hàng. Lớp này nằm bên NGOÀI hộp.</li>
+                        </ul>
+                        Lệnh <code>box-sizing: border-box;</code> giúp máy tính hiểu rằng kích thước tổng thể mà ta khai báo đã bao gồm cả lớp mút xốp và vỏ hộp, giúp giao diện không bị phình to ngoài kiểm soát."
+                    </blockquote>
+
+                    <h4 class="font-bold text-white mb-2 mt-6">3. Bắt đầu Sơn phết nền và chữ:</h4>
+                    <p class="mb-2">Chuyển sang file <code>style.css</code>, chúng ta sẽ bắt đầu thiết lập màu sắc cho toàn bộ dự án.</p>
+<pre><code class="language-css">body {
+    background-color: #1a1a2e; /* Mã màu xanh đen nhám */
+    color: #e94560; /* Chữ màu đỏ hồng Neon */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-size: 3rem; /* Chữ to gấp 3 lần bình thường */
+    color: #0f3460;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.5; /* Khoảng cách giữa các dòng chữ cho dễ đọc */
+}</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 3: Làm đẹp từng phần tử (30 Phút)</h3>
+                    <p class="mb-2">Tiếp tục sử dụng Box Model để tạo ra khoảng không gian (thở) cho phần Header và Bo tròn ảnh đại diện.</p>
+<pre><code class="language-css">header {
+    text-align: center; /* Căn giữa toàn bộ chữ và hình trong header */
+    padding: 50px 20px; /* Padding trên dưới 50px, trái phải 20px (Lớp mút xốp) */
+    border-bottom: 2px solid #e94560; /* Vẽ một đường gạch dưới */
+}
+
+/* Trang trí ảnh đại diện */
+header img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover; /* Tránh ảnh bị méo khi thu phóng */
+    border-radius: 50%; /* Bo tròn 50% để thành hình tròn hoàn hảo */
+    border: 4px solid #0f3460;
+    margin-top: 20px; /* Đẩy ảnh cách xa đoạn văn bản phía trên (Margin - Khoảng cách kệ hàng) */
+}</code></pre>
+                    <div class="mt-6 bg-gray-800 p-4 rounded-xl border border-gray-700">
+                        <p class="text-white"><strong>📝 Bài tập nhỏ:</strong> Bạn hãy thử tự thay đổi các thông số <code>margin</code> và <code>padding</code> rồi lưu file, quan sát sự thay đổi trên Live Server để cảm nhận rõ nhất nguyên lý hoạt động của Box Model.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 4 -->
+        <section id="buoi-4" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 4</span> SẮP XẾP ĐỘI HÌNH VỚI FLEXBOX (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Khái niệm Flexbox (20 Phút)</h3>
+                    <p class="mb-2"><strong>Giới thiệu:</strong> Flexbox là "vũ khí tối thượng" trong CSS hiện đại dùng để bố trí giao diện. Hãy tưởng tượng Flexbox như một Huấn luyện viên thể thao (Thẻ Cha). HLV này có quyền ra lệnh cho các cầu thủ (Thẻ Con) phải đứng dàn hàng ngang, xếp hàng dọc, hoặc tản đều ra hai bên sân.</p>
+                    <p class="mb-2 mt-4"><strong>Phân tích bài toán:</strong> Thanh Menu hiện tại đang là một danh sách <code>&lt;ul&gt;</code> dọc đứng với các dấu chấm tròn, chiếm quá nhiều diện tích. Chúng ta sẽ dùng Flexbox để ép nó nằm ngang trên cùng: Logo nằm sát mép trái, các nút Menu nằm sát mép phải.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Áp dụng Flexbox cho Thanh Menu Navigation (40 Phút)</h3>
+                    <p class="mb-2"><strong>Thực hành:</strong> Mở file <code>style.css</code> và thêm các đoạn lệnh sau:</p>
+<pre><code class="language-css">/* 1. Xử lý thanh <nav> tổng (Thẻ Cha) */
+nav {
+    display: flex; /* Kích hoạt sức mạnh Flexbox */
+    justify-content: space-between; /* Đẩy logo sang trái, menu sang phải */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    background-color: #16213e; /* Nền tối hơn body một chút */
+    padding: 15px 30px;
+}
+
+/* 2. Xử lý tên Logo */
+nav h2 {
+    color: #e94560;
+    font-size: 1.5rem;
+    cursor: pointer; /* Đưa chuột vào biến thành hình bàn tay */
+}
+
+/* 3. Xử lý danh sách <ul> (Nó là thẻ con của <nav>, nhưng lại là thẻ Cha của <li>) */
+nav ul {
+    display: flex; /* Tiếp tục dùng Flexbox để các nút menu nằm ngang */
+    gap: 30px; /* Khoảng cách giữa các nút menu là 30px */
+    list-style: none; /* Xóa dấu chấm tròn gạch đầu dòng */
+}
+
+/* 4. Xử lý các đường link <a> bên trong menu */
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none; /* Xóa đường gạch chân mặc định của link */
+    font-weight: bold;
+    transition: 0.3s; /* Hiệu ứng chuyển động mượt 0.3 giây */
+}
+
+/* Tạo hiệu ứng Hover (khi rê chuột vào phần tử) */
+nav ul li a:hover {
+    color: #e94560;
+}</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 3: Áp dụng Flexbox cho Khu vực Sở thích (30 Phút)</h3>
+                    <p class="mb-2">Bây giờ chúng ta sẽ áp dụng Flexbox để dàn đội hình cho trang <code>hobbies.html</code>.</p>
+                    
+                    <p class="mt-4 mb-2"><strong>Bước 1 (Sửa HTML):</strong> Mở file <code>hobbies.html</code>, sử dụng một <code>&lt;div&gt;</code> chung bao bọc toàn bộ các sở thích để tạo thành Thẻ Cha.</p>
+<pre><code class="language-html">&lt;main&gt;
+    &lt;h1 class="page-title"&gt;Sở Thích Của Tôi&lt;/h1&gt;
+    
+    &lt;div class="hobbies-container"&gt;
+        &lt;div class="hobby-card"&gt;
+            &lt;h2&gt;1. Chơi Game&lt;/h2&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="hobby-card"&gt;
+            &lt;h2&gt;2. Cầu Lông &amp; Thể Thao&lt;/h2&gt;
+            &lt;p&gt;Cao 1m80 là lợi thế lớn trên lưới...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/main&gt;</code></pre>
+
+                    <p class="mt-4 mb-2"><strong>Bước 2 (Thêm CSS):</strong> Chuyển sang <code>style.css</code> để thiết lập Flexbox.</p>
+<pre><code class="language-css">/* Thiết kế thẻ Cha */
+.hobbies-container {
+    display: flex;
+    justify-content: center; /* Căn giữa đội hình */
+    gap: 40px; /* Các hộp cách nhau 40px */
+    padding: 50px;
+    flex-wrap: wrap; /* TÍNH NĂNG QUAN TRỌNG: Tự động xuống dòng nếu màn hình không đủ chỗ */
+}
+
+/* Thiết kế thẻ Con (Từng hộp sở thích) */
+.hobby-card {
+    background-color: #16213e;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px; /* Chiều rộng cố định */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.page-title {
+    text-align: center;
+    margin-top: 30px;
+}</code></pre>
+
+                    <div class="mt-6 bg-gray-800 p-4 rounded-xl border border-gray-700">
+                        <p class="text-white"><strong>💡 Mẹo kiểm tra:</strong> Hãy thử thu nhỏ từ từ cửa sổ trình duyệt trên máy tính lại. Lệnh <code>flex-wrap</code> sẽ phát huy tác dụng: các hộp sở thích sẽ tự động đẩy xuống hàng ngang tiếp theo một cách vô cùng thông minh khi không còn đủ diện tích hiển thị.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 5 -->
+        <section id="buoi-5" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 5</span> HỆ ĐIỀU HÀNH CỦA WEB & CÚ CLICK CHUỘT ĐẦU TIÊN (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Khái niệm JavaScript & Nối dây tín hiệu (20 Phút)</h3>
+                    <p class="mb-2"><strong>Giới thiệu:</strong> HTML và CSS giúp web đẹp, nhưng nó giống như một bức tranh tĩnh. Muốn web có thể tính toán, phản hồi khi click chuột, ẩn hiện các thông báo... chúng ta cần đến <strong>JavaScript (JS)</strong> - hệ thống thần kinh của Website.</p>
+                    
+                    <p class="mt-4 mb-2"><strong>Thực hành thiết lập:</strong></p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400 mb-4">
+                        <li>Tạo file <code>main.js</code> nằm cùng thư mục dự án.</li>
+                        <li><strong>Lưu ý:</strong> File JS chứa nhiều thao tác logic nặng, nên người ta thường nhúng nó ở tận cùng của file HTML (ngay trước thẻ đóng <code>&lt;/body&gt;</code>). Điều này giúp trình duyệt ưu tiên load xong giao diện hình ảnh trước rồi mới load đến phần xử lý, tạo cảm giác mượt mà cho người dùng.</li>
+                    </ul>
+<pre><code class="language-html">    &lt;!-- Nằm ngay trước khi kết thúc body --&gt;
+    &lt;script src="main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Biến (Variable) & Hàm (Function) - Tư duy Game thủ (35 Phút)</h3>
+                    <p class="mb-2"><strong>Có 2 khái niệm cốt lõi nhất trong lập trình cần nắm rõ:</strong></p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400 mb-4">
+                        <li><strong>Biến (Variable):</strong> Giống như Balo chứa đồ (Inventory) trong Game. Bạn dùng biến để chứa và lưu trữ các giá trị (Tên người dùng, điểm số, thông tin...). Biến thường được khai báo bằng từ khóa <code>let</code>.</li>
+                        <li><strong>Hàm (Function):</strong> Giống như một chuỗi Combo chiêu thức. Thay vì lần nào cũng gõ lại 5 thao tác, bạn gom 5 thao tác đó vào một 'Hàm'. Khi cần chạy, chỉ cần gọi tên Hàm là chuỗi hành động được thực thi tự động.</li>
+                    </ul>
+
+                    <p class="mb-2"><strong>Viết Hàm đầu tiên trong <code>main.js</code>:</strong></p>
+<pre><code class="language-javascript">// Tạo một hàm (combo) tên là chaoHoi
+function chaoHoi() {
+    // let là tạo cái balo chứa tên
+    let tenNguoiChoi = "Gamer";
+    
+    // alert là lệnh bật hộp thoại thông báo trên màn hình
+    alert("Xin chào " + tenNguoiChoi + "! Chào mừng bạn đến với Web.");
+}</code></pre>
+                    
+                    <p class="mt-4 mb-2"><strong>Gắn sự kiện bên file HTML:</strong> Hàm đã tạo xong nhưng nó cần một "công tắc" kích hoạt. Chúng ta sẽ tạo một nút bấm (Button) trong HTML và gắn sự kiện <code>onclick</code> vào nó.</p>
+<pre><code class="language-html">&lt;div style="text-align: center; margin: 30px;"&gt;
+    &lt;button onclick="chaoHoi()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;"&gt;
+        Bấm vào đây để test!
+    &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 3: Lên khung HTML cho Máy tính BMI (35 Phút)</h3>
+                    <p class="mb-2">Sau khi hiểu nguyên lý nút bấm, chúng ta sẽ xây dựng giao diện thật sự cho <strong>Máy Tính Chỉ Số Cơ Thể (BMI)</strong>. Khu vực này cần 2 ô nhập liệu (chiều cao, cân nặng) và 1 nút tính toán.</p>
+<pre><code class="language-html">&lt;section id="gym-tool" style="text-align: center; padding: 50px;"&gt;
+    &lt;h2&gt;Máy Tính Chỉ Số Cơ Thể (BMI)&lt;/h2&gt;
+    &lt;div style="background: #16213e; max-width: 400px; margin: auto; padding: 30px; border-radius: 10px; margin-top: 20px;"&gt;
+        
+        &lt;input type="number" id="chieuCao" placeholder="Chiều cao (cm) - VD: 180" style="width: 100%; padding: 10px; margin-bottom: 15px;"&gt;
+        
+        &lt;input type="number" id="canNang" placeholder="Cân nặng (kg) - VD: 75" style="width: 100%; padding: 10px; margin-bottom: 15px;"&gt;
+        
+        &lt;button onclick="tinhBMI()" style="background: #e94560; color: white; border: none; padding: 12px 20px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px;"&gt;
+            TÍNH TOÁN
+        &lt;/button&gt;
+        
+        &lt;p id="ketQua" style="margin-top: 20px; font-size: 1.2rem; font-weight: bold; color: #00ff80;"&gt;&lt;/p&gt;
+        
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 6 -->
+        <section id="buoi-6" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 6</span> THAO TÁC DOM & HOÀN THIỆN THUẬT TOÁN BMI (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Kỹ năng "Bắn tỉa" - Lấy dữ liệu bằng ID (30 Phút)</h3>
+                    <p class="mb-2"><strong>Khái niệm DOM:</strong> Để Javascript có thể lấy được dữ liệu mà người dùng vừa gõ trên file HTML, nó cần dựa vào các thuộc tính <code>id</code>. ID giống như "biển số xe" duy nhất của mỗi thẻ. Lệnh quan trọng nhất để làm việc này là: <code>document.getElementById('tên_id')</code>.</p>
+                    
+<pre><code class="language-javascript">function tinhBMI() {
+    // 1. Lấy giá trị (value) người dùng gõ vào ô chiều cao
+    let theChieuCao = document.getElementById('chieuCao');
+    let giaTriChieuCao = theChieuCao.value;
+    
+    // 2. Lấy giá trị (value) người dùng gõ vào ô cân nặng
+    let theCanNang = document.getElementById('canNang');
+    let giaTriCanNang = theCanNang.value;
+    
+    // In thử ra Console để kiểm tra xem đã lấy đúng chưa (Kỹ năng Debug)
+    console.log("Chiều cao nhập vào:", giaTriChieuCao);
+    console.log("Cân nặng nhập vào:", giaTriCanNang);
+}</code></pre>
+                    <p class="mt-2 text-gray-400 italic"><strong>Kỹ năng gỡ lỗi (Debug):</strong> Hãy mở trình duyệt, ấn phím F12, chuyển sang tab Console. Nhập thử vài số và ấn nút Tính Toán trên giao diện. Bảng Console này chính là hậu trường dành riêng cho Lập trình viên để kiểm soát luồng dữ liệu.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Thuật toán và Toán học cơ bản (30 Phút)</h3>
+                    <p class="mb-2">Công thức tính BMI quốc tế là: Cân nặng chia cho bình phương chiều cao (tính bằng mét). Tuy nhiên giao diện web đang yêu cầu nhập chiều cao bằng cm, do đó bước đầu tiên là phải quy đổi đơn vị.</p>
+<pre><code class="language-javascript">    // 3. Xử lý thuật toán (Viết tiếp vào bên TRONG hàm tinhBMI)
+    let met = giaTriChieuCao / 100; // Đổi 180cm thành 1.8m
+    let bmi = giaTriCanNang / (met * met); // Cân nặng chia cho (chiều cao x chiều cao)
+    
+    // Làm tròn kết quả chỉ lấy 1 chữ số thập phân cho gọn
+    bmi = bmi.toFixed(1);
+    console.log("Chỉ số BMI tính ra là:", bmi);</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 3: Lệnh Điều Kiện (If/Else) & Trả kết quả (30 Phút)</h3>
+                    <p class="mb-2"><strong>Giải thích If/Else:</strong> Tương tự như việc rẽ nhánh trong game cốt truyện. Máy tính sẽ đánh giá biến <code>bmi</code> vừa tính được nằm trong vùng nào để xuất ra lời khuyên tương ứng.</p>
+<pre><code class="language-javascript">    // 4. Xét điều kiện để đưa ra lời khuyên
+    let loiKhuyen = ""; // Tạo một balo rỗng để chứa câu thông báo
+
+    if (bmi < 18.5) {
+        loiKhuyen = "Hơi ốm rồi! Cần ăn thêm nhiều dinh dưỡng và tăng cường tập luyện.";
+    } 
+    else if (bmi >= 18.5 && bmi <= 24.9) { // Ký hiệu && nghĩa là 'VÀ'
+        loiKhuyen = "Cơ thể chuẩn mực! Duy trì chế độ sinh hoạt này nhé.";
+    } 
+    else {
+        loiKhuyen = "Bắt đầu thừa cân rồi. Cần bổ sung Cardio và chạy bộ giảm mỡ nhen.";
+    }
+
+    // 5. Thọc tay vào HTML, tìm thẻ <p> có ID là 'ketQua' đang để trống, và ép chữ vào (Thao tác DOM Manipulation)
+    let dongKetQua = "BMI của bạn là: " + bmi + " - " + loiKhuyen;
+    document.getElementById('ketQua').innerText = dongKetQua;
+} // Đóng ngoặc nhọn của hàm tinhBMI</code></pre>
+                    
+                    <div class="mt-6 bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl border border-primary/30">
+                        <p class="font-bold text-primary mb-2">🎉 Chúc mừng bạn:</p>
+                        <p class="text-gray-300 italic mb-2">Đến bước này, khi nhập thông số (VD: 180, 75) và ấn TÍNH TOÁN, trang web đã có thể tự động trả về kết quả mượt mà không cần load lại trang. Đây chính xác là những gì mà kiến trúc cốt lõi của các Web-App hiện đại (như Facebook, Shopee...) đang thực hiện bên dưới: Lấy dữ liệu -> Xử lý (If/Else) -> Trả về màn hình.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 7 & 8 -->
+        <section id="buoi-7-8" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 7 & 8</span> RESPONSIVE - ĐƯA WEB LÊN ĐIỆN THOẠI (180 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Bắt lỗi giao diện & Khái niệm Media Query (Buổi 7 - 45 Phút)</h3>
+                    <p class="mb-2"><strong>Đặt vấn đề:</strong> Giao diện web của chúng ta xem trên màn hình PC thì cực kỳ hợp lý. Tuy nhiên, nếu bạn ấn F12 và chuyển sang chế độ hiển thị Điện thoại di động (Mobile View), các thành phần có thể sẽ đè lên nhau hoặc bị tràn viền gây mất thẩm mỹ.</p>
+                    <p class="mb-4"><strong>Giải pháp:</strong> Sử dụng <code>Media Queries</code> trong CSS. Bạn có thể hiểu đây là một "cảm biến" đo chiều rộng màn hình. Khi nó phát hiện chiều rộng thiết bị nhỏ hơn một mốc nhất định (thường là 768px), nó sẽ kích hoạt bộ giao diện CSS dự phòng.</p>
+
+                    <p class="mb-2"><strong>Thực hành (Mở file <code>style.css</code>, bắt buộc viết ở DƯỚI CÙNG của file):</strong></p>
+<pre><code class="language-css">/* --- KHU VỰC DÀNH RIÊNG CHO ĐIỆN THOẠI --- */
+/* Cảm biến kích hoạt khi chiều rộng màn hình <= 768px */
+@media screen and (max-width: 768px) {
+    /* 1. Xử lý thanh Menu */
+    nav {
+        flex-direction: column; /* Thay đổi đội hình Flexbox từ ngang thành dọc */
+        padding: 10px;
+    }
+    nav ul {
+        margin-top: 15px;
+        flex-direction: column; /* Các nút bấm menu xếp chồng xuống dưới */
+        gap: 10px;
+        text-align: center;
+    }
+    
+    /* 2. Xử lý chữ Header */
+    h1 {
+        font-size: 2rem; /* Thu nhỏ tiêu đề lớn để không bị tràn dòng */
+    }
+}</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Tối ưu Công cụ BMI & Sở thích trên Điện thoại (135 Phút)</h3>
+                    <p class="mb-2"><strong>Phân tích:</strong> Tiếp tục áp dụng tư duy <code>flex-direction: column</code> cho phần Sở thích và form nhập liệu BMI để mọi thứ nằm gọn gàng lọt vào giữa màn hình hẹp của Mobile.</p>
+<pre><code class="language-css">    /* Viết tiếp đoạn mã này NẰM BÊN TRONG cặp ngoặc nhọn của @media phía trên */
+
+    /* Ép các khối thông tin sở thích xếp dọc và bung rộng chiếm 100% diện tích điện thoại */
+    .hobbies-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .hobby-card {
+        width: 100%; /* Bung tràn không gian chiều ngang */
+    }
+
+    /* Tinh chỉnh lại không gian hộp tính BMI */
+    #gym-tool div {
+        padding: 15px;
+        width: 90%;
+    }
+
+} /* KẾT THÚC KHỐI LỆNH @MEDIA */</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 9 -->
+        <section id="buoi-9" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 9</span> CHẾ ĐỘ SÁNG/TỐI (DARK MODE) - ĐIỀU KHIỂN GIAO DIỆN BẰNG JS (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Gắn công tắc vào HTML (30 Phút)</h3>
+                    <p class="mb-2"><strong>Giới thiệu:</strong> Tính năng Dark/Light Mode hiện tại là bắt buộc phải có trên các hệ thống chuyên nghiệp. Chúng ta sẽ áp dụng DOM trong Javascript để biến một nút bấm thành một chiếc "Rơ-le" thay đổi class CSS trên toàn bộ trang web.</p>
+                    <p class="mb-2 mt-4"><strong>Thực hành:</strong> Bổ sung một nút bấm vào thanh Menu trong file <code>index.html</code>.</p>
+<pre><code class="language-html">&lt;nav&gt;
+    &lt;h2&gt;OSCAR.DEV&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Trang Chủ&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="hobbies.html"&gt;Sở Thích&lt;/a&gt;&lt;/li&gt;
+        &lt;!-- Nút bấm chuyển giao diện --&gt;
+        &lt;li&gt;
+            &lt;button id="btn-theme" onclick="doiGiaoDien()" style="background: #e94560; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;"&gt;
+                💡 Sáng/Tối
+            &lt;/button&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Viết giao diện dự phòng ở CSS (30 Phút)</h3>
+                    <p class="mb-2">Website đang được thiết kế nền tối từ đầu. Bây giờ chúng ta sẽ viết một bộ class đặc biệt mang tên <code>.light-mode</code>. Khi nào class này xuất hiện, nó sẽ thay đổi các tông màu lại thành sáng.</p>
+<pre><code class="language-css">/* Thiết lập giao diện màu sáng */
+.light-mode {
+    background-color: #f8fafc; /* Nền trắng xám nhẹ */
+    color: #1e293b; /* Chữ màu đen đậm */
+}
+
+/* Các chi tiết kế thừa màu sắc mới */
+.light-mode h1 { color: #0f172a; }
+
+.light-mode .hobby-card {
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Giảm độ gắt của bóng đổ */
+}</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 3: Lập trình Relay chuyển đổi bằng JS (30 Phút)</h3>
+<pre><code class="language-javascript">function doiGiaoDien() {
+    // Thuộc tính classList.toggle hoạt động đúng như công tắc bật/tắt (1 và 0).
+    // Hệ thống sẽ kiểm tra thẻ <body>: Nếu chưa có class 'light-mode' thì nó gắn thêm vào. Nếu đang có thì nó rút ra.
+    document.body.classList.toggle("light-mode");
+}</code></pre>
+                    <p class="mt-4 text-gray-400 italic">Kiểm tra tính năng: Quay lại trình duyệt và Click thử vào nút bóng đèn trên Menu. Trang web sẽ chớp nháy đổi từ Đen sang Trắng và ngược lại vô cùng mượt mà.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 10 -->
+        <section id="buoi-10" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 10</span> LAUNCHING - ĐƯA SẢN PHẨM RA THẾ GIỚI VỚI GITHUB (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Khái niệm Server và Domain (20 Phút)</h3>
+                    <blockquote class="border-l-4 border-gray-600 pl-4 py-2 mb-4 italic text-gray-400 bg-gray-800/50">"Cho đến lúc này, trang web chỉ tồn tại trên môi trường Local (máy tính cá nhân của bạn). Để cả thế giới truy cập được, bạn cần đưa các file code này lên một máy chủ (Server) trực tuyến 24/24 và gán cho nó một Tên miền (Domain). Trong khuôn khổ khóa học, chúng ta sẽ sử dụng dịch vụ lưu trữ miễn phí của Microsoft mang tên GitHub Pages."</blockquote>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Đưa mã nguồn lên GitHub (50 Phút)</h3>
+                    <p class="mb-4">Hãy cẩn thận thực hiện từng bước sau:</p>
+                    <ol class="list-decimal pl-6 space-y-4 text-gray-300">
+                        <li><strong>Tạo tài khoản:</strong> Truy cập <code>github.com</code> để đăng ký. Hãy tạo một tên đăng nhập ngắn gọn, chuyên nghiệp (VD: <code>minh-coder</code>).</li>
+                        <li><strong>Tạo Kho chứa (Repository):</strong> 
+                            <ul class="list-disc pl-6 mt-2 space-y-1 text-gray-400">
+                                <li>Bấm dấu <strong>+</strong> ở góc phải trên cùng -> Chọn <strong>New repository</strong>.</li>
+                                <li><strong class="text-secondary">LƯU Ý CỰC KỲ QUAN TRỌNG:</strong> Đặt tên kho chứa BẮT BUỘC theo cấu trúc <code>[tên-đăng-nhập].github.io</code>. Tích chọn chế độ Public và Bấm nút Create.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Upload Code:</strong>
+                            <ul class="list-disc pl-6 mt-2 space-y-1 text-gray-400">
+                                <li>Nhấp vào liên kết <strong>uploading an existing file</strong>.</li>
+                                <li>Bôi đen 3 file đã code (index.html, style.css, main.js) cùng hình ảnh trong thư mục máy tính, kéo thả thẳng vào khu vực tải lên của trình duyệt.</li>
+                                <li>Bấm nút xanh lá <strong>Commit changes</strong> để xác nhận.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 3: Trải nghiệm thành quả (20 Phút)</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400 mb-6">
+                        <li><strong>Đợi khởi tạo:</strong> GitHub sẽ tốn khoảng 1 đến 3 phút để cài đặt môi trường máy chủ.</li>
+                        <li><strong>Live Test:</strong> Sử dụng điện thoại (ngắt WiFi dùng 4G) hoặc gửi cho bạn bè đường link web của bạn: <code>https://[tên-đăng-nhập].github.io</code>.</li>
+                        <li><strong>Tận hưởng:</strong> Trang web chính thức hoạt động trên Internet toàn cầu, giao diện Responsive co giãn chuẩn Mobile, thuật toán BMI báo kết quả mượt mà và chế độ Dark Mode hoạt động chuẩn xác.</li>
+                    </ul>
+
+                    <div class="bg-gradient-to-r from-accent to-gray-900 p-8 rounded-2xl border border-blue-500/30">
+                        <h4 class="font-bold text-2xl text-white mb-4 flex items-center">🚀 Lời kết khóa (Định hướng chuyên sâu)</h4>
+                        <p class="text-lg text-gray-300 italic mb-4 leading-relaxed">Chúc mừng bạn! Việc tự tay thiết kế và triển khai một hệ thống thực sự lên môi trường Internet từ con số 0 là một cột mốc cực kỳ đáng tự hào đối với bất kỳ ai mới tiếp cận lập trình.</p>
+                        <p class="text-lg text-gray-300 italic leading-relaxed">Website hiện tại đang hoạt động dưới dạng Web Tĩnh (Static Web). Nếu bạn muốn nâng cấp sản phẩm này xa hơn—ví dụ như: Thêm chức năng tạo tài khoản đăng nhập, lưu lịch sử đo BMI hàng ngày vào Cơ sở dữ liệu (Database), hay nâng cao hơn là kết nối hệ thống vi điều khiển ESP32 đọc thẻ từ cảm biến—đó là lúc bạn sẵn sàng bước vào thế giới chuyên sâu của Back-end (NodeJS/Python) và IoT.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Initialize highlight.js for code blocks
+        hljs.highlightAll();
+
+        // Simple scroll spy logic for the sidebar navigation
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

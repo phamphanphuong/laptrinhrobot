@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo trình Web 10 Buổi: Thực Chiến Giao Diện</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#121212',
+                        darker: '#0a0a0a',
+                        primary: '#0ea5e9', /* Đổi màu chủ đạo sang Xanh Y Tế cho hợp bối cảnh */
+                        secondary: '#10b981',
+                        accent: '#0f3460'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Highlight.js for code blocks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #121212; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0ea5e9; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        pre code { border-radius: 0.5rem; font-size: 0.9rem; }
+        .nav-link.active { color: #0ea5e9; border-left-color: #0ea5e9; background-color: rgba(14, 165, 233, 0.1); }
+    </style>
+</head>
+<body class="bg-darker text-gray-300 flex flex-col md:flex-row min-h-screen">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-72 bg-dark h-auto md:h-screen sticky top-0 border-r border-gray-800 overflow-y-auto flex-shrink-0 z-10">
+        <div class="p-6">
+            <h1 class="text-2xl font-bold text-white mb-2 tracking-tight"><span class="text-primary">WEB</span> MASTER</h1>
+            <p class="text-xs text-gray-500 mb-6 uppercase tracking-wider">Giáo trình thực chiến 10 buổi</p>
+            <nav class="space-y-1" id="toc">
+                <a href="#buoi-1" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 1: "Hack" thẻ sản phẩm đầu tiên</a>
+                <a href="#buoi-2" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 2: Nền móng HTML & Đa trang</a>
+                <a href="#buoi-3" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 3: CSS External & Box Model</a>
+                <a href="#buoi-4" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 4: Flexbox - Dàn trang Sản phẩm</a>
+                <a href="#buoi-5" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 5: JS & Cú click đầu tiên</a>
+                <a href="#buoi-6" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 6: Thuật toán Công cụ Báo giá</a>
+                <a href="#buoi-7-8" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 7 & 8: Responsive Mobile</a>
+                <a href="#buoi-9" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 9: Chế độ Sáng/Tối (Dark Mode)</a>
+                <a href="#buoi-10" class="nav-link block px-4 py-2 text-sm text-gray-400 hover:text-white border-l-2 border-transparent hover:border-gray-600 transition-colors">Buổi 10: Launching với GitHub</a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 md:p-12 lg:p-20 overflow-y-auto w-full max-w-5xl mx-auto">
+        
+        <!-- Header Section -->
+        <header class="mb-16 border-b border-gray-800 pb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Khóa Học: <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">HTML, CSS & JS Thực Chiến</span></h1>
+            <p class="text-lg text-gray-400 leading-relaxed bg-gray-800/50 p-6 rounded-xl border border-gray-700">
+                <strong class="text-white">Mục tiêu khóa học:</strong> Loại bỏ các khái niệm lý thuyết hàn lâm để tập trung "thực chiến". Bạn sẽ được đóng vai một Kỹ sư phần mềm thực thụ. Kết thúc 10 buổi, bạn sẽ tự tay hoàn thiện một <strong>Website Doanh nghiệp (Công ty Thiết bị Y tế)</strong>, tích hợp công cụ tính toán báo giá tự động và đưa lên mạng Internet toàn cầu.
+            </p>
+        </header>
+
+        <!-- Buổi 1 -->
+        <section id="buoi-1" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 1</span> NHẬP MÔN - "HACK" THẺ SẢN PHẨM CƠ BẢN (90 Phút)</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Khởi động & Mindset (15 Phút)</h3>
+                    <div class="bg-gray-800 p-5 rounded-lg border border-gray-700 mb-4">
+                        <h4 class="font-bold text-white mb-2">1. Lời mở đầu:</h4>
+                        <p class="italic text-gray-300">"Chào bạn. Có thể bạn chưa từng viết code, nhưng hãy nhìn các website lớn như Shopee hay các trang web của Bệnh viện, Công ty. Chúng đều được xây từ những khối gạch cơ bản nhất. Hôm nay chúng ta sẽ tự tay code một 'Khối sản phẩm Thiết bị Y tế' xịn xò chạy ngay trên máy tính của mình."</p>
+                    </div>
+                    
+                    <h4 class="font-bold text-white mb-2 mt-4">2. Hiểu bản chất Web qua góc nhìn Kỹ sư:</h4>
+                    <p class="mb-2">Việc xây dựng một trang web giống hệt như việc chế tạo một cỗ máy (Hardware):</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-4 text-gray-400">
+                        <li><strong class="text-white">HTML:</strong> Là bộ khung sườn cơ khí, bo mạch chủ. Nó định hình cấu trúc.</li>
+                        <li><strong class="text-white">CSS:</strong> Là vỏ nhựa, màu sơn, đèn LED. Nó làm cho sản phẩm đẹp và chuyên nghiệp.</li>
+                        <li><strong class="text-white">JavaScript (JS):</strong> Là chip xử lý (như ESP32/Micro:bit). Nó nhận tín hiệu từ nút bấm và tính toán logic.</li>
+                    </ul>
+
+                    <h4 class="font-bold text-white mb-2">3. Setup công cụ làm việc:</h4>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400">
+                        <li><strong>Phần mềm code:</strong> Tải và cài đặt trình soạn thảo Visual Studio Code (VS Code).</li>
+                        <li><strong>Cài Extension:</strong> Cài đặt tiện ích <code>Live Server</code> (giúp web tự động cập nhật ngay khi vừa gõ code xong).</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Viết những dòng code đầu tiên (45 Phút)</h3>
+                    <h4 class="font-bold text-white mb-2">1. Khởi tạo cấu trúc xương (HTML Boilerplate):</h4>
+                    <p class="mb-2"><strong>Mẹo:</strong> Tạo file <code>index.html</code>. Gõ dấu <code>!</code> rồi ấn Enter. VS Code sẽ tự sinh ra bộ khung chuẩn.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Thiết Bị Y Tế MediTech&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- MỌI THỨ NGƯỜI DÙNG NHÌN THẤY SẼ NẰM Ở ĐÂY --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                    <h4 class="font-bold text-white mb-2 mt-6">2. Đưa nội dung vào <code>&lt;body&gt;</code>:</h4>
+                    <p class="mb-2"><strong>Thực hành:</strong> Gõ đoạn mã sau vào giữa thẻ <code>&lt;body&gt;</code> để tạo ra một Thẻ sản phẩm máy đo huyết áp.</p>
+<pre><code class="language-html">&lt;div class="product-card"&gt;
+    &lt;img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Máy Đo Huyết Áp"&gt;
+    &lt;h1&gt;Monitor Theo Dõi Sinh Hiệu&lt;/h1&gt;
+    &lt;p&gt;Model: X-100 | Tích hợp đo ECG, SpO2, NIBP.&lt;/p&gt;
+    &lt;div&gt;
+        &lt;span class="tag"&gt;🏥 Chuẩn Y Khoa&lt;/span&gt;
+        &lt;span class="tag"&gt;🛡️ Bảo hành 2 năm&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    <div class="mt-4 bg-gray-800 p-4 rounded border border-gray-700">
+                        <p class="font-bold text-white">💡 Từ vựng HTML:</p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-400 text-sm mt-2">
+                            <li><code>&lt;div&gt;</code>: Cái hộp chứa đồ (Box). Dùng để gom nhóm các phần tử.</li>
+                            <li><code>&lt;img&gt;</code>: Chèn hình ảnh. Sử dụng thuộc tính <code>src=""</code> để dán link ảnh.</li>
+                            <li><code>&lt;h1&gt;</code>: Heading 1 - Tên sản phẩm chính.</li>
+                            <li><code>&lt;p&gt;</code>: Paragraph - Đoạn mô tả sản phẩm.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 3: Mặc áo cho Web bằng CSS (30 Phút)</h3>
+                    <p class="mb-2"><strong>Thực hành:</strong> Chèn đoạn mã CSS sau vào thẻ <code>&lt;head&gt;</code>. Chúng ta sẽ dùng tông màu Xanh Y tế tinh tế.</p>
+<pre><code class="language-html">&lt;style&gt;
+body {
+    background-color: #f0f4f8; /* Nền xám nhạt sạch sẽ */
+    color: #333333;
+    font-family: Arial, sans-serif;
+    padding: 50px;
+}
+
+.product-card {
+    background-color: #ffffff; /* Thẻ màu trắng */
+    padding: 20px;
+    border-radius: 12px; /* Bo góc hộp */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Đổ bóng nhẹ */
+    max-width: 350px;
+    margin: auto; /* Đẩy ra giữa */
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+h1 { color: #0ea5e9; font-size: 22px; margin-top: 15px;} /* Xanh dương Y tế */
+
+.tag {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+&lt;/style&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 2 -->
+        <section id="buoi-2" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 2</span> XÂY DỰNG NỀN MÓNG HTML & LIÊN KẾT ĐA TRANG (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Ôn tập & Setup Dự án Doanh nghiệp (20 Phút)</h3>
+                    <p class="mb-2"><strong>Giới thiệu:</strong> Một công ty không thể chỉ có 1 trang. Chúng ta sẽ cấu trúc lại thành một hệ thống thực sự.</p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400 mb-4">
+                        <li><strong>Tạo thư mục:</strong> <code>CongTy_YTe</code>. Trong đó tạo: <code>index.html</code> (Trang chủ) và <code>products.html</code> (Danh mục sản phẩm).</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Phân tích và code Header & Menu Navigation (35 Phút)</h3>
+                    <p class="mb-2"><strong>Khái niệm HTML Semantic:</strong> Dùng thẻ đúng ngữ nghĩa (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>) để Google dễ dàng tìm thấy công ty của bạn.</p>
+                    
+                    <p class="mb-2"><strong>Thực hành ở file <code>index.html</code>:</strong></p>
+<pre><code class="language-html">&lt;!-- Thanh menu điều hướng --&gt;
+&lt;nav&gt;
+    &lt;h2&gt;MediTech Solutions&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Trang Chủ&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="products.html"&gt;Sản Phẩm&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#contact"&gt;Báo Giá&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;!-- Phần Giới thiệu công ty --&gt;
+&lt;header&gt;
+    &lt;h1&gt;Chuyển Đổi Số &lt;br&gt; Y Tế Toàn Diện&lt;/h1&gt;
+    &lt;p&gt;Cung cấp thiết bị phần cứng &amp; Giải pháp phần mềm cho Bệnh viện.&lt;/p&gt;
+    &lt;img src="link_anh_benh_vien.jpg" alt="Mô hình phòng khám" width="500"&gt;
+&lt;/header&gt;</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 3: Tạo trang Sản Phẩm (35 Phút)</h3>
+                    <p class="mb-2"><strong>Mở file <code>products.html</code> và tạo liên kết ngược về trang chủ:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Sản Phẩm - MediTech&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- Menu --&gt;
+&lt;nav&gt;
+    &lt;h2&gt;MediTech Solutions&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Quay Lại Trang Chủ&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;main&gt;
+    &lt;h1&gt;Danh Mục Thiết Bị Cốt Lõi&lt;/h1&gt;
+    
+    &lt;div&gt;
+        &lt;h2&gt;1. Hệ Thống Gọi Y Tá Không Dây&lt;/h2&gt;
+        &lt;p&gt;Hoạt động dựa trên sóng RF, kết nối thẳng về màn hình trực.&lt;/p&gt;
+        &lt;!-- Video minh họa thiết bị --&gt;
+        &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/..." frameborder="0"&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+&lt;/main&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 3 -->
+        <section id="buoi-3" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 3</span> CSS EXTERNAL & NGHỆ THUẬT QUẢN LÝ BOX MODEL (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Tách file CSS chuẩn Doanh nghiệp (20 Phút)</h3>
+                    <p class="mb-2">Việc viết CSS chung với HTML gây khó khăn khi bảo trì (như việc nhét chung code ESP32 và HTML vào một file vậy). Hãy tạo file <code>style.css</code> riêng và nhúng vào <code>&lt;head&gt;</code>:</p>
+<pre><code class="language-html">&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Box Model (40 Phút)</h3>
+                    <blockquote class="border-l-4 border-accent pl-4 py-2 mb-4 italic text-gray-300 bg-gray-800/50">"Mọi thẻ HTML đều là một cái hộp chữ nhật. Bạn cần nắm rõ <strong>Padding</strong> (lớp đệm bên trong) và <strong>Margin</strong> (khoảng cách bên ngoài) để các khối nội dung của công ty không dính chặt vào nhau."
+                    </blockquote>
+<pre><code class="language-css">/* Reset mặc định của trình duyệt */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8fafc;
+    color: #334155;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Khoảng thở cho Header */
+header {
+    text-align: center;
+    padding: 80px 20px; /* Mút xốp bên trong: trên/dưới 80px, trái/phải 20px */
+    background: #ffffff;
+    border-bottom: 2px solid #e2e8f0;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 4 -->
+        <section id="buoi-4" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 4</span> SẮP XẾP ĐỘI HÌNH SẢN PHẨM VỚI FLEXBOX (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Flexbox cho Thanh Menu (40 Phút)</h3>
+                    <p class="mb-2">Thanh menu hiện đang là danh sách dọc xấu xí. Dùng <code>display: flex</code> để ép chúng nằm ngang, logo bên trái, link bên phải.</p>
+<pre><code class="language-css">nav {
+    display: flex;
+    justify-content: space-between; /* Đẩy 2 thành phần ra xa nhau */
+    align-items: center;
+    background-color: #0f172a; /* Xanh đen sang trọng */
+    padding: 15px 40px;
+}
+
+nav h2 { color: #38bdf8; }
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+nav ul li a:hover { color: #38bdf8; }</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Flexbox cho Lưới Sản Phẩm (50 Phút)</h3>
+                    <p class="mb-2">Sang file <code>products.html</code>, bao bọc các sản phẩm bằng một thẻ cha <code>&lt;div class="product-grid"&gt;</code>.</p>
+<pre><code class="language-css">.product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px;
+    flex-wrap: wrap; /* Tự động xuống dòng khi màn hình hẹp */
+}
+
+.product-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 5 -->
+        <section id="buoi-5" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 5</span> JAVASCRIPT & CÔNG CỤ DỰ TOÁN CHI PHÍ (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Tư duy Logic JS (20 Phút)</h3>
+                    <p class="mb-2">Web tĩnh (chỉ có HTML/CSS) giống như tờ rơi quảng cáo. Để khách hàng có thể tương tác (tính báo giá thiết bị), ta cần <strong>JavaScript (JS)</strong> - hệ điều hành của web.</p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400 mb-4">
+                        <li><strong>Biến (Variable - `let`):</strong> Vùng nhớ để lưu trữ (vd: số lượng máy).</li>
+                        <li><strong>Hàm (Function):</strong> Khối lệnh thực thi nhiệm vụ khi có sự kiện (vd: ấn nút "Tính Tiền").</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Giao diện Form Báo Giá (40 Phút)</h3>
+                    <p class="mb-2">Tạo một khu vực ở cuối <code>index.html</code> để khách hàng nhập thông số.</p>
+<pre><code class="language-html">&lt;section id="quote-tool" style="text-align: center; padding: 50px; background: #e0f2fe;"&gt;
+    &lt;h2 style="color: #0369a1;"&gt;Công Cụ Dự Toán Chi Phí Đầu Tư&lt;/h2&gt;
+    &lt;div style="background: white; max-width: 400px; margin: auto; padding: 30px; border-radius: 10px; margin-top: 20px;"&gt;
+        
+        &lt;label&gt;Số lượng Monitor (Chiếc):&lt;/label&gt;
+        &lt;input type="number" id="soLuong" placeholder="Ví dụ: 10" style="width: 100%; padding: 10px; margin-bottom: 15px;"&gt;
+        
+        &lt;label&gt;Đơn giá dự kiến (Triệu VNĐ):&lt;/label&gt;
+        &lt;input type="number" id="donGia" placeholder="Ví dụ: 25" style="width: 100%; padding: 10px; margin-bottom: 15px;"&gt;
+        
+        &lt;button onclick="tinhBaoGia()" style="background: #0ea5e9; color: white; border: none; padding: 12px; width: 100%; cursor: pointer; border-radius: 5px;"&gt;
+            TÍNH TỔNG CHI PHÍ
+        &lt;/button&gt;
+        
+        &lt;p id="ketQua" style="margin-top: 20px; font-weight: bold; color: #b91c1c;"&gt;&lt;/p&gt;
+        
+    &lt;/div&gt;
+&lt;/section&gt;
+&lt;!-- Chèn file JS ở cuối body --&gt;
+&lt;script src="main.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 6 -->
+        <section id="buoi-6" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 6</span> THAO TÁC DOM & THUẬT TOÁN BÁO GIÁ (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Thu thập dữ liệu (DOM) (30 Phút)</h3>
+                    <p class="mb-2">Mở file <code>main.js</code>. Chúng ta sẽ dùng <code>document.getElementById()</code> để lấy thông tin khách hàng vừa nhập.</p>
+<pre><code class="language-javascript">function tinhBaoGia() {
+    let theSoLuong = document.getElementById('soLuong');
+    let sl = Number(theSoLuong.value); // Lấy giá trị và ép kiểu thành Số
+    
+    let theDonGia = document.getElementById('donGia');
+    let gia = Number(theDonGia.value);
+    
+    console.log("Số lượng:", sl, "Đơn giá:", gia);
+}</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 2: Viết thuật toán Giảm giá (If/Else) (60 Phút)</h3>
+                    <p class="mb-2"><strong>Yêu cầu kinh doanh:</strong> Tính tiền bao gồm 10% Thuế VAT. Đặc biệt, nếu khách hàng mua số lượng từ 5 máy trở lên, chiết khấu 5% trên tổng tiền.</p>
+<pre><code class="language-javascript">    // Viết tiếp bên trong hàm
+    let tongTien = sl * gia;
+    let chietKhau = 0;
+
+    // Logic kiểm tra số lượng
+    if (sl >= 5) {
+        chietKhau = tongTien * 0.05; // 5%
+    }
+
+    let tienSauChietKhau = tongTien - chietKhau;
+    let vat = tienSauChietKhau * 0.1; // 10% VAT
+    let thanhTien = tienSauChietKhau + vat;
+
+    // Trả kết quả ra màn hình HTML
+    let thongBao = "Tổng thanh toán: " + thanhTien + " Triệu VNĐ (Đã bao gồm VAT).";
+    if (chietKhau > 0) {
+        thongBao += " Bạn được chiết khấu: " + chietKhau + " Triệu VNĐ!";
+    }
+
+    document.getElementById('ketQua').innerText = thongBao;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 7 & 8 -->
+        <section id="buoi-7-8" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 7 & 8</span> RESPONSIVE - GIAO DIỆN CHUẨN ĐIỆN THOẠI (180 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Thiết kế đáp ứng với Media Query</h3>
+                    <p class="mb-2">Khách hàng y tế (Bác sĩ, Giám đốc phòng khám) rất hay dùng điện thoại/iPad. Ta cần đảm bảo các khối sản phẩm không đè lên nhau.</p>
+<pre><code class="language-css">/* Khi màn hình nhỏ hơn 768px (Mobile) */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column; /* Menu xếp chồng dọc */
+    }
+    
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .product-item {
+        width: 100%; /* Hộp sản phẩm bung tràn màn hình mobile */
+    }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 9 -->
+        <section id="buoi-9" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 9</span> BẢO VỆ MẮT VỚI CHẾ ĐỘ DARK MODE (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <p class="mb-2">Thêm nút "Sáng/Tối" trên thanh Menu. Khi ấn, JS sẽ thêm class <code>.dark-mode</code> vào thẻ <code>&lt;body&gt;</code>.</p>
+<pre><code class="language-javascript">// Trong main.js
+function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+}</code></pre>
+<pre><code class="language-css">/* Trong style.css */
+.dark-mode {
+    background-color: #0f172a;
+    color: #e2e8f0;
+}
+.dark-mode .product-item {
+    background-color: #1e293b;
+    color: white;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buổi 10 -->
+        <section id="buoi-10" class="mb-20 scroll-mt-10">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center"><span class="bg-primary text-darker px-3 py-1 rounded text-lg mr-4">Buổi 10</span> LAUNCHING & ĐỊNH HƯỚNG TƯƠNG LAI (90 Phút)</h2>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3 text-secondary">Phần 1: Đưa Web lên GitHub Pages (45 Phút)</h3>
+                    <p class="mb-2">Hướng dẫn tạo Repository với cấu trúc <code>[tên-tài-khoản].github.io</code> và Upload 3 file <code>index, products, style, main</code> lên để lấy đường link thực tế đi chào hàng.</p>
+                </div>
+
+                <div class="bg-gradient-to-r from-accent to-gray-900 p-8 rounded-2xl border border-blue-500/30 mt-8">
+                    <h4 class="font-bold text-2xl text-white mb-4 flex items-center">🚀 Lời kết & Bước tiếp theo</h4>
+                    <p class="text-lg text-gray-300 italic mb-4 leading-relaxed">Xin chúc mừng! Bạn vừa hoàn thành khóa huấn luyện từ số 0 để tạo ra một giao diện website Doanh nghiệp hoàn chỉnh.</p>
+                    <p class="text-lg text-gray-300 italic leading-relaxed">Đây là <strong>Web Tĩnh (Frontend)</strong>. Hệ thống này hoàn toàn có thể trở thành một <strong>Dự án IoT Y tế quy mô lớn</strong> nếu bạn tiếp tục học về <strong>Backend (Spring Boot/Python)</strong>: Biến trang web này thành một Dashboard nhận dữ liệu Nhịp tim/SpO2 gửi trực tiếp từ các cảm biến vi điều khiển (ESP32) tại phòng bệnh viện lên màn hình theo thời gian thực (Real-time). Đó là đích đến cuối cùng của một Kỹ sư Công nghệ Hệ thống!</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        hljs.highlightAll();
+
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

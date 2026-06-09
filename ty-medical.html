@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediTech Solutions - Thiết Bị & Giải Pháp Y Tế IoT</title>
+    
+    <!-- Cấu hình Tailwind CSS (Đại diện cho CSS External) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Kích hoạt Dark Mode bằng class
+            theme: {
+                extend: {
+                    colors: {
+                        medical: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9', // Xanh y tế chủ đạo
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            text: '#e2e8f0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS bổ sung (Box Model, Animation) -->
+    <style>
+        /* Hiệu ứng chuyển mượt mà cho Dark Mode */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Box Model cho thẻ sản phẩm */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.4);
+        }
+
+        /* Định dạng form báo giá */
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #cbd5e1;
+            transition: border-color 0.3s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+        }
+        .dark .input-field {
+            background-color: #334155;
+            border-color: #475569;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-dark-bg dark:text-dark-text font-sans antialiased">
+
+    <!-- Buổi 2 & 4: Header & Navigation (Sử dụng Flexbox) -->
+    <nav class="fixed w-full z-50 bg-white/90 dark:bg-dark-card/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <svg class="h-8 w-8 text-medical-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                    <span class="ml-2 text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Medi<span class="text-medical-500">Tech</span></span>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#ve-chung-toi" class="text-slate-600 dark:text-slate-300 hover:text-medical-500 dark:hover:text-medical-500 font-medium transition">Về Chúng Tôi</a>
+                    <a href="#san-pham" class="text-slate-600 dark:text-slate-300 hover:text-medical-500 dark:hover:text-medical-500 font-medium transition">Thiết Bị</a>
+                    <a href="#giai-phap-iot" class="text-slate-600 dark:text-slate-300 hover:text-medical-500 dark:hover:text-medical-500 font-medium transition">Giải Pháp IoT</a>
+                    <a href="#bao-gia" class="text-slate-600 dark:text-slate-300 hover:text-medical-500 dark:hover:text-medical-500 font-medium transition">Báo Giá</a>
+                    
+                    <!-- Buổi 9: Nút Toggle Dark Mode -->
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                        <svg id="theme-icon-light" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 4.22a1 1 0 011.415 0l.708.708a1 1 0 01-1.414 1.414l-.708-.708a1 1 0 010-1.414zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM14.22 15.78a1 1 0 010 1.415l-.708.708a1 1 0 01-1.414-1.414l.708-.708a1 1 0 011.415 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4.22-.22a1 1 0 010-1.415l-.708-.708a1 1 0 011.414-1.414l.708.708a1 1 0 01-1.415 1.415zM2 10a1 1 0 011-1h1a1 1 0 110 2H3a1 1 0 01-1-1zm1.78-4.22a1 1 0 011.414-1.414l.708.708a1 1 0 01-1.415 1.415l-.708-.708z" clip-rule="evenodd"></path></svg>
+                        <svg id="theme-icon-dark" class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2">
+            <div class="inline-block px-4 py-1 rounded-full bg-medical-100 dark:bg-medical-900/50 text-medical-600 dark:text-medical-400 font-semibold text-sm mb-6 border border-medical-200 dark:border-medical-800">
+                🚀 Hệ Sinh Thái Y Tế Số
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-slate-900 dark:text-white">
+                Giải Pháp Y Tế <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-medical-500 to-emerald-500">Chuyển Đổi Số</span>
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
+                Chúng tôi cung cấp thiết bị y tế chuẩn quốc tế kết hợp <strong>hệ thống IoT (ESP32)</strong> thu thập sinh hiệu Real-time và <strong>Phần mềm quản lý (Spring Boot)</strong> dành riêng cho phòng khám.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#san-pham" class="bg-medical-500 hover:bg-medical-600 text-white text-center px-8 py-3 rounded-lg font-bold transition shadow-lg shadow-medical-500/30">Xem Thiết Bị</a>
+                <a href="#bao-gia" class="bg-white dark:bg-dark-card border-2 border-slate-200 dark:border-slate-700 hover:border-medical-500 dark:hover:border-medical-500 text-slate-800 dark:text-white text-center px-8 py-3 rounded-lg font-bold transition">Dự Toán Chi Phí</a>
+            </div>
+        </div>
+        <div class="md:w-1/2">
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Phòng mổ công nghệ cao" class="rounded-2xl shadow-2xl border-4 border-white dark:border-slate-800 object-cover h-[400px] w-full">
+        </div>
+    </header>
+
+    <!-- Buổi 1 & 4: Danh Mục Sản Phẩm (Box Model & Flexbox/Grid) -->
+    <section id="san-pham" class="py-20 bg-slate-100 dark:bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">Thiết Bị Cốt Lõi</h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Các phần cứng y tế đạt chuẩn kiểm định, độ bền bỉ cao, tích hợp sẵn API/Giao thức để kết nối lên hệ thống máy chủ.</p>
+            </div>
+
+            <!-- Khung chứa lưới sản phẩm -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Sản phẩm 1 -->
+                <div class="product-card bg-white dark:bg-dark-card rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Monitor" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Monitor Theo Dõi Sinh Hiệu</h3>
+                            <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 text-xs font-bold px-2 py-1 rounded">Sẵn Hàng</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Model: MT-X100. Tích hợp đo ECG, SpO2, NIBP, Nhịp thở. Màn hình cảm ứng 12-inch chống chói.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-medical-50 dark:bg-medical-900/20 text-medical-600 dark:text-medical-400 text-xs font-semibold px-2.5 py-1 rounded-full">🏥 Chuẩn CE/FDA</span>
+                            <span class="bg-medical-50 dark:bg-medical-900/20 text-medical-600 dark:text-medical-400 text-xs font-semibold px-2.5 py-1 rounded-full">🔌 Kết nối MQTT/WiFi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 2 -->
+                <div class="product-card bg-white dark:bg-dark-card rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                    <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Siêu âm" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Máy Siêu Âm Xách Tay</h3>
+                            <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 text-xs font-bold px-2 py-1 rounded">Sẵn Hàng</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Model: MT-U20. Công nghệ Doppler màu siêu nét, thiết kế di động phù hợp cấp cứu và phòng khám nhỏ.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-medical-50 dark:bg-medical-900/20 text-medical-600 dark:text-medical-400 text-xs font-semibold px-2.5 py-1 rounded-full">🔋 Pin 4 Tiếng</span>
+                            <span class="bg-medical-50 dark:bg-medical-900/20 text-medical-600 dark:text-medical-400 text-xs font-semibold px-2.5 py-1 rounded-full">🖥️ Xuất dữ liệu PACS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 3 -->
+                <div class="product-card bg-white dark:bg-dark-card rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Giường bệnh" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Giường Bệnh Đa Chức Năng</h3>
+                            <span class="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-xs font-bold px-2 py-1 rounded">Đặt Trước</span>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Model: MT-B50. Hệ thống nâng hạ bằng điện, tích hợp cảm biến cảnh báo người bệnh té ngã dời giường.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-medical-50 dark:bg-medical-900/20 text-medical-600 dark:text-medical-400 text-xs font-semibold px-2.5 py-1 rounded-full">🛠️ Khung hợp kim</span>
+                            <span class="bg-medical-50 dark:bg-medical-900/20 text-medical-600 dark:text-medical-400 text-xs font-semibold px-2.5 py-1 rounded-full">🚨 Sensor báo động</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Tích hợp phần cứng (Định hướng STEM/IoT kiếm tiền B2B) -->
+    <section id="giai-phap-iot" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-dark-card rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row border border-slate-800">
+                <div class="lg:w-1/2 p-10 flex flex-col justify-center">
+                    <div class="inline-flex items-center gap-2 text-emerald-400 font-bold mb-4 uppercase tracking-wider text-sm">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Năng Lực Tích Hợp Hệ Thống
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Giải Pháp IoT Phòng Khám (Smart Clinic)</h2>
+                    <p class="text-slate-300 mb-6 leading-relaxed">
+                        Điểm khác biệt của MediTech là khả năng lập trình vi điều khiển <strong>(ESP32 / Raspberry Pi Pico)</strong> để đọc tín hiệu trực tiếp từ thiết bị y tế (SpO2, Nhịp tim), sau đó truyền dữ liệu lên máy chủ <strong>Web Backend (Spring Boot/Java)</strong>. 
+                        Bác sĩ có thể theo dõi biểu đồ Real-time của toàn bộ bệnh nhân thông qua màn hình Dashboard.
+                    </p>
+                    <ul class="space-y-3 text-slate-400 mb-8">
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-medical-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> Truyền thông MQTT / WebSockets siêu tốc.</li>
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-medical-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> Xử lý Data nội bộ khép kín, bảo mật dữ liệu y tế.</li>
+                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-medical-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> Cảnh báo qua Telegram/Zalo khi sinh hiệu bất thường.</li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2 bg-slate-900 p-8 border-l border-slate-800 flex items-center justify-center">
+                    <!-- Mô phỏng màn hình Dashboard Code/App -->
+                    <div class="w-full bg-[#1e1e1e] rounded-lg shadow-2xl overflow-hidden border border-slate-700">
+                        <div class="bg-[#2d2d2d] px-4 py-2 flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="ml-4 text-xs text-slate-400 font-mono">ESP32_Medical_Firmware.cpp</span>
+                        </div>
+                        <div class="p-4 text-sm font-mono text-green-400 opacity-90 leading-relaxed overflow-x-auto">
+<pre><code>#include &lt;WiFi.h&gt;
+#include &lt;PubSubClient.h&gt;
+#include "MAX30105.h" // Thư viện cảm biến
+
+void loop() {
+  int heartRate = particleSensor.getHeartRate();
+  int spo2 = particleSensor.getSpO2();
+
+  if (spo2 < 90) {
+    triggerLocalAlarm(); // Kích hoạt còi tại chỗ
+  }
+
+  // Đẩy dữ liệu lên Spring Boot Server
+  String payload = "{\"id\":\"B12\", \"hr\":" + 
+                    String(heartRate) + ", \"spo2\":" + 
+                    String(spo2) + "}";
+  mqttClient.publish("hospital/icu/vitals", payload.c_str());
+  
+  delay(2000);
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buổi 5 & 6: Công Cụ Dự Toán Chi Phí (DOM & Javascript Logic) -->
+    <section id="bao-gia" class="py-20 bg-medical-50 dark:bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-dark-card rounded-2xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800">
+                <div class="p-8 md:p-12 text-center border-b border-slate-100 dark:border-slate-800 bg-medical-500 text-white">
+                    <h2 class="text-3xl font-bold mb-2">Công Cụ Dự Toán Chi Phí Đầu Tư</h2>
+                    <p class="text-medical-100">Tính toán minh bạch, áp dụng chiết khấu tự động cho đối tác mua số lượng lớn.</p>
+                </div>
+                
+                <div class="p-8 md:p-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <!-- Cột nhập liệu -->
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Sản phẩm cần đầu tư</label>
+                                <select id="loaiMay" class="input-field bg-white dark:bg-slate-800" onchange="capNhatGiaGoiY()">
+                                    <option value="25">Monitor Theo Dõi Sinh Hiệu (25 Triệu)</option>
+                                    <option value="120">Máy Siêu Âm Xách Tay (120 Triệu)</option>
+                                    <option value="15">Giường Bệnh Đa Năng (15 Triệu)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Số lượng máy (Chiếc)</label>
+                                <input type="number" id="soLuong" min="1" placeholder="Nhập số lượng (VD: 10)" class="input-field bg-white dark:bg-slate-800">
+                                <p class="text-xs text-medical-500 mt-2 italic">* Mua từ 5 thiết bị trở lên sẽ được tự động chiết khấu 5%.</p>
+                            </div>
+                            
+                            <!-- Input ẩn lưu giá, có thể hiển thị nếu muốn cho người dùng nhập tay -->
+                            <input type="hidden" id="donGia" value="25">
+
+                            <button onclick="tinhBaoGia()" class="w-full bg-slate-900 dark:bg-medical-600 hover:bg-slate-800 dark:hover:bg-medical-500 text-white font-bold py-4 px-6 rounded-lg transition shadow-lg flex justify-center items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                XUẤT BÁO GIÁ
+                            </button>
+                        </div>
+
+                        <!-- Cột hiển thị kết quả -->
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col justify-center">
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-2">Bảng Tính Tạm Tính</h3>
+                            
+                            <div class="space-y-4 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500 dark:text-slate-400">Tạm tính:</span>
+                                    <span id="txtTamTinh" class="font-bold text-slate-800 dark:text-slate-200">0 VNĐ</span>
+                                </div>
+                                <div class="flex justify-between text-emerald-600 dark:text-emerald-400">
+                                    <span>Chiết khấu số lượng:</span>
+                                    <span id="txtChietKhau" class="font-bold">- 0 VNĐ</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-500 dark:text-slate-400">Thuế VAT (10%):</span>
+                                    <span id="txtVat" class="font-bold text-slate-800 dark:text-slate-200">+ 0 VNĐ</span>
+                                </div>
+                                <div class="border-t border-slate-200 dark:border-slate-700 pt-4 mt-2">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-base font-bold text-slate-800 dark:text-white">TỔNG THANH TOÁN:</span>
+                                        <span id="txtTongTien" class="text-2xl font-extrabold text-medical-600 dark:text-medical-400">0 VNĐ</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="alertBox" class="mt-6 p-4 rounded-lg bg-red-50 text-red-600 border border-red-200 hidden text-sm">
+                                <!-- Thông báo lỗi sẽ hiện ở đây -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <div class="flex items-center mb-4">
+                    <svg class="h-6 w-6 text-medical-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                    <span class="ml-2 text-xl font-bold text-white tracking-tight">Medi<span class="text-medical-500">Tech</span></span>
+                </div>
+                <p class="text-sm">Giải pháp công nghệ cốt lõi cho Bệnh viện & Phòng khám.</p>
+            </div>
+            <div class="text-sm text-center md:text-right">
+                <p class="mb-1">📍 Trụ sở R&D: Quận 12, TP. Hồ Chí Minh</p>
+                <p class="mb-1">📞 Kỹ thuật / Zalo: 09xx.xxx.xxx</p>
+                <p>&copy; 2026 Hệ thống được phát triển bởi đội ngũ kỹ sư 12+ năm kinh nghiệm.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Khối Logic Javascript (Buổi 5, 6, 9) -->
+    <script>
+        // --- Buổi 9: Chế độ Dark Mode ---
+        function toggleDarkMode() {
+            // Thêm/Xóa class 'dark' trên thẻ html gốc của Tailwind
+            document.documentElement.classList.toggle('dark');
+            
+            // Xử lý đổi icon mặt trời / mặt trăng
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                // Lưu trạng thái vào bộ nhớ trình duyệt nếu cần (Nâng cao)
+                localStorage.theme = 'dark';
+            } else {
+                localStorage.theme = 'light';
+            }
+        }
+
+        // Tự động kiểm tra cấu hình máy tính lúc mới load trang
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // --- Buổi 5 & 6: Thuật toán Công cụ Dự toán chi phí ---
+        function capNhatGiaGoiY() {
+            // Khi chọn sản phẩm trên Select, tự cập nhật đơn giá ẩn
+            const loaiMay = document.getElementById('loaiMay');
+            document.getElementById('donGia').value = loaiMay.value;
+        }
+
+        function tinhBaoGia() {
+            // 1. Lấy dữ liệu (DOM)
+            const inputSoLuong = document.getElementById('soLuong').value;
+            const inputDonGia = document.getElementById('donGia').value;
+            const alertBox = document.getElementById('alertBox');
+
+            // Reset cảnh báo
+            alertBox.classList.add('hidden');
+            
+            // Ép kiểu dữ liệu sang Số
+            const sl = Number(inputSoLuong);
+            const gia = Number(inputDonGia);
+
+            // 2. Validate (Kiểm tra lỗi người dùng nhập sai)
+            if (sl <= 0 || isNaN(sl)) {
+                alertBox.innerText = "❌ Vui lòng nhập số lượng hợp lệ (lớn hơn 0).";
+                alertBox.classList.remove('hidden');
+                return; // Dừng hàm lại
+            }
+
+            // 3. Thuật toán xử lý (If/Else logic)
+            const tongTamTinh = sl * gia;
+            let chietKhau = 0;
+
+            // Yêu cầu kinh doanh: Mua từ 5 cái giảm 5%
+            if (sl >= 5) {
+                chietKhau = tongTamTinh * 0.05; 
+            }
+
+            const tienSauChietKhau = tongTamTinh - chietKhau;
+            const vat = tienSauChietKhau * 0.1; // VAT 10%
+            const thanhTien = tienSauChietKhau + vat;
+
+            // 4. Trả kết quả (Format tiền VNĐ và chèn vào HTML)
+            document.getElementById('txtTamTinh').innerText = formatTien(tongTamTinh);
+            document.getElementById('txtChietKhau').innerText = "- " + formatTien(chietKhau);
+            document.getElementById('txtVat').innerText = "+ " + formatTien(vat);
+            document.getElementById('txtTongTien').innerText = formatTien(thanhTien);
+        }
+
+        // Hàm phụ trợ: Thêm chữ 'Triệu VNĐ' cho đẹp
+        function formatTien(soTien) {
+            // Làm tròn đến 1 chữ số thập phân nếu có số lẻ
+            return soTien.toLocaleString('vi-VN', { maximumFractionDigits: 1 }) + " Triệu VNĐ";
+        }
+    </script>
+</body>
+</html>
