@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Giáo án STEM-10 vs Thực chiến</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap');
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .chart-container { position: relative; width: 100%; max-width: 700px; margin: auto; height: 320px; }
+        .glass-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .nav-active { background-color: #1e40af !important; color: white !important; border-color: #1e40af !important; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .lesson-badge { padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .custom-scrollbar::-webkit-scrollbar { height: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 py-6 px-6 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900">Portal Giáo án <span class="text-blue-700">STEM-10 Thực chiến</span></h1>
+                <p class="text-slate-500 text-sm">Hướng dẫn giảng dạy chi tiết cho giáo viên - Từ Lý thuyết Mỹ đến Phần cứng Việt</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-bold text-slate-400">PHIÊN BẢN 2.0</p>
+                    <p class="text-sm text-slate-600 italic">"Học để làm được việc"</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- Dashboard So sánh Chiến lược -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+            <div class="lg:col-span-1 glass-card p-6">
+                <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span>📊</span> Định hướng Kỹ năng
+                </h3>
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+                <p class="text-xs text-slate-500 mt-4 italic text-center">Biểu đồ so sánh trọng tâm giảng dạy giữa hai hệ thống.</p>
+            </div>
+            
+            <div class="lg:col-span-2 glass-card p-6">
+                <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span>🚀</span> Triết lý Giảng dạy Thực chiến
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-4 rounded-lg border-l-4 border-blue-600">
+                        <h4 class="font-bold text-blue-800 text-sm mb-1 uppercase">Acellus (Mô phỏng)</h4>
+                        <p class="text-sm text-slate-600">Phù hợp học lý thuyết, tích lũy tín chỉ nhanh. Học sinh làm việc trong môi trường "hoàn hảo" không có sai số vật lý.</p>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-lg border-l-4 border-amber-600">
+                        <h4 class="font-bold text-amber-800 text-sm mb-1 uppercase">Thực chiến (Lâm sàng)</h4>
+                        <p class="text-sm text-slate-600">Học sinh phải đối mặt với linh kiện cháy hỏng, dây lỏng, nhiễu tín hiệu. Rèn luyện bản lĩnh kỹ sư và tư duy giải quyết vấn đề.</p>
+                    </div>
+                </div>
+                <div class="mt-6 border-t pt-6">
+                    <h4 class="font-bold text-sm mb-3">Tỷ lệ Học liệu thực tế:</h4>
+                    <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden flex">
+                        <div class="bg-blue-600 h-full text-[10px] text-white flex items-center justify-center" style="width: 30%">LÝ THUYẾT 30%</div>
+                        <div class="bg-amber-500 h-full text-[10px] text-white flex items-center justify-center" style="width: 70%">THỰC HÀNH 70%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-4 text-slate-800">Chi tiết Giáo trình theo Cấp lớp (Deep-Dive Syllabus)</h2>
+            <div class="flex overflow-x-auto gap-2 pb-2 custom-scrollbar">
+                <button onclick="switchTab('st1')" id="btn-st1" class="nav-btn px-4 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-all font-semibold whitespace-nowrap nav-active">STEM 1 (Lớp 3)</button>
+                <button onclick="switchTab('st2')" id="id-btn-st2" class="nav-btn px-4 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-all font-semibold whitespace-nowrap">STEM 2 (Lớp 4)</button>
+                <button onclick="switchTab('st3')" id="id-btn-st3" class="nav-btn px-4 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-all font-semibold whitespace-nowrap">STEM 3 (Lớp 5)</button>
+                <button onclick="switchTab('st47')" id="id-btn-st47" class="nav-btn px-4 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-all font-semibold whitespace-nowrap">ROBOTICS (Lớp 6-7)</button>
+                <button onclick="switchTab('st89')" id="id-btn-st89" class="nav-btn px-4 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-all font-semibold whitespace-nowrap">IoT (Lớp 8-9)</button>
+                <button onclick="switchTab('st1012')" id="id-btn-st1012" class="nav-btn px-4 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-all font-semibold whitespace-nowrap">R&D (Lớp 10-12)</button>
+            </div>
+        </div>
+
+        <!-- Curriculum Content -->
+        <div id="syllabus-container">
+            
+            <!-- STEM 1 -->
+            <div id="st1" class="tab-content active">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="glass-card overflow-hidden">
+                        <div class="bg-blue-700 text-white p-4 font-bold">Lộ trình Acellus (Lý thuyết)</div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <span class="lesson-badge bg-blue-100 text-blue-700">Tuần 1-4</span>
+                                <p class="text-sm font-semibold mt-1">Lập trình Kéo-Thả (Blockly)</p>
+                                <p class="text-xs text-slate-500">Học về Sequence (Tuần tự). Điều khiển robot ảo vượt mê cung trên web.</p>
+                            </div>
+                            <div>
+                                <span class="lesson-badge bg-blue-100 text-blue-700">Tuần 5-8</span>
+                                <p class="text-sm font-semibold mt-1">Loops & Variables</p>
+                                <p class="text-xs text-slate-500">Sử dụng vòng lặp để vẽ hình vuông, hình tròn giả lập.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card overflow-hidden border-amber-200">
+                        <div class="bg-amber-600 text-white p-4 font-bold">Lộ trình Thực chiến (Giáo án Giảng dạy)</div>
+                        <div class="p-6 space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center font-bold">01</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">Physical Computing với Micro:bit</h4>
+                                    <p class="text-sm text-slate-600 mt-1 italic">"Học về ngõ ra vật lý"</p>
+                                    <ul class="text-xs space-y-2 mt-3 list-disc pl-4 text-slate-600">
+                                        <li>B1: Hello World - Lập trình ma trận LED hiển thị tên học sinh.</li>
+                                        <li>B2: Xúc xắc điện tử - Sử dụng cảm biến gia tốc để tung xúc xắc.</li>
+                                        <li>B3: Máy đo nhịp tim/nhiệt độ - Khám phá các cảm biến tích hợp sẵn.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-amber-50 p-4 rounded-lg">
+                                <p class="text-xs font-bold text-amber-800 mb-2">🛠️ LINH KIỆN CẦN CHUẨN BỊ:</p>
+                                <p class="text-xs text-amber-700">Mạch Micro:bit v2, Cáp Micro-USB, Case pin AAA.</p>
+                            </div>
+                            <div class="border-t pt-4">
+                                <p class="text-xs font-bold text-slate-800 mb-1">🏁 DỰ ÁN CUỐI KHÓA:</p>
+                                <p class="text-sm text-slate-700">"Hệ thống báo động va chạm cho xe đạp"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEM 2 -->
+            <div id="st2" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="glass-card overflow-hidden">
+                        <div class="bg-blue-700 text-white p-4 font-bold">Lộ trình Acellus (Lý thuyết)</div>
+                        <div class="p-6 space-y-4">
+                            <p class="text-sm font-bold">Nhập môn JavaScript</p>
+                            <p class="text-xs text-slate-600">Chuyển đổi từ Block sang Text. Học cú pháp dấu ngoặc nhọn {}, dấu chấm phẩy ; và cách khai báo biến `let`, `const` trên trình duyệt.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card overflow-hidden border-amber-200">
+                        <div class="bg-amber-600 text-white p-4 font-bold">Lộ trình Thực chiến (Giáo án Giảng dạy)</div>
+                        <div class="p-6 space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center font-bold">02</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">Python Robotics Cơ bản</h4>
+                                    <p class="text-sm text-slate-600 mt-1 italic">"Cai sữa kéo thả - Bước vào thế giới Code Text"</p>
+                                    <ul class="text-xs space-y-2 mt-3 list-disc pl-4 text-slate-600">
+                                        <li>B1: Thonny IDE & MicroPython - Cài đặt và nạp firmware đầu tiên.</li>
+                                        <li>B2: Logic Control - Viết hàm điều khiển đèn giao thông thực tế.</li>
+                                        <li>B3: Data Input - Đọc giá trị từ biến trở (Potentiometer) để chỉnh độ sáng LED.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-amber-50 p-4 rounded-lg">
+                                <p class="text-xs font-bold text-amber-800 mb-2">🛠️ LINH KIỆN CẦN CHUẨN BỊ:</p>
+                                <p class="text-xs text-amber-700">Mạch Raspberry Pi Pico, Breadboard 400 lỗ, LED đa màu, Biến trở 10k.</p>
+                            </div>
+                            <div class="border-t pt-4">
+                                <p class="text-xs font-bold text-slate-800 mb-1">🏁 DỰ ÁN CUỐI KHÓA:</p>
+                                <p class="text-sm text-slate-700">"Đàn Piano điện tử bằng cảm biến chạm"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEM 3 -->
+            <div id="st3" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="glass-card overflow-hidden">
+                        <div class="bg-blue-700 text-white p-4 font-bold">Lộ trình Acellus (Lý thuyết)</div>
+                        <div class="p-6 space-y-4">
+                            <p class="text-sm font-bold">Electronics Foundations</p>
+                            <p class="text-xs text-slate-600">Xem video bài giảng về định luật Ohm. Giải các bài toán trắc nghiệm tính điện trở tương đương trên màn hình.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card overflow-hidden border-amber-200">
+                        <div class="bg-amber-600 text-white p-4 font-bold">Lộ trình Thực chiến (Giáo án Giảng dạy)</div>
+                        <div class="p-6 space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center font-bold">03</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">Mạch điện & Điều khiển I/O chuyên sâu</h4>
+                                    <p class="text-sm text-slate-600 mt-1 italic">"Học về sai số và an toàn điện"</p>
+                                    <ul class="text-xs space-y-2 mt-3 list-disc pl-4 text-slate-600">
+                                        <li>B1: Kỹ năng dùng VOM - Đo áp, dòng và thông mạch trên linh kiện thật.</li>
+                                        <li>B2: Relay & High Voltage - Điều khiển thiết bị AC 220V qua code (An toàn tuyệt đối).</li>
+                                        <li>B3: PWM & Motor - Điều chỉnh tốc độ động cơ DC không qua mô phỏng.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-amber-50 p-4 rounded-lg">
+                                <p class="text-xs font-bold text-amber-800 mb-2">🛠️ LINH KIỆN CẦN CHUẨN BỊ:</p>
+                                <p class="text-xs text-amber-700">Đồng hồ vạn năng, Module Relay, Động cơ giảm tốc, Pin 18650.</p>
+                            </div>
+                            <div class="border-t pt-4">
+                                <p class="text-xs font-bold text-slate-800 mb-1">🏁 DỰ ÁN CUỐI KHÓA:</p>
+                                <p class="text-sm text-slate-700">"Hệ thống tưới cây tự động có màn hình LCD hiển thị độ ẩm"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEM 4-7 -->
+            <div id="st47" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="glass-card overflow-hidden">
+                        <div class="bg-blue-700 text-white p-4 font-bold">Lộ trình Acellus (Lý thuyết)</div>
+                        <div class="p-6">
+                            <p class="text-sm font-bold">Computer Science General</p>
+                            <p class="text-xs text-slate-600 mt-2">Nghiên cứu về lịch sử máy tính và các cấu trúc dữ liệu phần mềm cơ bản (Array, List).</p>
+                        </div>
+                    </div>
+                    <div class="glass-card overflow-hidden border-amber-200">
+                        <div class="bg-amber-600 text-white p-4 font-bold">Lộ trình Thực chiến (Giáo án Giảng dạy)</div>
+                        <div class="p-6 space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center font-bold">04</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">Robotics & Cơ chế chấp hành</h4>
+                                    <p class="text-sm text-slate-600 mt-1 italic">"Cơ khí gặp Giao tiếp I2C"</p>
+                                    <ul class="text-xs space-y-2 mt-3 list-disc pl-4 text-slate-600">
+                                        <li>B1: Lắp ráp khung xe - Hiểu về trọng tâm và ma sát bánh xe.</li>
+                                        <li>B2: Cảm biến siêu âm - Thuật toán tránh vật cản thời gian thực.</li>
+                                        <li>B3: Dò đường Line - Hiểu về PID cơ bản trong điều khiển tự động.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-amber-50 p-4 rounded-lg">
+                                <p class="text-xs font-bold text-amber-800 mb-2">🛠️ LINH KIỆN CẦN CHUẨN BỊ:</p>
+                                <p class="text-xs text-amber-700">Khung xe robot 3-4 bánh, Driver L298N, Cảm biến hồng ngoại, Cảm biến siêu âm.</p>
+                            </div>
+                            <div class="border-t pt-4">
+                                <p class="text-xs font-bold text-slate-800 mb-1">🏁 DỰ ÁN CUỐI KHÓA:</p>
+                                <p class="text-sm text-slate-700">"Robot cứu hộ điều khiển từ xa qua Bluetooth/GamePad"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEM 8-9 -->
+            <div id="st89" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="glass-card overflow-hidden">
+                        <div class="bg-blue-700 text-white p-4 font-bold">Lộ trình Acellus (Lý thuyết)</div>
+                        <div class="p-6">
+                            <p class="text-sm font-bold">Data Management</p>
+                            <p class="text-xs text-slate-600 mt-2">Học về cơ sở dữ liệu và cách mạng Internet hoạt động (Client-Server lý thuyết).</p>
+                        </div>
+                    </div>
+                    <div class="glass-card overflow-hidden border-amber-200">
+                        <div class="bg-amber-600 text-white p-4 font-bold">Lộ trình Thực chiến (Giáo án Giảng dạy)</div>
+                        <div class="p-6 space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center font-bold">05</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">Internet of Things (IoT)</h4>
+                                    <p class="text-sm text-slate-600 mt-1 italic">"Kết nối vạn vật - Đưa dữ liệu lên mây"</p>
+                                    <ul class="text-xs space-y-2 mt-3 list-disc pl-4 text-slate-600">
+                                        <li>B1: WiFi & ESP32 - Kết nối internet và tạo Web Server mini.</li>
+                                        <li>B2: MQTT & Blynk - Truyền dữ liệu hai chiều App điện thoại <-> ESP32.</li>
+                                        <li>B3: Cloud Data - Lưu trữ dữ liệu cảm biến lên Google Sheets/Thingspeak.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-amber-50 p-4 rounded-lg">
+                                <p class="text-xs font-bold text-amber-800 mb-2">🛠️ LINH KIỆN CẦN CHUẨN BỊ:</p>
+                                <p class="text-xs text-amber-700">Mạch ESP32, Cảm biến nhiệt ẩm DHT11, LED RGB, Tài khoản Cloud Blynk.</p>
+                            </div>
+                            <div class="border-t pt-4">
+                                <p class="text-xs font-bold text-slate-800 mb-1">🏁 DỰ ÁN CUỐI KHÓA:</p>
+                                <p class="text-sm text-slate-700">"Mô hình Trạm khí tượng thông minh giám sát toàn cầu"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEM 10-12 -->
+            <div id="st1012" class="tab-content">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="glass-card overflow-hidden">
+                        <div class="bg-blue-700 text-white p-4 font-bold">Lộ trình Acellus (Lý thuyết)</div>
+                        <div class="p-6">
+                            <p class="text-sm font-bold">AP Computer Science (Java/C++)</p>
+                            <p class="text-xs text-slate-600 mt-2">Luyện thi chứng chỉ quốc tế. Giải các bài toán thuật toán phức tạp trên LeetCode/Hackerrank.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card overflow-hidden border-amber-200">
+                        <div class="bg-amber-600 text-white p-4 font-bold">Lộ trình Thực chiến (Giáo án Giảng dạy)</div>
+                        <div class="p-6 space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center font-bold">06</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800">AI & R&D Product Engineering</h4>
+                                    <p class="text-sm text-slate-600 mt-1 italic">"Từ ý tưởng đến sản phẩm thương mại"</p>
+                                    <ul class="text-xs space-y-2 mt-3 list-disc pl-4 text-slate-600">
+                                        <li>B1: Edge AI - Nhận diện vật thể bằng Camera ESP32-CAM.</li>
+                                        <li>B2: CAD/3D Printing - Thiết kế và in vỏ hộp sản phẩm chuyên nghiệp.</li>
+                                        <li>B3: PCB Design - Vẽ mạch in và tự làm mạch bằng phương pháp ủi/ăn mòn.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-amber-50 p-4 rounded-lg">
+                                <p class="text-xs font-bold text-amber-800 mb-2">🛠️ LINH KIỆN CẦN CHUẨN BỊ:</p>
+                                <p class="text-xs text-amber-700">ESP32-CAM, Máy in 3D, Máy CNC mini (nếu có), Phần mềm Altium/EasyEDA.</p>
+                            </div>
+                            <div class="border-t pt-4">
+                                <p class="text-xs font-bold text-slate-800 mb-1">🏁 DỰ ÁN CUỐI KHÓA:</p>
+                                <p class="text-sm text-slate-700">"Sản phẩm công nghệ hoàn thiện (Ví dụ: Thùng rác AI phân loại rác)"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-white py-10 px-6 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center opacity-70">
+            <p class="text-sm">&copy; 2024 Kho lưu trữ Giáo án STEM Thực chiến. Tất cả quyền được bảo lưu.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <span class="text-xs">Hướng dẫn giảng dạy nội bộ</span>
+                <span class="text-xs">Tiêu chuẩn Kỹ thuật Việt Nam</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Chart Configuration
+        const radarCtx = document.getElementById('radarChart').getContext('2d');
+        new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Lý thuyết', 'Thực hành PC', 'Giải quyết lỗi', 'Tự nhịp độ', 'Thương mại hóa', 'Tương tác'],
+                datasets: [{
+                    label: 'Acellus (Lý thuyết)',
+                    data: [95, 30, 40, 95, 20, 60],
+                    backgroundColor: 'rgba(30, 64, 175, 0.2)',
+                    borderColor: '#1e40af',
+                    pointBackgroundColor: '#1e40af'
+                }, {
+                    label: 'Thực chiến (Phần cứng)',
+                    data: [65, 98, 95, 60, 90, 85],
+                    backgroundColor: 'rgba(217, 119, 6, 0.2)',
+                    borderColor: '#d97706',
+                    pointBackgroundColor: '#d97706'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: { r: { suggestMin: 0, suggestMax: 100, ticks: { display: false } } },
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+            }
+        });
+
+        // Tab Switching Logic
+        function switchTab(id) {
+            // Update Buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('nav-active'));
+            const activeBtn = document.querySelector(`[onclick="switchTab('${id}')"]`);
+            if(activeBtn) activeBtn.classList.add('nav-active');
+
+            // Update Content
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+</html>
