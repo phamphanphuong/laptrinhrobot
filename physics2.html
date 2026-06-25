@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo án Vật Lý: KHTN 9 - IGCSE 0654</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; color: #1f2937; }
+        .module-card { transition: all 0.3s ease; }
+        .module-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .vocab-box { background-color: #ebf5ff; border-left: 4px solid #3b82f6; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto">
+        
+        <!-- Header -->
+        <header class="mb-10 text-center">
+            <h1 class="text-3xl font-bold text-blue-800 mb-2">GIÁO ÁN THỰC CHIẾN (IoT x IGCSE)</h1>
+            <p class="text-gray-600">Kết nối KHTN 9 (Việt Nam) & Chương trình 0654 Coordinated Sciences (BVIS)</p>
+        </header>
+
+        <!-- CHƯƠNG 1 -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8 module-card">
+            <div class="flex items-center justify-between border-b pb-4 mb-4">
+                <h2 class="text-xl font-bold text-indigo-700">
+                    <i class="fa-solid fa-car-side mr-2"></i>Chương I. Động học (KHTN 9) ↔ Chương P1: Motion (0654)
+                </h2>
+                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded font-bold">Tuần 1-2</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Nội dung Giảng dạy -->
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-2">1. Nội dung KHTN 9 (Bản chất)</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 mb-4">
+                        <li>Phân biệt Quãng đường (Vô hướng) & Độ dịch chuyển (Có hướng).</li>
+                        <li>Tốc độ và Vận tốc. Phân tích đồ thị s-t.</li>
+                        <li>Gia tốc. Đồ thị v-t. Phân tích diện tích dưới đồ thị v-t = Quãng đường.</li>
+                    </ul>
+                    
+                    <h3 class="font-bold text-gray-800 mb-2">2. Dự án IoT / Lab (Paper 6)</h3>
+                    <p class="text-sm text-gray-700 border p-3 rounded bg-gray-50">
+                        <i class="fa-solid fa-microchip text-green-600 mr-1"></i> <strong>Đo gia tốc xe tự hành:</strong> Dùng MPU6050 + ESP32 gắn lên xe RC. Học sinh đẩy xe, ESP32 vẽ đồ thị vận tốc - thời gian thực tế lên máy tính bằng Python. Yêu cầu HS tính diện tích để ra quãng đường.
+                    </p>
+                </div>
+
+                <!-- Thuật ngữ tiếng Anh -->
+                <div class="vocab-box p-4 rounded-lg">
+                    <h3 class="font-bold text-blue-800 mb-3"><i class="fa-solid fa-language mr-1"></i> Từ vựng "Ăn điểm" (IGCSE 0654)</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between border-b border-blue-200 pb-1"><span>Đại lượng vô hướng</span> <strong class="text-blue-700">Scalar quantity</strong></li>
+                        <li class="flex justify-between border-b border-blue-200 pb-1"><span>Đại lượng có hướng</span> <strong class="text-blue-700">Vector quantity</strong></li>
+                        <li class="flex justify-between border-b border-blue-200 pb-1"><span>Quãng đường</span> <strong class="text-blue-700">Distance ($d$)</strong></li>
+                        <li class="flex justify-between border-b border-blue-200 pb-1"><span>Độ dịch chuyển</span> <strong class="text-blue-700">Displacement ($s$)</strong></li>
+                        <li class="flex justify-between border-b border-blue-200 pb-1"><span>Tốc độ / Vận tốc</span> <strong class="text-blue-700">Speed / Velocity ($v$)</strong></li>
+                        <li class="flex justify-between border-b border-blue-200 pb-1"><span>Gia tốc / Giảm tốc</span> <strong class="text-blue-700">Acceleration / Deceleration</strong></li>
+                        <li class="flex justify-between border-b border-blue-200 pb-1"><span>Đồ thị tốc độ - tgian</span> <strong class="text-blue-700">Speed-time graph</strong></li>
+                        <li class="flex justify-between"><span>Độ dốc (đồ thị)</span> <strong class="text-blue-700">Gradient / Slope</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-4 pt-3 border-t text-sm">
+                <strong class="text-red-600">Nguồn luyện tập:</strong> Giao ngay các câu hỏi Đồ thị trong đề `June 2003 QP` và `June 2004 QP`.
+            </div>
+        </div>
+
+        <!-- CHƯƠNG 2 -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8 module-card">
+            <div class="flex items-center justify-between border-b pb-4 mb-4">
+                <h2 class="text-xl font-bold text-green-700">
+                    <i class="fa-solid fa-weight-hanging mr-2"></i>Chương II. Năng lượng & Công (KHTN 9) ↔ Chương P2: Work, Energy & Power (0654)
+                </h2>
+                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-bold">Tuần 3-4</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Nội dung Giảng dạy -->
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-2">1. Nội dung KHTN 9 (Bản chất)</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 mb-4">
+                        <li>Phân biệt Khối lượng và Trọng lượng. Lực cản/Ma sát.</li>
+                        <li>Công cơ học ($A = F \cdot s$) & Công suất ($P = \frac{A}{t}$).</li>
+                        <li>Động năng ($W_d$), Thế năng ($W_t$) và Sự bảo toàn cơ năng.</li>
+                    </ul>
+                    
+                    <h3 class="font-bold text-gray-800 mb-2">2. Dự án IoT / Lab (Paper 6)</h3>
+                    <p class="text-sm text-gray-700 border p-3 rounded bg-gray-50">
+                        <i class="fa-solid fa-laptop-code text-green-600 mr-1"></i> <strong>Simulation Pygame (đã cung cấp):</strong> Cho HS thả vật trên mô phỏng. Sau đó làm thật: dùng cảm biến quang đo vận tốc bi rớt, chứng minh $W_t$ chuyển hóa thành $W_d$ và tính hao phí do lực cản không khí.
+                    </p>
+                </div>
+
+                <!-- Thuật ngữ tiếng Anh -->
+                <div class="vocab-box p-4 rounded-lg border-l-green-500" style="background-color: #f0fdf4;">
+                    <h3 class="font-bold text-green-800 mb-3"><i class="fa-solid fa-language mr-1"></i> Từ vựng "Ăn điểm" (IGCSE 0654)</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between border-b border-green-200 pb-1"><span>Khối lượng / Trọng lượng</span> <strong class="text-green-700">Mass / Weight ($W=mg$)</strong></li>
+                        <li class="flex justify-between border-b border-green-200 pb-1"><span>Lực cản không khí</span> <strong class="text-green-700">Air resistance / Drag</strong></li>
+                        <li class="flex justify-between border-b border-green-200 pb-1"><span>Công cơ học</span> <strong class="text-green-700">Work done ($W=Fd$)</strong></li>
+                        <li class="flex justify-between border-b border-green-200 pb-1"><span>Thế năng trọng trường</span> <strong class="text-green-700">Gravitational potential energy</strong></li>
+                        <li class="flex justify-between border-b border-green-200 pb-1"><span>Động năng</span> <strong class="text-green-700">Kinetic energy ($E_k = \frac{1}{2}mv^2$)</strong></li>
+                        <li class="flex justify-between border-b border-green-200 pb-1"><span>ĐL Bảo toàn năng lượng</span> <strong class="text-green-700">Conservation of energy</strong></li>
+                        <li class="flex justify-between border-b border-green-200 pb-1"><span>Công suất</span> <strong class="text-green-700">Power ($P=\Delta E / t$)</strong></li>
+                        <li class="flex justify-between"><span>Hiệu suất</span> <strong class="text-green-700">Efficiency</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHƯƠNG 3 -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8 module-card">
+            <div class="flex items-center justify-between border-b pb-4 mb-4">
+                <h2 class="text-xl font-bold text-yellow-600">
+                    <i class="fa-solid fa-bolt mr-2"></i>Chương III. Điện học (KHTN 9) ↔ Chương P8: Electricity (0654)
+                </h2>
+                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded font-bold">Tuần 5-6</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Nội dung Giảng dạy -->
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-2">1. Nội dung KHTN 9 (Bản chất)</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 mb-4">
+                        <li>Định luật Ohm ($I = \frac{U}{R}$). Sức điện động.</li>
+                        <li>Đồ thị V-A của Điện trở, Bóng đèn dây tóc.</li>
+                        <li>Mạch nối tiếp, song song. Đo điện trở tương đương.</li>
+                    </ul>
+                    
+                    <h3 class="font-bold text-gray-800 mb-2">2. Dự án IoT / Lab (Paper 6)</h3>
+                    <p class="text-sm text-gray-700 border p-3 rounded bg-gray-50">
+                        <i class="fa-solid fa-plug text-yellow-600 mr-1"></i> <strong>Đo vẽ đồ thị I-U:</strong> Thay vì bắt HS vẽ tay, yêu cầu HS ráp Breadboard (kèm chiết áp). Dùng chân ADC của Pico/ESP32 để đọc điện áp, dòng điện và tự xuất ra đồ thị I-U trên Web để xem đường đặc tính của bóng đèn cong như thế nào.
+                    </p>
+                </div>
+
+                <!-- Thuật ngữ tiếng Anh -->
+                <div class="vocab-box p-4 rounded-lg border-l-yellow-500" style="background-color: #fefce8;">
+                    <h3 class="font-bold text-yellow-700 mb-3"><i class="fa-solid fa-language mr-1"></i> Từ vựng "Ăn điểm" (IGCSE 0654)</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Suất điện động (Của Nguồn)</span> <strong class="text-yellow-700">Electromotive force (e.m.f)</strong></li>
+                        <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Hiệu điện thế / Điện áp</span> <strong class="text-yellow-700">Potential difference (p.d) / Voltage</strong></li>
+                        <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Cường độ dòng điện</span> <strong class="text-yellow-700">Current ($I$)</strong></li>
+                        <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Điện trở</span> <strong class="text-yellow-700">Resistance ($R$)</strong></li>
+                        <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Đường đặc tính V-A</span> <strong class="text-yellow-700">Current-voltage characteristic</strong></li>
+                        <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Bóng đèn sợi đốt</span> <strong class="text-yellow-700">Filament lamp</strong></li>
+                        <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Mạch nối tiếp / Song song</span> <strong class="text-yellow-700">Series / Parallel circuit</strong></li>
+                        <li class="flex justify-between"><span>Biến trở</span> <strong class="text-yellow-700">Variable resistor</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-4 pt-3 border-t text-sm">
+                <strong class="text-red-600">Lưu ý Kỹ thuật IGCSE:</strong> Học sinh bắt buộc phải phân biệt được <strong>e.m.f</strong> (Volt của nguồn khi chưa mắc tải) và <strong>p.d</strong> (Volt hao sụt trên tải).
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

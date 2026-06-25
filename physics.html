@@ -5,14 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vật lý 9 KHTN - Trạm Điều Hành Giảng Dạy Thực Chiến</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              heading: ['Montserrat', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              primary: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d', },
+              secondary: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', },
+              accent: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12', }
+            }
+          }
+        }
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fcfaf7;
-            color: #3d3d3d;
+            background-color: #f9fafb; /* bg-gray-50 */
+            color: #1f2937; /* text-gray-800 */
+        }
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .chart-container {
@@ -37,15 +71,14 @@
         }
 
         .tab-active {
-            border-bottom: 3px solid #7c3aed;
-            color: #7c3aed;
+            border-bottom: 3px solid #16a34a;
+            color: #16a34a;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(231, 231, 231, 0.8);
-        }
+
+        .module-card { transition: all 0.3s ease; }
+        .module-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .vocab-box { background-color: #ebf5ff; border-left: 4px solid #3b82f6; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -71,149 +104,157 @@
 <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
 <div class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Back Button -->
+    <div class="mb-6">
+        <a href="index.html" class="inline-flex items-center text-sm font-semibold text-gray-500 hover:text-primary-600 transition-colors">
+            <i class="fa-solid fa-arrow-left mr-2"></i> Quay về Trang chủ
+        </a>
+    </div>
+
     <!-- Header -->
-    <header class="mb-10 text-center lg:text-left flex flex-col lg:flex-row lg:items-end justify-between border-b pb-6 border-stone-200">
+    <header class="mb-10 text-center lg:text-left flex flex-col lg:flex-row lg:items-end justify-between border-b pb-6 border-gray-200">
         <div>
-            <h1 class="text-3xl font-bold text-stone-800 tracking-tight">VẬT LÝ 9 KHTN <span class="text-purple-600">THỰC CHIẾN</span></h1>
-            <p class="text-stone-500 mt-2 italic">Hệ thống giáo án & dụng cụ dành cho định tuyển quốc tế Phần Lan</p>
+            <h1 class="text-3xl font-heading font-extrabold text-gray-900 tracking-tight">VẬT LÝ 9 KHTN <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary-600 to-primary-500">THỰC CHIẾN</span></h1>
+            <p class="text-gray-500 mt-2 italic">Hệ thống giáo án & dụng cụ dành cho học sinh trường BVIS</p>
         </div>
         <div class="mt-4 lg:mt-0 flex gap-4 justify-center">
             <div class="text-right">
-                <p class="text-xs font-semibold text-stone-400 uppercase tracking-widest">Vai trò</p>
-                <p class="text-sm font-bold text-stone-700">Gia sư - Kỹ sư Phần cứng</p>
+                <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Vai trò</p>
+                <p class="text-sm font-bold text-gray-700">Gia sư - Kỹ sư Phần cứng</p>
             </div>
-            <div class="h-10 w-px bg-stone-200"></div>
+            <div class="h-10 w-px bg-gray-200"></div>
             <div class="text-right">
-                <p class="text-xs font-semibold text-stone-400 uppercase tracking-widest">Tiêu chuẩn</p>
-                <p class="text-sm font-bold text-stone-700 uppercase">IGCSE / Finland</p>
+                <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Tiêu chuẩn</p>
+                <p class="text-sm font-bold text-gray-700 uppercase">IGCSE / BVIS</p>
             </div>
         </div>
     </header>
 
     <!-- Navigation -->
-    <nav class="flex overflow-x-auto gap-8 mb-8 pb-2 border-b border-stone-100 no-scrollbar">
+    <nav class="flex overflow-x-auto gap-8 mb-8 pb-2 border-b border-gray-100 no-scrollbar">
         <button onclick="switchTab('shopping')" id="nav-shopping" class="tab-active py-2 px-1 font-semibold text-sm transition-all whitespace-nowrap">🛒 DANH SÁCH MUA SẮM</button>
-        <button onclick="switchTab('lessons')" id="nav-lessons" class="py-2 px-1 font-semibold text-sm text-stone-400 hover:text-purple-600 transition-all whitespace-nowrap">🧪 THƯ VIỆN GIÁO ÁN</button>
-        <button onclick="switchTab('iot')" id="nav-iot" class="py-2 px-1 font-semibold text-sm text-stone-400 hover:text-purple-600 transition-all whitespace-nowrap">🤖 GÓC KỸ SƯ IoT</button>
-        <button onclick="switchTab('about')" id="nav-about" class="py-2 px-1 font-semibold text-sm text-stone-400 hover:text-purple-600 transition-all whitespace-nowrap">ℹ️ HƯỚNG DẪN CHUNG</button>
+        <button onclick="switchTab('lessons')" id="nav-lessons" class="py-2 px-1 font-semibold text-sm text-gray-400 hover:text-primary-600 transition-all whitespace-nowrap">🧪 THƯ VIỆN GIÁO ÁN</button>
+        <button onclick="switchTab('iot')" id="nav-iot" class="py-2 px-1 font-semibold text-sm text-gray-400 hover:text-primary-600 transition-all whitespace-nowrap">🤖 GÓC KỸ SƯ IoT</button>
+        <button onclick="switchTab('igcse')" id="nav-igcse" class="py-2 px-1 font-semibold text-sm text-gray-400 hover:text-primary-600 transition-all whitespace-nowrap">📚 GIÁO ÁN IGCSE</button>
+        <button onclick="switchTab('about')" id="nav-about" class="py-2 px-1 font-semibold text-sm text-gray-400 hover:text-primary-600 transition-all whitespace-nowrap">ℹ️ HƯỚNG DẪN CHUNG</button>
     </nav>
 
     <!-- SECTION: SHOPPING LIST -->
     <section id="section-shopping" class="space-y-6">
-        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-6">
-            <p class="text-purple-800 text-sm">
+        <div class="bg-primary-50 border-l-4 border-primary-500 p-4 mb-6">
+            <p class="text-primary-800 text-sm">
                 <strong>Hướng dẫn:</strong> Đây là danh sách "đi chợ" tối ưu. Các món đồ được gom theo cụm để anh dễ dàng đặt hàng trên Shopee/Lazada. Hãy đánh dấu vào các ô để quản lý những gì đã mua.
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Combo 1 -->
-            <div class="glass-card rounded-xl p-6 shadow-sm border border-stone-200">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 hover:-translate-y-1 hover:shadow-md transition-all rounded-xl p-6 shadow-sm border border-gray-200">
                 <div class="flex justify-between items-start mb-4">
-                    <h3 class="font-bold text-stone-800">Combo 1: Quang Học</h3>
+                    <h3 class="font-bold text-gray-800">Combo 1: Quang Học</h3>
                     <span class="bg-blue-100 text-blue-700 text-[10px] px-2 py-1 rounded font-bold uppercase">Chương II</span>
                 </div>
                 <ul class="space-y-3 text-sm">
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Băng ghế quang học (Thanh ray >50cm)</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Nguồn Laser 3 tia (Có nút độc lập)</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Đèn LED vật sáng (Chữ F/Số 1)</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Bộ thấu kính f=5cm, f=10cm</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Màn hứng ảnh & Khối Acrylic</span>
                     </li>
                 </ul>
             </div>
 
             <!-- Combo 2 -->
-            <div class="glass-card rounded-xl p-6 shadow-sm border border-stone-200">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 hover:-translate-y-1 hover:shadow-md transition-all rounded-xl p-6 shadow-sm border border-gray-200">
                 <div class="flex justify-between items-start mb-4">
-                    <h3 class="font-bold text-stone-800">Combo 2: Điện - Từ</h3>
+                    <h3 class="font-bold text-gray-800">Combo 2: Điện - Từ</h3>
                     <span class="bg-green-100 text-green-700 text-[10px] px-2 py-1 rounded font-bold uppercase">Chương III, IV</span>
                 </div>
                 <ul class="space-y-3 text-sm">
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Biến trở con chạy (Cuộn sứ)</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Nam châm chữ U & Neodymium</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Sa bàn từ trường & Mạt sắt</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Mô hình động cơ/máy phát quay tay</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Cuộn dây đồng & Lõi sắt non</span>
                     </li>
                 </ul>
             </div>
 
             <!-- Combo 3 -->
-            <div class="glass-card rounded-xl p-6 shadow-sm border border-stone-200">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 hover:-translate-y-1 hover:shadow-md transition-all rounded-xl p-6 shadow-sm border border-gray-200">
                 <div class="flex justify-between items-start mb-4">
-                    <h3 class="font-bold text-stone-800">Combo 3: Cơ Học</h3>
+                    <h3 class="font-bold text-gray-800">Combo 3: Cơ Học</h3>
                     <span class="bg-orange-100 text-orange-700 text-[10px] px-2 py-1 rounded font-bold uppercase">Chương I</span>
                 </div>
                 <ul class="space-y-3 text-sm">
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Máng nghiêng (Nhôm/Gỗ)</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Xe lăn ma sát thấp</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Lực kế 2.5N và 5N</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Bộ quả nặng móc treo (50g x 10)</span>
                     </li>
                     <li class="flex items-center gap-3">
-                        <input type="checkbox" class="w-4 h-4 rounded border-stone-300">
+                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
                         <span>Hệ thống ròng rọc động/cố định</span>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <div class="bg-white rounded-xl p-8 border border-stone-200 mt-8">
-            <h3 class="text-xl font-bold text-stone-800 mb-4 flex items-center gap-2">
+        <div class="bg-white rounded-xl p-8 border border-gray-200 mt-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                 <span>🛠️</span> Vật tư Kỹ sư & IoT (Bổ sung)
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
                 <div class="space-y-4">
-                    <p class="font-semibold text-purple-600">Linh kiện đo đạc chuyên sâu:</p>
-                    <ul class="space-y-2 text-stone-600">
+                    <p class="font-semibold text-primary-600">Linh kiện đo đạc chuyên sâu:</p>
+                    <ul class="space-y-2 text-gray-600">
                         <li>• Đồng hồ Vạn năng (VOM) số - Độ chính xác cao.</li>
                         <li>• Breadboard và dây Jumper (Dạy cắm mạch kĩ sư).</li>
                         <li>• Điện trở sứ mẫu: 5Ω, 10Ω, 15Ω, 20Ω.</li>
                     </ul>
                 </div>
                 <div class="space-y-4">
-                    <p class="font-semibold text-purple-600">Data Logging Sensors:</p>
-                    <ul class="space-y-2 text-stone-600">
+                    <p class="font-semibold text-primary-600">Data Logging Sensors:</p>
+                    <ul class="space-y-2 text-gray-600">
                         <li>• ESP32 / Arduino Nano / Raspberry Pi Pico.</li>
                         <li>• Cảm biến siêu âm HC-SR04 (Đo vận tốc).</li>
                         <li>• Module INA219 (Đo dòng/áp I2C).</li>
@@ -235,27 +276,27 @@
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Chapter Sidebar -->
             <div class="w-full lg:w-1/3 space-y-3">
-                <button onclick="loadLesson('energy')" class="w-full text-left p-4 rounded-lg bg-white border border-stone-200 hover:border-purple-400 transition-all group active-lesson" id="btn-energy">
-                    <h4 class="font-bold text-stone-800 group-hover:text-purple-600">Chương I: Năng lượng cơ học</h4>
-                    <p class="text-xs text-stone-500">Động năng, Thế năng, Công & Công suất</p>
+                <button onclick="loadLesson('energy')" class="w-full text-left p-4 rounded-lg bg-white border border-gray-200 hover:border-primary-400 transition-all group active-lesson" id="btn-energy">
+                    <h4 class="font-bold text-gray-800 group-hover:text-primary-600">Chương I: Năng lượng cơ học</h4>
+                    <p class="text-xs text-gray-500">Động năng, Thế năng, Công & Công suất</p>
                 </button>
-                <button onclick="loadLesson('light')" class="w-full text-left p-4 rounded-lg bg-white border border-stone-200 hover:border-purple-400 transition-all group" id="btn-light">
-                    <h4 class="font-bold text-stone-800 group-hover:text-purple-600">Chương II: Ánh sáng</h4>
-                    <p class="text-xs text-stone-500">Khúc xạ, Phản xạ toàn phần, Thấu kính</p>
+                <button onclick="loadLesson('light')" class="w-full text-left p-4 rounded-lg bg-white border border-gray-200 hover:border-primary-400 transition-all group" id="btn-light">
+                    <h4 class="font-bold text-gray-800 group-hover:text-primary-600">Chương II: Ánh sáng</h4>
+                    <p class="text-xs text-gray-500">Khúc xạ, Phản xạ toàn phần, Thấu kính</p>
                 </button>
-                <button onclick="loadLesson('electricity')" class="w-full text-left p-4 rounded-lg bg-white border border-stone-200 hover:border-purple-400 transition-all group" id="btn-electricity">
-                    <h4 class="font-bold text-stone-800 group-hover:text-purple-600">Chương III: Điện</h4>
-                    <p class="text-xs text-stone-500">Định luật Ohm, Mạch nối tiếp & song song</p>
+                <button onclick="loadLesson('electricity')" class="w-full text-left p-4 rounded-lg bg-white border border-gray-200 hover:border-primary-400 transition-all group" id="btn-electricity">
+                    <h4 class="font-bold text-gray-800 group-hover:text-primary-600">Chương III: Điện</h4>
+                    <p class="text-xs text-gray-500">Định luật Ohm, Mạch nối tiếp & song song</p>
                 </button>
-                <button onclick="loadLesson('magnetism')" class="w-full text-left p-4 rounded-lg bg-white border border-stone-200 hover:border-purple-400 transition-all group" id="btn-magnetism">
-                    <h4 class="font-bold text-stone-800 group-hover:text-purple-600">Chương IV: Điện từ</h4>
-                    <p class="text-xs text-stone-500">Cảm ứng điện từ, Động cơ & Máy phát</p>
+                <button onclick="loadLesson('magnetism')" class="w-full text-left p-4 rounded-lg bg-white border border-gray-200 hover:border-primary-400 transition-all group" id="btn-magnetism">
+                    <h4 class="font-bold text-gray-800 group-hover:text-primary-600">Chương IV: Điện từ</h4>
+                    <p class="text-xs text-gray-500">Cảm ứng điện từ, Động cơ & Máy phát</p>
                 </button>
             </div>
 
             <!-- Content Area -->
-            <div class="w-full lg:w-2/3 bg-white rounded-2xl border border-stone-200 p-8 shadow-sm overflow-hidden min-h-[500px]" id="lesson-content">
-                <div class="flex items-center justify-center h-full text-stone-400">
+            <div class="w-full lg:w-2/3 bg-white rounded-2xl border border-gray-200 p-8 shadow-sm overflow-hidden min-h-[500px]" id="lesson-content">
+                <div class="flex items-center justify-center h-full text-gray-400">
                     <p>Chọn chương bên trái để xem giáo án thực chiến.</p>
                 </div>
             </div>
@@ -266,16 +307,16 @@
     <section id="section-iot" class="hidden">
         <div class="max-w-4xl mx-auto space-y-10">
             <div class="text-center">
-                <h2 class="text-2xl font-bold text-stone-800">Tích hợp IoT & Data Logging Chuẩn Phần Lan</h2>
-                <p class="text-stone-500 mt-2">Dùng kỹ năng kỹ sư để biến thí nghiệm Vật lý thành dự án nghiên cứu khoa học</p>
+                <h2 class="text-2xl font-bold text-gray-800">Tích hợp IoT & Data Logging Chuẩn BVIS</h2>
+                <p class="text-gray-500 mt-2">Dùng kỹ năng kỹ sư để biến thí nghiệm Vật lý thành dự án nghiên cứu khoa học</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-stone-900 rounded-2xl p-6 text-white overflow-hidden relative">
+                <div class="bg-gray-900 rounded-2xl p-6 text-white overflow-hidden relative">
                     <div class="relative z-10">
-                        <span class="text-xs font-mono text-purple-400">#PythonScripting</span>
+                        <span class="text-xs font-mono text-primary-400">#PythonScripting</span>
                         <h3 class="text-xl font-bold mt-2 mb-4">Lấy dữ liệu từ ESP32</h3>
-                        <p class="text-sm text-stone-400 mb-6 leading-relaxed">
+                        <p class="text-sm text-gray-400 mb-6 leading-relaxed">
                             Thay vì đọc kim analog, hãy dùng Python để đọc Serial từ ESP32, sau đó dùng Matplotlib để vẽ đồ thị thời gian thực. Điều này giúp học sinh thấy được "tiếng ồn" (noise) và học cách lọc dữ liệu.
                         </p>
                         <div class="bg-black/50 p-3 rounded font-mono text-xs text-green-400">
@@ -287,11 +328,11 @@
                     <div class="absolute bottom-0 right-0 text-7xl opacity-10 font-bold select-none translate-y-4 translate-x-4">ESP32</div>
                 </div>
 
-                <div class="bg-purple-600 rounded-2xl p-6 text-white overflow-hidden relative">
+                <div class="bg-primary-600 rounded-2xl p-6 text-white overflow-hidden relative">
                     <div class="relative z-10">
-                        <span class="text-xs font-mono text-purple-200">#PhysicsEngineering</span>
+                        <span class="text-xs font-mono text-primary-200">#PhysicsEngineering</span>
                         <h3 class="text-xl font-bold mt-2 mb-4">Dạy Phân tích Sai số</h3>
-                        <p class="text-sm text-stone-100 mb-6 leading-relaxed">
+                        <p class="text-sm text-gray-100 mb-6 leading-relaxed">
                             Trường quốc tế không quan tâm đáp án đúng, họ quan tâm bạn giải thích "Tại sao nó sai?". Dùng cảm biến kỹ thuật số để chứng minh sự sụt áp qua dây dẫn - điều mà sách giáo khoa thường bỏ qua.
                         </p>
                         <div class="flex gap-2">
@@ -300,32 +341,32 @@
                             <span class="bg-white/20 px-2 py-1 rounded text-[10px]">Sampling Rate</span>
                         </div>
                     </div>
-                    <div class="absolute bottom-0 right-0 text-7xl opacity-10 font-bold select-none translate-y-4 translate-x-4">FINLAND</div>
+                    <div class="absolute bottom-0 right-0 text-7xl opacity-10 font-bold select-none translate-y-4 translate-x-4">BVIS</div>
                 </div>
             </div>
 
-            <div class="border border-stone-200 rounded-2xl p-8">
-                <h3 class="font-bold text-stone-800 mb-4">Gợi ý lộ trình thực hành IoT:</h3>
+            <div class="border border-gray-200 rounded-2xl p-8">
+                <h3 class="font-bold text-gray-800 mb-4">Gợi ý lộ trình thực hành IoT:</h3>
                 <div class="space-y-6">
                     <div class="flex gap-4">
-                        <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center shrink-0 font-bold text-sm">1</div>
+                        <div class="w-8 h-8 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center shrink-0 font-bold text-sm">1</div>
                         <div>
-                            <p class="font-bold text-stone-700">Đo gia tốc trọng trường g</p>
-                            <p class="text-sm text-stone-500">Thả rơi vật tự do, dùng HC-SR04 kích hoạt bộ đếm thời gian miligiây trên ESP32.</p>
+                            <p class="font-bold text-gray-700">Đo gia tốc trọng trường g</p>
+                            <p class="text-sm text-gray-500">Thả rơi vật tự do, dùng HC-SR04 kích hoạt bộ đếm thời gian miligiây trên ESP32.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center shrink-0 font-bold text-sm">2</div>
+                        <div class="w-8 h-8 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center shrink-0 font-bold text-sm">2</div>
                         <div>
-                            <p class="font-bold text-stone-700">Vẽ đặc tuyến Volt-Ampe tự động</p>
-                            <p class="text-sm text-stone-500">Dùng DAC điều khiển điện áp nguồn và INA219 đọc dòng điện, tự động vẽ đồ thị Định luật Ohm.</p>
+                            <p class="font-bold text-gray-700">Vẽ đặc tuyến Volt-Ampe tự động</p>
+                            <p class="text-sm text-gray-500">Dùng DAC điều khiển điện áp nguồn và INA219 đọc dòng điện, tự động vẽ đồ thị Định luật Ohm.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center shrink-0 font-bold text-sm">3</div>
+                        <div class="w-8 h-8 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center shrink-0 font-bold text-sm">3</div>
                         <div>
-                            <p class="font-bold text-stone-700">Đo hiệu suất Pin mặt trời</p>
-                            <p class="text-sm text-stone-500">Sử dụng cảm biến cường độ ánh sáng (BH1750) đối chiếu với công suất phát ra của Pin.</p>
+                            <p class="font-bold text-gray-700">Đo hiệu suất Pin mặt trời</p>
+                            <p class="text-sm text-gray-500">Sử dụng cảm biến cường độ ánh sáng (BH1750) đối chiếu với công suất phát ra của Pin.</p>
                         </div>
                     </div>
                 </div>
@@ -333,10 +374,143 @@
         </div>
     </section>
 
+    <!-- SECTION: IGCSE -->
+    <section id="section-igcse" class="hidden">
+        <div class="max-w-5xl mx-auto">
+            <header class="mb-10 text-center">
+                <h1 class="text-3xl font-bold text-blue-800 mb-2">GIÁO ÁN THỰC CHIẾN (IoT x IGCSE)</h1>
+                <p class="text-gray-600">Kết nối KHTN 9 (Việt Nam) & Chương trình 0654 Coordinated Sciences (BVIS)</p>
+            </header>
+
+            <!-- CHƯƠNG 1 -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8 module-card">
+                <div class="flex items-center justify-between border-b pb-4 mb-4">
+                    <h2 class="text-xl font-bold text-indigo-700">
+                        <i class="fa-solid fa-car-side mr-2"></i>Chương I. Động học (KHTN 9) ↔ Chương P1: Motion (0654)
+                    </h2>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded font-bold">Tuần 1-2</span>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-bold text-gray-800 mb-2">1. Nội dung KHTN 9 (Bản chất)</h3>
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 mb-4">
+                            <li>Phân biệt Quãng đường (Vô hướng) & Độ dịch chuyển (Có hướng).</li>
+                            <li>Tốc độ và Vận tốc. Phân tích đồ thị s-t.</li>
+                            <li>Gia tốc. Đồ thị v-t. Phân tích diện tích dưới đồ thị v-t = Quãng đường.</li>
+                        </ul>
+                        
+                        <h3 class="font-bold text-gray-800 mb-2">2. Dự án IoT / Lab (Paper 6)</h3>
+                        <p class="text-sm text-gray-700 border p-3 rounded bg-gray-50">
+                            <i class="fa-solid fa-microchip text-green-600 mr-1"></i> <strong>Đo gia tốc xe tự hành:</strong> Dùng MPU6050 + ESP32 gắn lên xe RC. Học sinh đẩy xe, ESP32 vẽ đồ thị vận tốc - thời gian thực tế lên máy tính bằng Python. Yêu cầu HS tính diện tích để ra quãng đường.
+                        </p>
+                    </div>
+                    <div class="vocab-box p-4 rounded-lg">
+                        <h3 class="font-bold text-blue-800 mb-3"><i class="fa-solid fa-language mr-1"></i> Từ vựng "Ăn điểm" (IGCSE 0654)</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex justify-between border-b border-blue-200 pb-1"><span>Đại lượng vô hướng</span> <strong class="text-blue-700">Scalar quantity</strong></li>
+                            <li class="flex justify-between border-b border-blue-200 pb-1"><span>Đại lượng có hướng</span> <strong class="text-blue-700">Vector quantity</strong></li>
+                            <li class="flex justify-between border-b border-blue-200 pb-1"><span>Quãng đường</span> <strong class="text-blue-700">Distance ($d$)</strong></li>
+                            <li class="flex justify-between border-b border-blue-200 pb-1"><span>Độ dịch chuyển</span> <strong class="text-blue-700">Displacement ($s$)</strong></li>
+                            <li class="flex justify-between border-b border-blue-200 pb-1"><span>Tốc độ / Vận tốc</span> <strong class="text-blue-700">Speed / Velocity ($v$)</strong></li>
+                            <li class="flex justify-between border-b border-blue-200 pb-1"><span>Gia tốc / Giảm tốc</span> <strong class="text-blue-700">Acceleration / Deceleration</strong></li>
+                            <li class="flex justify-between border-b border-blue-200 pb-1"><span>Đồ thị tốc độ - tgian</span> <strong class="text-blue-700">Speed-time graph</strong></li>
+                            <li class="flex justify-between"><span>Độ dốc (đồ thị)</span> <strong class="text-blue-700">Gradient / Slope</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t text-sm">
+                    <strong class="text-red-600">Nguồn luyện tập:</strong> Giao ngay các câu hỏi Đồ thị trong đề `June 2003 QP` và `June 2004 QP`.
+                </div>
+            </div>
+
+            <!-- CHƯƠNG 2 -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8 module-card">
+                <div class="flex items-center justify-between border-b pb-4 mb-4">
+                    <h2 class="text-xl font-bold text-green-700">
+                        <i class="fa-solid fa-weight-hanging mr-2"></i>Chương II. Năng lượng & Công (KHTN 9) ↔ Chương P2: Work, Energy & Power (0654)
+                    </h2>
+                    <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-bold">Tuần 3-4</span>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-bold text-gray-800 mb-2">1. Nội dung KHTN 9 (Bản chất)</h3>
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 mb-4">
+                            <li>Phân biệt Khối lượng và Trọng lượng. Lực cản/Ma sát.</li>
+                            <li>Công cơ học ($A = F \cdot s$) & Công suất ($P = \frac{A}{t}$).</li>
+                            <li>Động năng ($W_d$), Thế năng ($W_t$) và Sự bảo toàn cơ năng.</li>
+                        </ul>
+                        
+                        <h3 class="font-bold text-gray-800 mb-2">2. Dự án IoT / Lab (Paper 6)</h3>
+                        <p class="text-sm text-gray-700 border p-3 rounded bg-gray-50">
+                            <i class="fa-solid fa-laptop-code text-green-600 mr-1"></i> <strong>Simulation Pygame (đã cung cấp):</strong> Cho HS thả vật trên mô phỏng. Sau đó làm thật: dùng cảm biến quang đo vận tốc bi rớt, chứng minh $W_t$ chuyển hóa thành $W_d$ và tính hao phí do lực cản không khí.
+                        </p>
+                    </div>
+                    <div class="vocab-box p-4 rounded-lg border-l-green-500" style="background-color: #f0fdf4;">
+                        <h3 class="font-bold text-green-800 mb-3"><i class="fa-solid fa-language mr-1"></i> Từ vựng "Ăn điểm" (IGCSE 0654)</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex justify-between border-b border-green-200 pb-1"><span>Khối lượng / Trọng lượng</span> <strong class="text-green-700">Mass / Weight ($W=mg$)</strong></li>
+                            <li class="flex justify-between border-b border-green-200 pb-1"><span>Lực cản không khí</span> <strong class="text-green-700">Air resistance / Drag</strong></li>
+                            <li class="flex justify-between border-b border-green-200 pb-1"><span>Công cơ học</span> <strong class="text-green-700">Work done ($W=Fd$)</strong></li>
+                            <li class="flex justify-between border-b border-green-200 pb-1"><span>Thế năng trọng trường</span> <strong class="text-green-700">Gravitational potential energy</strong></li>
+                            <li class="flex justify-between border-b border-green-200 pb-1"><span>Động năng</span> <strong class="text-green-700">Kinetic energy ($E_k = \frac{1}{2}mv^2$)</strong></li>
+                            <li class="flex justify-between border-b border-green-200 pb-1"><span>ĐL Bảo toàn năng lượng</span> <strong class="text-green-700">Conservation of energy</strong></li>
+                            <li class="flex justify-between border-b border-green-200 pb-1"><span>Công suất</span> <strong class="text-green-700">Power ($P=\Delta E / t$)</strong></li>
+                            <li class="flex justify-between"><span>Hiệu suất</span> <strong class="text-green-700">Efficiency</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHƯƠNG 3 -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-8 module-card">
+                <div class="flex items-center justify-between border-b pb-4 mb-4">
+                    <h2 class="text-xl font-bold text-yellow-600">
+                        <i class="fa-solid fa-bolt mr-2"></i>Chương III. Điện học (KHTN 9) ↔ Chương P8: Electricity (0654)
+                    </h2>
+                    <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded font-bold">Tuần 5-6</span>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-bold text-gray-800 mb-2">1. Nội dung KHTN 9 (Bản chất)</h3>
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 mb-4">
+                            <li>Định luật Ohm ($I = \frac{U}{R}$). Sức điện động.</li>
+                            <li>Đồ thị V-A của Điện trở, Bóng đèn dây tóc.</li>
+                            <li>Mạch nối tiếp, song song. Đo điện trở tương đương.</li>
+                        </ul>
+                        
+                        <h3 class="font-bold text-gray-800 mb-2">2. Dự án IoT / Lab (Paper 6)</h3>
+                        <p class="text-sm text-gray-700 border p-3 rounded bg-gray-50">
+                            <i class="fa-solid fa-plug text-yellow-600 mr-1"></i> <strong>Đo vẽ đồ thị I-U:</strong> Thay vì bắt HS vẽ tay, yêu cầu HS ráp Breadboard (kèm chiết áp). Dùng chân ADC của Pico/ESP32 để đọc điện áp, dòng điện và tự xuất ra đồ thị I-U trên Web để xem đường đặc tính của bóng đèn cong như thế nào.
+                        </p>
+                    </div>
+                    <div class="vocab-box p-4 rounded-lg border-l-yellow-500" style="background-color: #fefce8;">
+                        <h3 class="font-bold text-yellow-700 mb-3"><i class="fa-solid fa-language mr-1"></i> Từ vựng "Ăn điểm" (IGCSE 0654)</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Suất điện động (Của Nguồn)</span> <strong class="text-yellow-700">Electromotive force (e.m.f)</strong></li>
+                            <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Hiệu điện thế / Điện áp</span> <strong class="text-yellow-700">Potential difference (p.d) / Voltage</strong></li>
+                            <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Cường độ dòng điện</span> <strong class="text-yellow-700">Current ($I$)</strong></li>
+                            <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Điện trở</span> <strong class="text-yellow-700">Resistance ($R$)</strong></li>
+                            <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Đường đặc tính V-A</span> <strong class="text-yellow-700">Current-voltage characteristic</strong></li>
+                            <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Bóng đèn sợi đốt</span> <strong class="text-yellow-700">Filament lamp</strong></li>
+                            <li class="flex justify-between border-b border-yellow-200 pb-1"><span>Mạch nối tiếp / Song song</span> <strong class="text-yellow-700">Series / Parallel circuit</strong></li>
+                            <li class="flex justify-between"><span>Biến trở</span> <strong class="text-yellow-700">Variable resistor</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t text-sm">
+                    <strong class="text-red-600">Lưu ý Kỹ thuật IGCSE:</strong> Học sinh bắt buộc phải phân biệt được <strong>e.m.f</strong> (Volt của nguồn khi chưa mắc tải) và <strong>p.d</strong> (Volt hao sụt trên tải).
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SECTION: ABOUT -->
     <section id="section-about" class="hidden">
-        <div class="bg-white border border-stone-200 rounded-2xl p-10 max-w-3xl mx-auto text-stone-700 leading-relaxed">
-            <h2 class="text-2xl font-bold text-stone-800 mb-6">Tư duy Giảng dạy "Finland Hybrid"</h2>
+        <div class="bg-white border border-gray-200 rounded-2xl p-10 max-w-3xl mx-auto text-gray-700 leading-relaxed">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Tư duy Giảng dạy "BVIS Hybrid"</h2>
             <p class="mb-4">
                 Ứng dụng này được xây dựng cho mô hình gia sư hiện đại: **Không dạy vẹt - Chỉ dạy bản chất thông qua dữ liệu**.
             </p>
@@ -346,14 +520,14 @@
                 <li><strong>Xử lý dữ liệu thực:</strong> Khuyến khích học sinh dùng Excel hoặc Python để xử lý các bảng số liệu đo được từ các bộ thí nghiệm đã mua.</li>
             </ul>
             <div class="mt-10 pt-6 border-t flex items-center justify-between">
-                <p class="text-xs text-stone-400">Phát triển bởi Trợ lý Chuyên gia (Engineering Tutor Hub)</p>
-                <p class="text-xs text-stone-400">Phiên bản 1.0 (Thực chiến KHTN 9)</p>
+                <p class="text-xs text-gray-400">Phát triển bởi Trợ lý Chuyên gia (Engineering Tutor Hub)</p>
+                <p class="text-xs text-gray-400">Phiên bản 1.0 (Thực chiến KHTN 9)</p>
             </div>
         </div>
     </section>
 
     <!-- Footer Space -->
-    <footer class="mt-20 text-center text-stone-400 text-xs py-8">
+    <footer class="mt-20 text-center text-gray-400 text-xs py-8">
         © 2024 - Vật lý 9 KHTN (Kết nối tri thức) - Lab Design for International Schools
     </footer>
 </div>
@@ -424,11 +598,11 @@
     function switchTab(tabId) {
         document.getElementById(`section-${currentTab}`).classList.add('hidden');
         document.getElementById(`nav-${currentTab}`).classList.remove('tab-active');
-        document.getElementById(`nav-${currentTab}`).classList.add('text-stone-400');
+        document.getElementById(`nav-${currentTab}`).classList.add('text-gray-400');
 
         document.getElementById(`section-${tabId}`).classList.remove('hidden');
         document.getElementById(`nav-${tabId}`).classList.add('tab-active');
-        document.getElementById(`nav-${tabId}`).classList.remove('text-stone-400');
+        document.getElementById(`nav-${tabId}`).classList.remove('text-gray-400');
         
         currentTab = tabId;
         if (tabId === 'lessons') loadLesson('energy');
@@ -440,49 +614,49 @@
         
         // Update button styles
         document.querySelectorAll('#section-lessons button').forEach(btn => {
-            btn.classList.remove('border-purple-400', 'bg-purple-50');
+            btn.classList.remove('border-primary-400', 'bg-primary-50');
         });
-        document.getElementById(`btn-${key}`).classList.add('border-purple-400', 'bg-purple-50');
+        document.getElementById(`btn-${key}`).classList.add('border-primary-400', 'bg-primary-50');
 
         contentDiv.innerHTML = `
             <div class="animate-fade-in">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-stone-800">${data.title}</h2>
-                    <span class="bg-purple-600 text-white text-[10px] px-3 py-1 rounded-full font-bold">LAB GUIDE</span>
+                    <h2 class="text-2xl font-bold text-gray-800">${data.title}</h2>
+                    <span class="bg-primary-600 text-white text-[10px] px-3 py-1 rounded-full font-bold">LAB GUIDE</span>
                 </div>
                 
-                <p class="text-stone-600 mb-6 font-medium">${data.goal}</p>
+                <p class="text-gray-600 mb-6 font-medium">${data.goal}</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-6">
                         <div>
-                            <h5 class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-3">Dụng cụ chuẩn bị</h5>
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Dụng cụ chuẩn bị</h5>
                             <ul class="text-sm space-y-2">
                                 ${data.tools.map(t => `<li class="flex items-center gap-2">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> ${t}
+                                    <span class="w-1.5 h-1.5 rounded-full bg-primary-400"></span> ${t}
                                 </li>`).join('')}
                             </ul>
                         </div>
                         <div>
-                            <h5 class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-3">Quy trình Lab</h5>
-                            <ol class="text-sm space-y-3 pl-4 list-decimal text-stone-600">
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Quy trình Lab</h5>
+                            <ol class="text-sm space-y-3 pl-4 list-decimal text-gray-600">
                                 ${data.process.map(p => `<li>${p}</li>`).join('')}
                             </ol>
                         </div>
                     </div>
 
-                    <div class="bg-stone-50 rounded-xl p-4 border border-stone-100">
-                        <h5 class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4 text-center">Mô phỏng Dữ liệu Thực tế</h5>
+                    <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 text-center">Mô phỏng Dữ liệu Thực tế</h5>
                         <div class="chart-container">
                             <canvas id="lessonChart"></canvas>
                         </div>
-                        <p class="text-[10px] text-stone-400 mt-4 text-center">Dữ liệu giả lập từ hệ thống Data Logging ESP32</p>
+                        <p class="text-[10px] text-gray-400 mt-4 text-center">Dữ liệu giả lập từ hệ thống Data Logging ESP32</p>
                     </div>
                 </div>
                 
-                <div class="mt-8 pt-6 border-t border-stone-100">
-                    <p class="text-xs font-bold text-purple-600 mb-2">🔥 ĐIỂM NHẤN QUỐC TẾ:</p>
-                    <p class="text-xs text-stone-500 leading-relaxed italic">
+                <div class="mt-8 pt-6 border-t border-gray-100">
+                    <p class="text-xs font-bold text-primary-600 mb-2">🔥 ĐIỂM NHẤN QUỐC TẾ:</p>
+                    <p class="text-xs text-gray-500 leading-relaxed italic">
                         Yêu cầu học sinh không chỉ ghi kết quả mà phải giải thích sai số (Error Analysis). Ví dụ: Ma sát không khí, điện trở nội của pin, hay lỗi song thị khi đọc thước.
                     </p>
                 </div>
@@ -501,8 +675,8 @@
                     datasets: [{
                         label: data.chartLabel,
                         data: data.chartData,
-                        borderColor: '#7c3aed',
-                        backgroundColor: 'rgba(124, 58, 237, 0.1)',
+                        borderColor: '#16a34a',
+                        backgroundColor: 'rgba(22, 163, 74, 0.1)',
                         borderWidth: 3,
                         tension: 0.3,
                         pointRadius: 4,
