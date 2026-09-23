@@ -127,6 +127,94 @@ p{margin:0 0 16px}
   .section-heading{display:block}
 }</style>
 <style data-pd-corrections="">fieldset>legend{float:none!important}</style>
+<style id="custom-footer-style">
+/* SITE FOOTER CHUẨN LAPTRINHROBOT.COM */
+.site-footer {
+  margin-top: 80px;
+  background: var(--ink);
+  color: #EAF0E8;
+  padding: 60px 0 32px;
+  border-top: 4px solid var(--safety);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 36px;
+  margin-bottom: 44px;
+}
+.footer-col h4 {
+  color: var(--safety);
+  font-size: 13.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin: 0 0 16px;
+}
+.footer-col p {
+  color: #C4D2CB;
+  font-size: 13.5px;
+  line-height: 1.65;
+  margin: 0 0 14px;
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links li {
+  margin-bottom: 9px;
+}
+.footer-links a {
+  color: #C4D2CB;
+  text-decoration: none;
+  font-size: 13.5px;
+  transition: color .2s;
+}
+.footer-links a:hover {
+  color: var(--safety);
+}
+.footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #C4D2CB;
+  font-size: 13px;
+  margin-bottom: 11px;
+  line-height: 1.5;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(217,212,201,.18);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: #9AB0A6;
+}
+.footer-bottom a {
+  color: #C4D2CB;
+  text-decoration: none;
+}
+.footer-bottom a:hover {
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 580px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
 </head>
 <body data-pageduo-ele-id="e_xsu0Q63dYra0">
 <header class="site-header" data-pageduo-ele-id="e_G3ALfV2ajnQD">
@@ -249,29 +337,29 @@ CHOSEN: B — màu áo phản quang và khung thép là dấu hiệu riêng củ
       </div>
     </section>
 
+    
     <section class="practice container" aria-labelledby="practice-title" data-pageduo-ele-id="e_wlibrezpb5RI">
-      <div class="surface practice-copy" data-pageduo-ele-id="e_jXrA4G1V11Vd">
-        <p class="eyebrow" data-pageduo-ele-id="e_UgynlCG3DBw5">Cách học trên công trường</p>
-        <h2 id="practice-title" data-pageduo-ele-id="e_4BfP07cPRwfe">Không học thuộc thuật ngữ. Học qua một lần nghiệm thu.</h2>
-        <ul class="checklist" data-pageduo-ele-id="e_hnfaKA4jikCs">
-          <li data-pageduo-ele-id="e_l7XWAZ7ZJN4E">Xem ví dụ từng bước bằng ngôn ngữ đo đạc, vật tư và tiến độ.</li>
-          <li data-pageduo-ele-id="e_2U4zVmWzMBaP">Sửa một playground Python nhỏ; mọi ví dụ giữ dưới 15 dòng.</li>
-          <li data-pageduo-ele-id="e_u2MwcFTVWcaP">Trả lời checkpoint cuối buổi để biết mình đã hiểu phần nào.</li>
-          <li data-pageduo-ele-id="e_FBRblj1Cj2Hf">Đi tiếp bằng liên kết của đúng giai đoạn, không bị lạc trong menu.</li>
-        </ul>
-        <div class="safety-note" data-pageduo-ele-id="e_IapGOfaW2eJQ"><strong data-pageduo-ele-id="e_bLIi8xF0xM4i">Quy tắc an toàn dữ liệu</strong><br>Dùng dữ liệu mẫu trong lớp. Không nhập tên, số điện thoại, địa chỉ hay thông tin khách hàng thật vào playground.</div>
-      </div>
-      <div class="code-panel" data-pageduo-ele-id="e_vJX1S7oFzUcI">
-        <label for="python-snippet" data-pageduo-ele-id="e_pRqfXZAOLgVO">PLAYGROUND · Sửa ví dụ báo giá (7 dòng)</label>
-        <textarea id="python-snippet" spellcheck="false" data-pageduo-ele-id="e_251O6jGtiJyQ">length = 20
-width = 15
-price_per_sqft = 4.5
-sqft = length * width
-total = sqft * price_per_sqft
-print("Sqft:", sqft)
-print("USD:", total)</textarea>
-        <button class="btn" type="button" id="check-code" data-pageduo-ele-id="e_44F18gBZQyMZ">Kiểm tra đoạn code</button>
-        <p class="code-result" id="code-result" aria-live="polite" data-pageduo-ele-id="e_fI0qe4FL6kK0">Hãy thử đổi chiều dài, rộng hoặc đơn giá rồi kiểm tra.</p>
+      <div class="surface practice-copy" style="grid-column:1 / -1; width:100%;" data-pageduo-ele-id="e_jXrA4G1V11Vd">
+        <p class="eyebrow" data-pageduo-ele-id="e_UgynlCG3DBw5">Phương pháp đào tạo & Nghiệm thu thực chiến</p>
+        <h2 id="practice-title" data-pageduo-ele-id="e_4BfP07cPRwfe">Không học thuộc lý thuyết. Học qua từng mốc nghiệm thu thực tế.</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:24px;">
+          <div style="padding:20px;border-left:4px solid var(--accent);background:var(--ground);border-radius:0 12px 12px 0;">
+            <strong style="color:var(--accent);display:block;margin-bottom:6px;font-size:15px;">⏱️ Phân bổ nhịp 60 phút</strong>
+            Mỗi buổi học được chuẩn hóa 4 nhịp: 10' tình huống công trường $\rightarrow$ 25' Live Code & bản vẽ $\rightarrow$ 20' thực hành $\rightarrow$ 5' nghiệm thu debug lỗi.
+          </div>
+          <div style="padding:20px;border-left:4px solid var(--safety);background:var(--ground);border-radius:0 12px 12px 0;">
+            <strong style="color:#B87B14;display:block;margin-bottom:6px;font-size:15px;">💡 Bẫy lỗi & Mẹo sư phạm</strong>
+            Chỉ dẫn trực quan dành riêng cho học viên kỹ thuật & xây dựng: ép kiểu số từ input, bẫy quên điều kiện WHERE trong SQL, responsive màn hình điện thoại.
+          </div>
+          <div style="padding:20px;border-left:4px solid var(--green);background:var(--ground);border-radius:0 12px 12px 0;">
+            <strong style="color:var(--green);display:block;margin-bottom:6px;font-size:15px;">🛠️ Bài tập 2 cấp độ</strong>
+            Mỗi bài học gồm: Bài 1 cơ bản làm chủ cú pháp và Bài 2 thực chiến mở rộng (tính hao hụt vật tư, chiết khấu diện tích lớn, lọc Zip Code Mỹ).
+          </div>
+          <div style="padding:20px;border-left:4px solid var(--ink);background:var(--ground);border-radius:0 12px 12px 0;">
+            <strong style="color:var(--ink);display:block;margin-bottom:6px;font-size:15px;">💻 Source Code chuẩn hóa</strong>
+            File code mẫu độc lập, có ghi chú tiếng Việt từng dòng kèm khối kết quả kiểm thử (# Output) giúp học viên đối chiếu ngay kết quả khi chạy.
+          </div>
+        </div>
       </div>
     </section>
 
@@ -279,34 +367,19 @@ print("USD:", total)</textarea>
       <div data-pageduo-ele-id="e_2JrL2e9RnV94"><h2 id="selector-title" data-pageduo-ele-id="e_h96ntsGIK2He">Bạn đang cần làm gì?</h2><p data-pageduo-ele-id="e_hGhKrWHSnFJX">Chọn công việc gần nhất để vào đúng chặng.</p></div>
       <select id="need-selector" aria-label="Chọn nhu cầu học tập" data-pageduo-ele-id="e_M0eARLJYRlDR">
         <option value="" data-pageduo-ele-id="e_ZrJ5JO0bfHoJ">— Chọn một nhu cầu —</option>
-        <option value="nen-tang-python.html" data-pageduo-ele-id="e_kxOa1lEaF3Qe">Tính báo giá và vật tư</option>
-        <option value="quan-ly-du-lieu.html" data-pageduo-ele-id="e_NcpGFp2S1uyy">Lọc khách hàng hoặc theo dõi tiến độ</option>
-        <option value="streamlit-web-app.html" data-pageduo-ele-id="e_p0MvuTztEB8E">Đưa công cụ lên giao diện Web</option>
-        <option value="trien-khai-marketing.html" data-pageduo-ele-id="e_Z2SIIXtzkPeu">Đưa App online và làm Landing Page</option>
+        <option value="nen-tang-python.html" data-pageduo-ele-id="e_kxOa1lEaF3Qe">Giai đoạn 1: Tính báo giá và vật tư (Python nền tảng)</option>
+        <option value="quan-ly-du-lieu.html" data-pageduo-ele-id="e_NcpGFp2S1uyy">Giai đoạn 2: Lọc khách hàng & theo dõi tiến độ (Pandas + SQLite)</option>
+        <option value="streamlit-web-app.html" data-pageduo-ele-id="e_p0MvuTztEB8E">Giai đoạn 3: Đưa công cụ lên giao diện Web (Streamlit)</option>
+        <option value="trien-khai-marketing.html" data-pageduo-ele-id="e_Z2SIIXtzkPeu">Giai đoạn 4: Đưa App online & Landing Page (Deploy & Marketing)</option>
       </select>
     </section>
   </main>
-
-  
 
   <script>
     (function(){
       "use strict";
       function init(){
-        var codeBox=document.getElementById("python-snippet");
-        var checkButton=document.getElementById("check-code");
-        var codeResult=document.getElementById("code-result");
         var needSelector=document.getElementById("need-selector");
-        if(checkButton&&codeBox&&codeResult){
-          checkButton.addEventListener("click",function(){
-            var lines=codeBox.value.split(/\r?\n/).filter(function(line){return line.trim()!=="";});
-            var hasArea=codeBox.value.indexOf("sqft")!==-1;
-            var hasTotal=codeBox.value.indexOf("total")!==-1;
-            if(lines.length>15){codeResult.textContent="Đoạn code đang có "+lines.length+" dòng. Hãy rút xuống dưới 15 dòng như nguyên tắc của khóa học.";}
-            else if(!hasArea||!hasTotal){codeResult.textContent="Đã đếm "+lines.length+" dòng, nhưng hãy giữ đủ hai phần: tính Sqft và tính total.";}
-            else{codeResult.textContent="Tốt: "+lines.length+" dòng, có chuỗi đo → diện tích → tổng tiền. Hãy thử một bộ số khác.";}
-          });
-        }
         if(needSelector){
           needSelector.addEventListener("change",function(){
             if(needSelector.value){window.location.href=needSelector.value;}
@@ -316,17 +389,74 @@ print("USD:", total)</textarea>
       if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
     }());
   </script>
-<footer class="site-footer" data-pageduo-ele-id="e_wo0XYhM5SE6Z">
-  <div class="footer-inner" data-pageduo-ele-id="e_8HVqYEAI6pEJ">
-    <div data-pageduo-ele-id="e_hHRY92opNg2k">
-      <strong data-pageduo-ele-id="e_MezU1KOTJq4J">Code công trường</strong>
-      <p data-pageduo-ele-id="e_z4vo7HyjQjZA">Học để biến số đo, sổ sách và tiến độ thành công cụ dùng được trong công việc remodeling.</p>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand & Slogan -->
+      <div class="footer-col">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <span style="display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:#102A2E;color:var(--safety);font-size:20px;border:1px solid rgba(240,180,77,0.3);">🤖</span>
+          <span style="font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.02em;">Lập Trình <span style="color:var(--safety);">Robot</span></span>
+        </div>
+        <p>Hệ thống đào tạo Công nghệ, Robotics & Lập trình ứng dụng thực chiến. Xây dựng tư duy thuật toán vững vàng và giải quyết trực tiếp bài toán công việc.</p>
+        <p style="font-size:13px;color:#A2B7AE;">Chuyên đề: <b>Python cho Giám sát Công trường</b> (32 buổi · 4 tháng · từ số đo sàn đến Web App hoàn thiện).</p>
+      </div>
+
+      <!-- Col 2: Lộ trình 4 giai đoạn -->
+      <div class="footer-col">
+        <h4>Lộ Trình Python</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">⌂ Tổng quan 32 buổi</a></li>
+          <li><a href="nen-tang-python.html">1. Đặt móng (Python nền tảng)</a></li>
+          <li><a href="quan-ly-du-lieu.html">2. Xây tường (Quản lý dữ liệu)</a></li>
+          <li><a href="streamlit-web-app.html">3. Hoàn thiện (Streamlit Web App)</a></li>
+          <li><a href="trien-khai-marketing.html">4. Bàn giao (Triển khai & Marketing)</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Khóa học khác LapTrinhRobot.com -->
+      <div class="footer-col">
+        <h4>Hệ Thống Đào Tạo</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">← Trang chủ LapTrinhRobot.com</a></li>
+          <li><a href="../tin10.html">Chuyên Tin 10 (C++ / Thuật toán)</a></li>
+          <li><a href="../physics.html">Khoa Học & Vật Lý IGCSE</a></li>
+          <li><a href="../competition.html">Thư viện đề thi Chuyên Tin</a></li>
+          <li><a href="../lien-he.html">Đăng ký tư vấn khóa học</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Liên hệ & Hỗ trợ -->
+      <div class="footer-col">
+        <h4>Liên Hệ & Hỗ Trợ</h4>
+        <ul class="footer-contact" style="list-style:none;padding:0;margin:0;">
+          <li>📍 <span>Hẻm 556 Nguyễn Văn Quá, số nhà 12/5, P. Đông Hưng Thuận, Q. 12, TP. HCM</span></li>
+          <li>📞 <span>Hotline: <a href="tel:0915514419" style="color:var(--safety);font-weight:700;">09 155 144 19</a></span></li>
+          <li>💬 <span>Zalo: <a href="https://zalo.me/0915514419" target="_blank" rel="noopener" style="color:var(--safety);font-weight:700;">0915.514.419</a></span></li>
+          <li>✉️ <span>Email: <a href="mailto:LapTrinhRobot.com@gmail.com" style="color:#C4D2CB;">LapTrinhRobot.com@gmail.com</a></span></li>
+          <li>🌐 <span>Fanpage: <a href="https://facebook.com/laptrinhrobots" target="_blank" rel="noopener" style="color:#C4D2CB;">facebook.com/laptrinhrobots</a></span></li>
+        </ul>
+      </div>
     </div>
-    <div data-pageduo-ele-id="e_mPi39G35fIr6">
-      <strong data-pageduo-ele-id="e_ZOKvsyOXaytB">Đi tiếp</strong>
-      <p data-pageduo-ele-id="e_jA6MfNOZHWWJ"><a href="nen-tang-python.html" data-pageduo-ele-id="e_wbekNZmgz3cJ">Bắt đầu từ Giai đoạn 1: Đặt móng →</a></p>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <div>© 2026 LapTrinhRobot.com. Mọi quyền được bảo lưu.</div>
+      <div style="display:flex;gap:18px;">
+        <a href="../privacy.html">Chính sách bảo mật</a>
+        <a href="../terms.html">Điều khoản dịch vụ</a>
+        <a href="../index.html">Về trang chủ</a>
+      </div>
     </div>
   </div>
 </footer>
+
+<!-- Floating Contact Buttons -->
+<div style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
+  <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#0088FF;color:#fff;font-weight:800;font-size:12px;text-decoration:none;box-shadow:0 6px 16px rgba(0,136,255,.4);transition:transform .2s;" title="Nhắn tin qua Zalo">Zalo</a>
+  <a href="tel:0915514419" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#2D625D;color:#fff;font-size:17px;text-decoration:none;box-shadow:0 6px 16px rgba(45,98,93,.4);transition:transform .2s;" title="Gọi Hotline: 0915.514.419">📞</a>
+</div>
+
 
 </body></html>

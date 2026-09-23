@@ -5,13 +5,6 @@
 <meta name="description" content="8 buổi Streamlit cho giám sát công trường: giao diện nhập liệu, bảng, biểu đồ, bộ lọc, SQLite và Mini-CRM hoàn chỉnh.">
 <meta name="pd:project" content="Lập trình Python cho Giám sát Công trường">
 <style data-pd-baseline="">button,input,select,textarea{font:inherit;color:inherit;line-height:inherit}textarea{display:block;resize:vertical}button,input,select,textarea{box-sizing:border-box;max-width:100%}textarea,select,input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]):not([type=submit]):not([type=button]){padding:.55em .7em;border:1px solid color-mix(in srgb,currentColor 28%,transparent);border-radius:.4rem;background:transparent}</style>
-<script src="/static/vendor/vue-reactivity.global.js"></script>
-<script src="/static/vendor/sanitize-url.global.js"></script>
-<script src="/static/vendor/udomdiff.min.js"></script>
-<script src="/static/vendor/chart-4.4.0.min.js"></script>
-<script src="/static/pd-data-client.v2.min.js"></script>
-<script src="/static/pd-reactive-runtime.v3.min.js"></script>
-<script src="/static/pd-formula-input.v1.js"></script>
 <style data-pd-page="">
 .streamlit-hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
 .streamlit-hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:48px;align-items:center}
@@ -197,6 +190,94 @@ p{margin:0 0 16px}
   .section-heading{display:block}
 }</style>
 <style data-pd-corrections="">fieldset>legend{float:none!important}</style>
+<style id="custom-footer-style">
+/* SITE FOOTER CHUẨN LAPTRINHROBOT.COM */
+.site-footer {
+  margin-top: 80px;
+  background: var(--ink);
+  color: #EAF0E8;
+  padding: 60px 0 32px;
+  border-top: 4px solid var(--safety);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 36px;
+  margin-bottom: 44px;
+}
+.footer-col h4 {
+  color: var(--safety);
+  font-size: 13.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin: 0 0 16px;
+}
+.footer-col p {
+  color: #C4D2CB;
+  font-size: 13.5px;
+  line-height: 1.65;
+  margin: 0 0 14px;
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links li {
+  margin-bottom: 9px;
+}
+.footer-links a {
+  color: #C4D2CB;
+  text-decoration: none;
+  font-size: 13.5px;
+  transition: color .2s;
+}
+.footer-links a:hover {
+  color: var(--safety);
+}
+.footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #C4D2CB;
+  font-size: 13px;
+  margin-bottom: 11px;
+  line-height: 1.5;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(217,212,201,.18);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: #9AB0A6;
+}
+.footer-bottom a {
+  color: #C4D2CB;
+  text-decoration: none;
+}
+.footer-bottom a:hover {
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 580px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
 </head>
 <body data-pageduo-ele-id="e_uweu2USuutg4">
 <header class="site-header" data-pageduo-ele-id="e_OImR3wQ7QphV">
@@ -220,49 +301,6 @@ p{margin:0 0 16px}
   </div>
 </header>
 
-
-<script>
-PDReactiveRuntime.boot({
-  data: {
-    quizDraft: {
-      userFullName: "",
-      q17: "",
-      q18: "",
-      q19: "",
-      q20: "",
-      q21: "",
-      q22: "",
-      q23: "",
-      q24: ""
-    },
-    quizResults: {
-      schemaContract: "assessmentEntry@v1",
-      userFullName: "",
-      assessmentId: "streamlit-mini-crm-b17-b24",
-      assessmentName: "Checkpoint Streamlit: từ code đến Mini-CRM",
-      pageFileName: "streamlit-web-app.html",
-      description: "Checkpoint tám kỹ năng Streamlit từ giao diện nhập liệu đến luồng dữ liệu SQLite.",
-      assessmentType: "formative",
-      interactionFormat: "traditional-test",
-      adaptiveLevel: "none",
-      subject: "Python, Streamlit và quản lý dữ liệu",
-      category: "technology",
-      attemptId: "",
-      revision: 0,
-      completionStatus: "in-progress",
-      startedAtUtc: "",
-      submittedAtUtc: "",
-      score: 0,
-      maxScore: 8,
-      scaledScore: 0,
-      responses: []
-    }
-  },
-  pdDataSources: {
-    quizResults: { writeKey: "mev9rhrwrvdceeekbzlpn1vs" }
-  }
-});
-</script>
 
 <main data-pageduo-ele-id="e_ZjcDWj4JQJGM">
   <section class="streamlit-hero" data-pageduo-ele-id="e_RIrBrQ8pJPJW">
@@ -1092,33 +1130,7 @@ st.warning(
     </div>
   </section>
 
-  <section class="section-block compact" data-pageduo-ele-id="e_y4VG4w6Cw2HL">
-    <div class="container" data-pageduo-ele-id="e_uJJzfN1OxQtx">
-      <div class="playground" data-pageduo-ele-id="e_ps0bg4pQ2Gdb">
-        <div class="surface playground-copy" data-pageduo-ele-id="e_XYOyPaOB73VV">
-          <p class="eyebrow" data-pageduo-ele-id="e_MXhtFNt6kFe0">Playground · mô phỏng rõ ràng</p>
-          <h2 data-pageduo-ele-id="e_Pp1mjMRx0iRr">Thử công tắc Terminal ↔ điện thoại.</h2>
-          <p data-pageduo-ele-id="e_ZIP13HuM3zpJ">Khối dưới đây là mô phỏng client-side của luồng input → Python logic → output. Nó không giả vờ đã kết nối Streamlit server hay SQLite; mục tiêu là nhìn thấy cách cùng một công thức phản hồi khi người dùng thay đổi số đo.</p>
-          <p data-pageduo-ele-id="e_2CIRkqFETWN0">Nhập ba giá trị, bấm nút, rồi kiểm tra kết quả. Khi xây ứng dụng thật, bạn sẽ thay lớp mô phỏng này bằng widget Streamlit và hàm báo giá đã đóng gói ở Giai đoạn 1.</p>
-        </div>
-        <div class="surface playground-form" data-pageduo-ele-id="e_gA0eIv1MWAeN">
-          <div class="field-grid" data-pageduo-ele-id="e_qNiXM8RDb68X">
-            <label data-pageduo-ele-id="e_ZKZe7QpaWr9w">Chiều dài
-              <input id="demoLength" type="number" min="0" step="0.01" value="20" data-pageduo-ele-id="e_YapcewxGSozy">
-            </label>
-            <label data-pageduo-ele-id="e_GYL0lJHyarqx">Chiều rộng
-              <input id="demoWidth" type="number" min="0" step="0.01" value="15" data-pageduo-ele-id="e_KgFhx36jB1BC">
-            </label>
-            <label data-pageduo-ele-id="e_os9mpYVS2QL4">Đơn giá USD
-              <input id="demoPrice" type="number" min="0" step="0.01" value="3.5" data-pageduo-ele-id="e_zHxy5rCUFSfc">
-            </label>
-          </div>
-          <button class="btn" id="demoCalculate" type="button" data-pageduo-ele-id="e_iCPo35EDdm4y">Tính báo giá</button>
-          <p class="code-result" id="demoResult" aria-live="polite" data-pageduo-ele-id="e_eh2XEpHqiLUD">Chưa chạy phép tính.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <section class="section-block" data-pageduo-ele-id="e_4IEBIsOCAZ3v">
     <div class="container" data-pageduo-ele-id="e_uXsR9Lpayj8u">
@@ -1137,323 +1149,94 @@ st.warning(
     </div>
   </section>
 
-  <section id="checkpoint" class="section-block" data-pageduo-ele-id="e_Mq1rWqdDWdPC">
-    <div class="container" data-pageduo-ele-id="e_z0zuB9mKsKe3">
-      <div class="section-heading" data-pageduo-ele-id="e_hMnARVVdVod5">
-        <div data-pageduo-ele-id="e_Xs7jfV95utvO">
-          <p class="eyebrow" data-pageduo-ele-id="e_2PrOAkoxxTQh">Checkpoint B17–B24</p>
-          <h2 data-pageduo-ele-id="e_AYNLWcI7SPdf">Kiểm tra đúng kỹ năng, không đoán mò.</h2>
-          <p class="section-intro" data-pageduo-ele-id="e_0LicySPdIJfi">Tám câu hỏi tương ứng với tám kỹ năng. Chọn một đáp án cho mỗi câu. Kết quả được chấm ngay trên trang và checkpoint được lưu dưới dạng assessmentEntry để theo dõi kỹ năng.</p>
-        </div>
-        <span class="tag" data-pageduo-ele-id="e_FC8el0pu8uXg">8 câu · 8 điểm</span>
-      </div>
+  
+</main>
 
-      <div class="surface assessment-shell" data-pd-cloak="" data-pageduo-ele-id="e_e93xJY8NWF03">
-        <label class="eyebrow" for="studentName" data-pageduo-ele-id="e_R16waAYc0QkG">Tên người học (không bắt buộc)</label>
-        <input id="studentName" data-pd-model="quizDraft.userFullName" class="student-name" type="text" placeholder="Ví dụ: Minh" data-pageduo-ele-id="e_Q1Vq6Ize9aWd">
-        <div class="question-list" data-pageduo-ele-id="e_L1fPzNpZuQvj">
-          <article class="question-card" data-pageduo-ele-id="e_6uz3dqgvQd0r">
-            <div class="question-meta" data-pageduo-ele-id="e_u3C2gyYrxeIL"><span class="tag" data-pageduo-ele-id="e_N4ZbnPIu7sGD">B17</span><span class="tag" data-pageduo-ele-id="e_qG750SYCxYuE">widget nhập liệu</span></div>
-            <h3 data-pageduo-ele-id="e_1Vfhaqd5UhSM">Thành phần nào nhận chiều dài từ người dùng trong một form Streamlit?</h3>
-            <div class="option-list" data-pageduo-ele-id="e_RXG564YXQYuz">
-              <label class="option-label" data-pageduo-ele-id="e_NpaQlXAWRQNU"><input type="radio" data-pd-model="quizDraft.q17" value="A" data-pageduo-ele-id="e_vyrTBGQJ76z6"> A. <code data-pageduo-ele-id="e_GeLk6Q0khuYH">st.number_input</code></label>
-              <label class="option-label" data-pageduo-ele-id="e_ujWL7WHMkmgj"><input type="radio" data-pd-model="quizDraft.q17" value="B" data-pageduo-ele-id="e_SO8VLI37xQPm"> B. <code data-pageduo-ele-id="e_HxeFIz65Y2yL">st.write</code></label>
-              <label class="option-label" data-pageduo-ele-id="e_jSe47HDcDqRO"><input type="radio" data-pd-model="quizDraft.q17" value="C" data-pageduo-ele-id="e_34wswWbrkYne"> C. <code data-pageduo-ele-id="e_yR5v6kZscxkc">sqlite3.DELETE</code></label>
-              <label class="option-label" data-pageduo-ele-id="e_ydAmVtPmgz3p"><input type="radio" data-pd-model="quizDraft.q17" value="D" data-pageduo-ele-id="e_P8HMHjyUBSfv"> D. <code data-pageduo-ele-id="e_16w7JtFlUZPg">plt.save</code></label>
-            </div>
-          </article>
-          <article class="question-card" data-pageduo-ele-id="e_W72rf2koLeu6">
-            <div class="question-meta" data-pageduo-ele-id="e_8EwrxOrsDmpQ"><span class="tag" data-pageduo-ele-id="e_0PY8j8dGsExM">B18</span><span class="tag" data-pageduo-ele-id="e_JaViCHCtAeNF">sự kiện nút bấm</span></div>
-            <h3 data-pageduo-ele-id="e_XqTCLf1olHe3">Vì sao dùng nút “Tính báo giá”?</h3>
-            <div class="option-list" data-pageduo-ele-id="e_Q2S4QfnhzURz">
-              <label class="option-label" data-pageduo-ele-id="e_ZeMZWAjRY4ji"><input type="radio" data-pd-model="quizDraft.q18" value="A" data-pageduo-ele-id="e_wFS7HjoqjRt7"> A. Để tạo database tự động</label>
-              <label class="option-label" data-pageduo-ele-id="e_VMtW0imKDHOx"><input type="radio" data-pd-model="quizDraft.q18" value="B" data-pageduo-ele-id="e_pGNP32t11DYb"> B. Để chạy logic khi người dùng yêu cầu</label>
-              <label class="option-label" data-pageduo-ele-id="e_dPwHaSY87uZ1"><input type="radio" data-pd-model="quizDraft.q18" value="C" data-pageduo-ele-id="e_eMmiUVHqgHHQ"> C. Để xóa CSS</label>
-              <label class="option-label" data-pageduo-ele-id="e_1ax6yLZ5AnYA"><input type="radio" data-pd-model="quizDraft.q18" value="D" data-pageduo-ele-id="e_JeOhnzR3KxDn"> D. Để đổi Zip Code</label>
-            </div>
-          </article>
-          <article class="question-card" data-pageduo-ele-id="e_L0mx0tvagxTD">
-            <div class="question-meta" data-pageduo-ele-id="e_fk0POuc1J9kv"><span class="tag" data-pageduo-ele-id="e_fyoFsqQArt7d">B19</span><span class="tag" data-pageduo-ele-id="e_LcKAMsgblYiO">tích hợp logic</span></div>
-            <h3 data-pageduo-ele-id="e_shbVl9TJsBvs">Kết quả Web Báo Giá Lát Sàn phải dùng lại điều gì từ sản phẩm trước?</h3>
-            <div class="option-list" data-pageduo-ele-id="e_QqbcuY7s6RRi">
-              <label class="option-label" data-pageduo-ele-id="e_p0A1n7GaQnf3"><input type="radio" data-pd-model="quizDraft.q19" value="A" data-pageduo-ele-id="e_NM1x770c8P4W"> A. Chỉ ảnh nền</label>
-              <label class="option-label" data-pageduo-ele-id="e_bVrdetjXLTCP"><input type="radio" data-pd-model="quizDraft.q19" value="B" data-pageduo-ele-id="e_fjtCmibVXkIQ"> B. Dữ liệu âm thanh</label>
-              <label class="option-label" data-pageduo-ele-id="e_5PXuj0ct9Tyb"><input type="radio" data-pd-model="quizDraft.q19" value="C" data-pageduo-ele-id="e_bnQlV0alKQAQ"> C. Logic tính Sqft và đơn giá của Python</label>
-              <label class="option-label" data-pageduo-ele-id="e_MehgeKX3dwaO"><input type="radio" data-pd-model="quizDraft.q19" value="D" data-pageduo-ele-id="e_8dNgcNPinQFy"> D. Mật khẩu</label>
-            </div>
-          </article>
-          <article class="question-card" data-pageduo-ele-id="e_alQDMED5f5pS">
-            <div class="question-meta" data-pageduo-ele-id="e_UDY4LpHsLBsc"><span class="tag" data-pageduo-ele-id="e_hX92nI52QZRi">B20</span><span class="tag" data-pageduo-ele-id="e_BHVYPD6i4lDB">hiển thị bảng</span></div>
-            <h3 data-pageduo-ele-id="e_vWqVCZJm7bZB">Thành phần phù hợp để xem danh sách công trình là gì?</h3>
-            <div class="option-list" data-pageduo-ele-id="e_gAcXU8IsiBa2">
-              <label class="option-label" data-pageduo-ele-id="e_Ty9YaMAEZEHy"><input type="radio" data-pd-model="quizDraft.q20" value="A" data-pageduo-ele-id="e_bYNOvUrQLeqY"> A. <code data-pageduo-ele-id="e_KEcyz4dotSwA">if/else</code></label>
-              <label class="option-label" data-pageduo-ele-id="e_41FzyWO1ZqI6"><input type="radio" data-pd-model="quizDraft.q20" value="B" data-pageduo-ele-id="e_d6uM1qxVcxwI"> B. <code data-pageduo-ele-id="e_VB6G4MjZPnHf">input raw</code></label>
-              <label class="option-label" data-pageduo-ele-id="e_Ng7sLORyJGiv"><input type="radio" data-pd-model="quizDraft.q20" value="C" data-pageduo-ele-id="e_AeXxtLs5Xs4o"> C. <code data-pageduo-ele-id="e_Azwaz5Wwcdom">terminal only</code></label>
-              <label class="option-label" data-pageduo-ele-id="e_JjodCncHMpC0"><input type="radio" data-pd-model="quizDraft.q20" value="D" data-pageduo-ele-id="e_1sk77nZLSLAv"> D. <code data-pageduo-ele-id="e_30bW6befxOiV">table</code></label>
-            </div>
-          </article>
-          <article class="question-card" data-pageduo-ele-id="e_XUx60BNuuayR">
-            <div class="question-meta" data-pageduo-ele-id="e_oDMDut12qSGh"><span class="tag" data-pageduo-ele-id="e_O8FdfyziU70c">B21</span><span class="tag" data-pageduo-ele-id="e_QJUqBM5yZ67E">biểu đồ trạng thái</span></div>
-            <h3 data-pageduo-ele-id="e_4Q1MZxc3HmYO">Biểu đồ giúp người quản lý nhìn thấy điều gì?</h3>
-            <div class="option-list" data-pageduo-ele-id="e_RJviTyCres3t">
-              <label class="option-label" data-pageduo-ele-id="e_r8XlJHF3WBOA"><input type="radio" data-pd-model="quizDraft.q21" value="A" data-pageduo-ele-id="e_xNr0A1mj4qVh"> A. Mã nguồn bị xóa</label>
-              <label class="option-label" data-pageduo-ele-id="e_3XIG5OrQJsFw"><input type="radio" data-pd-model="quizDraft.q21" value="B" data-pageduo-ele-id="e_iN2QipXmgOxh"> B. Phân bố và xu hướng trạng thái dự án</label>
-              <label class="option-label" data-pageduo-ele-id="e_m5nSY2h29hzF"><input type="radio" data-pd-model="quizDraft.q21" value="C" data-pageduo-ele-id="e_dCJitBCCoiEQ"> C. Mật khẩu khách</label>
-              <label class="option-label" data-pageduo-ele-id="e_Sg0Onm0CWYAK"><input type="radio" data-pd-model="quizDraft.q21" value="D" data-pageduo-ele-id="e_akhNwXO0Cq4p"> D. Độ dài code</label>
-            </div>
-          </article>
-          <article class="question-card" data-pageduo-ele-id="e_2n5ks7lySP46">
-            <div class="question-meta" data-pageduo-ele-id="e_V0xOCHZeANUG"><span class="tag" data-pageduo-ele-id="e_PVoGYYp6E8po">B22</span><span class="tag" data-pageduo-ele-id="e_ocUdrFvE2sA5">lọc giao diện</span></div>
-            <h3 data-pageduo-ele-id="e_RmAKMYpKtjBB">Bộ lọc trên Web nên thay đổi điều gì?</h3>
-            <div class="option-list" data-pageduo-ele-id="e_rGphXOoK6TMj">
-              <label class="option-label" data-pageduo-ele-id="e_2s70aC5If0TC"><input type="radio" data-pd-model="quizDraft.q22" value="A" data-pageduo-ele-id="e_8nKpeONTHFef"> A. Dữ liệu đang hiển thị theo điều kiện chọn</label>
-              <label class="option-label" data-pageduo-ele-id="e_3cG9W7W5vqdj"><input type="radio" data-pd-model="quizDraft.q22" value="B" data-pageduo-ele-id="e_JWjHfWtxGfxN"> B. Cấu trúc SQLite vĩnh viễn</label>
-              <label class="option-label" data-pageduo-ele-id="e_T0j0WmjDlmR0"><input type="radio" data-pd-model="quizDraft.q22" value="C" data-pageduo-ele-id="e_tRtrgP94jGAL"> C. Hệ điều hành</label>
-              <label class="option-label" data-pageduo-ele-id="e_Pm4iD6rUCxBF"><input type="radio" data-pd-model="quizDraft.q22" value="D" data-pageduo-ele-id="e_1wjn0orIvz0G"> D. Tên thư mục</label>
-            </div>
-          </article>
-          <article class="question-card" data-pageduo-ele-id="e_W2LwCMmjl2pI">
-            <div class="question-meta" data-pageduo-ele-id="e_W8NQEMoVphZw"><span class="tag" data-pageduo-ele-id="e_kvQ3447R5Pa7">B23</span><span class="tag" data-pageduo-ele-id="e_P4QW9pIz2CUv">kết nối SQLite</span></div>
-            <h3 data-pageduo-ele-id="e_1RM0W9u0vJdp">Mục tiêu của kết nối giữa giao diện Web và SQLite là gì?</h3>
-            <div class="option-list" data-pageduo-ele-id="e_eKjXcCRplDrT">
-              <label class="option-label" data-pageduo-ele-id="e_OoWU8rwb74lA"><input type="radio" data-pd-model="quizDraft.q23" value="A" data-pageduo-ele-id="e_mMVWzcbmj6Gn"> A. Tạo ảnh</label>
-              <label class="option-label" data-pageduo-ele-id="e_q5OmiI4ao9Fn"><input type="radio" data-pd-model="quizDraft.q23" value="B" data-pageduo-ele-id="e_h2NFG1v37HZA"> B. Phát nhạc</label>
-              <label class="option-label" data-pageduo-ele-id="e_GLUOBrAmvdRz"><input type="radio" data-pd-model="quizDraft.q23" value="C" data-pageduo-ele-id="e_NghNoeSwZdRp"> C. Đọc/ghi dữ liệu giữa giao diện và database</label>
-              <label class="option-label" data-pageduo-ele-id="e_PLOSAzbYqhU3"><input type="radio" data-pd-model="quizDraft.q23" value="D" data-pageduo-ele-id="e_oo29JxFR6zom"> D. Gửi SMS</label>
-            </div>
-          </article>
-          <article class="question-card" data-pageduo-ele-id="e_QQ0iOUMxkRsa">
-            <div class="question-meta" data-pageduo-ele-id="e_YQDEH9GZZubZ"><span class="tag" data-pageduo-ele-id="e_EYnnck8HE0h6">B24</span><span class="tag" data-pageduo-ele-id="e_CMIfMHRU9q3r">luồng dữ liệu</span></div>
-            <h3 data-pageduo-ele-id="e_qwQu3kZvTSFd">Sau khi nhập thông tin khách, Mini-CRM cần làm gì?</h3>
-            <div class="option-list" data-pageduo-ele-id="e_ySEQsQTM6wUa">
-              <label class="option-label" data-pageduo-ele-id="e_AazjfvKrrqke"><input type="radio" data-pd-model="quizDraft.q24" value="A" data-pageduo-ele-id="e_7qQzIb7lm5FC"> A. Chỉ hiển thị văn bản tĩnh</label>
-              <label class="option-label" data-pageduo-ele-id="e_nsX5S5lDNiZ8"><input type="radio" data-pd-model="quizDraft.q24" value="B" data-pageduo-ele-id="e_MUg68vge05p8"> B. Xóa khách hàng</label>
-              <label class="option-label" data-pageduo-ele-id="e_PvEjEFxh889Z"><input type="radio" data-pd-model="quizDraft.q24" value="C" data-pageduo-ele-id="e_6WRH2YuTIeLj"> C. Đổi thành file ảnh</label>
-              <label class="option-label" data-pageduo-ele-id="e_3hNcHnFAXslE"><input type="radio" data-pd-model="quizDraft.q24" value="D" data-pageduo-ele-id="e_2VMaWIDfJ8UR"> D. Tự động lưu vào Database</label>
-            </div>
-          </article>
-        </div>
 
-        <div class="assessment-footer" data-pageduo-ele-id="e_Jm5JCjNP7xMR">
-          <button class="btn" id="submitCheckpoint" type="button" data-pageduo-ele-id="e_iUrx2RtzZd4n">Chấm và lưu checkpoint</button>
-          <span class="assessment-status" id="assessmentStatus" aria-live="polite" data-pageduo-ele-id="e_0KA7otaYsWL9">Hãy chọn đủ 8 đáp án trước khi chấm.</span>
+  <section class="section-block" style="padding-top:0;">
+    <div class="container">
+      <div class="next-phase-banner" style="padding:36px;background:var(--paper);border:2px solid var(--line);border-radius:18px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+        <div>
+          <span class="tag" style="background:#E2F0EA;color:var(--green);margin-bottom:8px;">Mốc Nghiệm Thu Giai Đoạn 3 Hoàn Tất</span>
+          <h3 style="font-size:1.6rem;margin:6px 0 10px;color:var(--ink);">Sẵn Sàng Cất Nóc & Đưa App Lên Internet?</h3>
+          <p style="color:var(--muted);margin:0;max-width:620px;">Bạn đã hoàn thành ứng dụng Mini-CRM chạy trên máy cục bộ với đầy đủ Báo giá, Tiến độ và SQLite. Ở Giai đoạn 4, chúng ta sẽ đưa ứng dụng lên Streamlit Cloud / VPS và xây dựng Landing Page tiếp thị hoàn chỉnh.</p>
         </div>
-        <div class="result-panel" id="resultPanel" aria-live="polite" data-pageduo-ele-id="e_91FiEpl9z0Xc">
-          <div class="eyebrow" data-pageduo-ele-id="e_lWbY9h2aia6u">Kết quả của bạn</div>
-          <div class="result-score" id="resultScore" data-pageduo-ele-id="e_FJ47q5pgcgut">0/8</div>
-          <p id="resultMessage" data-pageduo-ele-id="e_6IkYDfK5Nib3"></p>
-          <div class="skill-results" id="skillResults" data-pageduo-ele-id="e_5jHAKeZvlITV"></div>
-          <a class="btn btn-secondary" id="repairLink" href="https://pageduo.ai/" data-pageduo-ele-id="e_VJMe53Grt6Xq">Tạo bài sửa lỗi</a>
-          <p class="assessment-status" id="saveStatus" data-pd-show="_status.quizResultsSaved" data-pageduo-ele-id="e_79XjwwZz9QGN">✓ Checkpoint đã được lưu.</p>
-          <p class="assessment-status" data-pd-show="_status.quizResultsError" data-pd-text="_status.quizResultsMessage" data-pageduo-ele-id="e_rXOnhEoDSDXO"></p>
-        </div>
+        <a href="trien-khai-marketing.html" class="btn" style="background:var(--accent);color:#fff;padding:14px 24px;border-radius:12px;font-weight:800;text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:8px;">
+          Sang Giai đoạn 4: Deploy & Marketing →
+        </a>
       </div>
     </div>
   </section>
+
 </main>
 
-<script>
-(function(){
-  "use strict";
-  var startedAt = new Date();
-  var answerKey = {
-    q17: "A",
-    q18: "B",
-    q19: "C",
-    q20: "D",
-    q21: "B",
-    q22: "A",
-    q23: "C",
-    q24: "D"
-  };
-  var questionInfo = {
-    q17: {id:"q17", session:"B17", skill:"widget nhập liệu", text:"Thành phần nào nhận chiều dài từ người dùng trong một form Streamlit?", options:[["A","st.number_input"],["B","st.write"],["C","sqlite3.DELETE"],["D","plt.save"]]},
-    q18: {id:"q18", session:"B18", skill:"sự kiện nút bấm", text:"Vì sao dùng nút Tính báo giá?", options:[["A","tạo database tự động"],["B","chạy logic khi người dùng yêu cầu"],["C","xóa CSS"],["D","đổi Zip Code"]]},
-    q19: {id:"q19", session:"B19", skill:"tích hợp logic", text:"Kết quả Web Báo Giá Lát Sàn phải dùng lại điều gì từ sản phẩm trước?", options:[["A","chỉ ảnh nền"],["B","dữ liệu âm thanh"],["C","logic tính Sqft và đơn giá của Python"],["D","mật khẩu"]]},
-    q20: {id:"q20", session:"B20", skill:"hiển thị bảng", text:"Thành phần phù hợp để xem danh sách công trình là gì?", options:[["A","if/else"],["B","input raw"],["C","terminal only"],["D","table"]]},
-    q21: {id:"q21", session:"B21", skill:"biểu đồ trạng thái", text:"Biểu đồ giúp người quản lý nhìn thấy điều gì?", options:[["A","mã nguồn bị xóa"],["B","phân bố và xu hướng trạng thái dự án"],["C","mật khẩu khách"],["D","độ dài code"]]},
-    q22: {id:"q22", session:"B22", skill:"lọc giao diện", text:"Bộ lọc trên Web nên thay đổi điều gì?", options:[["A","dữ liệu đang hiển thị theo điều kiện chọn"],["B","cấu trúc SQLite vĩnh viễn"],["C","hệ điều hành"],["D","tên thư mục"]]},
-    q23: {id:"q23", session:"B23", skill:"kết nối SQLite", text:"Mục tiêu của kết nối giữa giao diện Web và SQLite là gì?", options:[["A","tạo ảnh"],["B","phát nhạc"],["C","đọc/ghi dữ liệu giữa giao diện và database"],["D","gửi SMS"]]},
-    q24: {id:"q24", session:"B24", skill:"luồng dữ liệu", text:"Sau khi nhập thông tin khách, Mini-CRM cần làm gì?", options:[["A","chỉ hiển thị văn bản tĩnh"],["B","xóa khách hàng"],["C","đổi thành file ảnh"],["D","tự động lưu vào Database"]]}
-  };
-  var app = null;
-  var submitButton = null;
-  var demoButton = null;
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand & Slogan -->
+      <div class="footer-col">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <span style="display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:#102A2E;color:var(--safety);font-size:20px;border:1px solid rgba(240,180,77,0.3);">🤖</span>
+          <span style="font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.02em;">Lập Trình <span style="color:var(--safety);">Robot</span></span>
+        </div>
+        <p>Hệ thống đào tạo Công nghệ, Robotics & Lập trình ứng dụng thực chiến. Xây dựng tư duy thuật toán vững vàng và giải quyết trực tiếp bài toán công việc.</p>
+        <p style="font-size:13px;color:#A2B7AE;">Chuyên đề: <b>Python cho Giám sát Công trường</b> (32 buổi · 4 tháng · từ số đo sàn đến Web App hoàn thiện).</p>
+      </div>
 
-  function getDraft(){
-    if (!app || !app.data || !app.data.quizDraft) return {};
-    return app.data.quizDraft;
-  }
+      <!-- Col 2: Lộ trình 4 giai đoạn -->
+      <div class="footer-col">
+        <h4>Lộ Trình Python</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">⌂ Tổng quan 32 buổi</a></li>
+          <li><a href="nen-tang-python.html">1. Đặt móng (Python nền tảng)</a></li>
+          <li><a href="quan-ly-du-lieu.html">2. Xây tường (Quản lý dữ liệu)</a></li>
+          <li><a href="streamlit-web-app.html">3. Hoàn thiện (Streamlit Web App)</a></li>
+          <li><a href="trien-khai-marketing.html">4. Bàn giao (Triển khai & Marketing)</a></li>
+        </ul>
+      </div>
 
-  function setText(element, value){
-    if (element) element.textContent = value;
-  }
+      <!-- Col 3: Khóa học khác LapTrinhRobot.com -->
+      <div class="footer-col">
+        <h4>Hệ Thống Đào Tạo</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">← Trang chủ LapTrinhRobot.com</a></li>
+          <li><a href="../tin10.html">Chuyên Tin 10 (C++ / Thuật toán)</a></li>
+          <li><a href="../physics.html">Khoa Học & Vật Lý IGCSE</a></li>
+          <li><a href="../competition.html">Thư viện đề thi Chuyên Tin</a></li>
+          <li><a href="../lien-he.html">Đăng ký tư vấn khóa học</a></li>
+        </ul>
+      </div>
 
-  function renderDemo(){
-    var lengthInput = document.getElementById("demoLength");
-    var widthInput = document.getElementById("demoWidth");
-    var priceInput = document.getElementById("demoPrice");
-    var result = document.getElementById("demoResult");
-    if (!lengthInput || !widthInput || !priceInput || !result) return;
-    var lengthValue = Number(lengthInput.value);
-    var widthValue = Number(widthInput.value);
-    var priceValue = Number(priceInput.value);
-    if (!Number.isFinite(lengthValue) || !Number.isFinite(widthValue) || !Number.isFinite(priceValue) || lengthValue <= 0 || widthValue <= 0 || priceValue < 0) {
-      setText(result, "Hãy nhập chiều dài và chiều rộng lớn hơn 0; đơn giá không âm.");
-      return;
-    }
-    var sqft = lengthValue * widthValue;
-    var total = sqft * priceValue;
-    setText(result, "Sqft: " + sqft.toFixed(2) + " · Báo giá: $" + total.toFixed(2) + " USD");
-  }
-
-  function buildOptions(info){
-    return info.options.map(function(option){
-      return {key: option[0], label: option[1]};
-    });
-  }
-
-  function buildResponses(draft){
-    return Object.keys(questionInfo).map(function(key){
-      var info = questionInfo[key];
-      var selected = typeof draft[key] === "string" ? draft[key] : "";
-      var correct = selected !== "" && selected === answerKey[key];
-      return {
-        questionId: info.id,
-        question: info.text,
-        answerType: "multiple-choice",
-        interactionType: "choice",
-        skills: [info.skill],
-        userAnswers: selected ? [selected] : [],
-        answerOptions: buildOptions(info),
-        answerKeys: [answerKey[key]],
-        correct: correct,
-        score: correct ? 1 : 0,
-        maxScore: 1,
-        attemptNumber: 1
-      };
-    });
-  }
-
-  function makeReport(responses, earned){
-    var missed = responses.filter(function(item){ return !item.correct; }).map(function(item){ return item.skills[0] + " (0 of 1)"; });
-    var solid = responses.filter(function(item){ return item.correct; }).map(function(item){ return item.skills[0]; });
-    var report = "Checkpoint Streamlit B17-B24: " + earned + " of 8.\\n";
-    report += "Kỹ năng cần sửa: " + (missed.length ? missed.join(", ") : "không có") + ".\\n";
-    report += "Kỹ năng đã vững: " + (solid.length ? solid.join(", ") : "chưa có") + ".";
-    return report;
-  }
-
-  function packRepairLink(report){
-    var readableAsk = "Tạo bài sửa lỗi Streamlit, tập trung vào kỹ năng yếu nhất, kèm ví dụ input → Python logic → output và một câu kiểm tra sau mỗi kỹ năng.";
-    var fallback = "https://pageduo.ai/?p=" + encodeURIComponent(readableAsk + "\\n\\n" + report);
-    var link = document.getElementById("repairLink");
-    if (!link) return;
-    link.href = fallback;
-    if (!window.CompressionStream || !window.TextEncoder) return;
-    var payload = JSON.stringify({prompt: report, src: "streamlit-web-app"});
-    var stream = new Blob([payload]).stream().pipeThrough(new CompressionStream("deflate-raw"));
-    new Response(stream).arrayBuffer().then(function(buffer){
-      var bytes = new Uint8Array(buffer);
-      var binary = "";
-      for (var index = 0; index < bytes.length; index += 1) binary += String.fromCharCode(bytes[index]);
-      var packed = btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-      link.href = "https://pageduo.ai/?p=" + encodeURIComponent(readableAsk) + "&p_enc=" + encodeURIComponent(packed);
-    }).catch(function(){});
-  }
-
-  function showResult(responses, earned){
-    var resultPanel = document.getElementById("resultPanel");
-    var resultScore = document.getElementById("resultScore");
-    var resultMessage = document.getElementById("resultMessage");
-    var skillResults = document.getElementById("skillResults");
-    if (!resultPanel || !resultScore || !resultMessage || !skillResults) return;
-    resultPanel.classList.add("is-visible");
-    setText(resultScore, earned + "/8");
-    setText(resultMessage, earned === 8 ? "Bạn đã hoàn thành chắc cả đường ống từ widget đến SQLite." : earned >= 6 ? "Nền tảng tốt. Hãy dùng phần kỹ năng bên dưới để chọn đúng mảnh cần gia cố." : "Hãy quay lại worked example tương ứng với các kỹ năng chưa đạt rồi thử lại.");
-    var grouped = {};
-    responses.forEach(function(item){
-      var skill = item.skills[0];
-      if (!grouped[skill]) grouped[skill] = {score:0, total:0};
-      grouped[skill].score += item.score;
-      grouped[skill].total += item.maxScore;
-    });
-    skillResults.textContent = "";
-    Object.keys(grouped).forEach(function(skill){
-      var row = document.createElement("div");
-      row.className = "skill-result";
-      var label = document.createElement("span");
-      label.textContent = skill;
-      var value = document.createElement("strong");
-      value.textContent = grouped[skill].score + " / " + grouped[skill].total;
-      row.appendChild(label);
-      row.appendChild(value);
-      skillResults.appendChild(row);
-    });
-    packRepairLink(makeReport(responses, earned));
-  }
-
-  function submitCheckpoint(){
-    if (!app || !app.data || !app.data.quizResults) return;
-    var draft = getDraft();
-    var questionKeys = Object.keys(questionInfo);
-    var unanswered = questionKeys.filter(function(key){ return !draft[key]; });
-    var status = document.getElementById("assessmentStatus");
-    if (unanswered.length) {
-      setText(status, "Còn " + unanswered.length + " câu chưa chọn. Hãy hoàn tất trước khi chấm.");
-      return;
-    }
-    var responses = buildResponses(draft);
-    var earned = responses.reduce(function(total, item){ return total + item.score; }, 0);
-    var now = new Date();
-    var result = app.data.quizResults;
-    result.schemaContract = "assessmentEntry@v1";
-    result.userFullName = draft.userFullName || "";
-    result.attemptId = "streamlit-" + now.getTime() + "-" + Math.random().toString(36).slice(2, 8);
-    result.revision = 1;
-    result.startedAtUtc = startedAt.toISOString();
-    result.submittedAtUtc = now.toISOString();
-    result.completionStatus = "completed";
-    result.score = earned;
-    result.maxScore = 8;
-    result.scaledScore = earned / 8;
-    result.responses = responses;
-    setText(status, "Đang chấm và lưu checkpoint…");
-    showResult(responses, earned);
-    app.save("quizResults", result).then(function(){
-      setText(status, "Đã chấm và gửi checkpoint thành công.");
-    }).catch(function(){
-      setText(status, "Chưa lưu được checkpoint. Bạn vẫn có thể xem kết quả và thử gửi lại.");
-    });
-  }
-
-  function initialise(){
-    app = window.PDReactiveRuntime && window.PDReactiveRuntime.app ? window.PDReactiveRuntime.app : null;
-    submitButton = document.getElementById("submitCheckpoint");
-    demoButton = document.getElementById("demoCalculate");
-    if (submitButton) submitButton.addEventListener("click", submitCheckpoint);
-    if (demoButton) demoButton.addEventListener("click", renderDemo);
-    renderDemo();
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initialise);
-  } else {
-    initialise();
-  }
-})();
-</script>
-<footer class="site-footer" data-pageduo-ele-id="e_bumCGWislR2A">
-  <div class="footer-inner" data-pageduo-ele-id="e_mInkJijiUatj">
-    <div data-pageduo-ele-id="e_W2qh5wTtRz9W">
-      <strong data-pageduo-ele-id="e_5kaKNgnOR7Hd">Code công trường</strong>
-      <p data-pageduo-ele-id="e_53BY772JUwz6">Học để biến số đo, sổ sách và tiến độ thành công cụ dùng được trong công việc remodeling.</p>
+      <!-- Col 4: Liên hệ & Hỗ trợ -->
+      <div class="footer-col">
+        <h4>Liên Hệ & Hỗ Trợ</h4>
+        <ul class="footer-contact" style="list-style:none;padding:0;margin:0;">
+          <li>📍 <span>Hẻm 556 Nguyễn Văn Quá, số nhà 12/5, P. Đông Hưng Thuận, Q. 12, TP. HCM</span></li>
+          <li>📞 <span>Hotline: <a href="tel:0915514419" style="color:var(--safety);font-weight:700;">09 155 144 19</a></span></li>
+          <li>💬 <span>Zalo: <a href="https://zalo.me/0915514419" target="_blank" rel="noopener" style="color:var(--safety);font-weight:700;">0915.514.419</a></span></li>
+          <li>✉️ <span>Email: <a href="mailto:LapTrinhRobot.com@gmail.com" style="color:#C4D2CB;">LapTrinhRobot.com@gmail.com</a></span></li>
+          <li>🌐 <span>Fanpage: <a href="https://facebook.com/laptrinhrobots" target="_blank" rel="noopener" style="color:#C4D2CB;">facebook.com/laptrinhrobots</a></span></li>
+        </ul>
+      </div>
     </div>
-    <div data-pageduo-ele-id="e_Qo2evB0DpxpI">
-      <strong data-pageduo-ele-id="e_ktN079l86Dnu">Đi tiếp</strong>
-      <p data-pageduo-ele-id="e_wakqrECYCcH8"><a href="nen-tang-python.html" data-pageduo-ele-id="e_oIEQ12zZeKjK">Bắt đầu từ Giai đoạn 1: Đặt móng →</a></p>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <div>© 2026 LapTrinhRobot.com. Mọi quyền được bảo lưu.</div>
+      <div style="display:flex;gap:18px;">
+        <a href="../privacy.html">Chính sách bảo mật</a>
+        <a href="../terms.html">Điều khoản dịch vụ</a>
+        <a href="../index.html">Về trang chủ</a>
+      </div>
     </div>
   </div>
 </footer>
 
-</body></html>
+<!-- Floating Contact Buttons -->
+<div style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
+  <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#0088FF;color:#fff;font-weight:800;font-size:12px;text-decoration:none;box-shadow:0 6px 16px rgba(0,136,255,.4);transition:transform .2s;" title="Nhắn tin qua Zalo">Zalo</a>
+  <a href="tel:0915514419" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#2D625D;color:#fff;font-size:17px;text-decoration:none;box-shadow:0 6px 16px rgba(45,98,93,.4);transition:transform .2s;" title="Gọi Hotline: 0915.514.419">📞</a>
+</div>
+
+</body>
+</html>

@@ -5,13 +5,6 @@
 <meta name="description" content="8 buổi Python nền tảng cho giám sát công trường: biến, nhập liệu, điều kiện, danh sách, vòng lặp và hàm qua các tool báo giá.">
 <meta name="pd:project" content="Lập trình Python cho Giám sát Công trường">
 <style data-pd-baseline="">button,input,select,textarea{font:inherit;color:inherit;line-height:inherit}textarea{display:block;resize:vertical}button,input,select,textarea{box-sizing:border-box;max-width:100%}textarea,select,input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]):not([type=submit]):not([type=button]){padding:.55em .7em;border:1px solid color-mix(in srgb,currentColor 28%,transparent);border-radius:.4rem;background:transparent}</style>
-<script src="/static/vendor/vue-reactivity.global.js"></script>
-<script src="/static/vendor/sanitize-url.global.js"></script>
-<script src="/static/vendor/udomdiff.min.js"></script>
-<script src="/static/vendor/chart-4.4.0.min.js"></script>
-<script src="/static/pd-data-client.v2.min.js"></script>
-<script src="/static/pd-reactive-runtime.v3.min.js"></script>
-<script src="/static/pd-formula-input.v1.js"></script>
 <style data-pd-page="">
 .python-hero{padding:72px 0 56px;background:var(--ink);color:#fff}
 .python-hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center}
@@ -201,6 +194,94 @@ p{margin:0 0 16px}
   .section-heading{display:block}
 }</style>
 <style data-pd-corrections="">fieldset>legend{float:none!important}</style>
+<style id="custom-footer-style">
+/* SITE FOOTER CHUẨN LAPTRINHROBOT.COM */
+.site-footer {
+  margin-top: 80px;
+  background: var(--ink);
+  color: #EAF0E8;
+  padding: 60px 0 32px;
+  border-top: 4px solid var(--safety);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 36px;
+  margin-bottom: 44px;
+}
+.footer-col h4 {
+  color: var(--safety);
+  font-size: 13.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin: 0 0 16px;
+}
+.footer-col p {
+  color: #C4D2CB;
+  font-size: 13.5px;
+  line-height: 1.65;
+  margin: 0 0 14px;
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links li {
+  margin-bottom: 9px;
+}
+.footer-links a {
+  color: #C4D2CB;
+  text-decoration: none;
+  font-size: 13.5px;
+  transition: color .2s;
+}
+.footer-links a:hover {
+  color: var(--safety);
+}
+.footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #C4D2CB;
+  font-size: 13px;
+  margin-bottom: 11px;
+  line-height: 1.5;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(217,212,201,.18);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: #9AB0A6;
+}
+.footer-bottom a {
+  color: #C4D2CB;
+  text-decoration: none;
+}
+.footer-bottom a:hover {
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 580px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
 </head>
 <body data-pageduo-ele-id="e_lBMuYomnuD7k">
 <header class="site-header" data-pageduo-ele-id="e_HsSXQRNPvl76">
@@ -225,225 +306,7 @@ p{margin:0 0 16px}
 </header>
 
 
-<script>
-(function(){
-  "use strict";
-  var app = PDReactiveRuntime.boot({
-    data:{
-      quizResults:{
-        schemaContract:"assessmentEntry@v1",
-        assessmentId:"python-foundation-floor-estimate",
-        assessmentName:"Python nền tảng: báo giá lát sàn",
-        description:"Tám checkpoint thực hành Python cho giám sát công trường.",
-        assessmentType:"formative",
-        interactionFormat:"interactive",
-        adaptiveLevel:"low",
-        subject:"Python thực dụng cho giám sát công trường",
-        gradeLevel:"Người đi làm",
-        skills:["biến và phép gán","nhập liệu và chuyển kiểu","điều kiện","logic đa điều kiện","list và vòng lặp","tích lũy tổng","hàm và giá trị trả về","đóng gói chương trình"],
-        category:"technology",
-        attemptId:"",
-        revision:0,
-        startedAtUtc:new Date().toISOString(),
-        submittedAtUtc:"",
-        completionStatus:"in-progress",
-        score:0,
-        maxScore:8,
-        scaledScore:0,
-        responses:[]
-      }
-    },
-    pdDataSources:{
-      quizResults:{writeKey:"nzdsgxea_u1bpw88jp5xdwbe"}
-    }
-  });
 
-  var answerKey=["A","B","C","D","A","C","B","C"];
-  var questions=[
-    {id:"b1",session:1,skill:"biến và phép gán",text:"Sau dòng width = 12, biến nào đang lưu chiều rộng?",key:"A"},
-    {id:"b2",session:2,skill:"nhập liệu và chuyển kiểu",text:"Vì sao cần đổi input thành số trước phép nhân?",key:"B"},
-    {id:"b3",session:3,skill:"điều kiện đơn",text:"Với sqft = 900 và if sqft > 1000, nhánh nào chạy?",key:"C"},
-    {id:"b4",session:4,skill:"logic đa điều kiện",text:"Nhà cũ 1.200 sqft cần áp dụng điều gì?",key:"D"},
-    {id:"b5",session:5,skill:"list và vòng lặp",text:"Công cụ phù hợp để đi qua từng vật tư là gì?",key:"A"},
-    {id:"b6",session:6,skill:"tích lũy tổng",text:"Biến total nên được khởi tạo ở đâu?",key:"C"},
-    {id:"b7",session:7,skill:"hàm và giá trị trả về",text:"Lợi ích chính của return trong hàm báo giá là gì?",key:"B"},
-    {id:"b8",session:8,skill:"đóng gói chương trình",text:"Đầu vào tối thiểu của Cỗ Máy Báo Giá Tự Động là gì?",key:"C"}
-  ];
-  var startedAt=new Date();
-  var attemptId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():"attempt-"+Date.now();
-  app.data.quizResults.attemptId=attemptId;
-
-  function textFor(selector){
-    var node=document.querySelector(selector);
-    return node?node.value.trim():"";
-  }
-  function money(value){
-    return Number(value||0).toLocaleString("en-US",{style:"currency",currency:"USD"});
-  }
-  function updateEstimate(){
-    var areaNode=document.getElementById("areaSlider");
-    var area=areaNode?Number(areaNode.value):900;
-    var areaOut=document.getElementById("areaValue");
-    var baseCard=document.getElementById("baseRule");
-    var oldCard=document.getElementById("oldRule");
-    var baseCost=area*3.5;
-    var discount=area>1000;
-    var oldHome=document.getElementById("oldHome");
-    var cleanup=oldHome?oldHome.checked:false;
-    var discountAmount=discount?baseCost*.05:0;
-    var cleanupAmount=cleanup?baseCost*.1:0;
-    if(areaOut) areaOut.textContent=area.toLocaleString("en-US")+" sqft";
-    if(baseCard) baseCard.textContent="Giá gốc: "+money(baseCost);
-    if(oldCard){
-      oldCard.classList.toggle("is-on",cleanup);
-      oldCard.querySelector(".rule-state").textContent=cleanup?"Đang bật · cộng 10% phí dọn rác":"Đang tắt · nhà mới";
-    }
-    var discountNode=document.getElementById("discountRule");
-    if(discountNode){
-      discountNode.classList.toggle("is-on",discount);
-      discountNode.querySelector(".rule-state").textContent=discount?"Đang bật · giảm 5% vì diện tích > 1.000 sqft":"Đang tắt · chưa vượt 1.000 sqft";
-    }
-    var totalNode=document.getElementById("estimateTotal");
-    if(totalNode) totalNode.textContent=money(baseCost-discountAmount+cleanupAmount);
-  }
-  function friendlyRun(card){
-    var code=card.querySelector(".play-code");
-    var output=card.querySelector(".play-output");
-    var session=Number(card.getAttribute("data-session"));
-    var source=code?code.value:"";
-    if(!output) return;
-    if(!source.trim()){
-      output.textContent="Lỗi thân thiện: hãy nhập ít nhất một dòng code.";
-      return;
-    }
-    if((source.match(/\(/g)||[]).length!==(source.match(/\)/g)||[]).length){
-      output.textContent="Lỗi cú pháp: kiểm tra cặp dấu ngoặc.";
-      return;
-    }
-    var result={
-      1:"Đã đọc biến: length, width và price_per_sqft đang là các thùng chứa dữ liệu.",
-      2:"Kết quả minh họa: 12 × 10 = 120 sqft · 120 × 3.50 USD = 420.00 USD.",
-      3:"sqft = 900 nên điều kiện sqft > 1000 là Sai; chương trình đi vào else.",
-      4:"1.200 sqft vượt ngưỡng: giảm 5%; nếu là nhà cũ, cộng thêm 10% phí dọn rác.",
-      5:"Đã duyệt lần lượt danh sách: sơn → đinh → gỗ.",
-      6:"total được cộng dồn trước vòng lặp; bảng vật tư có thể tính thành tiền từng dòng.",
-      7:"Hàm quote_floor_area() đã trả kết quả về nơi gọi bằng return.",
-      8:"Cỗ Máy Báo Giá nhận diện tích, gọi hàm báo giá và xuất kết quả ngay."
-    };
-    output.textContent=result[session]||"Đã chạy xong ví dụ.";
-  }
-  function renderQuizResult(score,results){
-    var panel=document.getElementById("quizResult");
-    var scoreNode=document.getElementById("scoreValue");
-    var skills=document.getElementById("skillResults");
-    if(!panel||!scoreNode||!skills) return;
-    scoreNode.textContent=score+"/8";
-    skills.innerHTML="";
-    results.forEach(function(item){
-      var el=document.createElement("div");
-      el.className="result-skill";
-      el.innerHTML="<strong>"+(item.correct?"✓ Đạt":"○ Cần luyện thêm")+" · B"+item.sessionNumber+"</strong><span>"+item.skillTag+"</span>";
-      skills.appendChild(el);
-    });
-    panel.classList.add("show");
-    panel.scrollIntoView({behavior:"smooth",block:"nearest"});
-  }
-  function packedFollowUp(score,results){
-    var weak=results.filter(function(item){return !item.correct;}).map(function(item){return item.skillTag;});
-    var solid=results.filter(function(item){return item.correct;}).map(function(item){return item.skillTag;});
-    var report="Checkpoint Python nền tảng: "+score+" trên 8.\nKỹ năng cần luyện: "+(weak.length?weak.join(", "):"không có; hãy thử mức nâng cao.")+".\nKỹ năng đã đạt: "+(solid.length?solid.join(", "):"chưa có trong lượt này.")+".";
-    var ask="Tạo bài luyện Python thực dụng cho giám sát công trường, tập trung vào các kỹ năng tôi còn yếu, mỗi câu có lời giải thích sau khi trả lời.";
-    var link=document.getElementById("followUp");
-    if(!link) return;
-    if(!window.CompressionStream){
-      link.href="https://pageduo.ai/?p="+encodeURIComponent(ask+"\n\n"+report);
-      return;
-    }
-    var payload=JSON.stringify({prompt:report,src:"python-nen-tang"});
-    var stream=new CompressionStream("deflate-raw");
-    var writer=stream.writable.getWriter();
-    writer.write(new TextEncoder().encode(payload));
-    writer.close();
-    new Response(stream.readable).arrayBuffer().then(function(buffer){
-      var bytes=new Uint8Array(buffer);
-      var binary="";
-      bytes.forEach(function(byte){binary+=String.fromCharCode(byte);});
-      var packed=btoa(binary).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
-      link.href="https://pageduo.ai/?p="+encodeURIComponent(ask)+"&p_enc="+encodeURIComponent(packed);
-    }).catch(function(){
-      link.href="https://pageduo.ai/?p="+encodeURIComponent(ask+"\n\n"+report);
-    });
-  }
-  function submitQuiz(){
-    var results=[];
-    var score=0;
-    questions.forEach(function(question,index){
-      var selected=document.querySelector('input[name="q'+(index+1)+'"]:checked');
-      var selectedAnswer=selected?selected.value:"";
-      var correct=selectedAnswer===answerKey[index];
-      if(correct) score++;
-      results.push({
-        questionId:question.id,
-        question:question.text,
-        answerType:"multiple-choice",
-        interactionType:"choice",
-        skills:[question.skill],
-        userAnswers:[selectedAnswer],
-        answerOptions:[],
-        answerKeys:[question.key],
-        selectedAnswer:selectedAnswer,
-        skillTag:question.skill,
-        sessionNumber:question.session,
-        timestamp:new Date().toISOString(),
-        correct:correct,
-        score:correct?1:0,
-        maxScore:1
-      });
-      var feedback=document.getElementById("feedback-"+question.id);
-      if(feedback){
-        feedback.textContent=correct?"Đúng. Bạn đã nắm được kỹ năng này.":"Chưa đúng. Hãy xem lại ví dụ B"+question.session+" trong playground rồi thử bài luyện tiếp theo.";
-        feedback.classList.add("show");
-      }
-    });
-    app.data.quizResults.revision=1;
-    app.data.quizResults.submittedAtUtc=new Date().toISOString();
-    app.data.quizResults.completionStatus="completed";
-    app.data.quizResults.score=score;
-    app.data.quizResults.maxScore=8;
-    app.data.quizResults.scaledScore=score/8;
-    app.data.quizResults.responses=results;
-    app.save("quizResults",app.data.quizResults).then(function(){
-      var saved=document.getElementById("savedMessage");
-      if(saved) saved.textContent="Đã lưu checkpoint vào hồ sơ học tập.";
-    }).catch(function(){
-      var saved=document.getElementById("savedMessage");
-      if(saved) saved.textContent="Chưa lưu được. Hãy kiểm tra kết nối và bấm chấm lại.";
-    });
-    renderQuizResult(score,results);
-    packedFollowUp(score,results);
-  }
-  document.addEventListener("DOMContentLoaded",function(){
-    var slider=document.getElementById("areaSlider");
-    var oldHome=document.getElementById("oldHome");
-    if(slider) slider.addEventListener("input",updateEstimate);
-    if(oldHome) oldHome.addEventListener("change",updateEstimate);
-    updateEstimate();
-    document.querySelectorAll(".play-card").forEach(function(card){
-      var run=card.querySelector(".run-code");
-      var reset=card.querySelector(".reset-code");
-      if(run) run.addEventListener("click",function(){friendlyRun(card);});
-      if(reset) reset.addEventListener("click",function(){
-        var code=card.querySelector(".play-code");
-        var output=card.querySelector(".play-output");
-        if(code) code.value=code.getAttribute("data-default")||"";
-        if(output) output.textContent="";
-      });
-    });
-    var submit=document.getElementById("submitQuiz");
-    if(submit) submit.addEventListener("click",submitQuiz);
-  });
-}());
-</script>
 
 <main data-pageduo-ele-id="e_75QzJO3nsa8H">
   <section class="python-hero" data-pageduo-ele-id="e_ZQw0yfk0wEHV">
@@ -1174,150 +1037,90 @@ TỔNG GIÁ TRỊ HỢP ĐỒNG:          3,990.00 USD
     </div>
   </section>
 
-  <section class="page-section" id="estimate" data-pageduo-ele-id="e_yf4Emp4V0dCt">
-    <div class="container" data-pageduo-ele-id="e_7X5ofwW7FxVg">
-      <div class="section-heading" data-pageduo-ele-id="e_4Y0kHTInW3gv">
-        <div data-pageduo-ele-id="e_MhZ5lRVqh5pp">
-          <p class="eyebrow" data-pageduo-ele-id="e_c5GQblXSCx7c">Tương tác · logic đa điều kiện</p>
-          <h2 data-pageduo-ele-id="e_tui4bUVWO4uD">Chạm vào ngưỡng 1.000 sqft</h2>
-          <p class="section-kicker" data-pageduo-ele-id="e_mKjPO5MBDBRY">Thanh trượt mô phỏng điều kiện của B4. Tăng diện tích qua 1.000 sqft để thấy giảm 5%; bật “nhà cũ” để thấy phí dọn rác 10% được áp dụng đồng thời.</p>
+  
+  <section class="page-section" style="padding-top:0;">
+    <div class="container">
+      <div class="next-phase-banner" style="padding:36px;background:var(--paper);border:2px solid var(--line);border-radius:18px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+        <div>
+          <span class="tag" style="background:#E2F0EA;color:var(--green);margin-bottom:8px;">Mốc Nghiệm Thu Giai Đoạn 1 Hoàn Tất</span>
+          <h3 style="font-size:1.6rem;margin:6px 0 10px;color:var(--ink);">Sẵn Sàng Xây Tường Dữ Liệu?</h3>
+          <p style="color:var(--muted);margin:0;max-width:620px;">Học viên đã làm chủ biến, nhập liệu, điều kiện, vòng lặp và hàm để tạo Cỗ Máy Báo Giá Tự Động. Bước tiếp theo là quản lý danh sách khách hàng và dự án bằng Pandas và SQLite ở Giai đoạn 2.</p>
         </div>
-      </div>
-      <div class="surface threshold" data-pageduo-ele-id="e_gm75UXUof3vB">
-        <div class="threshold-head" data-pageduo-ele-id="e_9BTf1AbLMw27">
-          <div data-pageduo-ele-id="e_shmXAwGhLy2r"><label for="areaSlider" data-pageduo-ele-id="e_AucgUcZJte6d"><b data-pageduo-ele-id="e_U7Ns1gpZyur6">Diện tích công trình</b></label><p class="section-kicker" data-pageduo-ele-id="e_7V0U1XAZvIsl">Giả định minh họa: đơn giá lát sàn 3,50 USD/sqft.</p></div>
-          <div id="areaValue" class="threshold-value" data-pageduo-ele-id="e_TbZ8Scq35luE">900 sqft</div>
-        </div>
-        <input id="areaSlider" type="range" min="400" max="1800" value="900" step="50" aria-label="Diện tích công trình" data-pageduo-ele-id="e_pWaBcxeaNSX7">
-        <div class="threshold-track" data-pageduo-ele-id="e_9ss3y5SizuHv"><span class="threshold-marker" aria-hidden="true" data-pageduo-ele-id="e_1Wtezx07x8mH"></span></div>
-        <div class="threshold-caption" data-pageduo-ele-id="e_seq9Rg1jeR07"><span data-pageduo-ele-id="e_jNVilPedUCa9">400 sqft</span><span data-pageduo-ele-id="e_t2IGNQ4BJTHh">Ngưỡng giảm 1.000 sqft</span><span data-pageduo-ele-id="e_Kox8QCzTDXu1">1.800 sqft</span></div>
-        <div class="rule-cards" data-pageduo-ele-id="e_WbJRmK8BAy8M">
-          <div class="rule-card" id="discountRule" data-pageduo-ele-id="e_SRXiUoG5K4Td"><strong data-pageduo-ele-id="e_mKeWkKkJARgZ">Giảm 5% diện tích lớn</strong><div class="rule-state" data-pageduo-ele-id="e_5uEfi9hJL2Yv">Đang tắt · chưa vượt 1.000 sqft</div></div>
-          <div class="rule-card" id="oldRule" data-pageduo-ele-id="e_Ufgrc3stTTsS"><strong data-pageduo-ele-id="e_C3WQwV6qx5QT">Phí dọn rác nhà cũ</strong><div class="rule-state" data-pageduo-ele-id="e_48ULPkpkWUaR">Đang tắt · nhà mới</div></div>
-        </div>
-        <label style="display:flex;gap:10px;align-items:center;margin-top:18px" data-pageduo-ele-id="e_m1gZtXnFd1m1"><input id="oldHome" type="checkbox" data-pageduo-ele-id="e_3RjFxjylrDx0"> Đây là nhà cũ, cần cộng 10% phí dọn rác</label>
-        <p style="margin:24px 0 0" data-pageduo-ele-id="e_lrJw9asKXhY7"><b data-pageduo-ele-id="e_0MdiiqQ8CQnC">Tổng minh họa:</b> <span id="estimateTotal" class="threshold-value" data-pageduo-ele-id="e_J1Ke0hCcLoas">$3,150.00</span></p>
-      </div>
-      <div class="flow-wrap" data-pageduo-ele-id="e_XtV0KlI5KLsJ">
-        <img data-pd-gen="1" data-pd-gen-id="5552df10" src="media/so-o-do-ng-du-lie-u-cu-a-tool-ba-o-gia-l-1f48987e1d.png" alt="Sơ đồ dòng dữ liệu của tool báo giá lát sàn từ chiều dài và chiều rộng đến Sqft, đơn giá USD và báo giá" data-pageduo-ele-id="e_YZlpx1FnMtWN">
-      </div>
-    </div>
-  </section>
-
-  <section class="page-section" id="materials" data-pageduo-ele-id="e_IV04as4ZciEQ">
-    <div class="container" data-pageduo-ele-id="e_OrZN5YYSG4Fp">
-      <div class="section-heading" data-pageduo-ele-id="e_bTeAlANVmGai">
-        <div data-pageduo-ele-id="e_vaimMxQblhX5">
-          <p class="eyebrow" data-pageduo-ele-id="e_RL1oEb9gdOdN">B5–B6 · list, for và total</p>
-          <h2 data-pageduo-ele-id="e_X1TrhQuel1OR">Clipboard vật tư biết cộng tiền</h2>
-          <p class="section-kicker" data-pageduo-ele-id="e_jqSqIXxkDYe9">Sửa số lượng hoặc đơn giá để thấy cách một vòng lặp sẽ tính từng dòng rồi cộng vào total. Đây là mô hình nhỏ của Tool Quản Lý Vật Tư.</p>
-        </div>
-      </div>
-      <div class="material-layout" data-pageduo-ele-id="e_X968vVAGzs26">
-        <img data-pd-gen="1" data-pd-gen-id="69b18527" class="material-image" src="media/ba-ng-va-t-tu-co-ng-tru-o-ng-go-m-so-n-i-d1a3d8101f.png" alt="Bảng vật tư công trường gồm sơn, đinh và gỗ với số lượng, đơn giá và tổng tiền" data-pageduo-ele-id="e_XhTLKP7ZbpdU">
-        <div class="surface" style="padding:20px;overflow:auto" data-pageduo-ele-id="e_eC1YcdgwvcOM">
-          <table class="material-table" data-pageduo-ele-id="e_zNOeMMHxVW33">
-            <thead data-pageduo-ele-id="e_fQrm2Rqi9qsQ"><tr data-pageduo-ele-id="e_EyIoKxKBPCY9"><th data-pageduo-ele-id="e_1vv5Pg2JflOl">Vật tư</th><th data-pageduo-ele-id="e_xqQKu3Rkb3fC">Số lượng</th><th data-pageduo-ele-id="e_dUXhL2tefv7p">Đơn giá USD</th><th data-pageduo-ele-id="e_Ac0PEDsjiPCI">Thành tiền</th></tr></thead>
-            <tbody data-pageduo-ele-id="e_W3CMpR6W1tQq">
-              <tr data-pageduo-ele-id="e_XowCPbqxeWDD"><td data-pageduo-ele-id="e_NzK1lCJF2bso">Sơn</td><td data-pageduo-ele-id="e_KbMOegbPnVvS"><input class="mat-qty" type="number" value="4" min="0" data-pageduo-ele-id="e_D1QldhEGLR2C"></td><td data-pageduo-ele-id="e_xu2OKleKwxU8"><input class="mat-price" type="number" value="42" min="0" step="0.01" data-pageduo-ele-id="e_1GFZo3hlAw1B"></td><td class="mat-total" data-pageduo-ele-id="e_KiN2Ts3p7NiP">$168.00</td></tr>
-              <tr data-pageduo-ele-id="e_2XA0FCugxNVG"><td data-pageduo-ele-id="e_5G6PWtP0FL7X">Đinh</td><td data-pageduo-ele-id="e_NYo9dZqlojPr"><input class="mat-qty" type="number" value="6" min="0" data-pageduo-ele-id="e_vX41tymNOeqK"></td><td data-pageduo-ele-id="e_mzAtQ9oqO7rt"><input class="mat-price" type="number" value="8.5" min="0" step="0.01" data-pageduo-ele-id="e_wTKPNlwcfttc"></td><td class="mat-total" data-pageduo-ele-id="e_pYjkznppbyzL">$51.00</td></tr>
-              <tr data-pageduo-ele-id="e_P0OxxkzC2LSh"><td data-pageduo-ele-id="e_aHSmZK7w4N2q">Gỗ</td><td data-pageduo-ele-id="e_FotO6cAQXg6t"><input class="mat-qty" type="number" value="18" min="0" data-pageduo-ele-id="e_UUNppamAijys"></td><td data-pageduo-ele-id="e_31RbbuI7NFtk"><input class="mat-price" type="number" value="12" min="0" step="0.01" data-pageduo-ele-id="e_CBQP8uCUbGGd"></td><td class="mat-total" data-pageduo-ele-id="e_BTq7HQJs3qKy">$216.00</td></tr>
-            </tbody>
-            <tfoot data-pageduo-ele-id="e_86ri5hkdVLTm"><tr class="total-row" data-pageduo-ele-id="e_C5Qi1cPrpacX"><td colspan="3" data-pageduo-ele-id="e_R5jum5ZdBEqT">Tổng cần chi trả tại Home Depot</td><td id="materialsTotal" data-pageduo-ele-id="e_5ggoPfGHdOwz">$435.00</td></tr></tfoot>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="page-section" id="playground" data-pageduo-ele-id="e_tnl44UXyWx4j">
-    <div class="container" data-pageduo-ele-id="e_1IIXzsLzXvED">
-      <div class="playground-intro" data-pageduo-ele-id="e_8bBWOAHXkIs8">
-        <div data-pageduo-ele-id="e_aCJHhewtIG4b">
-          <p class="eyebrow" data-pageduo-ele-id="e_YfDfd9cyGfXf">Playground · sửa, chạy, đọc lỗi</p>
-          <h2 data-pageduo-ele-id="e_fQUubv1HOZvu">Mỗi buổi một đoạn code ngắn</h2>
-          <p class="section-kicker" data-pageduo-ele-id="e_EZfN3kjc7wea">Các ví dụ đều giữ dưới 15 dòng. Bạn có thể sửa code, bấm chạy và quan sát thông báo theo đúng tư duy của buổi học. Nếu code thiếu ngoặc hoặc để trống, trình chạy trả về lỗi thân thiện thay vì im lặng.</p>
-        </div>
-        <div class="code-panel" data-pageduo-ele-id="e_SLHMxPI6jitJ">
-          <label data-pageduo-ele-id="e_Xt7RV8wcFAg6">Nguyên tắc thao tác</label>
-          <p data-pageduo-ele-id="e_hDSvssYIRbSm">Đọc đầu vào → đặt tên rõ → chạy một thay đổi → kiểm tra kết quả.</p>
-          <p class="code-result" data-pageduo-ele-id="e_yn771tCQ6OEY">Đừng sửa cả công trường trong một lần chạy.</p>
-        </div>
-      </div>
-      <div class="playground-list" data-pageduo-ele-id="e_W8itXDsvVVLT">
-        <article class="surface play-card" data-session="1" data-pageduo-ele-id="e_uezHtfW44mVA"><div class="play-card-header" data-pageduo-ele-id="e_PgTJ2TtpPMfL"><strong data-pageduo-ele-id="e_XrCkaZbA46Nr">B1 · Biến</strong><small data-pageduo-ele-id="e_2KA5qACkExlZ">thùng chứa</small></div><textarea class="play-code" data-default="length = 12\nwidth = 10\nprice_per_sqft = 3.5" aria-label="Code B1" data-pageduo-ele-id="e_lFAU4H4fsc2s">length = 12
-width = 10
-price_per_sqft = 3.5</textarea><div class="play-controls" data-pageduo-ele-id="e_mhaNuBu5vLuz"><button class="btn run-code" type="button" data-pageduo-ele-id="e_vZ3G9cMcGtVh">Chạy</button><button class="btn btn-secondary reset-code" type="button" data-pageduo-ele-id="e_Vt1RMBTHqzOn">Reset</button></div><div class="play-output" data-pageduo-ele-id="e_9A2UPp0IZVFc"></div></article>
-        <article class="surface play-card" data-session="2" data-pageduo-ele-id="e_pNyzl8wsqCkg"><div class="play-card-header" data-pageduo-ele-id="e_eW86oEjXMBAs"><strong data-pageduo-ele-id="e_HKXdvf0QMef0">B2 · Tính Sqft</strong><small data-pageduo-ele-id="e_GZBNKiknxY8K">input → số</small></div><textarea class="play-code" data-default="length = float(input())\nwidth = float(input())\nsqft = length * width\nprint(sqft)" aria-label="Code B2" data-pageduo-ele-id="e_ioBeLefJx5BW">length = float(input())
-width = float(input())
-sqft = length * width
-print(sqft)</textarea><div class="play-controls" data-pageduo-ele-id="e_vLlshsgXAYXQ"><button class="btn run-code" type="button" data-pageduo-ele-id="e_JPdFqjkHZuFp">Chạy</button><button class="btn btn-secondary reset-code" type="button" data-pageduo-ele-id="e_5DqMJJfY7s9f">Reset</button></div><div class="play-output" data-pageduo-ele-id="e_pC9T6NB0Hhsv"></div></article>
-        <article class="surface play-card" data-session="3" data-pageduo-ele-id="e_ALBXqfyGWbbl"><div class="play-card-header" data-pageduo-ele-id="e_fHoSgznNcNmW"><strong data-pageduo-ele-id="e_aBAiB7Fpg2PD">B3 · if/else</strong><small data-pageduo-ele-id="e_OxOHXnlpJsH9">kiểm tra</small></div><textarea class="play-code" data-default="if sqft > 1000:\n    print('large')\nelse:\n    print('standard')" aria-label="Code B3" data-pageduo-ele-id="e_79O2dvT4BtFM">if sqft &gt; 1000:
-    print('large')
-else:
-    print('standard')</textarea><div class="play-controls" data-pageduo-ele-id="e_71acshhOZWT8"><button class="btn run-code" type="button" data-pageduo-ele-id="e_QC504FXEkY8W">Chạy</button><button class="btn btn-secondary reset-code" type="button" data-pageduo-ele-id="e_npWwityKc6NX">Reset</button></div><div class="play-output" data-pageduo-ele-id="e_gM04anxCy7XT"></div></article>
-        <article class="surface play-card" data-session="4" data-pageduo-ele-id="e_VdCVjVMha0M3"><div class="play-card-header" data-pageduo-ele-id="e_g8GTuLMi6Ysa"><strong data-pageduo-ele-id="e_gmcOwH2XYtok">B4 · Hai quy tắc</strong><small data-pageduo-ele-id="e_On1qEew0BDfC">giảm + phí</small></div><textarea class="play-code" data-default="if sqft > 1000:\n    discount = 0.05\nif old_home:\n    cleanup = 0.10" aria-label="Code B4" data-pageduo-ele-id="e_iwB5YdkL1nFS">if sqft &gt; 1000:
-    discount = 0.05
-if old_home:
-    cleanup = 0.10</textarea><div class="play-controls" data-pageduo-ele-id="e_0hb8tIzHaMKH"><button class="btn run-code" type="button" data-pageduo-ele-id="e_cn1KMthDxoL5">Chạy</button><button class="btn btn-secondary reset-code" type="button" data-pageduo-ele-id="e_OwIB0AlEWa9q">Reset</button></div><div class="play-output" data-pageduo-ele-id="e_znrUc9mAV77g"></div></article>
-        <article class="surface play-card" data-session="5" data-pageduo-ele-id="e_BleRl5lRU0Vs"><div class="play-card-header" data-pageduo-ele-id="e_k5tspx4o4KaP"><strong data-pageduo-ele-id="e_z6gE9jsBbSp4">B5 · List + for</strong><small data-pageduo-ele-id="e_lwzbjQ1RSiav">vật tư</small></div><textarea class="play-code" data-default="materials = ['paint', 'nails', 'wood']\nfor item in materials:\n    print(item)" aria-label="Code B5" data-pageduo-ele-id="e_1UJ4J3KSIArW">materials = ['paint', 'nails', 'wood']
-for item in materials:
-    print(item)</textarea><div class="play-controls" data-pageduo-ele-id="e_m2ICZJrbaRul"><button class="btn run-code" type="button" data-pageduo-ele-id="e_G74RrPsi20UP">Chạy</button><button class="btn btn-secondary reset-code" type="button" data-pageduo-ele-id="e_yRUuuKtUKmJN">Reset</button></div><div class="play-output" data-pageduo-ele-id="e_0GB8TYv3BURi"></div></article>
-        <article class="surface play-card" data-session="6" data-pageduo-ele-id="e_5ET2HzeY5hxU"><div class="play-card-header" data-pageduo-ele-id="e_xZfYDeZcnPb2"><strong data-pageduo-ele-id="e_hAW2KHU7clPa">B6 · total</strong><small data-pageduo-ele-id="e_D09N38HmBmKR">cộng dồn</small></div><textarea class="play-code" data-default="total = 0\nfor item in materials:\n    total += item['qty'] * item['price']\nprint(total)" aria-label="Code B6" data-pageduo-ele-id="e_QOQn3vl1AUrH">total = 0
-for item in materials:
-    total += item['qty'] * item['price']
-print(total)</textarea><div class="play-controls" data-pageduo-ele-id="e_AEtUoWX7jdKI"><button class="btn run-code" type="button" data-pageduo-ele-id="e_BfPksse3iqOi">Chạy</button><button class="btn btn-secondary reset-code" type="button" data-pageduo-ele-id="e_brAHPkMiP4BI">Reset</button></div><div class="play-output" data-pageduo-ele-id="e_726jcFYo8Pad"></div></article>
-        <article class="surface play-card" data-session="7" data-pageduo-ele-id="e_KGroTm3sL1dP"><div class="play-card-header" data-pageduo-ele-id="e_df4EgP0VWJNy"><strong data-pageduo-ele-id="e_Nry0sHiwA3lQ">B7 · Function</strong><small data-pageduo-ele-id="e_hkES7LZ1dVyX">return</small></div><textarea class="play-code" data-default="def quote(area, price):\n    return area * price\nresult = quote(120, 3.5)" aria-label="Code B7" data-pageduo-ele-id="e_0ynJedwNmH2v">def quote(area, price):
-    return area * price
-result = quote(120, 3.5)</textarea><div class="play-controls" data-pageduo-ele-id="e_xasSrm4dw5VI"><button class="btn run-code" type="button" data-pageduo-ele-id="e_KMP7tlho5YXI">Chạy</button><button class="btn btn-secondary reset-code" type="button" data-pageduo-ele-id="e_TkApKAQysBhu">Reset</button></div><div class="play-output" data-pageduo-ele-id="e_JB8r4hfKLgKi"></div></article>
-        <article class="surface play-card" data-session="8" data-pageduo-ele-id="e_3qOa5BCsboRF"><div class="play-card-header" data-pageduo-ele-id="e_swuDCcKHcZVc"><strong data-pageduo-ele-id="e_uk4KcrBleKdj">B8 · Đóng gói</strong><small data-pageduo-ele-id="e_kwH1xI4FFjkI">tool hoàn chỉnh</small></div><textarea class="play-code" data-default="area = float(input())\nprice = 3.5\nquote = area * price\nprint(quote)" aria-label="Code B8" data-pageduo-ele-id="e_wW2hdf1D0BVE">area = float(input())
-price = 3.5
-quote = area * price
-print(quote)</textarea><div class="play-controls" data-pageduo-ele-id="e_BIz6ZOa3CV2k"><button class="btn run-code" type="button" data-pageduo-ele-id="e_uBNy9hAyf94l">Chạy</button><button class="btn btn-secondary reset-code" type="button" data-pageduo-ele-id="e_Mw8OVcTl93CU">Reset</button></div><div class="play-output" data-pageduo-ele-id="e_gLQRv2y4lUO3"></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="page-section" id="checkpoint" data-pageduo-ele-id="e_PK3wLbU0ImA6">
-    <div class="container" data-pageduo-ele-id="e_IgOYvn2R0kCa">
-      <p class="eyebrow" data-pageduo-ele-id="e_zFh0Ov3qZMOg">Checkpoint · lưu tiến độ học</p>
-      <h2 data-pageduo-ele-id="e_O3ZrVuEXGbep">Bạn đã sẵn sàng bàn giao B1–B8?</h2>
-      <p class="checkpoint-intro" data-pageduo-ele-id="e_zyQqhQ8q65Dl">Chọn một đáp án cho mỗi câu. Sau khi chấm, trang sẽ chỉ lưu điểm, skillTag và câu trả lời vào assessmentEntry — không yêu cầu tên hay email.</p>
-      <div class="quiz-list" data-pageduo-ele-id="e_MROQLWna8Srt">
-        <article class="surface quiz-item" data-pageduo-ele-id="e_JnfdcxNmXKkX"><div class="quiz-meta" data-pageduo-ele-id="e_DXkVfYJ1HbHE"><span class="skill-label" data-pageduo-ele-id="e_EiGvshOmqtmh">B1 · biến và phép gán</span><span class="tag" data-pageduo-ele-id="e_5TzSIw4NKP2B">1 điểm</span></div><h3 data-pageduo-ele-id="e_Butnfwz5LkSd">Biến nào lưu chiều rộng sau <code data-pageduo-ele-id="e_Z4xj9NKHXkF6">width = 12</code>?</h3><div class="quiz-options" data-pageduo-ele-id="e_zwfRB7q8jlWI"><label data-pageduo-ele-id="e_655UnKSiN3wp"><input type="radio" name="q1" value="A" data-pageduo-ele-id="e_rGPBJtKMLPNR">A. width</label><label data-pageduo-ele-id="e_Z2zUGXDOYEON"><input type="radio" name="q1" value="B" data-pageduo-ele-id="e_ZZSQyNssdcwI">B. 12</label><label data-pageduo-ele-id="e_TmXSjh8X9Ekp"><input type="radio" name="q1" value="C" data-pageduo-ele-id="e_7mOYuTEK3UZY">C. sqft</label><label data-pageduo-ele-id="e_XgwNnBdrAEtX"><input type="radio" name="q1" value="D" data-pageduo-ele-id="e_KPz5wP6ppoEI">D. input</label></div><div id="feedback-b1" class="quiz-feedback" data-pageduo-ele-id="e_l2YuZLe2EULZ"></div></article>
-        <article class="surface quiz-item" data-pageduo-ele-id="e_5I2hHKnlQP57"><div class="quiz-meta" data-pageduo-ele-id="e_HvLNMXn2bTvp"><span class="skill-label" data-pageduo-ele-id="e_0bfgRKOxlcJI">B2 · nhập liệu và chuyển kiểu</span><span class="tag" data-pageduo-ele-id="e_N8352K1q5jeT">1 điểm</span></div><h3 data-pageduo-ele-id="e_wsYaRAwEYTbT">Vì sao cần đổi <code data-pageduo-ele-id="e_btIJspsHwf7B">input</code> thành số trước phép nhân?</h3><div class="quiz-options" data-pageduo-ele-id="e_tiOtwKa1sIYt"><label data-pageduo-ele-id="e_ILTcWdh9NCZg"><input type="radio" name="q2" value="A" data-pageduo-ele-id="e_QqsCLK6GeG9f">A. Để input nhận tiếng Việt</label><label data-pageduo-ele-id="e_C7beFu8OsajP"><input type="radio" name="q2" value="B" data-pageduo-ele-id="e_Ny7iR0I2yncR">B. Vì input trả về chuỗi</label><label data-pageduo-ele-id="e_Mnp4G8AjQbpS"><input type="radio" name="q2" value="C" data-pageduo-ele-id="e_5Mwmk1PYuCUD">C. Để tạo list</label><label data-pageduo-ele-id="e_T56Eb3vJPpCl"><input type="radio" name="q2" value="D" data-pageduo-ele-id="e_16fNyTsb2Ak1">D. Để gọi hàm</label></div><div id="feedback-b2" class="quiz-feedback" data-pageduo-ele-id="e_GgPMG4NSE6a0"></div></article>
-        <article class="surface quiz-item" data-pageduo-ele-id="e_5L7RQTJPRkna"><div class="quiz-meta" data-pageduo-ele-id="e_SldTbHhgxWBO"><span class="skill-label" data-pageduo-ele-id="e_QIXzIw1Kr30G">B3 · điều kiện đơn</span><span class="tag" data-pageduo-ele-id="e_wb3Im07MhVHT">1 điểm</span></div><h3 data-pageduo-ele-id="e_r6p9YpXaBmB6">Với <code data-pageduo-ele-id="e_Ry2X6iJEv4Cw">sqft = 900</code> và <code data-pageduo-ele-id="e_5Z57HeMUxsfL">if sqft &gt; 1000</code>, nhánh nào chạy?</h3><div class="quiz-options" data-pageduo-ele-id="e_j3ottkvcAmUx"><label data-pageduo-ele-id="e_bH3TxujirAj2"><input type="radio" name="q3" value="A" data-pageduo-ele-id="e_LuQUGIeHxfiM">A. Nhánh if</label><label data-pageduo-ele-id="e_u4Q7LHa8eKc0"><input type="radio" name="q3" value="B" data-pageduo-ele-id="e_jlf4AF9Gqkma">B. Cả hai</label><label data-pageduo-ele-id="e_HSdr0NYSqkL2"><input type="radio" name="q3" value="C" data-pageduo-ele-id="e_ffK1xS24wUrg">C. Không nhánh nào nếu có else</label><label data-pageduo-ele-id="e_QgKpxVmwRs6f"><input type="radio" name="q3" value="D" data-pageduo-ele-id="e_C7pwIYtZCKgW">D. Chương trình lỗi</label></div><div id="feedback-b3" class="quiz-feedback" data-pageduo-ele-id="e_a5oFpidKE6kZ"></div></article>
-        <article class="surface quiz-item" data-pageduo-ele-id="e_RTElZCHJh5uM"><div class="quiz-meta" data-pageduo-ele-id="e_tQTpJqLZZQ3d"><span class="skill-label" data-pageduo-ele-id="e_axuSbBb2VA5A">B4 · logic đa điều kiện</span><span class="tag" data-pageduo-ele-id="e_Dj1caPJYOlI0">1 điểm</span></div><h3 data-pageduo-ele-id="e_KIzruwFoUMiK">Nhà cũ 1.200 sqft cần áp dụng gì?</h3><div class="quiz-options" data-pageduo-ele-id="e_yvDOF216z5YN"><label data-pageduo-ele-id="e_0NBTBI5U55c5"><input type="radio" name="q4" value="A" data-pageduo-ele-id="e_hhMuPLlUyiee">A. Chỉ giảm 5%</label><label data-pageduo-ele-id="e_VR6Mwwtrdg3j"><input type="radio" name="q4" value="B" data-pageduo-ele-id="e_68TZKeWMhCwd">B. Chỉ phí dọn rác</label><label data-pageduo-ele-id="e_7Ukut3uGZL07"><input type="radio" name="q4" value="C" data-pageduo-ele-id="e_Hq63mnsIbTUd">C. Không ưu đãi</label><label data-pageduo-ele-id="e_qyxRSDUwNPs5"><input type="radio" name="q4" value="D" data-pageduo-ele-id="e_oqhhHc2FFGGU">D. Giảm 5% và cộng 10% phí dọn rác</label></div><div id="feedback-b4" class="quiz-feedback" data-pageduo-ele-id="e_1MjMSx58joEY"></div></article>
-        <article class="surface quiz-item" data-pageduo-ele-id="e_VOoEV1rxByg0"><div class="quiz-meta" data-pageduo-ele-id="e_6EPqQk7IVuCh"><span class="skill-label" data-pageduo-ele-id="e_WaHc8R0Yd0e3">B5 · list và vòng lặp</span><span class="tag" data-pageduo-ele-id="e_NDNVT7aqcDN4">1 điểm</span></div><h3 data-pageduo-ele-id="e_8Ctz8mvx2vEe">Công cụ phù hợp để đi qua từng vật tư là gì?</h3><div class="quiz-options" data-pageduo-ele-id="e_cpUkHKIlQc62"><label data-pageduo-ele-id="e_EGWxt2tf0pFp"><input type="radio" name="q5" value="A" data-pageduo-ele-id="e_NM2aU7zTHtWk">A. for</label><label data-pageduo-ele-id="e_GyAKNqIWhzm0"><input type="radio" name="q5" value="B" data-pageduo-ele-id="e_V61mpGVY0vaT">B. if</label><label data-pageduo-ele-id="e_Fp46Yx6FOU0O"><input type="radio" name="q5" value="C" data-pageduo-ele-id="e_sBn8ex1ag33t">C. input</label><label data-pageduo-ele-id="e_BCbYwR6rA7EN"><input type="radio" name="q5" value="D" data-pageduo-ele-id="e_DOstRnToHZHa">D. return</label></div><div id="feedback-b5" class="quiz-feedback" data-pageduo-ele-id="e_ZUDffmzMU7mA"></div></article>
-        <article class="surface quiz-item" data-pageduo-ele-id="e_FH6AOL1qWAYS"><div class="quiz-meta" data-pageduo-ele-id="e_oYH6ETt9WpUo"><span class="skill-label" data-pageduo-ele-id="e_9EacO7eoMX37">B6 · tích lũy tổng</span><span class="tag" data-pageduo-ele-id="e_ctwodtiwR3Sh">1 điểm</span></div><h3 data-pageduo-ele-id="e_6B4kVkzQVdCF">Biến <code data-pageduo-ele-id="e_L8jKDnbj733q">total</code> nên được khởi tạo ở đâu?</h3><div class="quiz-options" data-pageduo-ele-id="e_i0aSCHnDbB1F"><label data-pageduo-ele-id="e_RDYK8DGOLcZa"><input type="radio" name="q6" value="A" data-pageduo-ele-id="e_Oq03ldD6460R">A. Sau vòng lặp</label><label data-pageduo-ele-id="e_EHf7n4qh9oYC"><input type="radio" name="q6" value="B" data-pageduo-ele-id="e_TMmv7m1dEiAB">B. Bên trong mỗi lần lặp</label><label data-pageduo-ele-id="e_AHIxJq4WKBkL"><input type="radio" name="q6" value="C" data-pageduo-ele-id="e_XTh67qqgv5j8">C. Trước vòng lặp</label><label data-pageduo-ele-id="e_XuPqdVa0WgKP"><input type="radio" name="q6" value="D" data-pageduo-ele-id="e_pmvjGt56LpdU">D. Trong chuỗi</label></div><div id="feedback-b6" class="quiz-feedback" data-pageduo-ele-id="e_Hzqg7XxBiJs5"></div></article>
-        <article class="surface quiz-item" data-pageduo-ele-id="e_zKLBh6aBUn9Q"><div class="quiz-meta" data-pageduo-ele-id="e_cxcbWw3aVSwa"><span class="skill-label" data-pageduo-ele-id="e_uINWqQn1HaPb">B7 · hàm và giá trị trả về</span><span class="tag" data-pageduo-ele-id="e_pmqwOtoJWuYh">1 điểm</span></div><h3 data-pageduo-ele-id="e_QPtmjfGzn7st">Lợi ích chính của <code data-pageduo-ele-id="e_OqDo17VksZUq">return</code> trong hàm báo giá là gì?</h3><div class="quiz-options" data-pageduo-ele-id="e_NT4lI4tBl8aH"><label data-pageduo-ele-id="e_k60p6wgwnu0k"><input type="radio" name="q7" value="A" data-pageduo-ele-id="e_qWDRfjbrjA71">A. Lưu file Excel</label><label data-pageduo-ele-id="e_3yJ2qhTkVAML"><input type="radio" name="q7" value="B" data-pageduo-ele-id="e_bl0Mvr4aRgiB">B. Đưa kết quả ra nơi gọi hàm</label><label data-pageduo-ele-id="e_Zx5BsEvywkkr"><input type="radio" name="q7" value="C" data-pageduo-ele-id="e_VNNy3oMTTwnl">C. Tạo điều kiện</label><label data-pageduo-ele-id="e_8Dg9rOiaJmnz"><input type="radio" name="q7" value="D" data-pageduo-ele-id="e_502GVvT6djq6">D. Xóa biến</label></div><div id="feedback-b7" class="quiz-feedback" data-pageduo-ele-id="e_rFsZmcI6PcFr"></div></article>
-        <article class="surface quiz-item" data-pageduo-ele-id="e_7gC13TAiSFxQ"><div class="quiz-meta" data-pageduo-ele-id="e_0T6P2GMahOhs"><span class="skill-label" data-pageduo-ele-id="e_4fjeqOKGhdG5">B8 · đóng gói chương trình</span><span class="tag" data-pageduo-ele-id="e_6Za0058CnrdC">1 điểm</span></div><h3 data-pageduo-ele-id="e_SeR6EmlfGOi2">Đầu vào tối thiểu của Cỗ Máy Báo Giá Tự Động là gì?</h3><div class="quiz-options" data-pageduo-ele-id="e_j0EBa0yiehTC"><label data-pageduo-ele-id="e_b0z41DQAhULb"><input type="radio" name="q8" value="A" data-pageduo-ele-id="e_cBvP0PXvcPdW">A. Tên nhân viên</label><label data-pageduo-ele-id="e_zunQmOWx84PX"><input type="radio" name="q8" value="B" data-pageduo-ele-id="e_iWWLn0vxqtgv">B. Zip Code</label><label data-pageduo-ele-id="e_PGTXESuF3V1H"><input type="radio" name="q8" value="C" data-pageduo-ele-id="e_KcTHjRJwe4ul">C. Diện tích</label><label data-pageduo-ele-id="e_6s1CAdanBKM8"><input type="radio" name="q8" value="D" data-pageduo-ele-id="e_4c6anUMg3dKG">D. Mật khẩu</label></div><div id="feedback-b8" class="quiz-feedback" data-pageduo-ele-id="e_v9XBDQBdvvMJ"></div></article>
-      </div>
-      <div class="quiz-submit" data-pageduo-ele-id="e_pn2ieWFl0vXC">
-        <button id="submitQuiz" class="btn" type="button" data-pageduo-ele-id="e_VrsnEZt3NiOG">Chấm checkpoint và lưu kết quả</button>
-        <span id="savedMessage" class="save-message" aria-live="polite" data-pageduo-ele-id="e_ihxVI7hXMgSk"></span>
-      </div>
-      <div id="quizResult" class="result-panel" aria-live="polite" data-pageduo-ele-id="e_MNebb9mgIEka">
-        <p class="eyebrow" data-pageduo-ele-id="e_UIylBXIXUP16">Bảng bàn giao</p>
-        <div id="scoreValue" class="result-score" data-pageduo-ele-id="e_PqwNxFZNu8ap">0/8</div>
-        <p data-pageduo-ele-id="e_wnppcJo10eHn">Kỹ năng nào đã đạt, kỹ năng nào cần quay lại playground:</p>
-        <div id="skillResults" class="result-skills" data-pageduo-ele-id="e_v3q6WeD2xbN1"></div>
-        <a id="followUp" class="btn btn-secondary" href="https://pageduo.ai/" data-pageduo-ele-id="e_nDpEGyvvjYvM">Tạo bài luyện tiếp theo từ kỹ năng còn yếu</a>
+        <a href="quan-ly-du-lieu.html" class="btn" style="background:var(--accent);color:#fff;padding:14px 24px;border-radius:12px;font-weight:800;text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:8px;">
+          Sang Giai đoạn 2: Quản lý dữ liệu →
+        </a>
       </div>
     </div>
   </section>
 </main>
-<footer class="site-footer" data-pageduo-ele-id="e_6VfDFXtyc0gu">
-  <div class="footer-inner" data-pageduo-ele-id="e_oYmhjTP7cclX">
-    <div data-pageduo-ele-id="e_YJahyMgNXRER">
-      <strong data-pageduo-ele-id="e_Dp5t45vi06Bl">Code công trường</strong>
-      <p data-pageduo-ele-id="e_q1ZNXgxrR0LS">Học để biến số đo, sổ sách và tiến độ thành công cụ dùng được trong công việc remodeling.</p>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand & Slogan -->
+      <div class="footer-col">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <span style="display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:#102A2E;color:var(--safety);font-size:20px;border:1px solid rgba(240,180,77,0.3);">🤖</span>
+          <span style="font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.02em;">Lập Trình <span style="color:var(--safety);">Robot</span></span>
+        </div>
+        <p>Hệ thống đào tạo Công nghệ, Robotics & Lập trình ứng dụng thực chiến. Xây dựng tư duy thuật toán vững vàng và giải quyết trực tiếp bài toán công việc.</p>
+        <p style="font-size:13px;color:#A2B7AE;">Chuyên đề: <b>Python cho Giám sát Công trường</b> (32 buổi · 4 tháng · từ số đo sàn đến Web App hoàn thiện).</p>
+      </div>
+
+      <!-- Col 2: Lộ trình 4 giai đoạn -->
+      <div class="footer-col">
+        <h4>Lộ Trình Python</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">⌂ Tổng quan 32 buổi</a></li>
+          <li><a href="nen-tang-python.html">1. Đặt móng (Python nền tảng)</a></li>
+          <li><a href="quan-ly-du-lieu.html">2. Xây tường (Quản lý dữ liệu)</a></li>
+          <li><a href="streamlit-web-app.html">3. Hoàn thiện (Streamlit Web App)</a></li>
+          <li><a href="trien-khai-marketing.html">4. Bàn giao (Triển khai & Marketing)</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Khóa học khác LapTrinhRobot.com -->
+      <div class="footer-col">
+        <h4>Hệ Thống Đào Tạo</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">← Trang chủ LapTrinhRobot.com</a></li>
+          <li><a href="../tin10.html">Chuyên Tin 10 (C++ / Thuật toán)</a></li>
+          <li><a href="../physics.html">Khoa Học & Vật Lý IGCSE</a></li>
+          <li><a href="../competition.html">Thư viện đề thi Chuyên Tin</a></li>
+          <li><a href="../lien-he.html">Đăng ký tư vấn khóa học</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Liên hệ & Hỗ trợ -->
+      <div class="footer-col">
+        <h4>Liên Hệ & Hỗ Trợ</h4>
+        <ul class="footer-contact" style="list-style:none;padding:0;margin:0;">
+          <li>📍 <span>Hẻm 556 Nguyễn Văn Quá, số nhà 12/5, P. Đông Hưng Thuận, Q. 12, TP. HCM</span></li>
+          <li>📞 <span>Hotline: <a href="tel:0915514419" style="color:var(--safety);font-weight:700;">09 155 144 19</a></span></li>
+          <li>💬 <span>Zalo: <a href="https://zalo.me/0915514419" target="_blank" rel="noopener" style="color:var(--safety);font-weight:700;">0915.514.419</a></span></li>
+          <li>✉️ <span>Email: <a href="mailto:LapTrinhRobot.com@gmail.com" style="color:#C4D2CB;">LapTrinhRobot.com@gmail.com</a></span></li>
+          <li>🌐 <span>Fanpage: <a href="https://facebook.com/laptrinhrobots" target="_blank" rel="noopener" style="color:#C4D2CB;">facebook.com/laptrinhrobots</a></span></li>
+        </ul>
+      </div>
     </div>
-    <div data-pageduo-ele-id="e_MwBjnOUWE294">
-      <strong data-pageduo-ele-id="e_vLCGsjyY8n0K">Đi tiếp</strong>
-      <p data-pageduo-ele-id="e_hzrSoeDwmqhX"><a href="nen-tang-python.html" data-pageduo-ele-id="e_SMwk1QDUM0aW">Bắt đầu từ Giai đoạn 1: Đặt móng →</a></p>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <div>© 2026 LapTrinhRobot.com. Mọi quyền được bảo lưu.</div>
+      <div style="display:flex;gap:18px;">
+        <a href="../privacy.html">Chính sách bảo mật</a>
+        <a href="../terms.html">Điều khoản dịch vụ</a>
+        <a href="../index.html">Về trang chủ</a>
+      </div>
     </div>
   </div>
 </footer>
 
-</body></html>
+<!-- Floating Contact Buttons -->
+<div style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:10px;">
+  <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#0088FF;color:#fff;font-weight:800;font-size:12px;text-decoration:none;box-shadow:0 6px 16px rgba(0,136,255,.4);transition:transform .2s;" title="Nhắn tin qua Zalo">Zalo</a>
+  <a href="tel:0915514419" style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#2D625D;color:#fff;font-size:17px;text-decoration:none;box-shadow:0 6px 16px rgba(45,98,93,.4);transition:transform .2s;" title="Gọi Hotline: 0915.514.419">📞</a>
+</div>
+
+</body>
+</html>
