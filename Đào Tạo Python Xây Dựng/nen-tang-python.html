@@ -44,6 +44,11 @@
 .lesson-card li{margin-bottom:6px}
 .lesson-product{margin-top:auto;padding-top:13px;border-top:1px solid var(--line);font-weight:700}
 .lesson-product span{display:block;color:var(--green);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.lesson-summary{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);font-size:14px}
+.lesson-summary strong{display:block;color:var(--accent);margin-bottom:5px}
+.lesson-summary details{margin-top:9px}
+.lesson-summary summary{cursor:pointer;color:var(--green);font-weight:800}
+.lesson-summary pre{margin:9px 0 0;padding:13px;overflow:auto;border-radius:9px;background:var(--ink);color:#FFF7E9;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap}
 .flow-wrap{margin-top:28px}
 .flow-wrap img{width:100%;aspect-ratio:1.8;object-fit:cover;border-radius:16px}
 .threshold{padding:28px;margin-top:28px}
@@ -488,6 +493,13 @@ p{margin:0 0 16px}
             <p data-pageduo-ele-id="e_AFPXcuLCv0ew">Biến giống một thùng chứa có nhãn. <code data-pageduo-ele-id="e_9xEb2Ta66Hn0">width = 12</code> nghĩa là thùng tên <code data-pageduo-ele-id="e_YdnLInRLTnIO">width</code> đang giữ giá trị 12; khi đọc lỗi, hãy kiểm tra tên biến, dấu bằng và kiểu dữ liệu trước.</p>
             <ul data-pageduo-ele-id="e_4Uf30tVBVSvc"><li data-pageduo-ele-id="e_dxepbKDbtSW5">Gán chiều dài, chiều rộng và đơn giá USD.</li><li data-pageduo-ele-id="e_7RUl4sfocS0a">Chạy code, đọc lỗi, sửa từng dòng.</li></ul>
             <div class="lesson-product" data-pageduo-ele-id="e_03VmkjoNu6o4"><span data-pageduo-ele-id="e_wcGtjJQH3hQk">Điểm bàn giao</span>Ba biến có tên rõ ràng cho một phòng.</div>
+            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Tạo biến cho chiều dài, chiều rộng, đơn giá; in diện tích và chi phí của một phòng.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>length_m = 5
+width_m = 3.4
+price_usd = 12
+area_m2 = length_m * width_m
+total_usd = area_m2 * price_usd
+print(f"Diện tích: {area_m2:.2f} m2")
+print(f"Chi phí: {total_usd:.2f} USD")</pre></details>
           </article>
           <article class="surface lesson-card" data-pageduo-ele-id="e_fh0gHFKs3Y43">
             <div class="lesson-top" data-pageduo-ele-id="e_TyUDXi4vPOwa"><span class="lesson-number" data-pageduo-ele-id="e_2c4FsVAnV1VN">BUỔI 2 · B2</span><span class="tag" data-pageduo-ele-id="e_hz67iFCwaGb9">nhập liệu và chuyển kiểu</span></div>
@@ -495,6 +507,11 @@ p{margin:0 0 16px}
             <p data-pageduo-ele-id="e_qehgmMPFk2j8"><code data-pageduo-ele-id="e_7EhM6PUGAkRk">input()</code> nhận dữ liệu từ người dùng nhưng trả về chuỗi. Muốn nhân chiều dài với chiều rộng, cần chuyển nó thành số bằng <code data-pageduo-ele-id="e_jlVpNQWHi2wT">float()</code> hoặc <code data-pageduo-ele-id="e_p0PVPRgCIPs8">int()</code>.</p>
             <ul data-pageduo-ele-id="e_oJcLONPRx9Tz"><li data-pageduo-ele-id="e_MNQpAXZIBO59">Tính Sqft từ chiều dài × chiều rộng.</li><li data-pageduo-ele-id="e_Y5Oj60vn4uIE">Nhân diện tích với đơn giá USD.</li></ul>
             <div class="lesson-product" data-pageduo-ele-id="e_wutq9QyaDZ6U"><span data-pageduo-ele-id="e_Xm6KuBQLmiqx">Sản phẩm</span>Tool Báo Giá Lát Sàn phiên bản đầu.</div>
+            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Nhập chiều dài, chiều rộng và đơn giá từ bàn phím rồi tính báo giá.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>length_m = float(input("Dài (m): "))
+width_m = float(input("Rộng (m): "))
+price_usd = float(input("Đơn giá USD/m2: "))
+area_m2 = length_m * width_m
+print(f"Tổng: {area_m2 * price_usd:.2f} USD")</pre></details>
           </article>
         </div>
       </div>
@@ -511,6 +528,11 @@ p{margin:0 0 16px}
             <p data-pageduo-ele-id="e_nlRHDfvKH5Bb">Chương trình không “đoán”. Nó kiểm tra một điều kiện rồi đi vào nhánh <code data-pageduo-ele-id="e_4niDHgxy3lVV">if</code> hoặc <code data-pageduo-ele-id="e_conkJ9TlQovw">else</code>. Với 900 sqft và điều kiện lớn hơn 1.000, nhánh điều kiện là sai.</p>
             <ul data-pageduo-ele-id="e_ejGgm35alcf0"><li data-pageduo-ele-id="e_h2mip7jOH028">Đặt ngưỡng diện tích.</li><li data-pageduo-ele-id="e_nJEEWaloa6G5">Hiển thị hướng xử lý tương ứng.</li></ul>
             <div class="lesson-product" data-pageduo-ele-id="e_2jzYN84B45uh"><span data-pageduo-ele-id="e_OHNq4a0qTKH4">Điểm bàn giao</span>Tool biết diện tích nào cần báo giá thường hay nâng cao.</div>
+            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Nếu diện tích lớn hơn 100 m2, in thông báo cần báo giá nâng cao; ngược lại in báo giá tiêu chuẩn.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>area_m2 = float(input("Diện tích (m2): "))
+      if area_m2 &gt; 100:
+        print("Chuyển sang báo giá nâng cao")
+      else:
+        print("Báo giá tiêu chuẩn")</pre></details>
           </article>
           <article class="surface lesson-card" data-pageduo-ele-id="e_EQefgeuU4GER">
             <div class="lesson-top" data-pageduo-ele-id="e_E670r54PZxuK"><span class="lesson-number" data-pageduo-ele-id="e_1LmJlfAVWuse">BUỔI 4 · B4</span><span class="tag" data-pageduo-ele-id="e_wwXB4HE1CVBr">logic đa điều kiện</span></div>
@@ -518,6 +540,14 @@ p{margin:0 0 16px}
             <p data-pageduo-ele-id="e_XkLfjzgDxysf">Tool Báo Giá Nâng Cao giảm <b data-pageduo-ele-id="e_VYlUQi3KnrzG">5%</b> nếu diện tích &gt; 1.000 sqft và cộng <b data-pageduo-ele-id="e_RQD8RtfmJZ6C">10%</b> phí dọn rác nếu là nhà cũ. Một nhà cũ 1.200 sqft nhận cả hai xử lý; thứ tự tính phải được viết rõ.</p>
             <ul data-pageduo-ele-id="e_qmIifZkQv9hE"><li data-pageduo-ele-id="e_b5RA1mieKl1D">Phân biệt <code data-pageduo-ele-id="e_uwVyEbRy5ZY2">and</code> với hai lần kiểm tra độc lập.</li><li data-pageduo-ele-id="e_4A91xtjUtdZS">Kiểm tra trường hợp vượt ngưỡng và nhà cũ đồng thời.</li></ul>
             <div class="lesson-product" data-pageduo-ele-id="e_B6bHJLBWfi3y"><span data-pageduo-ele-id="e_WpkvCsiGamdT">Điểm bàn giao</span>Báo giá nâng cao có quy tắc minh bạch.</div>
+            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Tính chi phí sau khi giảm 5% cho diện tích lớn và cộng 10% phí dọn rác cho nhà cũ.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>area_m2 = 120
+      base = area_m2 * 12
+      if area_m2 &gt; 100:
+        base *= 0.95
+      is_old_home = True
+      if is_old_home:
+        base *= 1.10
+      print(f"Báo giá: {base:.2f} USD")</pre></details>
           </article>
         </div>
       </div>
@@ -533,12 +563,22 @@ p{margin:0 0 16px}
             <h3 data-pageduo-ele-id="e_S2Llfa0LjtA0">Một list là cả danh sách vật tư</h3>
             <p data-pageduo-ele-id="e_lw6Oyb82rhlD">Thay vì viết lại cùng một lệnh cho sơn, đinh và gỗ, đưa chúng vào một <code data-pageduo-ele-id="e_UMk3isuW97Vi">list</code>. Vòng lặp <code data-pageduo-ele-id="e_GzqxBqQUcB5K">for</code> đi qua từng phần tử; <code data-pageduo-ele-id="e_pw0W3U08Btqp">while</code> phù hợp khi điều kiện kết thúc chưa biết trước.</p>
             <div class="lesson-product" data-pageduo-ele-id="e_mTjiJ1cpYRWh"><span data-pageduo-ele-id="e_G9QgSpcBNEBD">Điểm bàn giao</span>Danh sách vật tư có thể duyệt từng dòng.</div>
+            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Duyệt danh sách vật tư và in tên từng vật tư cần mua.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>materials = ["Sơn", "Đinh", "Gỗ"]
+      for material in materials:
+        print("Cần mua:", material)</pre></details>
           </article>
           <article class="surface lesson-card" data-pageduo-ele-id="e_6TtI4cHHnk5D">
             <div class="lesson-top" data-pageduo-ele-id="e_ZOVAyR5O3XRw"><span class="lesson-number" data-pageduo-ele-id="e_4L2qn6Hf2dBz">BUỔI 6 · B6</span><span class="tag" data-pageduo-ele-id="e_A1Qu8xfd64TS">tích lũy tổng</span></div>
             <h3 data-pageduo-ele-id="e_PosskDB9dza4">Duyệt vật tư và cộng dồn</h3>
             <p data-pageduo-ele-id="e_eaPUuOWW2F7r">Với mỗi vật tư, tính số lượng × đơn giá rồi cộng vào <code data-pageduo-ele-id="e_xleI1Nq0ykyq">total</code>. Biến tổng phải khởi tạo <b data-pageduo-ele-id="e_LgPaLbNzhDPB">trước vòng lặp</b>; đặt bên trong sẽ làm mất kết quả của lần trước.</p>
             <div class="lesson-product" data-pageduo-ele-id="e_7tdyjwqdUw73"><span data-pageduo-ele-id="e_TpSUhE94GJp8">Sản phẩm</span>Tool Quản Lý Vật Tư, tính tổng tiền cần chi trả tại Home Depot.</div>
+            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Tính tổng tiền của ba vật tư từ số lượng và đơn giá.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>items = [("Sơn", 10, 450000), ("Đinh", 50, 35000), ("Gỗ", 20, 2800000)]
+      total = 0
+      for name, quantity, price in items:
+        subtotal = quantity * price
+        total += subtotal
+        print(name, subtotal)
+      print("Tổng cộng:", total)</pre></details>
           </article>
         </div>
       </div>
@@ -554,12 +594,23 @@ p{margin:0 0 16px}
             <h3 data-pageduo-ele-id="e_V5lbzXJAwMUj">Function là một tổ đội nhận việc</h3>
             <p data-pageduo-ele-id="e_on6agrDaeoGd">Hàm nhận tham số, làm một nhiệm vụ cụ thể và dùng <code data-pageduo-ele-id="e_1VU4FsYsCEoU">return</code> để đưa kết quả về nơi gọi. Hàm báo giá giúp không phải chép lại công thức ở nhiều màn hình.</p>
             <div class="lesson-product" data-pageduo-ele-id="e_flCjsjgJ3EXa"><span data-pageduo-ele-id="e_AojMbfhrlt7b">Điểm bàn giao</span>Một hàm báo giá có thể gọi lại cho nhiều phòng.</div>
+            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Viết hàm nhận dài, rộng, đơn giá và trả về tổng chi phí.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>def estimate(length_m, width_m, price_usd):
+        return length_m * width_m * price_usd
+
+      print(estimate(5, 3.4, 12))</pre></details>
           </article>
           <article class="surface lesson-card" data-pageduo-ele-id="e_fQ1gS6Mioxwj">
             <div class="lesson-top" data-pageduo-ele-id="e_l3LRTCtoAY4q"><span class="lesson-number" data-pageduo-ele-id="e_CIfxfcvndWUn">BUỔI 8 · B8</span><span class="tag" data-pageduo-ele-id="e_qAUn92dr8puG">đóng gói chương trình</span></div>
             <h3 data-pageduo-ele-id="e_gJCImbU3PFnn">Cỗ Máy Báo Giá Tự Động</h3>
             <p data-pageduo-ele-id="e_ExVh9cFUJcL1">Đầu vào tối thiểu là diện tích. Chương trình gọi hàm báo giá, áp dụng quy tắc cần thiết và xuất kết quả ngay. Đây là lúc các mảnh B1–B7 thành một tool hoàn chỉnh.</p>
             <div class="lesson-product" data-pageduo-ele-id="e_vVmz3e8Yu340"><span data-pageduo-ele-id="e_9mnIE5T141w0">Sản phẩm</span>Cỗ Máy Báo Giá Tự Động.</div>
+            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Đóng gói hàm báo giá thành chương trình có nhập liệu và kiểm tra dữ liệu cơ bản.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>def estimate(length_m, width_m, price_usd):
+        if length_m &lt;= 0 or width_m &lt;= 0 or price_usd &lt;= 0:
+          return None
+        return length_m * width_m * price_usd
+
+      total = estimate(float(input("Dài: ")), float(input("Rộng: ")), float(input("Đơn giá: ")))
+      print("Dữ liệu không hợp lệ" if total is None else f"Tổng: {total:.2f} USD")</pre></details>
           </article>
         </div>
       </div>
