@@ -174,7 +174,31 @@ p{margin:0 0 16px}
   .flow>div:first-child{border-radius:12px 12px 0 0}
   .flow>div:last-child{border-radius:0 0 12px 12px}
   .section-heading{display:block}
-}</style>
+}
+.instructor-kit{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:#FCFAF6;overflow:hidden}
+.instructor-summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 15px;background:#F6F1E6;cursor:pointer;font-weight:800;color:var(--ink);font-size:13px;user-select:none;transition:background .2s}
+.instructor-summary:hover{background:#EFE6D5}
+.instructor-kit[open] .instructor-summary{border-bottom:1px solid var(--line);background:#EFE5D2}
+.kit-badge{display:inline-block;padding:2px 7px;border-radius:6px;background:var(--ink);color:var(--safety);font-size:10.5px;font-weight:800;text-transform:uppercase}
+.instructor-body{padding:15px;display:flex;flex-direction:column;gap:12px;font-size:13.5px;line-height:1.6}
+.teaching-timeline{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 2px}
+.timeline-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:11.5px;font-weight:700;color:var(--muted)}
+.timeline-pill b{color:var(--accent)}
+.teacher-plan{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px}
+.teacher-plan h4,.exercise-box h4,.teacher-note h4{margin:0 0 6px;font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px}
+.teacher-plan h4{color:var(--accent)}
+.teacher-note{background:#FFF9E8;border:1px solid #ECD89F;border-left:4px solid var(--safety);border-radius:8px;padding:12px 14px;font-size:13px}
+.teacher-note h4{color:#A46D14}
+.exercise-box{background:#fff;border:1px solid #D1DDD8;border-left:4px solid var(--green);border-radius:8px;padding:12px 14px}
+.exercise-box h4{color:var(--green)}
+.exercise-task{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.exercise-task strong{color:var(--ink)}
+.code-box-wrapper{background:var(--ink);color:#FFF7E9;border-radius:10px;overflow:hidden;margin-top:4px}
+.code-box-header{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#112C30;border-bottom:1px solid #234D52;font-size:12px;color:var(--safety);font-weight:800}
+.code-box-wrapper pre{margin:0;padding:14px;overflow-x:auto;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#FFF7E9;white-space:pre-wrap}
+.code-output{background:#0B1F22;border-top:1px dashed #2E5054;padding:10px 14px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#A9E5B5}
+.session-list li{align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line)}
+.session-list li:last-child{border-bottom:0}</style>
 <style data-pd-corrections="">fieldset>legend{float:none!important}</style>
 </head>
 <body data-pageduo-ele-id="e_cs5AocvN7W7F">
@@ -278,25 +302,554 @@ PDReactiveRuntime.boot({
       </div>
     </div>
     <div class="month-grid" data-pageduo-ele-id="e_1J6LNEQ6f48y">
+      <!-- TUẦN 13-14: CẤT NÓC & DEPLOY -->
       <article class="phase-card surface" data-pageduo-ele-id="e_8Zwkd06ZY2o1">
-        <h3 data-pageduo-ele-id="e_AUmDzJH3gurl"><span data-pageduo-ele-id="e_S1UF5uLvaxId">Tuần 13–14</span>Cất Nóc &amp; Deploy</h3>
+        <h3 data-pageduo-ele-id="e_AUmDzJH3gurl"><span data-pageduo-ele-id="e_S1UF5uLvaxId">Tuần 13–14</span>Cất Nóc &amp; Deploy (B25–B28)</h3>
         <ul class="session-list" data-pageduo-ele-id="e_YhtaQwS9COFC">
-          <li data-pageduo-ele-id="e_ytE1WG03mnqt"><b data-pageduo-ele-id="e_HEVl59ZaHXsV">B25</b><div data-pageduo-ele-id="e_xieifKjx0rS4"><strong data-pageduo-ele-id="e_JWC0fMrNo6mk">Mô hình triển khai</strong><span data-pageduo-ele-id="e_t6KryiO5vZXZ">Server là môi trường để ứng dụng chạy và được truy cập; vẽ đường đi từ code đến người dùng.</span></div></li>
-          <li data-pageduo-ele-id="e_NgGTHoZ9eR9g"><b data-pageduo-ele-id="e_ZN1lImjsqsL7">B26</b><div data-pageduo-ele-id="e_IZnRNSHEtg1q"><strong data-pageduo-ele-id="e_LBjAr93DmR6R">Ubuntu VPS</strong><span data-pageduo-ele-id="e_O1kUaNP3ZJKC">Chuẩn bị môi trường, cập nhật, kiểm tra quyền truy cập và giữ bí mật thông tin đăng nhập.</span></div></li>
-          <li data-pageduo-ele-id="e_tExyDNdyGPsP"><b data-pageduo-ele-id="e_tTGTogCdIcFA">B27</b><div data-pageduo-ele-id="e_ZHMdNvpI1XP5"><strong data-pageduo-ele-id="e_4WN09GMcQw70">Streamlit Cloud</strong><span data-pageduo-ele-id="e_tiTv88gtJc9s">Đưa Mini-CRM Streamlit lên môi trường có thể truy cập; phân biệt xuất bản với “đã kiểm thử xong”.</span></div></li>
-          <li data-pageduo-ele-id="e_RCK4WFbBx3EW"><b data-pageduo-ele-id="e_sAyMHmTtzSIh">B28</b><div data-pageduo-ele-id="e_Pg4FRe2n5sBT"><strong data-pageduo-ele-id="e_GcGZcx8nXI1Z">Tối ưu &amp; phát hành</strong><span data-pageduo-ele-id="e_OQc2CWPH7YJN">Kiểm tra giao diện, luồng dữ liệu và thao tác thực tế trên màn hình nhỏ.</span></div></li>
+          <!-- BUỔI 25 -->
+          <li data-pageduo-ele-id="e_ytE1WG03mnqt">
+            <b data-pageduo-ele-id="e_HEVl59ZaHXsV">B25</b>
+            <div data-pageduo-ele-id="e_xieifKjx0rS4" style="flex:1">
+              <strong data-pageduo-ele-id="e_JWC0fMrNo6mk">Mô hình triển khai: Từ máy cá nhân lên đám mây</strong>
+              <span data-pageduo-ele-id="e_t6KryiO5vZXZ">Hiểu bản chất Server là máy chủ hoạt động 24/7. Phân biệt môi trường phát triển (Localhost) và môi trường công cộng (Internet) để thợ và chủ nhà truy cập được.</span>
+              
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B25 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Tắt laptop thì web trên điện thoại có mở được không?</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Kiến trúc Client-Server, Port mạng, requirements.txt</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Đóng gói danh mục thư viện phụ thuộc</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Học viên hiểu đường đi từ code Python trên máy tính -> GitHub Repository -> Cloud Server -> Màn hình điện thoại; tạo file <code>requirements.txt</code> chuẩn.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Thiếu file requirements.txt:</b> Server không biết máy học viên cài những thư viện gì nếu không có file này. Giảng viên hướng dẫn: "File requirements.txt giống như bảng kê vật liệu gửi cho nhà máy".</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Tạo file <code>requirements.txt</code> chứa các thư viện cần thiết: <code>streamlit</code>, <code>pandas</code>.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Dùng lệnh Terminal <code>pip freeze &gt; requirements.txt</code> để tự động xuất phiên bản chính xác các gói thư viện đang cài đặt.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Cấu hình triển khai · File chuẩn B25</span><span>requirements.txt</span></div>
+                    <pre># BUỔI 25: FILE DANH MỤC THƯ VIỆN BẮT BUỘC KHI DEPLOY
+streamlit&gt;=1.28.0
+pandas&gt;=2.0.0
+# Lưu ý: sqlite3 đã tích hợp sẵn trong Python, không cần khai báo</pre>
+                    <div class="code-output"># Kiểm tra danh mục cài đặt trong Terminal:
+pip install -r requirements.txt
+✅ Môi trường sẵn sàng cho việc xuất bản lên Server!</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 26 -->
+          <li data-pageduo-ele-id="e_NgGTHoZ9eR9g">
+            <b data-pageduo-ele-id="e_ZN1lImjsqsL7">B26</b>
+            <div data-pageduo-ele-id="e_IZnRNSHEtg1q" style="flex:1">
+              <strong data-pageduo-ele-id="e_LBjAr93DmR6R">Làm quen Ubuntu VPS &amp; Dòng lệnh Linux cơ bản</strong>
+              <span data-pageduo-ele-id="e_O1kUaNP3ZJKC">Làm quen với hệ điều hành máy chủ phổ biến nhất thế giới: Các lệnh sống còn <code>ssh</code>, <code>ls</code>, <code>cd</code>, quản lý tiến trình nền và giữ bí mật thông tin tài khoản.</span>
+              
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B26 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Thuê máy chủ đám mây giá rẻ 5$/tháng</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Lệnh Linux SSH, mkdir, git clone, chạy nền nohup / tmux</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Viết kịch bản tự động khởi chạy app</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Lưu ý bảo mật</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Học viên không sợ màn hình đen của Linux; biết cách kết nối SSH và chạy ứng dụng Streamlit ở chế độ nền (background process).</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Tắt cửa sổ SSH làm tắt luôn App:</b> Nếu chạy <code>streamlit run app.py</code> thông thường, khi đóng cửa sổ terminal thì app cũng chết theo! Dạy lệnh <code>nohup streamlit run app.py &amp;</code> hoặc dùng <code>tmux</code> để giữ app luôn sống.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Viết kịch bản dòng lệnh Linux tải mã nguồn từ GitHub về thư mục <code>/var/www/remodeling-crm</code>.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Viết lệnh mở cổng mạng firewall (UFW) cho cổng <code>8501</code>: <code>sudo ufw allow 8501</code>.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Bash Shell · Kịch bản chạy trên máy chủ VPS B26</span><span>deploy_vps.sh</span></div>
+                    <pre>#!/bin/bash
+# BUỔI 26: KỊCH BẢN TỰ ĐỘNG CHUẨN BỊ MÁY CHỦ UBUNTU
+echo "=== BẮT ĐẦU THIẾT LẬP MÁY CHỦ REMODELING CRM ==="
+
+# 1. Cập nhật hệ điều hành
+sudo apt update &amp;&amp; sudo apt upgrade -y
+
+# 2. Cài đặt Python và Pip
+sudo apt install -y python3-pip python3-venv git
+
+# 3. Tạo môi trường ảo và cài đặt thư viện
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# 4. Mở cổng mạng tường lửa cho Streamlit
+sudo ufw allow 8501/tcp
+
+# 5. Khởi động app chạy nền độc lập
+nohup streamlit run mini_crm_app.py --server.port 8501 --server.address 0.0.0.0 &gt; app.log 2&gt;&amp;1 &amp;
+echo "✅ App đang chạy nền tại cổng 8501! Kiểm tra nhật ký: tail -f app.log"</pre>
+                    <div class="code-output"># Kết quả:
+Máy chủ VPS sẵn sàng phục vụ 24/7.</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 27 -->
+          <li data-pageduo-ele-id="e_tExyDNdyGPsP">
+            <b data-pageduo-ele-id="e_tTGTogCdIcFA">B27</b>
+            <div data-pageduo-ele-id="e_ZHMdNvpI1XP5" style="flex:1">
+              <strong data-pageduo-ele-id="e_4WN09GMcQw70">Xuất bản lên Streamlit Cloud (Miễn phí &amp; Nhanh gọn)</strong>
+              <span data-pageduo-ele-id="e_tiTv88gtJc9s">Giải pháp xuất bản tối ưu nhất cho giám sát xây dựng: Kết nối tài khoản GitHub với <code>share.streamlit.io</code> để biến code thành một đường link web chính thức có bảo mật SSL HTTPS.</span>
+              
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B27 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Gửi link cho chủ thầu bấm vào xem ngay</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live: Tạo repo GitHub, đăng nhập share.streamlit.io, chọn nhánh main</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Học viên deploy Mini-CRM của riêng mình</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nhận link web công khai &amp; Kiểm tra</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Mỗi học viên có 1 đường link web cá nhân (dạng <code>https://ten-hoc-vien-crm.streamlit.app</code>) mở được trên bất kỳ thiết bị nào.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Lỗi ModuleNotFoundError trên Cloud:</b> Xảy ra khi học viên quên commit file <code>requirements.txt</code> lên GitHub. Dặn học viên kiểm tra kỹ trên trang github.com trước khi bấm Deploy.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Quy trình thực hành 3 bước:</strong>
+                      <br>1. Push mã nguồn hoàn chỉnh lên GitHub repository: <code>git add . &amp;&amp; git commit -m "Deploy CRM" &amp;&amp; git push</code>
+                      <br>2. Truy cập <code>https://share.streamlit.io</code>, bấm "New App".
+                      <br>3. Chọn Repository, Branch <code>main</code>, Main file path <code>mini_crm_app.py</code> và bấm "Deploy!".
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Checklist cấu hình xuất bản Cloud B27</span><span>deploy_checklist.txt</span></div>
+                    <pre># CHECKLIST XUẤT BẢN STREAMLIT CLOUD THÀNH CÔNG:
+[✓] Kho chứa GitHub đã được đặt ở chế độ Public hoặc cấp quyền.
+[✓] Tệp chính nằm ở thư mục gốc: mini_crm_app.py
+[✓] Tệp khai báo thư viện: requirements.txt (có streamlit, pandas)
+[✓] Tệp dữ liệu mẫu: khach_hang.csv hoặc cong_trinh.db đã được đẩy lên.
+[✓] Đường link công khai hoàn tất: https://cong-trinh-crm.streamlit.app</pre>
+                    <div class="code-output"># Trạng thái trên Streamlit Cloud:
+Status: Running 🟢 | HTTPS Secured 🔒</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 28 -->
+          <li data-pageduo-ele-id="e_RCK4WFbBx3EW">
+            <b data-pageduo-ele-id="e_sAyMHmTtzSIh">B28</b>
+            <div data-pageduo-ele-id="e_Pg4FRe2n5sBT" style="flex:1">
+              <strong data-pageduo-ele-id="e_GcGZcx8nXI1Z">Tối ưu &amp; Nghiệm thu trải nghiệm trên iPhone</strong>
+              <span data-pageduo-ele-id="e_OQc2CWPH7YJN">Kiểm tra thực tế thao tác dưới ánh sáng ngoài công trường: Nút bấm đủ to cho ngón tay chạm, font chữ tương phản cao, hướng dẫn thêm Web App ra màn hình chính (Add to Home Screen) như một Native App.</span>
+              
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B28 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Cầm điện thoại mở trực tiếp link vừa deploy</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live: Tối ưu UI mobile, kiểm tra tốc độ tải mạng 4G/5G</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thao tác thêm biểu tượng icon vào màn hình iPhone</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Tổng kết hoàn thành sản phẩm Deploy</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Học viên tự tay mở app trên điện thoại của mình, thêm phím tắt Home Screen và thử nhập 1 công trình thực tế ngoài sân.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Thao tác Add to Home Screen:</b> Hướng dẫn trên trình duyệt Safari của iPhone: Bấm nút Share (hình vuông có mũi tên trỏ lên) &rarr; Chọn "Add to Home Screen" (Thêm vào MH chính). App sẽ có icon chuyên nghiệp và mở toàn màn hình không có thanh địa chỉ Safari!</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài tập nghiệm thu:</strong> Mở iPhone/Android, truy cập URL Cloud của bạn. Nhập thông tin 1 căn hộ thực tế, kiểm tra số tiền tính toán và chụp ảnh màn hình lưu vào hồ sơ báo cáo khóa học.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Quy trình nghiệm thu thực địa B28</span><span>iphone_qa_check.txt</span></div>
+                    <pre># TIÊU CHUẨN NGHIỆM THU 5 SAO TRÊN IPHONE:
+1. Tốc độ mở trang dưới 3 giây qua kết nối 4G/5G công trường.
+2. Các nút "TÍNH BÁO GIÁ", "LƯU HỒ SƠ" to rõ, bấm chính xác bằng 1 tay.
+3. Bảng dữ liệu tự động căn lề, không bị cắt cụt số tiền.
+4. Trạng thái dự án hiển thị màu rõ ràng: Khảo sát (Vàng), Thi công (Xanh lam), Bàn giao (Xanh lá).
+5. Biểu tượng ứng dụng nằm trang trọng trên màn hình chính iPhone.</pre>
+                    <div class="code-output"># Kết quả:
+Ứng dụng Mini-CRM chính thức đi vào vận hành thực tế!</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
         </ul>
-        <div class="output-strip" data-pageduo-ele-id="e_D3msbxcldlOm"><div data-pageduo-ele-id="e_gW5fuqTDjJPB"><strong data-pageduo-ele-id="e_j9oVSEZAeb5J">Sản phẩm:</strong><br>Đưa App lên Online</div><div data-pageduo-ele-id="e_VAndXMXSX7Sq"><strong data-pageduo-ele-id="e_Eg0MTTAaPic6">Bằng chứng:</strong><br>Checklist + kiểm thử iPhone</div></div>
+        <div class="output-strip" data-pageduo-ele-id="e_D3msbxcldlOm"><div data-pageduo-ele-id="e_gW5fuqTDjJPB"><strong data-pageduo-ele-id="e_j9oVSEZAeb5J">Sản phẩm hoàn thành:</strong><br>Mini-CRM Online trên Cloud</div><div data-pageduo-ele-id="e_VAndXMXSX7Sq"><strong data-pageduo-ele-id="e_Eg0MTTAaPic6">Bằng chứng nghiệm thu:</strong><br>URL công khai + Chạy trên iPhone</div></div>
       </article>
+
+      <!-- TUẦN 15-16: TỜ RƠI KỸ THUẬT SỐ -->
       <article class="phase-card surface" data-pageduo-ele-id="e_VNIDB4mZRlts">
-        <h3 data-pageduo-ele-id="e_JZOzFICNf2ns"><span data-pageduo-ele-id="e_QYONZsHuLsh3">Tuần 15–16</span>Tờ Rơi Kỹ Thuật Số</h3>
+        <h3 data-pageduo-ele-id="e_JZOzFICNf2ns"><span data-pageduo-ele-id="e_QYONZsHuLsh3">Tuần 15–16</span>Tờ Rơi Kỹ Thuật Số (B29–B32)</h3>
         <ul class="session-list" data-pageduo-ele-id="e_mMFVlPcVBxNc">
-          <li data-pageduo-ele-id="e_I2QHIpnrRr1p"><b data-pageduo-ele-id="e_SW5MDnwQASnk">B29</b><div data-pageduo-ele-id="e_LpW2wHkHwnNF"><strong data-pageduo-ele-id="e_PrBNXbaRMfiD">Cấu trúc HTML</strong><span data-pageduo-ele-id="e_68ZR0U8r381h">Định nghĩa cấu trúc và nội dung: tiêu đề, phần, danh sách, nút và liên kết.</span></div></li>
-          <li data-pageduo-ele-id="e_PIbrQ9faUsKi"><b data-pageduo-ele-id="e_xLm3bzDLtsGg">B30</b><div data-pageduo-ele-id="e_t18PT0MQqH0u"><strong data-pageduo-ele-id="e_VUJo7KHsaA8P">CSS cơ bản</strong><span data-pageduo-ele-id="e_vvSVj3g6GMEe">Điều khiển kiểu dáng và bố cục để trang đọc được, đặc biệt trên điện thoại.</span></div></li>
-          <li data-pageduo-ele-id="e_DDxKtrovOdrW"><b data-pageduo-ele-id="e_5ZEPUl189vhx">B31</b><div data-pageduo-ele-id="e_YMplIBclTWfb"><strong data-pageduo-ele-id="e_pTpljmDyQVuj">Đọc Landing Page đối thủ</strong><span data-pageduo-ele-id="e_wpq4qmmLxxk8">Phân tích cấu trúc, thông điệp, bằng chứng và lời kêu gọi hành động; không sao chép nội dung.</span></div></li>
-          <li data-pageduo-ele-id="e_6OrjzCE3jR0o"><b data-pageduo-ele-id="e_A2NuEdofoNcU">B32</b><div data-pageduo-ele-id="e_w18ptNIurfpd"><strong data-pageduo-ele-id="e_L5AuwxezDiyz">Định hình thông điệp</strong><span data-pageduo-ele-id="e_juMx2A2Q3eNC">Ghép dịch vụ, giá trị, bằng chứng và hành động tiếp theo cho công ty Remodeling.</span></div></li>
+          <!-- BUỔI 29 -->
+          <li data-pageduo-ele-id="e_I2QHIpnrRr1p">
+            <b data-pageduo-ele-id="e_SW5MDnwQASnk">B29</b>
+            <div data-pageduo-ele-id="e_LpW2wHkHwnNF" style="flex:1">
+              <strong data-pageduo-ele-id="e_PrBNXbaRMfiD">Cấu trúc HTML5 chuẩn Semantic cho Landing Page</strong>
+              <span data-pageduo-ele-id="e_68ZR0U8r381h">Xây dựng bộ khung tờ rơi trực tuyến cho công ty Remodeling: Dùng các thẻ ngữ nghĩa <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code> giúp công cụ tìm kiếm Google chấm điểm uy tín cao.</span>
+              
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B29 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Khách hàng tìm kiếm dịch vụ sửa nhà trên Google</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Cấu trúc tệp index.html, các thẻ ngữ nghĩa semantic</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Dựng khung sườn Landing Page dịch vụ sửa sàn</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Tạo file <code>index.html</code> hoàn chỉnh gồm: Thanh tiêu đề Menu, Khối Hero giới thiệu, Khối 3 Dịch vụ trọng tâm, và Chân trang thông tin liên hệ.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Lạm dụng thẻ div:</b> Người mới hay dùng toàn thẻ <code>&lt;div&gt;</code> khiến Google không hiểu cấu trúc trang. Hướng dẫn dùng đúng ngữ nghĩa: <code>&lt;header&gt;</code> cho đầu trang, <code>&lt;main&gt;</code> cho nội dung chính, <code>&lt;section&gt;</code> cho từng phân khu.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài tập xây dựng:</strong> Viết khung sườn HTML cho trang "ProFlooring Remodeling Services" với 3 khối dịch vụ: (1) Lát sàn gỗ tự nhiên, (2) Lát sàn nhựa Vinyl chống nước, (3) Đục phá &amp; xử lý sàn cũ.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>HTML5 Semantic · Khung sườn chuẩn B29</span><span>landing_page.html</span></div>
+                    <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;ProFlooring - Dịch Vụ Cải Tạo Lát Sàn Chuyên Nghiệp&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;nav&gt;
+      &lt;strong&gt;🏗️ ProFlooring USA&lt;/strong&gt;
+      &lt;a href="#dich-vu"&gt;Dịch vụ&lt;/a&gt;
+      &lt;a href="#bao-gia"&gt;Báo giá nhanh&lt;/a&gt;
+      &lt;a href="tel:5550199"&gt;Hotline: (555) 0199&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;section class="hero"&gt;
+      &lt;h1&gt;Thay Đổi Không Gian Nhà Bạn Với Sàn Đẹp Chuẩn Mỹ&lt;/h1&gt;
+      &lt;p&gt;Khảo sát trong 24h · Bảo hành thi công 5 năm · Hơn 500+ dự án hoàn thành.&lt;/p&gt;
+      &lt;a href="#bao-gia" class="btn"&gt;Tính Báo Giá Ngay &amp;rarr;&lt;/a&gt;
+    &lt;/section&gt;
+
+    &lt;section id="dich-vu"&gt;
+      &lt;h2&gt;Dịch Vụ Thi Công Trọng Tâm&lt;/h2&gt;
+      &lt;article&gt;&lt;h3&gt;Lát Sàn Nhựa SPC Vinyl&lt;/h3&gt;&lt;p&gt;Chống nước 100%, chống mối mọt, độ bền 20 năm.&lt;/p&gt;&lt;/article&gt;
+      &lt;article&gt;&lt;h3&gt;Sàn Gỗ Kỹ Thuật Engineered&lt;/h3&gt;&lt;p&gt;Vẻ đẹp sang trọng của gỗ sồi tự nhiên.&lt;/p&gt;&lt;/article&gt;
+      &lt;article&gt;&lt;h3&gt;Xử Lý &amp; Cân Mặt Bằng Sàn&lt;/h3&gt;&lt;p&gt;Cán vữa phẳng chuẩn laser trước khi lát ván.&lt;/p&gt;&lt;/article&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2026 ProFlooring Remodeling. Giấy phép thầu #TX-9876543.&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    <div class="code-output"># Cấu trúc HTML5 chuẩn SEO sẵn sàng được khoác áo CSS!</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 30 -->
+          <li data-pageduo-ele-id="e_PIbrQ9faUsKi">
+            <b data-pageduo-ele-id="e_xLm3bzDLtsGg">B30</b>
+            <div data-pageduo-ele-id="e_t18PT0MQqH0u" style="flex:1">
+              <strong data-pageduo-ele-id="e_VUJo7KHsaA8P">CSS Styling &amp; Bố cục Responsive Mobile-First</strong>
+              <span data-pageduo-ele-id="e_vvSVj3g6GMEe">Thiết kế phong cách công trường chuyên nghiệp: Nhúng font chữ Be Vietnam Pro, sử dụng bảng màu tương phản cao (Cam phản quang, Xanh thợ thi công), nút bấm CTA to bản bấm êm tay.</span>
+              
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B30 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Trang web nhìn đẹp trên iPhone của khách hàng</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: CSS Variables, Flexbox, Grid, Media Query max-width: 768px</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Trang trí nút bấm, thẻ dịch vụ, bo viền</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Viết file <code>style.css</code> áp dụng hệ màu công trường, responsive hoàn hảo từ màn hình máy tính 1200px xuống điện thoại 390px.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Thiếu thẻ meta viewport:</b> Nhắc học viên thẻ <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> là điều kiện tiên quyết để CSS responsive hoạt động trên điện thoại.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Tạo biến màu CSS: <code>--ink: #173B3F; --accent: #D96C3F; --safety: #F0B44D;</code>. Áp dụng màu cho tiêu đề và nút bấm.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Dùng Flexbox hiển thị 3 thẻ dịch vụ nằm ngang trên Desktop và tự động xếp chồng 1 cột trên Mobile.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>CSS3 Responsive · Phong cách công trường B30</span><span>style.css</span></div>
+                    <pre>/* BUỔI 30: CSS STYLING CHO LANDING PAGE REMODELING */
+:root {
+  --ink: #173B3F;       /* Xanh thép công trường */
+  --accent: #D96C3F;    /* Cam phản quang đồ bảo hộ */
+  --safety: #F0B44D;    /* Vàng cảnh báo an toàn */
+  --ground: #F4F0E8;    /* Nền xi măng sáng */
+  --paper: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background: var(--ground);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.hero {
+  padding: 60px 20px;
+  background: var(--ink);
+  color: #fff;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(217, 108, 63, 0.4);
+  transition: transform 0.2s, background 0.2s;
+}
+.btn:hover {
+  background: #B9512F;
+  transform: translateY(-2px);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.card {
+  background: var(--paper);
+  padding: 24px;
+  border-radius: 14px;
+  border: 1px solid #D9D4C9;
+  border-top: 4px solid var(--accent);
+}</pre>
+                    <div class="code-output"># Kết quả:
+Giao diện Landing Page sang trọng, tin cậy, chuẩn thẩm mỹ công trình cao cấp.</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 31 -->
+          <li data-pageduo-ele-id="e_DDxKtrovOdrW">
+            <b data-pageduo-ele-id="e_5ZEPUl189vhx">B31</b>
+            <div data-pageduo-ele-id="e_YMplIBclTWfb" style="flex:1">
+              <strong data-pageduo-ele-id="e_pTpljmDyQVuj">Mổ xẻ Landing Page đối thủ cạnh tranh tại Mỹ</strong>
+              <span data-pageduo-ele-id="e_wpq4qmmLxxk8">Phân tích các trang web thầu lớn tại Mỹ (Angi, Houzz, thầu địa phương): Giải mã công thức chuyển đổi gồm Bằng chứng thi công (Before/After), Giấy phép (Licensed &amp; Insured), Đánh giá 5 sao từ Google Maps.</span>
+              
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B31 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Trực tiếp mở website 3 nhà thầu Mỹ đang chạy quảng cáo</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Phân tích 5 khối níu chân khách hàng: Hero, Social Proof, Portfolio, FAQ, CTA</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Học viên lên danh sách điểm cần bổ sung vào trang web mình</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Đúc kết kinh nghiệm</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Học viên hiểu tâm lý khách hàng khi giao nhà cho người lạ sửa chữa: Khách không mua code, khách mua sự an tâm và minh bạch.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Thiếu bằng chứng (Social Proof):</b> Nếu web chỉ nói mình giỏi mà không có ảnh công trình thực tế, khách sẽ thoát trang sau 5 giây. Giảng viên dạy cách đưa khối Before/After và review thực tế vào vị trí đắc địa nhất.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài tập thực chiến:</strong> Soạn thảo khối "Tại sao chọn chúng tôi? (Why Choose Us?)" gồm 4 lợi ích then chốt: (1) Báo giá chính xác không phát sinh, (2) Thợ lành nghề có bảo hiểm trách nhiệm, (3) Thi công đúng tiến độ cam kết, (4) Dọn dẹp sạch sẽ trước khi bàn giao.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>HTML Snippet · Khối Social Proof tin cậy B31</span><span>social_proof.html</span></div>
+                    <pre>&lt;!-- KHỐI XÂY DỰNG LÒNG TIN VỚI KHÁCH HÀNG (SOCIAL PROOF) --&gt;
+&lt;section class="trust-banner"&gt;
+  &lt;div class="badge"&gt;🛡️ Đầy đủ Giấy phép &amp; Bảo hiểm (General Liability $2M)&lt;/div&gt;
+  &lt;div class="badge"&gt;⭐ 4.9/5 Đánh giá trên Google (120+ nhận xét của chủ nhà)&lt;/div&gt;
+  &lt;div class="badge"&gt;⏱️ Cam kết tiến độ: Bàn giao đúng hẹn hoặc phạt 100$/ngày&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class="testimonial-card"&gt;
+  &lt;p&gt;"Đội thợ làm việc cực kỳ ngăn nắp, lát xong 1,200 sqft sàn chỉ trong 3 ngày và dọn dẹp sạch sẽ không còn một hạt bụi vôi!"&lt;/p&gt;
+  &lt;strong&gt;- David Nguyen, Chủ nhà tại Katy, Texas&lt;/strong&gt;
+&lt;/section&gt;</pre>
+                    <div class="code-output"># Tác dụng:
+Tăng tỉ lệ khách nhấp vào nút "Gọi Thầu" lên gấp 3 lần!</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 32 -->
+          <li data-pageduo-ele-id="e_6OrjzCE3jR0o">
+            <b data-pageduo-ele-id="e_A2NuEdofoNcU">B32</b>
+            <div data-pageduo-ele-id="e_w18ptNIurfpd" style="flex:1">
+              <strong data-pageduo-ele-id="e_L5AuwxezDiyz">Định hình thông điệp &amp; Ghép nối toàn hệ thống (Landing Page + Mini-CRM)</strong>
+              <span data-pageduo-ele-id="e_juMx2A2Q3eNC">Điểm chạm hoàn tất của 4 tháng học: Đặt nút kêu gọi hành động (CTA) "Báo Giá Nhanh Trực Tuyến" trên Landing Page dẫn thẳng sang Web App Mini-CRM đã deploy. Một hệ thống khép kín tạo ra khách hàng thật.</span>
+              
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B32 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Nhìn lại hành trình 32 buổi: Đo đạc &rarr; SQLite &rarr; Streamlit &rarr; Deploy</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Ghép nối: Đặt link Streamlit Cloud vào nút bấm trên Landing Page</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Nghiệm thu toàn khóa: Học viên demo hệ thống hoàn chỉnh</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Trao chứng nhận nghiệm thu khóa học</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Hoàn thành cỗ máy vận hành khép kín cho công ty Sửa chữa nhà: Từ Landing Page tiếp thị &rarr; Bấm link báo giá Streamlit &rarr; Dữ liệu lưu vào SQLite &rarr; Giám sát theo dõi tiến độ trên iPhone.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Liên kết mở tab mới:</b> Trên thẻ <code>&lt;a href="https://your-app.streamlit.app" target="_blank" rel="noopener"&gt;</code> luôn thêm <code>target="_blank"</code> để khách tính xong vẫn giữ nguyên trang web chính của công ty.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ ĐỒ ÁN TỐT NGHIỆP TOÀN KHÓA HỌC (32 BUỔI)</h4>
+                    <div class="exercise-task">
+                      <strong>Nghiệm thu cuối cùng:</strong>
+                      <br>1. Landing Page hoạt động đẹp mắt với số điện thoại bấm gọi ngay.
+                      <br>2. Nút "TÍNH BÁO GIÁ TỰ ĐỘNG" mở ra ứng dụng Streamlit Cloud đã deploy ở B27.
+                      <br>3. Mọi tính toán diện tích, chiết khấu và phụ phí nhà cũ chạy chính xác.
+                      <br>4. Bản ghi khách hàng lưu an toàn vào cơ sở dữ liệu SQLite.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>HTML + Mini-CRM Integration · Mã nguồn tốt nghiệp B32</span><span>final_landing_page.html</span></div>
+                    <pre>&lt;!-- BUỔI 32: ĐOẠN MÃ GHÉP NỐI LANDING PAGE VỚI MINI-CRM ONLINE --&gt;
+&lt;section class="cta-banner" style="background:#173B3F; color:#fff; padding:60px 20px; text-align:center;"&gt;
+  &lt;h2 style="font-size:2rem; margin-bottom:12px;"&gt;Sẵn Sàng Làm Mới Căn Nhà Của Bạn?&lt;/h2&gt;
+  &lt;p style="max-width:600px; margin:0 auto 30px; color:#C4D2CB;"&gt;
+    Không cần chờ đợi thợ đến đo đạc. Tự tính toán chi phí dự toán sàn nhà của bạn chỉ trong 30 giây với công cụ tính tự động của chúng tôi.
+  &lt;/p&gt;
+  
+  &lt;div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;"&gt;
+    &lt;!-- NÚT DẪN SANG ỨNG DỤNG STREAMLIT CLOUD ĐÃ DEPLOY TỪ B27 --&gt;
+    &lt;a href="https://share.streamlit.io" target="_blank" rel="noopener" class="btn" style="background:#D96C3F; color:#fff;"&gt;
+      🚀 TỰ TÍNH BÁO GIÁ NGAY (ONLINE APP)
+    &lt;/a&gt;
+    
+    &lt;!-- NÚT BẤM GỌI TRỰC TIẾP TRÊN IPHONE --&gt;
+    &lt;a href="tel:5550199" class="btn" style="background:transparent; border:2px solid #F0B44D; color:#F0B44D;"&gt;
+      📞 GỌI GIÁM SÁT: (555) 0199
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre>
+                    <div class="code-output"># Chúc mừng!
+Khóa học 32 buổi Lập trình Python cho Giám sát Công trường đã hoàn thành trọn vẹn với đầy đủ sản phẩm thực tế!</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
         </ul>
-        <div class="output-strip" data-pageduo-ele-id="e_bbZVVuM6XeIW"><div data-pageduo-ele-id="e_ynNq9IwcdNFF"><strong data-pageduo-ele-id="e_qJW9sJApN2Z9">Sản phẩm:</strong><br>Thiết kế Landing Page</div><div data-pageduo-ele-id="e_WFa0mVZQkkoW"><strong data-pageduo-ele-id="e_QOhNc1eqz8Q9">Bằng chứng:</strong><br>Wireframe + cấu trúc HTML/CSS</div></div>
+        <div class="output-strip" data-pageduo-ele-id="e_bbZVVuM6XeIW"><div data-pageduo-ele-id="e_ynNq9IwcdNFF"><strong data-pageduo-ele-id="e_qJW9sJApN2Z9">Sản phẩm tốt nghiệp:</strong><br>Landing Page + Mini-CRM</div><div data-pageduo-ele-id="e_WFa0mVZQkkoW"><strong data-pageduo-ele-id="e_QOhNc1eqz8Q9">Bằng chứng hoàn thành:</strong><br>Hệ thống vận hành khép kín</div></div>
       </article>
     </div>
   </section>

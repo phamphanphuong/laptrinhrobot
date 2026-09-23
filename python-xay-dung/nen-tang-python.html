@@ -49,6 +49,28 @@
 .lesson-summary details{margin-top:9px}
 .lesson-summary summary{cursor:pointer;color:var(--green);font-weight:800}
 .lesson-summary pre{margin:9px 0 0;padding:13px;overflow:auto;border-radius:9px;background:var(--ink);color:#FFF7E9;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap}
+.instructor-kit{margin-top:14px;border:1px solid var(--line);border-radius:12px;background:#FCFAF6;overflow:hidden}
+.instructor-summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;background:#F6F1E6;cursor:pointer;font-weight:800;color:var(--ink);font-size:13.5px;user-select:none;transition:background .2s}
+.instructor-summary:hover{background:#EFE6D5}
+.instructor-kit[open] .instructor-summary{border-bottom:1px solid var(--line);background:#EFE5D2}
+.kit-badge{display:inline-block;padding:3px 8px;border-radius:6px;background:var(--ink);color:var(--safety);font-size:11px;font-weight:800;text-transform:uppercase}
+.instructor-body{padding:16px;display:flex;flex-direction:column;gap:14px;font-size:13.5px;line-height:1.6}
+.teaching-timeline{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 2px}
+.timeline-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:11.5px;font-weight:700;color:var(--muted)}
+.timeline-pill b{color:var(--accent)}
+.teacher-plan{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px}
+.teacher-plan h4,.exercise-box h4,.teacher-note h4{margin:0 0 6px;font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px}
+.teacher-plan h4{color:var(--accent)}
+.teacher-note{background:#FFF9E8;border:1px solid #ECD89F;border-left:4px solid var(--safety);border-radius:8px;padding:12px 14px;font-size:13px}
+.teacher-note h4{color:#A46D14}
+.exercise-box{background:#fff;border:1px solid #D1DDD8;border-left:4px solid var(--green);border-radius:8px;padding:12px 14px}
+.exercise-box h4{color:var(--green)}
+.exercise-task{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.exercise-task strong{color:var(--ink)}
+.code-box-wrapper{background:var(--ink);color:#FFF7E9;border-radius:10px;overflow:hidden;margin-top:4px}
+.code-box-header{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#112C30;border-bottom:1px solid #234D52;font-size:12px;color:var(--safety);font-weight:800}
+.code-box-wrapper pre{margin:0;padding:14px;overflow-x:auto;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#FFF7E9;white-space:pre-wrap}
+.code-output{background:#0B1F22;border-top:1px dashed #2E5054;padding:10px 14px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#A9E5B5}
 .flow-wrap{margin-top:28px}
 .flow-wrap img{width:100%;aspect-ratio:1.8;object-fit:cover;border-radius:16px}
 .threshold{padding:28px;margin-top:28px}
@@ -492,130 +514,660 @@ p{margin:0 0 16px}
           <span class="tag" data-pageduo-ele-id="e_otSPtayHIeK3">B1 → B2</span>
         </div>
         <div class="lesson-grid" data-pageduo-ele-id="e_Fw96SRie5eoG">
+          <!-- BUỔI 1 -->
           <article class="surface lesson-card" data-pageduo-ele-id="e_xClgKPPFnzPd">
-            <div class="lesson-top" data-pageduo-ele-id="e_FlWptFocqFLC"><span class="lesson-number" data-pageduo-ele-id="e_khoNUfpe0LhL">BUỔI 1 · B1</span><span class="tag" data-pageduo-ele-id="e_2cRKBYFM8Y3C">biến và phép gán</span></div>
-            <h3 data-pageduo-ele-id="e_eOhmqvO1OYuf">Môi trường &amp; Biến số</h3>
-            <p data-pageduo-ele-id="e_AFPXcuLCv0ew">Biến giống một thùng chứa có nhãn. <code data-pageduo-ele-id="e_9xEb2Ta66Hn0">width = 12</code> nghĩa là thùng tên <code data-pageduo-ele-id="e_YdnLInRLTnIO">width</code> đang giữ giá trị 12; khi đọc lỗi, hãy kiểm tra tên biến, dấu bằng và kiểu dữ liệu trước.</p>
-            <ul data-pageduo-ele-id="e_4Uf30tVBVSvc"><li data-pageduo-ele-id="e_dxepbKDbtSW5">Gán chiều dài, chiều rộng và đơn giá USD.</li><li data-pageduo-ele-id="e_7RUl4sfocS0a">Chạy code, đọc lỗi, sửa từng dòng.</li></ul>
-            <div class="lesson-product" data-pageduo-ele-id="e_03VmkjoNu6o4"><span data-pageduo-ele-id="e_wcGtjJQH3hQk">Điểm bàn giao</span>Ba biến có tên rõ ràng cho một phòng.</div>
-            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Tạo biến cho chiều dài, chiều rộng, đơn giá; in diện tích và chi phí của một phòng.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>length_m = 5
-width_m = 3.4
-price_usd = 12
-area_m2 = length_m * width_m
-total_usd = area_m2 * price_usd
-print(f"Diện tích: {area_m2:.2f} m2")
-print(f"Chi phí: {total_usd:.2f} USD")</pre></details>
+            <div class="lesson-top" data-pageduo-ele-id="e_FlWptFocqFLC"><span class="lesson-number" data-pageduo-ele-id="e_khoNUfpe0LhL">BUỔI 1 · B1</span><span class="tag" data-pageduo-ele-id="e_2cRKBYFM8Y3C">Biến &amp; Phép gán</span></div>
+            <h3 data-pageduo-ele-id="e_eOhmqvO1OYuf">Môi trường &amp; Biến số công trường</h3>
+            <p data-pageduo-ele-id="e_AFPXcuLCv0ew">Biến giống chiếc thùng chứa dán nhãn ngoài công trường. Lệnh <code>width = 15</code> nghĩa là cất giá trị 15 vào thùng <code>width</code>. Giám sát không cần nhớ lý thuyết phức tạp, chỉ cần quản lý đúng tên thùng và số liệu bên trong.</p>
+            <div class="lesson-product" data-pageduo-ele-id="e_03VmkjoNu6o4"><span data-pageduo-ele-id="e_wcGtjJQH3hQk">Điểm bàn giao</span>File Python đầu tiên lưu trữ kích thước phòng và đơn giá thầu.</div>
+
+            <details class="instructor-kit" open>
+              <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B1 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+              <div class="instructor-body">
+                <div class="teacher-plan">
+                  <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                  <div class="teaching-timeline">
+                    <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Thước dây &amp; Sổ tay</span>
+                    <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Cài VS Code &amp; Tạo biến</span>
+                    <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Tính sàn phòng khách</span>
+                    <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Debug lỗi</span>
+                  </div>
+                  <p><b>Mục tiêu:</b> Học viên mở được VS Code, tạo file <code>b1_kich_thuoc.py</code>, khai báo biến dài/rộng/đơn giá, tính diện tích và in ra màn hình Terminal bằng lệnh <code>print()</code>.</p>
+                </div>
+
+                <div class="teacher-note">
+                  <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                  <ul>
+                    <li><b>Lỗi dấu thập phân:</b> Học viên thường quen gõ <code>3,5</code> thay vì <code>3.5</code> gây lỗi cú pháp (SyntaxError). Giảng viên nhắc: "Trong Python dùng dấu chấm cho số lẻ".</li>
+                    <li><b>Quy tắc đặt tên biến:</b> Giải thích biến như nhãn dán trên bao bì vật tư: viết thường, nối từ bằng gạch dưới (<code>chieu_dai</code>, <code>don_gia_usd</code>), không có dấu tiếng Việt, không bắt đầu bằng số.</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-box">
+                  <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                  <div class="exercise-task">
+                    <strong>Bài 1 (Cơ bản):</strong> Một phòng ngủ kích thước chiều dài <code>length = 18</code> ft, chiều rộng <code>width = 12</code> ft. Đơn giá nhân công lát sàn là <code>price = 4.5</code> USD/sqft. Viết mã tính: diện tích sàn (Sqft) và tổng chi phí nhân công (USD). In kết quả rõ ràng.
+                  </div>
+                  <div class="exercise-task">
+                    <strong>Bài 2 (Thực chiến nâng cao):</strong> Thêm hệ số hao hụt gạch ván sàn là <code>10%</code> (nhân 1.10 vào diện tích). In ra: diện tích thực, diện tích cần mua vật tư (kèm hao hụt) và tổng tiền vật tư dự toán.
+                  </div>
+                </div>
+
+                <div class="code-box-wrapper">
+                  <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B1</span><span>b1_kich_thuoc.py</span></div>
+                  <pre># BUỔI 1: KHAI BÁO BIẾN &amp; TÍNH TOÁN CƠ BẢN
+# Bước 1: Khai báo số đo thực tế (đơn vị: feet &amp; USD)
+chieu_dai = 18.0          # Chiều dài phòng (ft)
+chieu_rong = 12.0         # Chiều rộng phòng (ft)
+don_gia_usd = 4.5         # Đơn giá thầu / sqft
+
+# Bước 2: Xử lý tính toán
+dien_tich_sqft = chieu_dai * chieu_rong
+tong_tien_usd = dien_tich_sqft * don_gia_usd
+
+# Bước 3: Xuất kết quả nghiệm thu ra màn hình
+print("=== BÁO CÁO ĐO ĐẠC PHÒNG NGỦ ===")
+print("Diện tích sàn:", dien_tich_sqft, "sqft")
+print("Đơn giá thi công:", don_gia_usd, "USD/sqft")
+print("Tổng chi phí dự toán:", tong_tien_usd, "USD")</pre>
+                  <div class="code-output"># Output kỳ vọng:
+=== BÁO CÁO ĐO ĐẠC PHÒNG NGỦ ===
+Diện tích sàn: 216.0 sqft
+Đơn giá thi công: 4.5 USD/sqft
+Tổng chi phí dự toán: 972.0 USD</div>
+                </div>
+              </div>
+            </details>
           </article>
+
+          <!-- BUỔI 2 -->
           <article class="surface lesson-card" data-pageduo-ele-id="e_fh0gHFKs3Y43">
-            <div class="lesson-top" data-pageduo-ele-id="e_TyUDXi4vPOwa"><span class="lesson-number" data-pageduo-ele-id="e_2c4FsVAnV1VN">BUỔI 2 · B2</span><span class="tag" data-pageduo-ele-id="e_hz67iFCwaGb9">nhập liệu và chuyển kiểu</span></div>
-            <h3 data-pageduo-ele-id="e_ZpsKUj752DOe">Nhập dữ liệu &amp; tính toán đơn giản</h3>
-            <p data-pageduo-ele-id="e_qehgmMPFk2j8"><code data-pageduo-ele-id="e_7EhM6PUGAkRk">input()</code> nhận dữ liệu từ người dùng nhưng trả về chuỗi. Muốn nhân chiều dài với chiều rộng, cần chuyển nó thành số bằng <code data-pageduo-ele-id="e_jlVpNQWHi2wT">float()</code> hoặc <code data-pageduo-ele-id="e_p0PVPRgCIPs8">int()</code>.</p>
-            <ul data-pageduo-ele-id="e_oJcLONPRx9Tz"><li data-pageduo-ele-id="e_MNQpAXZIBO59">Tính Sqft từ chiều dài × chiều rộng.</li><li data-pageduo-ele-id="e_Y5Oj60vn4uIE">Nhân diện tích với đơn giá USD.</li></ul>
-            <div class="lesson-product" data-pageduo-ele-id="e_wutq9QyaDZ6U"><span data-pageduo-ele-id="e_Xm6KuBQLmiqx">Sản phẩm</span>Tool Báo Giá Lát Sàn phiên bản đầu.</div>
-            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Nhập chiều dài, chiều rộng và đơn giá từ bàn phím rồi tính báo giá.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>length_m = float(input("Dài (m): "))
-width_m = float(input("Rộng (m): "))
-price_usd = float(input("Đơn giá USD/m2: "))
-area_m2 = length_m * width_m
-print(f"Tổng: {area_m2 * price_usd:.2f} USD")</pre></details>
+            <div class="lesson-top" data-pageduo-ele-id="e_TyUDXi4vPOwa"><span class="lesson-number" data-pageduo-ele-id="e_2c4FsVAnV1VN">BUỔI 2 · B2</span><span class="tag" data-pageduo-ele-id="e_hz67iFCwaGb9">Nhập liệu &amp; Ép kiểu</span></div>
+            <h3 data-pageduo-ele-id="e_ZpsKUj752DOe">Nhập số đo từ bàn phím (input &amp; float)</h3>
+            <p data-pageduo-ele-id="e_qehgmMPFk2j8">Tại công trường, số đo mỗi phòng mỗi khác. Lệnh <code>input()</code> cho phép nhập số đo từ bàn phím nhưng luôn trả về chuỗi chữ (str). Muốn tính toán phải ép kiểu sang số thực <code>float()</code>.</p>
+            <div class="lesson-product" data-pageduo-ele-id="e_wutq9QyaDZ6U"><span data-pageduo-ele-id="e_Xm6KuBQLmiqx">Sản phẩm</span>Tool Báo Giá Lát Sàn v1 chạy tương tác từ Terminal.</div>
+
+            <details class="instructor-kit">
+              <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B2 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+              <div class="instructor-body">
+                <div class="teacher-plan">
+                  <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                  <div class="teaching-timeline">
+                    <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Bút ghi sổ → Bàn phím</span>
+                    <span class="timeline-pill">⏱️ <b>25'</b> Live Code: input(), ép kiểu float() &amp; f-string</span>
+                    <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Xây dựng tool báo giá động</span>
+                    <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                  </div>
+                  <p><b>Mục tiêu:</b> Học viên dùng được <code>input()</code> kết hợp <code>float()</code> để nhận dữ liệu linh hoạt và in kết quả đẹp mắt bằng <code>f-string</code> (lấy 2 chữ số thập phân <code>:.2f</code>).</p>
+                </div>
+
+                <div class="teacher-note">
+                  <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                  <ul>
+                    <li><b>Lỗi nhân chuỗi:</b> Cho học viên xem lỗi khi quên <code>float()</code>: <code>"20" * "15"</code> báo <code>TypeError: can't multiply sequence by non-int of type 'str'</code>. Giải thích: Python hiểu "20" là chữ cái, không nhân chia được.</li>
+                    <li><b>Định dạng tiền tệ:</b> Giảng viên hướng dẫn cú pháp <code>f"{tong_tien:,.2f} USD"</code> giúp số tiền <code>12500</code> hiển thị chuẩn đẹp thành <code>12,500.00 USD</code>.</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-box">
+                  <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                  <div class="exercise-task">
+                    <strong>Bài 1 (Cơ bản):</strong> Viết chương trình hỏi người dùng: Tên chủ nhà, Chiều dài phòng (feet), Chiều rộng phòng (feet), Đơn giá gạch (USD/sqft). Tính và in phiếu báo giá gồm Tên khách, Diện tích và Tổng tiền.
+                  </div>
+                  <div class="exercise-task">
+                    <strong>Bài 2 (Thực chiến nâng cao):</strong> Nhập thêm phí vận chuyển cố định <code>shipping = 75.0</code> USD. In ra: Tiền vật tư, Tiền vận chuyển và Tổng số tiền chủ nhà cần thanh toán.
+                  </div>
+                </div>
+
+                <div class="code-box-wrapper">
+                  <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B2</span><span>b2_tool_bao_gia_v1.py</span></div>
+                  <pre># BUỔI 2: TOOL BÁO GIÁ LÁT SÀN TƯƠNG TÁC ĐẦU TIÊN
+print("========================================")
+print("     TOOL BÁO GIÁ NHANH CÔNG TRƯỜNG     ")
+print("========================================")
+
+# 1. Nhập thông tin từ giám sát công trường
+ten_khach = input("Nhập tên khách hàng / mã căn: ")
+chieu_dai = float(input("Nhập chiều dài phòng (ft): "))
+chieu_rong = float(input("Nhập chiều rộng phòng (ft): "))
+don_gia = float(input("Nhập đơn giá thi công (USD/sqft): "))
+
+# 2. Xử lý tính toán
+dien_tich = chieu_dai * chieu_rong
+phi_van_chuyen = 75.0
+tong_tien = (dien_tich * don_gia) + phi_van_chuyen
+
+# 3. Xuất bảng báo giá định dạng f-string
+print("\n--- PHIẾU BÁO GIÁ GỬI CHỦ THẦU ---")
+print(f"Khách hàng:      {ten_khach}")
+print(f"Diện tích sàn:   {dien_tich:,.1f} sqft")
+print(f"Chi phí thi công:{dien_tich * don_gia:,.2f} USD")
+print(f"Phí vận chuyển:  {phi_van_chuyen:,.2f} USD")
+print(f"TỔNG CỘNG:       {tong_tien:,.2f} USD")
+print("-----------------------------------")</pre>
+                  <div class="code-output"># Demo chạy thử với Terminal:
+Nhập tên khách hàng: Villa Ecopark
+Nhập chiều dài phòng (ft): 25
+Nhập chiều rộng phòng (ft): 16
+Nhập đơn giá thi công (USD/sqft): 5.5
+
+--- PHIẾU BÁO GIÁ GỬI CHỦ THẦU ---
+Khách hàng:      Villa Ecopark
+Diện tích sàn:   400.0 sqft
+Chi phí thi công:2,200.00 USD
+Phí vận chuyển:  75.00 USD
+TỔNG CỘNG:       2,275.00 USD</div>
+                </div>
+              </div>
+            </details>
           </article>
         </div>
       </div>
 
+      <!-- TUẦN 2 -->
       <div class="week-block" data-pageduo-ele-id="e_rVt7uPt0fq29">
         <div class="week-head" data-pageduo-ele-id="e_sNlgz0E9OEv4">
           <div data-pageduo-ele-id="e_pK2vOZmZsJm2"><div class="week-label" data-pageduo-ele-id="e_kh9lV9PqqHX5">Tuần 2 · Tiêu chuẩn &amp; Giám sát</div><h3 data-pageduo-ele-id="e_91oyVzMVYilh">Đưa quy tắc công trường vào code</h3></div>
           <span class="tag" data-pageduo-ele-id="e_WxtFuxr3L7Ro">B3 → B4</span>
         </div>
         <div class="lesson-grid" data-pageduo-ele-id="e_gNINmBXMByWA">
+          <!-- BUỔI 3 -->
           <article class="surface lesson-card" data-pageduo-ele-id="e_T83vFWliHLh3">
-            <div class="lesson-top" data-pageduo-ele-id="e_2JuoF96t8rWV"><span class="lesson-number" data-pageduo-ele-id="e_MvkKVJ2pDy5S">BUỔI 3 · B3</span><span class="tag" data-pageduo-ele-id="e_Gxuc2ReQUkhX">điều kiện đơn</span></div>
-            <h3 data-pageduo-ele-id="e_2d8hH4GZpw7o">if/else là một lần kiểm tra</h3>
-            <p data-pageduo-ele-id="e_nlRHDfvKH5Bb">Chương trình không “đoán”. Nó kiểm tra một điều kiện rồi đi vào nhánh <code data-pageduo-ele-id="e_4niDHgxy3lVV">if</code> hoặc <code data-pageduo-ele-id="e_conkJ9TlQovw">else</code>. Với 900 sqft và điều kiện lớn hơn 1.000, nhánh điều kiện là sai.</p>
-            <ul data-pageduo-ele-id="e_ejGgm35alcf0"><li data-pageduo-ele-id="e_h2mip7jOH028">Đặt ngưỡng diện tích.</li><li data-pageduo-ele-id="e_nJEEWaloa6G5">Hiển thị hướng xử lý tương ứng.</li></ul>
-            <div class="lesson-product" data-pageduo-ele-id="e_2jzYN84B45uh"><span data-pageduo-ele-id="e_OHNq4a0qTKH4">Điểm bàn giao</span>Tool biết diện tích nào cần báo giá thường hay nâng cao.</div>
-            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Nếu diện tích lớn hơn 100 m2, in thông báo cần báo giá nâng cao; ngược lại in báo giá tiêu chuẩn.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>area_m2 = float(input("Diện tích (m2): "))
-      if area_m2 &gt; 100:
-        print("Chuyển sang báo giá nâng cao")
-      else:
-        print("Báo giá tiêu chuẩn")</pre></details>
+            <div class="lesson-top" data-pageduo-ele-id="e_2JuoF96t8rWV"><span class="lesson-number" data-pageduo-ele-id="e_MvkKVJ2pDy5S">BUỔI 3 · B3</span><span class="tag" data-pageduo-ele-id="e_Gxuc2ReQUkhX">Điều kiện if / else</span></div>
+            <h3 data-pageduo-ele-id="e_2d8hH4GZpw7o">if/else: Kiểm tra tiêu chuẩn nghiệm thu</h3>
+            <p data-pageduo-ele-id="e_nlRHDfvKH5Bb">Chương trình không đoán mò mà kiểm tra điều kiện logic: Nếu công trình &gt; 1,000 sqft thì áp dụng chiết khấu thương mại khối lượng lớn; ngược lại áp dụng đơn giá tiêu chuẩn.</p>
+            <div class="lesson-product" data-pageduo-ele-id="e_2jzYN84B45uh"><span data-pageduo-ele-id="e_OHNq4a0qTKH4">Điểm bàn giao</span>Tool tự động nhận diện dự án lớn để bật chính sách ưu đãi.</div>
+
+            <details class="instructor-kit">
+              <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B3 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+              <div class="instructor-body">
+                <div class="teacher-plan">
+                  <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                  <div class="teaching-timeline">
+                    <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Quy tắc nghiệm thu công trình</span>
+                    <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Cú pháp if / elif / else &amp; Thụt lề</span>
+                    <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Phân loại hợp đồng theo quy mô</span>
+                    <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Thảo luận</span>
+                  </div>
+                  <p><b>Mục tiêu:</b> Nắm vững cú pháp rẽ nhánh <code>if - else</code>, toán tử so sánh (<code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>==</code>), hiểu bản chất thụt dòng (Indentation - 4 dấu cách) trong Python.</p>
+                </div>
+
+                <div class="teacher-note">
+                  <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                  <ul>
+                    <li><b>Lỗi quên dấu hai chấm (:):</b> Cuối dòng <code>if</code> học viên rất hay quên dấu <code>:</code>. Nhắc: "Sau mỗi lần đặt câu hỏi phải có dấu hai chấm để mở cửa vào lệnh".</li>
+                    <li><b>Lỗi IndentationError:</b> Giải thích các lệnh nằm trong nhánh phải lùi vào đúng 1 phím Tab (4 dấu cách). Code thẳng hàng thì cùng cấp bậc xử lý.</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-box">
+                  <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                  <div class="exercise-task">
+                    <strong>Bài 1 (Cơ bản):</strong> Nhập diện tích sàn <code>sqft</code>. Nếu <code>sqft &gt;= 1000</code>, in: "Dự án quy mô lớn: Giảm ngay 5% trên đơn giá"; ngược lại in: "Dự án tiêu chuẩn: Đơn giá niêm yết".
+                  </div>
+                  <div class="exercise-task">
+                    <strong>Bài 2 (Thực chiến nâng cao):</strong> Tính tổng tiền: Đơn giá gốc là 5.0 USD/sqft. Nếu diện tích &gt;= 1000 sqft thì đơn giá giảm còn 4.7 USD/sqft. In tổng số tiền và số tiền tiết kiệm được nhờ chiết khấu.
+                  </div>
+                </div>
+
+                <div class="code-box-wrapper">
+                  <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B3</span><span>b3_kiem_tra_nguong.py</span></div>
+                  <pre># BUỔI 3: PHÂN LOẠI QUY MÔ &amp; CHIẾT KHẤU DỰ ÁN
+NGUONG_DIEN_TICH = 1000.0   # Ngưỡng sqft hưởng ưu đãi
+DON_GIA_GOC = 5.0           # USD / sqft
+
+sqft = float(input("Nhập tổng diện tích công trình (sqft): "))
+
+if sqft &gt;= NGUONG_DIEN_TICH:
+    phan_tram_giam = 0.05   # Giảm 5%
+    don_gia_thuc = DON_GIA_GOC * (1 - phan_tram_giam)
+    tien_tiet_kiem = (sqft * DON_GIA_GOC) * phan_tram_giam
+    tong_tien = sqft * don_gia_thuc
+    print("✅ ĐỦ ĐIỀU KIỆN ƯU ĐÃI DỰ ÁN LỚN (GIẢM 5%)")
+    print(f"Đơn giá sau giảm: {don_gia_thuc:.2f} USD/sqft")
+    print(f"Khách tiết kiệm:  {tien_tiet_kiem:,.2f} USD")
+else:
+    tong_tien = sqft * DON_GIA_GOC
+    print("ℹ️ DỰ ÁN TIÊU CHUẨN (Áp dụng đơn giá niêm yết)")
+    print(f"Đơn giá áp dụng: {DON_GIA_GOC:.2f} USD/sqft")
+
+print(f"&gt;&gt;&gt; TỔNG BÁO GIÁ THI CÔNG: {tong_tien:,.2f} USD")</pre>
+                  <div class="code-output"># Output kiểm thử với sqft = 1200:
+✅ ĐỦ ĐIỀU KIỆN ƯU ĐÃI DỰ ÁN LỚN (GIẢM 5%)
+Đơn giá sau giảm: 4.75 USD/sqft
+Khách tiết kiệm:  300.00 USD
+&gt;&gt;&gt; TỔNG BÁO GIÁ THI CÔNG: 5,700.00 USD</div>
+                </div>
+              </div>
+            </details>
           </article>
+
+          <!-- BUỔI 4 -->
           <article class="surface lesson-card" data-pageduo-ele-id="e_EQefgeuU4GER">
-            <div class="lesson-top" data-pageduo-ele-id="e_E670r54PZxuK"><span class="lesson-number" data-pageduo-ele-id="e_1LmJlfAVWuse">BUỔI 4 · B4</span><span class="tag" data-pageduo-ele-id="e_wwXB4HE1CVBr">logic đa điều kiện</span></div>
-            <h3 data-pageduo-ele-id="e_AkFkUcxRCb2h">Hai quy tắc có thể cùng chạy</h3>
-            <p data-pageduo-ele-id="e_XkLfjzgDxysf">Tool Báo Giá Nâng Cao giảm <b data-pageduo-ele-id="e_VYlUQi3KnrzG">5%</b> nếu diện tích &gt; 1.000 sqft và cộng <b data-pageduo-ele-id="e_RQD8RtfmJZ6C">10%</b> phí dọn rác nếu là nhà cũ. Một nhà cũ 1.200 sqft nhận cả hai xử lý; thứ tự tính phải được viết rõ.</p>
-            <ul data-pageduo-ele-id="e_qmIifZkQv9hE"><li data-pageduo-ele-id="e_b5RA1mieKl1D">Phân biệt <code data-pageduo-ele-id="e_uwVyEbRy5ZY2">and</code> với hai lần kiểm tra độc lập.</li><li data-pageduo-ele-id="e_4A91xtjUtdZS">Kiểm tra trường hợp vượt ngưỡng và nhà cũ đồng thời.</li></ul>
-            <div class="lesson-product" data-pageduo-ele-id="e_B6bHJLBWfi3y"><span data-pageduo-ele-id="e_WpkvCsiGamdT">Điểm bàn giao</span>Báo giá nâng cao có quy tắc minh bạch.</div>
-            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Tính chi phí sau khi giảm 5% cho diện tích lớn và cộng 10% phí dọn rác cho nhà cũ.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>area_m2 = 120
-      base = area_m2 * 12
-      if area_m2 &gt; 100:
-        base *= 0.95
-      is_old_home = True
-      if is_old_home:
-        base *= 1.10
-      print(f"Báo giá: {base:.2f} USD")</pre></details>
+            <div class="lesson-top" data-pageduo-ele-id="e_E670r54PZxuK"><span class="lesson-number" data-pageduo-ele-id="e_1LmJlfAVWuse">BUỔI 4 · B4</span><span class="tag" data-pageduo-ele-id="e_wwXB4HE1CVBr">Logic đa điều kiện</span></div>
+            <h3 data-pageduo-ele-id="e_AkFkUcxRCb2h">Logic đa điều kiện: Giảm giá &amp; Phí dọn rác</h3>
+            <p data-pageduo-ele-id="e_XkLfjzgDxysf">Công trường thực tế luôn có nhiều quy tắc đan xen: Vừa kiểm tra diện tích sàn để giảm 5%, vừa kiểm tra hiện trạng công trình (nhà cũ cần phá dỡ / dọn xà bần) để cộng thêm 10% chi phí xử lý rác thải.</p>
+            <div class="lesson-product" data-pageduo-ele-id="e_B6bHJLBWfi3y"><span data-pageduo-ele-id="e_WpkvCsiGamdT">Sản phẩm</span>Tool Báo Giá Nâng Cao xử lý đa điều kiện độc lập và kết hợp.</div>
+
+            <details class="instructor-kit">
+              <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B4 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+              <div class="instructor-body">
+                <div class="teacher-plan">
+                  <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                  <div class="teaching-timeline">
+                    <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Khảo sát hiện trạng nhà cũ vs nhà mới</span>
+                    <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Toán tử and, or, not &amp; Nhiều block if</span>
+                    <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Viết bảng tính phụ phí công trình</span>
+                    <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Checkpoint</span>
+                  </div>
+                  <p><b>Mục tiêu:</b> Phân biệt khi nào dùng các khối <code>if</code> nối tiếp độc lập (nhiều phụ phí đồng thời kích hoạt) và khi nào dùng toán tử logic <code>and</code>, <code>or</code>.</p>
+                </div>
+
+                <div class="teacher-note">
+                  <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                  <ul>
+                    <li><b>Nhầm lẫn elif và if độc lập:</b> Nếu dùng <code>elif</code> cho phí dọn rác, khi điều kiện giảm giá đã thỏa mãn thì code sẽ bỏ qua phí dọn rác! Giảng viên cần chỉ rõ: "Giảm giá và Phí dọn rác là 2 quy tắc độc lập nên phải dùng 2 câu lệnh <code>if</code> riêng biệt".</li>
+                    <li><b>Biến cờ Boolean:</b> Dạy học viên dùng kiểu <code>True/False</code> cho câu hỏi có/không: <code>is_old_home = True</code>.</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-box">
+                  <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                  <div class="exercise-task">
+                    <strong>Bài 1 (Cơ bản):</strong> Viết chương trình nhập diện tích <code>sqft</code> và câu hỏi "Có phải nhà cũ cần đục sàn cũ không? (y/n)". Tính tiền lát sàn (5.0 USD/sqft). Nếu &gt; 1000 sqft: giảm 5%. Nếu là nhà cũ: cộng 10% phí dọn xà bần.
+                  </div>
+                  <div class="exercise-task">
+                    <strong>Bài 2 (Thực chiến nâng cao):</strong> Thêm điều kiện: Nếu công trình ở tầng cao không có thang máy (nhập <code>tang_cao = True</code>), phụ thu thêm 150 USD phí vác bộ vật tư. Xuất hóa đơn chi tiết từng khoản mục.
+                  </div>
+                </div>
+
+                <div class="code-box-wrapper">
+                  <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B4</span><span>b4_bao_gia_nang_cao.py</span></div>
+                  <pre># BUỔI 4: BÁO GIÁ ĐA ĐIỀU KIỆN (DISCOUNT + REMOVAL FEE)
+dien_tich = float(input("Nhập diện tích công trình (sqft): "))
+tra_loi_nha_cu = input("Công trình là nhà cũ cần phá dỡ? (c/k): ").lower()
+is_nha_cu = (tra_loi_nha_cu == "c")
+
+don_gia_co_ban = 5.0
+chi_phi_goc = dien_tich * don_gia_co_ban
+
+# Quy tắc 1: Giảm giá 5% cho công trình từ 1,000 sqft
+giam_gia = 0.0
+if dien_tich &gt;= 1000:
+    giam_gia = chi_phi_goc * 0.05
+
+# Quy tắc 2: Phụ thu 10% dọn xà bần nếu là nhà cũ (độc lập)
+phi_don_rac = 0.0
+if is_nha_cu:
+    phi_don_rac = chi_phi_goc * 0.10
+
+# Tổng kết
+tong_thanh_toan = chi_phi_goc - giam_gia + phi_don_rac
+
+print("\n--- BẢNG KÊ CHI PHÍ CHI TIẾT ---")
+print(f"Chi phí gốc ({dien_tich} sqft x $5.0): {chi_phi_goc:,.2f} USD")
+if giam_gia &gt; 0:
+    print(f"[-] Chiết khấu khối lượng (5%):       -{giam_gia:,.2f} USD")
+if phi_don_rac &gt; 0:
+    print(f"[+] Phí dọn xà bần nhà cũ (10%):     +{phi_don_rac:,.2f} USD")
+print("---------------------------------")
+print(f"TỔNG GIÁ TRỊ HỢP ĐỒNG:               {tong_thanh_toan:,.2f} USD")</pre>
+                  <div class="code-output"># Output kiểm thử (sqft = 1200, là nhà cũ):
+--- BẢNG KÊ CHI PHÍ CHI TIẾT ---
+Chi phí gốc (1200.0 sqft x $5.0): 6,000.00 USD
+[-] Chiết khấu khối lượng (5%):       -300.00 USD
+[+] Phí dọn xà bần nhà cũ (10%):     +600.00 USD
+---------------------------------
+TỔNG GIÁ TRỊ HỢP ĐỒNG:               6,300.00 USD</div>
+                </div>
+              </div>
+            </details>
           </article>
         </div>
       </div>
 
+      <!-- TUẦN 3 -->
       <div class="week-block" data-pageduo-ele-id="e_VHaEOcZvjzv7">
         <div class="week-head" data-pageduo-ele-id="e_Vabb2Kns3Jkx">
           <div data-pageduo-ele-id="e_KUXBSi6mYbRd"><div class="week-label" data-pageduo-ele-id="e_eJy6waox8YGc">Tuần 3 · Danh sách &amp; Thi công</div><h3 data-pageduo-ele-id="e_MPknZ2V9aoBW">Đổi clipboard thành dữ liệu có thể duyệt</h3></div>
           <span class="tag" data-pageduo-ele-id="e_dFXyfqE9RU2n">B5 → B6</span>
         </div>
         <div class="lesson-grid" data-pageduo-ele-id="e_IMJI0mrlJzEk">
+          <!-- BUỔI 5 -->
           <article class="surface lesson-card" data-pageduo-ele-id="e_yEfF8384yQXz">
-            <div class="lesson-top" data-pageduo-ele-id="e_AjfCW6NBKgmJ"><span class="lesson-number" data-pageduo-ele-id="e_woX8kmNHhwZC">BUỔI 5 · B5</span><span class="tag" data-pageduo-ele-id="e_kwceXJsePcGk">list và vòng lặp</span></div>
-            <h3 data-pageduo-ele-id="e_S2Llfa0LjtA0">Một list là cả danh sách vật tư</h3>
-            <p data-pageduo-ele-id="e_lw6Oyb82rhlD">Thay vì viết lại cùng một lệnh cho sơn, đinh và gỗ, đưa chúng vào một <code data-pageduo-ele-id="e_UMk3isuW97Vi">list</code>. Vòng lặp <code data-pageduo-ele-id="e_GzqxBqQUcB5K">for</code> đi qua từng phần tử; <code data-pageduo-ele-id="e_pw0W3U08Btqp">while</code> phù hợp khi điều kiện kết thúc chưa biết trước.</p>
-            <div class="lesson-product" data-pageduo-ele-id="e_mTjiJ1cpYRWh"><span data-pageduo-ele-id="e_G9QgSpcBNEBD">Điểm bàn giao</span>Danh sách vật tư có thể duyệt từng dòng.</div>
-            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Duyệt danh sách vật tư và in tên từng vật tư cần mua.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>materials = ["Sơn", "Đinh", "Gỗ"]
-      for material in materials:
-        print("Cần mua:", material)</pre></details>
+            <div class="lesson-top" data-pageduo-ele-id="e_AjfCW6NBKgmJ"><span class="lesson-number" data-pageduo-ele-id="e_woX8kmNHhwZC">BUỔI 5 · B5</span><span class="tag" data-pageduo-ele-id="e_kwceXJsePcGk">List &amp; Vòng lặp For</span></div>
+            <h3 data-pageduo-ele-id="e_S2Llfa0LjtA0">List danh sách vật tư &amp; Duyệt tự động</h3>
+            <p data-pageduo-ele-id="e_lw6Oyb82rhlD">Thay vì tạo từng biến riêng rẽ cho từng bao xi măng, thùng sơn, cuộn xốp lót, giám sát gom tất cả vào một <code>list</code> và dùng vòng lặp <code>for</code> duyệt tuần tự từng món hàng.</p>
+            <div class="lesson-product" data-pageduo-ele-id="e_mTjiJ1cpYRWh"><span data-pageduo-ele-id="e_G9QgSpcBNEBD">Điểm bàn giao</span>Checklist vật tư thi công tự động in và đếm số lượng mục hàng.</div>
+
+            <details class="instructor-kit">
+              <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B5 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+              <div class="instructor-body">
+                <div class="teacher-plan">
+                  <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                  <div class="teaching-timeline">
+                    <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Bảng kiểm vật tư trên clipboard</span>
+                    <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Cấu trúc List [ ], append(), vòng lặp for</span>
+                    <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: In phiếu xuất kho vật tư</span>
+                    <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Tổng kết</span>
+                  </div>
+                  <p><b>Mục tiêu:</b> Tạo, truy xuất phần tử theo chỉ số index (bắt đầu từ 0), thêm phần tử bằng <code>.append()</code> và duyệt danh sách bằng <code>for item in list:</code>.</p>
+                </div>
+
+                <div class="teacher-note">
+                  <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                  <ul>
+                    <li><b>Index bắt đầu từ 0:</b> Người làm xây dựng quen đếm từ 1. Giảng viên giải thích: Phần tử đầu tiên trong danh sách máy tính đánh số là <code>0</code>, dùng <code>enumerate(danh_sach, start=1)</code> để in ra số thứ tự thân thiện từ 1.</li>
+                    <li><b>Lỗi IndexError:</b> Giải thích khi truy cập vị trí vượt quá độ dài danh sách (danh sách có 3 món mà gọi index 3 sẽ bị lỗi).</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-box">
+                  <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                  <div class="exercise-task">
+                    <strong>Bài 1 (Cơ bản):</strong> Cho danh sách vật tư cần mua tại Home Depot: <code>["Gạch gỗ Vinyl", "Xốp lót sàn", "Nẹp chân tường", "Keo dán sàn", "Đinh bê tông"]</code>. Dùng vòng lặp in danh sách theo định dạng: "Hạng mục 1: Gạch gỗ Vinyl",...
+                  </div>
+                  <div class="exercise-task">
+                    <strong>Bài 2 (Thực chiến nâng cao):</strong> Cho phép người dùng nhập thêm 2 vật tư mới từ bàn phím bằng <code>input()</code>, dùng <code>.append()</code> đưa vào danh sách, sau đó đếm xem tổng cộng có bao nhiêu món hàng cần mua bằng hàm <code>len()</code>.
+                  </div>
+                </div>
+
+                <div class="code-box-wrapper">
+                  <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B5</span><span>b5_danh_sach_vat_tu.py</span></div>
+                  <pre># BUỔI 5: QUẢN LÝ DANH MỤC VẬT TƯ THI CÔNG
+vat_tu_kho = ["Gạch gỗ Vinyl", "Xốp lót lót sàn", "Nẹp chỉ chân tường", "Keo dán chuyên dụng"]
+
+print(f"Hiện có {len(vat_tu_kho)} hạng mục trong danh sách ban đầu.")
+
+# Cho phép giám sát bổ sung thêm vật tư phát sinh
+vat_tu_moi = input("Nhập thêm vật tư phát sinh (hoặc Enter để bỏ qua): ")
+if vat_tu_moi.strip() != "":
+    vat_tu_kho.append(vat_tu_moi.strip())
+
+# In phiếu xuất vật tư ra công trường
+print("\n=== PHIẾU XUẤT KHO VẬT TƯ CÔNG TRƯỜNG ===")
+for stt, ten_vat_tu in enumerate(vat_tu_kho, start=1):
+    print(f"[{stt:02d}] {ten_vat_tu}")
+print("=========================================")
+print(f"Tổng số mục vật tư cần kiểm đếm: {len(vat_tu_kho)}")</pre>
+                  <div class="code-output"># Output in ra:
+=== PHIẾU XUẤT KHO VẬT TƯ CÔNG TRƯỜNG ===
+[01] Gạch gỗ Vinyl
+[02] Xốp lót lót sàn
+[03] Nẹp chỉ chân tường
+[04] Keo dán chuyên dụng
+[05] Đinh súng bê tông
+=========================================
+Tổng số mục vật tư cần kiểm đếm: 5</div>
+                </div>
+              </div>
+            </details>
           </article>
+
+          <!-- BUỔI 6 -->
           <article class="surface lesson-card" data-pageduo-ele-id="e_6TtI4cHHnk5D">
-            <div class="lesson-top" data-pageduo-ele-id="e_ZOVAyR5O3XRw"><span class="lesson-number" data-pageduo-ele-id="e_4L2qn6Hf2dBz">BUỔI 6 · B6</span><span class="tag" data-pageduo-ele-id="e_A1Qu8xfd64TS">tích lũy tổng</span></div>
-            <h3 data-pageduo-ele-id="e_PosskDB9dza4">Duyệt vật tư và cộng dồn</h3>
-            <p data-pageduo-ele-id="e_eaPUuOWW2F7r">Với mỗi vật tư, tính số lượng × đơn giá rồi cộng vào <code data-pageduo-ele-id="e_xleI1Nq0ykyq">total</code>. Biến tổng phải khởi tạo <b data-pageduo-ele-id="e_LgPaLbNzhDPB">trước vòng lặp</b>; đặt bên trong sẽ làm mất kết quả của lần trước.</p>
-            <div class="lesson-product" data-pageduo-ele-id="e_7tdyjwqdUw73"><span data-pageduo-ele-id="e_TpSUhE94GJp8">Sản phẩm</span>Tool Quản Lý Vật Tư, tính tổng tiền cần chi trả tại Home Depot.</div>
-            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Tính tổng tiền của ba vật tư từ số lượng và đơn giá.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>items = [("Sơn", 10, 450000), ("Đinh", 50, 35000), ("Gỗ", 20, 2800000)]
-      total = 0
-      for name, quantity, price in items:
-        subtotal = quantity * price
-        total += subtotal
-        print(name, subtotal)
-      print("Tổng cộng:", total)</pre></details>
+            <div class="lesson-top" data-pageduo-ele-id="e_ZOVAyR5O3XRw"><span class="lesson-number" data-pageduo-ele-id="e_4L2qn6Hf2dBz">BUỔI 6 · B6</span><span class="tag" data-pageduo-ele-id="e_A1Qu8xfd64TS">Cộng dồn &amp; Tính tổng</span></div>
+            <h3 data-pageduo-ele-id="e_PosskDB9dza4">Tính tổng chi phí vật tư (total += subtotal)</h3>
+            <p data-pageduo-ele-id="e_eaPUuOWW2F7r">Mỗi hạng mục vật tư có số lượng và đơn giá. Để tính hóa đơn Home Depot, ta duyệt qua từng dòng, tính thành tiền của dòng và cộng dồn vào biến tổng tích lũy đặt trước vòng lặp.</p>
+            <div class="lesson-product" data-pageduo-ele-id="e_7tdyjwqdUw73"><span data-pageduo-ele-id="e_TpSUhE94GJp8">Sản phẩm</span>Tool Quản Lý Vật Tư &amp; Hóa Đơn Mua Hàng tự động tính tổng tiền.</div>
+
+            <details class="instructor-kit">
+              <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B6 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+              <div class="instructor-body">
+                <div class="teacher-plan">
+                  <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                  <div class="teaching-timeline">
+                    <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Hóa đơn thanh toán Home Depot</span>
+                    <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Thuật toán cộng dồn biến tích lũy (accumulator)</span>
+                    <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Bảng kê dự toán chi tiết</span>
+                    <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Thảo luận</span>
+                  </div>
+                  <p><b>Mục tiêu:</b> Khởi tạo biến tổng <code>total = 0</code> trước vòng lặp, sử dụng danh sách lồng nhau (list of dicts hoặc list of tuples), tính <code>subtotal = qty * price</code> và cộng dồn <code>total += subtotal</code>.</p>
+                </div>
+
+                <div class="teacher-note">
+                  <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                  <ul>
+                    <li><b>Khởi tạo total bên trong vòng lặp:</b> Đây là lỗi kinh điển của người mới: nếu đặt <code>total = 0</code> bên trong <code>for</code>, sau mỗi vòng lặp biến tổng lại bị reset về 0! Giảng viên vẽ sơ đồ chiếc ví tiền: "Ví tiền phải mở sẵn trên bàn trước khi gom từng đồng".</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-box">
+                  <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                  <div class="exercise-task">
+                    <strong>Bài 1 (Cơ bản):</strong> Cho danh sách vật tư dạng tuple: <code>[("Sơn lót", 5, 45.0), ("Sơn phủ", 8, 55.0), ("Con lăn", 4, 12.5)]</code> với các cột (Tên, Số lượng, Đơn giá). Tính thành tiền từng món và in tổng tiền thanh toán.
+                  </div>
+                  <div class="exercise-task">
+                    <strong>Bài 2 (Thực chiến nâng cao):</strong> Cộng thêm thuế bán hàng tại Mỹ (Sales Tax = 8.25%). In ra: Tiền hàng trước thuế, Tiền thuế và Tổng tiền thanh toán tại quầy.
+                  </div>
+                </div>
+
+                <div class="code-box-wrapper">
+                  <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B6</span><span>b6_tong_vat_tu.py</span></div>
+                  <pre># BUỔI 6: TÍNH DỰ TOÁN VẬT TƯ HOME DEPOT
+danh_sach_vat_tu = [
+    {"ten": "Gạch gỗ Vinyl (hộp)",   "so_luong": 25, "don_gia": 42.5},
+    {"ten": "Xốp lót chống ẩm (cuộn)","so_luong": 3,  "don_gia": 28.0},
+    {"ten": "Nẹp nhôm cửa (thanh)",   "so_luong": 6,  "don_gia": 14.5},
+    {"ten": "Keo silicon dán nẹp (lọ)","so_luong": 4,  "don_gia": 8.0}
+]
+
+tong_tien_truoc_thue = 0.0
+
+print(f"{'TÊN VẬT TƯ':<25} | {'SL':>4} | {'ĐƠN GIÁ':>9} | {'THÀNH TIỀN':>12}")
+print("-" * 58)
+
+for item in danh_sach_vat_tu:
+    thanh_tien = item["so_luong"] * item["don_gia"]
+    tong_tien_truoc_thue += thanh_tien
+    print(f"{item['ten']:<25} | {item['so_luong']:>4} | {item['don_gia']:>8.2f}$ | {thanh_tien:>11.2f}$")
+
+print("-" * 58)
+thue_tax = tong_tien_truoc_thue * 0.0825  # Thuế 8.25%
+tong_cong = tong_tien_truoc_thue + thue_tax
+
+print(f"Tổng tiền hàng trước thuế: {tong_tien_truoc_thue:>12,.2f} USD")
+print(f"Thuế bán hàng (Sales Tax 8.25%): {thue_tax:>7,.2f} USD")
+print(f"TỔNG THANH TOÁN HOME DEPOT:      {tong_cong:>7,.2f} USD")</pre>
+                  <div class="code-output"># Bảng xuất ra:
+TÊN VẬT TƯ                |   SL |   ĐƠN GIÁ |   THÀNH TIỀN
+----------------------------------------------------------
+Gạch gỗ Vinyl (hộp)       |   25 |    42.50$ |    1062.50$
+Xốp lót chống ẩm (cuộn)   |    3 |    28.00$ |      84.00$
+Nẹp nhôm cửa (thanh)      |    6 |    14.50$ |      87.00$
+Keo silicon dán nẹp (lọ)  |    4 |     8.00$ |      32.00$
+----------------------------------------------------------
+Tổng tiền hàng trước thuế:     1,265.50 USD
+Thuế bán hàng (Sales Tax 8.25%): 104.40 USD
+TỔNG THANH TOÁN HOME DEPOT:    1,369.90 USD</div>
+                </div>
+              </div>
+            </details>
           </article>
         </div>
       </div>
 
+      <!-- TUẦN 4 -->
       <div class="week-block" data-pageduo-ele-id="e_m5MylLcm8AAs">
         <div class="week-head" data-pageduo-ele-id="e_Qgqn6bSs9mgm">
           <div data-pageduo-ele-id="e_ygqLGg7CHr3D"><div class="week-label" data-pageduo-ele-id="e_OgiQe3zFAegd">Tuần 4 · Tổ đội Chuyên biệt</div><h3 data-pageduo-ele-id="e_Ht8KOdfTgnFE">Đóng gói để dùng lại</h3></div>
           <span class="tag" data-pageduo-ele-id="e_HzDJzedU4EZ0">B7 → B8</span>
         </div>
         <div class="lesson-grid" data-pageduo-ele-id="e_6YA7G6lHPqjb">
+          <!-- BUỔI 7 -->
           <article class="surface lesson-card" data-pageduo-ele-id="e_tdpCDTUvb0Vf">
-            <div class="lesson-top" data-pageduo-ele-id="e_YAxosZEBPgtS"><span class="lesson-number" data-pageduo-ele-id="e_bp3V02WDPADw">BUỔI 7 · B7</span><span class="tag" data-pageduo-ele-id="e_QIZMQLa67DGz">hàm và giá trị trả về</span></div>
-            <h3 data-pageduo-ele-id="e_V5lbzXJAwMUj">Function là một tổ đội nhận việc</h3>
-            <p data-pageduo-ele-id="e_on6agrDaeoGd">Hàm nhận tham số, làm một nhiệm vụ cụ thể và dùng <code data-pageduo-ele-id="e_1VU4FsYsCEoU">return</code> để đưa kết quả về nơi gọi. Hàm báo giá giúp không phải chép lại công thức ở nhiều màn hình.</p>
-            <div class="lesson-product" data-pageduo-ele-id="e_flCjsjgJ3EXa"><span data-pageduo-ele-id="e_AojMbfhrlt7b">Điểm bàn giao</span>Một hàm báo giá có thể gọi lại cho nhiều phòng.</div>
-            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Viết hàm nhận dài, rộng, đơn giá và trả về tổng chi phí.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>def estimate(length_m, width_m, price_usd):
-        return length_m * width_m * price_usd
+            <div class="lesson-top" data-pageduo-ele-id="e_YAxosZEBPgtS"><span class="lesson-number" data-pageduo-ele-id="e_bp3V02WDPADw">BUỔI 7 · B7</span><span class="tag" data-pageduo-ele-id="e_QIZMQLa67DGz">Hàm &amp; Return</span></div>
+            <h3 data-pageduo-ele-id="e_V5lbzXJAwMUj">Hàm (Function): Đóng gói tổ đội chuyên biệt</h3>
+            <p data-pageduo-ele-id="e_on6agrDaeoGd">Hàm giống như khoán việc cho một tổ đội thợ: Ta giao bản vẽ (tham số đầu vào), tổ đội làm việc và bàn giao kết quả nghiệm thu (lệnh <code>return</code>) về cho chỉ huy trưởng mà không phải viết lại code nhiều lần.</p>
+            <div class="lesson-product" data-pageduo-ele-id="e_flCjsjgJ3EXa"><span data-pageduo-ele-id="e_AojMbfhrlt7b">Điểm bàn giao</span>Hàm tính báo giá chuẩn có thể gọi lại cho 10 căn phòng khác nhau.</div>
 
-      print(estimate(5, 3.4, 12))</pre></details>
+            <details class="instructor-kit">
+              <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B7 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+              <div class="instructor-body">
+                <div class="teacher-plan">
+                  <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                  <div class="teaching-timeline">
+                    <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Tránh lặp code khi tính 5 phòng liên tiếp</span>
+                    <span class="timeline-pill">⏱️ <b>25'</b> Live Code: def function_name(args): ... return</span>
+                    <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Viết module tính giá sàn và sơn tường</span>
+                    <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                  </div>
+                  <p><b>Mục tiêu:</b> Khai báo hàm bằng từ khóa <code>def</code>, truyền tham số, phân biệt giữa in ra (<code>print</code>) và trả về giá trị (<code>return</code>) để sử dụng tiếp.</p>
+                </div>
+
+                <div class="teacher-note">
+                  <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                  <ul>
+                    <li><b>Nhầm print() với return:</b> Học viên thường viết <code>print()</code> trong hàm rồi gán <code>kq = ham()</code> dẫn tới <code>kq = None</code>. Giảng viên ví von: "<code>print</code> là thợ tự nói cho mình nghe, còn <code>return</code> là thợ trao tận tay sản phẩm cho bạn cất vào tủ".</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-box">
+                  <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                  <div class="exercise-task">
+                    <strong>Bài 1 (Cơ bản):</strong> Định nghĩa hàm <code>tinh_gia_san(dai, rong, don_gia)</code> nhận vào 3 thông số và trả về tổng tiền. Gọi hàm tính giá cho 3 phòng: Phòng Master (20x15, đơn giá 5.5$), Phòng Khách (25x18, đơn giá 6.0$) và Phòng Bé (12x10, đơn giá 4.5$).
+                  </div>
+                  <div class="exercise-task">
+                    <strong>Bài 2 (Thực chiến nâng cao):</strong> Bổ sung tham số mặc định <code>ti_le_giam=0.0</code> vào hàm. Nếu phòng có diện tích &gt; 300 sqft, truyền <code>ti_le_giam=0.05</code> khi gọi hàm.
+                  </div>
+                </div>
+
+                <div class="code-box-wrapper">
+                  <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B7</span><span>b7_ham_bao_gia.py</span></div>
+                  <pre># BUỔI 7: ĐỊNH NGHĨA HÀM TÍNH BÁO GIÁ DÙNG LẠI
+def tinh_bao_gia_san(dai: float, rong: float, don_gia: float, giam_gia: float = 0.0) -&gt; float:
+    """Hàm tính báo giá lát sàn một phòng có chiết khấu tùy chọn."""
+    sqft = dai * rong
+    tien_goc = sqft * don_gia
+    tien_thuc_te = tien_goc * (1.0 - giam_gia)
+    return tien_thuc_te
+
+# Danh sách số đo các phòng của căn nhà
+cac_phong = [
+    {"ten": "Phòng Khách", "dai": 24.0, "rong": 18.0, "gia": 5.5},
+    {"ten": "Phòng Ngủ 1", "dai": 16.0, "rong": 14.0, "gia": 4.8},
+    {"ten": "Phòng Ngủ 2", "dai": 14.0, "rong": 12.0, "gia": 4.8},
+    {"ten": "Phòng Bếp",   "dai": 15.0, "rong": 12.0, "gia": 5.0}
+]
+
+tong_du_toan_nha = 0.0
+print("=== DỰ TOÁN CHI TIẾT TỪNG PHÒNG BẰNG HÀM PYTHON ===")
+
+for phong in cac_phong:
+    sqft = phong["dai"] * phong["rong"]
+    # Tự động giảm 5% nếu phòng trên 300 sqft
+    rate_discount = 0.05 if sqft &gt;= 300 else 0.0
+    chi_phi = tinh_bao_gia_san(phong["dai"], phong["rong"], phong["gia"], rate_discount)
+    tong_du_toan_nha += chi_phi
+    print(f"{phong['ten']:<15}: {sqft:>5.0f} sqft (Giảm {rate_discount*100:.0f}%) -&gt; {chi_phi:>8,.2f} USD")
+
+print("-----------------------------------------------------")
+print(f"TỔNG DỰ TOÁN TOÀN BỘ CĂN NHÀ:               {tong_du_toan_nha:>8,.2f} USD")</pre>
+                  <div class="code-output"># Output kiểm thử:
+=== DỰ TOÁN CHI TIẾT TỪNG PHÒNG BẰNG HÀM PYTHON ===
+Phòng Khách    :   432 sqft (Giảm 5%) -&gt; 2,265.84 USD
+Phòng Ngủ 1    :   224 sqft (Giảm 0%) -&gt; 1,075.20 USD
+Phòng Ngủ 2    :   168 sqft (Giảm 0%) -&gt;   806.40 USD
+Phòng Bếp      :   180 sqft (Giảm 0%) -&gt;   900.00 USD
+-----------------------------------------------------
+TỔNG DỰ TOÁN TOÀN BỘ CĂN NHÀ:               5,047.44 USD</div>
+                </div>
+              </div>
+            </details>
           </article>
-          <article class="surface lesson-card" data-pageduo-ele-id="e_fQ1gS6Mioxwj">
-            <div class="lesson-top" data-pageduo-ele-id="e_l3LRTCtoAY4q"><span class="lesson-number" data-pageduo-ele-id="e_CIfxfcvndWUn">BUỔI 8 · B8</span><span class="tag" data-pageduo-ele-id="e_qAUn92dr8puG">đóng gói chương trình</span></div>
-            <h3 data-pageduo-ele-id="e_gJCImbU3PFnn">Cỗ Máy Báo Giá Tự Động</h3>
-            <p data-pageduo-ele-id="e_ExVh9cFUJcL1">Đầu vào tối thiểu là diện tích. Chương trình gọi hàm báo giá, áp dụng quy tắc cần thiết và xuất kết quả ngay. Đây là lúc các mảnh B1–B7 thành một tool hoàn chỉnh.</p>
-            <div class="lesson-product" data-pageduo-ele-id="e_vVmz3e8Yu340"><span data-pageduo-ele-id="e_9mnIE5T141w0">Sản phẩm</span>Cỗ Máy Báo Giá Tự Động.</div>
-            <div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Đóng gói hàm báo giá thành chương trình có nhập liệu và kiểm tra dữ liệu cơ bản.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>def estimate(length_m, width_m, price_usd):
-        if length_m &lt;= 0 or width_m &lt;= 0 or price_usd &lt;= 0:
-          return None
-        return length_m * width_m * price_usd
 
-      total = estimate(float(input("Dài: ")), float(input("Rộng: ")), float(input("Đơn giá: ")))
-      print("Dữ liệu không hợp lệ" if total is None else f"Tổng: {total:.2f} USD")</pre></details>
+          <!-- BUỔI 8 -->
+          <article class="surface lesson-card" data-pageduo-ele-id="e_fQ1gS6Mioxwj">
+            <div class="lesson-top" data-pageduo-ele-id="e_l3LRTCtoAY4q"><span class="lesson-number" data-pageduo-ele-id="e_CIfxfcvndWUn">BUỔI 8 · B8</span><span class="tag" data-pageduo-ele-id="e_qAUn92dr8puG">Đóng gói sản phẩm</span></div>
+            <h3 data-pageduo-ele-id="e_gJCImbU3PFnn">Cỗ Máy Báo Giá Tự Động hoàn thiện</h3>
+            <p data-pageduo-ele-id="e_ExVh9cFUJcL1">Kết nối toàn bộ kỹ năng từ B1 đến B7: Nhập liệu an toàn (Validate dữ liệu không âm), gọi hàm tính toán, duyệt qua các phòng và xuất báo cáo nghiệm thu chuyên nghiệp.</p>
+            <div class="lesson-product" data-pageduo-ele-id="e_vVmz3e8Yu340"><span data-pageduo-ele-id="e_9mnIE5T141w0">Sản phẩm</span>Cỗ Máy Báo Giá Tự Động (Auto-Quote Engine) kết thúc Giai đoạn 1.</div>
+
+            <details class="instructor-kit" open>
+              <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B8 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+              <div class="instructor-body">
+                <div class="teacher-plan">
+                  <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                  <div class="teaching-timeline">
+                    <span class="timeline-pill">⏱️ <b>10'</b> Đặt đầu bài đồ án Giai đoạn 1</span>
+                    <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Kiến trúc cỗ máy báo giá &amp; Bắt lỗi nhập liệu</span>
+                    <span class="timeline-pill">⏱️ <b>20'</b> Học viên hoàn thiện đồ án độc lập</span>
+                    <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu mốc Đặt Móng 1 tháng</span>
+                  </div>
+                  <p><b>Mục tiêu:</b> Học viên tự tin viết một chương trình Python hoàn chỉnh có cấu trúc rõ ràng: Hằng số &rarr; Hàm xử lý &rarr; Nhập &amp; kiểm tra dữ liệu &rarr; Vòng lặp &rarr; In báo cáo chuyên nghiệp.</p>
+                </div>
+
+                <div class="teacher-note">
+                  <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                  <ul>
+                    <li><b>Xử lý ngoại lệ (Try/Except):</b> Khi học viên gõ chữ thay vì gõ số vào ô chiều dài, chương trình sẽ sập. Giới thiệu cấu trúc <code>try - except ValueError</code> nhẹ nhàng để máy tính báo lỗi lịch sự thay vì văng màn hình đỏ.</li>
+                  </ul>
+                </div>
+
+                <div class="exercise-box">
+                  <h4>🛠️ Đồ án tốt nghiệp Giai đoạn 1 tại lớp</h4>
+                  <div class="exercise-task">
+                    <strong>Yêu cầu đồ án:</strong> Viết file <code>co_may_bao_gia.py</code> cho phép giám sát nhập số lượng phòng cần tính. Với mỗi phòng nhập dài, rộng, đơn giá. Chương trình tự động phân loại phòng nào được giảm 5%, tính tổng toàn nhà và xuất ra phiếu nghiệm thu kèm chữ ký số giám sát.
+                  </div>
+                </div>
+
+                <div class="code-box-wrapper">
+                  <div class="code-box-header"><span>Python 3 · Source Code đồ án hoàn chỉnh B8</span><span>co_may_bao_gia.py</span></div>
+                  <pre># BUỔI 8: ĐỒ ÁN GIAI ĐOẠN 1 - CỖ MÁY BÁO GIÁ TỰ ĐỘNG
+def tao_bao_gia_phong(ten: str, dai: float, rong: float, don_gia: float):
+    """Tính toán chi tiết cho 1 phòng kèm chiết khấu nếu &gt; 300 sqft."""
+    sqft = dai * rong
+    giam = 0.05 if sqft &gt;= 300 else 0.0
+    tien_sau_giam = sqft * don_gia * (1 - giam)
+    return {"ten": ten, "sqft": sqft, "giam": giam, "tong": tien_sau_giam}
+
+print("=" * 50)
+print("     CỖ MÁY BÁO GIÁ TỰ ĐỘNG - GIAI ĐOẠN 1       ")
+print("=" * 50)
+
+danh_sach_phong = []
+try:
+    so_phong = int(input("Nhập số lượng phòng cần báo giá: "))
+    for i in range(1, so_phong + 1):
+        print(f"\n--- Nhập thông tin phòng #{i} ---")
+        ten = input(f"Tên phòng #{i} (vd: Khách, Ngủ): ")
+        d = float(input("Chiều dài (ft): "))
+        r = float(input("Chiều rộng (ft): "))
+        gia = float(input("Đơn giá (USD/sqft): "))
+        danh_sach_phong.append(tao_bao_gia_phong(ten, d, r, gia))
+
+    print("\n" + "=" * 50)
+    print("           BẢNG NGHIỆM THU DỰ TOÁN BÁO GIÁ        ")
+    print("=" * 50)
+    tong_sqft = 0.0
+    tong_tien = 0.0
+    for p in danh_sach_phong:
+        tong_sqft += p["sqft"]
+        tong_tien += p["tong"]
+        note = "Giảm 5%" if p["giam"] &gt; 0 else "Tiêu chuẩn"
+        print(f"• {p['ten']:<12}: {p['sqft']:>6.1f} sqft | {note:<10} | {p['tong']:>9,.2f} USD")
+
+    print("-" * 50)
+    print(f"TỔNG DIỆN TÍCH TOÀN BỘ: {tong_sqft:>15,.1f} sqft")
+    print(f"TỔNG GIÁ TRỊ HỢP ĐỒNG:  {tong_tien:>15,.2f} USD")
+    print("=" * 50)
+    print("Người lập: Giám sát công trường · Đã nghiệm thu.")
+except ValueError:
+    print("❌ Lỗi: Vui lòng chỉ nhập số hợp lệ!")</pre>
+                  <div class="code-output"># Output mẫu hoàn chỉnh:
+==================================================
+           BẢNG NGHIỆM THU DỰ TOÁN BÁO GIÁ        
+==================================================
+• P.Khách     :  400.0 sqft | Giảm 5%     |  2,090.00 USD
+• P.Ngủ 1     :  200.0 sqft | Tiêu chuẩn  |  1,000.00 USD
+• P.Ngủ 2     :  180.0 sqft | Tiêu chuẩn  |    900.00 USD
+--------------------------------------------------
+TỔNG DIỆN TÍCH TOÀN BỘ:           780.0 sqft
+TỔNG GIÁ TRỊ HỢP ĐỒNG:          3,990.00 USD
+==================================================</div>
+                </div>
+              </div>
+            </details>
           </article>
         </div>
       </div>

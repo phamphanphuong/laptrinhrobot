@@ -37,18 +37,37 @@
 .metric span{display:block;margin-top:5px;color:var(--muted);font-size:13px}
 .phase-wrap{padding:28px}
 .phase-timeline{display:grid;gap:16px;margin-top:24px}
-.session-row{display:grid;grid-template-columns:92px minmax(0,1fr) minmax(0,1fr);gap:18px;padding:20px 0;border-top:1px solid var(--line)}
+.session-row{display:grid;grid-template-columns:85px minmax(0,1fr);gap:18px;padding:22px 0;border-top:1px solid var(--line)}
 .session-row:first-child{border-top:0}
-.session-number{color:var(--accent);font-weight:900;font-size:14px}
-.session-row h3{font-size:19px;margin-bottom:6px}
-.session-row p{color:var(--muted);font-size:14px;margin:0}
-.session-output{padding-left:18px;border-left:2px solid var(--safety)}
-.session-output strong{display:block;font-size:13px;margin-bottom:5px}
-.lesson-summary{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px}
-.lesson-summary strong{display:block;color:var(--accent);margin-bottom:3px}
-.lesson-summary details{margin-top:6px}
-.lesson-summary summary{cursor:pointer;color:var(--green);font-weight:800}
-.lesson-summary pre{margin:7px 0 0;padding:11px;overflow:auto;border-radius:8px;background:var(--ink);color:#FFF7E9;font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap}
+.session-number{color:var(--accent);font-weight:900;font-size:14px;padding-top:2px}
+.session-main{display:flex;flex-direction:column;gap:12px}
+.session-main h3{font-size:19px;margin:0 0 6px}
+.session-main p{color:var(--muted);font-size:14px;margin:0}
+.session-output{padding:10px 14px;border-left:3px solid var(--safety);background:#FCFAF6;border-radius:0 8px 8px 0}
+.session-output strong{display:block;font-size:12.5px;color:var(--ink);margin-bottom:3px}
+.session-output p{margin:0;font-size:13px}
+.instructor-kit{margin-top:6px;border:1px solid var(--line);border-radius:12px;background:#FCFAF6;overflow:hidden}
+.instructor-summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 15px;background:#F6F1E6;cursor:pointer;font-weight:800;color:var(--ink);font-size:13px;user-select:none;transition:background .2s}
+.instructor-summary:hover{background:#EFE6D5}
+.instructor-kit[open] .instructor-summary{border-bottom:1px solid var(--line);background:#EFE5D2}
+.kit-badge{display:inline-block;padding:2px 7px;border-radius:6px;background:var(--ink);color:var(--safety);font-size:10.5px;font-weight:800;text-transform:uppercase}
+.instructor-body{padding:15px;display:flex;flex-direction:column;gap:12px;font-size:13.5px;line-height:1.6}
+.teaching-timeline{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 2px}
+.timeline-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:11.5px;font-weight:700;color:var(--muted)}
+.timeline-pill b{color:var(--accent)}
+.teacher-plan{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px}
+.teacher-plan h4,.exercise-box h4,.teacher-note h4{margin:0 0 6px;font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px}
+.teacher-plan h4{color:var(--accent)}
+.teacher-note{background:#FFF9E8;border:1px solid #ECD89F;border-left:4px solid var(--safety);border-radius:8px;padding:12px 14px;font-size:13px}
+.teacher-note h4{color:#A46D14}
+.exercise-box{background:#fff;border:1px solid #D1DDD8;border-left:4px solid var(--green);border-radius:8px;padding:12px 14px}
+.exercise-box h4{color:var(--green)}
+.exercise-task{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.exercise-task strong{color:var(--ink)}
+.code-box-wrapper{background:var(--ink);color:#FFF7E9;border-radius:10px;overflow:hidden;margin-top:4px}
+.code-box-header{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#112C30;border-bottom:1px solid #234D52;font-size:12px;color:var(--safety);font-weight:800}
+.code-box-wrapper pre{margin:0;padding:14px;overflow-x:auto;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#FFF7E9;white-space:pre-wrap}
+.code-output{background:#0B1F22;border-top:1px dashed #2E5054;padding:10px 14px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#A9E5B5}
 .media-section{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;align-items:center}
 .media-section.reverse{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
 .media-section.reverse .media-copy{order:2}
@@ -310,45 +329,664 @@ PDReactiveRuntime.boot({
       </div>
       <div class="surface phase-wrap" data-pageduo-ele-id="e_TBgNkVdRZFF5">
         <div class="phase-timeline" data-pageduo-ele-id="e_Seoo5IZ65o0I">
+          <!-- BUỔI 17 -->
           <article class="session-row" data-pageduo-ele-id="e_tDBPnez33K77">
             <div class="session-number" data-pageduo-ele-id="e_sPk7WIdLOtOB">BUỔI 17</div>
-            <div data-pageduo-ele-id="e_aq4iMDcCBoya"><h3 data-pageduo-ele-id="e_mTvwR2unTJmX">Giao diện Streamlit</h3><p data-pageduo-ele-id="e_lv42RIZgSoUo">Khởi tạo mặt tiền Web với nút bấm và ô nhập. Xác định dữ liệu nào người dùng cần cung cấp, dữ liệu nào do chương trình tính.</p></div>
-            <div class="session-output" data-pageduo-ele-id="e_SyPIodydGqI5"><strong data-pageduo-ele-id="e_xA0Npye9droF">Sản phẩm tại chỗ</strong><p data-pageduo-ele-id="e_I9WlKbZzaSgA">Form nhập chiều dài, chiều rộng, đơn giá USD.</p></div>
+            <div class="session-main" data-pageduo-ele-id="e_aq4iMDcCBoya">
+              <h3 data-pageduo-ele-id="e_mTvwR2unTJmX">Khởi tạo giao diện Streamlit (st.title &amp; st.number_input)</h3>
+              <p data-pageduo-ele-id="e_lv42RIZgSoUo">Đưa ứng dụng ra khỏi Terminal đen ngòm để bước lên trình duyệt Web. Sử dụng Streamlit để tạo ô nhập chiều dài, chiều rộng, đơn giá USD trực quan mà không cần viết mã HTML/CSS phức tạp.</p>
+              
+              <div class="session-output" data-pageduo-ele-id="e_SyPIodydGqI5">
+                <strong data-pageduo-ele-id="e_xA0Npye9droF">Sản phẩm tại chỗ</strong>
+                <p data-pageduo-ele-id="e_I9WlKbZzaSgA">Trang Web đầu tiên chạy cục bộ tại địa chỉ <code>localhost:8501</code> có các ô nhập liệu số đo phòng.</p>
+              </div>
+
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B17 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Thầu phụ không biết mở Terminal gõ lệnh</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: pip install streamlit, streamlit run, st.title, st.number_input</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Tạo form nhập số đo công trình</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Khắc phục lỗi cổng mạng</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Học viên cài đặt thư viện Streamlit, chạy lệnh <code>streamlit run app.py</code>, nắm được các widget nhập liệu: <code>st.text_input</code>, <code>st.number_input(min_value=0.0, step=0.5)</code>.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Chạy sai lệnh:</b> Học viên hay quen tay gõ <code>python app.py</code> thay vì <code>streamlit run app.py</code> khiến web không bật lên. Giảng viên nhắc: "Streamlit cần lệnh <code>streamlit run</code> để khởi động máy chủ web".</li>
+                      <li><b>Nguyên lý Re-run:</b> Giải thích khi người dùng thay đổi giá trị trong ô nhập, toàn bộ script Python sẽ tự động chạy lại từ trên xuống dưới.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Tạo file <code>app_b17.py</code>. Dùng <code>st.title("Dự Toán Lát Sàn Remodeling")</code> và tạo 3 ô nhập số <code>st.number_input</code> cho: Chiều dài (ft), Chiều rộng (ft), Đơn giá (USD/sqft).
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Thiết lập giá trị mặc định cho ô chiều dài là <code>20.0</code>, chiều rộng là <code>15.0</code> và giá sàn tối thiểu không được âm (<code>min_value=0.0</code>).
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 (Streamlit) · Source Code chuẩn B17</span><span>app_b17.py</span></div>
+                    <pre># BUỔI 17: GIAO DIỆN WEB STREAMLIT ĐẦU TIÊN
+import streamlit as st
+
+# Cấu hình tiêu đề trang web
+st.set_page_config(page_title="Báo Giá Remodeling", page_icon="🏗️")
+
+st.title("🏗️ Công Cụ Báo Giá Sàn Công Trường")
+st.write("Nhập thông số kích thước phòng để tính toán khối lượng thi công.")
+
+# Các ô nhập liệu tương tác
+ten_phong = st.text_input("Tên khu vực thi công:", value="Phòng khách Master")
+chieu_dai = st.number_input("Chiều dài phòng (feet):", min_value=0.0, value=20.0, step=0.5)
+chieu_rong = st.number_input("Chiều rộng phòng (feet):", min_value=0.0, value=15.0, step=0.5)
+don_gia = st.number_input("Đơn giá lát sàn (USD/sqft):", min_value=0.0, value=4.5, step=0.25)
+
+dien_tich = chieu_dai * chieu_rong
+st.info(f"📐 Diện tích dự kiến tính được: **{dien_tich:,.1f} sqft**")</pre>
+                    <div class="code-output"># Cách chạy ứng dụng:
+Terminal: streamlit run app_b17.py
+Trình duyệt tự động mở: http://localhost:8501</div>
+                  </div>
+                </div>
+              </details>
+            </div>
           </article>
+
+          <!-- BUỔI 18 -->
           <article class="session-row" data-pageduo-ele-id="e_wpJazid3QJkl">
             <div class="session-number" data-pageduo-ele-id="e_z8tdzLoiRT7A">BUỔI 18</div>
-            <div data-pageduo-ele-id="e_foaxPH6l9Oeb"><h3 data-pageduo-ele-id="e_bXxS4gISTyxc">Bố cục và phản hồi</h3><p data-pageduo-ele-id="e_C9JRXKnI67nr">Sắp xếp nội dung để người dùng đọc được trên điện thoại; phản hồi kết quả ngay sau thao tác, không để nút bấm “im lặng”.</p></div>
-            <div class="session-output" data-pageduo-ele-id="e_bYYshqwcSXIn"><strong data-pageduo-ele-id="e_RkpauGcizykV">Sản phẩm tại chỗ</strong><p data-pageduo-ele-id="e_06WSB84LDxbj">Màn hình báo giá có vùng kết quả rõ ràng.</p></div>
+            <div class="session-main" data-pageduo-ele-id="e_foaxPH6l9Oeb">
+              <h3 data-pageduo-ele-id="e_bXxS4gISTyxc">Bố cục cột (st.columns) &amp; Nút bấm kích hoạt (st.button)</h3>
+              <p data-pageduo-ele-id="e_C9JRXKnI67nr">Bố trí các ô nhập liệu thành 2 hoặc 3 cột song song giúp màn hình gọn gàng, vừa vặn điện thoại. Sử dụng nút bấm <code>st.button("Tính Báo Giá")</code> để kiểm soát thời điểm xuất kết quả, không để màn hình nhảy số liên tục.</p>
+              
+              <div class="session-output" data-pageduo-ele-id="e_bYYshqwcSXIn">
+                <strong data-pageduo-ele-id="e_RkpauGcizykV">Sản phẩm tại chỗ</strong>
+                <p data-pageduo-ele-id="e_06WSB84LDxbj">Giao diện form báo giá chuyên nghiệp có bố cục chia cột và vùng phản hồi rõ ràng.</p>
+              </div>
+
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B18 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Giao diện dài ngoằng khó nhìn trên điện thoại</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: col1, col2 = st.columns(2), if st.button()</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Bố cục form báo giá đa cột</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Dùng <code>st.columns([1, 1])</code> để phân chia layout, đặt nút bấm tính toán và dùng <code>st.success()</code>, <code>st.warning()</code> để phản hồi người dùng.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Khối lệnh trong if button:</b> Giải thích khi bấm nút thì <code>if st.button():</code> trả về <code>True</code> trong một chu kỳ re-run đó. Mọi logic tính toán hiển thị bảng giá phải nằm thụt lề bên trong <code>if</code>.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Chia form thành 2 cột: Cột trái nhập Chiều dài &amp; Chiều rộng; Cột phải nhập Đơn giá &amp; Phí vận chuyển.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Đặt nút bấm "Tính tổng chi phí". Khi bấm nút, hiển thị hộp màu xanh lá <code>st.success()</code> in số tiền; nếu diện tích bằng 0, hiển thị cảnh báo màu vàng <code>st.warning()</code>.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 (Streamlit) · Source Code chuẩn B18</span><span>app_b18.py</span></div>
+                    <pre># BUỔI 18: BỐ CỤC CHIA CỘT VÀ NÚT TÍNH TOÁN
+import streamlit as st
+
+st.subheader("📐 Nhập Kích Thước &amp; Đơn Giá Thi Công")
+
+# Chia thành 2 cột cân đối
+col_trai, col_phai = st.columns(2)
+
+with col_trai:
+    chieu_dai = st.number_input("Chiều dài (feet):", value=22.0, min_value=0.0)
+    chieu_rong = st.number_input("Chiều rộng (feet):", value=16.0, min_value=0.0)
+
+with col_phai:
+    don_gia = st.number_input("Đơn giá vật tư (USD/sqft):", value=5.0, min_value=0.0)
+    phi_van_chuyen = st.number_input("Phí giao hàng (USD):", value=80.0, min_value=0.0)
+
+# Nút bấm hành động
+if st.button("🚀 TÍNH TOÁN BÁO GIÁ NGAY", use_container_width=True):
+    dien_tich = chieu_dai * chieu_rong
+    if dien_tich &gt; 0:
+        tong_tien = (dien_tich * don_gia) + phi_van_chuyen
+        st.success(f"🎉 Tổng dự toán công trình: **${tong_tien:,.2f} USD**")
+        st.caption(f"Chi tiết: {dien_tich:,.1f} sqft × ${don_gia:.2f} + ${phi_van_chuyen:.2f} vận chuyển.")
+    else:
+        st.warning("⚠️ Chiều dài hoặc chiều rộng phải lớn hơn 0!")</pre>
+                    <div class="code-output"># Trải nghiệm giao diện:
+[Cột 1: Dài / Rộng] | [Cột 2: Đơn giá / Vận chuyển]
+[ Nút bấm full-width: TÍNH TOÁN BÁO GIÁ NGAY ]
+Box xanh hiển thị: $1,840.00 USD</div>
+                  </div>
+                </div>
+              </details>
+            </div>
           </article>
+
+          <!-- BUỔI 19 -->
           <article class="session-row" data-pageduo-ele-id="e_t8jGhPCaWM8Q">
             <div class="session-number" data-pageduo-ele-id="e_uOXLYfWa5ZcK">BUỔI 19</div>
-            <div data-pageduo-ele-id="e_hbvwnj0spOPN"><h3 data-pageduo-ele-id="e_hpBRxWmZchuL">Tích hợp logic Python vào Web</h3><p data-pageduo-ele-id="e_NGZOn5e3xj4G">Đưa Tool Báo Giá Lát Sàn của Giai đoạn 1 lên giao diện. Logic vẫn là tính Sqft rồi nhân đơn giá USD; Web chỉ trở thành cách tương tác mới.</p></div>
-            <div class="session-output" data-pageduo-ele-id="e_VRPRL5s6xrhx"><strong data-pageduo-ele-id="e_xtrPrgofoH0R">Sản phẩm tại chỗ</strong><p data-pageduo-ele-id="e_ozIud4JRlETG">Web Báo Giá Lát Sàn.</p></div>
+            <div class="session-main" data-pageduo-ele-id="e_hbvwnj0spOPN">
+              <h3 data-pageduo-ele-id="e_hpBRxWmZchuL">Tích hợp logic Báo Giá Lát Sàn (st.metric &amp; Checkbox)</h3>
+              <p data-pageduo-ele-id="e_NGZOn5e3xj4G">Đưa toàn bộ hàm tính toán nghiệp vụ từ Giai đoạn 1 lên giao diện Web: Kiểm tra giảm giá 5% cho dự án &gt; 1,000 sqft, bổ sung checkbox "Nhà cũ (Phụ thu 10% dọn xà bần)" và hiển thị thẻ KPI <code>st.metric</code>.</p>
+              
+              <div class="session-output" data-pageduo-ele-id="e_VRPRL5s6xrhx">
+                <strong data-pageduo-ele-id="e_xtrPrgofoH0R">Sản phẩm tại chỗ</strong>
+                <p data-pageduo-ele-id="e_ozIud4JRlETG">Web App Báo Giá Lát Sàn hoàn chỉnh chạy mượt mà trên trình duyệt điện thoại.</p>
+              </div>
+
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B19 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Báo giá trực tiếp trước mặt chủ nhà</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: st.checkbox, st.metric, tích hợp hàm Python</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Hoàn thiện Web Báo Giá</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Đánh giá</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Tái sử dụng hàm logic Python sạch sẽ, kết hợp <code>st.checkbox</code> và hiển thị kết quả bằng thẻ chỉ số <code>st.metric("Tổng tiền", "$...", delta="-5% Ưu đãi")</code>.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Định dạng tham số delta của st.metric:</b> Dạy học viên cách dùng <code>delta</code> để làm nổi bật mức giảm giá màu xanh lá hoặc phụ phí màu đỏ, tạo sự tin cậy và minh bạch với khách hàng.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Viết web app có checkbox "Hiện trạng công trình: Nhà cũ cần đục dọn sàn cũ (+10%)". Tính toán và hiển thị tổng tiền qua <code>st.metric</code>.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Tạo 3 thẻ chỉ số cạnh nhau bằng 3 cột: Cột 1 (Diện tích sqft), Cột 2 (Đơn giá áp dụng), Cột 3 (Tổng thanh toán).
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 (Streamlit) · Source Code chuẩn B19</span><span>app_b19_bao_gia_web.py</span></div>
+                    <pre># BUỔI 19: WEB BÁO GIÁ LÁT SÀN HOÀN CHỈNH
+import streamlit as st
+
+st.title("🏡 Dự Toán Lát Sàn Nhà Cải Tạo")
+
+col1, col2 = st.columns(2)
+with col1:
+    sqft = st.number_input("Tổng diện tích lát sàn (sqft):", value=1200.0, step=50.0)
+with col2:
+    don_gia_goc = st.number_input("Đơn giá niêm yết (USD/sqft):", value=5.0, step=0.25)
+
+is_nha_cu = st.checkbox("🏚️ Công trình là nhà cũ (cộng 10% phí dọn xà bần)")
+
+chi_phi_goc = sqft * don_gia_goc
+rate_discount = 0.05 if sqft &gt;= 1000 else 0.0
+tien_giam = chi_phi_goc * rate_discount
+phi_don_rac = (chi_phi_goc * 0.10) if is_nha_cu else 0.0
+tong_cong = chi_phi_goc - tien_giam + phi_don_rac
+
+st.divider()
+
+# Hiển thị 3 chỉ số chính bằng st.metric
+m1, m2, m3 = st.columns(3)
+m1.metric("Diện tích", f"{sqft:,.0f} sqft")
+m2.metric("Chiết khấu", f"-${tien_giam:,.2f}", delta=f"-{rate_discount*100:.0f}%" if rate_discount &gt; 0 else "0%")
+m3.metric("TỔNG DỰ TOÁN", f"${tong_cong:,.2f}", delta="+10% Dọn rác" if is_nha_cu else "Chuẩn")
+
+st.caption("Báo giá dự toán có giá trị trong 30 ngày kể từ ngày khảo sát.")</pre>
+                    <div class="code-output"># Output giao diện hiển thị:
+[ Thẻ 1: 1,200 sqft ] | [ Thẻ 2: -$300.00 (-5%) ] | [ Thẻ 3: $6,300.00 (+10% Dọn rác) ]</div>
+                  </div>
+                </div>
+              </details>
+            </div>
           </article>
+
+          <!-- BUỔI 20 -->
           <article class="session-row" data-pageduo-ele-id="e_QFxEl6OudmxV">
             <div class="session-number" data-pageduo-ele-id="e_pWagNbSiLkDG">BUỔI 20</div>
-            <div data-pageduo-ele-id="e_lR4vbjOxwE8a"><h3 data-pageduo-ele-id="e_mA1TgQ0Xg4oT">Hiển thị bảng Table</h3><p data-pageduo-ele-id="e_BklbXLEEF0hG">Đưa danh sách công trình vào một cấu trúc dễ quét, thay vì bắt người quản lý đọc từng dòng trong Terminal.</p></div>
-            <div class="session-output" data-pageduo-ele-id="e_lg9XND98SNG0"><strong data-pageduo-ele-id="e_oD8bhFCtYrgM">Sản phẩm tại chỗ</strong><p data-pageduo-ele-id="e_UBnV5VdJLARE">Bảng dự án với trạng thái và thông tin cần theo dõi.</p></div>
+            <div class="session-main" data-pageduo-ele-id="e_lR4vbjOxwE8a">
+              <h3 data-pageduo-ele-id="e_mA1TgQ0Xg4oT">Hiển thị bảng dữ liệu (st.dataframe &amp; st.table)</h3>
+              <p data-pageduo-ele-id="e_BklbXLEEF0hG">Thay vì đọc từng dòng log trong Terminal, ta đưa danh sách 50 công trình lên web bằng <code>st.dataframe</code>. Cho phép người giám sát tìm kiếm, nhấp chuột sắp xếp cột và co giãn bảng linh hoạt.</p>
+              
+              <div class="session-output" data-pageduo-ele-id="e_lg9XND98SNG0">
+                <strong data-pageduo-ele-id="e_oD8bhFCtYrgM">Sản phẩm tại chỗ</strong>
+                <p data-pageduo-ele-id="e_UBnV5VdJLARE">Bảng theo dõi dự án tương tác có thanh cuộn và ô tìm kiếm tích hợp.</p>
+              </div>
+
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B20 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Chủ thầu cần xem tổng quan 20 công trình đang chạy</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: pd.read_csv kết hợp st.dataframe(use_container_width=True)</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Bảng theo dõi tiến độ thi công</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Kết nối Pandas với Streamlit, hiển thị DataFrame lên giao diện web với <code>st.dataframe(..., use_container_width=True)</code>.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Tràn ngang trên mobile:</b> Trên màn hình điện thoại hẹp, chỉ nên hiển thị 4-5 cột quan trọng nhất (ID, Tên khách, SĐT, Trạng thái) thay vì để bảng có 15 cột làm người dùng phải vuốt ngang mệt mỏi.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Viết script đọc file <code>khach_hang.csv</code> và hiển thị bảng bằng <code>st.dataframe</code>. Đếm và in tổng số bản ghi bằng <code>st.caption</code>.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Tô màu nổi bật các công trình có trạng thái <code>"Chưa gọi"</code> bằng định dạng Pandas Style nếu có thể.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 (Streamlit) · Source Code chuẩn B20</span><span>app_b20_bang_du_an.py</span></div>
+                    <pre># BUỔI 20: HIỂN THỊ BẢNG THEO DÕI CÔNG TRÌNH
+import streamlit as st
+import pandas as pd
+
+st.title("📋 Sổ Theo Dõi Tiến Độ Công Trình")
+
+try:
+    df = pd.read_csv("khach_hang.csv", dtype={"Zip Code": str})
+    
+    st.write(f"Hiện có **{len(df)}** hồ sơ dự án trong hệ thống.")
+    
+    # Hiển thị bảng dữ liệu tương tác full-width
+    st.dataframe(
+        df[["ID", "Tên khách", "SĐT", "Zip Code", "Trạng thái liên hệ"]],
+        use_container_width=True,
+        hide_index=True
+    )
+except FileNotFoundError:
+    st.error("Không tìm thấy file khach_hang.csv! Hãy kiểm tra thư mục.")</pre>
+                    <div class="code-output"># Bảng web Streamlit:
+Có tính năng search tên khách, click header để sort, kéo dãn độ rộng cột.</div>
+                  </div>
+                </div>
+              </details>
+            </div>
           </article>
+
+          <!-- BUỔI 21 -->
           <article class="session-row" data-pageduo-ele-id="e_F2t8JPjoXtVo">
             <div class="session-number" data-pageduo-ele-id="e_tH1pytfCxdKB">BUỔI 21</div>
-            <div data-pageduo-ele-id="e_yMp1g5tu7hOQ"><h3 data-pageduo-ele-id="e_1UGVO5Gg1JOz">Hiển thị biểu đồ</h3><p data-pageduo-ele-id="e_8fKxruPutEkJ">Dùng biểu đồ để nhìn phân bố và xu hướng trạng thái dự án, không dùng biểu đồ chỉ để trang trí.</p></div>
-            <div class="session-output" data-pageduo-ele-id="e_Qrj4RQh635iS"><strong data-pageduo-ele-id="e_i7xDXt2MeVNs">Sản phẩm tại chỗ</strong><p data-pageduo-ele-id="e_rkKu6bLhe8mk">Visual báo cáo cho chủ thầu.</p></div>
+            <div class="session-main" data-pageduo-ele-id="e_yMp1g5tu7hOQ">
+              <h3 data-pageduo-ele-id="e_1UGVO5Gg1JOz">Trực quan hóa dữ liệu bằng biểu đồ (st.bar_chart)</h3>
+              <p data-pageduo-ele-id="e_8fKxruPutEkJ">Biến các con số khô khan thành biểu đồ cột trực quan: Thống kê số lượng công trình theo từng trạng thái (Khảo sát, Thi công, Bàn giao) để chỉ huy trưởng nhìn lướt 3 giây là nắm trọn khối lượng công việc.</p>
+              
+              <div class="session-output" data-pageduo-ele-id="e_Qrj4RQh635iS">
+                <strong data-pageduo-ele-id="e_i7xDXt2MeVNs">Sản phẩm tại chỗ</strong>
+                <p data-pageduo-ele-id="e_rkKu6bLhe8mk">Báo cáo trực quan Dashboard gồm bảng dữ liệu và biểu đồ phân bổ trạng thái.</p>
+              </div>
+
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B21 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Báo cáo giao ban đầu tuần với ban giám đốc</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: df['Trạng thái'].value_counts() &amp; st.bar_chart()</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Vẽ biểu đồ phân bố công trình</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Thảo luận</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Dùng hàm <code>.value_counts()</code> gom nhóm dữ liệu và hiển thị biểu đồ thanh bằng <code>st.bar_chart()</code>.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Định dạng đầu vào của st.bar_chart:</b> Streamlit nhận Series hoặc DataFrame có index là nhãn trục hoành. Giảng viên hướng dẫn: <code>counts = df['Cột'].value_counts()</code> sau đó truyền thẳng vào <code>st.bar_chart(counts)</code>.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Vẽ biểu đồ cột hiển thị số lượng công trình theo từng <code>Zip Code</code> khu vực.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Bố cục màn hình: Cột trái hiện biểu đồ cột, Cột phải hiện bảng số liệu chi tiết.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 (Streamlit) · Source Code chuẩn B21</span><span>app_b21_bieu_do.py</span></div>
+                    <pre># BUỔI 21: TRỰC QUAN HÓA TIẾN ĐỘ BẰNG BIỂU ĐỒ
+import streamlit as st
+import pandas as pd
+
+st.title("📊 Báo Cáo Tiến Độ Công Trình Tuần Này")
+
+df = pd.read_csv("khach_hang.csv")
+
+# Thống kê số lượng theo trạng thái
+thong_ke_trang_thai = df["Trạng thái liên hệ"].value_counts()
+
+c1, c2 = st.columns([1.2, 0.8])
+
+with c1:
+    st.subheader("Biểu đồ phân bổ tiến độ")
+    st.bar_chart(thong_ke_trang_thai, color="#2D625D")
+
+with c2:
+    st.subheader("Số liệu chi tiết")
+    st.dataframe(thong_ke_trang_thai.rename("Số lượng"), use_container_width=True)</pre>
+                    <div class="code-output"># Biểu đồ hiển thị sắc nét:
+Cột "Chưa gọi": 14 | Cột "Hẹn khảo sát": 8 | Cột "Đang thi công": 18</div>
+                  </div>
+                </div>
+              </details>
+            </div>
           </article>
+
+          <!-- BUỔI 22 -->
           <article class="session-row" data-pageduo-ele-id="e_ucz3EhS6bMRU">
             <div class="session-number" data-pageduo-ele-id="e_4YpK3ORzedHj">BUỔI 22</div>
-            <div data-pageduo-ele-id="e_EX8o5ikJRTGY"><h3 data-pageduo-ele-id="e_YvjT0FbDqi6T">Lọc dữ liệu trên Web</h3><p data-pageduo-ele-id="e_JdvsakQACwCS">Bộ lọc thay đổi phần dữ liệu đang hiển thị theo điều kiện chọn; nó không tự ý thay đổi cấu trúc SQLite vĩnh viễn.</p></div>
-            <div class="session-output" data-pageduo-ele-id="e_9m9ifjBoVPTh"><strong data-pageduo-ele-id="e_4QCGygyEDrcf">Sản phẩm tại chỗ</strong><p data-pageduo-ele-id="e_dnkSM8ZJuBZh">Dashboard Quản Lý với danh sách công trình đang kẹt tiến độ.</p></div>
+            <div class="session-main" data-pageduo-ele-id="e_EX8o5ikJRTGY">
+              <h3 data-pageduo-ele-id="e_YvjT0FbDqi6T">Lọc dữ liệu trên Web bằng Sidebar (st.sidebar)</h3>
+              <p data-pageduo-ele-id="e_JdvsakQACwCS">Đưa bộ lọc tìm kiếm ra thanh trượt bên hông (Sidebar) với <code>st.sidebar.selectbox</code> và <code>st.sidebar.multiselect</code>. Giúp giám sát lọc nhanh các công trình đang kẹt tiến độ hoặc thuộc tổ thợ cụ thể.</p>
+              
+              <div class="session-output" data-pageduo-ele-id="e_9m9ifjBoVPTh">
+                <strong data-pageduo-ele-id="e_4QCGygyEDrcf">Sản phẩm tại chỗ</strong>
+                <p data-pageduo-ele-id="e_dnkSM8ZJuBZh">Dashboard Quản Lý có bộ lọc sidebar thông minh, tự động cập nhật bảng số liệu.</p>
+              </div>
+
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B22 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Tìm gấp công trình đang gặp trục trặc tại Zip 77001</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: st.sidebar.selectbox(), lọc DataFrame động</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Dựng sidebar bộ lọc quản trị</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Thành thạo đưa widget vào thanh bên <code>st.sidebar</code>, lọc dữ liệu động theo lựa chọn người dùng và hiển thị kết quả tương ứng.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Tùy chọn 'Tất cả':</b> Nhớ thêm lựa chọn <code>"Tất cả"</code> vào danh sách selectbox để khi người dùng không muốn lọc thì bảng vẫn hiển thị toàn bộ hồ sơ.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Tạo thanh bên Sidebar có hộp chọn <code>st.sidebar.selectbox("Chọn Trạng Thái", ["Tất cả", "Chưa gọi", "Đã liên hệ", "Hẹn khảo sát"])</code>. Lọc và cập nhật bảng chính theo lựa chọn.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Thêm bộ lọc thứ 2 trên sidebar: Lọc theo <code>Zip Code</code>. Kết hợp đồng thời cả 2 bộ lọc.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 (Streamlit) · Source Code chuẩn B22</span><span>app_b22_sidebar_filter.py</span></div>
+                    <pre># BUỔI 22: BỘ LỌC ĐỘNG BẰNG THANH BÊN SIDEBAR
+import streamlit as st
+import pandas as pd
+
+st.title("🔎 Tra Cứu Dự Án Theo Bộ Lọc")
+
+df = pd.read_csv("khach_hang.csv", dtype={"Zip Code": str})
+
+# 1. Bộ lọc trên Sidebar
+st.sidebar.header("⚙️ BỘ LỌC TÌM KIẾM")
+
+danh_sach_tt = ["Tất cả"] + list(df["Trạng thái liên hệ"].dropna().unique())
+chon_tt = st.sidebar.selectbox("Trạng thái công trình:", danh_sach_tt)
+
+danh_sach_zip = ["Tất cả"] + list(df["Zip Code"].dropna().unique())
+chon_zip = st.sidebar.selectbox("Khu vực (Zip Code):", danh_sach_zip)
+
+# 2. Xử lý lọc dữ liệu
+df_hien_thi = df.copy()
+if chon_tt != "Tất cả":
+    df_hien_thi = df_hien_thi[df_hien_thi["Trạng thái liên hệ"] == chon_tt]
+if chon_zip != "Tất cả":
+    df_hien_thi = df_hien_thi[df_hien_thi["Zip Code"] == chon_zip]
+
+# 3. Hiển thị kết quả lọc
+st.write(f"Kết quả: Tìm thấy **{len(df_hien_thi)}** công trình phù hợp.")
+st.dataframe(df_hien_thi, use_container_width=True, hide_index=True)</pre>
+                    <div class="code-output"># Trải nghiệm:
+Bên trái: Menu chọn Trạng thái &amp; Zip Code
+Bên phải: Bảng số liệu tự động co lại đúng danh sách cần tìm.</div>
+                  </div>
+                </div>
+              </details>
+            </div>
           </article>
+
+          <!-- BUỔI 23 -->
           <article class="session-row" data-pageduo-ele-id="e_ONBjnXScAuJ8">
             <div class="session-number" data-pageduo-ele-id="e_LUqM3Z0CNint">BUỔI 23</div>
-            <div data-pageduo-ele-id="e_lt5bVs69IcR1"><h3 data-pageduo-ele-id="e_iuoDY3yxfRX1">Kết nối Web với SQLite</h3><p data-pageduo-ele-id="e_eh3FOxfeumXJ">Thiết lập điểm giao tiếp để giao diện đọc và ghi dữ liệu giữa lớp Web và database.</p></div>
-            <div class="session-output" data-pageduo-ele-id="e_gl72rwmUFgG8"><strong data-pageduo-ele-id="e_KcM7NaGRytjq">Sản phẩm tại chỗ</strong><p data-pageduo-ele-id="e_zH3YJwsgsffR">Bản ghi khách hàng và dự án có nơi lưu trữ.</p></div>
+            <div class="session-main" data-pageduo-ele-id="e_lt5bVs69IcR1">
+              <h3 data-pageduo-ele-id="e_iuoDY3yxfRX1">Kết nối Web Streamlit với SQLite</h3>
+              <p data-pageduo-ele-id="e_eh3FOxfeumXJ">Tạo cầu nối giữa giao diện Web và Cơ sở dữ liệu: Dựng Form nhập khách hàng mới trên Web, khi bấm "Lưu Khách Hàng", Python sẽ thực hiện câu lệnh <code>INSERT INTO</code> trực tiếp vào file <code>cong_trinh.db</code>.</p>
+              
+              <div class="session-output" data-pageduo-ele-id="e_gl72rwmUFgG8">
+                <strong data-pageduo-ele-id="e_KcM7NaGRytjq">Sản phẩm tại chỗ</strong>
+                <p data-pageduo-ele-id="e_zH3YJwsgsffR">Trang Web có chức năng thêm khách và lưu vĩnh viễn vào SQLite mà không cần mở tool quản lý database.</p>
+              </div>
+
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B23 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Giám sát đi gặp khách ngoài công trường nhập data</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: st.form(), kết nối sqlite3 trong Streamlit</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Form nhập khách hàng lưu DB</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Dùng <code>st.form()</code> gom nhóm input tránh re-run thừa, viết hàm lưu dữ liệu vào SQLite và dùng <code>st.experimental_rerun()</code> cập nhật lại danh sách ngay sau khi lưu.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Lợi ích của st.form:</b> Nếu không dùng form, mỗi lần học viên gõ 1 ký tự tên khách hàng là trang web lại load lại 1 lần! Giảng viên dặn: "Dùng <code>st.form</code> như điền xong toàn bộ phiếu nghiệm thu rồi mới ký tên nộp một thể".</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Tạo form thêm khách hàng gồm Họ tên, Số điện thoại, Zip Code. Khi bấm nút submit, lưu vào bảng <code>KhachHang</code> trong <code>cong_trinh.db</code>.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Đọc và hiển thị danh sách khách hàng từ SQLite ra bảng bên dưới để kiểm chứng dữ liệu vừa nhập đã vào database hay chưa.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 (Streamlit + SQLite) · Source Code B23</span><span>app_b23_form_sqlite.py</span></div>
+                    <pre># BUỔI 23: FORM NHẬP KHÁCH LƯU TRỰC TIẾP VÀO SQLITE
+import streamlit as st
+import sqlite3
+import pandas as pd
+
+st.title("📝 Thêm Hồ Sơ Khách Hàng Mới")
+
+# 1. Form nhập liệu an toàn
+with st.form("form_them_khach"):
+    ho_ten = st.text_input("Họ và tên chủ nhà:")
+    sdt = st.text_input("Số điện thoại liên hệ:")
+    zip_code = st.text_input("Mã bưu điện (Zip Code):", value="77001")
+    nut_luu = st.form_submit_button("💾 LƯU VÀO CƠ SỞ DỮ LIỆU")
+
+if nut_luu:
+    if ho_ten.strip() != "":
+        with sqlite3.connect("cong_trinh.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO KhachHang (ho_ten, sdt, zip_code) VALUES (?, ?, ?)",
+                (ho_ten.strip(), sdt.strip(), zip_code.strip())
+            )
+            conn.commit()
+        st.success(f"🎉 Đã lưu thành công khách hàng: **{ho_ten}**!")
+    else:
+        st.error("Vui lòng nhập họ và tên khách hàng!")
+
+# 2. Đọc lại danh sách khách hàng từ SQLite
+st.divider()
+st.subheader("Danh sách khách hàng hiện có trong Database")
+with sqlite3.connect("cong_trinh.db") as conn:
+    df_db = pd.read_sql_query("SELECT id, ho_ten, sdt, zip_code, ngay_tao FROM KhachHang ORDER BY id DESC", conn)
+st.dataframe(df_db, use_container_width=True, hide_index=True)</pre>
+                    <div class="code-output"># Output kiểm tra:
+Điền thông tin -> Bấm Lưu -> Bản ghi lập tức xuất hiện ở dòng đầu tiên của bảng bên dưới!</div>
+                  </div>
+                </div>
+              </details>
+            </div>
           </article>
+
+          <!-- BUỔI 24 -->
           <article class="session-row" data-pageduo-ele-id="e_xPPqBZ20SJ2y">
             <div class="session-number" data-pageduo-ele-id="e_raU7vLAEj2CM">BUỔI 24</div>
-            <div data-pageduo-ele-id="e_zddyxS1AVbJ6"><h3 data-pageduo-ele-id="e_A1giZxxlfrD4">Xử lý luồng dữ liệu tự động</h3><p data-pageduo-ele-id="e_WjWJcO1TyuSb">Hoàn thiện luồng nhập thông tin khách trên Web → tự động lưu vào Database → báo cho chủ thầu.</p></div>
-            <div class="session-output" data-pageduo-ele-id="e_AOUIYPQE6GCV"><strong data-pageduo-ele-id="e_BqOPcsDFPDne">Sản phẩm hoàn tất</strong><p data-pageduo-ele-id="e_7hOp6NG4rtak">Mini-CRM dùng được trên điện thoại.</p></div>
+            <div class="session-main" data-pageduo-ele-id="e_zddyxS1AVbJ6">
+              <h3 data-pageduo-ele-id="e_A1giZxxlfrD4">Đóng gói hoàn thiện Mini-CRM Remodeling</h3>
+              <p data-pageduo-ele-id="e_WjWJcO1TyuSb">Ghép nối toàn bộ chuỗi mắt xích thành một ứng dụng Mini-CRM hoàn chỉnh với hệ thống Tab điều hướng: Tab 1 (Báo Giá Nhanh) &rarr; Tab 2 (Quản Lý Dự Án &amp; Tiến Độ) &rarr; Tab 3 (Thêm Khách Hàng Mới). Sẵn sàng sử dụng trên điện thoại công trường.</p>
+              
+              <div class="session-output" data-pageduo-ele-id="e_AOUIYPQE6GCV">
+                <strong data-pageduo-ele-id="e_BqOPcsDFPDne">Sản phẩm hoàn tất Giai đoạn 3</strong>
+                <p data-pageduo-ele-id="e_7hOp6NG4rtak">Hệ thống Mini-CRM độc lập, có thể mở bằng iPhone/Android, lưu trữ SQLite bền vững.</p>
+              </div>
+
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B24 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tổng kết mục tiêu Mini-CRM phục vụ thực tế</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: st.tabs(["Báo Giá", "Tiến Độ", "Thêm Khách"])</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Học viên chạy thử Mini-CRM toàn diện</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu mốc Hoàn Thiện Tháng 3</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Học viên làm chủ cấu trúc chia tab <code>st.tabs()</code>, tích hợp toàn bộ logic tính báo giá và luồng SQLite vào một file duy nhất <code>mini_crm_app.py</code> chạy mượt mà.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Kiểm thử trên di động qua mạng nội bộ:</b> Hướng dẫn học viên lấy địa chỉ <code>Network URL: http://192.168.x.x:8501</code> và mở trực tiếp trên điện thoại cùng mạng Wifi để thấy ngay thành quả!</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Đồ án tốt nghiệp Giai đoạn 3 tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Yêu cầu đồ án:</strong> Hoàn thiện file <code>mini_crm_app.py</code> gồm 3 Tab: (1) Tính toán báo giá sàn có giảm giá và phí dọn rác, (2) Bảng tiến độ và biểu đồ cột công trình, (3) Form thêm khách hàng lưu trực tiếp vào SQLite.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 (Streamlit + SQLite) · Source Code Mini-CRM B24</span><span>mini_crm_app.py</span></div>
+                    <pre># BUỔI 24: ĐỒ ÁN GIAI ĐOẠN 3 - MINI-CRM HOÀN CHỈNH CHO CÔNG TRƯỜNG
+import streamlit as st
+import sqlite3
+import pandas as pd
+
+st.set_page_config(page_title="Mini-CRM Công Trường", page_icon="🏗️", layout="wide")
+
+st.title("🏗️ MINI-CRM GIÁM SÁT CÔNG TRƯỜNG")
+
+# Điều hướng bằng 3 Tab chức năng
+tab_bao_gia, tab_tien_do, tab_them_khach = st.tabs([
+    "💰 Báo Giá Lát Sàn", 
+    "📊 Theo Dõi Tiến Độ", 
+    "➕ Thêm Khách Hàng"
+])
+
+# --- TAB 1: BÁO GIÁ NHANH ---
+with tab_bao_gia:
+    st.subheader("Công Cụ Báo Giá Nhanh")
+    c1, c2 = st.columns(2)
+    with c1:
+        dai = st.number_input("Chiều dài phòng (ft):", value=20.0, min_value=0.0)
+        rong = st.number_input("Chiều rộng phòng (ft):", value=15.0, min_value=0.0)
+    with c2:
+        gia = st.number_input("Đơn giá thi công (USD/sqft):", value=5.0, min_value=0.0)
+        nha_cu = st.checkbox("Nhà cũ (+10% phí dọn xà bần)")
+    
+    sqft = dai * rong
+    giam = 0.05 if sqft &gt;= 1000 else 0.0
+    tien_goc = sqft * gia
+    tong = (tien_goc * (1 - giam)) + ((tien_goc * 0.1) if nha_cu else 0.0)
+    
+    st.metric("TỔNG DỰ TOÁN BÁO GIÁ", f"${tong:,.2f} USD", delta=f"{sqft:,.0f} sqft")
+
+# --- TAB 2: TIẾN ĐỘ DỰ ÁN ---
+with tab_tien_do:
+    st.subheader("Tiến Độ Thi Công Các Công Trình")
+    with sqlite3.connect("cong_trinh.db") as conn:
+        df_khach = pd.read_sql_query("SELECT * FROM KhachHang", conn)
+    
+    col_chart, col_data = st.columns([1, 2])
+    with col_chart:
+        st.write("**Phân bố theo Zip Code:**")
+        if not df_khach.empty and "zip_code" in df_khach.columns:
+            st.bar_chart(df_khach["zip_code"].value_counts())
+    with col_data:
+        st.write("**Danh sách hồ sơ:**")
+        st.dataframe(df_khach, use_container_width=True, hide_index=True)
+
+# --- TAB 3: THÊM KHÁCH HÀNG MỚI ---
+with tab_them_khach:
+    st.subheader("Nhập Hồ Sơ Khách Hàng Mới")
+    with st.form("form_crm"):
+        ten = st.text_input("Tên chủ nhà:")
+        sdt = st.text_input("Số điện thoại:")
+        zip_cd = st.text_input("Zip Code:", value="77001")
+        if st.form_submit_button("LƯU HỒ SƠ"):
+            if ten.strip():
+                with sqlite3.connect("cong_trinh.db") as conn:
+                    conn.execute("INSERT INTO KhachHang (ho_ten, sdt, zip_code) VALUES (?, ?, ?)", (ten, sdt, zip_cd))
+                    conn.commit()
+                st.success(f"✅ Đã thêm hồ sơ khách hàng: {ten}")
+            else:
+                st.error("Vui lòng điền tên khách hàng!")</pre>
+                    <div class="code-output"># Ứng dụng Mini-CRM sẵn sàng đứng lớp:
+Chạy lệnh: streamlit run mini_crm_app.py
+Đầy đủ chức năng Báo giá + Thống kê + Lưu trữ SQLite!</div>
+                  </div>
+                </div>
+              </details>
+            </div>
           </article>
         </div>
       </div>

@@ -174,7 +174,31 @@ p{margin:0 0 16px}
   .flow>div:first-child{border-radius:12px 12px 0 0}
   .flow>div:last-child{border-radius:0 0 12px 12px}
   .section-heading{display:block}
-}</style>
+}
+.instructor-kit{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:#FCFAF6;overflow:hidden}
+.instructor-summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 15px;background:#F6F1E6;cursor:pointer;font-weight:800;color:var(--ink);font-size:13px;user-select:none;transition:background .2s}
+.instructor-summary:hover{background:#EFE6D5}
+.instructor-kit[open] .instructor-summary{border-bottom:1px solid var(--line);background:#EFE5D2}
+.kit-badge{display:inline-block;padding:2px 7px;border-radius:6px;background:var(--ink);color:var(--safety);font-size:10.5px;font-weight:800;text-transform:uppercase}
+.instructor-body{padding:15px;display:flex;flex-direction:column;gap:12px;font-size:13.5px;line-height:1.6}
+.teaching-timeline{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 2px}
+.timeline-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:11.5px;font-weight:700;color:var(--muted)}
+.timeline-pill b{color:var(--accent)}
+.teacher-plan{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px}
+.teacher-plan h4,.exercise-box h4,.teacher-note h4{margin:0 0 6px;font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px}
+.teacher-plan h4{color:var(--accent)}
+.teacher-note{background:#FFF9E8;border:1px solid #ECD89F;border-left:4px solid var(--safety);border-radius:8px;padding:12px 14px;font-size:13px}
+.teacher-note h4{color:#A46D14}
+.exercise-box{background:#fff;border:1px solid #D1DDD8;border-left:4px solid var(--green);border-radius:8px;padding:12px 14px}
+.exercise-box h4{color:var(--green)}
+.exercise-task{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.exercise-task strong{color:var(--ink)}
+.code-box-wrapper{background:var(--ink);color:#FFF7E9;border-radius:10px;overflow:hidden;margin-top:4px}
+.code-box-header{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#112C30;border-bottom:1px solid #234D52;font-size:12px;color:var(--safety);font-weight:800}
+.code-box-wrapper pre{margin:0;padding:14px;overflow-x:auto;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#FFF7E9;white-space:pre-wrap}
+.code-output{background:#0B1F22;border-top:1px dashed #2E5054;padding:10px 14px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#A9E5B5}
+.schedule .lesson-list li{align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line)}
+.schedule .lesson-list li:last-child{border-bottom:0}</style>
 <style data-pd-corrections="">fieldset>legend{float:none!important}</style>
 </head>
 <body data-pageduo-ele-id="e_DqlEruzONslS">
@@ -282,40 +306,622 @@ PDReactiveRuntime.boot({
           <span class="tag" data-pageduo-ele-id="e_vjvm6VkK0s8u">B9–B12</span>
         </header>
         <ol class="lesson-list" data-pageduo-ele-id="e_xpkxjXp8vj0U">
-          <li data-pageduo-ele-id="e_cMtomAn1TzzK"><span class="lesson-no" data-pageduo-ele-id="e_EeIh0uCvZB70">B9</span><div data-pageduo-ele-id="e_JOuLfgMu4nEG"><strong data-pageduo-ele-id="e_LI7dVyMvsjgz">Pandas cơ bản</strong><span data-pageduo-ele-id="e_gKxb1oFVEkQM">Đọc Excel/CSV; hiểu bảng dòng và cột qua dữ liệu khách hàng remodeling.</span><div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Đọc file khách hàng và in 5 dòng đầu tiên.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>import pandas as pd
-df = pd.read_csv("khach_hang.csv")
-print(df.head())</pre></details></div></li>
-          <li data-pageduo-ele-id="e_tLPBdxLgSc2G"><span class="lesson-no" data-pageduo-ele-id="e_nRxXKaLdwmc6">B10</span><div data-pageduo-ele-id="e_R3Dt8uhxB3LN"><strong data-pageduo-ele-id="e_64GuEb45x3yG">Kiểm tra DataFrame</strong><span data-pageduo-ele-id="e_3r4yizPamBSw">Xem kiểu dữ liệu, tên cột và các bản ghi trước khi xử lý.</span><div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Kiểm tra kích thước, tên cột và kiểu dữ liệu.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>print(df.shape)
-print(df.columns.tolist())
-print(df.dtypes)</pre></details></div></li>
-          <li data-pageduo-ele-id="e_MKznLDDWj9Pf"><span class="lesson-no" data-pageduo-ele-id="e_xpXDM3QojMyZ">B11</span><div data-pageduo-ele-id="e_ZX2YaGzE4coE"><strong data-pageduo-ele-id="e_06D3nFBm4TYC">Lọc và sắp xếp</strong><span data-pageduo-ele-id="e_IYMMaFmyZtm5">Lọc theo Zip Code và tiêu chí dự án thay vì tìm thủ công.</span><div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Lọc khách hàng theo Zip Code và sắp xếp theo tên.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>target = df[df["Zip Code"] == "10001"]
-print(target.sort_values("Tên mẫu"))</pre></details></div></li>
-          <li data-pageduo-ele-id="e_Ke2nnvozoM3j"><span class="lesson-no" data-pageduo-ele-id="e_K6KauwA06f36">B12</span><div data-pageduo-ele-id="e_rFAeNGCyxD6c"><strong data-pageduo-ele-id="e_hIrmz82EN6Bo">Truy vấn marketing</strong><span data-pageduo-ele-id="e_jG2LWdHi0vBT">Hoàn thiện bộ lọc chọn 50 khách hàng tiềm năng đúng Zip Code tại Mỹ.</span><div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Tạo danh sách tối đa 50 khách hàng đủ điều kiện gọi điện.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>leads = df[(df["Zip Code"] == "10001") &amp; (df["Trạng thái liên hệ"] != "Đã liên hệ")]
-print(leads.head(50))</pre></details></div></li>
+          <!-- BUỔI 9 -->
+          <li data-pageduo-ele-id="e_cMtomAn1TzzK">
+            <span class="lesson-no" data-pageduo-ele-id="e_EeIh0uCvZB70">B9</span>
+            <div data-pageduo-ele-id="e_JOuLfgMu4nEG" style="flex:1">
+              <strong data-pageduo-ele-id="e_LI7dVyMvsjgz">Pandas cơ bản: Đọc file Excel &amp; CSV khách hàng</strong>
+              <span data-pageduo-ele-id="e_gKxb1oFVEkQM">Đọc file dữ liệu công trình vào bộ nhớ; hiểu cấu trúc DataFrame gồm hàng (khách hàng) và cột (thuộc tính) nhanh hơn mở bằng Excel thủ công.</span>
+              
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B9 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: File Excel 5,000 dòng mở đơ máy</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: import pandas as pd, pd.read_csv, head()</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Đọc file danh sách khách hàng remodeling</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Tổng kết</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Học viên cài đặt thư viện (<code>pip install pandas</code>), đọc thành công file <code>khach_hang.csv</code> vào DataFrame và hiển thị 5 bản ghi đầu tiên bằng <code>df.head()</code>.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Lỗi FileNotFoundError:</b> Học viên để file python và file csv ở 2 thư mục khác nhau. Hướng dẫn mở đúng thư mục làm việc trong VS Code hoặc dùng đường dẫn tương đối.</li>
+                      <li><b>Lỗi mã hóa tiếng Việt (UnicodeDecodeError):</b> Dạy tham số <code>encoding="utf-8"</code> hoặc <code>encoding="utf-8-sig"</code> khi xuất từ Excel sang CSV.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Dùng Pandas đọc file dữ liệu <code>khach_hang.csv</code>. In ra: 5 dòng đầu tiên (<code>df.head(5)</code>), 3 dòng cuối cùng (<code>df.tail(3)</code>) và tổng số dòng/cột có trong bảng (<code>df.shape</code>).
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Chỉ định hiển thị riêng 2 cột: <code>["Tên khách hàng", "Số điện thoại"]</code> từ bảng dữ liệu và in ra màn hình.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B9</span><span>b9_pandas_doc_csv.py</span></div>
+                    <pre># BUỔI 9: ĐỌC DỮ LIỆU KHÁCH HÀNG BẰNG PANDAS
+import pandas as pd
+
+# Đường dẫn file dữ liệu mẫu công trường
+file_path = "khach_hang.csv"
+
+try:
+    # 1. Đọc file CSV vào biến df (DataFrame)
+    df = pd.read_csv(file_path, encoding="utf-8")
+    
+    print("✅ ĐỌC DỮ LIỆU THÀNH CÔNG!")
+    so_hang, so_cot = df.shape
+    print(f"Tổng số hồ sơ khách hàng: {so_hang} dòng")
+    print(f"Tổng số trường thông tin: {so_cot} cột\n")
+    
+    # 2. Xem nhanh 5 dòng đầu tiên
+    print("--- 5 KHÁCH HÀNG MẪU ĐẦU TIÊN ---")
+    print(df.head(5))
+    
+except FileNotFoundError:
+    print(f"❌ Không tìm thấy file '{file_path}'. Hãy kiểm tra vị trí thư mục!")</pre>
+                    <div class="code-output"># Output kiểm thử:
+✅ ĐỌC DỮ LIỆU THÀNH CÔNG!
+Tổng số hồ sơ khách hàng: 50 dòng
+Tổng số trường thông tin: 5 cột
+
+--- 5 KHÁCH HÀNG MẪU ĐẦU TIÊN ---
+   ID        Tên khách      SĐT  Zip Code Trạng thái liên hệ
+0   1   Michael Miller  555-0101     77001            Chưa gọi
+1   2    Sarah Johnson  555-0102     77002          Đã liên hệ
+2   3    David Martinez  555-0103     77001            Chưa gọi
+3   4       Emily Brown  555-0104     77005            Hẹn khảo sát
+4   5       James Wilson  555-0105     77001            Chưa gọi</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 10 -->
+          <li data-pageduo-ele-id="e_tLPBdxLgSc2G">
+            <span class="lesson-no" data-pageduo-ele-id="e_nRxXKaLdwmc6">B10</span>
+            <div data-pageduo-ele-id="e_R3Dt8uhxB3LN" style="flex:1">
+              <strong data-pageduo-ele-id="e_64GuEb45x3yG">Khám phá &amp; Kiểm tra chất lượng dữ liệu (Data Inspection)</strong>
+              <span data-pageduo-ele-id="e_3r4yizPamBSw">Kiểm tra kiểu dữ liệu (dtypes), tên các cột, phát hiện ô rỗng (missing values) để làm sạch dữ liệu trước khi gửi sang tổ đội thi công.</span>
+              
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B10 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Số điện thoại bị mất số 0 hoặc thiếu địa chỉ</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: df.info(), df.describe(), df.isna().sum()</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Soát lỗi dữ liệu hồ sơ công trình</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Sử dụng <code>df.info()</code>, <code>df.dtypes</code> và <code>df.isnull().sum()</code> để thống kê các cột bị rỗng, biết cách điền giá trị bù bằng <code>.fillna()</code>.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Cột Zip Code bị nhận nhầm thành int:</b> Nếu Zip Code Mỹ có dạng <code>07001</code>, khi bị nhận là số nguyên sẽ mất số 0 đầu thành <code>7001</code>. Dạy cách ép kiểu <code>dtype={"Zip Code": str}</code> khi đọc file.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> In danh sách tất cả các cột của DataFrame (<code>df.columns.tolist()</code>). Đếm số lượng ô rỗng trên từng cột bằng <code>df.isna().sum()</code>.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Nếu cột "Ngân sách dự kiến" bị khuyết dữ liệu, thay thế các ô rỗng đó bằng giá trị <code>0.0</code> và in lại kiểm tra.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B10</span><span>b10_kiem_tra_dataframe.py</span></div>
+                    <pre># BUỔI 10: SOÁT LỖI VÀ LÀM SẠCH BẢNG DỮ LIỆU
+import pandas as pd
+
+# Ép kiểu Zip Code thành chuỗi để giữ nguyên định dạng số 0 đầu
+df = pd.read_csv("khach_hang.csv", dtype={"Zip Code": str, "SĐT": str})
+
+print("=== BÁO CÁO CẤU TRÚC BẢNG DỮ LIỆU ===")
+df.info()
+
+print("\n=== ĐẾM SỐ DÒNG BỊ THIẾU THÔNG TIN (NULL/EMPTY) ===")
+o_rong = df.isna().sum()
+print(o_rong)
+
+# Xử lý làm sạch: Điền giá trị mặc định cho ô bị thiếu
+if "Trạng thái liên hệ" in df.columns:
+    df["Trạng thái liên hệ"] = df["Trạng thái liên hệ"].fillna("Chưa liên hệ")
+    print("\n✅ Đã chuẩn hóa các dòng thiếu trạng thái về: 'Chưa liên hệ'")</pre>
+                    <div class="code-output"># Output kiểm tra:
+=== BÁO CÁO CẤU TRÚC BẢNG DỮ LIỆU ===
+Data columns (total 5 columns):
+ #   Column              Non-Null Count  Dtype 
+---  ------              --------------  ----- 
+ 0   ID                  50 non-null     int64 
+ 1   Tên khách           50 non-null     object
+ 2   SĐT                 48 non-null     object
+ 3   Zip Code            50 non-null     object
+ 4   Trạng thái liên hệ  46 non-null     object
+=== ĐẾM SỐ DÒNG BỊ THIẾU THÔNG TIN (NULL/EMPTY) ===
+ID                    0
+Tên khách             0
+SĐT                   2
+Zip Code              0
+Trạng thái liên hệ    4</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 11 -->
+          <li data-pageduo-ele-id="e_MKznLDDWj9Pf">
+            <span class="lesson-no" data-pageduo-ele-id="e_xpXDM3QojMyZ">B11</span>
+            <div data-pageduo-ele-id="e_ZX2YaGzE4coE" style="flex:1">
+              <strong data-pageduo-ele-id="e_06D3nFBm4TYC">Lọc dữ liệu theo Zip Code &amp; Sắp xếp ngân sách</strong>
+              <span data-pageduo-ele-id="e_IYMMaFmyZtm5">Lọc khách hàng theo vị trí khu vực thi công tại Mỹ (Zip Code) và sắp xếp dự án theo giá trị hợp đồng từ lớn đến bé để ưu tiên bố trí thợ.</span>
+              
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B11 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Thợ chỉ nhận công trình trong bán kính 10 dặm</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: df[df["Cot"] == "GiaTri"], sort_values()</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Lọc danh sách khách hàng khu vực 77001</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Thảo luận</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Nắm vững kỹ thuật Boolean Indexing lọc dữ liệu trong Pandas và hàm <code>sort_values(by=..., ascending=False)</code>.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Quên gán lại biến:</b> <code>df.sort_values(...)</code> mặc định không thay đổi bảng gốc trừ khi gán lại <code>df = df.sort_values(...)</code> hoặc dùng <code>inplace=True</code>.</li>
+                      <li><b>So sánh kiểu dữ liệu:</b> Nếu cột Zip Code là chuỗi mà so sánh với số <code>77001</code> thì kết quả trả về bảng rỗng! Dạy học viên luôn chú ý dấu nháy kép <code>"77001"</code>.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Lọc tất cả các khách hàng có <code>Zip Code == "77001"</code>. In ra tổng số khách hàng tìm được.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Lọc khách hàng có diện tích công trình <code>DienTich &gt; 1000</code> sqft và sắp xếp danh sách theo thứ tự diện tích từ lớn nhất xuống nhỏ nhất.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B11</span><span>b11_loc_zipcode.py</span></div>
+                    <pre># BUỔI 11: LỌC DỮ LIỆU THEO KHU VỰC VÀ SẮP XẾP
+import pandas as pd
+
+df = pd.read_csv("khach_hang.csv", dtype={"Zip Code": str})
+
+# 1. Lọc khách hàng tại khu vực mục tiêu (vd: 77001 - Houston, Texas)
+zip_muc_tieu = "77001"
+danh_sach_khu_vuc = df[df["Zip Code"] == zip_muc_tieu]
+
+print(f"=== DANH SÁCH KHÁCH HÀNG TẠI ZIP CODE {zip_muc_tieu} ===")
+print(f"Tìm thấy: {len(danh_sach_khu_vuc)} khách hàng tiềm năng.")
+
+# 2. Sắp xếp danh sách theo tên khách hàng chữ cái A-Z
+danh_sach_sap_xep = danh_sach_khu_vuc.sort_values(by="Tên khách", ascending=True)
+
+# 3. In kết quả chọn lọc
+print(danh_sach_sap_xep[["ID", "Tên khách", "SĐT", "Zip Code", "Trạng thái liên hệ"]])</pre>
+                    <div class="code-output"># Output lọc thành công:
+=== DANH SÁCH KHÁCH HÀNG TẠI ZIP CODE 77001 ===
+Tìm thấy: 14 khách hàng tiềm năng.
+    ID        Tên khách      SĐT  Zip Code Trạng thái liên hệ
+2    3   David Martinez 555-0103     77001            Chưa gọi
+4    5     James Wilson 555-0105     77001            Chưa gọi
+0    1   Michael Miller 555-0101     77001            Chưa gọi
+12  13    Robert Garcia 555-0113     77001            Chưa gọi</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 12 -->
+          <li data-pageduo-ele-id="e_Ke2nnvozoM3j">
+            <span class="lesson-no" data-pageduo-ele-id="e_K6KauwA06f36">B12</span>
+            <div data-pageduo-ele-id="e_rFAeNGCyxD6c" style="flex:1">
+              <strong data-pageduo-ele-id="e_hIrmz82EN6Bo">Hoàn thiện Bộ Lọc Marketing cho Telesale</strong>
+              <span data-pageduo-ele-id="e_jG2LWdHi0vBT">Tự động hóa luồng lọc đa điều kiện: Đúng Zip Code mục tiêu + Trạng thái Chưa gọi + SĐT hợp lệ. Xuất file <code>leads_telesale.csv</code> bàn giao cho bộ phận kinh doanh.</span>
+              
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B12 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Bàn giao danh sách telesale sạch cho kinh doanh</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Toán tử &amp; và | trong Pandas, to_csv()</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Đóng gói script xuất 50 leads</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu mốc Tuần 6</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Kết hợp nhiều điều kiện lọc bằng <code>&amp;</code>, loại bỏ dòng thiếu SĐT bằng <code>.notna()</code>, giới hạn 50 dòng bằng <code>.head(50)</code> và xuất file bằng <code>to_csv(..., index=False)</code>.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Thiếu dấu ngoặc đơn:</b> Trong Pandas, <code>df[(df["A"] == 1) &amp; (df["B"] == 2)]</code> bắt buộc phải có dấu ngoặc tròn bao quanh từng vế so sánh, nếu không sẽ lỗi <code>TypeError</code>.</li>
+                      <li><b>Xuất file bị cột thừa:</b> Dạy luôn tham số <code>index=False</code> khi gọi <code>.to_csv()</code> để không sinh cột số thứ tự vô nghĩa.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Đồ án mini B12: Bộ Lọc Marketing</h4>
+                    <div class="exercise-task">
+                      <strong>Yêu cầu:</strong> Viết chương trình đọc danh sách khách hàng, lọc ra tối đa 50 khách hàng thỏa mãn: Đúng Zip Code <code>77001</code>, Trạng thái là <code>"Chưa gọi"</code>, và Số điện thoại không bị rỗng. Xuất file kết quả ra <code>danh_sach_telesale_hom_nay.csv</code>.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 · Source Code hoàn chỉnh B12</span><span>b12_bo_loc_marketing.py</span></div>
+                    <pre># BUỔI 12: BỘ LỌC MARKETING TELESALE CÔNG TRƯỜNG
+import pandas as pd
+
+df = pd.read_csv("khach_hang.csv", dtype={"Zip Code": str, "SĐT": str})
+
+# Lọc đa điều kiện với dấu ngoặc tròn và toán tử &amp;
+dieu_kien = (
+    (df["Zip Code"] == "77001") &amp; 
+    (df["Trạng thái liên hệ"] == "Chưa gọi") &amp; 
+    (df["SĐT"].notna())
+)
+
+leads_chuan = df[dieu_kien].head(50)
+
+print(f"=== BỘ LỌC MARKETING: TÌM THẤY {len(leads_chuan)} KHÁCH HÀNG ĐẠT CHUẨN ===")
+print(leads_chuan[["Tên khách", "SĐT", "Zip Code"]])
+
+# Xuất file kết quả bàn giao cho nhân viên telesale
+ten_file_xuat = "leads_telesale_hom_nay.csv"
+leads_chuan.to_csv(ten_file_xuat, index=False, encoding="utf-8-sig")
+print(f"\n✅ Đã xuất danh sách sẵn sàng gọi điện ra file: '{ten_file_xuat}'")</pre>
+                    <div class="code-output"># Output xuất file thành công:
+=== BỘ LỌC MARKETING: TÌM THẤY 12 KHÁCH HÀNG ĐẠT CHUẨN ===
+         Tên khách      SĐT  Zip Code
+0   Michael Miller 555-0101     77001
+2   David Martinez 555-0103     77001
+4     James Wilson 555-0105     77001
+...
+✅ Đã xuất danh sách sẵn sàng gọi điện ra file: 'leads_telesale_hom_nay.csv'</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
         </ol>
-        <div class="product-bar" data-pageduo-ele-id="e_XZDfdCcDBv3H"><strong data-pageduo-ele-id="e_7625SYut5F6N">Sản phẩm:</strong> Bộ Lọc Marketing cho telesale.</div>
+        <div class="product-bar" data-pageduo-ele-id="e_XZDfdCcDBv3H"><strong data-pageduo-ele-id="e_7625SYut5F6N">Sản phẩm hoàn thành:</strong> Bộ Lọc Marketing lọc 50 leads theo Zip Code cho telesale.</div>
       </article>
+
+      <!-- TUẦN 7-8: SQLITE KHO LƯU TRỮ -->
       <article class="phase-card surface" data-pageduo-ele-id="e_y9VfN0TBo1ey">
         <header data-pageduo-ele-id="e_w1JETqN1HxEm">
           <div data-pageduo-ele-id="e_PEHWrMjpIHk4"><h3 data-pageduo-ele-id="e_3VElfa3zqyhN">Tuần 7–8 · Kho Lưu Trữ Dữ Liệu</h3><p data-pageduo-ele-id="e_Fsuko2WwLNHZ">SQLite, KhachHang, DuAn và CRUD</p></div>
           <span class="tag" data-pageduo-ele-id="e_3lh8FJbo88EK">B13–B16</span>
         </header>
         <ol class="lesson-list" data-pageduo-ele-id="e_5rlK8l2yXjgh">
-          <li data-pageduo-ele-id="e_D231mR1U1vK9"><span class="lesson-no" data-pageduo-ele-id="e_pkUDIdRDynUF">B13</span><div data-pageduo-ele-id="e_Ua4282I3M1Mh"><strong data-pageduo-ele-id="e_etHAGMsfpBLh">Khởi tạo SQLite</strong><span data-pageduo-ele-id="e_PN28qf3kAyFM">Tạo bảng <span class="inline-code" data-pageduo-ele-id="e_rb3yQhpXIZdb">KhachHang</span> để lưu thông tin khách hàng.</span><div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Tạo database và bảng khách hàng có khóa chính.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>import sqlite3
-db = sqlite3.connect("cong_trinh.db")
-db.execute("CREATE TABLE IF NOT EXISTS KhachHang (id INTEGER PRIMARY KEY, ten TEXT, sdt TEXT)")
-db.commit()</pre></details></div></li>
-          <li data-pageduo-ele-id="e_bzKhCDwDmxQV"><span class="lesson-no" data-pageduo-ele-id="e_UXNB7ZaGfKId">B14</span><div data-pageduo-ele-id="e_jcWb9psZvSd9"><strong data-pageduo-ele-id="e_kMH0Rrx1cLgw">Khởi tạo DuAn</strong><span data-pageduo-ele-id="e_WGnBaPrRCRDz">Lưu thông tin công trình và liên hệ dự án với khách hàng.</span><div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Tạo bảng dự án và liên kết dự án với khách hàng.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>db.execute("CREATE TABLE IF NOT EXISTS DuAn (id INTEGER PRIMARY KEY, ten TEXT, khach_hang_id INTEGER)")
-db.commit()</pre></details></div></li>
-            <li data-pageduo-ele-id="e_ZtCMqXZh0XAH"><span class="lesson-no" data-pageduo-ele-id="e_k09c5NAQKG7z">B15</span><div data-pageduo-ele-id="e_HSGka9sZz7Yb"><strong data-pageduo-ele-id="e_206SaXTDheKa">CRUD — Thêm và Đọc</strong><span data-pageduo-ele-id="e_dohqhSqXTBUO">Thêm bản ghi mới, sau đó lấy danh sách để kiểm tra.</span><div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Thêm một khách hàng và đọc lại danh sách.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>db.execute("INSERT INTO KhachHang (ten, sdt) VALUES (?, ?)", ("Nguyen Van A", "0900000000"))
-      db.commit()
-      for row in db.execute("SELECT * FROM KhachHang"):
-        print(row)</pre></details></div></li>
-          <li data-pageduo-ele-id="e_QaEN5TLSq9Ly"><span class="lesson-no" data-pageduo-ele-id="e_cUiTwQOeefMN">B16</span><div data-pageduo-ele-id="e_nl1EMKcWQoMq"><strong data-pageduo-ele-id="e_lNF5hpGfEJ4e">CRUD — Sửa và Xóa</strong><span data-pageduo-ele-id="e_bcXs17NkntYo">Cập nhật trạng thái và xóa bản ghi mẫu khi cần.</span><div class="lesson-summary"><strong>Bài tập tổng kết:</strong> Cập nhật trạng thái một khách hàng rồi xóa bản ghi thử nghiệm.</div><details class="lesson-summary"><summary>Hiện source code mẫu</summary><pre>db.execute("UPDATE KhachHang SET sdt = ? WHERE id = ?", ("0911111111", 1))
-db.execute("DELETE FROM KhachHang WHERE id = ?", (99,))
-db.commit()</pre></details></div></li>
+          <!-- BUỔI 13 -->
+          <li data-pageduo-ele-id="e_D231mR1U1vK9">
+            <span class="lesson-no" data-pageduo-ele-id="e_pkUDIdRDynUF">B13</span>
+            <div data-pageduo-ele-id="e_Ua4282I3M1Mh" style="flex:1">
+              <strong data-pageduo-ele-id="e_etHAGMsfpBLh">Khởi tạo SQLite &amp; Bảng KhachHang</strong>
+              <span data-pageduo-ele-id="e_PN28qf3kAyFM">Thiết lập kho dữ liệu SQLite bền vững: Tạo database <code>cong_trinh.db</code> và bảng <code>KhachHang</code> với khóa chính tự tăng (Primary Key), lưu trữ an toàn khi tắt app.</span>
+              
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B13 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Tại sao dùng SQLite thay vì Excel?</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: import sqlite3, CREATE TABLE IF NOT EXISTS</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Khởi tạo database công trình</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Hiểu cơ sở dữ liệu quan hệ, kết nối <code>sqlite3.connect()</code>, tạo bảng có trường khóa chính <code>id INTEGER PRIMARY KEY AUTOINCREMENT</code>, thực hiện <code>commit()</code> và đóng kết nối.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Quên lệnh db.commit():</b> Nếu không commit, các câu lệnh tạo bảng hay thêm dữ liệu chỉ nằm trong bộ nhớ đệm RAM và biến mất khi đóng file! Giảng viên dặn: "Commit là động tác cất tài liệu vào két sắt có khóa".</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Viết file Python tạo cơ sở dữ liệu <code>cong_trinh.db</code>. Khởi tạo bảng <code>KhachHang</code> với các cột: <code>id</code> (INTEGER PRIMARY KEY), <code>ho_ten</code> (TEXT), <code>sdt</code> (TEXT), <code>zip_code</code> (TEXT).
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Thêm cột <code>ngay_tao</code> kiểu TEXT lưu ngày giờ tạo hồ sơ (dùng giá trị mặc định <code>CURRENT_TIMESTAMP</code> trong SQLite).
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B13</span><span>b13_khoi_tao_sqlite.py</span></div>
+                    <pre># BUỔI 13: KHỞI TẠO KHO LƯU TRỮ SQLITE CHO CÔNG TRÌNH
+import sqlite3
+
+# 1. Kết nối hoặc tự động tạo mới file database cong_trinh.db
+conn = sqlite3.connect("cong_trinh.db")
+cursor = conn.cursor()
+
+# 2. Tạo bảng KhachHang nếu chưa tồn tại
+sql_create_table = """
+CREATE TABLE IF NOT EXISTS KhachHang (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ho_ten TEXT NOT NULL,
+    sdt TEXT,
+    zip_code TEXT,
+    ngay_tao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+"""
+cursor.execute(sql_create_table)
+conn.commit()
+
+print("✅ ĐÃ KHỞI TẠO THÀNH CÔNG BẢNG 'KhachHang' TRONG cong_trinh.db!")
+conn.close()</pre>
+                    <div class="code-output"># Output kiểm tra:
+✅ ĐÃ KHỞI TẠO THÀNH CÔNG BẢNG 'KhachHang' TRONG cong_trinh.db!
+File cong_trinh.db đã sẵn sàng trong thư mục dự án.</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 14 -->
+          <li data-pageduo-ele-id="e_bzKhCDwDmxQV">
+            <span class="lesson-no" data-pageduo-ele-id="e_UXNB7ZaGfKId">B14</span>
+            <div data-pageduo-ele-id="e_jcWb9psZvSd9" style="flex:1">
+              <strong data-pageduo-ele-id="e_kMH0Rrx1cLgw">Thiết kế bảng DuAn &amp; Khóa ngoại liên kết</strong>
+              <span data-pageduo-ele-id="e_WGnBaPrRCRDz">Một chủ nhà có thể có nhiều hạng mục cải tạo. Thiết kế bảng <code>DuAn</code> liên kết với <code>KhachHang</code> bằng trường khóa ngoại <code>khach_hang_id</code> (Foreign Key).</span>
+              
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B14 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Khách quen làm thêm tầng 2 &amp; phòng tắm</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: Khóa ngoại FOREIGN KEY (khach_hang_id)</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Tạo bảng quản lý dự án</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Hiểu mối quan hệ 1-Nhiều (1 chủ nhà có N công trình), viết câu lệnh DDL tạo bảng <code>DuAn</code> chuẩn kỹ thuật dữ liệu.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Trùng lặp dữ liệu:</b> Giải thích nếu không có 2 bảng, mỗi lần khách làm thêm dự án mới ta lại phải gõ lại Tên và SĐT của họ trong bảng Dự án -> gây sai sót. Có khóa ngoại giúp thông tin khách hàng luôn nhất quán.</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Viết câu lệnh SQL tạo bảng <code>DuAn</code> gồm: <code>id</code>, <code>ten_du_an</code>, <code>khach_hang_id</code>, <code>dien_tich_sqft</code>, <code>gia_tri_usd</code>, <code>trang_thai</code> (mặc định: 'Khảo sát').
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Thiết lập ràng buộc khóa ngoại: <code>FOREIGN KEY (khach_hang_id) REFERENCES KhachHang(id)</code>.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B14</span><span>b14_khoi_tao_du_an.py</span></div>
+                    <pre># BUỔI 14: THIẾT KẾ BẢNG DỰ ÁN VỚI KHÓA NGOẠI
+import sqlite3
+
+conn = sqlite3.connect("cong_trinh.db")
+cursor = conn.cursor()
+
+sql_create_du_an = """
+CREATE TABLE IF NOT EXISTS DuAn (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ten_du_an TEXT NOT NULL,
+    khach_hang_id INTEGER NOT NULL,
+    dien_tich_sqft REAL,
+    gia_tri_usd REAL,
+    trang_thai TEXT DEFAULT 'Khảo sát',
+    FOREIGN KEY (khach_hang_id) REFERENCES KhachHang (id)
+);
+"""
+cursor.execute(sql_create_du_an)
+conn.commit()
+
+print("✅ ĐÃ KHỞI TẠO THÀNH CÔNG BẢNG 'DuAn' LIÊN KẾT VỚI 'KhachHang'!")
+conn.close()</pre>
+                    <div class="code-output"># Output:
+✅ ĐÃ KHỞI TẠO THÀNH CÔNG BẢNG 'DuAn' LIÊN KẾT VỚI 'KhachHang'!
+Cơ sở dữ liệu sẵn sàng cho các thao tác CRUD.</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 15 -->
+          <li data-pageduo-ele-id="e_ZtCMqXZh0XAH">
+            <span class="lesson-no" data-pageduo-ele-id="e_k09c5NAQKG7z">B15</span>
+            <div data-pageduo-ele-id="e_HSGka9sZz7Yb" style="flex:1">
+              <strong data-pageduo-ele-id="e_206SaXTDheKa">CRUD: Thêm mới (Create) &amp; Truy vấn (Read)</strong>
+              <span data-pageduo-ele-id="e_dohqhSqXTBUO">Thực hiện thêm hồ sơ khách hàng mới bằng lệnh <code>INSERT INTO</code> tham số hóa an toàn và truy vấn danh sách bằng <code>SELECT</code>, lọc dự án theo trạng thái.</span>
+              
+              <details class="instructor-kit">
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B15 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Nhập hợp đồng mới ký vào hệ thống</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: INSERT INTO với dấu chấm hỏi ?, SELECT * FROM</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Thực hành: Thêm và đọc hồ sơ công trình</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu &amp; Giải đáp</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Viết hàm thêm khách hàng nhận dữ liệu từ người dùng, thực thi câu lệnh SQL với tuple tham số an toàn và duyệt các dòng trả về từ <code>cursor.fetchall()</code>.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Lỗ hổng SQL Injection:</b> Nghiêm cấm dùng f-string ghép chuỗi SQL như: <code>f"INSERT INTO KhachHang VALUES ('{ten}')"</code> vì nguy cơ bảo mật. Dạy học viên luôn dùng dấu <code>?</code> (parameterized query).</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Bài tập thực hành tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Bài 1 (Cơ bản):</strong> Thêm 2 khách hàng mới vào bảng <code>KhachHang</code>. Sau đó viết câu lệnh <code>SELECT * FROM KhachHang</code> và in danh sách ra màn hình.
+                    </div>
+                    <div class="exercise-task">
+                      <strong>Bài 2 (Thực chiến nâng cao):</strong> Thêm 1 dự án tương ứng cho khách hàng vừa tạo (lát sàn 650 sqft, trị giá 3,250 USD, trạng thái 'Thi công').
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 · Source Code mẫu chuẩn B15</span><span>b15_crud_create_read.py</span></div>
+                    <pre># BUỔI 15: THÊM MỚI VÀ TRUY VẤN HỒ SƠ CÔNG TRÌNH
+import sqlite3
+
+def them_khach_hang(ho_ten, sdt, zip_code):
+    """Hàm thêm khách hàng mới và trả về ID vừa sinh."""
+    with sqlite3.connect("cong_trinh.db") as conn:
+        cursor = conn.cursor()
+        sql = "INSERT INTO KhachHang (ho_ten, sdt, zip_code) VALUES (?, ?, ?)"
+        cursor.execute(sql, (ho_ten, sdt, zip_code))
+        conn.commit()
+        return cursor.lastrowid
+
+def xem_danh_sach_khach():
+    """Hàm truy vấn và in toàn bộ danh sách khách hàng."""
+    with sqlite3.connect("cong_trinh.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT id, ho_ten, sdt, zip_code, ngay_tao FROM KhachHang")
+        danh_sach = cursor.fetchall()
+        print(f"\n{'ID':<4} | {'HỌ VÀ TÊN':<20} | {'SĐT':<12} | {'ZIP':<6}")
+        print("-" * 50)
+        for k in danh_sach:
+            print(f"{k[0]:<4} | {k[1]:<20} | {k[2]:<12} | {k[3]:<6}")
+
+# Thử nghiệm thêm khách hàng mới
+id_moi = them_khach_hang("Anh Vũ - Căn hộ Vinhomes", "0988776655", "77001")
+print(f"✅ Đã thêm khách hàng mới với mã ID: {id_moi}")
+xem_danh_sach_khach()</pre>
+                    <div class="code-output"># Output kiểm tra:
+✅ Đã thêm khách hàng mới với mã ID: 1
+
+ID   | HỌ VÀ TÊN            | SĐT          | ZIP   
+--------------------------------------------------
+1    | Anh Vũ - Căn hộ Vinhomes | 0988776655   | 77001</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
+
+          <!-- BUỔI 16 -->
+          <li data-pageduo-ele-id="e_QaEN5TLSq9Ly">
+            <span class="lesson-no" data-pageduo-ele-id="e_cUiTwQOeefMN">B16</span>
+            <div data-pageduo-ele-id="e_nl1EMKcWQoMq" style="flex:1">
+              <strong data-pageduo-ele-id="e_lNF5hpGfEJ4e">CRUD: Cập nhật tiến độ (Update) &amp; Xóa an toàn (Delete)</strong>
+              <span data-pageduo-ele-id="e_bcXs17NkntYo">Cập nhật tiến độ dự án qua 3 mốc: <b>Khảo sát &rarr; Thi công &rarr; Bàn giao</b>. Viết lệnh <code>UPDATE</code> có điều kiện <code>WHERE</code> chặt chẽ và thao tác <code>DELETE</code> an toàn.</span>
+              
+              <details class="instructor-kit" open>
+                <summary class="instructor-summary"><span>📋 Giáo án Giảng viên &amp; Thực hành B16 (60 phút)</span><span class="kit-badge">Instructor Kit</span></summary>
+                <div class="instructor-body">
+                  <div class="teacher-plan">
+                    <h4>🎯 Mục tiêu bài dạy &amp; Kế hoạch 60 phút</h4>
+                    <div class="teaching-timeline">
+                      <span class="timeline-pill">⏱️ <b>10'</b> Tình huống: Bàn giao công trình và thanh lý hợp đồng</span>
+                      <span class="timeline-pill">⏱️ <b>25'</b> Live Code: UPDATE ... SET ... WHERE, DELETE an toàn</span>
+                      <span class="timeline-pill">⏱️ <b>20'</b> Hoàn thiện Hệ Thống Tiến Độ CRUD</span>
+                      <span class="timeline-pill">⏱️ <b>5'</b> Nghiệm thu kết thúc Giai đoạn 2</span>
+                    </div>
+                    <p><b>Mục tiêu:</b> Học viên làm chủ toàn bộ 4 thao tác CRUD (Create, Read, Update, Delete) với SQLite, hoàn thiện hệ thống quản lý tiến độ công trình chuẩn bị tích hợp lên giao diện Web ở Tháng 3.</p>
+                  </div>
+
+                  <div class="teacher-note">
+                    <h4>💡 Bẫy lỗi thường gặp &amp; Mẹo sư phạm</h4>
+                    <ul>
+                      <li><b>Thảm họa quên mệnh đề WHERE:</b> Nhấn mạnh lệnh <code>UPDATE DuAn SET trang_thai = 'Bàn giao'</code> mà quên <code>WHERE id = ?</code> sẽ biến TOÀN BỘ công trình trong công ty thành đã bàn giao! Giảng viên dặn: "Luôn kiểm tra điều kiện WHERE trước khi gõ phím Enter".</li>
+                    </ul>
+                  </div>
+
+                  <div class="exercise-box">
+                    <h4>🛠️ Đồ án tốt nghiệp Giai đoạn 2 tại lớp</h4>
+                    <div class="exercise-task">
+                      <strong>Yêu cầu:</strong> Viết chương trình menu dòng lệnh tương tác cho phép giám sát: (1) Xem danh sách dự án, (2) Chuyển trạng thái dự án (ví dụ từ 'Khảo sát' sang 'Thi công' hoặc 'Bàn giao'), (3) Xóa một dự án bị hủy thầu.
+                    </div>
+                  </div>
+
+                  <div class="code-box-wrapper">
+                    <div class="code-box-header"><span>Python 3 · Source Code hoàn chỉnh B16</span><span>b16_he_thong_tien_do.py</span></div>
+                    <pre># BUỔI 16: HỆ THỐNG CẬP NHẬT TIẾN ĐỘ THI CÔNG HOÀN CHỈNH
+import sqlite3
+
+def cap_nhat_tien_do(du_an_id, trang_thai_moi):
+    """Cập nhật tiến độ công trình: Khảo sát -&gt; Thi công -&gt; Bàn giao."""
+    trang_thai_hop_le = ["Khảo sát", "Thi công", "Bàn giao", "Đã thanh lý"]
+    if trang_thai_moi not in trang_thai_hop_le:
+        print(f"❌ Trạng thái '{trang_thai_moi}' không hợp lệ!")
+        return False
+        
+    with sqlite3.connect("cong_trinh.db") as conn:
+        cursor = conn.cursor()
+        sql = "UPDATE DuAn SET trang_thai = ? WHERE id = ?"
+        cursor.execute(sql, (trang_thai_moi, du_an_id))
+        conn.commit()
+        if cursor.rowcount &gt; 0:
+            print(f"✅ ĐÃ CẬP NHẬT DỰ ÁN #{du_an_id} SANG TRẠNG THÁI: '{trang_thai_moi}'")
+            return True
+        else:
+            print(f"⚠️ Không tìm thấy dự án mang mã ID #{du_an_id}!")
+            return False
+
+def xoa_du_an(du_an_id):
+    """Xóa an toàn một bản ghi dự án với điều kiện ID."""
+    with sqlite3.connect("cong_trinh.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM DuAn WHERE id = ?", (du_an_id,))
+        conn.commit()
+        print(f"🗑️ Đã xóa dự án #{du_an_id} khỏi hệ thống.")
+
+# Thử nghiệm đổi trạng thái dự án sang Bàn giao
+cap_nhat_tien_do(1, "Thi công")
+cap_nhat_tien_do(1, "Bàn giao")</pre>
+                    <div class="code-output"># Output kiểm thử tiến độ:
+✅ ĐÃ CẬP NHẬT DỰ ÁN #1 SANG TRẠNG THÁI: 'Thi công'
+✅ ĐÃ CẬP NHẬT DỰ ÁN #1 SANG TRẠNG THÁI: 'Bàn giao'
+Hệ thống sẵn sàng bàn giao cho giai đoạn Web Streamlit!</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </li>
         </ol>
-        <div class="product-bar" data-pageduo-ele-id="e_OTf6nFkVIdm6"><strong data-pageduo-ele-id="e_2XSjAtWxhG6i">Sản phẩm:</strong> Hệ Thống Tiến Độ: Khảo sát → Thi công → Bàn giao.</div>
+        <div class="product-bar" data-pageduo-ele-id="e_OTf6nFkVIdm6"><strong data-pageduo-ele-id="e_2XSjAtWxhG6i">Sản phẩm hoàn thành:</strong> Hệ Thống Tiến Độ SQLite: Khảo sát → Thi công → Bàn giao.</div>
       </article>
     </div>
   </div>
