@@ -1,0 +1,622 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quản lý dữ liệu khách hàng và dự án</title>
+<meta name="description" content="8 buổi Pandas và SQLite cho giám sát công trường: đọc CSV/Excel, lọc khách hàng, CRUD và theo dõi KhachHang, DuAn.">
+<meta name="pd:project" content="Lập trình Python cho Giám sát Công trường">
+<style data-pd-baseline="">button,input,select,textarea{font:inherit;color:inherit;line-height:inherit}textarea{display:block;resize:vertical}button,input,select,textarea{box-sizing:border-box;max-width:100%}textarea,select,input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]):not([type=submit]):not([type=button]){padding:.55em .7em;border:1px solid color-mix(in srgb,currentColor 28%,transparent);border-radius:.4rem;background:transparent}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<script src="/static/vendor/vue-reactivity.global.js"></script>
+<script src="/static/vendor/sanitize-url.global.js"></script>
+<script src="/static/vendor/udomdiff.min.js"></script>
+<script src="/static/vendor/chart-4.4.0.min.js"></script>
+<script src="/static/pd-data-client.v2.min.js"></script>
+<script src="/static/pd-reactive-runtime.v3.min.js"></script>
+<script src="/static/pd-formula-input.v1.js"></script>
+<style data-pd-page="">
+.data-hero{padding:72px 0 56px;background:var(--ink);color:#fff}
+.data-hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(280px,.88fr);gap:48px;align-items:center}
+.data-hero .eyebrow{color:var(--safety)}
+.data-hero h1{max-width:780px}
+.data-hero .lede{color:#D6E1DC}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 0}
+.hero-meta span{padding:7px 11px;border:1px solid #55716D;border-radius:999px;color:#F8F3E7;font-size:13px}
+.hero-note{padding:24px;background:#102A2E;border:1px solid #55716D;border-radius:var(--radius);box-shadow:var(--shadow)}
+.hero-note strong{display:block;color:var(--safety);font-size:14px;margin-bottom:8px}
+.hero-note p{color:#D6E1DC;margin-bottom:0}
+.page-section{padding:72px 0}
+.page-section.alt{background:#EEE9DF}
+.section-intro{max-width:720px;color:var(--muted)}
+.objective-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;margin-top:28px}
+.objective-copy{padding:30px}
+.objective-copy ul{margin:18px 0 0;padding-left:22px}
+.objective-copy li+li{margin-top:10px}
+.metric-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.metric{padding:22px;background:var(--ink);color:#fff;border-radius:14px}
+.metric b{display:block;color:var(--safety);font-size:28px;line-height:1;margin-bottom:8px}
+.metric span{font-size:13px;color:#D6E1DC}
+.media-feature{margin-top:30px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:24px;align-items:stretch}
+.media-feature figure{margin:0;overflow:hidden}
+.media-feature img{width:100%;height:100%;min-height:300px;object-fit:cover}
+.media-feature figcaption{padding:14px 18px;font-size:13px;color:var(--muted);background:#fff}
+.schedule{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:28px}
+.phase-card{padding:26px}
+.phase-card header{display:flex;justify-content:space-between;align-items:start;gap:14px;margin-bottom:18px}
+.phase-card h3{margin-bottom:4px}
+.phase-card header p{font-size:13px;color:var(--muted);margin:0}
+.lesson-list{list-style:none;margin:0;padding:0}
+.lesson-list li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;padding:15px 0;border-top:1px solid var(--line)}
+.lesson-list li:first-child{border-top:0}
+.lesson-no{color:var(--accent);font-weight:800}
+.lesson-list strong{display:block}
+.lesson-list span{display:block;color:var(--muted);font-size:14px}
+.product-bar{margin-top:24px;padding:16px 18px;border-left:4px solid var(--safety);background:#FFF8E8;color:var(--ink)}
+.worked-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:28px}
+.worked-card{padding:26px}
+.worked-card h3{display:flex;gap:10px;align-items:center}
+.step-list{margin:0;padding:0;list-style:none}
+.step-list li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.step-list li:first-child{border-top:0}
+.step-list b{color:var(--accent)}
+.inline-code{padding:2px 6px;border-radius:5px;background:#F0ECE4;color:#9D4229;font:14px ui-monospace,SFMono-Regular,Menlo,monospace}
+.media-wide{margin:30px 0 0}
+.media-wide figure{margin:0}
+.media-wide img{width:100%;aspect-ratio:16/7;object-fit:cover;border-radius:var(--radius)}
+.media-wide figcaption{margin-top:9px;color:var(--muted);font-size:13px}
+.playground{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:24px;align-items:start;margin-top:28px}
+.playground-copy{padding:28px}
+.playground-controls{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.playground-controls button{min-height:44px;padding:9px 12px;border:1px solid #59716F;border-radius:8px;background:#234B4D;color:#fff;cursor:pointer;font-weight:700}
+.playground-controls button[aria-pressed=true]{background:var(--safety);border-color:var(--safety);color:var(--ink)}
+.code-output{padding:16px;border-radius:10px;background:#102A2E;color:#D4E8D6;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere;min-height:106px}
+.schema-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:24px;align-items:center}
+.schema-layout figure{margin:0}
+.schema-layout img{width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:var(--radius)}
+.schema-layout figcaption{margin-top:8px;color:var(--muted);font-size:13px}
+.crud-table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px}
+.crud-table th,.crud-table td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.crud-table th{color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.checkpoint-wrap{max-width:820px;margin:0 auto}
+.quiz-card{padding:28px;margin-top:18px}
+.quiz-card legend{font-weight:800;font-size:18px;line-height:1.4;padding:0 4px}
+.quiz-card fieldset{border:0;padding:0;margin:0}
+.choice-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.choice{display:flex;align-items:flex-start;gap:10px;padding:13px;border:1px solid var(--line);border-radius:10px;cursor:pointer}
+.choice:hover{border-color:var(--accent);background:#FFF8F2}
+.choice input{margin-top:5px;accent-color:var(--accent)}
+.skill-label{display:inline-block;margin-top:10px;color:var(--muted);font-size:12px}
+.quiz-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:28px}
+.quiz-status{color:var(--green);font-weight:700}
+.quiz-error{color:#9D4229;font-weight:700}
+.result-panel{margin-top:24px;padding:22px;background:#E4F0E9;border:1px solid #B9D1C4;border-radius:14px}
+.result-panel h3{color:var(--green)}
+.result-panel a{display:inline-flex;margin-top:10px}
+@media(max-width:820px){
+  .data-hero-grid,.objective-grid,.media-feature,.playground,.schema-layout{grid-template-columns:1fr}
+  .schedule,.worked-grid{grid-template-columns:1fr}
+  .data-hero{padding:52px 0 40px}
+  .page-section{padding:52px 0}
+}
+@media(max-width:520px){
+  .metric-strip,.choice-list{grid-template-columns:1fr}
+  .objective-copy,.worked-card,.phase-card,.quiz-card,.playground-copy{padding:22px}
+  .media-wide img{aspect-ratio:4/3}
+}
+</style>
+<style id="pd-ds" data-pd-shared="design-system">:root{
+  --ground:#F4F0E8;
+  --ink:#173B3F;
+  --muted:#5D6C68;
+  --accent:#D96C3F;
+  --safety:#F0B44D;
+  --green:#2D625D;
+  --paper:#FFFFFF;
+  --line:#D9D4C9;
+  --shadow:0 16px 40px rgba(23,59,63,.10);
+  --radius:18px;
+  --space:8px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Be Vietnam Pro",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65}
+img{display:block;max-width:100%}
+a{color:inherit}
+.site-header{border-bottom:1px solid var(--line);background:rgba(244,240,232,.96)}
+.header-inner{max-width:1180px;margin:auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;line-height:1.2}
+.brand-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--ink);color:var(--safety);font-size:20px}
+.site-nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
+.site-nav a{padding:9px 12px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:700;color:var(--muted)}
+.site-nav a:hover,.site-nav a[aria-current=page]{background:var(--ink);color:#fff}
+.container{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+.eyebrow{margin:0 0 10px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+h1,h2,h3{margin:0 0 16px;line-height:1.13;letter-spacing:-.03em}
+h1{font-size:clamp(2.4rem,6vw,5.5rem)}
+h2{font-size:clamp(1.8rem,3.6vw,3.2rem)}
+h3{font-size:clamp(1.2rem,2vw,1.55rem)}
+p{margin:0 0 16px}
+.lede{font-size:clamp(1.05rem,1.8vw,1.25rem);color:var(--muted);max-width:680px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 17px;border:1px solid var(--accent);border-radius:10px;background:var(--accent);color:#fff;font-weight:800;text-decoration:none;cursor:pointer}
+.btn:hover{background:#B9512F}
+.btn-secondary{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn-secondary:hover{background:var(--ink);color:#fff}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}
+.surface{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:#FBE4D9;color:#9D4229;font-size:12px;font-weight:800}
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:20px}
+.flow>div{position:relative;padding:18px 20px;border:1px solid var(--line);border-right:0;background:#fff}
+.flow>div:first-child{border-radius:12px 0 0 12px}
+.flow>div:last-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0}
+.flow strong{display:block;color:var(--accent);font-size:13px}
+.code-panel{background:var(--ink);color:#F8F3E7;border-radius:14px;padding:20px}
+.code-panel label{display:block;color:#F0B44D;font-size:13px;font-weight:800;margin-bottom:8px}
+.code-panel textarea{display:block;width:100%;min-height:142px;resize:vertical;padding:13px;border:1px solid #59716F;border-radius:9px;background:#102A2E;color:#FFF7E9;font:14px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.code-panel button{margin-top:12px}
+.code-result{margin:12px 0 0;color:#D4E8D6;min-height:25px}
+.site-footer{margin-top:80px;padding:38px 24px;background:var(--ink);color:#EAF0E8}
+.site-footer .footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.site-footer p{max-width:520px;color:#C4D2CB}
+.site-footer a{color:#fff}
+@media(max-width:720px){
+  .container{width:min(100% - 32px,1180px)}
+  .header-inner{padding:16px}
+  .site-nav{justify-content:flex-start}
+  .site-nav a{font-size:12px;padding:8px 9px}
+  .flow{grid-template-columns:1fr}
+  .flow>div,.flow>div:first-child,.flow>div:last-child{border-right:1px solid var(--line);border-radius:0}
+  .flow>div:first-child{border-radius:12px 12px 0 0}
+  .flow>div:last-child{border-radius:0 0 12px 12px}
+  .section-heading{display:block}
+}</style>
+<style data-pd-corrections="">fieldset>legend{float:none!important}</style>
+</head>
+<body data-pageduo-ele-id="e_DqlEruzONslS">
+<header class="site-header" data-pageduo-ele-id="e_ksiWgUtCbiN7">
+  <div class="header-inner" data-pageduo-ele-id="e_sfbAbDNxo0G7">
+    <a class="brand" href="index.html" data-pageduo-ele-id="e_ijAodBdMBNLd">
+      <span class="brand-mark" aria-hidden="true" data-pageduo-ele-id="e_sDUdODp0G2QL">⌂</span>
+      <span data-pageduo-ele-id="e_MM0YnsEpPnPC">Code công trường<br><small data-pageduo-ele-id="e_HUKYJqQ727Ez">32 buổi · 4 tháng</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Điều hướng chương trình" data-pageduo-ele-id="e_Jr4Vh92JlHas">
+      <a href="index.html" title="Tổng quan chương trình" aria-current="page" data-pageduo-ele-id="e_ziyw9VPxredU">Tổng quan</a>
+      <a href="nen-tang-python.html" title="Giai đoạn 1: Đặt móng" data-pageduo-ele-id="e_Nf1HUA0nDw9Q">1. Đặt móng</a>
+      <a href="quan-ly-du-lieu.html" title="Giai đoạn 2: Xây tường" aria-current="page" data-pageduo-ele-id="e_Cuhu4t3iIEN8">2. Xây tường</a>
+      <a href="streamlit-web-app.html" title="Giai đoạn 3: Hoàn thiện" data-pageduo-ele-id="e_cZz5LP3DPId1">3. Hoàn thiện</a>
+      <a href="trien-khai-marketing.html" title="Giai đoạn 4: Bàn giao" data-pageduo-ele-id="e_okTwYsNs91f2">4. Bàn giao</a>
+    </nav>
+  </div>
+</header>
+
+
+<script>
+PDReactiveRuntime.boot({
+  data:{
+    quizDraft:{q9:"",q10:"",q11:"",q12:"",q13:"",q14:"",q15:"",q16:""},
+    quizResults:{userFullName:"",assessmentId:"",assessmentName:"",attemptId:"",revision:0,submittedAtUtc:"",completionStatus:"in-progress",score:0,maxScore:8,scaledScore:0,responses:[]},
+    playground:{mode:"read",output:""}
+  },
+  pdDataSources:{quizResults:{writeKey:"ybkejpwkk7g6x3zxrqujrxtp"}}
+});
+</script>
+
+<section class="data-hero" data-pageduo-ele-id="e_wwI7wRGxYfi1">
+  <div class="container data-hero-grid" data-pageduo-ele-id="e_akEsk5FhsGOS">
+    <div data-pageduo-ele-id="e_PP3xotk8BlFy">
+      <p class="eyebrow" data-pageduo-ele-id="e_ODClZOMKUdoi">Giai đoạn 2 · Xây tường · Tháng 2</p>
+      <h1 data-pageduo-ele-id="e_VpK4Dnd2GxEw">Biến danh sách khách hàng thành tiến độ nhìn thấy được.</h1>
+      <p class="lede" data-pageduo-ele-id="e_Lqokjau3UmDS">Trong 8 buổi B9–B16, bạn đi từ một file CSV lộn xộn đến bộ lọc marketing và hệ thống SQLite theo dõi công trình: Khảo sát → Thi công → Bàn giao.</p>
+      <div class="hero-meta" data-pageduo-ele-id="e_aduErb4kX8u1">
+        <span data-pageduo-ele-id="e_SH1iGXpameQi">8 buổi</span><span data-pageduo-ele-id="e_8JnZwjE60h1A">2 buổi/tuần</span><span data-pageduo-ele-id="e_baxi1s5woMWo">1 giờ/buổi</span><span data-pageduo-ele-id="e_kX6KV3qnJvNy">Code dưới 15 dòng</span>
+      </div>
+    </div>
+    <aside class="hero-note" data-pageduo-ele-id="e_wsor1TTiOMAy">
+      <strong data-pageduo-ele-id="e_343X1plzK3EX">Tư duy của giám sát công trường</strong>
+      <p data-pageduo-ele-id="e_4eTg6XW6cfEF">Pandas giống cuốn sổ có thể lọc và sắp xếp trong vài giây. SQLite là kho lưu trữ bền vững: dữ liệu vẫn ở đó khi bạn đóng chương trình.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="page-section" data-pageduo-ele-id="e_EmYlUG2WRyDC">
+  <div class="container" data-pageduo-ele-id="e_AoaLinMiTu7B">
+    <div class="section-heading" data-pageduo-ele-id="e_Cd76jWyNESIm">
+      <div data-pageduo-ele-id="e_SfxQN3KNlGTV">
+        <p class="eyebrow" data-pageduo-ele-id="e_2pngXLoJdeJc">Mục tiêu giai đoạn</p>
+        <h2 data-pageduo-ele-id="e_GArhUo07zhpc">Từ “tôi có một danh sách” đến “tôi biết phải gọi ai”.</h2>
+      </div>
+      <span class="tag" data-pageduo-ele-id="e_nrGAFzmamw1B">Sản phẩm tháng 2</span>
+    </div>
+    <div class="objective-grid" data-pageduo-ele-id="e_IC5K0B7BBD6m">
+      <article class="surface objective-copy" data-pageduo-ele-id="e_G0RNiO0Lvwlq">
+        <p class="section-intro" data-pageduo-ele-id="e_9QKnjDXYyxzU">Bạn không học cơ sở dữ liệu như một khái niệm trừu tượng. Bạn học cách trả lời những câu hỏi xảy ra mỗi ngày trong remodeling:</p>
+        <ul data-pageduo-ele-id="e_ldHjz6Ln8rWh">
+          <li data-pageduo-ele-id="e_tPkFMFATWotw">Khách hàng nào ở đúng <strong data-pageduo-ele-id="e_XSPX6nqN6H9q">Zip Code tại Mỹ</strong> để đưa vào Bộ Lọc Marketing?</li>
+          <li data-pageduo-ele-id="e_8WvWu2DRz3sX">Dự án nào đang ở <strong data-pageduo-ele-id="e_7KHmmuyfpSkR">Khảo sát</strong>, dự án nào đã chuyển sang <strong data-pageduo-ele-id="e_oINlRWktZYPz">Thi công</strong>?</li>
+          <li data-pageduo-ele-id="e_vWd7nuFo1a6j">Làm sao thêm, đọc, sửa và xóa một hồ sơ mà không làm rối cả danh sách?</li>
+        </ul>
+      </article>
+      <div class="metric-strip" data-pageduo-ele-id="e_usTd2V6o7NPP">
+        <div class="metric" data-pageduo-ele-id="e_wcTdqtQrXfqT"><b data-pageduo-ele-id="e_1UokfuBn9LBM">50</b><span data-pageduo-ele-id="e_EAv6OXyJjLxr">khách hàng tiềm năng mẫu cho telesale</span></div>
+        <div class="metric" data-pageduo-ele-id="e_SDXox0OgnVrY"><b data-pageduo-ele-id="e_So4nzEb5FlOe">2</b><span data-pageduo-ele-id="e_LbfrWW2qRDIO">bảng chính: KhachHang và DuAn</span></div>
+        <div class="metric" data-pageduo-ele-id="e_fLur7omQ290a"><b data-pageduo-ele-id="e_8DN4qWSdL3go">4</b><span data-pageduo-ele-id="e_rwjYpKj2Qa8O">thao tác CRUD: Thêm, Đọc, Sửa, Xóa</span></div>
+      </div>
+    </div>
+    <div class="media-feature" data-pageduo-ele-id="e_SkxTSSG3b67a">
+      <figure class="surface" data-pageduo-ele-id="e_VH59zpInZaCw">
+        <img data-pd-gen="1" data-pd-gen-id="a9b8bdfd" src="media/ba-ng-du-lie-u-kha-ch-ha-ng-remodeling-d-538d8afa42.png" alt="Bảng dữ liệu khách hàng remodeling dạng spreadsheet với tên mẫu, Zip Code, loại dự án và trạng thái liên hệ" data-pageduo-ele-id="e_noqSUU4Az3Kz">
+        <figcaption data-pageduo-ele-id="e_aAkjAPfV8DyO">Dữ liệu minh họa không chứa người thật: đủ thật để luyện thao tác, đủ an toàn để dùng trong lớp.</figcaption>
+      </figure>
+      <article class="surface objective-copy" data-pageduo-ele-id="e_cTdT3qy99LVE">
+        <p class="eyebrow" data-pageduo-ele-id="e_ePFKULt90EkG">Nguyên tắc làm việc</p>
+        <h3 data-pageduo-ele-id="e_aSLsDlpgTPE4">Đừng sửa dữ liệu bằng mắt nếu có thể ghi lại thao tác.</h3>
+        <p data-pageduo-ele-id="e_wJyvrA6PJzzk">Mỗi bộ lọc, câu lệnh và thay đổi trạng thái đều phải có thể lặp lại. Đó là khác biệt giữa một bảng tính tạm thời và một công cụ vận hành.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="page-section alt" data-pageduo-ele-id="e_OJnqGmdxjd5z">
+  <div class="container" data-pageduo-ele-id="e_cS83ZjH0kpdK">
+    <div class="section-heading" data-pageduo-ele-id="e_XNqK9FOK1bls">
+      <div data-pageduo-ele-id="e_ZBZRqlJZlOC9">
+        <p class="eyebrow" data-pageduo-ele-id="e_rxV8gJTmMmPx">Lịch học · B9–B16</p>
+        <h2 data-pageduo-ele-id="e_cjFLsgVzdW2p">Tám buổi, hai lớp năng lực.</h2>
+      </div>
+      <p class="section-intro" data-pageduo-ele-id="e_p0HkzJWvfDqA">Bốn buổi đầu giúp bạn nhìn và hỏi dữ liệu. Bốn buổi sau giúp bạn lưu dữ liệu để hệ thống có thể dùng lại.</p>
+    </div>
+    <div class="schedule" data-pageduo-ele-id="e_evUFjN5yR7Ul">
+      <article class="phase-card surface" data-pageduo-ele-id="e_JuoCTIyueOaC">
+        <header data-pageduo-ele-id="e_4hXaLj1meBrN">
+          <div data-pageduo-ele-id="e_NiHc11HaZC4U"><h3 data-pageduo-ele-id="e_7LuqNb8CYexr">Tuần 5–6 · Sổ Sách Kế Toán</h3><p data-pageduo-ele-id="e_VZ1vVhyi0LcU">Pandas, Excel/CSV và Bộ Lọc Marketing</p></div>
+          <span class="tag" data-pageduo-ele-id="e_vjvm6VkK0s8u">B9–B12</span>
+        </header>
+        <ol class="lesson-list" data-pageduo-ele-id="e_xpkxjXp8vj0U">
+          <li data-pageduo-ele-id="e_cMtomAn1TzzK"><span class="lesson-no" data-pageduo-ele-id="e_EeIh0uCvZB70">B9</span><div data-pageduo-ele-id="e_JOuLfgMu4nEG"><strong data-pageduo-ele-id="e_LI7dVyMvsjgz">Pandas cơ bản</strong><span data-pageduo-ele-id="e_gKxb1oFVEkQM">Đọc Excel/CSV; hiểu bảng dòng và cột qua dữ liệu khách hàng remodeling.</span></div></li>
+          <li data-pageduo-ele-id="e_tLPBdxLgSc2G"><span class="lesson-no" data-pageduo-ele-id="e_nRxXKaLdwmc6">B10</span><div data-pageduo-ele-id="e_R3Dt8uhxB3LN"><strong data-pageduo-ele-id="e_64GuEb45x3yG">Kiểm tra DataFrame</strong><span data-pageduo-ele-id="e_3r4yizPamBSw">Xem kiểu dữ liệu, tên cột và các bản ghi trước khi xử lý.</span></div></li>
+          <li data-pageduo-ele-id="e_MKznLDDWj9Pf"><span class="lesson-no" data-pageduo-ele-id="e_xpXDM3QojMyZ">B11</span><div data-pageduo-ele-id="e_ZX2YaGzE4coE"><strong data-pageduo-ele-id="e_06D3nFBm4TYC">Lọc và sắp xếp</strong><span data-pageduo-ele-id="e_IYMMaFmyZtm5">Lọc theo Zip Code và tiêu chí dự án thay vì tìm thủ công.</span></div></li>
+          <li data-pageduo-ele-id="e_Ke2nnvozoM3j"><span class="lesson-no" data-pageduo-ele-id="e_K6KauwA06f36">B12</span><div data-pageduo-ele-id="e_rFAeNGCyxD6c"><strong data-pageduo-ele-id="e_hIrmz82EN6Bo">Truy vấn marketing</strong><span data-pageduo-ele-id="e_jG2LWdHi0vBT">Hoàn thiện bộ lọc chọn 50 khách hàng tiềm năng đúng Zip Code tại Mỹ.</span></div></li>
+        </ol>
+        <div class="product-bar" data-pageduo-ele-id="e_XZDfdCcDBv3H"><strong data-pageduo-ele-id="e_7625SYut5F6N">Sản phẩm:</strong> Bộ Lọc Marketing cho telesale.</div>
+      </article>
+      <article class="phase-card surface" data-pageduo-ele-id="e_y9VfN0TBo1ey">
+        <header data-pageduo-ele-id="e_w1JETqN1HxEm">
+          <div data-pageduo-ele-id="e_PEHWrMjpIHk4"><h3 data-pageduo-ele-id="e_3VElfa3zqyhN">Tuần 7–8 · Kho Lưu Trữ Dữ Liệu</h3><p data-pageduo-ele-id="e_Fsuko2WwLNHZ">SQLite, KhachHang, DuAn và CRUD</p></div>
+          <span class="tag" data-pageduo-ele-id="e_3lh8FJbo88EK">B13–B16</span>
+        </header>
+        <ol class="lesson-list" data-pageduo-ele-id="e_5rlK8l2yXjgh">
+          <li data-pageduo-ele-id="e_D231mR1U1vK9"><span class="lesson-no" data-pageduo-ele-id="e_pkUDIdRDynUF">B13</span><div data-pageduo-ele-id="e_Ua4282I3M1Mh"><strong data-pageduo-ele-id="e_etHAGMsfpBLh">Khởi tạo SQLite</strong><span data-pageduo-ele-id="e_PN28qf3kAyFM">Tạo bảng <span class="inline-code" data-pageduo-ele-id="e_rb3yQhpXIZdb">KhachHang</span> để lưu thông tin khách hàng.</span></div></li>
+          <li data-pageduo-ele-id="e_bzKhCDwDmxQV"><span class="lesson-no" data-pageduo-ele-id="e_UXNB7ZaGfKId">B14</span><div data-pageduo-ele-id="e_jcWb9psZvSd9"><strong data-pageduo-ele-id="e_kMH0Rrx1cLgw">Khởi tạo DuAn</strong><span data-pageduo-ele-id="e_WGnBaPrRCRDz">Lưu thông tin công trình và liên hệ dự án với khách hàng.</span></div></li>
+          <li data-pageduo-ele-id="e_ZtCMqXZh0XAH"><span class="lesson-no" data-pageduo-ele-id="e_k09c5NAQKG7z">B15</span><div data-pageduo-ele-id="e_HSGka9sZz7Yb"><strong data-pageduo-ele-id="e_206SaXTDheKa">CRUD — Thêm và Đọc</strong><span data-pageduo-ele-id="e_dohqhSqXTBUO">Thêm bản ghi mới, sau đó lấy danh sách để kiểm tra.</span></div></li>
+          <li data-pageduo-ele-id="e_QaEN5TLSq9Ly"><span class="lesson-no" data-pageduo-ele-id="e_cUiTwQOeefMN">B16</span><div data-pageduo-ele-id="e_nl1EMKcWQoMq"><strong data-pageduo-ele-id="e_lNF5hpGfEJ4e">CRUD — Sửa và Xóa</strong><span data-pageduo-ele-id="e_bcXs17NkntYo">Cập nhật trạng thái và xóa bản ghi mẫu khi cần.</span></div></li>
+        </ol>
+        <div class="product-bar" data-pageduo-ele-id="e_OTf6nFkVIdm6"><strong data-pageduo-ele-id="e_2XSjAtWxhG6i">Sản phẩm:</strong> Hệ Thống Tiến Độ: Khảo sát → Thi công → Bàn giao.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" data-pageduo-ele-id="e_84rq8187cdLx">
+  <div class="container" data-pageduo-ele-id="e_4bWxkEIeYXhd">
+    <div class="section-heading" data-pageduo-ele-id="e_KR1QNCpJI52S">
+      <div data-pageduo-ele-id="e_LJqLlFdNkhwE"><p class="eyebrow" data-pageduo-ele-id="e_J5JrZYVp26Hf">Worked examples</p><h2 data-pageduo-ele-id="e_8FgMaAUIRqT2">Nhìn thấy từng bước trước khi tự gõ.</h2></div>
+      <p class="section-intro" data-pageduo-ele-id="e_xFhZyhmlgxJ4">Một quy trình tốt luôn bắt đầu bằng câu hỏi: dữ liệu đang ở đâu, và thao tác này có làm mất dữ liệu gốc không?</p>
+    </div>
+    <div class="worked-grid" data-pageduo-ele-id="e_HaUwwHzXOmcr">
+      <article class="surface worked-card" data-pageduo-ele-id="e_mVLyNDBpIEgw">
+        <h3 data-pageduo-ele-id="e_Qw8YmrdbV3IH"><span class="tag" data-pageduo-ele-id="e_8SieUY1ZKGcC">01</span> Đọc và lọc danh sách</h3>
+        <ol class="step-list" data-pageduo-ele-id="e_cdMYPa0Olzzc">
+          <li data-pageduo-ele-id="e_nATlcSM1aQSn"><b data-pageduo-ele-id="e_9CJGxUkwAofq">1</b><span data-pageduo-ele-id="e_ZhVf1M51PVGM">Đọc file bằng <span class="inline-code" data-pageduo-ele-id="e_KQTSqRlFF0xq">pd.read_csv("khach_hang.csv")</span>.</span></li>
+          <li data-pageduo-ele-id="e_e03puXs9spmy"><b data-pageduo-ele-id="e_ezseqBeqVpk0">2</b><span data-pageduo-ele-id="e_AogsKyd22RqY">Kiểm tra bằng <span class="inline-code" data-pageduo-ele-id="e_pSEepZbxJDYV">df.head()</span> và <span class="inline-code" data-pageduo-ele-id="e_o52zaeLsdDaO">df.dtypes</span>.</span></li>
+          <li data-pageduo-ele-id="e_aQnx2sqtWvIP"><b data-pageduo-ele-id="e_GZ1i2Pt1LLWH">3</b><span data-pageduo-ele-id="e_O8dN0XnljYiE">Giữ các dòng có Zip Code đúng điều kiện.</span></li>
+          <li data-pageduo-ele-id="e_nCOvXKyKZYXy"><b data-pageduo-ele-id="e_Z29sPiWIUaqu">4</b><span data-pageduo-ele-id="e_PfdxB1yVN65S">Sắp xếp theo tiêu chí dự án để ưu tiên cuộc gọi.</span></li>
+        </ol>
+      </article>
+      <article class="surface worked-card" data-pageduo-ele-id="e_vF6TVQcIJ6oL">
+        <h3 data-pageduo-ele-id="e_IVFJlsU7UYX0"><span class="tag" data-pageduo-ele-id="e_ebWw87Xliu2V">02</span> Đưa hồ sơ vào kho</h3>
+        <ol class="step-list" data-pageduo-ele-id="e_6NDHtxpJPDd3">
+          <li data-pageduo-ele-id="e_K4PE3sG5thf3"><b data-pageduo-ele-id="e_mxwHQwk7zcXu">1</b><span data-pageduo-ele-id="e_iyOBvsyWilKP">Tạo bảng <span class="inline-code" data-pageduo-ele-id="e_VHLfSiKuwlpv">KhachHang</span> và <span class="inline-code" data-pageduo-ele-id="e_REiOKrZ7C4Xo">DuAn</span>.</span></li>
+          <li data-pageduo-ele-id="e_JcddiVREbePX"><b data-pageduo-ele-id="e_brP3ylMLCArK">2</b><span data-pageduo-ele-id="e_QH98Xi5QRNbg">Thêm một bản ghi bằng <span class="inline-code" data-pageduo-ele-id="e_CURXARthC1Sc">INSERT</span>.</span></li>
+          <li data-pageduo-ele-id="e_LDqGPEaljBh4"><b data-pageduo-ele-id="e_nDVR0qfzFDm4">3</b><span data-pageduo-ele-id="e_6sBFFXxIlHTQ">Đọc lại bằng <span class="inline-code" data-pageduo-ele-id="e_4khrEMqa81xK">SELECT</span> để xác nhận.</span></li>
+          <li data-pageduo-ele-id="e_SDDUM7WuNYow"><b data-pageduo-ele-id="e_ws6XkBWSFPMK">4</b><span data-pageduo-ele-id="e_H3rb9vtndbcO">Dùng <span class="inline-code" data-pageduo-ele-id="e_z3qLrV2MSs9m">UPDATE</span> đổi trạng thái; <span class="inline-code" data-pageduo-ele-id="e_cuMMvPGm7vI3">DELETE</span> chỉ khi chắc chắn.</span></li>
+        </ol>
+      </article>
+    </div>
+    <div class="media-wide" data-pageduo-ele-id="e_7LmVBsPruTV2">
+      <figure data-pageduo-ele-id="e_ZcYDbBRDOSnG">
+        <img data-pd-gen="1" data-pd-gen-id="a1f2b263" src="media/minh-ho-a-kho-lu-u-tru-du-lie-u-vo-i-hai-4f9b68bc8c.png" alt="Minh họa kho lưu trữ dữ liệu với hai ngăn KhachHang và DuAn, cùng các thao tác Thêm, Đọc, Sửa, Xóa" data-pageduo-ele-id="e_ft5EOjgQ3ac2">
+        <figcaption data-pageduo-ele-id="e_6cjfFxTGc0A2">Ẩn dụ “kho lưu trữ”: KhachHang giữ người, DuAn giữ công trình; CRUD là quy trình quản lý hồ sơ trong kho.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="page-section alt" data-pageduo-ele-id="e_DR3zkIknOzSz">
+  <div class="container" data-pageduo-ele-id="e_PsT971UBg1pl">
+    <div class="section-heading" data-pageduo-ele-id="e_5y9eWswWfYZ3">
+      <div data-pageduo-ele-id="e_0hMpH90Em1T9"><p class="eyebrow" data-pageduo-ele-id="e_iDW5CESWCfRF">Playground · dưới 15 dòng</p><h2 data-pageduo-ele-id="e_QycDpzI2wDDD">Chọn một thao tác và đọc kết quả.</h2></div>
+      <p class="section-intro" data-pageduo-ele-id="e_qs8UoIIjAHUf">Đây là mô phỏng nhỏ ở trình duyệt để bạn thấy luồng suy nghĩ. Khi học thật, bạn sẽ chạy các đoạn Python tương tự.</p>
+    </div>
+    <div class="playground" data-pageduo-ele-id="e_cGnKHZL7XGPG">
+      <article class="surface playground-copy" data-pageduo-ele-id="e_HjuFFKQZE4Jy">
+        <h3 data-pageduo-ele-id="e_SS0nw4f5HKkO">Pandas hay SQLite?</h3>
+        <p data-pageduo-ele-id="e_mLllKD1Al8HI"><strong data-pageduo-ele-id="e_UlyDJ7pHr1g6">Pandas</strong> phù hợp khi bạn đang phân tích một bảng đang có trong bộ nhớ: lọc, sắp xếp, kiểm tra.</p>
+        <p data-pageduo-ele-id="e_0cRMqUwrYLSn"><strong data-pageduo-ele-id="e_dmBzU5PiI3tI">SQLite</strong> phù hợp khi dữ liệu cần được lưu bền vững, có nhiều bảng và cần CRUD.</p>
+        <div class="playground-controls" role="group" aria-label="Chọn ví dụ" data-pageduo-ele-id="e_1or3DmM0fsxp">
+          <button type="button" data-play-mode="read" aria-pressed="true" data-pageduo-ele-id="e_xigQQs3awZRk">Đọc bảng</button>
+          <button type="button" data-play-mode="filter" aria-pressed="false" data-pageduo-ele-id="e_K5D8O3WAiZFN">Lọc Zip Code</button>
+          <button type="button" data-play-mode="crud" aria-pressed="false" data-pageduo-ele-id="e_qsAcRqWz1Vrx">Cập nhật trạng thái</button>
+          <button type="button" data-play-reset="true" data-pageduo-ele-id="e_phEp85bMTofX">Đặt lại</button>
+        </div>
+      </article>
+      <div class="code-panel" data-pageduo-ele-id="e_5pdGC1hHUi6m">
+        <label for="pythonExample" data-pageduo-ele-id="e_ddPggdznem6M">Đoạn Python mẫu</label>
+        <textarea id="pythonExample" readonly="" aria-label="Đoạn Python mẫu" data-pageduo-ele-id="e_qqTaKz2HMWiM"></textarea>
+        <p class="code-result" id="pythonResult" aria-live="polite" data-pageduo-ele-id="e_XUX3wOlMQ2X9"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" data-pageduo-ele-id="e_YWM8zlE8T1gv">
+  <div class="container schema-layout" data-pageduo-ele-id="e_s8zqpisNuLxc">
+    <div data-pageduo-ele-id="e_crz5bdYFWBaI">
+      <p class="eyebrow" data-pageduo-ele-id="e_trMmiIfd7BIV">Hệ thống tiến độ</p>
+      <h2 data-pageduo-ele-id="e_ORJRHsPp80xJ">Một trạng thái rõ ràng giúp cả đội nói cùng một ngôn ngữ.</h2>
+      <p class="section-intro" data-pageduo-ele-id="e_BBBVmLjjeBwx">Sau B16, hồ sơ công trình không còn nằm rải rác trong tin nhắn. Trạng thái được cập nhật trong hệ thống và có thể đọc lại khi cần.</p>
+      <table class="crud-table" data-pageduo-ele-id="e_bxOYhjkAxPlS">
+        <thead data-pageduo-ele-id="e_Q0FquY8BSILT"><tr data-pageduo-ele-id="e_ubeMmawsbdiF"><th data-pageduo-ele-id="e_TIMUovn9LvxU">Thao tác</th><th data-pageduo-ele-id="e_xwy2JeV2BR5h">Ví dụ tại công trường</th><th data-pageduo-ele-id="e_KBZRJCG6v8Ln">Câu lệnh tư duy</th></tr></thead>
+        <tbody data-pageduo-ele-id="e_5gQNS57FK21g">
+          <tr data-pageduo-ele-id="e_QsZDGbpiN8D1"><td data-pageduo-ele-id="e_oIA62o2O9grm"><strong data-pageduo-ele-id="e_fTZHrfAsU4I6">Create</strong></td><td data-pageduo-ele-id="e_Wj0Dy9eW6iL3">Thêm dự án mới</td><td data-pageduo-ele-id="e_zmdKnk9R1GsQ">Hồ sơ này chưa có trong kho</td></tr>
+          <tr data-pageduo-ele-id="e_dB8Hp055csYj"><td data-pageduo-ele-id="e_TUFBUXQqYxyv"><strong data-pageduo-ele-id="e_YKhtvp9mQq6c">Read</strong></td><td data-pageduo-ele-id="e_XukmPZ4tNgAW">Đọc danh sách dự án</td><td data-pageduo-ele-id="e_EUt9h1K0NYct">Hiện có những gì?</td></tr>
+          <tr data-pageduo-ele-id="e_YaqV9lZVcdoB"><td data-pageduo-ele-id="e_6TGZSYZHLrz1"><strong data-pageduo-ele-id="e_g221JClcpBTT">Update</strong></td><td data-pageduo-ele-id="e_lUmjsRoT6aJ0">Khảo sát → Thi công</td><td data-pageduo-ele-id="e_cgLgLHS1PW4h">Thông tin đã thay đổi</td></tr>
+          <tr data-pageduo-ele-id="e_JTMoKJaGUj2k"><td data-pageduo-ele-id="e_QWOh8axdZ40U"><strong data-pageduo-ele-id="e_RLPeFPYTWgsA">Delete</strong></td><td data-pageduo-ele-id="e_xCXcwE6AHsuB">Xóa bản ghi mẫu</td><td data-pageduo-ele-id="e_aD4pqffAuMUD">Hồ sơ này không còn cần giữ</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figure data-pageduo-ele-id="e_KDsFLUZpdVvD">
+      <img data-pd-gen="1" data-pd-gen-id="dd69850d" src="media/ba-ng-tie-n-o-co-ng-tri-nh-da-ng-kanban--ccd86324e5.png" alt="Bảng tiến độ công trình dạng kanban với ba cột Khảo sát, Thi công và Bàn giao" data-pageduo-ele-id="e_goHzx7IvT5JQ">
+      <figcaption data-pageduo-ele-id="e_p2c9JuwxaALM">Kanban là cách nhìn trực quan; SQLite là nơi lưu trạng thái để lần sau mở lại vẫn còn.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="page-section alt" id="checkpoint" data-pageduo-ele-id="e_DqWuHUYAUWlo">
+  <div class="container checkpoint-wrap" data-pageduo-ele-id="e_urMbq83ANo42">
+    <div class="section-heading" data-pageduo-ele-id="e_pSnX6gf2Fxaf">
+      <div data-pageduo-ele-id="e_2UAGB6uJPhBQ"><p class="eyebrow" data-pageduo-ele-id="e_T4kNY7elmewu">Checkpoint B9–B16</p><h2 data-pageduo-ele-id="e_skNLk49t6nhd">Kiểm tra trước khi bàn giao.</h2></div>
+      <p class="section-intro" data-pageduo-ele-id="e_TZPoeAoNwT5T">Tám câu, mỗi câu kiểm tra một kỹ năng nhỏ. Chọn đáp án rồi gửi kết quả để lưu checkpoint.</p>
+    </div>
+
+    <label class="surface quiz-card" for="studentName" data-pageduo-ele-id="e_m4YahU0PSOk7">
+      <strong data-pageduo-ele-id="e_5dYK1wwl5OKl">Tên người học (không bắt buộc)</strong>
+      <input id="studentName" data-pd-model="quizResults.userFullName" type="text" placeholder="Ví dụ: Minh" style="display:block;width:100%;margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:9px;font:inherit" data-pageduo-ele-id="e_g3WrxGmAaLOK">
+    </label>
+
+    <article class="surface quiz-card" data-pageduo-ele-id="e_Vu7taEujSJ6J"><fieldset data-pageduo-ele-id="e_szcBgxlhVoj9"><legend data-pageduo-ele-id="e_fzm2EWOmkpGF">B9 · Thư viện trọng tâm để đọc CSV/Excel là gì?</legend><div class="choice-list" data-pageduo-ele-id="e_3KXWwFanUPNF">
+      <label class="choice" data-pageduo-ele-id="e_OMbeTGUSDz7E"><input type="radio" value="A" data-pd-model="quizDraft.q9" data-pageduo-ele-id="e_tiO4XEinVE8z"> <span data-pageduo-ele-id="e_aXbHmtHgjne2"><b data-pageduo-ele-id="e_0HX05zQ65njt">A.</b> Pandas</span></label>
+      <label class="choice" data-pageduo-ele-id="e_U34i7WwsZpT0"><input type="radio" value="B" data-pd-model="quizDraft.q9" data-pageduo-ele-id="e_qMEMwNCTKFn6"> <span data-pageduo-ele-id="e_wslmo0GkQ4V2"><b data-pageduo-ele-id="e_fA1TkJ5iXdFa">B.</b> SQLite</span></label>
+      <label class="choice" data-pageduo-ele-id="e_e5vTvv7is4NY"><input type="radio" value="C" data-pd-model="quizDraft.q9" data-pageduo-ele-id="e_cyBRkMT2BOiH"> <span data-pageduo-ele-id="e_HY59KFKTaGix"><b data-pageduo-ele-id="e_UlnKf6vCGIfg">C.</b> HTML</span></label>
+      <label class="choice" data-pageduo-ele-id="e_DyWd9zIcwr4h"><input type="radio" value="D" data-pd-model="quizDraft.q9" data-pageduo-ele-id="e_1emeNxbQCMhf"> <span data-pageduo-ele-id="e_ENBqRKaWYmHU"><b data-pageduo-ele-id="e_wPo4ZQJUX2Rn">D.</b> CSS</span></label>
+    </div><span class="skill-label" data-pageduo-ele-id="e_H2cK3IEfiAoN">Kỹ năng: đọc dữ liệu dạng bảng</span></fieldset></article>
+
+    <article class="surface quiz-card" data-pageduo-ele-id="e_RiO4tyXPc3dz"><fieldset data-pageduo-ele-id="e_a51YRXi8zca7"><legend data-pageduo-ele-id="e_7h5T3JCPiQoL">B10 · Thao tác nào giúp xem các dòng đầu của DataFrame?</legend><div class="choice-list" data-pageduo-ele-id="e_r1j4Y0R0TxG5">
+      <label class="choice" data-pageduo-ele-id="e_VH0Zdyp5bhA6"><input type="radio" value="A" data-pd-model="quizDraft.q10" data-pageduo-ele-id="e_tCXf6vmwopsD"> <span data-pageduo-ele-id="e_zuopqBFWMqoS"><b data-pageduo-ele-id="e_4nljTv6uDOIe">A.</b> delete</span></label>
+      <label class="choice" data-pageduo-ele-id="e_qMcEWXlHFX9V"><input type="radio" value="B" data-pd-model="quizDraft.q10" data-pageduo-ele-id="e_6CavfX25HqXR"> <span data-pageduo-ele-id="e_RTLdBnxC643a"><b data-pageduo-ele-id="e_AngbO85cOEKc">B.</b> update</span></label>
+      <label class="choice" data-pageduo-ele-id="e_Ev9Hw8hqb4qL"><input type="radio" value="C" data-pd-model="quizDraft.q10" data-pageduo-ele-id="e_Ilkh5CgdZZM1"> <span data-pageduo-ele-id="e_iIrgVwfHINVp"><b data-pageduo-ele-id="e_mGmyXyM88eaq">C.</b> head</span></label>
+      <label class="choice" data-pageduo-ele-id="e_shmIYOBKiLxo"><input type="radio" value="D" data-pd-model="quizDraft.q10" data-pageduo-ele-id="e_3RIPTb2XImIV"> <span data-pageduo-ele-id="e_3fg8xEGACkyK"><b data-pageduo-ele-id="e_hJga7nTOPEL4">D.</b> deploy</span></label>
+    </div><span class="skill-label" data-pageduo-ele-id="e_Jdqcn93kh83C">Kỹ năng: kiểm tra DataFrame</span></fieldset></article>
+
+    <article class="surface quiz-card" data-pageduo-ele-id="e_MRbx1vGgYnlq"><fieldset data-pageduo-ele-id="e_o1CWU3Xxl7gg"><legend data-pageduo-ele-id="e_MipKhanHAVo3">B11 · Muốn giữ khách hàng có Zip Code bằng một giá trị cụ thể, cần làm gì?</legend><div class="choice-list" data-pageduo-ele-id="e_WT0fRjsvMZE5">
+      <label class="choice" data-pageduo-ele-id="e_Mm447FUYFqnC"><input type="radio" value="A" data-pd-model="quizDraft.q11" data-pageduo-ele-id="e_TlBVX4r2zHcp"> <span data-pageduo-ele-id="e_CNdQlSGv8I0c"><b data-pageduo-ele-id="e_n3AGLB7GJ7NX">A.</b> Đổi tên bảng</span></label>
+      <label class="choice" data-pageduo-ele-id="e_hOv0ilWwnXeg"><input type="radio" value="B" data-pd-model="quizDraft.q11" data-pageduo-ele-id="e_w2hqISFCKTmD"> <span data-pageduo-ele-id="e_BD5ycntSg8uY"><b data-pageduo-ele-id="e_MDGHqOwim0pv">B.</b> Xóa toàn bộ cột</span></label>
+      <label class="choice" data-pageduo-ele-id="e_TVV9Q6ykSlc1"><input type="radio" value="C" data-pd-model="quizDraft.q11" data-pageduo-ele-id="e_1mSyPus4Knog"> <span data-pageduo-ele-id="e_BO69dg0Ut41x"><b data-pageduo-ele-id="e_owr9TW9RZ75A">C.</b> Lọc theo điều kiện cột Zip Code</span></label>
+      <label class="choice" data-pageduo-ele-id="e_tVh2OWwx6EId"><input type="radio" value="D" data-pd-model="quizDraft.q11" data-pageduo-ele-id="e_ZzzNxyDIOV3z"> <span data-pageduo-ele-id="e_5WQ8Z5kUscYC"><b data-pageduo-ele-id="e_6pkWWkU3rVOO">D.</b> Sắp xếp ngẫu nhiên</span></label>
+    </div><span class="skill-label" data-pageduo-ele-id="e_c0QfY8mQfoAQ">Kỹ năng: lọc theo điều kiện</span></fieldset></article>
+
+    <article class="surface quiz-card" data-pageduo-ele-id="e_fVOkYZ2b98Jg"><fieldset data-pageduo-ele-id="e_9xXH6ocS3oCG"><legend data-pageduo-ele-id="e_yJ4YKlMSB76a">B12 · Bộ Lọc Marketing nhằm chọn nhóm nào?</legend><div class="choice-list" data-pageduo-ele-id="e_SHDA9yEJRPJ1">
+      <label class="choice" data-pageduo-ele-id="e_xUmkqYPU0fQC"><input type="radio" value="A" data-pd-model="quizDraft.q12" data-pageduo-ele-id="e_Ec47nhRbo6p2"> <span data-pageduo-ele-id="e_v1OTEidiq4XC"><b data-pageduo-ele-id="e_MyGA8vXYdfEs">A.</b> Danh sách vật tư</span></label>
+      <label class="choice" data-pageduo-ele-id="e_eVjhfPFydNEm"><input type="radio" value="B" data-pd-model="quizDraft.q12" data-pageduo-ele-id="e_SjMStC5GwxZe"> <span data-pageduo-ele-id="e_UnFPqlgyPQnG"><b data-pageduo-ele-id="e_8FyPI3uNUW3A">B.</b> Chỉ dự án đã bàn giao</span></label>
+      <label class="choice" data-pageduo-ele-id="e_hJFnsdqK3vUy"><input type="radio" value="C" data-pd-model="quizDraft.q12" data-pageduo-ele-id="e_hxy37NDXQkoz"> <span data-pageduo-ele-id="e_RQ7UujVBeJ0q"><b data-pageduo-ele-id="e_zQO4idOdao9l">C.</b> Tất cả bản ghi không điều kiện</span></label>
+      <label class="choice" data-pageduo-ele-id="e_QCyMDCjQkM0f"><input type="radio" value="D" data-pd-model="quizDraft.q12" data-pageduo-ele-id="e_y1Fk3HEAHTCH"> <span data-pageduo-ele-id="e_Rd3p1uhi9w8b"><b data-pageduo-ele-id="e_ol4zG6LGJhtw">D.</b> 50 khách hàng tiềm năng đúng Zip Code tại Mỹ</span></label>
+    </div><span class="skill-label" data-pageduo-ele-id="e_6L9enr659rFU">Kỹ năng: truy vấn marketing</span></fieldset></article>
+
+    <article class="surface quiz-card" data-pageduo-ele-id="e_ht9LPveQtL7K"><fieldset data-pageduo-ele-id="e_I1L2x5fpQa4p"><legend data-pageduo-ele-id="e_vTqTeVT4ahPl">B13 · Bảng nào lưu thông tin khách hàng?</legend><div class="choice-list" data-pageduo-ele-id="e_I2f1bBUPUnHd">
+      <label class="choice" data-pageduo-ele-id="e_iJFHgfp0XfMr"><input type="radio" value="A" data-pd-model="quizDraft.q13" data-pageduo-ele-id="e_RyTDZ8g87X5l"> <span data-pageduo-ele-id="e_6voPzs3k93wY"><b data-pageduo-ele-id="e_lGkplY17eASp">A.</b> DuAn</span></label>
+      <label class="choice" data-pageduo-ele-id="e_Yrak1i0xwLLE"><input type="radio" value="B" data-pd-model="quizDraft.q13" data-pageduo-ele-id="e_8vNP7XgFyIzC"> <span data-pageduo-ele-id="e_zpAAvKfPXjBh"><b data-pageduo-ele-id="e_2QLeKUw8dfut">B.</b> VatTu</span></label>
+      <label class="choice" data-pageduo-ele-id="e_bM2SM7vYHHdC"><input type="radio" value="C" data-pd-model="quizDraft.q13" data-pageduo-ele-id="e_YGerEF228C68"> <span data-pageduo-ele-id="e_pomjzKgxeVzA"><b data-pageduo-ele-id="e_kowhwsEBaoQd">C.</b> KhachHang</span></label>
+      <label class="choice" data-pageduo-ele-id="e_yv5ZjLbBUv4o"><input type="radio" value="D" data-pd-model="quizDraft.q13" data-pageduo-ele-id="e_4KGCsBPQO8jO"> <span data-pageduo-ele-id="e_eeXBwssz3IjI"><b data-pageduo-ele-id="e_MzRyS46yJN8w">D.</b> ZipCode</span></label>
+    </div><span class="skill-label" data-pageduo-ele-id="e_ANzYO1jTRDlr">Kỹ năng: schema cơ sở dữ liệu</span></fieldset></article>
+
+    <article class="surface quiz-card" data-pageduo-ele-id="e_OWfxK2tSAjmX"><fieldset data-pageduo-ele-id="e_Ux4r2e2phmKp"><legend data-pageduo-ele-id="e_xScMKdREE4Vp">B14 · Vì sao cần bảng DuAn riêng?</legend><div class="choice-list" data-pageduo-ele-id="e_ETPMF5AJ3TeR">
+      <label class="choice" data-pageduo-ele-id="e_5spzDSFXR6Ai"><input type="radio" value="A" data-pd-model="quizDraft.q14" data-pageduo-ele-id="e_NjYSicEKQ8Y3"> <span data-pageduo-ele-id="e_mpg15Kb3Vwtl"><b data-pageduo-ele-id="e_nhSlniCPkM90">A.</b> Để lưu trạng thái và thông tin công trình</span></label>
+      <label class="choice" data-pageduo-ele-id="e_Bu1bFHPP3qx4"><input type="radio" value="B" data-pd-model="quizDraft.q14" data-pageduo-ele-id="e_Ct7fpP3xZaUi"> <span data-pageduo-ele-id="e_3dLoSWo6wU3j"><b data-pageduo-ele-id="e_neiY33BHPmo3">B.</b> Để thay thế Python</span></label>
+      <label class="choice" data-pageduo-ele-id="e_axtNr7ZThmkp"><input type="radio" value="C" data-pd-model="quizDraft.q14" data-pageduo-ele-id="e_rpMPCBcIWcfe"> <span data-pageduo-ele-id="e_3AC2GuWPKxYx"><b data-pageduo-ele-id="e_IbnRQ0Lv8Cyg">C.</b> Để tạo giao diện</span></label>
+      <label class="choice" data-pageduo-ele-id="e_y0rdrv4qC4QX"><input type="radio" value="D" data-pd-model="quizDraft.q14" data-pageduo-ele-id="e_DwZOweOjaPxR"> <span data-pageduo-ele-id="e_R6EMXkXCPK3f"><b data-pageduo-ele-id="e_CK1L1dd2kyLH">D.</b> Để phát âm</span></label>
+    </div><span class="skill-label" data-pageduo-ele-id="e_15gl605OP25x">Kỹ năng: mô hình dữ liệu</span></fieldset></article>
+
+    <article class="surface quiz-card" data-pageduo-ele-id="e_nI9bIZ4vcJK5"><fieldset data-pageduo-ele-id="e_pdjL5E4Miffu"><legend data-pageduo-ele-id="e_6wus70fUmOxO">B15 · Thao tác nào tương ứng với việc lấy danh sách bản ghi?</legend><div class="choice-list" data-pageduo-ele-id="e_aaE3pMO67Z9d">
+      <label class="choice" data-pageduo-ele-id="e_KESllVMd89V4"><input type="radio" value="A" data-pd-model="quizDraft.q15" data-pageduo-ele-id="e_PuXg6TYJG9F2"> <span data-pageduo-ele-id="e_5FSJXKmlmjq7"><b data-pageduo-ele-id="e_6MBBxcw9qcZ2">A.</b> Create</span></label>
+      <label class="choice" data-pageduo-ele-id="e_rHGVOhjf8hkd"><input type="radio" value="B" data-pd-model="quizDraft.q15" data-pageduo-ele-id="e_1WVWZ7vxENQB"> <span data-pageduo-ele-id="e_P2QY9XywWspz"><b data-pageduo-ele-id="e_ejm6DXGckUm4">B.</b> Update</span></label>
+      <label class="choice" data-pageduo-ele-id="e_uZFvissjLPPj"><input type="radio" value="C" data-pd-model="quizDraft.q15" data-pageduo-ele-id="e_7wwRpr85H9jf"> <span data-pageduo-ele-id="e_K4IntHddok01"><b data-pageduo-ele-id="e_5hNCgI2QV1GO">C.</b> Delete</span></label>
+      <label class="choice" data-pageduo-ele-id="e_MI32en4pEKCq"><input type="radio" value="D" data-pd-model="quizDraft.q15" data-pageduo-ele-id="e_RntfNN3x91eZ"> <span data-pageduo-ele-id="e_jsZiAeKFiY76"><b data-pageduo-ele-id="e_f68oUZvrD5cL">D.</b> Read</span></label>
+    </div><span class="skill-label" data-pageduo-ele-id="e_VoXPl6a2pseW">Kỹ năng: CRUD thêm/đọc</span></fieldset></article>
+
+    <article class="surface quiz-card" data-pageduo-ele-id="e_IUTLeoBPnwo6"><fieldset data-pageduo-ele-id="e_Qx5GTdHmjfWU"><legend data-pageduo-ele-id="e_dZLL3vpibh6e">B16 · Thay đổi trạng thái từ Khảo sát sang Thi công là thao tác nào?</legend><div class="choice-list" data-pageduo-ele-id="e_ltymrzaiFMmr">
+      <label class="choice" data-pageduo-ele-id="e_nIZMZnEQVtNJ"><input type="radio" value="A" data-pd-model="quizDraft.q16" data-pageduo-ele-id="e_m8y9ByDGyMWK"> <span data-pageduo-ele-id="e_yYNX3VL2r2AT"><b data-pageduo-ele-id="e_v7i58Mwt2Hxz">A.</b> Create</span></label>
+      <label class="choice" data-pageduo-ele-id="e_2ec250u5jTa5"><input type="radio" value="B" data-pd-model="quizDraft.q16" data-pageduo-ele-id="e_jxnhha0XNHZz"> <span data-pageduo-ele-id="e_zmjIepb9XJl0"><b data-pageduo-ele-id="e_v2zGWaxGVZUX">B.</b> Update</span></label>
+      <label class="choice" data-pageduo-ele-id="e_e7LAlrAjmYxA"><input type="radio" value="C" data-pd-model="quizDraft.q16" data-pageduo-ele-id="e_Vp3ScHimojTE"> <span data-pageduo-ele-id="e_dQL6886FHp5s"><b data-pageduo-ele-id="e_Rg5TLU9rW9Ze">C.</b> Read</span></label>
+      <label class="choice" data-pageduo-ele-id="e_OFBEhEHJbaiG"><input type="radio" value="D" data-pd-model="quizDraft.q16" data-pageduo-ele-id="e_tEZIWG8r8Rp6"> <span data-pageduo-ele-id="e_XwnXTsMwDewu"><b data-pageduo-ele-id="e_7wLRHl5dgySn">D.</b> Delete</span></label>
+    </div><span class="skill-label" data-pageduo-ele-id="e_J6TMzLquoLuS">Kỹ năng: CRUD cập nhật/xóa</span></fieldset></article>
+
+    <div class="quiz-actions" data-pageduo-ele-id="e_QE2NAY7Vi5gL">
+      <button class="btn" id="submitDataCheckpoint" type="button" data-pageduo-ele-id="e_h4sARGWDJXGX">Chấm điểm và lưu checkpoint</button>
+      <span class="quiz-status" data-pd-show="_status.quizResultsSaved" data-pageduo-ele-id="e_47tQUfTDd8yS">Đã lưu kết quả checkpoint.</span>
+      <span class="quiz-error" data-pd-show="_status.quizResultsError" data-pd-text="_status.quizResultsMessage" data-pageduo-ele-id="e_6NaTnKasWHqx"></span>
+    </div>
+    <div class="result-panel" id="checkpointResult" hidden="" aria-live="polite" data-pageduo-ele-id="e_bHAAbiENHHQ4"></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+  var examples={
+    read:{code:'import pandas as pd\n\\ndf = pd.read_csv("khach_hang.csv")\nprint(df.head())',result:"Đã đọc bảng và xem các dòng đầu bằng head()."},
+    filter:{code:'import pandas as pd\n\\nleads = pd.read_csv("khach_hang.csv")\nleads = leads[leads["Zip Code"] == "77008"]\nprint(leads.head())',result:"Đã giữ lại các khách hàng có Zip Code phù hợp để gọi."},
+    crud:{code:'import sqlite3\n\\nconn = sqlite3.connect("cong_trinh.db")\nconn.execute("UPDATE DuAn SET trang_thai=? WHERE id=?", ("Thi công", 7))\nconn.commit()',result:"Đã cập nhật trạng thái dự án 7 từ Khảo sát sang Thi công."}
+  };
+  var mode="read";
+  var codeBox=document.getElementById("pythonExample");
+  var resultBox=document.getElementById("pythonResult");
+  var modeButtons=document.querySelectorAll("[data-play-mode]");
+  function renderPlayground(){
+    var item=examples[mode]||examples.read;
+    if(codeBox){codeBox.value=item.code;}
+    if(resultBox){resultBox.textContent=item.result;}
+    modeButtons.forEach(function(button){
+      button.setAttribute("aria-pressed",button.getAttribute("data-play-mode")===mode?"true":"false");
+    });
+  }
+  modeButtons.forEach(function(button){
+    button.addEventListener("click",function(){
+      mode=button.getAttribute("data-play-mode")||"read";
+      renderPlayground();
+    });
+  });
+  var resetButton=document.querySelector("[data-play-reset]");
+  if(resetButton){
+    resetButton.addEventListener("click",function(){
+      mode="read";
+      renderPlayground();
+    });
+  }
+  renderPlayground();
+
+  var submitButton=document.getElementById("submitDataCheckpoint");
+  var resultPanel=document.getElementById("checkpointResult");
+  var questionData=[
+    {id:"q9",session:"B9",skill:"đọc dữ liệu dạng bảng",text:"Thư viện trọng tâm để đọc CSV/Excel là gì?",key:"A",options:[["A","Pandas"],["B","SQLite"],["C","HTML"],["D","CSS"]]},
+    {id:"q10",session:"B10",skill:"kiểm tra DataFrame",text:"Thao tác nào giúp xem các dòng đầu của DataFrame?",key:"C",options:[["A","delete"],["B","update"],["C","head"],["D","deploy"]]},
+    {id:"q11",session:"B11",skill:"lọc theo điều kiện",text:"Muốn giữ khách hàng có Zip Code bằng một giá trị cụ thể, cần làm gì?",key:"C",options:[["A","Đổi tên bảng"],["B","Xóa toàn bộ cột"],["C","Lọc theo điều kiện cột Zip Code"],["D","Sắp xếp ngẫu nhiên"]]},
+    {id:"q12",session:"B12",skill:"truy vấn marketing",text:"Bộ Lọc Marketing nhằm chọn nhóm nào?",key:"D",options:[["A","Danh sách vật tư"],["B","Chỉ dự án đã bàn giao"],["C","Tất cả bản ghi không điều kiện"],["D","50 khách hàng tiềm năng đúng Zip Code tại Mỹ"]]},
+    {id:"q13",session:"B13",skill:"schema cơ sở dữ liệu",text:"Bảng nào lưu thông tin khách hàng?",key:"C",options:[["A","DuAn"],["B","VatTu"],["C","KhachHang"],["D","ZipCode"]]},
+    {id:"q14",session:"B14",skill:"mô hình dữ liệu",text:"Vì sao cần bảng DuAn riêng?",key:"A",options:[["A","Để lưu trạng thái và thông tin công trình"],["B","Để thay thế Python"],["C","Để tạo giao diện"],["D","Để phát âm"]]},
+    {id:"q15",session:"B15",skill:"CRUD thêm/đọc",text:"Thao tác nào tương ứng với việc lấy danh sách bản ghi?",key:"D",options:[["A","Create"],["B","Update"],["C","Delete"],["D","Read"]]},
+    {id:"q16",session:"B16",skill:"CRUD cập nhật/xóa",text:"Thay đổi trạng thái từ Khảo sát sang Thi công là thao tác nào?",key:"B",options:[["A","Create"],["B","Update"],["C","Read"],["D","Delete"]]}
+  ];
+  if(submitButton){
+    submitButton.addEventListener("click",async function(){
+      var app=PDReactiveRuntime.app;
+      var draft=app&&app.data?app.data.quizDraft:null;
+      if(!app||!draft){return;}
+      var unanswered=questionData.filter(function(question){return !draft[question.id];});
+      if(unanswered.length){
+        if(resultPanel){
+          resultPanel.hidden=false;
+          resultPanel.innerHTML="<h3>Còn câu chưa chọn</h3><p>Hãy trả lời đủ 8 câu để lưu checkpoint và nhận phản hồi theo kỹ năng.</p>";
+        }
+        return;
+      }
+      var earned=0;
+      var responses=questionData.map(function(question){
+        var answer=draft[question.id];
+        var correct=answer===question.key;
+        if(correct){earned+=1;}
+        return {
+          questionId:question.id,
+          question:question.text,
+          answerType:"multiple-choice",
+          interactionType:"choice",
+          skills:[question.skill],
+          userAnswers:[answer],
+          answerOptions:question.options.map(function(option){return {key:option[0],label:option[1]};}),
+          answerKeys:[question.key],
+          correct:correct,
+          score:correct?1:0,
+          maxScore:1
+        };
+      });
+      var weak=questionData.filter(function(question,index){return responses[index].correct===false;});
+      var now=new Date();
+      var payload=app.data.quizResults;
+      Object.assign(payload,{
+        schemaContract:"assessmentEntry@v1",
+        assessmentId:"8f6bd3c7-1b4a-4a9b-9e12-32c0a7b16d41",
+        assessmentName:"Quản lý dữ liệu khách hàng và dự án — B9–B16",
+        pageFileName:"quan-ly-du-lieu.html",
+        description:"Checkpoint 8 buổi về Pandas, SQLite và CRUD cho giám sát công trường.",
+        assessmentType:"formative",
+        interactionFormat:"traditional-test",
+        subject:"Quản lý dữ liệu",
+        category:"technology",
+        skills:["Pandas","SQLite","CRUD","lọc dữ liệu"],
+        attemptId:payload.attemptId||("attempt-"+now.getTime()),
+        revision:1,
+        startedAtUtc:payload.startedAtUtc||now.toISOString(),
+        submittedAtUtc:now.toISOString(),
+        completionStatus:"completed",
+        score:earned,
+        maxScore:8,
+        scaledScore:earned/8,
+        passThreshold:.75,
+        passed:earned/8>=.75,
+        responses:responses
+      });
+      try{
+        await app.save("quizResults",payload);
+        if(resultPanel){
+          resultPanel.hidden=false;
+          var weakText=weak.length?weak.map(function(question){return question.skill;}).join(", "):"Không có — nền tảng của bạn đã chắc.";
+          var ask="Tôi vừa hoàn thành checkpoint B9–B16 với "+earned+"/8. Hãy tạo một bài luyện quản lý dữ liệu bằng Pandas và SQLite, tập trung vào các kỹ năng còn yếu: "+weakText+".";
+          var packed="";
+          if(window.CompressionStream){
+            var stream=new CompressionStream("deflate-raw");
+            var writer=stream.writable.getWriter();
+            writer.write(new TextEncoder().encode(JSON.stringify({prompt:ask,src:"quan-ly-du-lieu"})));
+            writer.close();
+            var bytes=new Uint8Array(await new Response(stream.readable).arrayBuffer());
+            var binary="";
+            bytes.forEach(function(byte){binary+=String.fromCharCode(byte);});
+            packed=btoa(binary).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+          }
+          var href="https://pageduo.ai/?p="+encodeURIComponent("Tạo bài luyện quản lý dữ liệu để vá các kỹ năng còn yếu của tôi.")+(packed?"&p_enc="+encodeURIComponent(packed):"&p="+encodeURIComponent(ask));
+          resultPanel.innerHTML="<h3>Kết quả: "+earned+"/8</h3><p>Kỹ năng cần ôn thêm: <strong>"+weakText+"</strong></p><a class='btn btn-secondary' href='"+href+"'>Tạo bài luyện tiếp theo</a>";
+        }
+      }catch(error){
+        if(resultPanel){
+          resultPanel.hidden=false;
+          resultPanel.innerHTML="<h3>Chưa lưu được</h3><p>Hãy thử gửi lại checkpoint. Kết quả vẫn còn trên trang này.</p>";
+        }
+      }
+    });
+  }
+})();
+</script>
+
+<footer class="site-footer" data-pageduo-ele-id="e_YTODl6ObIRvg">
+  <div class="footer-inner" data-pageduo-ele-id="e_grIHnh7jiCZg">
+    <div data-pageduo-ele-id="e_JeRovLCz5ZGx">
+      <strong data-pageduo-ele-id="e_GAZnSDYk1U2D">Code công trường</strong>
+      <p data-pageduo-ele-id="e_kzlMA3vZBPOB">Học để biến số đo, sổ sách và tiến độ thành công cụ dùng được trong công việc remodeling.</p>
+    </div>
+    <div data-pageduo-ele-id="e_OrYpEeEHBYpQ">
+      <strong data-pageduo-ele-id="e_fYfIXnBnasjp">Đi tiếp</strong>
+      <p data-pageduo-ele-id="e_R2joxtVfZhEI"><a href="nen-tang-python.html" data-pageduo-ele-id="e_eJzxWEGPVHqS">Bắt đầu từ Giai đoạn 1: Đặt móng →</a></p>
+    </div>
+  </div>
+</footer>
+<footer class="site-footer" data-pageduo-ele-id="e_sQpNxKqRNyUb">
+  <div class="footer-inner" data-pageduo-ele-id="e_EwV2IHCdctFY">
+    <div data-pageduo-ele-id="e_w4Kd0b5mrm1Q">
+      <strong data-pageduo-ele-id="e_KSPORIuxANzW">Code công trường</strong>
+      <p data-pageduo-ele-id="e_ry5YCTXRMkwv">Học để biến số đo, sổ sách và tiến độ thành công cụ dùng được trong công việc remodeling.</p>
+    </div>
+    <div data-pageduo-ele-id="e_m0V8IVmpgubL">
+      <strong data-pageduo-ele-id="e_F6PnBSv2JEUj">Đi tiếp</strong>
+      <p data-pageduo-ele-id="e_mLTiuGdvoDGB"><a href="nen-tang-python.html" data-pageduo-ele-id="e_2trGJltmRV4U">Bắt đầu từ Giai đoạn 1: Đặt móng →</a></p>
+    </div>
+  </div>
+</footer>
+
+</body></html>
