@@ -1168,7 +1168,7 @@ with sqlite3.connect("cong_trinh.db") as conn:
     df_db = pd.read_sql_query("SELECT id, ho_ten, sdt, zip_code, ngay_tao FROM KhachHang ORDER BY id DESC", conn)
 st.dataframe(df_db, use_container_width=True, hide_index=True)</pre>
                     <div class="code-output"># Output kiểm tra:
-Điền thông tin -> Bấm Lưu -> Bản ghi lập tức xuất hiện ở dòng đầu tiên của bảng bên dưới!</div>
+Điền thông tin → Bấm Lưu → Bản ghi lập tức xuất hiện ở dòng đầu tiên của bảng bên dưới!</div>
                   </div>
                 </div>
               </details>
