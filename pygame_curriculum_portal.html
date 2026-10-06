@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cổng Giáo Trình Lập Trình Game Python & Pygame | Lập Trình Robot</title>
+    <meta name="description" content="Khám phá giáo trình Lập trình Game 2D với Python & Pygame chuẩn quốc tế dành cho lứa tuổi 10-14 tuổi: Khung chương trình 24 buổi, tư duy OOP và mô phỏng chi tiết bài giảng Space Shooter.">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d'
+                        },
+                        python: {
+                            blue: '#3776AB',
+                            yellow: '#FFD43B',
+                            dark: '#1E293B',
+                            darker: '#0F172A',
+                            code: '#282C34'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0F172A; color: #F8FAFC; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Montserrat', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+        .hero-bg {
+            background: radial-gradient(circle at 50% 30%, #1E293B 0%, #0F172A 100%);
+            background-image: radial-gradient(rgba(55, 118, 171, 0.25) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .tab-btn.active {
+            border-bottom: 4px solid #FFD43B;
+            color: #FFD43B;
+            font-weight: 700;
+            background-color: rgba(255, 212, 59, 0.1);
+        }
+        
+        /* Cú pháp Code Highlighting IDE */
+        .kw { color: #C678DD; font-weight: bold; } /* Keyword */
+        .fn { color: #61AFEF; } /* Function */
+        .str { color: #98C379; } /* String */
+        .num { color: #D19A66; } /* Number */
+        .cmt { color: #7F848E; font-style: italic; } /* Comment */
+        .cls { color: #E5C07B; } /* Class */
+        .var { color: #E06C75; } /* Variable */
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV0T56M2VW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XV0T56M2VW');
+    </script>
+</head>
+<body class="bg-python-darker text-slate-300 antialiased pt-20">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="fixed w-full top-0 z-50 bg-python-dark/95 backdrop-blur-md shadow-lg border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <a href="index.html" class="flex items-center hover:opacity-90 transition-opacity">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-python-blue to-python-yellow flex items-center justify-center text-python-darker font-bold text-2xl mr-3 shadow-md">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-xl md:text-2xl text-white font-heading">Lập Trình <span class="text-primary-500">Robot</span></span>
+                        <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2 py-0.5 bg-blue-900/60 text-python-yellow rounded-full border border-python-yellow/30">Pygame</span>
+                    </div>
+                </a>
+
+                <!-- Nav Links -->
+                <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                    <a href="index.html" class="text-slate-300 hover:text-python-yellow transition-colors">Trang Chủ</a>
+                    <a href="course-10-13.html" class="text-slate-300 hover:text-python-yellow transition-colors">Lộ Trình 10-13T</a>
+                    <a href="module-3.html" class="text-slate-300 hover:text-python-yellow transition-colors">Mô-đun 3</a>
+                    <a href="#phu-huynh" class="text-slate-300 hover:text-python-yellow transition-colors">Góc Phụ Huynh</a>
+                    <a href="#lo-trinh" class="text-slate-300 hover:text-python-yellow transition-colors">Khung 24 Buổi</a>
+                    <a href="#bai-hoc" class="text-slate-300 hover:text-python-yellow transition-colors">Bài Giảng Mẫu</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-3">
+                    <a href="module-3.html" class="hidden sm:inline-flex items-center text-xs md:text-sm font-medium text-slate-300 hover:text-python-yellow bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 transition-colors">
+                        <i class="fa-solid fa-arrow-left mr-1.5"></i> Về Mô-đun 3
+                    </a>
+                    <a href="#dang-ky" class="inline-flex items-center justify-center px-4 py-2 md:px-5 md:py-2.5 bg-gradient-to-r from-python-blue to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold rounded-xl shadow-md hover:shadow-blue-900/50 transition-all text-xs md:text-sm">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Tư Vấn Khóa Học
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="bg-slate-900/80 border-b border-slate-800 py-2.5 px-4 sm:px-6 lg:px-8 text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto flex items-center space-x-2 overflow-x-auto">
+            <a href="index.html" class="hover:text-python-yellow"><i class="fa-solid fa-house mr-1"></i>Trang chủ</a>
+            <span>/</span>
+            <a href="course-10-13.html" class="hover:text-python-yellow">Lộ trình 10-13 tuổi</a>
+            <span>/</span>
+            <a href="module-3.html" class="hover:text-python-yellow">Mô-đun 3 (Nền tảng Python)</a>
+            <span>/</span>
+            <span class="text-white font-semibold">Cổng Giáo Trình Python & Pygame</span>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-bg py-16 md:py-24 relative overflow-hidden border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-block p-3 bg-slate-800/90 rounded-2xl border border-slate-700 mb-6 shadow-2xl backdrop-blur-sm">
+                <code class="code-font text-xs sm:text-sm text-slate-300">
+                    <span class="kw">import</span> pygame &nbsp;|&nbsp; <span class="kw">print</span>(<span class="str">"Hello, Future Game Developer!"</span>)
+                </code>
+            </div>
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-900/40 border border-python-blue/40 text-python-yellow text-xs md:text-sm font-semibold mb-6 block mx-auto w-fit">
+                <i class="fa-solid fa-code"></i>
+                <span>TEXT-BASED CODING &bull; DÀNH CHO HỌC SINH 10 - 14 TUỔI</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-white drop-shadow-lg font-heading">
+                Viết Code Thực Thụ Với <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-python-blue via-sky-400 to-python-yellow">Python & Pygame</span>
+            </h1>
+
+            <p class="mt-4 max-w-3xl text-base sm:text-lg md:text-xl mx-auto text-slate-400 leading-relaxed font-light">
+                Bước chuyển mình hoàn hảo từ lập trình kéo thả (Scratch) sang lập trình <strong>văn bản chuyên nghiệp</strong>. Xây dựng nền tảng khoa học máy tính vững chắc và tư duy hướng đối tượng (OOP) thông qua việc tự tay thiết kế Game 2D.
+            </p>
+
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#lo-trinh" class="bg-python-blue hover:bg-blue-600 text-white font-bold text-base py-3.5 px-8 rounded-xl shadow-xl shadow-blue-900/50 transition duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-map-location-dot"></i> Xem Lộ Trình 24 Buổi
+                </a>
+                <a href="#bai-hoc" class="bg-slate-800 border border-slate-600 text-white hover:bg-slate-700 font-bold text-base py-3.5 px-8 rounded-xl shadow-xl transition duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-laptop-code"></i> Xem Bài Giảng Mẫu (Space Shooter)
+                </a>
+            </div>
+
+            <div class="mt-10 pt-6 border-t border-slate-800 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-400">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-400"></i> Trọng tâm Mô-đun 3 (10-13T)</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-400"></i> Định hướng thi chứng chỉ Python PCEP</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-400"></i> Xuất bản mã nguồn lên GitHub</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIÊN KẾT HỆ SINH THÁI KHÓA HỌC -->
+    <section class="py-6 bg-slate-900/90 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-full bg-python-blue text-white flex items-center justify-center font-bold text-lg shrink-0">
+                        <i class="fa-solid fa-arrow-turn-up"></i>
+                    </span>
+                    <div>
+                        <p class="font-bold text-white text-sm md:text-base">Bước Chuyển Tiếp Từ Scratch Sang Python</p>
+                        <p class="text-slate-400 text-xs md:text-sm">Học sinh đã hoàn thành Scratch 3.0 sẽ nắm bắt Pygame cực nhanh nhờ sự tương đồng về tư duy Game Loop và tọa độ.</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 shrink-0">
+                    <a href="scratch_curriculum_portal.html" class="inline-flex items-center px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg text-xs shadow-sm transition">
+                        <i class="fa-solid fa-cat mr-1.5"></i> Ôn lại Scratch 3.0
+                    </a>
+                    <a href="module-3.html" class="inline-flex items-center px-4 py-2 bg-slate-800 text-python-yellow hover:bg-slate-700 font-semibold rounded-lg border border-slate-700 text-xs shadow-sm transition">
+                        Chi Tiết Mô-đun 3 <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                    </a>
+                    <a href="course-10-13.html" class="inline-flex items-center px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg text-xs shadow-sm transition">
+                        Lộ Trình 10-13T
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: GÓC PHỤ HUYNH -->
+    <section id="phu-huynh" class="py-16 md:py-20 bg-python-dark relative border-b border-slate-800">
+        <!-- Glow effect -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-python-blue/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-wider text-python-yellow font-bold bg-yellow-950/60 px-3 py-1 rounded-full border border-yellow-700/50">
+                    TẠI SAO LÀ PYTHON?
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-3 font-heading">
+                    <i class="fa-solid fa-shield-halved text-python-yellow mr-2"></i>Góc Phụ Huynh: Giá Trị Vượt Trội Của Khóa Học
+                </h2>
+                <p class="mt-4 text-base md:text-lg text-slate-400 max-w-2xl mx-auto">
+                    Đã đến lúc con bạn vượt ra khỏi những khối lệnh xếp hình và tự tin gõ những dòng mã lệnh chuyên nghiệp.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-slate-800/60 p-8 rounded-2xl border border-slate-700 hover:border-python-blue transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-blue-900/50 text-python-blue rounded-2xl flex items-center justify-center mb-6 text-2xl border border-blue-800 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white font-heading">Ngôn Ngữ Thực Tế & Toàn Cầu</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Python là ngôn ngữ lập trình phổ biến hàng đầu thế giới, là nền tảng cốt lõi của AI, Khoa học dữ liệu và IoT. Học Pygame là con đường trực quan, cuốn hút nhất để nắm vững cú pháp Python chuẩn mực.
+                    </p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-slate-800/60 p-8 rounded-2xl border border-slate-700 hover:border-python-yellow transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-yellow-900/30 text-python-yellow rounded-2xl flex items-center justify-center mb-6 text-2xl border border-yellow-800/50 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-cubes"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white font-heading">Lập Trình Hướng Đối Tượng (OOP)</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Trẻ được rèn luyện khái niệm Lớp (Class), Đối tượng (Object) và Kế thừa (Inheritance). Thay vì quản lý từng dòng rời rạc, trẻ học cách tạo ra một "Bản thiết kế mẫu" để sinh ra hàng trăm thực thể trong game.
+                    </p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-slate-800/60 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition-all duration-300 group">
+                    <div class="w-14 h-14 bg-green-900/30 text-green-400 rounded-2xl flex items-center justify-center mb-6 text-2xl border border-green-800/50 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-square-root-variable"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white font-heading">Toán Học & Vật Lý Trong Game</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Ứng dụng trực tiếp kiến thức Toán học (Hệ tọa độ Descartes, Vector vận tốc) và Vật lý (Trọng lực, Gia tốc, Quán tính va chạm) để tạo ra các chuyển động chân thực trên màn hình máy tính.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Course Stats Bar -->
+            <div class="mt-14 bg-gradient-to-r from-slate-900 via-python-darker to-slate-900 rounded-3xl border border-slate-700 p-8 md:p-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center shadow-2xl">
+                <div class="border-r border-slate-800 last:border-none">
+                    <div class="text-4xl md:text-5xl font-extrabold mb-1 font-heading text-python-yellow">24</div>
+                    <div class="text-slate-400 text-xs md:text-sm font-medium">Buổi Học Tiêu Chuẩn</div>
+                </div>
+                <div class="border-r border-slate-800 last:border-none">
+                    <div class="text-4xl md:text-5xl font-extrabold mb-1 font-heading text-python-blue">90</div>
+                    <div class="text-slate-400 text-xs md:text-sm font-medium">Phút / Mỗi Buổi</div>
+                </div>
+                <div class="border-r border-slate-800 last:border-none">
+                    <div class="text-4xl md:text-5xl font-extrabold mb-1 font-heading text-green-400">5+</div>
+                    <div class="text-slate-400 text-xs md:text-sm font-medium">Dự Án Game 2D</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-extrabold mb-1 font-heading text-purple-400">1</div>
+                    <div class="text-slate-400 text-xs md:text-sm font-medium">Đồ Án Xuất Bản GitHub</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: KHUNG CHƯƠNG TRÌNH 24 BUỔI -->
+    <section id="lo-trinh" class="py-16 md:py-20 bg-python-darker border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-wider text-python-blue font-bold bg-blue-950/60 px-3 py-1 rounded-full border border-blue-800/50">
+                    LỘ TRÌNH BÀI BẢN
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-3 font-heading">
+                    <i class="fa-solid fa-code-commit text-python-blue mr-2"></i>Lộ Trình 24 Buổi Lập Trình Pygame
+                </h2>
+                <p class="mt-4 text-base md:text-lg text-slate-400 max-w-2xl mx-auto">
+                    Đi từ những dòng code `print()` đầu tiên đến khi tự tay tối ưu, đóng gói và phát hành tựa game 2D độc lập.
+                </p>
+            </div>
+
+            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+                
+                <!-- Cấp độ 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-python-darker bg-python-yellow text-python-darker font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">1</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-8 rounded-2xl bg-slate-800 border border-slate-700 shadow-lg group-hover:border-python-yellow transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Cấp độ 1: Python Basic & Pygame Init</h3>
+                            <span class="text-xs font-mono text-python-yellow bg-yellow-950/60 px-2 py-0.5 rounded border border-yellow-800/50">Buổi 1-6</span>
+                        </div>
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Củng cố cú pháp Python căn bản, thiết lập cửa sổ Window, xây dựng Game Loop vô tận và vẽ các hình học cơ bản.
+                        </p>
+                        <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs text-slate-300 space-y-1.5">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-python-yellow mt-0.5"></i>
+                                <span>Biến số, Kiểu dữ liệu, Vòng lặp `for/while`, Rẽ nhánh điều kiện `if/elif/else`.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-python-yellow mt-0.5"></i>
+                                <span>Khởi tạo `pygame.init()`, tạo Display Surface và thiết lập giới hạn khung hình FPS (`Clock.tick`).</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-python-yellow mt-0.5"></i>
+                                <span><strong>Mini Project:</strong> Game Hứng Bóng (Bóng nảy đập tường với hệ tọa độ máy tính).</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cấp độ 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-python-darker bg-python-blue text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">2</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-8 rounded-2xl bg-slate-800 border border-slate-700 shadow-lg group-hover:border-python-blue transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Cấp độ 2: Event Handling & Movement</h3>
+                            <span class="text-xs font-mono text-python-blue bg-blue-950/60 px-2 py-0.5 rounded border border-blue-800/50">Buổi 7-12</span>
+                        </div>
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Làm chủ hàng đợi sự kiện (Event Queue). Điều khiển nhân vật mượt mà bằng bàn phím/chuột và kết xuất hình ảnh đồ họa (Images).
+                        </p>
+                        <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs text-slate-300 space-y-1.5">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-python-blue mt-0.5"></i>
+                                <span>Bắt sự kiện QUIT, KEYDOWN, KEYUP, Mouse Button.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-python-blue mt-0.5"></i>
+                                <span>Di chuyển nhân vật theo vector vận tốc và kiểm tra biên va chạm màn hình.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-python-blue mt-0.5"></i>
+                                <span><strong>Mini Project:</strong> Game Rắn Săn Mồi (Snake) - Quản lý cấu trúc dữ liệu danh sách (List) tọa độ thân rắn.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cấp độ 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-python-darker bg-green-500 text-python-darker font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">3</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-8 rounded-2xl bg-slate-800 border border-slate-700 shadow-lg group-hover:border-green-500 transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Cấp độ 3: OOP, Sprites & Collisions</h3>
+                            <span class="text-xs font-mono text-green-400 bg-green-950/60 px-2 py-0.5 rounded border border-green-800/50">Buổi 13-18</span>
+                        </div>
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Trọng tâm cốt lõi. Học cách tổ chức mã nguồn chuyên nghiệp bằng Lập trình Hướng đối tượng và xử lý va chạm đa thực thể.
+                        </p>
+                        <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs text-slate-300 space-y-1.5">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-green-400 mt-0.5"></i>
+                                <span>Cấu trúc `class`, hàm khởi tạo `__init__`, phương thức cập nhật `update()`.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-green-400 mt-0.5"></i>
+                                <span>Kế thừa lớp `pygame.sprite.Sprite` và quản lý nhóm thực thể bằng `pygame.sprite.Group()`.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-green-400 mt-0.5"></i>
+                                <span><strong>Mini Project:</strong> Space Shooter (Tàu chiến bắn đạn tiêu diệt quái vật không gian).</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cấp độ 4 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-python-darker bg-purple-500 text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">4</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-8 rounded-2xl bg-slate-800 border border-slate-700 shadow-lg group-hover:border-purple-500 transition">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Cấp độ 4: Physics, Polish & Final Project</h3>
+                            <span class="text-xs font-mono text-purple-400 bg-purple-950/60 px-2 py-0.5 rounded border border-purple-800/50">Buổi 19-24</span>
+                        </div>
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Thêm hiệu ứng vật lý, âm thanh sống động, chuyển đổi trạng thái Game State và bảo vệ đồ án tốt nghiệp xuất bản lên GitHub.
+                        </p>
+                        <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs text-slate-300 space-y-1.5">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-purple-400 mt-0.5"></i>
+                                <span>Trọng lực (Gravity), Lực bật nhảy (Jump velocity), Ma sát mặt sàn.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-purple-400 mt-0.5"></i>
+                                <span>Hệ thống âm thanh Mixer, Sprite Sheet Animation và màn hình Game Over/Victory.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-purple-400 mt-0.5"></i>
+                                <span><strong>Đồ án cuối khóa:</strong> Flappy Bird hoặc Platformer Game (Mario). Đẩy mã nguồn lên GitHub.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: MÔ PHỎNG BÀI GIẢNG (3 BƯỚC) -->
+    <section id="bai-hoc" class="py-16 md:py-20 bg-python-dark relative border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase tracking-wider text-green-400 font-bold bg-green-950/60 px-3 py-1 rounded-full border border-green-800/50">
+                    TIẾT HỌC THỰC CHIẾN
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-3 font-heading">
+                    <i class="fa-solid fa-laptop-code text-green-400 mr-2"></i>Mô Phỏng Bài Giảng: Dự Án Space Shooter
+                </h2>
+                <p class="mt-4 text-base md:text-lg text-slate-400 max-w-2xl mx-auto">
+                    Trải nghiệm phương pháp học lập trình dòng lệnh (Text-based) thông qua dự án chế tạo Game Tàu Chiến Vũ Trụ (Buổi 15).
+                </p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-start sm:justify-center border-b border-slate-700 mb-8 overflow-x-auto max-w-2xl mx-auto">
+                <button onclick="switchTab('explore')" id="btn-explore" class="tab-btn active flex-1 py-3.5 text-center text-sm md:text-base transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium rounded-t-lg">
+                    1. Phân Tích OOP (Explore)
+                </button>
+                <button onclick="switchTab('create')" id="btn-create" class="tab-btn flex-1 py-3.5 text-center text-sm md:text-base transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium rounded-t-lg">
+                    2. Viết Code (Create)
+                </button>
+                <button onclick="switchTab('share')" id="btn-share" class="tab-btn flex-1 py-3.5 text-center text-sm md:text-base transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium rounded-t-lg">
+                    3. Nâng Cấp & Git (Share)
+                </button>
+            </div>
+
+            <!-- Tab Contents Wrapper -->
+            <div class="bg-slate-800/90 rounded-3xl p-6 sm:p-10 border border-slate-700 shadow-2xl min-h-[500px]">
+                
+                <!-- TAB 1: EXPLORE -->
+                <div id="content-explore" class="block animate-fade-in">
+                    <div class="flex items-center gap-4 mb-6 border-b border-slate-700 pb-4">
+                        <div class="w-12 h-12 bg-python-blue text-white rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">1</div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Tư Duy Hướng Đối Tượng: Phân Tích Thực Thể</h3>
+                            <p class="text-xs text-slate-400">Thiết lập kiến trúc trước khi gõ dòng code đầu tiên</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-slate-300 mb-4 text-sm">Giáo viên hướng dẫn học sinh lập tài liệu thiết kế trò chơi (Game Design Document):</p>
+                            <ul class="space-y-3 text-xs text-slate-300">
+                                <li class="bg-slate-900 p-3.5 rounded-xl border-l-4 border-python-blue">
+                                    <strong class="text-white block mb-1">Game có những Class (Thực thể) nào?</strong>
+                                    Gồm 3 Class chính: <code>Player</code> (Tàu người chơi điều khiển), <code>Enemy</code> (Thiên thạch rơi xuống), <code>Bullet</code> (Tia đạn laser bắn ra).
+                                </li>
+                                <li class="bg-slate-900 p-3.5 rounded-xl border-l-4 border-python-yellow">
+                                    <strong class="text-white block mb-1">Quy luật rơi của Thiên thạch là gì?</strong>
+                                    Khởi tạo ở tọa độ Y âm (ngoài màn hình phía trên), X ngẫu nhiên. Vận tốc Y dương (rơi xuống). Khi vượt qua đáy màn hình thì reset tái sinh lên đỉnh.
+                                </li>
+                                <li class="bg-slate-900 p-3.5 rounded-xl border-l-4 border-green-500">
+                                    <strong class="text-white block mb-1">Xử lý va chạm thế nào?</strong>
+                                    - Nhóm <code>Bullets</code> chạm <code>Enemies</code> &rarr; Cả hai biến mất, tích lũy điểm số.<br/>
+                                    - Nhóm <code>Enemies</code> chạm <code>Player</code> &rarr; Trừ máu hoặc Game Over.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-700 flex flex-col justify-center items-center text-center">
+                            <i class="fa-solid fa-diagram-project text-5xl text-python-blue mb-4"></i>
+                            <h4 class="text-white font-bold text-base mb-2 font-heading">Từ Tư Duy Đến Dòng Mã Lệnh</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+                                Phân rã bài toán lớn thành các Class độc lập giúp học sinh không bị ngợp khi đối diện với các file mã nguồn dài. OOP giúp mô hình hóa game logic trực quan như ngoài đời thực.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: CREATE -->
+                <div id="content-create" class="hidden animate-fade-in">
+                    <div class="flex items-center gap-4 mb-6 border-b border-slate-700 pb-4">
+                        <div class="w-12 h-12 bg-python-yellow text-python-darker rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">2</div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Thực Hành Viết Code: Lớp Enemy Kế Thừa Sprite</h3>
+                            <p class="text-xs text-slate-400">Tạo thực thể thiên thạch bay trong file `enemy.py`</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-slate-400 mb-4 text-xs">Học sinh tự tay viết mã nguồn định nghĩa thực thể `Enemy` kế thừa từ lớp `pygame.sprite.Sprite`:</p>
+                    
+                    <!-- Code snippet block mimicking an IDE -->
+                    <div class="rounded-2xl overflow-hidden bg-python-code shadow-2xl border border-slate-700">
+                        <div class="flex items-center px-4 py-3 bg-slate-800 border-b border-slate-700">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="mx-auto text-xs text-slate-400 font-mono">enemy.py</div>
+                        </div>
+                        <div class="p-4 sm:p-6 text-xs sm:text-sm overflow-x-auto code-font leading-relaxed">
+<pre><code><span class="kw">import</span> pygame
+<span class="kw">import</span> random
+
+<span class="kw">class</span> <span class="cls">Enemy</span>(pygame.sprite.Sprite):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="var">self</span>):
+        <span class="kw">super</span>().<span class="fn">__init__</span>()
+        <span class="cmt"># Load hình ảnh thiên thạch và lấy khung hình chữ nhật (rect)</span>
+        <span class="var">self</span>.image = pygame.image.load(<span class="str">"assets/meteor.png"</span>).convert_alpha()
+        <span class="var">self</span>.rect = <span class="var">self</span>.image.get_rect()
+        
+        <span class="cmt"># Vị trí xuất hiện ngẫu nhiên ở mép trên màn hình</span>
+        <span class="var">self</span>.rect.x = random.randrange(<span class="num">0</span>, <span class="num">800</span> - <span class="var">self</span>.rect.width)
+        <span class="var">self</span>.rect.y = random.randrange(<span class="num">-100</span>, <span class="num">-40</span>)
+        
+        <span class="cmt"># Tốc độ rơi ngẫu nhiên</span>
+        <span class="var">self</span>.speedy = random.randrange(<span class="num">2</span>, <span class="num">6</span>)
+
+    <span class="kw">def</span> <span class="fn">update</span>(<span class="var">self</span>):
+        <span class="cmt"># Cập nhật tọa độ Y để thiên thạch rơi xuống</span>
+        <span class="var">self</span>.rect.y += <span class="var">self</span>.speedy
+        
+        <span class="cmt"># Nếu rớt khỏi đáy màn hình (HEIGHT = 600) -> Tái sinh lên đỉnh</span>
+        <span class="kw">if</span> <span class="var">self</span>.rect.top > <span class="num">600</span> + <span class="num">10</span>:
+            <span class="var">self</span>.rect.x = random.randrange(<span class="num">0</span>, <span class="num">800</span> - <span class="var">self</span>.rect.width)
+            <span class="var">self</span>.rect.y = random.randrange(<span class="num">-100</span>, <span class="num">-40</span>)
+            <span class="var">self</span>.speedy = random.randrange(<span class="num">2</span>, <span class="num">6</span>)
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: SHARE -->
+                <div id="content-share" class="hidden animate-fade-in">
+                    <div class="flex items-center gap-4 mb-6 border-b border-slate-700 pb-4">
+                        <div class="w-12 h-12 bg-green-500 text-python-darker rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">3</div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Nâng Cấp Game & Kỹ Năng Quản Lý Git</h3>
+                            <p class="text-xs text-slate-400">Cá nhân hóa tựa game và lưu trữ mã nguồn chuyên nghiệp</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-sm text-python-yellow mb-3">Tính năng thử thách học sinh tự mở rộng:</h4>
+                            <ul class="space-y-2.5 text-xs text-slate-300">
+                                <li class="bg-slate-900 p-3 rounded-xl border border-slate-700 flex items-start gap-2.5">
+                                    <i class="fa-solid fa-meteor text-orange-400 mt-0.5"></i> 
+                                    <span><strong>Thiên thạch xoay tròn:</strong> Dùng <code>pygame.transform.rotate()</code> để thiên thạch xoay quanh tâm khi rơi.</span>
+                                </li>
+                                <li class="bg-slate-900 p-3 rounded-xl border border-slate-700 flex items-start gap-2.5">
+                                    <i class="fa-solid fa-volume-high text-sky-400 mt-0.5"></i> 
+                                    <span><strong>Âm thanh nổ vang:</strong> Nạp file .wav, phát âm thanh khi <code>groupcollide</code> phát hiện trúng đạn.</span>
+                                </li>
+                                <li class="bg-slate-900 p-3 rounded-xl border border-slate-700 flex items-start gap-2.5">
+                                    <i class="fa-solid fa-gauge-high text-green-400 mt-0.5"></i> 
+                                    <span><strong>Tăng độ khó động:</strong> Khi Score > 1000, tự động tăng tốc độ rơi `speedy` lên mức 6-12.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-slate-900 to-python-dark border border-slate-700 p-6 rounded-2xl flex items-center justify-center flex-col text-center">
+                            <i class="fa-brands fa-github text-5xl text-white mb-3"></i>
+                            <h4 class="font-bold text-base text-white mb-1.5 font-heading">Kỹ Năng Kỹ Sư Thực Thụ (Git & GitHub)</h4>
+                            <p class="text-slate-400 text-xs leading-relaxed max-w-sm mb-3">
+                                Mã nguồn không chỉ lưu trong máy tính cá nhân. Trẻ được hướng dẫn tạo Repository, commit code, tạo README giới thiệu dự án và quản lý phiên bản như một lập trình viên đích thực.
+                            </p>
+                            <span class="inline-flex items-center text-[11px] font-mono text-python-yellow bg-slate-800 px-3 py-1 rounded-full border border-slate-700">
+                                git commit -m "feat: add shooting collision"
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: ĐĂNG KÝ TƯ VẤN & HỌC THỬ -->
+    <section id="dang-ky" class="py-16 md:py-20 bg-gradient-to-br from-slate-900 via-python-darker to-slate-900 text-white relative overflow-hidden border-b border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-blue-900/50 border border-blue-500 text-python-yellow text-xs font-bold uppercase tracking-wider mb-4">
+                TRẢI NGHIỆM MIỄN PHÍ
+            </span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-6 font-heading">
+                Cho Con Chinh Phục Ngôn Ngữ <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-python-blue via-sky-400 to-python-yellow">Python & Game Pygame 2D</span>
+            </h2>
+            <p class="text-slate-300 text-base md:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+                Đăng ký ngay hôm nay để nhận 1 buổi học thử Python thực chiến và được kiểm tra năng lực tư duy thuật toán, định hướng lộ trình chứng chỉ quốc tế PCEP hoàn toàn miễn phí.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
+                <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-python-blue to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold rounded-2xl shadow-xl hover:shadow-blue-900/50 transition-all transform hover:-translate-y-1 text-base">
+                    <i class="fa-solid fa-comment-dots mr-2"></i> Nhắn Zalo Tư Vấn Ngay
+                </a>
+                <a href="tel:0915514419"
+                    class="inline-flex items-center justify-center px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 font-bold rounded-2xl transition-all text-base">
+                    <i class="fa-solid fa-phone mr-2"></i> 0915.514.419
+                </a>
+            </div>
+
+            <p class="mt-6 text-xs text-slate-400">
+                Định hướng ôn thi chứng chỉ PCEP & AP Computer Science A cho học sinh trung học.
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-python-darker text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-sm">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white font-heading">LapTrinhRobot.com</span>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed max-w-md">
+                        Hệ thống đào tạo lập trình, Robotics và STEM hàng đầu dành cho học sinh từ 7 đến 18 tuổi. Lộ trình dài hạn từ Scratch, WeDo lên Python, Pygame, Raspberry Pi Pico, ESP32 và AI Chuyên sâu.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-3 font-heading text-xs uppercase tracking-wider">Khóa học liên quan</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="course-10-13.html" class="hover:text-white transition-colors">Lộ trình 10 - 13 Tuổi</a></li>
+                        <li><a href="module-3.html" class="hover:text-white transition-colors">Mô-đun 3: Nền Tảng Python</a></li>
+                        <li><a href="module-4.html" class="hover:text-white transition-colors">Mô-đun 4: Vạn Vật Kết Nối (IoT)</a></li>
+                        <li><a href="scratch_curriculum_portal.html" class="hover:text-white transition-colors">Cổng Giáo Trình Scratch 3.0</a></li>
+                        <li><a href="wedo_2_0_curriculum_portal.html" class="hover:text-white transition-colors">Cổng Giáo Trình WeDo 2.0</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-3 font-heading text-xs uppercase tracking-wider">Thông tin liên hệ</h4>
+                    <p class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-phone mr-1.5 text-primary-400"></i> Hotline: 0915.514.419</p>
+                    <p class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-envelope mr-1.5 text-primary-400"></i> Email: info@laptrinhrobot.com</p>
+                    <div class="flex gap-3 mt-3">
+                        <a href="privacy.html" class="hover:text-white text-xs">Bảo mật</a>
+                        <span class="text-slate-600">&bull;</span>
+                        <a href="terms.html" class="hover:text-white text-xs">Điều khoản</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+                <p>&copy; 2026 LapTrinhRobot.com. Tất cả các quyền được bảo lưu. Python là thương hiệu của Python Software Foundation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING CONTACT BUTTONS -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <!-- Zalo Button -->
+        <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
+            class="group flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <span class="font-bold text-lg">Z</span>
+            <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                Nhắn Zalo
+            </span>
+        </a>
+
+        <!-- Call Button -->
+        <a href="tel:0915514419"
+            class="group flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-full shadow-md hover:bg-green-600 hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <i class="fa-solid fa-phone"></i>
+            <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                0915.514.419
+            </span>
+        </a>
+    </div>
+
+    <!-- TAB SWITCHING SCRIPT -->
+    <script>
+        function switchTab(tabName) {
+            const tabs = ['explore', 'create', 'share'];
+            
+            tabs.forEach(tab => {
+                const btn = document.getElementById('btn-' + tab);
+                btn.className = "tab-btn flex-1 py-3.5 text-center text-sm md:text-base transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium rounded-t-lg";
+                
+                const content = document.getElementById('content-' + tab);
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+
+            const activeBtn = document.getElementById('btn-' + tabName);
+            activeBtn.className = "tab-btn active flex-1 py-3.5 text-center text-sm md:text-base transition duration-150 whitespace-nowrap font-bold text-python-yellow bg-python-yellow/10 border-b-4 border-python-yellow rounded-t-lg";
+            
+            const selectedContent = document.getElementById('content-' + tabName);
+            selectedContent.classList.remove('hidden');
+            selectedContent.classList.add('block');
+        }
+    </script>
+</body>
+</html>
