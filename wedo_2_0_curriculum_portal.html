@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cổng Giáo Trình LEGO WeDo 2.0 Chuẩn NGSS | Lập Trình Robot</title>
+    <meta name="description" content="Khám phá giáo trình Robotics LEGO WeDo 2.0 chuẩn NGSS Hoa Kỳ: Khung chương trình 16 buổi, góc phân tích dành cho phụ huynh và mô phỏng chi tiết 3 bước buổi học.">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d'
+                        },
+                        secondary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a'
+                        },
+                        lego: {
+                            yellow: '#FFD700',
+                            red: '#E3000F',
+                            blue: '#0055BF',
+                            green: '#237841'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Montserrat', sans-serif; }
+        .hero-bg {
+            background: radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15), transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(227, 0, 15, 0.1), transparent 50%),
+                        linear-gradient(135deg, #0b1120 0%, #111827 50%, #1e293b 100%);
+        }
+        .tab-btn.active {
+            border-bottom: 4px solid #E3000F;
+            color: #E3000F;
+            font-weight: 700;
+            background-color: #fef2f2;
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV0T56M2VW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XV0T56M2VW');
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased pt-20">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <a href="index.html" class="flex items-center hover:opacity-90 transition-opacity">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-md">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-xl md:text-2xl text-gray-900 font-heading">Lập Trình <span class="text-primary-600">Robot</span></span>
+                        <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2 py-0.5 bg-red-100 text-red-700 rounded-full">WeDo 2.0</span>
+                    </div>
+                </a>
+
+                <!-- Nav Links -->
+                <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                    <a href="index.html" class="text-gray-600 hover:text-primary-600 transition-colors">Trang Chủ</a>
+                    <a href="course-7-9.html" class="text-gray-600 hover:text-primary-600 transition-colors">Lộ Trình 7-9T</a>
+                    <a href="module-2.html" class="text-gray-600 hover:text-primary-600 transition-colors">Mô-đun 2</a>
+                    <a href="#phu-huynh" class="text-gray-600 hover:text-primary-600 transition-colors">Góc Phụ Huynh</a>
+                    <a href="#lo-trinh" class="text-gray-600 hover:text-primary-600 transition-colors">Khung 16 Buổi</a>
+                    <a href="#bai-hoc" class="text-gray-600 hover:text-primary-600 transition-colors">Mô Phỏng Tiết Học</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-3">
+                    <a href="module-2.html" class="hidden sm:inline-flex items-center text-xs md:text-sm font-medium text-gray-700 hover:text-primary-600 bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-xl transition-colors">
+                        <i class="fa-solid fa-arrow-left mr-1.5"></i> Về Mô-đun 2
+                    </a>
+                    <a href="#dang-ky" class="inline-flex items-center justify-center px-4 py-2 md:px-5 md:py-2.5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-bold rounded-xl shadow-md hover:shadow-lg transition-all text-xs md:text-sm">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Tư Vấn Khóa Học
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="bg-gray-100 border-b border-gray-200 py-2.5 px-4 sm:px-6 lg:px-8 text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto flex items-center space-x-2 overflow-x-auto">
+            <a href="index.html" class="hover:text-primary-600"><i class="fa-solid fa-house mr-1"></i>Trang chủ</a>
+            <span>/</span>
+            <a href="course-7-9.html" class="hover:text-primary-600">Lộ trình 7-9 tuổi</a>
+            <span>/</span>
+            <a href="module-2.html" class="hover:text-primary-600">Mô-đun 2 (Kỹ sư Robot nhí)</a>
+            <span>/</span>
+            <span class="text-gray-800 font-semibold">Cổng Giáo Trình LEGO WeDo 2.0</span>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-bg text-white py-16 md:py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-lego-yellow text-xs md:text-sm font-semibold mb-6">
+                        <i class="fa-solid fa-award"></i>
+                        <span>CHUẨN NGSS HOA KỲ &bull; STEM ROBOTICS</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 font-heading">
+                        Cổng Giáo Trình <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500">LEGO® WeDo 2.0</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8 font-light">
+                        Hệ thống bài giảng tích hợp <strong>Cơ khí vật lý</strong> (bánh răng, ròng rọc, đòn bẩy) và <strong>Tư duy thuật toán</strong> kéo thả. Thiết kế chuyên sâu cho học sinh độ tuổi <strong>7 - 10 tuổi</strong> trong hệ sinh thái đào tạo của Lập Trình Robot.
+                    </p>
+
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                        <a href="#lo-trinh" class="bg-lego-red hover:bg-red-700 text-white font-bold py-3.5 px-7 rounded-xl shadow-lg hover:shadow-red-500/30 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-list-check"></i> Xem Lộ Trình 16 Buổi
+                        </a>
+                        <a href="#bai-hoc" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold py-3.5 px-7 rounded-xl backdrop-blur-md transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i> Mô Phỏng Tiết Học Mẫu
+                        </a>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap justify-center lg:justify-start items-center gap-6 text-xs text-gray-400">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-400"></i> Áp dụng tại Mô-đun 2</span>
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-400"></i> Chuyển giao trung tâm & trường học</span>
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-400"></i> Hỗ trợ thi đấu Robocon nhí</span>
+                    </div>
+                </div>
+
+                <!-- Kit Preview Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-4 shadow-2xl relative">
+                        <div class="relative rounded-2xl overflow-hidden bg-white aspect-[4/3]">
+                            <img src="wedo.png" alt="Bộ kit Lego WeDo 2.0 SmartHub Motor và Cảm biến" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 left-3 right-3 bg-gray-900/80 backdrop-blur-md text-white text-xs p-3 rounded-xl border border-white/10 flex items-center justify-between">
+                                <div>
+                                    <p class="font-bold text-yellow-400">Bộ Kit Học Tập Thực Tế</p>
+                                    <p class="text-gray-300 text-[11px]">SmartHub BLE + Motor DC + 2 Cảm biến</p>
+                                </div>
+                                <span class="bg-red-600 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase">Lego Edu</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 mt-3 text-center">
+                            <div class="bg-white/5 rounded-xl p-2.5 border border-white/10">
+                                <p class="text-lg font-bold text-yellow-400">16</p>
+                                <p class="text-[10px] text-gray-300">Buổi chuẩn</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-2.5 border border-white/10">
+                                <p class="text-lg font-bold text-green-400">15+</p>
+                                <p class="text-[10px] text-gray-300">Mô hình STEM</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-2.5 border border-white/10">
+                                <p class="text-lg font-bold text-blue-400">100%</p>
+                                <p class="text-[10px] text-gray-300">Thực hành chạm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LIÊN KẾT HỆ SINH THÁI KHÓA HỌC -->
+    <section class="py-8 bg-blue-50/60 border-b border-blue-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg shrink-0">
+                        <i class="fa-solid fa-link"></i>
+                    </span>
+                    <div>
+                        <p class="font-bold text-gray-900 text-sm md:text-base">Nội dung này nằm trong Mô-đun 2: "Kỹ Sư Robot Nhí" (7 - 9 Tuổi)</p>
+                        <p class="text-gray-600 text-xs md:text-sm">Phụ huynh có thể xem tổng quan lộ trình dài hạn 10-18 tuổi hoặc đăng ký học thử trực tiếp.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <a href="module-2.html" class="inline-flex items-center px-4 py-2 bg-white text-secondary-600 hover:text-secondary-700 font-semibold rounded-lg border border-secondary-200 text-xs shadow-sm hover:shadow transition">
+                        Chi Tiết Mô-đun 2 <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                    </a>
+                    <a href="course-7-9.html" class="inline-flex items-center px-4 py-2 bg-secondary-600 hover:bg-secondary-700 text-white font-semibold rounded-lg text-xs shadow-sm transition">
+                        Lộ Trình 7-9T
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: GÓC PHỤ HUYNH -->
+    <section id="phu-huynh" class="py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase tracking-wider text-lego-blue font-bold bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                    GIÁ TRỊ CỐT LÕI
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-3 font-heading">
+                    <i class="fa-solid fa-people-roof text-lego-blue mr-2"></i>Góc Phụ Huynh: Khóa Học Mang Lại Gì?
+                </h2>
+                <p class="mt-4 text-base md:text-lg text-gray-500 max-w-2xl mx-auto">
+                    Toàn cảnh về khoản đầu tư giáo dục phát triển tư duy khoa học và công nghệ từ sớm cho con.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-blue-400 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 text-lego-blue rounded-2xl flex items-center justify-center mb-6 text-2xl shadow-inner">
+                        <i class="fa-solid fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-heading">Phát Triển Tư Duy Cơ Khí</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        Con không chỉ chơi xếp hình thông thường. Con học về bánh răng, ròng rọc, đòn bẩy, và hiểu nguyên lý vật lý (lực kéo, mô-men xoắn, tốc độ) thông qua việc tự tay thiết kế và tinh chỉnh cấu trúc robot.
+                    </p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-green-400 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="w-14 h-14 bg-green-100 text-lego-green rounded-2xl flex items-center justify-center mb-6 text-2xl shadow-inner">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-heading">Tư Duy Thuật Toán (Coding)</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        Trẻ học lập trình thông qua giao diện khối lệnh kéo thả trực quan. Hiểu bản chất vòng lặp, câu lệnh rẽ nhánh điều kiện (If-Else) và cách xử lý tín hiệu phản hồi từ cảm biến chuyển động & góc nghiêng.
+                    </p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 hover:border-yellow-500 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center mb-6 text-2xl shadow-inner">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 font-heading">Kỹ Năng Giải Quyết Vấn Đề (Debugging)</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        Giáo trình áp dụng tư duy "Sửa lỗi kỹ thuật" - khi robot không chuyển động hoặc chạy lệch đường, trẻ học cách bình tĩnh phân tích xem lỗi do cơ cấu bánh răng bị kẹt hay do thuật toán lập trình để tự mình khắc phục.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Course Stats Bar -->
+            <div class="mt-12 bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-3xl text-white p-8 md:p-10 shadow-xl grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="border-r border-white/20 last:border-none">
+                    <div class="text-4xl md:text-5xl font-extrabold mb-1 font-heading text-yellow-300">16</div>
+                    <div class="text-blue-100 text-xs md:text-sm font-medium">Buổi Học Tiêu Chuẩn</div>
+                </div>
+                <div class="border-r border-white/20 last:border-none">
+                    <div class="text-4xl md:text-5xl font-extrabold mb-1 font-heading text-yellow-300">90</div>
+                    <div class="text-blue-100 text-xs md:text-sm font-medium">Phút / Mỗi Buổi</div>
+                </div>
+                <div class="border-r border-white/20 last:border-none">
+                    <div class="text-4xl md:text-5xl font-extrabold mb-1 font-heading text-yellow-300">15+</div>
+                    <div class="text-blue-100 text-xs md:text-sm font-medium">Mô Hình Ứng Dụng</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-extrabold mb-1 font-heading text-yellow-300">3 - 4</div>
+                    <div class="text-blue-100 text-xs md:text-sm font-medium">Tháng Đào Tạo Trọn Gói</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: KHUNG CHƯƠNG TRÌNH 16 BUỔI -->
+    <section id="lo-trinh" class="py-16 md:py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <span class="text-xs uppercase tracking-wider text-red-600 font-bold bg-red-50 px-3 py-1 rounded-full border border-red-200">
+                    SYLLABUS CHUẨN
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-3 font-heading">
+                    <i class="fa-solid fa-map text-lego-red mr-2"></i>Lộ Trình 16 Buổi Học Chi Tiết
+                </h2>
+                <p class="mt-4 text-base md:text-lg text-gray-500 max-w-2xl mx-auto">
+                    Thiết kế 4 giai đoạn logic: từ làm quen linh kiện phần cứng cơ bản đến tự chủ thiết kế các dự án Robocon sáng tạo.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Giai đoạn 1 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border-t-4 border-yellow-400 p-6 md:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-yellow-100 text-yellow-800">Giai đoạn 1 &bull; Buổi 1 - 3</span>
+                            <span class="text-xs font-mono text-gray-400"><i class="fa-solid fa-clock mr-1"></i>3 buổi</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 font-heading">Phần Cứng & Lập Trình Cơ Bản</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Học sinh làm quen với Hub trung tâm Bluetooth, Motor DC, Cảm biến WeDo 2.0 và giao diện phần mềm lập trình trực quan.
+                        </p>
+                        <div class="space-y-2.5 pt-2 border-t border-gray-100 text-sm text-gray-700">
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                                <div><strong class="text-gray-900">Robot Milo thám hiểm:</strong> Làm quen Motor, code chạy/dừng/đổi chiều quay.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                                <div><strong class="text-gray-900">Milo & Cảm biến chuyển động:</strong> Tự động phanh khi phát hiện chướng ngại vật phía trước.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                                <div><strong class="text-gray-900">Milo truyền tin:</strong> Ứng dụng cảm biến góc nghiêng (Tilt sensor) và đổi màu LED tín hiệu.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giai đoạn 2 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border-t-4 border-blue-600 p-6 md:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">Giai đoạn 2 &bull; Buổi 4 - 8</span>
+                            <span class="text-xs font-mono text-gray-400"><i class="fa-solid fa-clock mr-1"></i>5 buổi</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 font-heading">Nguyên Lý Vật Lý & Cơ Khí</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Khám phá sâu các cơ cấu truyền động, tỉ số truyền bánh răng, lực ma sát và nguyên lý cân bằng động lực học.
+                        </p>
+                        <div class="space-y-2.5 pt-2 border-t border-gray-100 text-sm text-gray-700">
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
+                                <div><strong class="text-gray-900">Máy kéo (Pulling):</strong> Bánh răng giảm tốc (tăng mô-men xoắn, thi kéo tải nặng).</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">5</span>
+                                <div><strong class="text-gray-900">Xe đua F1 (Speed):</strong> Bánh răng tăng tốc, tối ưu ma sát bánh xe và đo vận tốc.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">6</span>
+                                <div><strong class="text-gray-900">Trực thăng cứu hộ:</strong> Cơ cấu ròng rọc và tời kéo cáp cứu hộ thông minh.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">7</span>
+                                <div><strong class="text-gray-900">Máy tạo động đất:</strong> Khám phá trục lệch tâm và mô phỏng độ chấn động tòa nhà.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">8</span>
+                                <div><strong class="text-gray-900">Cửa xả lũ:</strong> Bánh răng côn (Bevel Gear) chuyển đổi phương truyền động 90°.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giai đoạn 3 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border-t-4 border-green-600 p-6 md:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">Giai đoạn 3 &bull; Buổi 9 - 12</span>
+                            <span class="text-xs font-mono text-gray-400"><i class="fa-solid fa-clock mr-1"></i>4 buổi</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 font-heading">Sinh Học & Môi Trường Thông Minh</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Mô phỏng chuyển động sinh vật học tự nhiên và chế tạo giải pháp bảo vệ môi trường đô thị thông minh.
+                        </p>
+                        <div class="space-y-2.5 pt-2 border-t border-gray-100 text-sm text-gray-700">
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-green-100 text-green-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">9</span>
+                                <div><strong class="text-gray-900">Vòng đời của Ếch:</strong> Cơ cấu trục cam (Cam mechanism) mô phỏng động tác ếch nhảy.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-green-100 text-green-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">10</span>
+                                <div><strong class="text-gray-900">Ong thụ phấn & Hoa:</strong> Truyền động dây đai đai cao su qua các trục xa nhau.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-green-100 text-green-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">11</span>
+                                <div><strong class="text-gray-900">Trạm báo động nguy hiểm:</strong> Bánh răng trục vít - bánh vít (Worm Gear) tự hãm chống trượt.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-green-100 text-green-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">12</span>
+                                <div><strong class="text-gray-900">Xe chở rác tự động:</strong> Ứng dụng cánh tay đòn bẩy ben thùng xe bằng cảm biến nghiêng.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giai đoạn 4 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border-t-4 border-red-600 p-6 md:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800">Giai đoạn 4 &bull; Buổi 13 - 16</span>
+                            <span class="text-xs font-mono text-gray-400"><i class="fa-solid fa-trophy mr-1 text-yellow-500"></i>4 buổi</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 font-heading">Dự Án Kỹ Sư & Hackathon Mini</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Thử thách thiết kế mở (Open-ended project). Học sinh không có hướng dẫn lắp ghép cố định, tự do sáng tạo giải quyết vấn đề thực tế.
+                        </p>
+                        <div class="space-y-2.5 pt-2 border-t border-gray-100 text-sm text-gray-700">
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-red-100 text-red-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">13</span>
+                                <div><strong class="text-gray-900">Làm sạch đại dương:</strong> Thiết kế cánh tay gắp rác nổi trên mặt nước.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-red-100 text-red-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">14</span>
+                                <div><strong class="text-gray-900">Rover thám hiểm Sao Hỏa:</strong> Thiết kế xe vượt chướng ngại vật địa hình phức tạp.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-red-100 text-red-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">15</span>
+                                <div><strong class="text-gray-900">Robot biểu cảm cảm xúc:</strong> Lập trình khuôn mặt đổi trạng thái theo khoảng cách người đứng trước.</div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-red-100 text-red-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">16</span>
+                                <div><strong class="text-gray-900">Demo Day & Hackathon:</strong> Vận hành sa bàn, bảo vệ dự án và nhận chứng chỉ Kỹ sư WeDo.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: MÔ PHỎNG BUỔI HỌC (3 BƯỚC) -->
+    <section id="bai-hoc" class="py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-xs uppercase tracking-wider text-green-700 font-bold bg-green-50 px-3 py-1 rounded-full border border-green-200">
+                    PHƯƠNG PHÁP SƯ PHẠM
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-3 font-heading">
+                    <i class="fa-solid fa-chalkboard-user text-lego-green mr-2"></i>Mô Phỏng Tiến Trình 1 Buổi Học Chuẩn
+                </h2>
+                <p class="mt-4 text-base md:text-lg text-gray-500 max-w-2xl mx-auto">
+                    Bấm vào từng tab bên dưới để khám phá quy trình giảng dạy 3 bước tiêu chuẩn qua ví dụ chuyên đề: <strong>"Xe Đua Thần Tốc (Speed)"</strong>.
+                </p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-center border-b border-gray-200 mb-8 max-w-2xl mx-auto">
+                <button onclick="switchTab('explore')" id="btn-explore" class="tab-btn active flex-1 py-3.5 text-center text-sm md:text-base transition duration-150 rounded-t-lg">
+                    <i class="fa-solid fa-magnifying-glass mr-1.5"></i> 1. Khám Phá (Explore)
+                </button>
+                <button onclick="switchTab('create')" id="btn-create" class="tab-btn flex-1 text-gray-500 hover:text-gray-700 py-3.5 text-center text-sm md:text-base transition duration-150 rounded-t-lg">
+                    <i class="fa-solid fa-tools mr-1.5"></i> 2. Sáng Tạo (Create)
+                </button>
+                <button onclick="switchTab('share')" id="btn-share" class="tab-btn flex-1 text-gray-500 hover:text-gray-700 py-3.5 text-center text-sm md:text-base transition duration-150 rounded-t-lg">
+                    <i class="fa-solid fa-bullhorn mr-1.5"></i> 3. Chia Sẻ (Share)
+                </button>
+            </div>
+
+            <!-- Tab Content Wrapper -->
+            <div class="bg-gray-50 rounded-3xl p-6 md:p-10 border border-gray-200 shadow-sm min-h-[460px]">
+                
+                <!-- TAB 1: EXPLORE -->
+                <div id="content-explore" class="block animate-fade-in">
+                    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-900 font-heading">
+                            <i class="fa-solid fa-magnifying-glass mr-2 text-lego-blue"></i>Bước 1: Khám Phá Vấn Đề (15 Phút)
+                        </h3>
+                        <span class="text-xs font-semibold px-2.5 py-1 bg-blue-100 text-blue-800 rounded-full">Đặt vấn đề & Tò mò</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-base text-red-600 mb-3 flex items-center">
+                                <i class="fa-solid fa-user-tie mr-2"></i>Dành cho Giáo viên / Mentor:
+                            </h4>
+                            <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                                <strong>Mục tiêu:</strong> Kích thích sự tò mò tự nhiên. Giúp học sinh nhận ra tốc độ của xe đua không chỉ do động cơ mạnh, mà còn phụ thuộc vào lực ma sát (lốp xe) và hệ thống bánh răng truyền động.
+                            </p>
+                            <div class="bg-white p-4 rounded-xl border border-gray-200 mb-3">
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Bộ câu hỏi khơi gợi tư duy:</p>
+                                <ul class="list-disc pl-5 text-gray-700 space-y-1.5 text-sm">
+                                    <li>Các con đã xem chặng đua F1 bao giờ chưa? Điều gì giúp chiếc xe lao nhanh vút?</li>
+                                    <li>Nếu bánh xe bị nhẵn bóng (không có gai bám), xe có chạy nhanh hơn không hay sẽ bị trượt bánh?</li>
+                                    <li>Tại sao bánh xe phía sau của xe đua thường to hơn bánh trước?</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50/70 p-6 rounded-2xl border border-blue-100 flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-base text-blue-900 mb-3 flex items-center">
+                                    <i class="fa-solid fa-graduation-cap mr-2"></i>Nhiệm vụ của Học sinh:</h4>
+                                <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                                    Cùng xem đoạn video hoạt hình ngắn về Max và Mia (nhân vật hướng dẫn trong Lego Education WeDo 2.0). Hai bạn đang muốn chế tạo chiếc xe đua nhanh nhất để tranh cúp tốc độ.
+                                </p>
+                                <div class="bg-white rounded-xl p-4 border border-blue-200 text-center shadow-sm">
+                                    <i class="fa-solid fa-flag-checkered text-4xl text-red-500 mb-2"></i>
+                                    <p class="font-bold text-gray-900 text-sm">Thử thách của buổi học:</p>
+                                    <p class="text-xs text-gray-600 mt-1">Tự tay lắp ráp xe đua, lập trình và đo xem xe chạy hết đường đua 2 mét trong bao nhiêu giây!</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-blue-200/60 text-xs text-blue-700 font-semibold flex items-center justify-between">
+                                <span>Phát triển: Tư duy quan sát</span>
+                                <span>Thời lượng: 15 Phút</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: CREATE -->
+                <div id="content-create" class="hidden animate-fade-in">
+                    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-900 font-heading">
+                            <i class="fa-solid fa-tools mr-2 text-lego-yellow"></i>Bước 2: Sáng Tạo - Lắp Ráp & Lập Trình (60 Phút)
+                        </h3>
+                        <span class="text-xs font-semibold px-2.5 py-1 bg-yellow-100 text-yellow-800 rounded-full">Thực hành cốt lõi</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Cột Lắp ráp -->
+                        <div>
+                            <h4 class="font-bold text-base text-gray-900 mb-2 flex items-center">
+                                <i class="fa-solid fa-screwdriver-wrench text-blue-600 mr-2"></i>A. Cơ Khí (Lắp Ráp Vật Lý)
+                            </h4>
+                            <p class="text-xs text-gray-500 mb-3">Học sinh theo dõi chỉ dẫn 3D trong phần mềm WeDo 2.0 trên iPad / Laptop.</p>
+                            
+                            <div class="bg-white p-4 rounded-xl border border-gray-200 mb-4 shadow-sm">
+                                <h5 class="font-bold text-red-600 text-sm flex items-center gap-1.5">
+                                    <i class="fa-solid fa-lightbulb"></i> Kiến thức vật lý: Tỉ số truyền tăng tốc
+                                </h5>
+                                <p class="text-xs text-gray-700 mt-1.5 leading-relaxed">
+                                    Gắn bánh răng 24 răng (bánh răng chủ động từ Motor) vào bánh răng 8 răng (bánh răng bị động nối trục bánh xe). 1 vòng quay của motor khiến bánh xe quay đến <strong>3 vòng</strong> &rarr; Xe phóng vọt với tốc độ cao!
+                                </p>
+                            </div>
+                            
+                            <ol class="list-decimal pl-5 text-gray-700 space-y-1.5 text-xs">
+                                <li>Lắp khung gầm chịu lực và gắn SmartHub WeDo trung tâm.</li>
+                                <li>Cố định động cơ DC Motor vào thân xe.</li>
+                                <li>Lắp cụm bánh răng tăng tốc độ (24 răng & 8 răng).</li>
+                                <li>Thử nghiệm thay thế giữa bánh xe trơn nhỏ và bánh xe có rãnh bám lớn.</li>
+                            </ol>
+                        </div>
+
+                        <!-- Cột Lập trình -->
+                        <div>
+                            <h4 class="font-bold text-base text-gray-900 mb-2 flex items-center">
+                                <i class="fa-solid fa-laptop-code text-green-600 mr-2"></i>B. Lập Trình Điều Khiển (Coding)
+                            </h4>
+                            <p class="text-xs text-gray-500 mb-3">Kết nối SmartHub qua Bluetooth BLE và kéo thả khối lệnh trực quan.</p>
+                            
+                            <!-- Mock Scratch/WeDo Blocks -->
+                            <div class="bg-gray-100 p-3 rounded-xl flex items-center gap-2 mb-4 overflow-x-auto text-xs shadow-inner">
+                                <div class="bg-yellow-400 text-yellow-950 font-bold px-2.5 py-1.5 rounded-lg border border-yellow-500 shrink-0"><i class="fa-solid fa-play mr-1"></i> Bắt đầu</div>
+                                <div class="bg-blue-500 text-white font-bold px-2.5 py-1.5 rounded-lg shadow-sm shrink-0">Công suất (10)</div>
+                                <div class="bg-green-500 text-white font-bold px-2.5 py-1.5 rounded-lg shadow-sm shrink-0">Tiến lên</div>
+                                <div class="bg-orange-400 text-white font-bold px-2.5 py-1.5 rounded-lg shadow-sm shrink-0"><i class="fa-solid fa-clock mr-1"></i> Chờ 3s</div>
+                                <div class="bg-red-500 text-white font-bold px-2.5 py-1.5 rounded-lg shadow-sm shrink-0">Dừng lại</div>
+                            </div>
+
+                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                                <h5 class="font-bold text-xs text-emerald-900 mb-1.5 uppercase tracking-wide">Thử thách nâng cao cho bé xuất sắc:</h5>
+                                <ul class="list-disc pl-4 text-gray-700 text-xs space-y-1">
+                                    <li>Dùng khối hàm ngẫu nhiên (Random) để tạo độ biến thiên công suất.</li>
+                                    <li>Lập trình bộ đếm thời gian: đo chính xác thời gian robot hoàn thành chặng đua và hiển thị lên màn hình.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: SHARE -->
+                <div id="content-share" class="hidden animate-fade-in">
+                    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-900 font-heading">
+                            <i class="fa-solid fa-bullhorn mr-2 text-lego-green"></i>Bước 3: Chia Sẻ, Đua Thử & Thuyết Trình (15 Phút)
+                        </h3>
+                        <span class="text-xs font-semibold px-2.5 py-1 bg-green-100 text-green-800 rounded-full">Báo cáo & Tự tin</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-base text-red-600 mb-2 flex items-center">
+                                <i class="fa-solid fa-clipboard-check mr-2"></i>Tiêu Chí Đánh Giá Của Giáo Viên:
+                            </h4>
+                            <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                                Đây là giai đoạn rèn luyện <strong>Kỹ năng giao tiếp và thuyết trình khoa học</strong>. Mỗi học sinh hoặc cặp học sinh mang robot lên đường đua thử nghiệm để nghiệm thu kết quả.
+                            </p>
+                            <div class="bg-white p-4 rounded-xl border border-gray-200 space-y-2 text-xs text-gray-700">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i>
+                                    <span><strong>Độ ổn định cơ khí:</strong> Xe chạy thẳng hướng, khung gầm không lỏng lẻo khi tăng tốc.</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i>
+                                    <span><strong>Hiểu biết nguyên lý:</strong> Giải thích được tại sao xe chạy nhanh hay chậm dựa trên tỉ số bánh răng.</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i>
+                                    <span><strong>Khả năng Debug:</strong> Cách bé xử lý sự cố khi gặp trục trặc trong lúc chạy.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-green-50/70 p-6 rounded-2xl border border-green-100 flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-base text-green-900 mb-2 flex items-center">
+                                    <i class="fa-solid fa-microphone-lines mr-2"></i>Học Sinh Thực Hành Báo Cáo:
+                                </h4>
+                                <ul class="list-disc pl-5 text-gray-700 space-y-2 text-xs leading-relaxed mb-4">
+                                    <li>Chụp ảnh ghi nhận lại mô hình robot và chuỗi khối lệnh lập trình.</li>
+                                    <li>Thay đổi cỡ bánh xe từ nhỏ sang lớn, ghi lại số giây chênh lệch trên bảng logbook.</li>
+                                    <li>Đứng trước lớp thuyết trình: <em>"Nhóm con chọn bánh xe lớn kết hợp bánh răng 24-8 vì chu vi bánh xe lớn giúp mỗi vòng quay đi xa hơn, giúp xe về đích sớm nhất."</em></li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-green-200 text-xs text-green-800 font-semibold flex items-center justify-between">
+                                <span><i class="fa-solid fa-star text-yellow-500 mr-1"></i> Tích lũy điểm sao kỹ sư</span>
+                                <span>Thời lượng: 15 Phút</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: ĐĂNG KÝ TƯ VẤN & HỌC THỬ -->
+    <section id="dang-ky" class="py-16 md:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-red-600/30 border border-red-500 text-red-300 text-xs font-bold uppercase tracking-wider mb-4">
+                TRẢI NGHIỆM MIỄN PHÍ
+            </span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-6 font-heading">
+                Cho Con Trải Nghiệm Lớp Học <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-400 to-pink-500">LEGO WeDo 2.0 Thực Tế</span>
+            </h2>
+            <p class="text-gray-300 text-base md:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+                Đăng ký ngay hôm nay để nhận 1 buổi học thử trải nghiệm thực tế cùng bộ kit Lego WeDo 2.0 và được kiểm tra năng lực tư duy logic/không gian hoàn toàn miễn phí.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
+                <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 text-base">
+                    <i class="fa-solid fa-comment-dots mr-2"></i> Nhắn Zalo Tư Vấn Ngay
+                </a>
+                <a href="tel:0915514419"
+                    class="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold rounded-2xl transition-all text-base">
+                    <i class="fa-solid fa-phone mr-2"></i> 0915.514.419
+                </a>
+            </div>
+
+            <p class="mt-6 text-xs text-gray-400">
+                Nhận tài liệu chuyển giao & giải pháp phòng Lab Robotics cho trung tâm Anh ngữ / trường tiểu học.
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-sm">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white font-heading">LapTrinhRobot.com</span>
+                    </div>
+                    <p class="text-gray-400 text-xs leading-relaxed max-w-md">
+                        Hệ thống đào tạo lập trình, Robotics và STEM hàng đầu dành cho học sinh từ 7 đến 18 tuổi. Lộ trình bài bản, thiết bị chuẩn quốc tế và đầu ra sản phẩm thực tế.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-3 font-heading text-xs uppercase tracking-wider">Khóa học liên quan</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="course-7-9.html" class="hover:text-white transition-colors">Lộ trình 7 - 9 Tuổi</a></li>
+                        <li><a href="module-1.html" class="hover:text-white transition-colors">Mô-đun 1: Lập Trình Scratch</a></li>
+                        <li><a href="module-2.html" class="hover:text-white transition-colors">Mô-đun 2: Kỹ Sư Robot Nhí</a></li>
+                        <li><a href="astra.html" class="hover:text-white transition-colors">Chuyển Giao Smart City (Bilingual)</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-3 font-heading text-xs uppercase tracking-wider">Thông tin liên hệ</h4>
+                    <p class="text-xs text-gray-400 mb-1"><i class="fa-solid fa-phone mr-1.5 text-primary-400"></i> Hotline: 0915.514.419</p>
+                    <p class="text-xs text-gray-400 mb-1"><i class="fa-solid fa-envelope mr-1.5 text-primary-400"></i> Email: info@laptrinhrobot.com</p>
+                    <div class="flex gap-3 mt-3">
+                        <a href="privacy.html" class="hover:text-white text-xs">Bảo mật</a>
+                        <span class="text-gray-600">&bull;</span>
+                        <a href="terms.html" class="hover:text-white text-xs">Điều khoản</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+                <p>&copy; 2026 LapTrinhRobot.com. Tất cả các quyền được bảo lưu. Giáo trình chuẩn NGSS (Next Generation Science Standards).</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING CONTACT BUTTONS -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <!-- Zalo Button -->
+        <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
+            class="group flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <span class="font-bold text-lg">Z</span>
+            <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                Nhắn Zalo
+            </span>
+        </a>
+
+        <!-- Call Button -->
+        <a href="tel:0915514419"
+            class="group flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-full shadow-md hover:bg-green-600 hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <i class="fa-solid fa-phone"></i>
+            <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                0915.514.419
+            </span>
+        </a>
+    </div>
+
+    <!-- TAB SWITCHING SCRIPT -->
+    <script>
+        function switchTab(tabName) {
+            // Reset all buttons
+            const btns = ['btn-explore', 'btn-create', 'btn-share'];
+            btns.forEach(id => {
+                const el = document.getElementById(id);
+                el.className = "tab-btn flex-1 text-gray-500 hover:text-gray-700 py-3.5 text-center text-sm md:text-base transition duration-150 rounded-t-lg";
+            });
+            
+            // Hide all content
+            const contents = ['content-explore', 'content-create', 'content-share'];
+            contents.forEach(id => {
+                const el = document.getElementById(id);
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+
+            // Activate selected tab and content
+            document.getElementById('btn-' + tabName).className = "tab-btn active flex-1 py-3.5 text-center text-sm md:text-base transition duration-150 rounded-t-lg";
+            const targetContent = document.getElementById('content-' + tabName);
+            targetContent.classList.remove('hidden');
+            targetContent.classList.add('block');
+        }
+    </script>
+</body>
+</html>
