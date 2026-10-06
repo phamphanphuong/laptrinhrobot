@@ -3,32 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chuyên gia IoT ESP32 với MicroPython</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <title>Cổng Giáo Trình Lập Trình ESP32 & IoT MicroPython 48 Buổi | LapTrinhRobot.com</title>
+    <meta name="description" content="Khám phá giáo trình Chuyên gia IoT ESP32 với MicroPython (48 buổi, 4 học phần) dành cho học sinh 13-18 tuổi: Phần cứng lõi kép, giao tiếp I2C/SPI, Web Server Socket, MQTT Cloud, Telegram Bot và Đồ án Smart Home.">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
+                        sans: ['Inter', 'Outfit', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
                     },
                     colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d'
+                        },
                         iot: {
                             cyan: '#06b6d4',      
                             cyan_glow: '#22d3ee', 
                             dark: '#0f172a',      
                             darker: '#020617',    
                             panel: '#1e293b',     
-                            accent: '#f59e0b',    
+                            accent: '#f59e0b'     
                         },
                         python: {
                             blue: '#3776AB',
-                            yellow: '#FFD43B'
+                            yellow: '#FFD43B',
+                            dark: '#1e293b',
+                            darker: '#0f172a'
                         }
                     }
                 }
@@ -36,24 +61,26 @@
         }
     </script>
     <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #020617; color: #f8fafc; }
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Montserrat', sans-serif; }
         .code-font { font-family: 'Fira Code', monospace; }
         
-        /* Họa tiết bo mạch kết hợp Python */
+        /* Họa tiết bo mạch kết hợp Python / IoT Cyber */
         .hero-bg {
             background-color: #020617;
             background-image: 
-                radial-gradient(circle at 100% 50%, rgba(55, 118, 171, 0.15) 0%, transparent 50%), /* Python Blue */
-                radial-gradient(circle at 0% 100%, rgba(255, 212, 59, 0.1) 0%, transparent 50%),  /* Python Yellow */
-                linear-gradient(rgba(30, 41, 59, 0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+                radial-gradient(circle at 100% 40%, rgba(55, 118, 171, 0.22) 0%, transparent 50%),
+                radial-gradient(circle at 0% 90%, rgba(6, 182, 212, 0.18) 0%, transparent 50%),
+                radial-gradient(circle at 50% 10%, rgba(255, 212, 59, 0.12) 0%, transparent 45%),
+                linear-gradient(rgba(30, 41, 59, 0.45) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 41, 59, 0.45) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px;
         }
         
         .tab-btn.active {
             border-bottom: 3px solid #FFD43B;
             color: #FFD43B;
-            background-color: rgba(255, 212, 59, 0.1);
+            background-color: rgba(255, 212, 59, 0.12);
         }
 
         /* Syntax Highlighting cho MicroPython (Thonny IDE theme) */
@@ -65,64 +92,167 @@
         .py-cls { color: #E5C07B; } /* Class */
         .py-builtin { color: #56B6C2; } /* Built-in */
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV0T56M2VW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XV0T56M2VW');
+    </script>
 </head>
-<body class="bg-iot-darker text-slate-300 selection:bg-python-blue selection:text-white">
+<body class="bg-iot-darker text-slate-300 antialiased pt-20 selection:bg-cyan-500 selection:text-black">
 
-    <nav class="bg-iot-darker/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-slate-800">
+    <!-- NAVIGATION HEADER -->
+    <header class="fixed w-full top-0 z-50 bg-iot-darker/95 backdrop-blur-md shadow-lg border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center gap-3">
-                        <i class="fa-solid fa-microchip text-python-blue text-3xl"></i>
-                        <span class="font-extrabold text-2xl text-white tracking-tight">ESP<span class="text-python-yellow">Python.</span></span>
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <a href="index.html" class="flex items-center hover:opacity-90 transition-opacity">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-python-blue to-python-yellow flex items-center justify-center text-slate-950 font-bold text-xl mr-3 shadow-md">
+                        <i class="fa-solid fa-microchip"></i>
                     </div>
-                    <div class="hidden md:ml-10 md:flex md:space-x-8">
-                        <a href="#tong-quan" class="border-transparent text-slate-300 hover:text-python-yellow inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold transition">Tổng Quan</a>
-                        <a href="#lo-trinh" class="border-transparent text-slate-300 hover:text-python-yellow inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold transition">Masterclass 48 Buổi</a>
-                        <a href="#bai-hoc" class="border-transparent text-slate-300 hover:text-python-yellow inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold transition">Mô Phỏng Thonny IDE</a>
+                    <div>
+                        <span class="font-bold text-xl md:text-2xl text-white font-heading">LapTrinh<span class="text-cyan-400">Robot</span>.com</span>
+                        <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2.5 py-0.5 bg-cyan-950/80 text-cyan-300 rounded-full border border-cyan-800">ESP32 IoT</span>
                     </div>
-                </div>
-                <div class="flex items-center">
-                    <span class="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-python-yellow border border-python-yellow/30">
-                        <i class="fa-brands fa-python mr-2"></i> Dành cho 13-18 Tuổi
-                    </span>
+                </a>
+
+                <!-- Nav Links -->
+                <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                    <a href="index.html" class="text-slate-300 hover:text-cyan-400 transition-colors">Trang Chủ</a>
+                    <a href="course-13-15.html" class="text-slate-300 hover:text-cyan-400 transition-colors">Lộ Trình 13-15T</a>
+                    <a href="module-6.html" class="text-slate-300 hover:text-cyan-400 transition-colors">Mô-đun 6 (ESP32)</a>
+                    <a href="#phu-huynh" class="text-slate-300 hover:text-cyan-400 transition-colors">Góc Phụ Huynh</a>
+                    <a href="#lo-trinh" class="text-slate-300 hover:text-cyan-400 transition-colors">Masterclass 48 Buổi</a>
+                    <a href="#bai-hoc" class="text-slate-300 hover:text-cyan-400 transition-colors">Thonny IDE Mẫu</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-3">
+                    <a href="module-6.html" class="hidden sm:inline-flex items-center text-xs md:text-sm font-medium text-slate-300 hover:text-cyan-400 bg-slate-900 hover:bg-slate-800 px-3 py-2 rounded-xl border border-slate-700 transition-colors">
+                        <i class="fa-solid fa-arrow-left mr-1.5"></i> Về Mô-đun 6
+                    </a>
+                    <a href="#dang-ky" class="inline-flex items-center text-xs md:text-sm font-bold text-slate-950 bg-gradient-to-r from-cyan-400 to-python-yellow hover:opacity-95 px-4 py-2.5 rounded-xl shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all">
+                        <i class="fa-solid fa-headset mr-1.5"></i> Tư Vấn Khóa Học
+                    </a>
+                    <!-- Mobile Hamburger -->
+                    <button type="button" id="mobile-toggle" class="lg:hidden text-slate-400 hover:text-white p-2" aria-label="Menu">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
-    </nav>
 
-    <section id="tong-quan" class="hero-bg py-24 relative overflow-hidden border-b border-slate-800">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-python-blue/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="index.html" class="block py-2 text-slate-300 hover:text-cyan-400 text-sm font-medium border-b border-slate-800">Trang Chủ</a>
+            <a href="course-13-15.html" class="block py-2 text-slate-300 hover:text-cyan-400 text-sm font-medium border-b border-slate-800">Lộ Trình 13-15 Tuổi</a>
+            <a href="module-6.html" class="block py-2 text-slate-300 hover:text-cyan-400 text-sm font-medium border-b border-slate-800">Mô-đun 6: ESP32 & Real-time Dashboard</a>
+            <a href="module-4.html" class="block py-2 text-slate-300 hover:text-cyan-400 text-sm font-medium border-b border-slate-800">Mô-đun 4: Vạn Vật Kết Nối (IoT Pico)</a>
+            <a href="#phu-huynh" class="block py-2 text-slate-300 hover:text-cyan-400 text-sm font-medium border-b border-slate-800">Góc Phụ Huynh: Tại Sao Chọn MicroPython?</a>
+            <a href="#lo-trinh" class="block py-2 text-slate-300 hover:text-cyan-400 text-sm font-medium border-b border-slate-800">Khung Chương Trình 48 Buổi</a>
+            <a href="#bai-hoc" class="block py-2 text-slate-300 hover:text-cyan-400 text-sm font-medium border-b border-slate-800">Mô Phỏng Thonny IDE & Web Server</a>
+            <a href="pygame_curriculum_portal.html" class="block py-2 text-python-yellow hover:text-white text-sm font-medium border-b border-slate-800"><i class="fa-brands fa-python mr-2"></i>Cổng Giáo Trình Pygame (10-14T)</a>
+            <a href="scratch_curriculum_portal.html" class="block py-2 text-orange-400 hover:text-white text-sm font-medium border-b border-slate-800"><i class="fa-solid fa-cat mr-2"></i>Cổng Giáo Trình Scratch 3.0</a>
+            <a href="wedo_2_0_curriculum_portal.html" class="block py-2 text-red-400 hover:text-white text-sm font-medium"><i class="fa-solid fa-cubes mr-2"></i>Cổng Giáo Trình WeDo 2.0</a>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB & ECOSYSTEM BAR -->
+    <div class="bg-slate-900/90 border-b border-slate-800 text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+            <nav class="flex items-center space-x-2 overflow-x-auto whitespace-nowrap">
+                <a href="index.html" class="hover:text-cyan-400 transition-colors"><i class="fa-solid fa-house mr-1"></i>Trang Chủ</a>
+                <span>&rsaquo;</span>
+                <a href="course-13-15.html" class="hover:text-cyan-400 transition-colors">Lộ trình 13-15T</a>
+                <span>&rsaquo;</span>
+                <a href="module-6.html" class="hover:text-cyan-400 transition-colors">Mô-đun 6 (ESP32)</a>
+                <span>&rsaquo;</span>
+                <span class="text-cyan-400 font-medium">Giáo trình ESP32 MicroPython</span>
+            </nav>
+            <div class="flex items-center gap-2 text-[11px] overflow-x-auto">
+                <span class="text-slate-500 hidden md:inline">Hệ sinh thái:</span>
+                <a href="wedo_2_0_curriculum_portal.html" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition">WeDo 2.0</a>
+                <a href="scratch_curriculum_portal.html" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition">Scratch 3.0</a>
+                <a href="pygame_curriculum_portal.html" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition">Python Pygame</a>
+                <span class="px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800 font-semibold">ESP32 IoT</span>
+                <a href="astra.html" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition">Astra Robotics</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="tong-quan" class="hero-bg py-20 md:py-28 relative overflow-hidden border-b border-slate-800">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[400px] h-[400px] bg-python-blue/15 blur-[120px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 p-2 bg-iot-panel rounded-full border border-slate-700 mb-8 shadow-xl">
-                <span class="bg-python-yellow text-iot-darker text-xs font-bold px-3 py-1 rounded-full">MicroPython</span>
-                <span class="text-slate-300 text-sm pr-4 font-mono">Bo mạch lõi kép ESP32 + Thonny IDE</span>
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 p-1.5 md:p-2 bg-iot-panel rounded-full border border-slate-700 mb-8 shadow-2xl">
+                <span class="bg-gradient-to-r from-cyan-400 to-python-yellow text-slate-950 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">
+                    MicroPython Masterclass
+                </span>
+                <span class="text-slate-300 text-xs md:text-sm pr-4 font-mono flex items-center gap-1.5">
+                    <i class="fa-solid fa-microchip text-cyan-400"></i> Chip Lõi Kép ESP32 • Thonny IDE • 48 Buổi
+                </span>
             </div>
             
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 text-white drop-shadow-lg leading-tight">
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-white drop-shadow-lg leading-tight font-heading">
                 Hệ Sinh Thái Internet of Things Qua <br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-python-blue to-python-yellow">Ngôn Ngữ Lập Trình Python</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-python-yellow to-amber-400">
+                    Ngôn Ngữ Lập Trình Python
+                </span>
             </h1>
-            <p class="mt-4 max-w-3xl text-lg sm:text-xl mx-auto text-slate-400 font-medium">
-                Khóa học chuyên sâu dài hạn giúp học sinh THCS/THPT làm chủ hoàn toàn tư duy thuật toán Python và giao tiếp với hàng chục loại cảm biến phần cứng trên bo mạch ESP32 siêu nhỏ.
+
+            <p class="mt-4 max-w-3xl text-base sm:text-lg md:text-xl mx-auto text-slate-400 font-normal leading-relaxed">
+                Khóa học chuyên sâu dài hạn 9 - 12 tháng dành cho học sinh THCS & THPT (13-18 tuổi), giúp các em làm chủ trọn vẹn tư duy lập trình nhúng, giao tiếp 20+ linh kiện ngoại vi, xây dựng Web Server Sockets và kết nối đám mây thời gian thực.
             </p>
+
+            <!-- Key Feature Chips -->
+            <div class="mt-8 flex flex-wrap justify-center gap-3 max-w-4xl mx-auto text-xs md:text-sm">
+                <div class="px-3.5 py-1.5 rounded-lg bg-slate-900/80 border border-slate-700 text-slate-300 flex items-center gap-2">
+                    <i class="fa-solid fa-check text-cyan-400"></i> 4 Học phần - 48 Buổi
+                </div>
+                <div class="px-3.5 py-1.5 rounded-lg bg-slate-900/80 border border-slate-700 text-slate-300 flex items-center gap-2">
+                    <i class="fa-solid fa-check text-python-yellow"></i> 20+ Cảm biến & Cơ cấu chấp hành
+                </div>
+                <div class="px-3.5 py-1.5 rounded-lg bg-slate-900/80 border border-slate-700 text-slate-300 flex items-center gap-2">
+                    <i class="fa-solid fa-check text-cyan-400"></i> MQTT, HTTP Socket, Telegram Bot
+                </div>
+                <div class="px-3.5 py-1.5 rounded-lg bg-slate-900/80 border border-slate-700 text-slate-300 flex items-center gap-2">
+                    <i class="fa-solid fa-check text-python-yellow"></i> Đồ án Hackathon Tốt nghiệp
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
             <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#lo-trinh" class="bg-python-blue hover:bg-blue-600 text-white font-extrabold text-lg py-4 px-10 rounded-lg shadow-[0_0_20px_rgba(55,118,171,0.4)] transition duration-300 flex items-center justify-center">
-                    <i class="fa-solid fa-road mr-2"></i> Xem Lộ Trình 1 Năm
+                <a href="#lo-trinh" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-extrabold text-base md:text-lg py-4 px-8 rounded-xl shadow-[0_0_25px_rgba(6,182,212,0.4)] transition duration-300 flex items-center justify-center">
+                    <i class="fa-solid fa-road mr-2"></i> Khám Phá Lộ Trình 48 Buổi
                 </a>
-                <a href="#phu-huynh" class="bg-iot-panel border border-slate-600 text-white hover:bg-slate-700 font-bold text-lg py-4 px-10 rounded-lg shadow-xl transition duration-300 flex items-center justify-center">
-                    <i class="fa-solid fa-user-shield mr-2"></i> Góc Phụ Huynh
+                <a href="#phu-huynh" class="bg-iot-panel border border-slate-600 text-white hover:bg-slate-700 font-bold text-base md:text-lg py-4 px-8 rounded-xl shadow-xl transition duration-300 flex items-center justify-center">
+                    <i class="fa-solid fa-user-shield mr-2"></i> Góc Nhìn Phụ Huynh
+                </a>
+                <a href="#bai-hoc" class="bg-slate-900 border border-cyan-800/80 text-cyan-300 hover:bg-cyan-950 font-bold text-base md:text-lg py-4 px-8 rounded-xl shadow-xl transition duration-300 flex items-center justify-center">
+                    <i class="fa-solid fa-laptop-code mr-2"></i> Xem Bài Học Mẫu (Thonny)
                 </a>
             </div>
         </div>
     </section>
 
+    <!-- GÓC PHỤ HUYNH SECTION -->
     <section id="phu-huynh" class="py-20 bg-iot-dark relative border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white"><i class="fa-brands fa-python text-python-yellow mr-3"></i>Tại Sao Nên Học ESP32 Bằng MicroPython?</h2>
-                <p class="mt-4 text-lg text-slate-400">Thay vì sử dụng C/C++ khô khan với cú pháp phức tạp, Python mở ra cánh cửa sáng tạo phần cứng nhanh chóng và trực quan nhất cho học sinh.</p>
+                <span class="text-xs font-bold uppercase tracking-wider text-python-yellow bg-yellow-950/50 border border-yellow-800/60 px-3 py-1 rounded-full mb-3 inline-block">
+                    Định Hướng Công Nghệ 4.0
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading">
+                    <i class="fa-brands fa-python text-python-yellow mr-3"></i>Tại Sao Nên Học ESP32 Bằng MicroPython?
+                </h2>
+                <p class="mt-4 text-base sm:text-lg text-slate-400 max-w-3xl mx-auto">
+                    Thay vì sử dụng C/C++ khô khan với cú pháp con trỏ phức tạp, MicroPython mở ra cánh cửa sáng tạo phần cứng nhanh chóng, trực quan và hiện đại nhất cho học sinh lứa tuổi THCS & THPT.
+                </p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -131,130 +261,201 @@
                     <div class="w-14 h-14 bg-slate-900 text-python-yellow rounded-xl flex items-center justify-center mb-6 text-2xl border border-slate-700 shadow-inner group-hover:bg-python-yellow group-hover:text-slate-900 transition-colors">
                         <i class="fa-solid fa-code"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Cú Pháp "Sạch" & Dễ Hiểu</h3>
-                    <p class="text-slate-400 leading-relaxed">Không còn lỗi thiếu dấu chấm phẩy `;` hay lỗi biên dịch bộ nhớ như C++. Python ép học sinh viết code thụt lề chuẩn chỉ, cấu trúc như tiếng Anh, giúp các em tập trung vào <strong>tư duy thuật toán</strong> thay vì đánh vật với cú pháp.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white font-heading">Cú Pháp "Sạch" & Dễ Hiểu</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Không còn lỗi thiếu dấu chấm phẩy <code class="text-python-yellow">;</code> hay rò rỉ bộ nhớ con trỏ như C++. Python ép học sinh viết code thụt lề chuẩn chỉ, cấu trúc như tiếng Anh, giúp các em tập trung vào <strong>tư duy thuật toán</strong> thay vì đánh vật với cú pháp.
+                    </p>
                 </div>
                 <!-- Benefit 2 -->
-                <div class="bg-iot-panel p-8 rounded-2xl border border-slate-700 hover:border-python-blue transition group relative overflow-hidden">
-                    <div class="w-14 h-14 bg-slate-900 text-python-blue rounded-xl flex items-center justify-center mb-6 text-2xl border border-slate-700 shadow-inner group-hover:bg-python-blue group-hover:text-white transition-colors">
+                <div class="bg-iot-panel p-8 rounded-2xl border border-slate-700 hover:border-cyan-400 transition group relative overflow-hidden">
+                    <div class="w-14 h-14 bg-slate-900 text-cyan-400 rounded-xl flex items-center justify-center mb-6 text-2xl border border-slate-700 shadow-inner group-hover:bg-cyan-400 group-hover:text-slate-950 transition-colors">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Tương Tác Thời Gian Thực (REPL)</h3>
-                    <p class="text-slate-400 leading-relaxed">Với Thonny IDE, học sinh gõ lệnh <code>led.value(1)</code> và đèn thực tế sáng lên ngay lập tức! Không tốn vài phút chờ biên dịch (compile) như Arduino. Việc gỡ lỗi (Debug) trở nên siêu tốc và hứng thú.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white font-heading">Tương Tác Thời Gian Thực (REPL)</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Với Thonny IDE, học sinh gõ lệnh <code class="text-cyan-300 font-mono">led.value(1)</code> và đèn thực tế sáng lên ngay lập tức! Không tốn vài phút chờ nạp biên dịch (compile) như Arduino. Việc gỡ lỗi (Debug) trở nên siêu tốc, sinh động và đầy cảm hứng.
+                    </p>
                 </div>
                 <!-- Benefit 3 -->
-                <div class="bg-iot-panel p-8 rounded-2xl border border-slate-700 hover:border-iot-cyan transition group relative overflow-hidden">
-                    <div class="w-14 h-14 bg-slate-900 text-iot-cyan rounded-xl flex items-center justify-center mb-6 text-2xl border border-slate-700 shadow-inner group-hover:bg-iot-cyan group-hover:text-slate-900 transition-colors">
+                <div class="bg-iot-panel p-8 rounded-2xl border border-slate-700 hover:border-blue-400 transition group relative overflow-hidden">
+                    <div class="w-14 h-14 bg-slate-900 text-blue-400 rounded-xl flex items-center justify-center mb-6 text-2xl border border-slate-700 shadow-inner group-hover:bg-blue-400 group-hover:text-white transition-colors">
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Thư Viện Internet Đồ Sộ</h3>
-                    <p class="text-slate-400 leading-relaxed">Sức mạnh của ESP32 là Wi-Fi. MicroPython cung cấp các thư viện <code>socket</code>, <code>requests</code>, <code>mqtt</code> cực kỳ dễ dùng. Trẻ có thể tự tạo Web Server, gửi tin nhắn Telegram, làm Nhà thông minh chỉ với vài chục dòng code.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white font-heading">Hệ Sinh Thái Mạng Sẵn Có</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Sức mạnh vượt trội của ESP32 là Wi-Fi & Bluetooth. MicroPython cung cấp các module chuẩn <code class="text-blue-300 font-mono">socket</code>, <code class="text-blue-300 font-mono">urequests</code>, <code class="text-blue-300 font-mono">umqtt.simple</code>. Học sinh có thể tự tạo Web Server, gửi cảnh báo Telegram, tạo Smart Home chỉ với vài chục dòng code.
+                    </p>
                 </div>
             </div>
 
-            <!-- Course Stats -->
-            <div class="mt-16 bg-gradient-to-r from-iot-panel to-slate-900 rounded-3xl border border-slate-700 p-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+            <!-- Course Stats Banner -->
+            <div class="mt-16 bg-gradient-to-r from-iot-panel via-slate-900 to-slate-950 rounded-3xl border border-slate-700 p-8 md:p-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
                 <div>
-                    <div class="text-5xl font-extrabold mb-2 text-python-yellow font-mono">48</div>
-                    <div class="text-slate-400 font-semibold uppercase tracking-wider text-sm">Buổi Học</div>
+                    <div class="text-4xl md:text-5xl font-extrabold mb-2 text-python-yellow font-mono">48</div>
+                    <div class="text-slate-400 font-semibold uppercase tracking-wider text-xs md:text-sm">Buổi Học Thực Chiến</div>
                 </div>
                 <div>
-                    <div class="text-5xl font-extrabold mb-2 text-python-blue font-mono">20+</div>
-                    <div class="text-slate-400 font-semibold uppercase tracking-wider text-sm">Module Phần Cứng</div>
+                    <div class="text-4xl md:text-5xl font-extrabold mb-2 text-cyan-400 font-mono">20+</div>
+                    <div class="text-slate-400 font-semibold uppercase tracking-wider text-xs md:text-sm">Module Phần Cứng</div>
                 </div>
                 <div>
-                    <div class="text-5xl font-extrabold mb-2 text-iot-cyan font-mono">04</div>
-                    <div class="text-slate-400 font-semibold uppercase tracking-wider text-sm">Học Phần Cốt Lõi</div>
+                    <div class="text-4xl md:text-5xl font-extrabold mb-2 text-python-blue font-mono">04</div>
+                    <div class="text-slate-400 font-semibold uppercase tracking-wider text-xs md:text-sm">Học Phần Chuyên Sâu</div>
                 </div>
                 <div>
-                    <div class="text-5xl font-extrabold mb-2 text-purple-400 font-mono">1 Yr</div>
-                    <div class="text-slate-400 font-semibold uppercase tracking-wider text-sm">Thời Gian Đào Tạo</div>
+                    <div class="text-4xl md:text-5xl font-extrabold mb-2 text-emerald-400 font-mono">9 - 12</div>
+                    <div class="text-slate-400 font-semibold uppercase tracking-wider text-xs md:text-sm">Tháng Đào Tạo Trọn Gói</div>
+                </div>
+            </div>
+
+            <!-- 4 Tiers of Growth -->
+            <div class="mt-12 bg-slate-900/60 p-6 md:p-8 rounded-2xl border border-slate-800">
+                <h3 class="text-lg md:text-xl font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-stairs text-cyan-400"></i> Nấc Thang Trưởng Thành Của Học Viên Tại LapTrinhRobot.com:
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs md:text-sm">
+                    <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700">
+                        <span class="text-slate-400 font-bold block mb-1">Cấp độ 1: Thao tác điện tử</span>
+                        <p class="text-slate-300">Nắm vững điện áp 3.3V/5V, chân GPIO, điện trở kéo lên/xuống và an toàn linh kiện.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700">
+                        <span class="text-cyan-400 font-bold block mb-1">Cấp độ 2: Xử lý tín hiệu số</span>
+                        <p class="text-slate-300">Đọc cảm biến ADC, xuất xung PWM làm mờ đèn, giao tiếp chuẩn I2C màn hình OLED.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700">
+                        <span class="text-python-yellow font-bold block mb-1">Cấp độ 3: Kỹ sư mạng IoT</span>
+                        <p class="text-slate-300">Làm chủ Socket HTTP, cấu trúc Publish/Subscribe MQTT, tương tác REST API đám mây.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700">
+                        <span class="text-emerald-400 font-bold block mb-1">Cấp độ 4: Nhà sáng chế độc lập</span>
+                        <p class="text-slate-300">Đóng gói sản phẩm, đấu nối nguồn 220V qua Relay, thiết kế vỏ hộp và bảo vệ đồ án.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- MASTERCLASS 48 SESSIONS ROADMAP -->
     <section id="lo-trinh" class="py-20 bg-iot-darker">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white"><i class="fa-solid fa-layer-group text-iot-cyan mr-3"></i>Lộ Trình Masterclass ESP32: 48 Buổi</h2>
-                <p class="mt-4 text-lg text-slate-400">Thiết kế cho hành trình 9 - 12 tháng. Đủ sâu để học sinh hoàn toàn làm chủ ngôn ngữ Python và chế tạo thiết bị IoT độc lập.</p>
+                <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950/60 border border-cyan-800 px-3 py-1 rounded-full mb-3 inline-block">
+                    Khung Đào Tạo Toàn Diện
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading">
+                    <i class="fa-solid fa-layer-group text-cyan-400 mr-3"></i>Lộ Trình Masterclass ESP32: 48 Buổi
+                </h2>
+                <p class="mt-4 text-base sm:text-lg text-slate-400 max-w-3xl mx-auto">
+                    Thiết kế cho hành trình 9 - 12 tháng. Đủ sâu và thực chiến để học sinh THCS/THPT hoàn toàn làm chủ ngôn ngữ Python và chế tạo thiết bị IoT độc lập.
+                </p>
             </div>
 
             <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
                 
                 <!-- Học phần 1 -->
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-iot-darker bg-slate-400 text-iot-darker font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"><i class="fa-solid fa-1"></i></div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-iot-panel border border-slate-700 shadow-lg group-hover:border-slate-300 transition">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-white">Nền Tảng MicroPython & Tín Hiệu Cơ Bản</h3>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-iot-darker bg-slate-400 text-iot-darker font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="fa-solid fa-1"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-8 rounded-2xl bg-iot-panel border border-slate-700 shadow-lg group-hover:border-slate-300 transition">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Nền Tảng MicroPython & Tín Hiệu Cơ Bản</h3>
                         </div>
-                        <span class="inline-block bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1 rounded mb-4">Buổi 1 - 12</span>
-                        <p class="text-slate-400 mb-4 text-sm">Học sinh nạp firmware MicroPython vào chip ESP32. Học cú pháp Python chuẩn và cách điều khiển tín hiệu Điện tử cơ sở.</p>
-                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
-                            <ul class="list-disc pl-5 text-slate-400 space-y-2 text-sm marker:text-slate-500">
-                                <li><strong>B1-B4 (Core Python):</strong> Cài đặt Thonny IDE. Biến, Kiểu dữ liệu, Cấu trúc <code class="text-python-yellow">if/elif</code>, Vòng lặp <code class="text-python-blue">for/while</code>, Functions, Lists.</li>
-                                <li><strong>B5-B8 (Digital & PWM):</strong> Thư viện <code class="text-python-yellow">machine.Pin</code>. Nháy LED, Đèn giao thông. Băm xung PWM làm hiệu ứng đèn nhịp thở (Breathing LED).</li>
-                                <li><strong>B9-B12 (Input & ADC):</strong> Xử lý nút nhấn, Kỹ thuật chống dội phím (Debounce). Bộ chuyển đổi tương tự-số (ADC) đọc Biến trở, Cảm biến ánh sáng (LDR).</li>
+                        <span class="inline-block bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1 rounded mb-4">Buổi 1 - 12 (3 Tháng)</span>
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Học sinh nạp firmware MicroPython vào chip ESP32. Học cú pháp Python chuẩn và cách điều khiển tín hiệu Điện tử cơ sở qua chân GPIO.
+                        </p>
+                        <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-700/80">
+                            <ul class="list-disc pl-5 text-slate-400 space-y-2.5 text-xs md:text-sm marker:text-slate-400">
+                                <li><strong>B1-B4 (Core Python & Thonny):</strong> Cài đặt driver CP2102/CH340, nạp firmware MicroPython. Biến, kiểu dữ liệu, cấu trúc rẽ nhánh <code class="text-python-yellow">if/elif</code>, vòng lặp <code class="text-cyan-400">for/while</code>, Functions, Lists.</li>
+                                <li><strong>B5-B8 (Digital Out & PWM):</strong> Thư viện <code class="text-python-yellow">machine.Pin</code>. Nháy LED, mô phỏng đèn giao thông ngã tư. Băm xung PWM (<code class="text-python-yellow">machine.PWM</code>) làm hiệu ứng đèn nhịp thở (Breathing LED) và điều chỉnh độ sáng.</li>
+                                <li><strong>B9-B12 (Digital In & ADC):</strong> Xử lý nút nhấn, kỹ thuật chống dội phím (Debounce). Bộ chuyển đổi tương tự - số (ADC 12-bit) đọc Biến trở, cảm biến ánh sáng quang trở (LDR) làm đèn tự bật khi trời tối.</li>
                             </ul>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+                            <span><i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Sản phẩm:</span>
+                            <span class="text-white font-semibold">Trạm Đèn Giao Thông & Đèn Ngủ Thông Minh LDR</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Học phần 2 -->
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-iot-darker bg-python-blue text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"><i class="fa-solid fa-2"></i></div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-iot-panel border border-slate-700 shadow-lg group-hover:border-python-blue transition">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-white">Giao Tiếp Cảm Biến & Cơ Cấu Chấp Hành</h3>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-iot-darker bg-python-blue text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="fa-solid fa-2"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-8 rounded-2xl bg-iot-panel border border-slate-700 shadow-lg group-hover:border-python-blue transition">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Giao Tiếp Cảm Biến & Cơ Cấu Chấp Hành</h3>
                         </div>
-                        <span class="inline-block bg-blue-900/50 text-python-blue text-xs font-bold px-3 py-1 rounded mb-4 border border-blue-800">Buổi 13 - 24</span>
-                        <p class="text-slate-400 mb-4 text-sm">Giao tiếp với các module phức tạp qua chuẩn giao tiếp công nghiệp. Thu thập dữ liệu thực tế và tạo phản hồi vật lý.</p>
-                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
-                            <ul class="list-disc pl-5 text-slate-400 space-y-2 text-sm marker:text-python-blue">
-                                <li><strong>B13-B16 (I2C Protocol):</strong> Nguyên lý bus I2C. Giao tiếp hiển thị dữ liệu lên màn hình LCD 16x2 và OLED SSD1306. Lập trình vẽ hình học trên OLED.</li>
-                                <li><strong>B17-B20 (Advanced Sensors):</strong> Đọc nhiệt độ/độ ẩm số (DHT11/DHT22). Đo khoảng cách chính xác bằng sóng siêu âm (HC-SR04) để làm radar lùi xe.</li>
-                                <li><strong>B21-B24 (Actuators):</strong> Điều khiển góc quay Động cơ Servo (Làm barie cửa tự động). Lập trình Động cơ bước (Stepper). Phát nốt nhạc qua còi Buzzer.</li>
+                        <span class="inline-block bg-blue-950 text-cyan-300 text-xs font-bold px-3 py-1 rounded mb-4 border border-blue-800">Buổi 13 - 24 (3 Tháng)</span>
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Giao tiếp với các module phức tạp qua chuẩn giao tiếp công nghiệp. Thu thập dữ liệu thực tế và tạo phản hồi vật lý linh hoạt.
+                        </p>
+                        <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-700/80">
+                            <ul class="list-disc pl-5 text-slate-400 space-y-2.5 text-xs md:text-sm marker:text-cyan-400">
+                                <li><strong>B13-B16 (Chuẩn Bus I2C):</strong> Nguyên lý bus 2 dây SDA/SCL. Giao tiếp hiển thị dữ liệu lên màn hình LCD 16x2 (I2C Backpack) và màn hình OLED SSD1306 (128x64). Lập trình vẽ hình học và hoạt ảnh trên OLED.</li>
+                                <li><strong>B17-B20 (Advanced Sensors):</strong> Đọc nhiệt độ và độ ẩm số (DHT11/DHT22) với thư viện <code class="text-python-yellow">dht</code>. Đo khoảng cách chính xác bằng cảm biến siêu âm (HC-SR04) để làm radar lùi xe và đo mực nước bồn chứa.</li>
+                                <li><strong>B21-B24 (Actuators & Sound):</strong> Điều khiển góc quay động cơ Servo SG90 (Làm barie đỗ xe tự động). Lập trình góc quay động cơ bước (Stepper 28BYJ-48). Phát nốt nhạc giai điệu qua còi chíp Buzzer PWM.</li>
                             </ul>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+                            <span><i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Sản phẩm:</span>
+                            <span class="text-white font-semibold">Trạm Thời Tiết Mini OLED & Radar Siêu Âm Đo Khoảng Cách</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Học phần 3 -->
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-iot-darker bg-python-yellow text-slate-900 font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"><i class="fa-solid fa-3"></i></div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-iot-panel border border-slate-700 shadow-lg group-hover:border-python-yellow transition">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-white">Khai Phá Mạng Wi-Fi & Internet (IoT)</h3>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-iot-darker bg-python-yellow text-slate-900 font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="fa-solid fa-3"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-8 rounded-2xl bg-iot-panel border border-slate-700 shadow-lg group-hover:border-python-yellow transition">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Khai Phá Mạng Wi-Fi & Internet (IoT)</h3>
                         </div>
-                        <span class="inline-block bg-yellow-900/30 text-python-yellow text-xs font-bold px-3 py-1 rounded mb-4 border border-yellow-700/50">Buổi 25 - 36</span>
-                        <p class="text-slate-400 mb-4 text-sm">Cốt lõi của khóa học. Đưa phần cứng cục bộ kết nối toàn cầu thông qua chip Wi-Fi của ESP32.</p>
-                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
-                            <ul class="list-disc pl-5 text-slate-400 space-y-2 text-sm marker:text-python-yellow">
-                                <li><strong>B25-B28 (Local Web Server):</strong> Dùng thư viện <code class="text-python-yellow">network</code> và <code class="text-python-yellow">socket</code>. ESP32 tự host một trang HTML để điều khiển thiết bị qua trình duyệt điện thoại.</li>
-                                <li><strong>B29-B32 (MQTT Protocol):</strong> Kiến trúc Publish/Subscribe. Đẩy dữ liệu cảm biến lên nền tảng đám mây (Adafruit IO, Blynk IoT).</li>
-                                <li><strong>B33-B36 (HTTP API):</strong> Thư viện <code class="text-python-yellow">urequests</code>. Gọi API lấy dữ liệu thời tiết (OpenWeatherMap) thời gian thực và đồng bộ đồng hồ (NTP).</li>
+                        <span class="inline-block bg-yellow-950/60 text-python-yellow text-xs font-bold px-3 py-1 rounded mb-4 border border-yellow-700/50">Buổi 25 - 36 (3 Tháng)</span>
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Cốt lõi của khóa học. Đưa phần cứng cục bộ kết nối mạng toàn cầu thông qua chip Wi-Fi tích hợp sẵn của ESP32.
+                        </p>
+                        <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-700/80">
+                            <ul class="list-disc pl-5 text-slate-400 space-y-2.5 text-xs md:text-sm marker:text-python-yellow">
+                                <li><strong>B25-B28 (Local Web Server):</strong> Dùng thư viện <code class="text-python-yellow">network.WLAN</code> và <code class="text-python-yellow">socket</code>. ESP32 tự tạo Access Point hoặc kết nối Router nhà, host một trang HTML để điều khiển thiết bị trực tiếp qua trình duyệt điện thoại.</li>
+                                <li><strong>B29-B32 (Giao thức MQTT & Cloud IoT):</strong> Kiến trúc Publish/Subscribe. Đẩy dữ liệu cảm biến lên nền tảng đám mây (Adafruit IO, Blynk IoT, HiveMQ). Thiết kế App Dashboard trên điện thoại để điều khiển từ bất cứ đâu qua 4G/5G.</li>
+                                <li><strong>B33-B36 (HTTP REST API & NTP):</strong> Thư viện <code class="text-python-yellow">urequests</code>. Gọi API lấy dữ liệu thời tiết thực tế (OpenWeatherMap) và đồng bộ đồng hồ mạng chính xác tới từng giây qua giao thức NTP.</li>
                             </ul>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+                            <span><i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Sản phẩm:</span>
+                            <span class="text-white font-semibold">Web Server Bật/Tắt Thiết Bị Qua Điện Thoại & Cloud Dashboard</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Học phần 4 -->
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-iot-darker bg-iot-cyan text-iot-darker font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"><i class="fa-solid fa-4"></i></div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-iot-panel border border-slate-700 shadow-lg group-hover:border-iot-cyan transition">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-2xl font-bold text-white">Smart Home & Đồ Án Tốt Nghiệp</h3>
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-iot-darker bg-cyan-400 text-slate-950 font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i class="fa-solid fa-4"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-8 rounded-2xl bg-iot-panel border border-slate-700 shadow-lg group-hover:border-cyan-400 transition">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl md:text-2xl font-bold text-white font-heading">Smart Home, Bảo Mật & Đồ Án Tốt Nghiệp</h3>
                         </div>
-                        <span class="inline-block bg-cyan-900/30 text-iot-cyan text-xs font-bold px-3 py-1 rounded mb-4 border border-cyan-800">Buổi 37 - 48</span>
-                        <p class="text-slate-400 mb-4 text-sm">Gắn kết tất cả kiến thức. Đóng gói sản phẩm phần cứng, xử lý điện áp cao và triển khai dự án Hackathon.</p>
-                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
-                            <ul class="list-disc pl-5 text-slate-400 space-y-2 text-sm marker:text-iot-cyan">
-                                <li><strong>B37-B40 (Security & 220V):</strong> Điều khiển Module Relay đóng ngắt quạt/đèn 220V thực tế. Giao tiếp SPI đọc thẻ từ bảo mật (RFID RC522).</li>
-                                <li><strong>B41-B44 (Telegram Bot):</strong> Lập trình ESP32 tự động gửi tin nhắn/cảnh báo vào nhóm chat Telegram của gia đình khi có trộm hoặc cháy nổ.</li>
-                                <li><strong>B45-B48 (Hackathon Final):</strong> Tự thiết kế và chế tạo sản phẩm lớn (Nhà kính thông minh tự tưới, Hệ thống cửa nhận diện vân tay/thẻ, Trạm quan trắc khí hậu). Bảo vệ đồ án.</li>
+                        <span class="inline-block bg-cyan-950 text-cyan-300 text-xs font-bold px-3 py-1 rounded mb-4 border border-cyan-800">Buổi 37 - 48 (3 Tháng)</span>
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Gắn kết toàn diện kiến thức. Đóng gói sản phẩm phần cứng, xử lý đóng ngắt điện lưới 220V và triển khai dự án Hackathon tốt nghiệp.
+                        </p>
+                        <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-700/80">
+                            <ul class="list-disc pl-5 text-slate-400 space-y-2.5 text-xs md:text-sm marker:text-cyan-400">
+                                <li><strong>B37-B40 (Relay 220V & Bảo mật RFID):</strong> Nguyên lý cách ly quang (Optocoupler), điều khiển Module Relay đóng ngắt quạt/đèn 220V an toàn. Giao tiếp bus SPI đọc thẻ từ bảo mật (RFID RC522) làm khóa cửa vân tay/thẻ từ.</li>
+                                <li><strong>B41-B44 (Telegram Bot & Cảnh Báo):</strong> Lập trình ESP32 tự động gửi tin nhắn/ảnh chụp cảnh báo vào nhóm chat Telegram của gia đình khi phát hiện rò rỉ khí gas, khói hoặc đột nhập.</li>
+                                <li><strong>B45-B48 (Hackathon Demo Day):</strong> Học sinh tự thiết kế, lập trình và chế tạo sản phẩm hoàn chỉnh (Nhà kính thông minh tự tưới, Hệ thống cửa nhận diện thẻ từ, Trạm quan trắc môi trường thông minh). Thuyết trình bảo vệ đồ án trước Hội đồng.</li>
                             </ul>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+                            <span><i class="fa-solid fa-trophy text-amber-400 mr-1"></i> Sản phẩm:</span>
+                            <span class="text-white font-semibold">Đồ Án Tốt Nghiệp Smart Home Hoàn Chỉnh + Báo Cáo Kỹ Thuật</span>
                         </div>
                     </div>
                 </div>
@@ -263,170 +464,232 @@
         </div>
     </section>
 
+    <!-- MÔ PHỎNG BÀI HỌC: LOCAL WEB SERVER (THONNY IDE) -->
     <section id="bai-hoc" class="py-20 bg-iot-dark relative border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white"><i class="fa-solid fa-laptop-code text-python-blue mr-3"></i>Mô Phỏng Bài Giảng: Local Web Server</h2>
-                <p class="mt-4 text-lg text-slate-400">Trải nghiệm Bài học số 26: Dùng MicroPython thư viện Socket để điều khiển đèn nhà qua điện thoại di động.</p>
+                <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950/60 border border-cyan-800 px-3 py-1 rounded-full mb-3 inline-block">
+                    Trải Nghiệm Tiết Học Thực Tế
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading">
+                    <i class="fa-solid fa-laptop-code text-cyan-400 mr-3"></i>Mô Phỏng Bài Giảng: Local Web Server
+                </h2>
+                <p class="mt-4 text-base sm:text-lg text-slate-400 max-w-3xl mx-auto">
+                    Trải nghiệm Bài học số 26: Dùng MicroPython với thư viện Socket tiêu chuẩn để biến ESP32 thành Web Server điều khiển thiết bị qua điện thoại di động.
+                </p>
             </div>
 
             <!-- Tabs -->
             <div class="flex justify-start sm:justify-center border-b border-slate-700 mb-8 overflow-x-auto">
-                <button onclick="switchTab('explore')" id="btn-explore" class="tab-btn active px-6 py-4 text-lg transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium">1. Khám Phá Kiến Trúc</button>
-                <button onclick="switchTab('create')" id="btn-create" class="tab-btn px-6 py-4 text-lg transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium">2. Viết Code (Thonny IDE)</button>
-                <button onclick="switchTab('share')" id="btn-share" class="tab-btn px-6 py-4 text-lg transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium">3. Thực Tế & Thử Thách</button>
+                <button onclick="switchTab('explore')" id="btn-explore" class="tab-btn active px-6 py-4 text-base md:text-lg transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium">
+                    1. Khám Phá Kiến Trúc Mạng
+                </button>
+                <button onclick="switchTab('create')" id="btn-create" class="tab-btn px-6 py-4 text-base md:text-lg transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium">
+                    2. Viết Code MicroPython (Thonny IDE)
+                </button>
+                <button onclick="switchTab('share')" id="btn-share" class="tab-btn px-6 py-4 text-base md:text-lg transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium">
+                    3. Triển Khai Thực Tế & Mở Rộng
+                </button>
             </div>
 
             <!-- Tab Contents -->
             <div class="bg-iot-panel rounded-2xl p-6 sm:p-10 border border-slate-700 shadow-2xl min-h-[550px]">
                 
                 <!-- Explore Content -->
-                <div id="content-explore" class="block animate-fade-in">
+                <div id="content-explore" class="block">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-slate-400 text-iot-darker rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">1</div>
-                        <h3 class="text-2xl font-bold text-white">Client - Server với Python Sockets</h3>
+                        <div class="w-12 h-12 bg-cyan-500 text-slate-950 rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">1</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white font-heading">Mô Hình Client - Server Với Python Sockets</h3>
+                            <p class="text-slate-400 text-xs md:text-sm">Hiểu tường tận cách các thiết bị trên mạng giao tiếp với nhau trước khi gõ dòng code đầu tiên.</p>
+                        </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div>
-                            <p class="text-slate-300 mb-4">Trước khi gõ code, học sinh cần hiểu cách các máy tính "nói chuyện" trên mạng:</p>
-                            <ul class="list-none space-y-4 text-slate-400">
-                                <li class="bg-slate-900/80 p-4 rounded-lg border-l-4 border-python-blue">
-                                    <strong class="text-white block mb-1">Thiết bị đóng vai trò gì?</strong>
-                                    Điện thoại của bạn là <strong>Client</strong>. Chip ESP32 đóng vai trò là <strong>Web Server</strong>, chờ đợi các yêu cầu gửi đến.
+                            <p class="text-slate-300 mb-4 text-sm leading-relaxed">
+                                Trong mô hình mạng IoT cục bộ, mỗi bên đảm nhiệm một vai trò rõ ràng:
+                            </p>
+                            <ul class="space-y-4 text-slate-400 text-sm">
+                                <li class="bg-slate-900/80 p-4 rounded-xl border-l-4 border-cyan-400">
+                                    <strong class="text-white block mb-1">1. Ai là Client? Ai là Server?</strong>
+                                    Điện thoại di động hoặc Laptop của bạn là <strong>Client</strong> (Bên gửi yêu cầu). Bo mạch ESP32 đóng vai trò là <strong>Web Server</strong> (Bên tiếp nhận và xử lý yêu cầu).
                                 </li>
-                                <li class="bg-slate-900/80 p-4 rounded-lg border-l-4 border-python-yellow">
-                                    <strong class="text-white block mb-1">Kết nối như thế nào?</strong>
-                                    ESP32 dùng lệnh <code>network.WLAN()</code> kết nối vào cục Wi-Fi nhà bạn và lấy một địa chỉ IP (VD: 192.168.1.50). 
+                                <li class="bg-slate-900/80 p-4 rounded-xl border-l-4 border-python-yellow">
+                                    <strong class="text-white block mb-1">2. Kết nối Wi-Fi & Cấp phát IP:</strong>
+                                    ESP32 dùng module <code class="text-python-yellow">network.WLAN(network.STA_IF)</code> kết nối vào Access Point nhà bạn, nhận địa chỉ IP nội bộ (ví dụ: <code class="text-python-yellow">192.168.1.150</code>).
                                 </li>
-                                <li class="bg-slate-900/80 p-4 rounded-lg border-l-4 border-iot-cyan">
-                                    <strong class="text-white block mb-1">Xử lý Request (Socket):</strong>
-                                    Khi Client vào IP đó, ESP32 sẽ gửi trả (Response) một trang HTML chứa nút bấm. Nếu Client bấm nút "ON", URL thay đổi thành <code>/?led=on</code>, ESP32 sẽ phân tích chuỗi này để cấp điện cho đèn.
+                                <li class="bg-slate-900/80 p-4 rounded-xl border-l-4 border-python-blue">
+                                    <strong class="text-white block mb-1">3. Xử lý Request HTTP (Socket):</strong>
+                                    Khi Client truy cập IP, ESP32 gửi trả mã HTML chứa các nút bấm. Khi người dùng bấm nút "Bật Đèn", trình duyệt gửi request <code class="text-cyan-300">GET /?led=on HTTP/1.1</code>. ESP32 phân tích chuỗi ký tự này và lệnh cho chân GPIO bật Relay!
                                 </li>
                             </ul>
                         </div>
                         <div class="bg-slate-900 p-6 rounded-xl border border-slate-700 flex flex-col justify-center items-center text-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
                             <div class="flex items-center justify-between w-full max-w-sm mb-6 text-slate-400 relative z-10">
                                 <div class="flex flex-col items-center">
-                                    <i class="fa-solid fa-mobile-screen-button text-4xl mb-2 text-white"></i>
-                                    <span class="text-xs">Client Browser</span>
+                                    <div class="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-2xl text-white mb-2 shadow-md">
+                                        <i class="fa-solid fa-mobile-screen-button"></i>
+                                    </div>
+                                    <span class="text-xs font-semibold text-slate-300">Client (Điện thoại)</span>
                                 </div>
                                 <div class="flex-1 flex flex-col items-center px-4">
-                                    <i class="fa-solid fa-wifi text-iot-cyan text-2xl mb-1 animate-pulse"></i>
+                                    <i class="fa-solid fa-wifi text-cyan-400 text-2xl mb-1 animate-pulse"></i>
                                     <div class="h-0.5 w-full bg-slate-600 relative">
-                                        <div class="absolute -top-1.5 left-1/2 -translate-x-1/2 bg-slate-800 px-2 text-[10px] text-iot-cyan">HTTP GET /?led=on</div>
+                                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-slate-800 px-2 text-[10px] text-cyan-400 rounded border border-slate-700 font-mono">
+                                            GET /?led=on
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center">
-                                    <i class="fa-solid fa-microchip text-4xl mb-2 text-python-yellow"></i>
-                                    <span class="text-xs">ESP32 Server</span>
+                                    <div class="w-14 h-14 rounded-2xl bg-slate-800 border border-cyan-500/50 flex items-center justify-center text-2xl text-python-yellow mb-2 shadow-md">
+                                        <i class="fa-solid fa-microchip"></i>
+                                    </div>
+                                    <span class="text-xs font-semibold text-slate-300">ESP32 Server</span>
                                 </div>
                             </div>
-                            <h4 class="text-white font-bold text-lg mb-2 relative z-10">Tư duy Giao thức mạng</h4>
-                            <p class="text-slate-400 text-sm relative z-10">Trẻ hiểu rõ cội nguồn của việc duyệt web thay vì chỉ dùng các nền tảng có sẵn.</p>
+                            <h4 class="text-white font-bold text-lg mb-2 relative z-10 font-heading">Tư Duy Giao Thức Mạng Gốc</h4>
+                            <p class="text-slate-400 text-xs sm:text-sm relative z-10 leading-relaxed max-w-sm">
+                                Học sinh hiểu rõ bản chất của Internet thay vì chỉ sử dụng các thư viện "mì ăn liền". Đây là hành trang kỹ thuật vô giá để bước vào chuyên ngành Kỹ sư Mạng và Hệ thống Nhúng.
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Create Content -->
-                <div id="content-create" class="hidden animate-fade-in">
+                <div id="content-create" class="hidden">
                     <div class="flex items-center gap-4 mb-6">
                         <div class="w-12 h-12 bg-python-blue text-white rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">2</div>
-                        <h3 class="text-2xl font-bold text-white">Lập Trình MicroPython (Thonny IDE)</h3>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white font-heading">Lập Trình MicroPython Trong Thonny IDE</h3>
+                            <p class="text-slate-400 text-xs md:text-sm">Học sinh sử dụng thư viện socket mở cổng 80 chuẩn HTTP và bóc tách chuỗi HTTP Header truyền đến.</p>
+                        </div>
                     </div>
-                    
-                    <p class="text-slate-400 mb-4">Học sinh sử dụng thư viện socket để mở cổng 80 và phân tích chuỗi HTTP truyền đến.</p>
                     
                     <!-- Code snippet block mimicking Thonny IDE -->
                     <div class="rounded-xl overflow-hidden bg-slate-950 shadow-2xl border border-slate-700">
                         <div class="flex items-center px-4 py-3 bg-slate-900 border-b border-slate-800">
-                            <i class="fa-brands fa-python text-python-yellow mr-2"></i>
-                            <div class="text-xs text-slate-400 font-mono flex-1">main.py - Thonny</div>
-                            <div class="flex space-x-2">
-                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            <i class="fa-brands fa-python text-python-yellow mr-2 text-lg"></i>
+                            <div class="text-xs text-slate-300 font-mono flex-1">main.py - Thonny MicroPython (ESP32 @ COM3)</div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 font-mono">MicroPython v1.22</span>
+                                <div class="flex space-x-1.5">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="p-4 sm:p-6 text-sm sm:text-base overflow-x-auto code-font leading-relaxed">
+                        <div class="p-4 sm:p-6 text-xs sm:text-sm overflow-x-auto code-font leading-relaxed">
 <pre><code><span class="py-kw">import</span> machine
 <span class="py-kw">import</span> network
 <span class="py-kw">import</span> socket
 
-<span class="py-cmt"># Thiết lập chân GPIO điều khiển đèn</span>
+<span class="py-cmt"># 1. Khởi tạo chân GPIO số 2 nối với LED onboard hoặc Module Relay</span>
 led = machine.<span class="py-cls">Pin</span>(<span class="py-num">2</span>, machine.Pin.OUT)
 
-<span class="py-cmt"># Hàm HTML tạo giao diện Web</span>
+<span class="py-cmt"># 2. Hàm sinh mã HTML cho trang giao diện điều khiển</span>
 <span class="py-kw">def</span> <span class="py-func">web_page</span>():
-    html = <span class="py-str">"""&lt;html&gt;&lt;head&gt;&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;&lt;/head&gt;
-            &lt;body&gt;&lt;h1&gt;ESP32 Smart Home&lt;/h1&gt;
-            &lt;a href="/?led=on"&gt;&lt;button&gt;Bật Đèn&lt;/button&gt;&lt;/a&gt;
-            &lt;a href="/?led=off"&gt;&lt;button&gt;Tắt Đèn&lt;/button&gt;&lt;/a&gt;
-            &lt;/body&gt;&lt;/html&gt;"""</span>
+    led_state = <span class="py-str">"ON (BẬT)"</span> <span class="py-kw">if</span> led.<span class="py-func">value</span>() == <span class="py-num">1</span> <span class="py-kw">else</span> <span class="py-str">"OFF (TẮT)"</span>
+    html = <span class="py-str">f"""&lt;!DOCTYPE html&gt;&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+        &lt;title&gt;ESP32 Smart Home&lt;/title&gt;
+        &lt;style&gt;body {{ font-family: sans-serif; text-align: center; padding: 40px; background: #0f172a; color: white; }}
+               .btn {{ padding: 15px 30px; font-size: 18px; border-radius: 12px; border: none; cursor: pointer; }}
+               .btn-on {{ background: #22c55e; color: white; }} .btn-off {{ background: #ef4444; color: white; }}&lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;ESP32 Smart Home Dashboard&lt;/h1&gt;
+        &lt;p&gt;Trạng thái đèn hiện tại: &lt;strong&gt;{led_state}&lt;/strong&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;a href="/?led=on"&gt;&lt;button class="btn btn-on"&gt;BẬT ĐÈN&lt;/button&gt;&lt;/a&gt;
+           &lt;a href="/?led=off"&gt;&lt;button class="btn btn-off"&gt;TẮT ĐÈN&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;/body&gt;&lt;/html&gt;"""</span>
     <span class="py-kw">return</span> html
 
-<span class="py-cmt"># Mở Socket lắng nghe cổng 80 (HTTP)</span>
+<span class="py-cmt"># 3. Mở Socket lắng nghe cổng 80 (HTTP Server)</span>
 s = socket.<span class="py-func">socket</span>(socket.AF_INET, socket.SOCK_STREAM)
 s.<span class="py-func">bind</span>((<span class="py-str">''</span>, <span class="py-num">80</span>))
 s.<span class="py-func">listen</span>(<span class="py-num">5</span>)
+<span class="py-builtin">print</span>(<span class="py-str">"Server đang chạy trên cổng 80... Sẵn sàng nhận kết nối!"</span>)
 
+<span class="py-cmt"># 4. Vòng lặp chính tiếp nhận Client</span>
 <span class="py-kw">while True</span>:
     conn, addr = s.<span class="py-func">accept</span>()
+    <span class="py-builtin">print</span>(<span class="py-str">"Kết nối từ:"</span>, addr)
     request = conn.<span class="py-func">recv</span>(<span class="py-num">1024</span>)
     request_str = <span class="py-builtin">str</span>(request)
     
-    <span class="py-cmt"># Xử lý Logic</span>
+    <span class="py-cmt"># Phân tích lệnh GET</span>
     <span class="py-kw">if</span> <span class="py-str">'/?led=on'</span> <span class="py-kw">in</span> request_str:
         led.<span class="py-func">value</span>(<span class="py-num">1</span>)
+        <span class="py-builtin">print</span>(<span class="py-str">"=&gt; Lệnh: BẬT ĐÈN"</span>)
     <span class="py-kw">elif</span> <span class="py-str">'/?led=off'</span> <span class="py-kw">in</span> request_str:
         led.<span class="py-func">value</span>(<span class="py-num">0</span>)
+        <span class="py-builtin">print</span>(<span class="py-str">"=&gt; Lệnh: TẮT ĐÈN"</span>)
         
-    <span class="py-cmt"># Gửi trả trang Web cho điện thoại</span>
+    <span class="py-cmt"># Trả về trang Web cho Client</span>
     response = <span class="py-func">web_page</span>()
-    conn.<span class="py-func">send</span>(<span class="py-str">'HTTP/1.1 200 OK\n'</span>)
-    conn.<span class="py-func">send</span>(<span class="py-str">'Content-Type: text/html\n\n'</span>)
-    conn.<span class="py-func">send</span>(response)
+    conn.<span class="py-func">send</span>(<span class="py-str">'HTTP/1.1 200 OK\r\n'</span>)
+    conn.<span class="py-func">send</span>(<span class="py-str">'Content-Type: text/html\r\n'</span>)
+    conn.<span class="py-func">send</span>(<span class="py-str">'Connection: close\r\n\r\n'</span>)
+    conn.<span class="py-func">sendall</span>(response.<span class="py-func">encode</span>())
     conn.<span class="py-func">close</span>()</code></pre>
+                        </div>
+                        <div class="px-4 py-2.5 bg-slate-900 border-t border-slate-800 text-[11px] text-slate-400 font-mono flex items-center justify-between">
+                            <span><i class="fa-solid fa-terminal text-cyan-400 mr-1.5"></i> Shell: Server đang chạy trên cổng 80... Sẵn sàng nhận kết nối!</span>
+                            <span class="text-emerald-400"><i class="fa-solid fa-circle text-[8px] mr-1"></i> ESP32 Connected</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Share Content -->
-                <div id="content-share" class="hidden animate-fade-in">
+                <div id="content-share" class="hidden">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-python-yellow text-slate-900 rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">3</div>
-                        <h3 class="text-2xl font-bold text-white">Triển Khai & Bài Tập Mở Rộng</h3>
+                        <div class="w-12 h-12 bg-python-yellow text-slate-950 rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">3</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white font-heading">Triển Khai & Bài Tập Mở Rộng Kỹ Sư</h3>
+                            <p class="text-slate-400 text-xs md:text-sm">Từ thử nghiệm trên máy tính đến hệ thống phần cứng độc lập hoạt động 24/7.</p>
+                        </div>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div>
-                            <h4 class="font-bold text-lg text-white mb-4">Các bước thao tác trong Thonny:</h4>
-                            <ul class="list-none space-y-3 text-slate-300">
-                                <li class="bg-slate-900 p-4 rounded border border-slate-700 flex items-start">
-                                    <div class="text-green-400 mt-1 mr-3"><i class="fa-solid fa-play"></i></div>
+                            <h4 class="font-bold text-base md:text-lg text-white mb-4 font-heading">3 Bước Hoàn Thiện Dự Án Của Học Viên:</h4>
+                            <ul class="space-y-3 text-slate-300 text-xs md:text-sm">
+                                <li class="bg-slate-900 p-4 rounded-xl border border-slate-700 flex items-start">
+                                    <div class="text-emerald-400 mt-1 mr-3 shrink-0"><i class="fa-solid fa-play"></i></div>
                                     <div>
-                                        <strong class="block text-white">1. Chạy Code Trực Tiếp:</strong>
-                                        <span class="text-sm">Bấm F5 trên Thonny, không cần biên dịch tốn thời gian. Khung Shell sẽ báo địa chỉ IP ngay lập tức (VD: 192.168.1.100).</span>
+                                        <strong class="block text-white mb-0.5">1. Chạy Code Trực Tiếp (F5):</strong>
+                                        <span class="text-slate-400">Bấm F5 trên Thonny IDE. Khung Shell thông báo địa chỉ IP tức thì (VD: <code class="text-python-yellow">192.168.1.150</code>). Không cần tốn thời gian biên dịch lại.</span>
                                     </div>
                                 </li>
-                                <li class="bg-slate-900 p-4 rounded border border-slate-700 flex items-start">
-                                    <div class="text-iot-cyan mt-1 mr-3"><i class="fa-solid fa-mobile-screen"></i></div>
+                                <li class="bg-slate-900 p-4 rounded-xl border border-slate-700 flex items-start">
+                                    <div class="text-cyan-400 mt-1 mr-3 shrink-0"><i class="fa-solid fa-mobile-screen"></i></div>
                                     <div>
-                                        <strong class="block text-white">2. Test trên Điện Thoại:</strong>
-                                        <span class="text-sm">Mở Safari/Chrome, nhập IP vào. Bấm nút và quan sát đèn LED hoặc rơ-le (Relay) trên mạch đóng ngắt "tách tách".</span>
+                                        <strong class="block text-white mb-0.5">2. Điều Khiển Qua Trình Duyệt:</strong>
+                                        <span class="text-slate-400">Mở Safari hoặc Chrome trên iPhone/Android, nhập IP vào thanh địa chỉ. Bấm nút và nghe tiếng rơ-le (Relay) đóng ngắt "tách tách" bật tắt đèn thật!</span>
                                     </div>
                                 </li>
-                                <li class="bg-slate-900 p-4 rounded border border-slate-700 flex items-start">
-                                    <div class="text-python-blue mt-1 mr-3"><i class="fa-solid fa-save"></i></div>
+                                <li class="bg-slate-900 p-4 rounded-xl border border-slate-700 flex items-start">
+                                    <div class="text-python-blue mt-1 mr-3 shrink-0"><i class="fa-solid fa-floppy-disk"></i></div>
                                     <div>
-                                        <strong class="block text-white">3. Lưu vào Thiết Bị:</strong>
-                                        <span class="text-sm">Lưu file với tên <code>main.py</code> vào bộ nhớ của ESP32. Rút cáp máy tính, cắm sạc dự phòng, hệ thống sẽ tự chạy độc lập!</span>
+                                        <strong class="block text-white mb-0.5">3. Lưu Vào Chip & Chạy Độc Lập:</strong>
+                                        <span class="text-slate-400">Lưu file với tên <code class="text-python-yellow">main.py</code> trực tiếp vào bộ nhớ Flash của ESP32. Rút cáp khỏi máy tính, cắm sạc dự phòng: Thiết bị tự động khởi động và host web độc lập!</span>
                                     </div>
                                 </li>
                             </ul>
                         </div>
-                        <div class="bg-gradient-to-br from-slate-900 to-iot-darker border border-slate-700 p-8 rounded-xl flex items-center justify-center flex-col text-center shadow-inner">
-                            <i class="fa-brands fa-css3-alt text-5xl text-blue-400 mb-4"></i>
-                            <h4 class="font-bold text-xl text-white mb-2">Thử thách Web Design</h4>
-                            <p class="text-slate-400 text-sm mb-4">Trang web hiện tại đang rất xấu. Học sinh được yêu cầu tự học thêm CSS cơ bản để làm nút bấm to hơn, đổi màu xanh/đỏ tương ứng và thêm thông số Nhiệt độ phòng (đọc từ DHT11) lên trang web.</p>
+                        <div class="bg-gradient-to-br from-slate-900 to-iot-darker border border-slate-700 p-8 rounded-2xl flex items-center justify-center flex-col text-center shadow-inner">
+                            <div class="w-16 h-16 rounded-2xl bg-blue-950 border border-blue-800 text-blue-400 flex items-center justify-center text-3xl mb-4">
+                                <i class="fa-brands fa-css3-alt"></i>
+                            </div>
+                            <h4 class="font-bold text-xl text-white mb-2 font-heading">Thử Thách Nâng Cấp Sản Phẩm</h4>
+                            <p class="text-slate-400 text-xs md:text-sm mb-6 leading-relaxed">
+                                Học sinh được hướng dẫn tự viết thêm CSS hiện đại, tích hợp cảm biến nhiệt ẩm DHT11 để hiển thị thông số thời tiết trực tiếp lên trang Web, hoặc gắn thêm còi Buzzer phát âm thanh báo động.
+                            </p>
+                            <a href="#lo-trinh" class="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs transition shadow-md">
+                                <i class="fa-solid fa-arrow-up-right-from-square mr-1.5"></i> Xem Khung Học Phần 3 (IoT Cloud)
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -435,29 +698,163 @@ s.<span class="py-func">listen</span>(<span class="py-num">5</span>)
         </div>
     </section>
 
-    <footer class="bg-iot-darker text-slate-500 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex justify-center items-center gap-2 mb-6">
-                <i class="fa-solid fa-microchip text-python-blue text-2xl"></i>
-                <span class="font-extrabold text-xl text-white tracking-tight">ESP<span class="text-python-yellow">Python.</span></span>
+    <!-- HARDWARE TOOLKIT SHOWCASE -->
+    <section class="py-16 bg-slate-900/60 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950/60 border border-cyan-800 px-3 py-1 rounded-full mb-3 inline-block">
+                    Học Cụ Chuẩn Quốc Tế
+                </span>
+                <h2 class="text-3xl font-extrabold text-white font-heading">Bộ Kit Thực Hành ESP32 Đầy Đủ</h2>
+                <p class="mt-3 text-slate-400 text-sm md:text-base max-w-2xl mx-auto">
+                    Mỗi học viên được trang bị bộ Kit phần cứng độc quyền tại trung tâm hoặc hỗ trợ mang về nhà để thực hành xuyên suốt 48 buổi học.
+                </p>
             </div>
-            <p class="mb-2">Giáo trình Điện tử & IoT 48 Buổi dành cho Kỹ sư nhí, viết bằng MicroPython.</p>
-            <p class="text-sm mb-8">Nền tảng vững chắc để làm chủ Internet of Things và Hệ thống nhúng thời đại 4.0.</p>
-            <div class="flex justify-center space-x-6">
-                <a href="#" class="text-slate-500 hover:text-white transition"><i class="fa-brands fa-github fa-lg"></i></a>
-                <a href="#" class="text-slate-500 hover:text-white transition"><i class="fa-brands fa-python fa-lg"></i></a>
-                <a href="#" class="text-slate-500 hover:text-white transition"><i class="fa-solid fa-envelope fa-lg"></i></a>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+                <div class="bg-iot-panel p-4 rounded-xl border border-slate-700/80 hover:border-cyan-400 transition">
+                    <div class="text-3xl text-cyan-400 mb-2"><i class="fa-solid fa-microchip"></i></div>
+                    <h5 class="text-xs md:text-sm font-bold text-white mb-1">ESP32 NodeMCU</h5>
+                    <p class="text-[11px] text-slate-400">Wi-Fi & BLE 4.2</p>
+                </div>
+                <div class="bg-iot-panel p-4 rounded-xl border border-slate-700/80 hover:border-cyan-400 transition">
+                    <div class="text-3xl text-python-yellow mb-2"><i class="fa-solid fa-tv"></i></div>
+                    <h5 class="text-xs md:text-sm font-bold text-white mb-1">OLED SSD1306</h5>
+                    <p class="text-[11px] text-slate-400">128x64 Pixels I2C</p>
+                </div>
+                <div class="bg-iot-panel p-4 rounded-xl border border-slate-700/80 hover:border-cyan-400 transition">
+                    <div class="text-3xl text-emerald-400 mb-2"><i class="fa-solid fa-temperature-half"></i></div>
+                    <h5 class="text-xs md:text-sm font-bold text-white mb-1">DHT11 / DHT22</h5>
+                    <p class="text-[11px] text-slate-400">Cảm biến nhiệt ẩm</p>
+                </div>
+                <div class="bg-iot-panel p-4 rounded-xl border border-slate-700/80 hover:border-cyan-400 transition">
+                    <div class="text-3xl text-blue-400 mb-2"><i class="fa-solid fa-arrows-left-right"></i></div>
+                    <h5 class="text-xs md:text-sm font-bold text-white mb-1">HC-SR04</h5>
+                    <p class="text-[11px] text-slate-400">Sóng siêu âm đo cự ly</p>
+                </div>
+                <div class="bg-iot-panel p-4 rounded-xl border border-slate-700/80 hover:border-cyan-400 transition">
+                    <div class="text-3xl text-amber-400 mb-2"><i class="fa-solid fa-plug-circle-bolt"></i></div>
+                    <h5 class="text-xs md:text-sm font-bold text-white mb-1">Relay 5V 10A</h5>
+                    <p class="text-[11px] text-slate-400">Đóng ngắt điện 220V</p>
+                </div>
+                <div class="bg-iot-panel p-4 rounded-xl border border-slate-700/80 hover:border-cyan-400 transition">
+                    <div class="text-3xl text-purple-400 mb-2"><i class="fa-solid fa-id-card"></i></div>
+                    <h5 class="text-xs md:text-sm font-bold text-white mb-1">RFID RC522</h5>
+                    <p class="text-[11px] text-slate-400">Đọc thẻ từ SPI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION / REGISTRATION -->
+    <section id="dang-ky" class="py-20 bg-gradient-to-b from-iot-dark to-iot-darker relative border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="bg-gradient-to-r from-cyan-950 via-slate-900 to-blue-950 p-8 sm:p-12 rounded-3xl border border-cyan-800/80 shadow-[0_0_50px_rgba(6,182,212,0.2)]">
+                <span class="text-xs font-bold uppercase tracking-wider text-cyan-300 bg-cyan-900/60 border border-cyan-700 px-3 py-1 rounded-full mb-4 inline-block">
+                    Tuyển Sinh Lớp Kỹ Sư Nhí 2026
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4 font-heading">
+                    Đăng Ký Đánh Giá Năng Lực & Trải Nghiệm Học Thử ESP32
+                </h2>
+                <p class="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base mb-8 leading-relaxed">
+                    Giúp con bứt phá từ việc chơi game sang sáng tạo công nghệ. Phụ huynh liên hệ ngay để nhận bài kiểm tra tư duy thuật toán và xếp lớp phù hợp.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold rounded-xl shadow-lg transition transform hover:-translate-y-0.5 text-base">
+                        <i class="fa-solid fa-comment-dots text-lg"></i> Nhắn Zalo Tư Vấn: 0915.514.419
+                    </a>
+                    <a href="tel:0915514419"
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl border border-slate-600 transition text-base">
+                        <i class="fa-solid fa-phone text-emerald-400"></i> Gọi Hotline Trực Tiếp
+                    </a>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-800 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-400">
+                    <span><i class="fa-solid fa-shield-halved text-cyan-400 mr-1.5"></i> Cam kết chuẩn đầu ra</span>
+                    <span><i class="fa-solid fa-certificate text-python-yellow mr-1.5"></i> Chứng chỉ hoàn thành khóa học</span>
+                    <span><i class="fa-solid fa-users text-blue-400 mr-1.5"></i> Lớp học 6 - 8 học viên / 1 Mentor</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-iot-darker text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-sm">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 font-bold">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white font-heading">LapTrinhRobot.com</span>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed max-w-md">
+                        Hệ thống đào tạo lập trình, Robotics và STEM hàng đầu dành cho học sinh từ 7 đến 18 tuổi. Lộ trình dài hạn từ Scratch, WeDo lên Python, Pygame, Raspberry Pi Pico, ESP32 MicroPython và AI Chuyên sâu.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-3 font-heading text-xs uppercase tracking-wider">Khóa học liên quan</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="course-13-15.html" class="hover:text-white transition-colors">Lộ trình 13 - 15 Tuổi</a></li>
+                        <li><a href="module-6.html" class="hover:text-white transition-colors">Mô-đun 6: ESP32 & Dashboard</a></li>
+                        <li><a href="module-4.html" class="hover:text-white transition-colors">Mô-đun 4: Vạn Vật Kết Nối (IoT)</a></li>
+                        <li><a href="pygame_curriculum_portal.html" class="hover:text-white transition-colors">Cổng Giáo Trình Pygame (10-14T)</a></li>
+                        <li><a href="scratch_curriculum_portal.html" class="hover:text-white transition-colors">Cổng Giáo Trình Scratch 3.0</a></li>
+                        <li><a href="wedo_2_0_curriculum_portal.html" class="hover:text-white transition-colors">Cổng Giáo Trình WeDo 2.0</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-3 font-heading text-xs uppercase tracking-wider">Thông tin liên hệ</h4>
+                    <p class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-phone mr-1.5 text-cyan-400"></i> Hotline: 0915.514.419</p>
+                    <p class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-envelope mr-1.5 text-cyan-400"></i> Email: info@laptrinhrobot.com</p>
+                    <div class="flex gap-3 mt-3">
+                        <a href="privacy.html" class="hover:text-white text-xs">Bảo mật</a>
+                        <span class="text-slate-600">&bull;</span>
+                        <a href="terms.html" class="hover:text-white text-xs">Điều khoản</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+                <p>&copy; 2026 LapTrinhRobot.com. Tất cả các quyền được bảo lưu. ESP32 là thương hiệu của Espressif Systems. Python là thương hiệu của Python Software Foundation.</p>
             </div>
         </div>
     </footer>
 
+    <!-- FLOATING CONTACT BUTTONS -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <!-- Zalo Button -->
+        <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
+            class="group flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <span class="font-bold text-lg">Z</span>
+            <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                Nhắn Zalo
+            </span>
+        </a>
+
+        <!-- Call Button -->
+        <a href="tel:0915514419"
+            class="group flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-full shadow-md hover:bg-green-600 hover:shadow-lg transition-all transform hover:-translate-y-1">
+            <i class="fa-solid fa-phone"></i>
+            <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                0915.514.419
+            </span>
+        </a>
+    </div>
+
+    <!-- SCRIPTS -->
     <script>
         function switchTab(tabName) {
             const tabs = ['explore', 'create', 'share'];
             
             tabs.forEach(tab => {
                 const btn = document.getElementById('btn-' + tab);
-                btn.className = "tab-btn px-6 py-4 text-lg transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium border-b-3 border-transparent";
+                btn.className = "tab-btn px-6 py-4 text-base md:text-lg transition duration-150 whitespace-nowrap text-slate-400 hover:text-white font-medium border-b-2 border-transparent";
                 
                 const content = document.getElementById('content-' + tab);
                 content.classList.add('hidden');
@@ -465,16 +862,22 @@ s.<span class="py-func">listen</span>(<span class="py-num">5</span>)
             });
 
             const activeBtn = document.getElementById('btn-' + tabName);
-            activeBtn.className = "tab-btn active px-6 py-4 text-lg transition duration-150 whitespace-nowrap font-bold text-python-yellow bg-python-yellow/10 border-b-4 border-python-yellow rounded-t-lg";
+            activeBtn.className = "tab-btn active px-6 py-4 text-base md:text-lg transition duration-150 whitespace-nowrap font-bold text-cyan-400 bg-cyan-950/40 border-b-4 border-cyan-400 rounded-t-lg";
             
             const selectedContent = document.getElementById('content-' + tabName);
             selectedContent.classList.remove('hidden');
             selectedContent.classList.add('block');
         }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
         
         document.addEventListener('DOMContentLoaded', () => {
              const activeBtn = document.getElementById('btn-explore');
-             activeBtn.className = "tab-btn active px-6 py-4 text-lg transition duration-150 whitespace-nowrap font-bold text-python-yellow bg-python-yellow/10 border-b-4 border-python-yellow rounded-t-lg";
+             activeBtn.className = "tab-btn active px-6 py-4 text-base md:text-lg transition duration-150 whitespace-nowrap font-bold text-cyan-400 bg-cyan-950/40 border-b-4 border-cyan-400 rounded-t-lg";
         });
     </script>
 </body>

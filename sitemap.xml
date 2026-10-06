@@ -103,6 +103,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://laptrinhrobot.com/esp32_iot_curriculum_portal.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://laptrinhrobot.com/module-7.html</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
