@@ -183,6 +183,31 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <style>
+    body {
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* Prevent iOS Safari auto-zoom on inputs */
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .safe-bottom {
+      bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    }
+
     h1,
     h2,
     h3,
@@ -430,8 +455,8 @@
 
         <!-- Mobile menu button -->
         <div class="flex items-center md:hidden">
-          <button @click="mobileMenuOpen = !mobileMenuOpen" type="button"
-            class="text-gray-500 hover:text-gray-900 focus:outline-none p-2">
+          <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" aria-label="Mở menu"
+            class="min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-700 hover:text-gray-900 rounded-xl hover:bg-gray-100 active:bg-gray-200 transition-colors p-2.5">
             <i class="fa-solid fa-bars text-2xl" x-show="!mobileMenuOpen"></i>
             <i class="fa-solid fa-xmark text-2xl" x-show="mobileMenuOpen" x-cloak></i>
           </button>
@@ -439,70 +464,151 @@
       </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200"
-      x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
-      x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
-      x-transition:leave-end="opacity-0 -translate-y-4" @click.away="mobileMenuOpen = false"
-      class="md:hidden absolute w-full bg-white shadow-xl border-t border-gray-100 flex flex-col max-h-[calc(100vh-5rem)] overflow-y-auto" x-cloak>
-      <a href="#triet-ly" @click="mobileMenuOpen = false"
-        class="block px-6 py-3.5 text-base font-medium text-gray-700 hover:text-primary-500 hover:bg-gray-50 border-b border-gray-100">Triết
-        lý đào tạo</a>
-      <a href="#lo-trinh" @click="mobileMenuOpen = false"
-        class="block px-6 py-3.5 text-base font-medium text-gray-700 hover:text-primary-500 hover:bg-gray-50 border-b border-gray-100">Lộ
-        trình học</a>
-      <a href="#chuyen-gia" @click="mobileMenuOpen = false"
-        class="block px-6 py-3.5 text-base font-medium text-gray-700 hover:text-primary-500 hover:bg-gray-50 border-b border-gray-100">Chuyên
-        gia</a>
+    <!-- Mobile Backdrop Overlay -->
+    <div x-show="mobileMenuOpen"
+      x-transition:enter="transition-opacity ease-linear duration-300"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition-opacity ease-linear duration-200"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 md:hidden"
+      @click="mobileMenuOpen = false"
+      x-cloak>
+    </div>
 
-      <!-- Specialized Courses Section in Mobile -->
-      <div class="px-6 py-3 bg-gray-50/70 border-b border-gray-100">
-        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Khóa học chuyên đề</div>
-        <div class="space-y-1">
-          <a href="tin10.html" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 py-2 text-sm font-medium text-gray-800 hover:text-primary-600">
-            <span class="w-7 h-7 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-code"></i></span>
-            <span>Chuyên Tin 10 (C++)</span>
-          </a>
-          <a href="physics.html" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 py-2 text-sm font-medium text-gray-800 hover:text-emerald-600">
-            <span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-flask"></i></span>
-            <span>Khoa Học & Vật Lý IGCSE</span>
-          </a>
-          <a href="python-xay-dung/index.html" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 py-2 text-sm font-medium text-gray-800 hover:text-amber-600">
-            <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-helmet-safety"></i></span>
-            <span>Python Xây Dựng</span>
-          </a>
-          <a href="scratch_curriculum_portal.html" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 py-2 text-sm font-medium text-gray-800 hover:text-orange-600">
-            <span class="w-7 h-7 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-cat"></i></span>
-            <span>Scratch 3.0 (7-10T)</span>
-          </a>
-          <a href="wedo_2_0_curriculum_portal.html" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 py-2 text-sm font-medium text-gray-800 hover:text-red-600">
-            <span class="w-7 h-7 rounded-lg bg-red-100 text-red-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-cubes"></i></span>
-            <span>Lego WeDo 2.0 (7-10T)</span>
-          </a>
-          <a href="pygame_curriculum_portal.html" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 py-2 text-sm font-medium text-gray-800 hover:text-blue-600">
-            <span class="w-7 h-7 rounded-lg bg-blue-100 text-python-blue flex items-center justify-center text-xs shrink-0"><i class="fa-brands fa-python"></i></span>
-            <span>Python & Pygame (10-14T)</span>
-          </a>
-          <a href="esp32_iot_curriculum_portal.html" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 py-2 text-sm font-medium text-gray-800 hover:text-cyan-600">
-            <span class="w-7 h-7 rounded-lg bg-cyan-100 text-cyan-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-microchip"></i></span>
-            <span>ESP32 & IoT MicroPython (13-18T)</span>
-          </a>
+    <!-- Mobile Drawer (85% width slide-over from right) -->
+    <div x-show="mobileMenuOpen"
+      x-transition:enter="transition ease-out duration-300 transform"
+      x-transition:enter-start="translate-x-full"
+      x-transition:enter-end="translate-x-0"
+      x-transition:leave="transition ease-in duration-200 transform"
+      x-transition:leave-start="translate-x-0"
+      x-transition:leave-end="translate-x-full"
+      class="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white shadow-2xl z-50 flex flex-col h-full md:hidden"
+      x-data="{ coursesOpen: false }"
+      x-cloak>
+      
+      <!-- Drawer Header with 44x44 Close Button -->
+      <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 shrink-0">
+        <div class="flex items-center cursor-pointer" @click="window.scrollTo(0,0); mobileMenuOpen = false">
+          <div
+            class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-lg mr-2.5 shadow-sm">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <span class="font-bold text-lg text-gray-900 tracking-tight">Lập Trình <span
+              class="text-primary-600">Robot</span></span>
         </div>
+        <button @click="mobileMenuOpen = false" type="button" aria-label="Đóng menu"
+          class="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200 transition-colors">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
       </div>
 
-      <a href="lien-he.html" @click="mobileMenuOpen = false"
-        class="block px-6 py-3.5 text-base font-medium text-gray-700 hover:text-primary-500 hover:bg-gray-50 border-b border-gray-100">Liên Hệ</a>
-      <div class="p-6">
+      <!-- Drawer Scrollable Content -->
+      <div class="flex-1 overflow-y-auto px-4 py-3 space-y-1">
+        <a href="#triet-ly" @click="mobileMenuOpen = false"
+          class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-base font-semibold text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-compass text-gray-400 w-5"></i>
+          <span>Triết lý đào tạo</span>
+        </a>
+        <a href="#lo-trinh" @click="mobileMenuOpen = false"
+          class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-base font-semibold text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-map-location-dot text-gray-400 w-5"></i>
+          <span>Lộ trình học</span>
+        </a>
+        <a href="#chuyen-gia" @click="mobileMenuOpen = false"
+          class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-base font-semibold text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-user-tie text-gray-400 w-5"></i>
+          <span>Chuyên gia</span>
+        </a>
+
+        <!-- Collapsible Accordion for Course Categories -->
+        <div class="rounded-2xl border border-gray-100 overflow-hidden bg-gray-50/70 my-2">
+          <button @click="coursesOpen = !coursesOpen" type="button"
+            class="w-full flex items-center justify-between px-3.5 py-3 text-base font-semibold text-gray-800 hover:text-primary-600 transition-colors">
+            <span class="flex items-center gap-3">
+              <i class="fa-solid fa-layer-group text-primary-500 w-5"></i>
+              <span>Khóa học chuyên đề</span>
+              <span class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-primary-100 text-primary-700">7 môn</span>
+            </span>
+            <i class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-200"
+              :class="{ 'rotate-180': coursesOpen }"></i>
+          </button>
+
+          <!-- Expanded sub-courses with indent -->
+          <div x-show="coursesOpen" x-collapse x-cloak class="px-2 pb-2.5 pt-1 space-y-1 bg-white border-t border-gray-100">
+            <a href="tin10.html" @click="mobileMenuOpen = false"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-code"></i></span>
+              <div class="flex-1 min-w-0">
+                <div class="truncate font-semibold">Chuyên Tin 10 (C++)</div>
+                <div class="text-[11px] text-gray-400 truncate">48 buổi & 27 đề thi</div>
+              </div>
+            </a>
+            <a href="physics.html" @click="mobileMenuOpen = false"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-800 hover:bg-emerald-50 hover:text-emerald-600 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-flask"></i></span>
+              <div class="flex-1 min-w-0">
+                <div class="truncate font-semibold">Khoa Học & Vật Lý IGCSE</div>
+                <div class="text-[11px] text-gray-400 truncate">Thực nghiệm cảm biến IoT</div>
+              </div>
+            </a>
+            <a href="python-xay-dung/index.html" @click="mobileMenuOpen = false"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-800 hover:bg-amber-50 hover:text-amber-600 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-helmet-safety"></i></span>
+              <div class="flex-1 min-w-0">
+                <div class="truncate font-semibold">Python Xây Dựng</div>
+                <div class="text-[11px] text-gray-400 truncate">Báo giá, CRM & Streamlit</div>
+              </div>
+            </a>
+            <a href="scratch_curriculum_portal.html" @click="mobileMenuOpen = false"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-800 hover:bg-orange-50 hover:text-orange-600 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-cat"></i></span>
+              <div class="flex-1 min-w-0">
+                <div class="truncate font-semibold">Scratch 3.0 (7-10T)</div>
+                <div class="text-[11px] text-gray-400 truncate">Game 2D chuẩn MIT</div>
+              </div>
+            </a>
+            <a href="wedo_2_0_curriculum_portal.html" @click="mobileMenuOpen = false"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-800 hover:bg-red-50 hover:text-red-600 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-red-100 text-red-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-cubes"></i></span>
+              <div class="flex-1 min-w-0">
+                <div class="truncate font-semibold">Lego WeDo 2.0 (7-10T)</div>
+                <div class="text-[11px] text-gray-400 truncate">16 buổi chuẩn NGSS</div>
+              </div>
+            </a>
+            <a href="pygame_curriculum_portal.html" @click="mobileMenuOpen = false"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xs shrink-0"><i class="fa-brands fa-python"></i></span>
+              <div class="flex-1 min-w-0">
+                <div class="truncate font-semibold">Python & Pygame (10-14T)</div>
+                <div class="text-[11px] text-gray-400 truncate">24 buổi: OOP & IDE</div>
+              </div>
+            </a>
+            <a href="esp32_iot_curriculum_portal.html" @click="mobileMenuOpen = false"
+              class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-800 hover:bg-cyan-50 hover:text-cyan-600 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-cyan-100 text-cyan-600 flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-microchip"></i></span>
+              <div class="flex-1 min-w-0">
+                <div class="truncate font-semibold">ESP32 & IoT MicroPython (13-18T)</div>
+                <div class="text-[11px] text-gray-400 truncate">Smart Home & MQTT</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="lien-he.html" @click="mobileMenuOpen = false"
+          class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-base font-semibold text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors">
+          <i class="fa-solid fa-phone text-gray-400 w-5"></i>
+          <span>Liên Hệ</span>
+        </a>
+      </div>
+
+      <!-- Sticky CTA at Bottom of Drawer -->
+      <div class="p-4 border-t border-gray-100 bg-white sticky bottom-0 mt-auto shadow-[0_-4px_16px_rgba(0,0,0,0.06)] shrink-0">
         <a href="#dang-ky" @click="mobileMenuOpen = false"
-          class="w-full flex justify-center py-3 border border-transparent rounded-full shadow-sm text-base font-semibold text-white bg-secondary-600 hover:bg-secondary-700">
-          ĐĂNG KÝ
+          class="w-full min-h-[48px] flex items-center justify-center py-3.5 px-4 rounded-full shadow-md text-base font-bold text-white bg-secondary-600 hover:bg-secondary-700 active:scale-[0.98] transition-all">
+          ĐĂNG KÝ TƯ VẤN
         </a>
       </div>
     </div>
@@ -541,47 +647,43 @@
             style="animation-delay: 0.3s;">
             Thay vì để trẻ chìm đắm trong game online vô bổ, hãy trao cho con cơ hội tự tay lập trình ra những ứng dụng thay đổi thế giới. Chúng tôi không chỉ dạy viết code, mà còn kiến tạo một môi trường toàn diện giúp trẻ <strong>phát triển tư duy khoa học, logic</strong>, xây dựng <strong>nền tảng tiếng Anh công nghệ</strong>, khơi dậy <strong>cảm hứng sáng tạo</strong> và <strong>định hình rõ ràng nghề nghiệp tương lai</strong>.
           </p>
-          <div class="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4 animate-fade-in-up"
+          <!-- Primary CTA Button -->
+          <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4 animate-fade-in-up"
             style="animation-delay: 0.4s;">
             <a href="#dang-ky"
-              class="px-8 py-4 border border-transparent text-lg font-bold rounded-full text-white bg-accent-500 hover:bg-accent-600 hover:scale-105 transition-all shadow-[0_10px_20px_rgba(249,115,36,0.3)] flex items-center justify-center group">
-              <span>ĐẶT LỊCH ĐÁNH GIÁ NĂNG LỰC NGAY</span>
+              class="w-full sm:w-auto h-[50px] min-h-[48px] px-8 border border-transparent text-base md:text-lg font-bold rounded-full text-white bg-accent-500 hover:bg-accent-600 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_10px_20px_rgba(249,115,36,0.3)] flex items-center justify-center group">
+              <span>🎯 Đặt Lịch Đánh Giá Năng Lực Ngay</span>
               <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
             </a>
           </div>
 
-          <div class="mt-4 animate-fade-in-up" style="animation-delay: 0.5s;">
-            <a href="competition.html" class="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors">
-              <i class="fa-solid fa-file-lines"></i>
-              Xem thêm thư viện đề thi mẫu Chuyên Tin
+          <!-- Secondary Resource Links (Horizontal Pill Scroll on mobile) -->
+          <div class="mt-4 flex overflow-x-auto md:flex-wrap items-center gap-2 no-scrollbar py-2 -mx-4 px-4 md:mx-0 md:px-0 animate-fade-in-up"
+            style="animation-delay: 0.5s;">
+            <a href="competition.html"
+              class="text-xs md:text-sm px-3.5 py-2 rounded-full border border-slate-300 bg-white/80 hover:bg-slate-50 whitespace-nowrap text-slate-700 font-medium inline-flex items-center gap-1.5 shadow-sm transition-colors shrink-0">
+              <i class="fa-solid fa-file-lines text-primary-600"></i>
+              <span>Đề thi Chuyên Tin</span>
             </a>
-          </div>
-
-          <div class="mt-2 animate-fade-in-up" style="animation-delay: 0.55s;">
-            <a href="tin10.html" class="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors">
-              <i class="fa-solid fa-laptop-code"></i>
-              Xem giáo án Chuyên Tin C++
+            <a href="tin10.html"
+              class="text-xs md:text-sm px-3.5 py-2 rounded-full border border-slate-300 bg-white/80 hover:bg-slate-50 whitespace-nowrap text-slate-700 font-medium inline-flex items-center gap-1.5 shadow-sm transition-colors shrink-0">
+              <i class="fa-solid fa-laptop-code text-primary-600"></i>
+              <span>Giáo án C++</span>
             </a>
-          </div>
-
-          <div class="mt-2 animate-fade-in-up" style="animation-delay: 0.60s;">
-            <a href="physics.html" class="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors">
-              <i class="fa-solid fa-flask"></i>
-              Xem giáo án Khoa học & Vật Lý IGCSE
+            <a href="physics.html"
+              class="text-xs md:text-sm px-3.5 py-2 rounded-full border border-slate-300 bg-white/80 hover:bg-slate-50 whitespace-nowrap text-slate-700 font-medium inline-flex items-center gap-1.5 shadow-sm transition-colors shrink-0">
+              <i class="fa-solid fa-flask text-emerald-600"></i>
+              <span>Vật lý IGCSE</span>
             </a>
-          </div>
-
-          <div class="mt-2 animate-fade-in-up" style="animation-delay: 0.65s;">
-            <a href="python-xay-dung/index.html" class="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors">
-              <i class="fa-solid fa-helmet-safety"></i>
-              Xem khóa học Python Xây Dựng & Giám Sát
+            <a href="python-xay-dung/index.html"
+              class="text-xs md:text-sm px-3.5 py-2 rounded-full border border-slate-300 bg-white/80 hover:bg-slate-50 whitespace-nowrap text-slate-700 font-medium inline-flex items-center gap-1.5 shadow-sm transition-colors shrink-0">
+              <i class="fa-solid fa-helmet-safety text-amber-600"></i>
+              <span>Python Xây Dựng</span>
             </a>
-          </div>
-
-          <div class="mt-2 animate-fade-in-up" style="animation-delay: 0.70s;">
-            <a href="nang-luc-cong-nghe.html" class="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors">
-              <i class="fa-solid fa-list-check"></i>
-              Tiêu chuẩn Năng lực Công nghệ (CSTA)
+            <a href="nang-luc-cong-nghe.html"
+              class="text-xs md:text-sm px-3.5 py-2 rounded-full border border-slate-300 bg-white/80 hover:bg-slate-50 whitespace-nowrap text-slate-700 font-medium inline-flex items-center gap-1.5 shadow-sm transition-colors shrink-0">
+              <i class="fa-solid fa-list-check text-cyan-600"></i>
+              <span>Chuẩn CSTA</span>
             </a>
           </div>
 
@@ -775,19 +877,49 @@
   </section>
 
   <!-- SECTION 3: BẢN ĐỒ LỘ TRÌNH -->
-  <section id="lo-trinh" class="py-20 lg:py-32 bg-gray-50 text-gray-900 relative overflow-hidden">
+  <section id="lo-trinh" class="py-16 lg:py-32 bg-gray-50 text-gray-900 relative overflow-hidden" x-data="{ activeAge: '7-9' }">
     <!-- Decoration -->
     <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary-50/50 to-transparent"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center max-w-3xl mx-auto mb-20">
-        <h2 class="text-primary-600 font-bold tracking-wide uppercase text-sm mb-2">Lộ trình 10 - 18 tuổi</h2>
-        <h3 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4">Bản Đồ Lộ Trình Tổng Thể</h3>
-        <p class="text-lg text-gray-600">Mỗi chặng có một hình ảnh, một sản phẩm và một mục tiêu rõ ràng.</p>
+      <div class="text-center max-w-3xl mx-auto mb-10 md:mb-16">
+        <h2 class="text-primary-600 font-bold tracking-wide uppercase text-xs md:text-sm mb-2">Lộ trình 7 - 18 tuổi</h2>
+        <h3 class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-gray-900 mb-3 md:mb-4">Bản Đồ Lộ Trình Tổng Thể</h3>
+        <p class="text-base md:text-lg text-gray-600">Mỗi chặng có một mục tiêu, ngôn ngữ chủ đạo và chứng chỉ quốc tế rõ ràng.</p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-16">
-        <div class="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm">
+      <!-- Horizontal Swipeable Pill Bar (7-9T, 10-13T, 13-15T, 15-18T) -->
+      <div class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-2 pb-2 no-scrollbar px-4 -mx-4 md:mx-0 md:px-0 md:justify-center mb-8">
+        <button type="button" @click="activeAge = '7-9'"
+          :class="activeAge === '7-9' ? 'bg-emerald-600 text-white font-bold shadow-md' : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 font-medium'"
+          class="snap-start shrink-0 px-4 py-2.5 rounded-full text-xs md:text-sm transition-all whitespace-nowrap flex items-center gap-1.5 min-h-[44px]">
+          <span>🌱 7-9T: Khởi động</span>
+        </button>
+        <button type="button" @click="activeAge = '10-13'"
+          :class="activeAge === '10-13' ? 'bg-primary-600 text-white font-bold shadow-md' : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 font-medium'"
+          class="snap-start shrink-0 px-4 py-2.5 rounded-full text-xs md:text-sm transition-all whitespace-nowrap flex items-center gap-1.5 min-h-[44px]">
+          <span>🚀 10-13T: Đam mê</span>
+        </button>
+        <button type="button" @click="activeAge = '13-15'"
+          :class="activeAge === '13-15' ? 'bg-secondary-600 text-white font-bold shadow-md' : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 font-medium'"
+          class="snap-start shrink-0 px-4 py-2.5 rounded-full text-xs md:text-sm transition-all whitespace-nowrap flex items-center gap-1.5 min-h-[44px]">
+          <span>🦾 13-15T: Chuyên nghiệp</span>
+        </button>
+        <button type="button" @click="activeAge = '15-18'"
+          :class="activeAge === '15-18' ? 'bg-accent-600 text-white font-bold shadow-md' : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 font-medium'"
+          class="snap-start shrink-0 px-4 py-2.5 rounded-full text-xs md:text-sm transition-all whitespace-nowrap flex items-center gap-1.5 min-h-[44px]">
+          <span>🎓 15-18T: Sẵn sàng ĐH</span>
+        </button>
+        <button type="button" @click="activeAge = 'all'"
+          :class="activeAge === 'all' ? 'bg-slate-900 text-white font-bold shadow-md' : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 font-medium'"
+          class="snap-start shrink-0 px-4 py-2.5 rounded-full text-xs md:text-sm transition-all whitespace-nowrap flex items-center gap-1.5 min-h-[44px]">
+          <span>📜 Xem tất cả chặng</span>
+        </button>
+      </div>
+
+      <!-- Desktop Overview Grid (Hidden on Mobile) -->
+      <div class="hidden md:grid md:grid-cols-2 xl:grid-cols-4 gap-4 mb-16">
+        <div @click="activeAge = '7-9'" class="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm cursor-pointer hover:border-emerald-500 transition-all">
           <img src="images/seo/class-7-9.webp" width="900" height="600" alt="Học sinh làm robot trong lớp học STEM"
             loading="lazy" decoding="async" class="w-full h-36 object-cover">
           <div class="p-4">
@@ -795,7 +927,7 @@
             <p class="text-sm font-semibold text-gray-900 mt-1">Scratch, Lego Robotics, làm quen tư duy thuật toán</p>
           </div>
         </div>
-        <div class="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm">
+        <div @click="activeAge = '10-13'" class="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm cursor-pointer hover:border-primary-500 transition-all">
           <img src="images/seo/class-10-13.webp" width="900" height="600" alt="Trẻ em học coding trên máy tính bảng"
             loading="lazy" decoding="async" class="w-full h-36 object-cover">
           <div class="p-4">
@@ -803,7 +935,7 @@
             <p class="text-sm font-semibold text-gray-900 mt-1">Python, game 2D và Smart Home</p>
           </div>
         </div>
-        <div class="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm">
+        <div @click="activeAge = '13-15'" class="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm cursor-pointer hover:border-secondary-500 transition-all">
           <img src="images/seo/class-13-15.webp" width="900" height="600" alt="Học sinh hợp tác làm dự án robotics"
             loading="lazy" decoding="async" class="w-full h-36 object-cover">
           <div class="p-4">
@@ -811,7 +943,7 @@
             <p class="text-sm font-semibold text-gray-900 mt-1">OOP, ESP32, cánh tay robot và IoT</p>
           </div>
         </div>
-        <div class="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm">
+        <div @click="activeAge = '15-18'" class="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm cursor-pointer hover:border-accent-500 transition-all">
           <img src="images/seo/class-15-18.webp" width="900" height="600" alt="Minh họa trí tuệ nhân tạo và công nghệ"
             loading="lazy" decoding="async" class="w-full h-36 object-cover">
           <div class="p-4">
@@ -821,7 +953,181 @@
         </div>
       </div>
 
-      <div class="relative timeline-container max-w-4xl mx-auto pb-10">
+      <!-- MOBILE ROADMAP: Single-Column Card Stack (Screen < 768px) -->
+      <div class="flex flex-col gap-4 md:hidden mb-8">
+        <!-- Mobile Card: 7-9 Tuổi -->
+        <div x-show="activeAge === '7-9' || activeAge === 'all'" x-transition class="bg-white rounded-2xl p-5 border border-emerald-200 shadow-sm flex flex-col gap-4">
+          <div class="relative rounded-xl overflow-hidden aspect-[16/10] bg-gray-100">
+            <img src="images/seo/class-7-9.webp" width="900" height="600" alt="7-9 Tuổi: Giai đoạn Khởi động" loading="lazy" decoding="async" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-emerald-600 text-white text-xs font-bold shadow-md">
+              7 - 9 TUỔI
+            </span>
+          </div>
+          <div>
+            <!-- Visual Badges: Target Age, Key Languages, Certifications -->
+            <div class="flex flex-wrap gap-1.5 mb-2.5">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                <i class="fa-solid fa-child mr-1 text-emerald-600"></i> Độ tuổi: 7-9T
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-200">
+                <i class="fa-solid fa-code mr-1 text-blue-600"></i> Scratch & Lego WeDo
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                <i class="fa-solid fa-award mr-1 text-amber-600"></i> Chuẩn CSTA Level 1
+              </span>
+            </div>
+
+            <h4 class="text-xl font-bold text-gray-900">Giai đoạn Khởi động</h4>
+            <p class="text-emerald-600 font-semibold text-sm mb-2">Bước Chạm Công Nghệ Đầu Tiên</p>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Kích thích trí tò mò, hình thành tư duy thuật toán trực quan qua lập trình kéo thả MIT Scratch và chế tạo mô hình robot né vật cản.
+            </p>
+
+            <div class="flex flex-col gap-2 pt-3 border-t border-gray-100">
+              <a href="course-7-9.html"
+                class="w-full min-h-[44px] flex items-center justify-center px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold text-sm shadow-sm transition-all">
+                <span>Xem chi tiết lộ trình 7-9 tuổi</span>
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+              </a>
+              <div class="grid grid-cols-2 gap-2">
+                <a href="scratch_curriculum_portal.html"
+                  class="min-h-[44px] flex items-center justify-center text-xs font-semibold text-orange-700 bg-orange-50 hover:bg-orange-100 border border-orange-200 px-3 py-2 rounded-xl transition-colors">
+                  <i class="fa-solid fa-cat mr-1 text-orange-500"></i> Scratch 3.0
+                </a>
+                <a href="wedo_2_0_curriculum_portal.html"
+                  class="min-h-[44px] flex items-center justify-center text-xs font-semibold text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 px-3 py-2 rounded-xl transition-colors">
+                  <i class="fa-solid fa-cubes mr-1 text-red-500"></i> Lego WeDo 2.0
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Card: 10-13 Tuổi -->
+        <div x-show="activeAge === '10-13' || activeAge === 'all'" x-transition class="bg-white rounded-2xl p-5 border border-primary-200 shadow-sm flex flex-col gap-4">
+          <div class="relative rounded-xl overflow-hidden aspect-[16/10] bg-gray-100">
+            <img src="images/seo/class-10-13.webp" width="900" height="600" alt="10-13 Tuổi: Giai đoạn 1" loading="lazy" decoding="async" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-primary-600 text-white text-xs font-bold shadow-md">
+              10 - 13 TUỔI
+            </span>
+          </div>
+          <div>
+            <!-- Visual Badges: Target Age, Key Languages, Certifications -->
+            <div class="flex flex-wrap gap-1.5 mb-2.5">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                <i class="fa-solid fa-user-graduate mr-1 text-emerald-600"></i> Độ tuổi: 10-13T
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-200">
+                <i class="fa-brands fa-python mr-1 text-blue-600"></i> Python & Pygame
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                <i class="fa-solid fa-certificate mr-1 text-amber-600"></i> Chứng chỉ PCEP
+              </span>
+            </div>
+
+            <h4 class="text-xl font-bold text-gray-900">Giai đoạn 1: Khởi Tạo Đam Mê</h4>
+            <p class="text-primary-600 font-semibold text-sm mb-2">Python & Phần Cứng Raspberry Pi Pico</p>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Làm chủ ngôn ngữ Python tiêu chuẩn, lập trình game 2D và điều khiển thiết bị thông minh qua Raspberry Pi Pico.
+            </p>
+
+            <div class="flex flex-col gap-2 pt-3 border-t border-gray-100">
+              <a href="course-10-13.html"
+                class="w-full min-h-[44px] flex items-center justify-center px-5 py-3 rounded-xl bg-primary-600 hover:bg-primary-700 active:scale-[0.98] text-white font-bold text-sm shadow-sm transition-all">
+                <span>Xem chi tiết lộ trình 10-13 tuổi</span>
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+              </a>
+              <a href="pygame_curriculum_portal.html"
+                class="w-full min-h-[44px] flex items-center justify-center text-xs font-semibold text-sky-700 bg-sky-50 hover:bg-sky-100 border border-sky-200 px-3 py-2 rounded-xl transition-colors">
+                <i class="fa-brands fa-python mr-1.5 text-sky-500"></i> Giáo trình Pygame (24 Buổi)
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Card: 13-15 Tuổi -->
+        <div x-show="activeAge === '13-15' || activeAge === 'all'" x-transition class="bg-white rounded-2xl p-5 border border-secondary-200 shadow-sm flex flex-col gap-4">
+          <div class="relative rounded-xl overflow-hidden aspect-[16/10] bg-gray-100">
+            <img src="images/seo/class-13-15.webp" width="900" height="600" alt="13-15 Tuổi: Giai đoạn 2" loading="lazy" decoding="async" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-secondary-600 text-white text-xs font-bold shadow-md">
+              13 - 15 TUỔI
+            </span>
+          </div>
+          <div>
+            <!-- Visual Badges: Target Age, Key Languages, Certifications -->
+            <div class="flex flex-wrap gap-1.5 mb-2.5">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                <i class="fa-solid fa-user-graduate mr-1 text-emerald-600"></i> Độ tuổi: 13-15T
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-200">
+                <i class="fa-solid fa-microchip mr-1 text-blue-600"></i> OOP & ESP32 MicroPython
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                <i class="fa-solid fa-certificate mr-1 text-amber-600"></i> Chứng chỉ PCAP
+              </span>
+            </div>
+
+            <h4 class="text-xl font-bold text-gray-900">Giai đoạn 2: Lập Trình Chuyên Nghiệp</h4>
+            <p class="text-secondary-600 font-semibold text-sm mb-2">Robotics & IoT Nâng Cao</p>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Lập trình hướng đối tượng (OOP), cấu trúc dữ liệu và điều khiển cánh tay robot 4 bậc kết nối IoT realtime qua ESP32.
+            </p>
+
+            <div class="flex flex-col gap-2 pt-3 border-t border-gray-100">
+              <a href="course-13-15.html"
+                class="w-full min-h-[44px] flex items-center justify-center px-5 py-3 rounded-xl bg-secondary-600 hover:bg-secondary-700 active:scale-[0.98] text-white font-bold text-sm shadow-sm transition-all">
+                <span>Xem chi tiết lộ trình 13-15 tuổi</span>
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+              </a>
+              <a href="esp32_iot_curriculum_portal.html"
+                class="w-full min-h-[44px] flex items-center justify-center text-xs font-semibold text-cyan-700 bg-cyan-50 hover:bg-cyan-100 border border-cyan-200 px-3 py-2 rounded-xl transition-colors">
+                <i class="fa-solid fa-microchip mr-1.5 text-cyan-600"></i> Giáo trình ESP32 & IoT (48 Buổi)
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Card: 15-18 Tuổi -->
+        <div x-show="activeAge === '15-18' || activeAge === 'all'" x-transition class="bg-white rounded-2xl p-5 border border-accent-200 shadow-sm flex flex-col gap-4">
+          <div class="relative rounded-xl overflow-hidden aspect-[16/10] bg-gray-100">
+            <img src="images/seo/class-15-18.webp" width="900" height="600" alt="15-18 Tuổi: Giai đoạn 3" loading="lazy" decoding="async" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-accent-600 text-white text-xs font-bold shadow-md">
+              15 - 18 TUỔI (VỀ ĐÍCH)
+            </span>
+          </div>
+          <div>
+            <!-- Visual Badges: Target Age, Key Languages, Certifications -->
+            <div class="flex flex-wrap gap-1.5 mb-2.5">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                <i class="fa-solid fa-graduation-cap mr-1 text-emerald-600"></i> Bậc Đại học
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-200">
+                <i class="fa-solid fa-brain mr-1 text-blue-600"></i> AP CSP & Python AI
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                <i class="fa-solid fa-trophy mr-1 text-amber-600"></i> AP CSP & AI-900
+              </span>
+            </div>
+
+            <h4 class="text-xl font-bold text-gray-900">Giai đoạn 3: Khoa Học Máy Tính & AI</h4>
+            <p class="text-accent-600 font-semibold text-sm mb-2">Sẵn Sàng Cho Bậc Đại Học & Du Học</p>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Xây dựng White Paper & Portfolio công nghệ xuất sắc, chinh phục chứng chỉ AP CSP (tiết kiệm tín chỉ Đại học) và chứng nhận AI Microsoft.
+            </p>
+
+            <div class="flex flex-col gap-2 pt-3 border-t border-gray-100">
+              <a href="course-15-18.html"
+                class="w-full min-h-[44px] flex items-center justify-center px-5 py-3 rounded-xl bg-accent-500 hover:bg-accent-600 active:scale-[0.98] text-white font-bold text-sm shadow-sm transition-all">
+                <span>Xem chi tiết lộ trình 15-18 tuổi</span>
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESKTOP TIMELINE (Hidden on Mobile) -->
+      <div class="hidden md:block relative timeline-container max-w-4xl mx-auto pb-10">
 
         <!-- Giai đoạn Khởi động -->
         <div class="relative pl-16 md:pl-0 mb-16 md:w-1/2 md:-ml-[2px] md:pr-16 md:text-right group">
@@ -833,31 +1139,30 @@
             <img src="images/seo/class-7-9.webp" width="900" height="600"
               alt="Học sinh tiểu học làm robot ở giai đoạn khởi động" loading="lazy" decoding="async"
               class="w-full h-40 object-cover rounded-xl mb-4 border border-gray-100">
-            <span
-              class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold tracking-wider mb-4 border border-emerald-200">7
-              - 9 TUỔI</span>
-            <h4 class="text-2xl font-bold mb-2 text-gray-900">Giai đoạn Khởi động</h4>
+            <div class="flex flex-wrap gap-2 md:justify-end mb-3">
+              <span class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold tracking-wider border border-emerald-200">7 - 9 TUỔI</span>
+              <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold border border-blue-200">Scratch & Lego WeDo</span>
+              <span class="inline-block py-1 px-3 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold border border-amber-200">Chuẩn CSTA Level 1</span>
+            </div>
+            <h4 class="text-2xl font-bold mb-1 text-gray-900">Giai đoạn Khởi động</h4>
             <p class="text-emerald-600 font-medium mb-4">Bước Chạm Công Nghệ Đầu Tiên</p>
             <div class="text-gray-600 text-sm space-y-3 leading-relaxed md:ml-auto">
-              <p><strong class="text-gray-900">Mục tiêu:</strong> Kích thích sự tò mò, hình thành tư duy thuật toán trực
-                quan.</p>
-              <p><strong class="text-gray-900">Chương trình:</strong> Lập trình kéo thả (Scratch) và Nhập môn Robotics
-                (Lego).</p>
-              <p><strong class="text-gray-900">Sản phẩm:</strong> Tự làm game giải trí, video kể chuyện, lập trình robot
-                né vật cản.</p>
+              <p><strong class="text-gray-900">Mục tiêu:</strong> Kích thích sự tò mò, hình thành tư duy thuật toán trực quan.</p>
+              <p><strong class="text-gray-900">Chương trình:</strong> Lập trình kéo thả (Scratch) và Nhập môn Robotics (Lego).</p>
+              <p><strong class="text-gray-900">Sản phẩm:</strong> Tự làm game giải trí, video kể chuyện, lập trình robot né vật cản.</p>
               <div class="mt-5 flex flex-wrap gap-2.5 md:justify-end items-center">
                 <a href="course-7-9.html"
-                  class="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold text-sm transition-colors group-hover:underline">
+                  class="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-bold text-sm transition-colors group-hover:underline min-h-[44px]">
                   Xem chi tiết lộ trình 7-9 tuổi <i
                     class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                 </a>
                 <span class="text-gray-300 hidden sm:inline">|</span>
                 <a href="scratch_curriculum_portal.html"
-                  class="inline-flex items-center text-xs font-semibold text-orange-600 hover:text-orange-700 bg-orange-50 hover:bg-orange-100 px-2.5 py-1 rounded-md transition-colors">
+                  class="inline-flex items-center text-xs font-semibold text-orange-600 hover:text-orange-700 bg-orange-50 hover:bg-orange-100 px-2.5 py-1.5 rounded-md transition-colors min-h-[44px]">
                   <i class="fa-solid fa-cat mr-1 text-orange-500"></i> Scratch 3.0
                 </a>
                 <a href="wedo_2_0_curriculum_portal.html"
-                  class="inline-flex items-center text-xs font-semibold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-2.5 py-1 rounded-md transition-colors">
+                  class="inline-flex items-center text-xs font-semibold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-2.5 py-1.5 rounded-md transition-colors min-h-[44px]">
                   <i class="fa-solid fa-cubes mr-1 text-red-500"></i> WeDo 2.0
                 </a>
               </div>
@@ -875,33 +1180,30 @@
             <img src="images/seo/class-10-13.webp" width="900" height="600"
               alt="Học viên học lập trình Python và coding" loading="lazy" decoding="async"
               class="w-full h-40 object-cover rounded-xl mb-4 border border-gray-100">
-            <span
-              class="inline-block py-1 px-3 rounded-full bg-primary-100 text-primary-700 text-xs font-bold tracking-wider mb-4 border border-primary-200">10
-              - 13 TUỔI</span>
-            <h4 class="text-2xl font-bold mb-2 text-gray-900">Giai đoạn 1</h4>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span class="inline-block py-1 px-3 rounded-full bg-primary-100 text-primary-700 text-xs font-bold tracking-wider border border-primary-200">10 - 13 TUỔI</span>
+              <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold border border-blue-200">Python & Pygame</span>
+              <span class="inline-block py-1 px-3 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold border border-amber-200">Chứng chỉ PCEP</span>
+            </div>
+            <h4 class="text-2xl font-bold mb-1 text-gray-900">Giai đoạn 1</h4>
             <p class="text-primary-600 font-medium mb-4">Khởi Tạo Đam Mê với Python & IoT</p>
             <div class="text-gray-600 text-sm space-y-3 leading-relaxed">
-              <p><strong class="text-gray-900">Mục tiêu:</strong> Làm chủ ngôn ngữ Python và hiểu cách điều khiển phần
-                cứng.</p>
-              <p><strong class="text-gray-900">Học gì:</strong> Nền tảng Python (làm game với <strong>Pygame</strong>) &
-                Tương tác phần cứng (Micro:bit / <strong>Raspberry Pi Pico</strong>).</p>
-              <p><strong class="text-gray-900">Dự án:</strong> <span class="text-accent-600 font-semibold">Game 2D &
-                  Smart Home</span> -
-                Tự code game với Pygame và làm hệ thống nhà thông minh bằng Raspberry Pi Pico.</p>
+              <p><strong class="text-gray-900">Mục tiêu:</strong> Làm chủ ngôn ngữ Python và hiểu cách điều khiển phần cứng.</p>
+              <p><strong class="text-gray-900">Học gì:</strong> Nền tảng Python (làm game với <strong>Pygame</strong>) & Tương tác phần cứng (Micro:bit / <strong>Raspberry Pi Pico</strong>).</p>
+              <p><strong class="text-gray-900">Dự án:</strong> <span class="text-accent-600 font-semibold">Game 2D & Smart Home</span> - Tự code game với Pygame và làm hệ thống nhà thông minh bằng Raspberry Pi Pico.</p>
               <div class="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-100 flex items-start">
                 <i class="fa-solid fa-medal text-accent-500 mt-1 mr-3 text-lg"></i>
-                <span class="text-gray-700"><strong>Bằng cấp:</strong> Chứng chỉ PCEP (Certified Entry-Level
-                  Python)</span>
+                <span class="text-gray-700"><strong>Bằng cấp:</strong> Chứng chỉ PCEP (Certified Entry-Level Python)</span>
               </div>
               <div class="mt-5 flex flex-wrap gap-2.5 items-center">
                 <a href="course-10-13.html"
-                  class="inline-flex items-center text-primary-600 hover:text-primary-700 font-bold text-sm transition-colors group-hover:underline">
+                  class="inline-flex items-center text-primary-600 hover:text-primary-700 font-bold text-sm transition-colors group-hover:underline min-h-[44px]">
                   Xem chi tiết lộ trình 10-13 tuổi <i
                     class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                 </a>
                 <span class="text-gray-300 hidden sm:inline">|</span>
                 <a href="pygame_curriculum_portal.html"
-                  class="inline-flex items-center text-xs font-semibold text-sky-600 hover:text-sky-700 bg-sky-50 hover:bg-sky-100 px-2.5 py-1 rounded-md transition-colors">
+                  class="inline-flex items-center text-xs font-semibold text-sky-600 hover:text-sky-700 bg-sky-50 hover:bg-sky-100 px-2.5 py-1.5 rounded-md transition-colors min-h-[44px]">
                   <i class="fa-brands fa-python mr-1 text-sky-500"></i> Giáo trình Pygame
                 </a>
               </div>
@@ -919,34 +1221,31 @@
             <img src="images/seo/class-13-15.webp" width="900" height="600"
               alt="Nhóm học sinh làm dự án robotics và IoT" loading="lazy" decoding="async"
               class="w-full h-40 object-cover rounded-xl mb-4 border border-gray-100">
-            <span
-              class="inline-block py-1 px-3 rounded-full bg-secondary-100 text-secondary-700 text-xs font-bold tracking-wider mb-4 border border-secondary-200">13
-              - 15 TUỔI</span>
-            <h4 class="text-2xl font-bold mb-2 text-gray-900">Giai đoạn 2</h4>
+            <div class="flex flex-wrap gap-2 md:justify-end mb-3">
+              <span class="inline-block py-1 px-3 rounded-full bg-secondary-100 text-secondary-700 text-xs font-bold tracking-wider border border-secondary-200">13 - 15 TUỔI</span>
+              <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold border border-blue-200">OOP & ESP32 MicroPython</span>
+              <span class="inline-block py-1 px-3 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold border border-amber-200">Chứng chỉ PCAP</span>
+            </div>
+            <h4 class="text-2xl font-bold mb-1 text-gray-900">Giai đoạn 2</h4>
             <p class="text-secondary-600 font-medium mb-4">Lập Trình Chuyên Nghiệp & Robotics</p>
             <div class="text-gray-600 text-sm space-y-3 leading-relaxed md:ml-auto">
-              <p><strong class="text-gray-900">Mục tiêu:</strong> Lập trình hướng đối tượng (OOP) và Hệ thống nhúng phức
-                tạp.</p>
-              <p><strong class="text-gray-900">Học gì:</strong> Lập trình Hướng đối tượng (OOP), cấu trúc dữ liệu, và
-                IoT nâng cao với <strong>ESP32</strong> (kết nối Web/App qua API).</p>
-              <p><strong class="text-gray-900">Dự án:</strong> <span class="text-accent-600 font-semibold">🦾 Cánh tay
-                  Robot 4 bậc & 📈 IoT Dashboard</span> -
-                Lập trình điều khiển cánh tay robot qua mạng và trang web giám sát dữ liệu realtime.</p>
+              <p><strong class="text-gray-900">Mục tiêu:</strong> Lập trình hướng đối tượng (OOP) và Hệ thống nhúng phức tạp.</p>
+              <p><strong class="text-gray-900">Học gì:</strong> Lập trình Hướng đối tượng (OOP), cấu trúc dữ liệu, và IoT nâng cao với <strong>ESP32</strong> (kết nối Web/App qua API).</p>
+              <p><strong class="text-gray-900">Dự án:</strong> <span class="text-accent-600 font-semibold">🦾 Cánh tay Robot 4 bậc & 📈 IoT Dashboard</span> - Lập trình điều khiển cánh tay robot qua mạng và trang web giám sát dữ liệu realtime.</p>
               <div
                 class="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-100 flex items-start md:flex-row-reverse md:text-left">
                 <i class="fa-solid fa-medal text-accent-500 mt-1 md:ml-3 md:mr-0 mr-3 text-lg"></i>
-                <span class="text-gray-700"><strong>Bằng cấp:</strong> Chứng chỉ PCAP (Certified Associate in
-                  Python)</span>
+                <span class="text-gray-700"><strong>Bằng cấp:</strong> Chứng chỉ PCAP (Certified Associate in Python)</span>
               </div>
               <div class="mt-5 flex flex-wrap gap-2.5 items-center md:justify-end">
                 <a href="course-13-15.html"
-                  class="inline-flex items-center text-secondary-600 hover:text-secondary-700 font-bold text-sm transition-colors group-hover:underline">
+                  class="inline-flex items-center text-secondary-600 hover:text-secondary-700 font-bold text-sm transition-colors group-hover:underline min-h-[44px]">
                   Xem chi tiết lộ trình 13-15 tuổi <i
                     class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                 </a>
                 <span class="text-gray-300 hidden sm:inline">|</span>
                 <a href="esp32_iot_curriculum_portal.html"
-                  class="inline-flex items-center text-xs font-semibold text-cyan-700 hover:text-cyan-800 bg-cyan-50 hover:bg-cyan-100 px-2.5 py-1 rounded-md transition-colors border border-cyan-200">
+                  class="inline-flex items-center text-xs font-semibold text-cyan-700 hover:text-cyan-800 bg-cyan-50 hover:bg-cyan-100 px-2.5 py-1.5 rounded-md transition-colors border border-cyan-200 min-h-[44px]">
                   <i class="fa-solid fa-microchip mr-1 text-cyan-600"></i> Giáo trình ESP32 & IoT (48B)
                 </a>
               </div>
@@ -964,29 +1263,24 @@
             <img src="images/seo/class-15-18.webp" width="900" height="600"
               alt="Minh họa trí tuệ nhân tạo cho giai đoạn về đích" loading="lazy" decoding="async"
               class="w-full h-40 object-cover rounded-xl mb-4 border border-gray-100">
-            <span
-              class="inline-block py-1 px-3 rounded-full bg-accent-100 text-accent-700 text-xs font-bold tracking-wider mb-4 border border-accent-200 animate-pulse">15
-              - 18 TUỔI (VỀ ĐÍCH)</span>
-            <h4 class="text-2xl font-bold mb-2 text-gray-900">Giai đoạn 3</h4>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span class="inline-block py-1 px-3 rounded-full bg-accent-100 text-accent-700 text-xs font-bold tracking-wider border border-accent-200">15 - 18 TUỔI (VỀ ĐÍCH)</span>
+              <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold border border-blue-200">AP CSP & AI</span>
+              <span class="inline-block py-1 px-3 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold border border-amber-200">AP CSP & AI-900</span>
+            </div>
+            <h4 class="text-2xl font-bold mb-1 text-gray-900">Giai đoạn 3</h4>
             <p class="text-accent-600 font-medium mb-4">Khoa Học Máy Tính & Trí Tuệ Nhân Tạo (AI)</p>
             <div class="text-gray-600 text-sm space-y-3 leading-relaxed">
-              <p><strong class="text-gray-900">Mục tiêu:</strong> Xây dựng nền tảng Khoa học Máy tính vững chắc cho
-                chương trình Đại học bằng các chứng chỉ học thuật
-                trọng số cao.</p>
-              <p><strong class="text-gray-900">Học gì:</strong> AP Computer Science Principles & Nhập môn AI, Machine
-                Learning.</p>
-              <p><strong class="text-gray-900">Dự án:</strong> <span class="text-accent-600 font-semibold">📑 Portfolio
-                  & White
-                  Paper</span> - Báo cáo dự án nghiên cứu chuyên nghiệp.</p>
+              <p><strong class="text-gray-900">Mục tiêu:</strong> Xây dựng nền tảng Khoa học Máy tính vững chắc cho chương trình Đại học bằng các chứng chỉ học thuật trọng số cao.</p>
+              <p><strong class="text-gray-900">Học gì:</strong> AP Computer Science Principles & Nhập môn AI, Machine Learning.</p>
+              <p><strong class="text-gray-900">Dự án:</strong> <span class="text-accent-600 font-semibold">📑 Portfolio & White Paper</span> - Báo cáo dự án nghiên cứu chuyên nghiệp.</p>
               <div class="mt-4 p-4 bg-accent-50 rounded-lg border border-accent-100 flex items-start">
                 <i class="fa-solid fa-trophy text-accent-500 mt-1 mr-4 text-xl"></i>
-                <span class="text-gray-800"><strong>Khoa Học Máy Tính Đại Học:</strong> Chứng chỉ AP CSP (Tiết kiệm tín
-                  chỉ Đại học)
-                  và AI-900 (Chứng nhận AI từ Microsoft).</span>
+                <span class="text-gray-800"><strong>Khoa Học Máy Tính Đại Học:</strong> Chứng chỉ AP CSP (Tiết kiệm tín chỉ Đại học) và AI-900 (Chứng nhận AI từ Microsoft).</span>
               </div>
               <div class="mt-5">
                 <a href="course-15-18.html"
-                  class="inline-flex items-center text-accent-600 hover:text-accent-700 font-bold text-sm transition-colors group-hover:underline">
+                  class="inline-flex items-center text-accent-600 hover:text-accent-700 font-bold text-sm transition-colors group-hover:underline min-h-[44px]">
                   Xem chi tiết lộ trình 15-18 tuổi <i
                     class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                 </a>
@@ -1215,12 +1509,12 @@
         <div class="w-full lg:w-1/2 relative">
           <div class="grid grid-cols-1 gap-5">
             <div class="rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white">
-              <img src="images/seo/class.webp" alt="Lớp học robotics và lập trình" width="896" height="568"
+              <img src="images/seo/class.webp" alt="Lớp học robotics và lập trình" width="896" height="568" loading="lazy" decoding="async"
                 class="w-full h-80 md:h-[420px] object-cover">
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-white">
-                <img src="images/seo/pygame-chess.webp" alt="Màn hình dự án game cờ vua" width="1920" height="2560"
+                <img src="images/seo/pygame-chess.webp" alt="Màn hình dự án game cờ vua" width="1920" height="2560" loading="lazy" decoding="async"
                   class="w-full h-52 object-cover">
               </div>
               <div class="rounded-2xl bg-gray-900 text-white p-6 flex flex-col justify-between shadow-lg">
@@ -1284,30 +1578,37 @@
         </div>
 
         <!-- Right Column (Form) -->
-        <div class="lg:w-2/5 bg-white p-10 flex flex-col justify-center">
-          <div class="text-center mb-6">
-            <h4 class="text-2xl font-bold text-gray-900">Nhận tài liệu qua Zalo</h4>
-          </div>
-          <form id="leadMagnetForm" class="space-y-4">
-            <div>
-              <input type="tel" name="phone"
-                class="w-full px-4 py-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-50 text-gray-900 transition-all outline-none"
-                placeholder="Nhập số Zalo của ba/mẹ..." required>
-              <input type="hidden" name="message" value="[Khách từ Form Tặng Tài Liệu]">
+        <div class="lg:w-2/5 bg-white p-6 sm:p-10 flex flex-col justify-center">
+          <div class="text-center mb-5">
+            <h4 class="text-xl sm:text-2xl font-bold text-gray-900">Nhận tài liệu qua Zalo</h4>
+            <!-- Highlighted Promise Box -->
+            <div class="mt-2.5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-semibold">
+              <i class="fa-solid fa-bolt text-emerald-600"></i>
+              <span>Tài liệu PDF gửi tự động qua Zalo trong 5 phút</span>
             </div>
-            <button type="submit" id="leadSubmitBtn"
-              class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-4 px-6 rounded-xl shadow-md hover:shadow-lg transition-colors flex items-center justify-center text-lg">
-              <i class="fa-solid fa-download mr-2"></i> <span id="leadBtnText">GỬI TÀI LIỆU CHO TÔI</span>
-              <svg id="leadBtnSpinner" class="animate-spin ml-3 h-5 w-5 text-white hidden"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                </path>
-              </svg>
-            </button>
-            <p class="text-xs text-gray-400 text-center mt-4">
-              * Tài liệu dạng PDF sẽ được gửi tự động qua Zalo trong vòng 5 phút.
+          </div>
+          <form id="leadMagnetForm" class="space-y-3">
+            <div class="flex flex-col sm:flex-row gap-2">
+              <div class="flex-1">
+                <input type="tel" inputmode="numeric" pattern="[0-9]*" name="phone"
+                  class="w-full px-4 py-3.5 min-h-[48px] rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-gray-50 text-gray-900 text-base transition-all outline-none"
+                  placeholder="Số điện thoại Zalo của phụ huynh" required>
+                <input type="hidden" name="message" value="[Khách từ Form Tặng Tài Liệu]">
+              </div>
+              <button type="submit" id="leadSubmitBtn"
+                class="w-full sm:w-auto shrink-0 min-h-[48px] bg-accent-500 hover:bg-accent-600 active:scale-[0.98] text-white font-bold py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center text-base whitespace-nowrap">
+                <i class="fa-solid fa-download mr-2"></i> <span id="leadBtnText">GỬI TÀI LIỆU CHO TÔI</span>
+                <svg id="leadBtnSpinner" class="animate-spin ml-3 h-5 w-5 text-white hidden"
+                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                  </path>
+                </svg>
+              </button>
+            </div>
+            <p class="text-xs text-gray-500 text-center mt-3">
+              🔒 Cam kết bảo mật thông tin, không gửi tin nhắn rác.
             </p>
           </form>
         </div>
@@ -1438,29 +1739,29 @@
             <p class="text-gray-500 mt-2">Điền thông tin để chuyên gia của chúng tôi gọi lại cho bạn</p>
           </div>
 
-          <form id="registrationForm" class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form id="registrationForm" class="space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Họ và tên Phụ huynh *</label>
+                <label for="name" class="block text-sm font-semibold text-gray-700 mb-1.5">Họ và tên Phụ huynh *</label>
                 <input type="text" id="name" name="name"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors bg-gray-50 text-gray-900"
+                  class="w-full px-4 py-3 min-h-[48px] rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors bg-gray-50 text-gray-900 text-base"
                   placeholder="Nhập họ và tên" required>
               </div>
               <div>
-                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Số điện thoại *</label>
-                <input type="tel" id="phone" name="phone"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors bg-gray-50 text-gray-900"
-                  placeholder="09xxxxxxxxx" required>
+                <label for="phone" class="block text-sm font-semibold text-gray-700 mb-1.5">Số điện thoại Zalo *</label>
+                <input type="tel" id="phone" name="phone" inputmode="numeric" pattern="[0-9]*"
+                  class="w-full px-4 py-3 min-h-[48px] rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors bg-gray-50 text-gray-900 text-base"
+                  placeholder="Số điện thoại Zalo của phụ huynh" required>
               </div>
             </div>
 
             <div>
-              <label for="age" class="block text-sm font-medium text-gray-700 mb-2">Độ tuổi của con *</label>
+              <label for="age" class="block text-sm font-semibold text-gray-700 mb-1.5">Độ tuổi của con *</label>
               <div class="relative">
                 <select id="age" name="age"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 appearance-none transition-colors bg-gray-50 text-gray-900"
+                  class="w-full px-4 py-3 min-h-[48px] rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 appearance-none transition-colors bg-gray-50 text-gray-900 text-base"
                   required>
-                  <option value="" disabled selected>-- Chọn độ tuổi --</option>
+                  <option value="" disabled selected>-- Chọn độ tuổi của con --</option>
                   <option value="7-9">7 - 9 tuổi (Khởi động)</option>
                   <option value="10-13">10 - 13 tuổi (Đam mê)</option>
                   <option value="13-15">13 - 15 tuổi (Chuyên nghiệp)</option>
@@ -1470,25 +1771,27 @@
                   <i class="fa-solid fa-chevron-down text-sm"></i>
                 </div>
               </div>
-              <div>
-                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Lời nhắn (Tùy chọn)</label>
-                <textarea id="message" name="message" rows="2" maxlength="100"
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors bg-gray-50 text-gray-900 resize-none"
-                  placeholder="Để lại lời nhắn (tối đa 20 từ)"></textarea>
-              </div>
+            </div>
 
-              <button type="submit" id="submitBtn"
-                class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-lg flex items-center justify-center">
-                <span id="btnText">TIẾN HÀNH ĐĂNG KÝ</span>
-                <svg id="btnSpinner" class="animate-spin ml-3 h-5 w-5 text-white hidden"
-                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                  </path>
-                </svg>
-              </button>
-              <p class="text-xs text-center text-gray-500 mt-4">Thông tin của bạn được bảo mật tuyệt đối.</p>
+            <div>
+              <label for="message" class="block text-sm font-semibold text-gray-700 mb-1.5">Lời nhắn (Tùy chọn)</label>
+              <textarea id="message" name="message" rows="2" maxlength="100"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors bg-gray-50 text-gray-900 text-base resize-none"
+                placeholder="Để lại lời nhắn (tối đa 20 từ)"></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn"
+              class="w-full min-h-[50px] bg-accent-500 hover:bg-accent-600 active:scale-[0.98] text-white font-bold py-3.5 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all text-base md:text-lg flex items-center justify-center">
+              <span id="btnText">TIẾN HÀNH ĐĂNG KÝ</span>
+              <svg id="btnSpinner" class="animate-spin ml-3 h-5 w-5 text-white hidden"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                </path>
+              </svg>
+            </button>
+            <p class="text-xs text-center text-gray-500 mt-3">🔒 Thông tin của bạn được bảo mật tuyệt đối.</p>
           </form>
         </div>
       </div>
@@ -1559,27 +1862,23 @@
   </footer>
 
   <!-- Floating Contact Buttons -->
-  <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+  <div class="fixed right-4 md:right-6 bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] md:bottom-6 z-50 flex flex-col gap-2.5 items-end">
     <!-- Zalo Button -->
     <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
-      class="group flex items-center justify-center w-12 h-12 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 hover:shadow-lg transition-all transform hover:-translate-y-1">
-      <span class="font-bold text-lg">Zalo</span>
-      <!-- Tooltip -->
-      <span
-        class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-        Nhắn Zalo
-      </span>
+      class="relative group flex items-center justify-center w-[52px] h-[52px] min-w-[52px] min-h-[52px] md:w-auto md:h-12 md:px-4 bg-[#0068FF] text-white rounded-full shadow-lg hover:shadow-xl hover:bg-blue-600 transition-all transform active:scale-95 hover:-translate-y-0.5"
+      title="Nhắn Zalo Tư Vấn">
+      <!-- Pulsing Ping Effect on Ring for Mobile -->
+      <span class="absolute -inset-1 rounded-full bg-[#0068FF] opacity-40 animate-ping pointer-events-none md:hidden"></span>
+      <span class="font-extrabold text-sm md:text-base tracking-tight shrink-0">Zalo</span>
+      <span class="hidden md:inline-block ml-2 text-xs font-semibold whitespace-nowrap">Nhắn Zalo 0915.514.419</span>
     </a>
 
-    <!-- Call Button -->
+    <!-- Hotline Button -->
     <a href="tel:0915514419"
-      class="group flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-full shadow-md hover:bg-green-600 hover:shadow-lg transition-all transform hover:-translate-y-1">
-      <i class="fa-solid fa-phone"></i>
-      <!-- Tooltip -->
-      <span
-        class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 bg-gray-900/90 text-white text-xs font-medium whitespace-nowrap rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-        0915.514.419
-      </span>
+      class="group flex items-center justify-center w-[52px] h-[52px] min-w-[52px] min-h-[52px] md:w-auto md:h-12 md:px-4 bg-emerald-500 text-white rounded-full shadow-lg hover:shadow-xl hover:bg-emerald-600 transition-all transform active:scale-95 hover:-translate-y-0.5"
+      title="Gọi Hotline: 0915.514.419">
+      <i class="fa-solid fa-phone text-lg md:text-base shrink-0"></i>
+      <span class="hidden md:inline-block ml-2 text-xs font-semibold whitespace-nowrap font-mono">Gọi Hotline</span>
     </a>
   </div>
 
@@ -1598,7 +1897,7 @@
     // Update UI for loading state
     submitBtn.disabled = true;
     submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
-    btnText.textContent = 'ĐANG XỬ LÝ...';
+    btnText.textContent = 'Đang gửi thông tin...';
     btnSpinner.classList.remove('hidden');
 
     // Setup form data
@@ -1645,7 +1944,7 @@
     // Update UI for loading state
     submitBtn.disabled = true;
     submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
-    btnText.textContent = 'ĐANG XỬ LÝ...';
+    btnText.textContent = 'Đang gửi thông tin...';
     btnSpinner.classList.remove('hidden');
 
     // Setup form data
