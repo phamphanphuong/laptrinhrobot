@@ -35,6 +35,31 @@
         }
     </script>
     <style>
+        body {
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        input,
+        select,
+        textarea {
+            font-size: 16px !important;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .safe-bottom {
+            bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+        }
+
         h1,
         h2,
         h3,
@@ -70,12 +95,12 @@
     </script>
 </head>
 
-<body class="font-sans text-gray-800 antialiased bg-gray-50 pt-20">
+<body class="font-sans text-gray-800 antialiased bg-gray-50 pt-20 overflow-x-hidden">
 
     <!-- NAVIGATION -->
     <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-16 md:h-20">
                 <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
                     <div
                         class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg">
@@ -446,6 +471,28 @@
             <p>&copy; 2026 Lập Trình Robot. Tất cả các quyền được bảo lưu.</p>
         </div>
     </footer>
+
+    <!-- Floating Contact Buttons -->
+    <div
+        class="fixed right-4 md:right-6 bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] md:bottom-6 z-50 flex flex-col gap-2.5 items-end">
+        <!-- Zalo Button -->
+        <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
+            class="relative group flex items-center justify-center w-[52px] h-[52px] min-w-[52px] min-h-[52px] md:w-auto md:h-12 md:px-4 bg-[#0068FF] text-white rounded-full shadow-lg hover:shadow-xl hover:bg-blue-600 transition-all transform active:scale-95 hover:-translate-y-0.5"
+            title="Nhắn Zalo Tư Vấn">
+            <span
+                class="absolute -inset-1 rounded-full bg-[#0068FF] opacity-40 animate-ping pointer-events-none md:hidden"></span>
+            <span class="font-extrabold text-sm md:text-base tracking-tight shrink-0">Zalo</span>
+            <span class="hidden md:inline-block ml-2 text-xs font-semibold whitespace-nowrap">Nhắn Zalo 0915.514.419</span>
+        </a>
+
+        <!-- Call Button -->
+        <a href="tel:0915514419"
+            class="group flex items-center justify-center w-[52px] h-[52px] min-w-[52px] min-h-[52px] md:w-auto md:h-12 md:px-4 bg-emerald-500 text-white rounded-full shadow-lg hover:shadow-xl hover:bg-emerald-600 transition-all transform active:scale-95 hover:-translate-y-0.5"
+            title="Gọi Hotline: 0915.514.419">
+            <i class="fa-solid fa-phone text-lg md:text-base shrink-0"></i>
+            <span class="hidden md:inline-block ml-2 text-xs font-semibold whitespace-nowrap font-mono">Gọi Hotline</span>
+        </a>
+    </div>
 
 </body>
 

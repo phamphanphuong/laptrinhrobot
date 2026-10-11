@@ -34,6 +34,31 @@
     </script>
 
     <style>
+        body {
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        input,
+        select,
+        textarea {
+            font-size: 16px !important;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .safe-bottom {
+            bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+        }
+
         h1,
         h2,
         h3,
@@ -395,6 +420,28 @@
     <script src="competition-cpp-6.js?v=20260516c"></script>
     <script src="competition-cpp-main.js?v=20260516e"></script>
     <script src="bosung.js?v=20260516f"></script>
+    <!-- Floating Contact Buttons -->
+    <div
+        class="fixed right-4 md:right-6 bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] md:bottom-6 z-50 flex flex-col gap-2.5 items-end">
+        <!-- Zalo Button -->
+        <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
+            class="relative group flex items-center justify-center w-[52px] h-[52px] min-w-[52px] min-h-[52px] md:w-auto md:h-12 md:px-4 bg-[#0068FF] text-white rounded-full shadow-lg hover:shadow-xl hover:bg-blue-600 transition-all transform active:scale-95 hover:-translate-y-0.5"
+            title="Nhắn Zalo Tư Vấn">
+            <span
+                class="absolute -inset-1 rounded-full bg-[#0068FF] opacity-40 animate-ping pointer-events-none md:hidden"></span>
+            <span class="font-extrabold text-sm md:text-base tracking-tight shrink-0">Zalo</span>
+            <span class="hidden md:inline-block ml-2 text-xs font-semibold whitespace-nowrap">Nhắn Zalo 0915.514.419</span>
+        </a>
+
+        <!-- Call Button -->
+        <a href="tel:0915514419"
+            class="group flex items-center justify-center w-[52px] h-[52px] min-w-[52px] min-h-[52px] md:w-auto md:h-12 md:px-4 bg-emerald-500 text-white rounded-full shadow-lg hover:shadow-xl hover:bg-emerald-600 transition-all transform active:scale-95 hover:-translate-y-0.5"
+            title="Gọi Hotline: 0915.514.419">
+            <i class="fa-solid fa-phone text-lg md:text-base shrink-0"></i>
+            <span class="hidden md:inline-block ml-2 text-xs font-semibold whitespace-nowrap font-mono">Gọi Hotline</span>
+        </a>
+    </div>
+
 </body>
 
 </html>
