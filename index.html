@@ -268,10 +268,29 @@
       transform: scale(0.98);
     }
 
-    /* 4. Thanh đáy cố định và padding chống che nội dung trên Mobile */
-    @media (max-width: 767px) {
-      .mobile-bottom-spacer {
-        padding-bottom: 84px !important;
+    /* 4. Thanh đáy cố định và padding-bottom 80px cho body trên Mobile (max-width: 768px) */
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 80px !important;
+      }
+      .mobile-sticky-bottom {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 50 !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        padding: 8px 12px !important;
+        background: #ffffff !important;
+        border-top: 2px solid #e5e7eb !important;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-sticky-bottom {
+        display: none !important;
       }
     }
 
@@ -294,7 +313,7 @@
   </script>
 </head>
 
-<body class="mobile-bottom-spacer">
+<body>
 
   <!-- ========================================== -->
   <!-- THANH ĐẦU TRANG (STICKY MOBILE HEADER) TỐI GIẢN -->
@@ -1013,11 +1032,11 @@
                 <span class="text-gray-500 text-base">(09 155 144 19)</span>
               </div>
             </li>
-            <li class="flex items-center gap-3">
-              <i class="fa-solid fa-envelope text-emerald-600 text-2xl shrink-0"></i>
-              <div>
+            <li class="flex items-start sm:items-center gap-3">
+              <i class="fa-solid fa-envelope text-emerald-600 text-2xl shrink-0 mt-0.5 sm:mt-0"></i>
+              <div class="min-w-0 flex-1">
                 <strong>Email:</strong>
-                <a href="mailto:LapTrinhRobot.com@gmail.com" class="text-emerald-700 font-semibold hover:underline ml-1">LapTrinhRobot.com@gmail.com</a>
+                <a href="mailto:LapTrinhRobot.com@gmail.com" class="text-emerald-700 font-semibold hover:underline break-all block sm:inline">LapTrinhRobot.com@gmail.com</a>
               </div>
             </li>
           </ul>
@@ -1087,19 +1106,17 @@
   <!-- ========================================== -->
   <!-- THANH LIÊN HỆ CỐ ĐỊNH DƯỚI ĐÁY MÀN HÌNH (STICKY BOTTOM BAR TRÊN MOBILE) -->
   <!-- ========================================== -->
-  <aside class="fixed bottom-0 left-0 right-0 z-50 h-[68px] bg-white border-t-2 border-gray-300 px-3 py-2 flex md:hidden items-center justify-between gap-2.5 shadow-[0_-4px_12px_rgba(0,0,0,0.1)]"
+  <aside class="mobile-sticky-bottom" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 12px; background: #ffffff; border-top: 2px solid #e5e7eb;"
     aria-label="Thanh liên hệ nhanh">
-    <!-- Nút 1: Zalo (Nền xanh Zalo #0068FF, chữ trắng 17px đậm) -->
+    <!-- Nút 1: Zalo (Rút gọn thành 💬 Nhắn Zalo) -->
     <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
-      class="flex-1 h-[52px] bg-[#0068FF] active:bg-blue-700 text-white font-extrabold text-[17px] rounded-xl flex items-center justify-center gap-2 shadow-sm text-decoration-none">
-      <i class="fa-solid fa-comment-dots text-xl"></i>
-      <span>💬 Nhắn Zalo Ngay</span>
+      class="h-[52px] bg-[#0068FF] active:bg-blue-700 text-white font-extrabold text-[16px] sm:text-[17px] rounded-xl flex items-center justify-center gap-1.5 shadow-sm text-decoration-none px-2 whitespace-nowrap">
+      <span>💬 Nhắn Zalo</span>
     </a>
 
-    <!-- Nút 2: Hotline (Nền xanh lá #059669, chữ trắng 17px đậm) -->
+    <!-- Nút 2: Hotline (Rút gọn thành 📞 Gọi: 0915.514.419) -->
     <a href="tel:0915514419"
-      class="flex-1 h-[52px] bg-[#059669] active:bg-emerald-800 text-white font-extrabold text-[17px] rounded-xl flex items-center justify-center gap-2 shadow-sm text-decoration-none">
-      <i class="fa-solid fa-phone text-lg animate-bounce"></i>
+      class="h-[52px] bg-[#059669] active:bg-emerald-800 text-white font-extrabold text-[16px] sm:text-[17px] rounded-xl flex items-center justify-center gap-1.5 shadow-sm text-decoration-none px-2 whitespace-nowrap">
       <span>📞 Gọi: 0915.514.419</span>
     </a>
   </aside>
