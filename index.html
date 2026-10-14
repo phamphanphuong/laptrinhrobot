@@ -320,7 +320,7 @@
   <!-- ========================================== -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
     <div class="max-w-6xl mx-auto px-3 sm:px-6">
-      <!-- Hàng 1: Logo và Nút Gọi Tư Vấn Trực Tiếp -->
+      <!-- Hàng 1: Logo và Liên Kết Xem Học Phí -->
       <div class="flex items-center justify-between py-2.5 sm:py-3">
         <!-- Logo thương hiệu rõ ràng -->
         <a href="#" class="flex items-center gap-2.5 text-decoration-none group" title="Về đầu trang Lập Trình Robot">
@@ -335,28 +335,28 @@
           </div>
         </a>
 
-        <!-- Nút Gọi Trực Tiếp Trên Header (Nổi bật, dễ bấm) -->
-        <a href="tel:0915514419"
-          class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base sm:text-lg px-3.5 sm:px-5 py-2.5 rounded-xl shadow-sm transition-all active:scale-95 shrink-0"
-          title="Gọi tư vấn trực tiếp cho kỹ sư phụ trách">
-          <i class="fa-solid fa-phone text-base animate-pulse"></i>
-          <span>📞 Gọi Tư Vấn</span>
+        <!-- Liên kết đến trang Liên Hệ (đầy đủ thông tin & bảng giá học phí) -->
+        <a href="lien-he.html"
+          class="flex items-center gap-1.5 text-emerald-800 hover:text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 font-bold text-sm sm:text-base px-3.5 py-2 rounded-xl transition-colors shrink-0 shadow-sm"
+          title="Xem đầy đủ thông tin khóa học và bảng học phí chi tiết">
+          <span>Liên Hệ</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
       </div>
 
-      <!-- Hàng 2: Thanh 3 Nút Neo Nhanh (Không menu phức tạp, chạm là tới) -->
+      <!-- Hàng 2: Thanh 3 Nút Neo Nhanh (Rút gọn tên nút theo yêu cầu) -->
       <nav class="flex items-center justify-between gap-1.5 py-2 border-t border-gray-100 overflow-x-auto no-scrollbar text-center" aria-label="Điều hướng nhanh">
         <a href="#lo-trinh"
           class="flex-1 py-1.5 px-2 bg-brand-mint hover:bg-emerald-100 text-emerald-800 font-bold text-sm sm:text-base rounded-lg border border-emerald-200 whitespace-nowrap transition-colors">
-          🧭 Lộ Trình Theo Tuổi
+          🧭 Lộ Trình
         </a>
         <a href="#lop-hoc-thuc-te"
           class="flex-1 py-1.5 px-2 bg-brand-mint hover:bg-emerald-100 text-emerald-800 font-bold text-sm sm:text-base rounded-lg border border-emerald-200 whitespace-nowrap transition-colors">
-          🏫 Lớp Học Thực Tế
+          🏫 Lớp Học
         </a>
         <a href="#dang-ky"
           class="flex-1 py-1.5 px-2 bg-orange-50 hover:bg-orange-100 text-orange-800 font-bold text-sm sm:text-base rounded-lg border border-orange-200 whitespace-nowrap transition-colors">
-          📍 Địa Chỉ & Học Phí
+          📍 Đăng Ký
         </a>
       </nav>
     </div>
@@ -818,6 +818,10 @@
               <span class="inline-block bg-gray-200 text-gray-800 font-bold text-base px-2.5 py-0.5 rounded mt-0.5">ĐÁP</span>
               <p class="text-secondary text-lg sm:text-xl leading-relaxed">
                 Trước khi đăng ký, thầy cô sẽ <strong>kiểm tra năng lực tư duy miễn phí</strong> cho cháu để tư vấn đúng cấp độ phù hợp nhất và thông báo mức học phí minh bạch, giúp gia đình tối ưu chi phí và cháu học không bị quá sức.
+                <br>
+                <a href="lien-he.html" class="inline-flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 font-bold underline mt-2 text-base sm:text-lg">
+                  👉 Xem chi tiết bảng giá học phí (lớp chung, kèm 1:1) tại Trang Liên Hệ & Học Phí
+                </a>
               </p>
             </div>
           </div>
@@ -1016,13 +1020,19 @@
             📍 Thông Tin Liên Hệ & Địa Chỉ Lớp Học
           </h3>
 
-          <ul class="space-y-4 text-lg sm:text-xl text-gray-900 mb-6">
-            <li class="flex items-start gap-3">
-              <i class="fa-solid fa-location-dot text-emerald-600 text-2xl mt-1 shrink-0"></i>
-              <div>
-                <strong>Địa chỉ lớp học trực tiếp:</strong><br>
-                <span>Số 12/5, Hẻm 556 Nguyễn Văn Quá, Phường Đông Hưng Thuận, Quận 12, TP. Hồ Chí Minh.</span>
-              </div>
+          <ul class="space-y-4 text-lg sm:text-xl text-gray-900">
+            <li>
+              <a href="https://maps.google.com/?q=12/5+Hẻm+556+Nguyễn+Văn+Quá+Đông+Hưng+Thuận+Quận+12+TPHCM"
+                target="_blank" rel="noopener noreferrer"
+                class="flex items-start gap-3 group text-gray-900 hover:text-emerald-700 transition-colors"
+                title="Bấm để xem chỉ đường trên Google Maps">
+                <i class="fa-solid fa-location-dot text-emerald-600 text-2xl mt-1 shrink-0 group-hover:scale-110 transition-transform"></i>
+                <div>
+                  <strong class="group-hover:underline">Địa chỉ lớp học trực tiếp:</strong><br>
+                  <span class="text-emerald-700 font-medium group-hover:underline">Số 12/5, Hẻm 556 Nguyễn Văn Quá, Phường Đông Hưng Thuận, Quận 12, TP. Hồ Chí Minh.</span>
+                  <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-bold bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full ml-1 whitespace-nowrap">📍 Mở Google Maps</span>
+                </div>
+              </a>
             </li>
             <li class="flex items-center gap-3">
               <i class="fa-solid fa-phone text-emerald-600 text-2xl shrink-0"></i>
@@ -1040,19 +1050,6 @@
               </div>
             </li>
           </ul>
-
-          <div class="pt-4 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
-            <a href="https://maps.google.com/?q=12/5+Hẻm+556+Nguyễn+Văn+Quá+Đông+Hưng+Thuận+Quận+12+TPHCM"
-              target="_blank" rel="noopener noreferrer"
-              class="btn-touch flex-1 bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold text-base sm:text-lg border border-gray-300 py-3 rounded-xl">
-              🗺️ Xem Chỉ Đường Trên Google Maps
-            </a>
-            <a href="https://zalo.me/0915514419"
-              target="_blank" rel="noopener noreferrer"
-              class="btn-touch flex-1 bg-[#0068FF] hover:bg-blue-700 text-white font-bold text-base sm:text-lg py-3 rounded-xl">
-              💬 Nhắn Tin Zalo Thầy Cô
-            </a>
-          </div>
         </div>
 
       </div>
@@ -1094,7 +1091,9 @@
 
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-base text-gray-600">
         <p>&copy; 2026 Lập Trình Robot. Bản quyền được bảo hộ.</p>
-        <div class="flex gap-4">
+        <div class="flex flex-wrap gap-4 items-center">
+          <a href="lien-he.html" class="hover:text-emerald-700 hover:underline font-semibold text-emerald-800">📋 Trang Liên Hệ & Học Phí</a>
+          <span>•</span>
           <a href="privacy.html" class="hover:text-emerald-700 hover:underline">Chính sách bảo mật</a>
           <span>•</span>
           <a href="terms.html" class="hover:text-emerald-700 hover:underline">Điều khoản dịch vụ</a>
@@ -1114,10 +1113,11 @@
       <span>💬 Nhắn Zalo</span>
     </a>
 
-    <!-- Nút 2: Hotline (Rút gọn thành 📞 Gọi: 0915.514.419) -->
+    <!-- Nút 2: Hotline (Chỉ icon và Gọi Ngay, không ghi số cụ thể theo yêu cầu) -->
     <a href="tel:0915514419"
-      class="h-[52px] bg-[#059669] active:bg-emerald-800 text-white font-extrabold text-[16px] sm:text-[17px] rounded-xl flex items-center justify-center gap-1.5 shadow-sm text-decoration-none px-2 whitespace-nowrap">
-      <span>📞 Gọi: 0915.514.419</span>
+      class="h-[52px] bg-[#059669] active:bg-emerald-800 text-white font-extrabold text-[16px] sm:text-[17px] rounded-xl flex items-center justify-center gap-2 shadow-sm text-decoration-none px-2 whitespace-nowrap">
+      <i class="fa-solid fa-phone text-lg animate-pulse"></i>
+      <span>Gọi Ngay</span>
     </a>
   </aside>
 
