@@ -79,23 +79,7 @@
             "name": "Cháu ở nhà chỉ quen dùng điện thoại, chưa biết gì về máy tính hay tiếng Anh thì có theo học được không?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Hoàn toàn học được. Với các cháu mới bắt đầu, thầy cô sẽ hướng dẫn từ những thao tác cơ bản nhất bằng hình ảnh tiếng Việt trực quan, vừa học vừa lắp ráp mô hình thật nên các cháu rất hào hứng và dễ tiếp thu."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Học trực tiếp ở đâu? Nếu nhà ở xa thì cháu có học trực tuyến (Online) được không?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Trung tâm có lớp học trực tiếp tại địa chỉ Số 12/5, Hẻm 556 Nguyễn Văn Quá, Phường Đông Hưng Thuận, Quận 12, TP.HCM. Với gia đình ở xa, trung tâm có lớp học trực tuyến (Online) giáo viên kèm sát trực tiếp từng buổi."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Học xong các khóa này cháu đạt được lợi ích gì thiết thực?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Cháu chuyển từ người chỉ biết chơi game sang biết tự tạo ra phần mềm, robot; rèn tư duy giải quyết vấn đề phục vụ tốt cho môn Toán, Lý, Tin học ở trường và sở hữu các chứng chỉ quốc tế có giá trị lâu dài."
+              "text": "Hoàn toàn học được. Với các cháu mới bắt đầu, thầy cô sẽ hướng dẫn từ những thao tác cơ bản nhất bằng hình ảnh tiếng Việt trực quan, vừa học vừa lắp ráp mô hình thật nên các cháu bắt nhịp rất nhanh."
             }
           },
           {
@@ -268,10 +252,10 @@
       transform: scale(0.98);
     }
 
-    /* 4. Thanh đáy cố định và padding-bottom 80px cho body trên Mobile (max-width: 768px) */
+    /* 4. Thanh đáy cố định và padding-bottom 72px cho body trên Mobile (max-width: 768px) */
     @media (max-width: 768px) {
       body {
-        padding-bottom: 80px !important;
+        padding-bottom: 72px !important;
       }
       .mobile-sticky-bottom {
         position: fixed !important;
@@ -279,12 +263,13 @@
         left: 0 !important;
         right: 0 !important;
         z-index: 50 !important;
+        height: 60px !important;
+        background: #FFFFFF !important;
+        border-top: 1px solid #E5E7EB !important;
+        padding: 6px 12px !important;
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 8px !important;
-        padding: 8px 12px !important;
-        background: #ffffff !important;
-        border-top: 2px solid #e5e7eb !important;
+        gap: 10px !important;
       }
     }
 
@@ -316,196 +301,125 @@
 <body>
 
   <!-- ========================================== -->
-  <!-- THANH ĐẦU TRANG (STICKY MOBILE HEADER) TỐI GIẢN -->
+  <!-- THANH ĐẦU TRANG (STICKY MOBILE HEADER) TỐI GIẢN CAO 56PX -->
   <!-- ========================================== -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
-    <div class="max-w-6xl mx-auto px-3 sm:px-6">
-      <!-- Hàng 1: Logo và Liên Kết Xem Học Phí -->
-      <div class="flex items-center justify-between py-2.5 sm:py-3">
-        <!-- Logo thương hiệu rõ ràng -->
-        <a href="#" class="flex items-center gap-2.5 text-decoration-none group" title="Về đầu trang Lập Trình Robot">
-          <div class="w-11 h-11 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-sm shrink-0">
-            <i class="fa-solid fa-robot text-2xl"></i>
-          </div>
-          <div class="flex flex-col">
-            <span class="font-extrabold text-xl sm:text-2xl text-gray-900 leading-tight">
-              Lập Trình <span class="text-emerald-600">Robot</span>
-            </span>
-            <span class="text-xs sm:text-sm font-semibold text-gray-700">Dành Cho Trẻ 7 – 18 Tuổi</span>
-          </div>
-        </a>
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm h-[56px] flex items-center">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 w-full flex items-center justify-between">
+      <!-- Bên trái: Logo Lập Trình Robot -->
+      <a href="#" class="flex items-center gap-2.5 text-decoration-none" title="Về đầu trang Lập Trình Robot">
+        <div class="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-sm shrink-0">
+          <i class="fa-solid fa-robot text-xl"></i>
+        </div>
+        <span class="font-extrabold text-lg sm:text-xl text-gray-900 leading-tight">
+          Lập Trình <span class="text-emerald-600">Robot</span>
+        </span>
+      </a>
 
-        <!-- Liên kết đến trang Liên Hệ (đầy đủ thông tin & bảng giá học phí) -->
-        <a href="lien-he.html"
-          class="flex items-center gap-1.5 text-emerald-800 hover:text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 font-bold text-sm sm:text-base px-3.5 py-2 rounded-xl transition-colors shrink-0 shadow-sm"
-          title="Xem đầy đủ thông tin khóa học và bảng học phí chi tiết">
-          <span>Liên Hệ</span>
-          <i class="fa-solid fa-arrow-right text-xs"></i>
-        </a>
-      </div>
-
-      <!-- Hàng 2: Thanh 3 Nút Neo Nhanh (Rút gọn tên nút theo yêu cầu) -->
-      <nav class="flex items-center justify-between gap-1.5 py-2 border-t border-gray-100 overflow-x-auto no-scrollbar text-center" aria-label="Điều hướng nhanh">
-        <a href="#lo-trinh"
-          class="flex-1 py-1.5 px-2 bg-brand-mint hover:bg-emerald-100 text-emerald-800 font-bold text-sm sm:text-base rounded-lg border border-emerald-200 whitespace-nowrap transition-colors">
-          🧭 Lộ Trình
-        </a>
-        <a href="#lop-hoc-thuc-te"
-          class="flex-1 py-1.5 px-2 bg-brand-mint hover:bg-emerald-100 text-emerald-800 font-bold text-sm sm:text-base rounded-lg border border-emerald-200 whitespace-nowrap transition-colors">
-          🏫 Lớp Học
-        </a>
-        <a href="#dang-ky"
-          class="flex-1 py-1.5 px-2 bg-orange-50 hover:bg-orange-100 text-orange-800 font-bold text-sm sm:text-base rounded-lg border border-orange-200 whitespace-nowrap transition-colors">
-          📍 Đăng Ký
-        </a>
-      </nav>
+      <!-- Bên phải: Nút Đăng Ký Học Thử (cuộn mượt xuống biểu mẫu cuối trang) -->
+      <a href="#dang-ky"
+        class="bg-[#EA580C] hover:bg-[#C2410C] text-white font-bold text-sm sm:text-base px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl transition-colors shrink-0 shadow-sm">
+        Đăng Ký Học Thử
+      </a>
     </div>
   </header>
 
   <main>
     <!-- ========================================== -->
-    <!-- KHỐI 1: MỞ ĐẦU (HERO SECTION) — CHẠM ĐÚNG TÂM LÝ GIA ĐÌNH -->
+    <!-- KHỐI 1: MỞ ĐẦU (HERO SECTION) — GỌN TRONG 1 MÀN HÌNH ĐIỆN THOẠI -->
     <!-- ========================================== -->
-    <section class="py-8 sm:py-14 bg-gradient-to-b from-[#F4F8F6] to-white border-b border-gray-200">
+    <section class="py-6 sm:py-12 bg-gradient-to-b from-[#F4F8F6] to-white border-b border-gray-200">
       <div class="max-w-5xl mx-auto px-4 sm:px-6">
         
-        <!-- Nhãn phụ trên đầu (Cỡ chữ lớn 15px–16px, không viết chữ bé) -->
-        <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 border border-emerald-300 px-3.5 py-1.5 rounded-full text-base sm:text-lg font-bold mb-4">
-          <i class="fa-solid fa-location-dot text-emerald-600"></i>
-          <span>Trung tâm Đào tạo Lập trình & Robot cho trẻ 7 – 18 tuổi (Quận 12, TP.HCM & Học Trực Tuyến)</span>
+        <!-- Nhãn vị trí (Duy nhất 1 nhãn toàn trang) -->
+        <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 border border-emerald-300 px-3.5 py-1.5 rounded-full text-sm sm:text-base font-bold mb-4">
+          <span>📍 Quận 12, TP.HCM & Học Trực Tuyến (7 – 18 Tuổi)</span>
         </div>
 
-        <!-- Tiêu đề chính h1: Chữ to 28-30px trên Mobile, không viết hoa toàn bộ -->
-        <h1 class="mb-4 text-gray-900 font-extrabold tracking-tight">
+        <!-- Tiêu đề chính h1: Chữ to rõ, không viết hoa toàn bộ -->
+        <h1 class="mb-3 text-gray-900 font-extrabold tracking-tight">
           Giúp Con Cháu Rời Xa Trò Chơi Vô Bổ — Tự Tay Lắp Ráp Robot & Viết Phần Mềm
         </h1>
 
-        <!-- Đoạn mô tả ngắn gọn, ngôn ngữ đời thường -->
-        <p class="text-secondary text-lg sm:text-xl leading-relaxed mb-6 font-normal">
-          Thay vì để trẻ dành hàng giờ chỉ để xem điện thoại hay chơi game, các kỹ sư giàu kinh nghiệm sẽ hướng dẫn các em tự lắp ráp robot, tự tạo trò chơi và rèn luyện tư duy khoa học vững vàng cho tương lai.
+        <!-- Đoạn mô tả ngắn (tối đa 2 câu) -->
+        <p class="text-secondary text-base sm:text-xl leading-relaxed mb-6 font-normal">
+          Các kỹ sư công nghệ trực tiếp hướng dẫn các cháu tự lắp ráp robot, viết phần mềm và rèn tư duy khoa học qua sản phẩm thực tế mỗi buổi học.
         </p>
 
-        <!-- Nút hành động chính (Hero CTA) — Full-width trên mobile, cam đậm #EA580C -->
-        <div class="mb-8">
+        <!-- Nút hành động chính (Hero CTA) — Full-width trên mobile, cam đậm #EA580C, cao 54px -->
+        <div class="mb-6">
           <a href="#dang-ky"
-            class="btn-touch w-full sm:w-auto bg-[#EA580C] hover:bg-[#C2410C] text-white shadow-md px-6 py-4 rounded-xl text-lg sm:text-xl font-extrabold">
-            🎯 Đăng Ký Kiểm Tra Năng Lực Miễn Phí Cho Cháu
+            class="btn-touch w-full sm:w-auto bg-[#EA580C] hover:bg-[#C2410C] text-white shadow-md px-6 py-3.5 rounded-xl text-lg sm:text-xl font-extrabold">
+            🎯 Đăng Ký Kiểm Tra Năng Lực Miễn Phí
           </a>
         </div>
 
-        <!-- 3 Cam kết nổi bật (3 khung nền sáng, biểu tượng lớn, chữ to rõ) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <!-- Cam kết 1 -->
-          <div class="bg-white p-4 sm:p-5 rounded-2xl border-2 border-emerald-100 shadow-sm flex items-start gap-3.5">
-            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl shrink-0 mt-0.5">
-              <i class="fa-solid fa-screwdriver-wrench"></i>
-            </div>
-            <div>
-              <h3 class="font-bold text-lg text-gray-900 mb-1">Học qua thực hành thật</h3>
-              <p class="text-secondary text-base leading-snug">Mỗi buổi học các cháu đều tự tay lắp ráp mô hình hoặc làm ra trò chơi cụ thể.</p>
-            </div>
-          </div>
-
-          <!-- Cam kết 2 -->
-          <div class="bg-white p-4 sm:p-5 rounded-2xl border-2 border-emerald-100 shadow-sm flex items-start gap-3.5">
-            <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-2xl shrink-0 mt-0.5">
-              <i class="fa-solid fa-chalkboard-user"></i>
-            </div>
-            <div>
-              <h3 class="font-bold text-lg text-gray-900 mb-1">Kỹ sư kèm sát từng em</h3>
-              <p class="text-secondary text-base leading-snug">Giảng viên là kỹ sư công nghệ trực tiếp hướng dẫn (không phải sinh viên dạy thêm).</p>
-            </div>
-          </div>
-
-          <!-- Cam kết 3 -->
-          <div class="bg-white p-4 sm:p-5 rounded-2xl border-2 border-emerald-100 shadow-sm flex items-start gap-3.5">
-            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl shrink-0 mt-0.5">
-              <i class="fa-solid fa-award"></i>
-            </div>
-            <div>
-              <h3 class="font-bold text-lg text-gray-900 mb-1">Bằng cấp quốc tế uy tín</h3>
-              <p class="text-secondary text-base leading-snug">Có chứng chỉ quốc tế giúp làm đẹp hồ sơ học tập và xét tuyển vào Đại học.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Ảnh thực tế lớp học tại trung tâm (Bảo toàn đường dẫn hình ảnh) -->
+        <!-- Hình ảnh lớp học thực tế: Bo góc gọn gàng, không kèm chú thích rườm rà -->
         <div class="rounded-2xl overflow-hidden border-2 border-gray-200 shadow-sm bg-white">
           <img src="images/seo/class.webp" alt="Lớp học lập trình và lắp ráp robot thực tế cho học sinh"
             class="w-full h-auto object-cover max-h-[380px]" loading="eager" width="1200" height="630">
-          <div class="p-3 bg-gray-50 text-center text-base text-gray-700 font-medium">
-            📸 Hình ảnh thực tế: Thầy cô hướng dẫn các em học sinh từng thao tác lắp ráp robot và viết code tại lớp
-          </div>
         </div>
 
       </div>
     </section>
 
     <!-- ========================================== -->
-    <!-- KHỐI 2: LỘ TRÌNH HỌC THEO 4 ĐỘ TUỔI (XẾP DỌC 4 THẺ LỚN, KHÔNG DÙNG TAB ẨN) -->
+    <!-- KHỐI 2: LỘ TRÌNH 4 ĐỘ TUỔI (TRỌNG TÂM CỦA TRANG) -->
     <!-- ========================================== -->
-    <section id="lo-trinh" class="py-10 sm:py-16 bg-white border-b border-gray-200">
+    <section id="lo-trinh" class="py-8 sm:py-14 bg-white border-b border-gray-200">
       <div class="max-w-4xl mx-auto px-4 sm:px-6">
 
-        <div class="text-center mb-8 sm:mb-12">
-          <span class="inline-block bg-emerald-100 text-emerald-800 text-base sm:text-lg font-bold px-4 py-1.5 rounded-full mb-3">
-            Lộ Trình Bài Bản Từ Cơ Bản Đến Nâng Cao
-          </span>
-          <h2 class="mb-3 text-gray-900 font-extrabold">
-            Chọn Lớp Học Phù Hợp Với Độ Tuổi Của Con Cháu
+        <div class="text-center mb-6 sm:mb-10">
+          <h2 class="text-gray-900 font-extrabold">
+            Chọn Lớp Học Theo Độ Tuổi Của Cháu
           </h2>
-          <p class="text-secondary text-lg sm:text-xl max-w-2xl mx-auto">
-            Chương trình được thiết kế riêng cho từng lứa tuổi, cháu chưa biết gì về máy tính vẫn bắt đầu học dễ dàng.
-          </p>
         </div>
 
         <!-- Danh sách 4 Chặng Tuổi Xếp Dọc (Zero Tabs - Dễ đọc, dễ cuộn) -->
-        <div class="space-y-8">
+        <div class="space-y-6 sm:space-y-8">
 
           <!-- THẺ 1: 7 – 9 TUỔI (LỚP 2 – LỚP 4) -->
           <article class="card-soft overflow-hidden border-emerald-300">
-            <div class="bg-emerald-600 text-white p-4 sm:p-5 flex flex-wrap items-center justify-between gap-2">
+            <div class="bg-emerald-600 text-white p-3.5 sm:p-4 flex items-center justify-between">
               <span class="bg-white text-emerald-800 text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-full shadow-sm">
-                👶 Độ tuổi: 7 – 9 Tuổi (Lớp 2 – Lớp 4)
+                👶 7 – 9 Tuổi (Lớp 2 – Lớp 4)
               </span>
-              <span class="text-white text-base sm:text-lg font-medium">Khởi đầu tốt nhất</span>
             </div>
 
             <div class="p-5 sm:p-7">
-              <h3 class="text-emerald-900 text-2xl font-extrabold mb-4">
+              <h3 class="text-emerald-900 text-xl sm:text-2xl font-extrabold mb-3">
                 Giai đoạn 1: Làm quen máy tính & Lắp ráp Robot cơ bản
               </h3>
 
               <!-- Ảnh minh họa thực tế giai đoạn 7-9 tuổi -->
-              <div class="mb-5 rounded-xl overflow-hidden border border-gray-200">
+              <div class="mb-4 rounded-xl overflow-hidden border border-gray-200">
                 <img src="images/seo/class-7-9.webp" alt="Học sinh 7-9 tuổi học Scratch và lắp ráp Lego WeDo"
-                  class="w-full h-52 sm:h-64 object-cover" loading="lazy" width="800" height="450">
+                  class="w-full h-48 sm:h-60 object-cover" loading="lazy" width="800" height="450">
               </div>
 
               <!-- 3 Mục hiển thị rõ ràng bằng gạch đầu dòng -->
-              <ul class="space-y-3 mb-6 text-lg sm:text-xl text-gray-900">
-                <li class="flex items-start gap-2.5">
-                  <span class="text-emerald-600 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Cháu học gì:</strong> Lập trình kéo thả trực quan bằng hình ảnh (Scratch 3.0) và lắp ráp các mô hình Lego Robot thông minh.</span>
+              <ul class="space-y-2 mb-5 text-base sm:text-lg text-gray-900">
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-600 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Học gì:</strong> Lập trình kéo thả Scratch 3.0 và lắp ráp robot Lego thông minh.</span>
                 </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-emerald-600 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Sản phẩm tự làm:</strong> Tự tạo hoạt hình kể chuyện, trò chơi đơn giản và lắp ráp robot tự biết tránh vật cản.</span>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-600 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Làm ra sản phẩm gì:</strong> Tự làm hoạt hình, trò chơi và robot biết né vật cản.</span>
                 </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-emerald-600 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Lợi ích cho cháu:</strong> Rèn luyện tính kiên nhẫn, tư duy logic và biến việc dùng máy tính thành công cụ học tập có ích.</span>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald-600 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Đạt kết quả gì:</strong> Rèn luyện tính kiên nhẫn, tư duy logic và thói quen tự học.</span>
                 </li>
               </ul>
 
-              <!-- Nút liên kết xem giáo trình (Bảo toàn link hiện có) -->
-              <div class="pt-2 border-t border-gray-100 flex flex-col sm:flex-row gap-3">
+              <!-- Nút liên kết xem giáo trình (Outline button nhẹ nhàng) -->
+              <div class="pt-2 border-t border-gray-100 flex flex-col sm:flex-row gap-2.5">
                 <a href="scratch_curriculum_portal.html"
-                  class="btn-touch w-full sm:w-auto flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border-2 border-emerald-600 px-4 py-3 rounded-xl font-bold text-base sm:text-lg">
+                  class="btn-touch w-full sm:w-auto flex-1 bg-white hover:bg-emerald-50 text-emerald-800 border-2 border-emerald-600 px-4 py-2.5 rounded-xl font-bold text-sm sm:text-base shadow-sm transition-colors">
                   📖 Xem Giáo Trình Scratch 3.0
                 </a>
                 <a href="wedo_2_0_curriculum_portal.html"
-                  class="btn-touch w-full sm:w-auto flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border-2 border-emerald-600 px-4 py-3 rounded-xl font-bold text-base sm:text-lg">
+                  class="btn-touch w-full sm:w-auto flex-1 bg-white hover:bg-emerald-50 text-emerald-800 border-2 border-emerald-600 px-4 py-2.5 rounded-xl font-bold text-sm sm:text-base shadow-sm transition-colors">
                   📖 Xem Giáo Trình Lego WeDo 2.0
                 </a>
               </div>
@@ -514,44 +428,43 @@
 
           <!-- THẺ 2: 10 – 13 TUỔI (LỚP 5 – LỚP 8) -->
           <article class="card-soft overflow-hidden border-blue-300">
-            <div class="bg-blue-600 text-white p-4 sm:p-5 flex flex-wrap items-center justify-between gap-2">
+            <div class="bg-blue-600 text-white p-3.5 sm:p-4 flex items-center justify-between">
               <span class="bg-white text-blue-800 text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-full shadow-sm">
-                👦 Độ tuổi: 10 – 13 Tuổi (Lớp 5 – Lớp 8)
+                👦 10 – 13 Tuổi (Lớp 5 – Lớp 8)
               </span>
-              <span class="text-white text-base sm:text-lg font-medium">Bứt phá tư duy lập trình</span>
             </div>
 
             <div class="p-5 sm:p-7">
-              <h3 class="text-blue-900 text-2xl font-extrabold mb-4">
+              <h3 class="text-blue-900 text-xl sm:text-2xl font-extrabold mb-3">
                 Giai đoạn 2: Viết chương trình máy tính & Làm thiết bị thông minh
               </h3>
 
               <!-- Ảnh minh họa thực tế giai đoạn 10-13 tuổi -->
-              <div class="mb-5 rounded-xl overflow-hidden border border-gray-200">
+              <div class="mb-4 rounded-xl overflow-hidden border border-gray-200">
                 <img src="images/seo/class-10-13.webp" alt="Học sinh 10-13 tuổi học Python và làm nhà thông minh"
-                  class="w-full h-52 sm:h-64 object-cover" loading="lazy" width="800" height="450">
+                  class="w-full h-48 sm:h-60 object-cover" loading="lazy" width="800" height="450">
               </div>
 
               <!-- 3 Mục hiển thị rõ ràng bằng gạch đầu dòng -->
-              <ul class="space-y-3 mb-6 text-lg sm:text-xl text-gray-900">
-                <li class="flex items-start gap-2.5">
-                  <span class="text-blue-600 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Cháu học gì:</strong> Ngôn ngữ lập trình Python phổ biến nhất thế giới và mạch điện tử thông minh (Raspberry Pi Pico).</span>
+              <ul class="space-y-2 mb-5 text-base sm:text-lg text-gray-900">
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-600 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Học gì:</strong> Ngôn ngữ lập trình Python và mạch điện tử thông minh (Pico).</span>
                 </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-blue-600 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Sản phẩm tự làm:</strong> Tự viết trò chơi 2D có âm thanh trên máy tính và làm mô hình nhà thông minh (đèn tự bật/tắt, còi báo động).</span>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-600 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Làm ra sản phẩm gì:</strong> Tự tạo game 2D máy tính và mô hình nhà thông minh.</span>
                 </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-blue-600 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Bằng cấp quốc tế:</strong> Luyện thi lấy chứng chỉ lập trình Python quốc tế cấp độ đầu tiên (PCEP - Certified Entry-Level Python Programmer).</span>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-600 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Đạt chứng chỉ gì:</strong> Luyện thi chứng chỉ lập trình Python quốc tế PCEP.</span>
                 </li>
               </ul>
 
-              <!-- Nút liên kết xem giáo trình (Bảo toàn link) -->
+              <!-- Nút liên kết xem giáo trình (Outline button nhẹ nhàng) -->
               <div class="pt-2 border-t border-gray-100">
                 <a href="pygame_curriculum_portal.html"
-                  class="btn-touch w-full sm:w-auto bg-blue-50 hover:bg-blue-100 text-blue-900 border-2 border-blue-600 px-6 py-3 rounded-xl font-bold text-base sm:text-lg">
+                  class="btn-touch w-full sm:w-auto bg-white hover:bg-blue-50 text-blue-900 border-2 border-blue-600 px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base shadow-sm transition-colors">
                   📖 Xem Giáo Trình Python & Pygame (24 Buổi)
                 </a>
               </div>
@@ -560,44 +473,43 @@
 
           <!-- THẺ 3: 13 – 15 TUỔI (LỚP 8 – LỚP 10) -->
           <article class="card-soft overflow-hidden border-teal-300">
-            <div class="bg-teal-700 text-white p-4 sm:p-5 flex flex-wrap items-center justify-between gap-2">
+            <div class="bg-teal-700 text-white p-3.5 sm:p-4 flex items-center justify-between">
               <span class="bg-white text-teal-900 text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-full shadow-sm">
-                🧑 Độ tuổi: 13 – 15 Tuổi (Lớp 8 – Lớp 10)
+                🧑 13 – 15 Tuổi (Lớp 8 – Lớp 10)
               </span>
-              <span class="text-white text-base sm:text-lg font-medium">Kỹ sư nhí thực thụ</span>
             </div>
 
             <div class="p-5 sm:p-7">
-              <h3 class="text-teal-950 text-2xl font-extrabold mb-4">
+              <h3 class="text-teal-950 text-xl sm:text-2xl font-extrabold mb-3">
                 Giai đoạn 3: Chế tạo Robot nâng cao & Điều khiển qua điện thoại
               </h3>
 
               <!-- Ảnh minh họa thực tế giai đoạn 13-15 tuổi -->
-              <div class="mb-5 rounded-xl overflow-hidden border border-gray-200">
+              <div class="mb-4 rounded-xl overflow-hidden border border-gray-200">
                 <img src="images/seo/class-13-15.webp" alt="Học sinh 13-15 tuổi lập trình vi điều khiển ESP32 và cánh tay robot"
-                  class="w-full h-52 sm:h-64 object-cover" loading="lazy" width="800" height="450">
+                  class="w-full h-48 sm:h-60 object-cover" loading="lazy" width="800" height="450">
               </div>
 
               <!-- 3 Mục hiển thị rõ ràng bằng gạch đầu dòng -->
-              <ul class="space-y-3 mb-6 text-lg sm:text-xl text-gray-900">
-                <li class="flex items-start gap-2.5">
-                  <span class="text-teal-700 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Cháu học gì:</strong> Lập trình chuyên sâu và điều khiển mạch vi xử lý kết nối mạng Internet không dây (ESP32 IoT).</span>
+              <ul class="space-y-2 mb-5 text-base sm:text-lg text-gray-900">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal-700 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Học gì:</strong> Lập trình chuyên sâu và vi điều khiển kết nối WiFi (ESP32 IoT).</span>
                 </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-teal-700 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Sản phẩm tự làm:</strong> Chế tạo cánh tay robot 4 bậc tự gắp đồ vật và làm trang web trên điện thoại để theo dõi, điều khiển từ xa.</span>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal-700 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Sản phẩm tự làm:</strong> Chế tạo cánh tay robot gắp vật và ứng dụng điều khiển từ xa.</span>
                 </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-teal-700 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Bằng cấp quốc tế:</strong> Chứng chỉ lập trình viên Python quốc tế cấp độ chuyên nghiệp (PCAP - Certified Associate Python Programmer).</span>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal-700 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Đạt chứng chỉ gì:</strong> Luyện thi chứng chỉ lập trình viên Python quốc tế PCAP.</span>
                 </li>
               </ul>
 
-              <!-- Nút liên kết xem giáo trình (Bảo toàn link) -->
+              <!-- Nút liên kết xem giáo trình (Outline button nhẹ nhàng) -->
               <div class="pt-2 border-t border-gray-100">
                 <a href="esp32_iot_curriculum_portal.html"
-                  class="btn-touch w-full sm:w-auto bg-teal-50 hover:bg-teal-100 text-teal-900 border-2 border-teal-700 px-6 py-3 rounded-xl font-bold text-base sm:text-lg">
+                  class="btn-touch w-full sm:w-auto bg-white hover:bg-teal-50 text-teal-900 border-2 border-teal-700 px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base shadow-sm transition-colors">
                   📖 Xem Giáo Trình ESP32 & IoT (48 Buổi)
                 </a>
               </div>
@@ -606,44 +518,43 @@
 
           <!-- THẺ 4: 15 – 18 TUỔI (CẤP 3) -->
           <article class="card-soft overflow-hidden border-purple-300">
-            <div class="bg-purple-700 text-white p-4 sm:p-5 flex flex-wrap items-center justify-between gap-2">
+            <div class="bg-purple-700 text-white p-3.5 sm:p-4 flex items-center justify-between">
               <span class="bg-white text-purple-900 text-base sm:text-lg font-extrabold px-3.5 py-1 rounded-full shadow-sm">
-                🎓 Độ tuổi: 15 – 18 Tuổi (Học Sinh Cấp 3)
+                🎓 15 – 18 Tuổi (Học Sinh Cấp 3)
               </span>
-              <span class="text-white text-base sm:text-lg font-medium">Hành trang Đại học & Du học</span>
             </div>
 
             <div class="p-5 sm:p-7">
-              <h3 class="text-purple-950 text-2xl font-extrabold mb-4">
+              <h3 class="text-purple-950 text-xl sm:text-2xl font-extrabold mb-3">
                 Giai đoạn 4: Trí tuệ nhân tạo (AI) & Chuẩn bị vào Đại học / Du học
               </h3>
 
               <!-- Ảnh minh họa thực tế giai đoạn 15-18 tuổi -->
-              <div class="mb-5 rounded-xl overflow-hidden border border-gray-200">
+              <div class="mb-4 rounded-xl overflow-hidden border border-gray-200">
                 <img src="images/seo/class-15-18.webp" alt="Học sinh cấp 3 học AI và chuẩn bị hồ sơ du học"
-                  class="w-full h-52 sm:h-64 object-cover" loading="lazy" width="800" height="450">
+                  class="w-full h-48 sm:h-60 object-cover" loading="lazy" width="800" height="450">
               </div>
 
               <!-- 3 Mục hiển thị rõ ràng bằng gạch đầu dòng -->
-              <ul class="space-y-3 mb-6 text-lg sm:text-xl text-gray-900">
-                <li class="flex items-start gap-2.5">
-                  <span class="text-purple-700 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Cháu học gì:</strong> Khoa học máy tính chuẩn Đại học Mỹ (AP Computer Science Principles) và ứng dụng Trí tuệ nhân tạo (AI).</span>
+              <ul class="space-y-2 mb-5 text-base sm:text-lg text-gray-900">
+                <li class="flex items-start gap-2">
+                  <span class="text-purple-700 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Học gì:</strong> Khoa học máy tính AP chuẩn Mỹ và Trí tuệ nhân tạo (AI).</span>
                 </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-purple-700 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Sản phẩm tự làm:</strong> Hoàn thiện bộ hồ sơ dự án khoa học cá nhân (Portfolio) để nộp xét tuyển vào các trường Đại học lớn trong nước và quốc tế.</span>
+                <li class="flex items-start gap-2">
+                  <span class="text-purple-700 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Sản phẩm tự làm:</strong> Hoàn thiện bộ hồ sơ dự án khoa học cá nhân (Portfolio).</span>
                 </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-purple-700 font-extrabold text-xl mt-0.5">•</span>
-                  <span><strong>Bằng cấp quốc tế:</strong> Chứng chỉ AP (hỗ trợ quy đổi và tiết kiệm tín chỉ ở Đại học) và chứng chỉ Trí tuệ nhân tạo từ Microsoft.</span>
+                <li class="flex items-start gap-2">
+                  <span class="text-purple-700 font-extrabold text-lg mt-0.5">•</span>
+                  <span><strong>Đạt chứng chỉ gì:</strong> Chứng chỉ AP đại học và chứng chỉ AI quốc tế từ Microsoft.</span>
                 </li>
               </ul>
 
-              <!-- Nút liên kết xem giáo trình (Bảo toàn link) -->
+              <!-- Nút liên kết xem giáo trình (Outline button nhẹ nhàng) -->
               <div class="pt-2 border-t border-gray-100">
                 <a href="course-15-18.html"
-                  class="btn-touch w-full sm:w-auto bg-purple-50 hover:bg-purple-100 text-purple-900 border-2 border-purple-700 px-6 py-3 rounded-xl font-bold text-base sm:text-lg">
+                  class="btn-touch w-full sm:w-auto bg-white hover:bg-purple-50 text-purple-900 border-2 border-purple-700 px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base shadow-sm transition-colors">
                   📖 Xem Chi Tiết Lộ Trình 15–18 Tuổi
                 </a>
               </div>
@@ -656,78 +567,72 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- KHỐI 3: HÌNH THỨC HỌC TẬP & ĐỘI NGŨ KỸ SƯ GIẢNG DẠY -->
+    <!-- KHỐI 3: ĐIỂM KHÁC BIỆT TẠI TRUNG TÂM -->
     <!-- ========================================== -->
-    <section id="lop-hoc-thuc-te" class="py-10 sm:py-16 bg-[#F4F8F6] border-b border-gray-200">
+    <section id="lop-hoc-thuc-te" class="py-8 sm:py-14 bg-[#F4F8F6] border-b border-gray-200">
       <div class="max-w-5xl mx-auto px-4 sm:px-6">
 
-        <div class="text-center mb-8 sm:mb-12">
-          <span class="inline-block bg-emerald-100 text-emerald-800 text-base sm:text-lg font-bold px-4 py-1.5 rounded-full mb-3">
-            Môi Trường Học Tập Thân Thiện & Đáng Tin Cậy
-          </span>
-          <h2 class="mb-3 text-gray-900 font-extrabold">
-            Thầy Cô Tận Tâm — Hình Thức Học Linh Hoạt Cho Gia Đình
+        <div class="text-center mb-6 sm:mb-10">
+          <h2 class="text-gray-900 font-extrabold">
+            Vì Sao Gia Đình Yên Tâm Gửi Gắm Con Cháu?
           </h2>
-          <p class="text-secondary text-lg sm:text-xl max-w-2xl mx-auto">
-            Gia đình hoàn toàn yên tâm khi gửi gắm con cháu với sự đồng hành của các kỹ sư tâm huyết.
-          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
 
-          <!-- Thẻ 1: Đội ngũ Kỹ sư đứng lớp -->
+          <!-- Thẻ 1: Kỹ sư công nghệ trực tiếp đứng lớp -->
           <div class="card-soft overflow-hidden flex flex-col">
             <img src="images/seo/faq-mentor.webp" alt="Thầy cô kỹ sư hướng dẫn học sinh lập trình và robot"
-              class="w-full h-48 object-cover border-b border-gray-200" loading="lazy" width="600" height="340">
-            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+              class="w-full h-44 sm:h-48 object-cover border-b border-gray-200" loading="lazy" width="600" height="340">
+            <div class="p-5 flex-1 flex flex-col justify-between">
               <div>
-                <h3 class="text-xl font-extrabold text-gray-900 mb-2">
-                  Đội ngũ Kỹ sư thực thụ đứng lớp
+                <h3 class="text-lg sm:text-xl font-extrabold text-gray-900 mb-2">
+                  Kỹ sư công nghệ trực tiếp đứng lớp
                 </h3>
-                <p class="text-secondary text-base sm:text-lg leading-relaxed">
-                  Các thầy cô đều là kỹ sư phần mềm, kỹ sư robot giàu kinh nghiệm thực tế tại doanh nghiệp công nghệ, có phương pháp sư phạm gần gũi và kiên nhẫn giảng giải cho trẻ.
+                <p class="text-secondary text-base leading-relaxed">
+                  Không dùng sinh viên dạy thêm; thầy cô giàu kinh nghiệm thực tế và kiên nhẫn với trẻ.
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-gray-100 text-emerald-700 font-bold text-base flex items-center gap-2">
-                <i class="fa-solid fa-check-circle"></i> Giảng viên tâm huyết, chuẩn kỹ sư
+              <div class="mt-4 pt-3 border-t border-gray-100 text-emerald-700 font-bold text-sm sm:text-base flex items-center gap-2">
+                <i class="fa-solid fa-check-circle"></i> Giảng viên chuẩn kỹ sư
               </div>
             </div>
           </div>
 
-          <!-- Thẻ 2: Lớp học tiêu chuẩn hoặc Kèm 1-1 -->
+          <!-- Thẻ 2: Linh hoạt Lớp tiêu chuẩn hoặc Kèm riêng 1-1 -->
           <div class="card-soft overflow-hidden flex flex-col">
             <img src="images/seo/class.webp" alt="Lớp học trực tiếp và kèm riêng 1 thầy 1 trò linh hoạt"
-              class="w-full h-48 object-cover border-b border-gray-200" loading="lazy" width="600" height="340">
-            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+              class="w-full h-44 sm:h-48 object-cover border-b border-gray-200" loading="lazy" width="600" height="340">
+            <div class="p-5 flex-1 flex flex-col justify-between">
               <div>
-                <h3 class="text-xl font-extrabold text-gray-900 mb-2">
-                  Lớp học tiêu chuẩn hoặc Kèm riêng 1-1
+                <h3 class="text-lg sm:text-xl font-extrabold text-gray-900 mb-2">
+                  Linh hoạt Lớp tiêu chuẩn hoặc Kèm riêng 1-1
                 </h3>
-                <p class="text-secondary text-base sm:text-lg leading-relaxed">
-                  Gia đình có thể chọn lớp nhóm nhỏ tiêu chuẩn hoặc lớp kèm riêng 1 thầy – 1 trò (linh hoạt giờ giấc, học trực tiếp tại Quận 12 hoặc học trực tuyến tại nhà theo mục tiêu riêng).
+                <p class="text-secondary text-base leading-relaxed">
+                  Học trực tiếp tại Quận 12 hoặc học Online tại nhà, linh hoạt theo lịch của gia đình.
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-gray-100 text-emerald-700 font-bold text-base flex items-center gap-2">
-                <i class="fa-solid fa-check-circle"></i> Linh hoạt giờ học theo gia đình
+              <div class="mt-4 pt-3 border-t border-gray-100 text-emerald-700 font-bold text-sm sm:text-base flex items-center gap-2">
+                <i class="fa-solid fa-check-circle"></i> Linh hoạt giờ học
               </div>
             </div>
           </div>
 
-          <!-- Thẻ 3: Báo cáo sau mỗi buổi học qua Zalo -->
+          <!-- Thẻ 3: Báo cáo video sản phẩm qua Zalo mỗi buổi -->
           <div class="card-soft overflow-hidden flex flex-col">
             <img src="images/seo/faq-student.webp" alt="Báo cáo tiến độ học tập và sản phẩm qua Zalo cho phụ huynh"
-              class="w-full h-48 object-cover border-b border-gray-200" loading="lazy" width="600" height="340">
-            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+              class="w-full h-44 sm:h-48 object-cover border-b border-gray-200" loading="lazy" width="600" height="340">
+            <div class="p-5 flex-1 flex flex-col justify-between">
               <div>
-                <h3 class="text-xl font-extrabold text-gray-900 mb-2">
-                  Báo cáo tiến độ sau mỗi buổi học
+                <h3 class="text-lg sm:text-xl font-extrabold text-gray-900 mb-2">
+                  Báo cáo video sản phẩm qua Zalo mỗi buổi
                 </h3>
-                <p class="text-secondary text-base sm:text-lg leading-relaxed">
-                  Mỗi buổi học đều gắn với sản phẩm thực hành cụ thể. Thầy cô gửi ảnh chụp và video kết quả qua Zalo để ông bà, cha mẹ nắm rõ từng bước tiến bộ của con cháu.
+                <p class="text-secondary text-base leading-relaxed">
+                  Ông bà, cha mẹ luôn nhìn thấy kết quả thực hành cụ thể của cháu sau từng buổi học.
                 </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-gray-100 text-emerald-700 font-bold text-base flex items-center gap-2">
-                <i class="fa-solid fa-check-circle"></i> Cập nhật Zalo sau từng buổi
+              <div class="mt-4 pt-3 border-t border-gray-100 text-emerald-700 font-bold text-sm sm:text-base flex items-center gap-2">
+                <i class="fa-solid fa-check-circle"></i> Video thực tế từng buổi
               </div>
             </div>
           </div>
@@ -738,38 +643,32 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- KHỐI 4: GIẢI ĐÁP CÁC CÂU HỎI THƯỜNG GẶP (HIỂN THỊ MỞ SẴN 100% — ZERO ACCORDION) -->
+    <!-- KHỐI 4: HAI CÂU HỎI QUAN TRỌNG NHẤT (HIỂN THỊ MỞ SẴN) -->
     <!-- ========================================== -->
-    <section id="faq" class="py-10 sm:py-16 bg-white border-b border-gray-200">
+    <section id="faq" class="py-8 sm:py-14 bg-white border-b border-gray-200">
       <div class="max-w-4xl mx-auto px-4 sm:px-6">
 
-        <div class="text-center mb-8 sm:mb-12">
-          <span class="inline-block bg-emerald-100 text-emerald-800 text-base sm:text-lg font-bold px-4 py-1.5 rounded-full mb-3">
-            Giải Đáp Băn Khoăn Của Gia Đình
-          </span>
-          <h2 class="mb-3 text-gray-900 font-extrabold">
-            Những Điều Gia Đình Thường Quan Tâm Nhất
+        <div class="text-center mb-6 sm:mb-10">
+          <h2 class="text-gray-900 font-extrabold">
+            Giải Đáp Nhanh Cho Gia Đình
           </h2>
-          <p class="text-secondary text-lg sm:text-xl">
-            Các câu hỏi thực tế từ phụ huynh và ông bà khi tìm hiểu lớp học robot cho con cháu.
-          </p>
         </div>
 
-        <!-- 4 Hộp câu hỏi mở sẵn 100%, không cần bấm mở, câu hỏi 20px in đậm -->
-        <div class="space-y-6">
+        <!-- 2 Hộp câu hỏi mở sẵn 100%, không cần bấm mở -->
+        <div class="space-y-5">
 
           <!-- FAQ 1 -->
           <div class="card-soft p-5 sm:p-7 border-l-8 border-l-emerald-600">
             <div class="flex items-start gap-3 mb-2">
-              <span class="inline-block bg-emerald-600 text-white font-extrabold text-base px-2.5 py-0.5 rounded mt-0.5">HỎI</span>
-              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
-                Cháu ở nhà chỉ quen dùng điện thoại, chưa biết gì về máy tính hay tiếng Anh thì có theo học được không?
+              <span class="inline-block bg-emerald-600 text-white font-extrabold text-sm sm:text-base px-2.5 py-0.5 rounded mt-0.5">HỎI</span>
+              <h3 class="text-lg sm:text-2xl font-bold text-gray-900 leading-snug">
+                Cháu chưa biết gì về máy tính hay tiếng Anh có theo học được không?
               </h3>
             </div>
             <div class="flex items-start gap-3 pl-0 sm:pl-11 mt-3">
-              <span class="inline-block bg-gray-200 text-gray-800 font-bold text-base px-2.5 py-0.5 rounded mt-0.5">ĐÁP</span>
-              <p class="text-secondary text-lg sm:text-xl leading-relaxed">
-                <strong>Hoàn toàn học được.</strong> Với các cháu mới bắt đầu, thầy cô sẽ hướng dẫn từ những thao tác cơ bản nhất bằng hình ảnh tiếng Việt trực quan, vừa học vừa lắp ráp mô hình thật nên các cháu rất hào hứng và dễ tiếp thu, không bị bỡ ngỡ.
+              <span class="inline-block bg-gray-200 text-gray-800 font-bold text-sm sm:text-base px-2.5 py-0.5 rounded mt-0.5">ĐÁP</span>
+              <p class="text-secondary text-base sm:text-xl leading-relaxed">
+                <strong>Hoàn toàn học được.</strong> Thầy cô hướng dẫn từ đầu bằng hình ảnh tiếng Việt trực quan, vừa học vừa lắp ráp mô hình thật nên các cháu bắt nhịp rất nhanh.
               </p>
             </div>
           </div>
@@ -777,52 +676,20 @@
           <!-- FAQ 2 -->
           <div class="card-soft p-5 sm:p-7 border-l-8 border-l-emerald-600">
             <div class="flex items-start gap-3 mb-2">
-              <span class="inline-block bg-emerald-600 text-white font-extrabold text-base px-2.5 py-0.5 rounded mt-0.5">HỎI</span>
-              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
-                Học trực tiếp ở đâu? Nếu nhà ở xa thì cháu có học trực tuyến (Online) được không?
-              </h3>
-            </div>
-            <div class="flex items-start gap-3 pl-0 sm:pl-11 mt-3">
-              <span class="inline-block bg-gray-200 text-gray-800 font-bold text-base px-2.5 py-0.5 rounded mt-0.5">ĐÁP</span>
-              <p class="text-secondary text-lg sm:text-xl leading-relaxed">
-                Trung tâm có lớp học trực tiếp tại địa chỉ <strong>Số 12/5, Hẻm 556 Nguyễn Văn Quá, Phường Đông Hưng Thuận, Quận 12, TP.HCM</strong>. Với các gia đình ở xa hoặc bận rộn đưa đón, trung tâm có <strong>lớp học trực tuyến (Online)</strong> giáo viên kèm sát trực tiếp màn hình từng buổi với hiệu quả tương đương.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 3 -->
-          <div class="card-soft p-5 sm:p-7 border-l-8 border-l-emerald-600">
-            <div class="flex items-start gap-3 mb-2">
-              <span class="inline-block bg-emerald-600 text-white font-extrabold text-base px-2.5 py-0.5 rounded mt-0.5">HỎI</span>
-              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
-                Học xong các khóa này cháu đạt được lợi ích gì thiết thực?
-              </h3>
-            </div>
-            <div class="flex items-start gap-3 pl-0 sm:pl-11 mt-3">
-              <span class="inline-block bg-gray-200 text-gray-800 font-bold text-base px-2.5 py-0.5 rounded mt-0.5">ĐÁP</span>
-              <p class="text-secondary text-lg sm:text-xl leading-relaxed">
-                Cháu chuyển đổi từ người <em>chỉ biết xem clip, chơi game</em> sang người <strong>biết tự tạo ra phần mềm, sáng chế robot</strong>; rèn luyện tư duy logic phục vụ tốt cho môn Toán, Lý, Tin học ở trường phổ thông và sở hữu các chứng chỉ công nghệ quốc tế có giá trị lâu dài cho hồ sơ học tập.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 4 -->
-          <div class="card-soft p-5 sm:p-7 border-l-8 border-l-emerald-600">
-            <div class="flex items-start gap-3 mb-2">
-              <span class="inline-block bg-emerald-600 text-white font-extrabold text-base px-2.5 py-0.5 rounded mt-0.5">HỎI</span>
-              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">
+              <span class="inline-block bg-emerald-600 text-white font-extrabold text-sm sm:text-base px-2.5 py-0.5 rounded mt-0.5">HỎI</span>
+              <h3 class="text-lg sm:text-2xl font-bold text-gray-900 leading-snug">
                 Học phí và lịch học được sắp xếp như thế nào?
               </h3>
             </div>
             <div class="flex items-start gap-3 pl-0 sm:pl-11 mt-3">
-              <span class="inline-block bg-gray-200 text-gray-800 font-bold text-base px-2.5 py-0.5 rounded mt-0.5">ĐÁP</span>
-              <p class="text-secondary text-lg sm:text-xl leading-relaxed">
-                Trước khi đăng ký, thầy cô sẽ <strong>kiểm tra năng lực tư duy miễn phí</strong> cho cháu để tư vấn đúng cấp độ phù hợp nhất và thông báo mức học phí minh bạch, giúp gia đình tối ưu chi phí và cháu học không bị quá sức.
+              <span class="inline-block bg-gray-200 text-gray-800 font-bold text-sm sm:text-base px-2.5 py-0.5 rounded mt-0.5">ĐÁP</span>
+              <div class="text-secondary text-base sm:text-xl leading-relaxed">
+                Thầy cô sẽ kiểm tra năng lực tư duy miễn phí cho cháu trước để tư vấn đúng cấp độ và mức học phí phù hợp nhất.
                 <br>
                 <a href="lien-he.html" class="inline-flex items-center gap-1.5 text-emerald-700 hover:text-emerald-800 font-bold underline mt-2 text-base sm:text-lg">
-                  👉 Xem chi tiết bảng giá học phí (lớp chung, kèm 1:1) tại Trang Liên Hệ & Học Phí
+                  👉 Xem chi tiết bảng giá học phí tại Trang Liên Hệ & Học Phí
                 </a>
-              </p>
+              </div>
             </div>
           </div>
 
@@ -830,125 +697,29 @@
 
       </div>
     </section>
-
     <!-- ========================================== -->
-    <!-- KHỐI 5: CÁC CHƯƠNG TRÌNH CHUYÊN BIỆT (TÁCH RIÊNG GỌN GÀNG) -->
+    <!-- KHỐI 5: BIỂU MẪU ĐĂNG KÝ TƯ VẤN + ĐỊA CHỈ & CHÂN TRANG (GỘP GỌN CUỐI TRANG) -->
     <!-- ========================================== -->
-    <section id="chuyen-biet" class="py-10 sm:py-16 bg-[#F4F8F6] border-b border-gray-200">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6">
-
-        <div class="text-center mb-8 sm:mb-12">
-          <span class="inline-block bg-gray-200 text-gray-800 text-base sm:text-lg font-bold px-4 py-1.5 rounded-full mb-3">
-            Chương Trình Đặc Biệt
-          </span>
-          <h2 class="mb-3 text-gray-900 font-extrabold">
-            Các Khóa Học Chuyên Biệt Khác Tại Trung Tâm
-          </h2>
-          <p class="text-secondary text-lg sm:text-xl max-w-2xl mx-auto">
-            Dành riêng cho học sinh ôn thi trường chuyên, chương trình quốc tế hoặc người đi làm:
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-          <!-- Khóa 1: Chuyên Tin C++ Lớp 10 -->
-          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="inline-block bg-red-100 text-red-800 text-base font-bold px-3 py-1 rounded-full mb-3">
-                🏆 Ôn Thi Trường Chuyên
-              </div>
-              <h3 class="text-xl font-extrabold text-gray-900 mb-2">
-                Luyện Thi Chuyên Tin Lớp 10 (Ngôn ngữ C++)
-              </h3>
-              <p class="text-secondary text-base sm:text-lg mb-4 leading-relaxed">
-                Lộ trình 48 buổi rèn luyện thuật toán chuyên sâu cùng kho 27 đề thi thực tế từ các trường chuyên danh tiếng.
-              </p>
-            </div>
-            <div class="space-y-2 pt-3 border-t border-gray-100">
-              <a href="tin10.html"
-                class="btn-touch w-full bg-red-600 hover:bg-red-700 text-white text-base font-bold py-2.5 rounded-xl">
-                💻 Vào Trại Code C++
-              </a>
-              <a href="competition.html"
-                class="btn-touch w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-base font-bold py-2.5 rounded-xl border border-gray-300">
-                📚 Thư Viện Đề Thi Chuyên Tin
-              </a>
-            </div>
-          </div>
-
-          <!-- Khóa 2: Vật Lý Thực Nghiệm IGCSE -->
-          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="inline-block bg-blue-100 text-blue-800 text-base font-bold px-3 py-1 rounded-full mb-3">
-                🔬 Chuẩn Quốc Tế IGCSE & Lớp 9
-              </div>
-              <h3 class="text-xl font-extrabold text-gray-900 mb-2">
-                Khoa Học & Vật Lý Thực Nghiệm
-              </h3>
-              <p class="text-secondary text-base sm:text-lg mb-4 leading-relaxed">
-                Học Vật lý sinh động qua các thí nghiệm trực tiếp với hệ thống đo đạc và cảm biến điện tử thông minh.
-              </p>
-            </div>
-            <div class="pt-3 border-t border-gray-100">
-              <a href="physics.html"
-                class="btn-touch w-full bg-blue-600 hover:bg-blue-700 text-white text-base font-bold py-2.5 rounded-xl">
-                🔭 Xem Giáo Án Vật Lý
-              </a>
-            </div>
-          </div>
-
-          <!-- Khóa 3: Python Ngành Xây Dựng -->
-          <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-gray-200 shadow-sm flex flex-col justify-between">
-            <div>
-              <div class="inline-block bg-amber-100 text-amber-800 text-base font-bold px-3 py-1 rounded-full mb-3">
-                🏗️ Dành Cho Kỹ Sư & Đi Làm
-              </div>
-              <h3 class="text-xl font-extrabold text-gray-900 mb-2">
-                Lập Trình Python Ứng Dụng Ngành Xây Dựng
-              </h3>
-              <p class="text-secondary text-base sm:text-lg mb-4 leading-relaxed">
-                Lộ trình 32 buổi tự động hóa bảng tính Excel, bóc tách dự toán, quản lý khách hàng và báo giá công trường.
-              </p>
-            </div>
-            <div class="pt-3 border-t border-gray-100">
-              <a href="python-xay-dung/index.html"
-                class="btn-touch w-full bg-amber-600 hover:bg-amber-700 text-white text-base font-bold py-2.5 rounded-xl">
-                📐 Xem Chương Trình Xây Dựng
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- KHỐI 6: BIỂU MẪU ĐĂNG KÝ TƯ VẤN & ĐỊA CHỈ LIÊN HỆ -->
-    <!-- ========================================== -->
-    <section id="dang-ky" class="py-10 sm:py-16 bg-white">
+    <section id="dang-ky" class="py-8 sm:py-14 bg-white">
       <div class="max-w-3xl mx-auto px-4 sm:px-6">
 
-        <div class="text-center mb-8">
-          <span class="inline-block bg-orange-100 text-orange-800 text-base sm:text-lg font-bold px-4 py-1.5 rounded-full mb-3">
-            Tư Vấn Miễn Phí & Tận Tình
-          </span>
-          <h2 class="mb-3 text-gray-900 font-extrabold">
-            Đăng Ký Tư Vấn Lộ Trình & Kiểm Tra Năng Lực Miễn Phí
+        <div class="text-center mb-6 sm:mb-8">
+          <h2 class="mb-2 text-gray-900 font-extrabold">
+            Đăng Ký Tư Vấn & Kiểm Tra Năng Lực Miễn Phí
           </h2>
-          <p class="text-secondary text-lg sm:text-xl leading-relaxed">
-            Cô/Chú/Anh/Chị chỉ cần để lại số điện thoại bên dưới (hoặc bấm nút Gọi điện/Nhắn Zalo ở cuối màn hình), thầy cô phụ trách sẽ gọi lại tư vấn chi tiết trong vòng 15 phút.
+          <p class="text-secondary text-base sm:text-lg">
+            Để lại số điện thoại bên dưới, thầy cô phụ trách sẽ gọi lại tư vấn trong 15 phút.
           </p>
         </div>
 
-        <!-- Biểu mẫu đăng ký tối giản (Cỡ chữ 18px, ô cao 54px) -->
-        <div class="card-soft p-6 sm:p-8 border-2 border-emerald-300 bg-[#F4F8F6] mb-10">
-          <form id="registrationForm" class="space-y-5">
+        <!-- Biểu mẫu đăng ký 3 trường tối giản (Đã bỏ checkbox CSTA) -->
+        <div class="card-soft p-5 sm:p-8 border-2 border-emerald-300 bg-[#F4F8F6] mb-8">
+          <form id="registrationForm" class="space-y-4 sm:space-y-5">
 
             <!-- Ô 1: Họ tên -->
             <div>
-              <label for="parentName" class="block text-gray-900 font-bold text-lg mb-2">
-                1. Họ và tên Phụ huynh / Ông Bà: <span class="text-red-500">*</span>
+              <label for="parentName" class="block text-gray-900 font-bold text-base sm:text-lg mb-1.5">
+                Họ và tên Phụ huynh / Ông Bà: <span class="text-red-500">*</span>
               </label>
               <input type="text" id="parentName" name="parentName" required
                 placeholder="Ví dụ: Bác Minh hoặc Cô Lan"
@@ -957,8 +728,8 @@
 
             <!-- Ô 2: Số điện thoại (Zalo) -->
             <div>
-              <label for="phone" class="block text-gray-900 font-bold text-lg mb-2">
-                2. Số điện thoại liên hệ (có Zalo): <span class="text-red-500">*</span>
+              <label for="phone" class="block text-gray-900 font-bold text-base sm:text-lg mb-1.5">
+                Số điện thoại Zalo: <span class="text-red-500">*</span>
               </label>
               <input type="tel" inputmode="numeric" id="phone" name="phone" required
                 placeholder="Ví dụ: 0915 514 419"
@@ -967,89 +738,89 @@
 
             <!-- Ô 3: Độ tuổi của cháu -->
             <div>
-              <label for="ageGroup" class="block text-gray-900 font-bold text-lg mb-2">
-                3. Chọn độ tuổi của cháu: <span class="text-red-500">*</span>
+              <label for="ageGroup" class="block text-gray-900 font-bold text-base sm:text-lg mb-1.5">
+                Chọn độ tuổi của cháu: <span class="text-red-500">*</span>
               </label>
               <select id="ageGroup" name="ageGroup" required
                 class="focus:ring-2 focus:ring-emerald-500">
                 <option value="" disabled selected>-- Bấm vào đây để chọn độ tuổi của cháu --</option>
-                <option value="7-9">Cháu từ 7 – 9 tuổi (Lớp 2 – Lớp 4): Làm quen Scratch & Lego</option>
-                <option value="10-13">Cháu từ 10 – 13 tuổi (Lớp 5 – Lớp 8): Học Python & Làm nhà thông minh</option>
-                <option value="13-15">Cháu từ 13 – 15 tuổi (Lớp 8 – Lớp 10): Robot nâng cao & IoT ESP32</option>
-                <option value="15-18">Cháu từ 15 – 18 tuổi (Cấp 3): Trí tuệ nhân tạo (AI) & Chuẩn bị Đại học</option>
-                <option value="chuyen-tin">Lớp Luyện thi Chuyên Tin Lớp 10 (C++)</option>
-                <option value="vat-ly">Lớp Vật Lý Thực Nghiệm IGCSE</option>
-                <option value="python-xay-dung">Lớp Python Ứng Dụng Ngành Xây Dựng</option>
+                <option value="7-9">Cháu từ 7 – 9 tuổi (Lớp 2 – Lớp 4): Scratch & Lego</option>
+                <option value="10-13">Cháu từ 10 – 13 tuổi (Lớp 5 – Lớp 8): Python & Nhà thông minh</option>
+                <option value="13-15">Cháu từ 13 – 15 tuổi (Lớp 8 – Lớp 10): Robot nâng cao & ESP32 IoT</option>
+                <option value="15-18">Cháu từ 15 – 18 tuổi (Cấp 3): Trí tuệ nhân tạo (AI) & Đại học</option>
                 <option value="chua-ro">Cháu chưa biết bắt đầu từ đâu (Cần kiểm tra năng lực)</option>
               </select>
-            </div>
-
-            <!-- Tùy chọn tích hợp nhận Bộ tiêu chuẩn CSTA -->
-            <div class="pt-2">
-              <label class="flex items-start gap-3 p-3 bg-white rounded-xl border-2 border-gray-300 cursor-pointer hover:border-emerald-500 transition-colors">
-                <input type="checkbox" name="cstaOptIn" value="Có nhận tài liệu CSTA" checked
-                  class="w-6 h-6 text-emerald-600 rounded border-gray-400 mt-1 shrink-0 accent-emerald-600">
-                <span class="text-gray-900 text-base sm:text-lg leading-snug">
-                  Gửi tặng tôi <strong>"Bộ Tiêu Chuẩn Đánh Giá Năng Lực Công Nghệ 4.0 (CSTA)"</strong> qua Zalo để kiểm tra định hướng học tập cho cháu.
-                </span>
-              </label>
             </div>
 
             <!-- Hidden field đánh dấu nguồn -->
             <input type="hidden" name="source" value="TrangChu_MobileFriendly">
 
-            <!-- Nút gửi biểu mẫu lớn 56px, màu cam #EA580C -->
+            <!-- Nút gửi biểu mẫu lớn 54px, màu cam #EA580C -->
             <button type="submit" id="submitBtn"
-              class="btn-touch w-full bg-[#EA580C] hover:bg-[#C2410C] text-white text-lg sm:text-xl font-extrabold py-4 px-6 rounded-xl shadow-lg transition-all mt-4">
+              class="btn-touch w-full bg-[#EA580C] hover:bg-[#C2410C] text-white text-base sm:text-lg font-extrabold py-3.5 px-6 rounded-xl shadow-lg transition-all mt-4">
               <span id="btnSpinner" class="hidden mr-2">
                 <i class="fa-solid fa-spinner fa-spin"></i>
               </span>
               <span id="btnText">🎯 GỬI THÔNG TIN — NHẬN TƯ VẤN MIỄN PHÍ</span>
             </button>
 
-            <p class="text-center text-sm sm:text-base text-gray-700 mt-2">
+            <p class="text-center text-xs sm:text-sm text-gray-600 mt-2">
               🔒 Thông tin của gia đình được bảo mật 100%. Thầy cô chỉ liên hệ để tư vấn lớp học phù hợp.
             </p>
 
           </form>
         </div>
 
-        <!-- Khung Địa chỉ & Liên hệ rõ ràng -->
-        <div class="bg-white p-6 sm:p-8 rounded-2xl border-2 border-gray-200 shadow-sm">
-          <h3 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-200">
+        <!-- Khung Địa chỉ & Thông tin liên hệ -->
+        <div class="bg-white p-5 sm:p-7 rounded-2xl border-2 border-gray-200 shadow-sm mb-8">
+          <h3 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-200">
             📍 Thông Tin Liên Hệ & Địa Chỉ Lớp Học
           </h3>
 
-          <ul class="space-y-4 text-lg sm:text-xl text-gray-900">
+          <ul class="space-y-3.5 text-base sm:text-lg text-gray-900">
             <li>
               <a href="https://maps.google.com/?q=12/5+Hẻm+556+Nguyễn+Văn+Quá+Đông+Hưng+Thuận+Quận+12+TPHCM"
                 target="_blank" rel="noopener noreferrer"
                 class="flex items-start gap-3 group text-gray-900 hover:text-emerald-700 transition-colors"
                 title="Bấm để xem chỉ đường trên Google Maps">
-                <i class="fa-solid fa-location-dot text-emerald-600 text-2xl mt-1 shrink-0 group-hover:scale-110 transition-transform"></i>
+                <i class="fa-solid fa-location-dot text-emerald-600 text-xl sm:text-2xl mt-1 shrink-0 group-hover:scale-110 transition-transform"></i>
                 <div>
                   <strong class="group-hover:underline">Địa chỉ lớp học trực tiếp:</strong><br>
-                  <span class="text-emerald-700 font-medium group-hover:underline">Số 12/5, Hẻm 556 Nguyễn Văn Quá, Phường Đông Hưng Thuận, Quận 12, TP. Hồ Chí Minh.</span>
-                  <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-bold bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full ml-1 whitespace-nowrap">📍 Mở Google Maps</span>
+                  <span class="text-emerald-700 font-medium group-hover:underline">Số 12/5, Hẻm 556 Nguyễn Văn Quá, Phường Đông Hưng Thuận, Quận 12, TP.HCM.</span>
+                  <span class="inline-flex items-center gap-1 text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full ml-1 whitespace-nowrap">📍 Mở Google Maps</span>
                 </div>
               </a>
             </li>
             <li class="flex items-center gap-3">
-              <i class="fa-solid fa-phone text-emerald-600 text-2xl shrink-0"></i>
+              <i class="fa-solid fa-phone text-emerald-600 text-xl sm:text-2xl shrink-0"></i>
               <div>
                 <strong>Điện thoại / Zalo tư vấn:</strong>
                 <a href="tel:0915514419" class="text-emerald-700 font-bold hover:underline ml-1">0915.514.419</a>
-                <span class="text-gray-500 text-base">(09 155 144 19)</span>
+                <span class="text-gray-500 text-sm sm:text-base">(09 155 144 19)</span>
               </div>
             </li>
             <li class="flex items-start sm:items-center gap-3">
-              <i class="fa-solid fa-envelope text-emerald-600 text-2xl shrink-0 mt-0.5 sm:mt-0"></i>
+              <i class="fa-solid fa-envelope text-emerald-600 text-xl sm:text-2xl shrink-0 mt-0.5 sm:mt-0"></i>
               <div class="min-w-0 flex-1">
                 <strong>Email:</strong>
                 <a href="mailto:LapTrinhRobot.com@gmail.com" class="text-emerald-700 font-semibold hover:underline break-all block sm:inline">LapTrinhRobot.com@gmail.com</a>
               </div>
             </li>
           </ul>
+
+          <!-- Danh sách liên kết các chương trình chuyên biệt (Đưa từ Khối 5 xuống đây) -->
+          <div class="mt-5 pt-4 border-t border-gray-100">
+            <p class="text-sm font-bold text-gray-700 mb-2">Các khóa học chuyên biệt khác:</p>
+            <div class="flex flex-wrap gap-2 text-sm text-gray-700">
+              <a href="tin10.html" class="text-emerald-700 hover:underline font-semibold">Luyện thi Chuyên Tin C++ (Lớp 10)</a>
+              <span>|</span>
+              <a href="competition.html" class="text-emerald-700 hover:underline font-semibold">Thư viện đề thi Chuyên Tin</a>
+              <span>|</span>
+              <a href="physics.html" class="text-emerald-700 hover:underline font-semibold">Vật lý thực nghiệm IGCSE</a>
+              <span>|</span>
+              <a href="python-xay-dung/index.html" class="text-emerald-700 hover:underline font-semibold">Python ứng dụng Xây dựng</a>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1059,39 +830,39 @@
   <!-- ========================================== -->
   <!-- FOOTER CHÂN TRANG -->
   <!-- ========================================== -->
-  <footer class="bg-gray-50 border-t border-gray-200 pt-10 pb-8">
+  <footer class="bg-gray-50 border-t border-gray-200 pt-8 pb-6">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-gray-200">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 pb-5 border-b border-gray-200">
         
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-xl">
+          <div class="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-lg">
             <i class="fa-solid fa-robot"></i>
           </div>
           <div>
-            <span class="font-extrabold text-xl text-gray-900">Lập Trình <span class="text-emerald-600">Robot</span></span>
-            <p class="text-sm text-gray-600">Nền tảng công nghệ vững chắc cho tương lai con cháu</p>
+            <span class="font-extrabold text-lg text-gray-900">Lập Trình <span class="text-emerald-600">Robot</span></span>
+            <p class="text-xs sm:text-sm text-gray-600">Nền tảng công nghệ vững chắc cho tương lai con cháu</p>
           </div>
         </div>
 
         <!-- Mạng xã hội -->
         <div class="flex items-center gap-3">
-          <span class="text-base text-gray-700 font-medium">Kênh thông tin:</span>
+          <span class="text-sm text-gray-700 font-medium">Kênh thông tin:</span>
           <a href="https://facebook.com/laptrinhrobots" target="_blank" rel="noopener noreferrer"
-            class="w-10 h-10 rounded-full bg-white border border-gray-300 flex items-center justify-center text-blue-600 hover:bg-blue-50 text-lg shadow-sm"
+            class="w-9 h-9 rounded-full bg-white border border-gray-300 flex items-center justify-center text-blue-600 hover:bg-blue-50 text-base shadow-sm"
             title="Trang Facebook Lập Trình Robot">
             <i class="fa-brands fa-facebook-f"></i>
           </a>
           <a href="https://youtube.com/@LapTrinhROBOT_com" target="_blank" rel="noopener noreferrer"
-            class="w-10 h-10 rounded-full bg-white border border-gray-300 flex items-center justify-center text-red-600 hover:bg-red-50 text-lg shadow-sm"
+            class="w-9 h-9 rounded-full bg-white border border-gray-300 flex items-center justify-center text-red-600 hover:bg-red-50 text-base shadow-sm"
             title="Kênh YouTube Lập Trình Robot">
             <i class="fa-brands fa-youtube"></i>
           </a>
         </div>
       </div>
 
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-base text-gray-600">
+      <div class="pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm sm:text-base text-gray-600">
         <p>&copy; 2026 Lập Trình Robot. Bản quyền được bảo hộ.</p>
-        <div class="flex flex-wrap gap-4 items-center">
+        <div class="flex flex-wrap gap-3 items-center">
           <a href="lien-he.html" class="hover:text-emerald-700 hover:underline font-semibold text-emerald-800">📋 Trang Liên Hệ & Học Phí</a>
           <span>•</span>
           <a href="privacy.html" class="hover:text-emerald-700 hover:underline">Chính sách bảo mật</a>
@@ -1103,21 +874,21 @@
   </footer>
 
   <!-- ========================================== -->
-  <!-- THANH LIÊN HỆ CỐ ĐỊNH DƯỚI ĐÁY MÀN HÌNH (STICKY BOTTOM BAR TRÊN MOBILE) -->
+  <!-- THANH LIÊN HỆ CỐ ĐỊNH DƯỚI ĐÁY MÀN HÌNH (STICKY BOTTOM BAR TRÊN MOBILE < 768PX) -->
   <!-- ========================================== -->
-  <aside class="mobile-sticky-bottom" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 12px; background: #ffffff; border-top: 2px solid #e5e7eb;"
+  <aside class="mobile-sticky-bottom"
+    style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; height: 60px; background: #FFFFFF; border-top: 1px solid #E5E7EB; padding: 6px 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;"
     aria-label="Thanh liên hệ nhanh">
-    <!-- Nút 1: Zalo (Rút gọn thành 💬 Nhắn Zalo) -->
+    <!-- Nút trái (Xanh dương #0068FF, chữ trắng 16px đậm): 💬 Nhắn Zalo -->
     <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer"
-      class="h-[52px] bg-[#0068FF] active:bg-blue-700 text-white font-extrabold text-[16px] sm:text-[17px] rounded-xl flex items-center justify-center gap-1.5 shadow-sm text-decoration-none px-2 whitespace-nowrap">
-      <span>💬 Nhắn Zalo</span>
+      class="bg-[#0068FF] active:bg-blue-700 text-white font-bold text-[16px] rounded-xl flex items-center justify-center shadow-sm text-decoration-none">
+      💬 Nhắn Zalo
     </a>
 
-    <!-- Nút 2: Hotline (Chỉ icon và Gọi Ngay, không ghi số cụ thể theo yêu cầu) -->
+    <!-- Nút phải (Xanh lá #059669, chữ trắng 16px đậm): 📞 Gọi: 0915.514.419 -->
     <a href="tel:0915514419"
-      class="h-[52px] bg-[#059669] active:bg-emerald-800 text-white font-extrabold text-[16px] sm:text-[17px] rounded-xl flex items-center justify-center gap-2 shadow-sm text-decoration-none px-2 whitespace-nowrap">
-      <i class="fa-solid fa-phone text-lg animate-pulse"></i>
-      <span>Gọi Ngay</span>
+      class="bg-[#059669] active:bg-emerald-800 text-white font-bold text-[16px] rounded-xl flex items-center justify-center shadow-sm text-decoration-none">
+      📞 Gọi: 0915.514.419
     </a>
   </aside>
 
