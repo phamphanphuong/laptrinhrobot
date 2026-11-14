@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đồng Hồ Pomodoro Auto-Focus | Tiện Ích Tập Trung Học Tập & Lập Trình - Lập Trình Robot</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <meta name="description" content="Tiện ích Pomodoro Auto-Focus Studio từ Trung tâm Lập Trình Robot. Tự động chuyển phiên làm việc và nghỉ ngơi, tích hợp nhạc nền thư thái (Lo-Fi, tiếng mưa, sóng biển, tiếng ồn nâu Deep Focus) và chuông báo đổi phiên thông minh hỗ trợ học tập và code hiệu quả.">
+    <meta name="keywords" content="pomodoro, dong ho pomodoro, hoc lap trinh pomodoro, nhac lo-fi hoc tap, tap trung hoc bai, lap trinh robot, cong cu hoc tap">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#059669',
+                            greenHover: '#047857',
+                            orange: '#EA580C',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .timer-font { font-family: 'JetBrains Mono', monospace; }
+        .font-heading { font-family: 'Montserrat', sans-serif; }
+        
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s linear, stroke 0.4s ease;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        @keyframes soundWave {
+            0%, 100% { height: 4px; }
+            50% { height: 16px; }
+        }
+        .wave-bar {
+            animation: soundWave 1.1s ease-in-out infinite;
+        }
+        .wave-bar:nth-child(2) { animation-delay: 0.15s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.35s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.1s; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-rose-500/30 selection:text-rose-200">
+
+    <!-- ========================================== -->
+    <!-- THANH ĐIỀU HƯỚNG ĐẦU TRANG (NAVBAR) -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <!-- Bên trái: Nút Quay về Trang chủ & Logo thương hiệu -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- NÚT QUAY VỀ TRANG CHỦ -->
+                <a href="index.html" 
+                   class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700/80 text-xs sm:text-sm font-semibold transition-all shadow-sm group"
+                   title="Quay trở lại Trang chủ Lập Trình Robot">
+                    <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1 text-emerald-400"></i>
+                    <span>Trang chủ</span>
+                </a>
+
+                <!-- Logo Lập Trình Robot -->
+                <a href="index.html" class="flex items-center gap-2.5 text-decoration-none group" title="Về trang chủ Lập Trình Robot">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white text-base shadow-sm shrink-0 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <span class="font-heading font-extrabold text-sm sm:text-base text-white tracking-tight hidden md:inline">
+                        Lập Trình <span class="text-emerald-400">Robot</span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Ở giữa: Huy hiệu tiện ích -->
+            <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/70 text-xs text-slate-300">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+                </span>
+                <span class="font-medium">Tiện Ích Pomodoro Studio</span>
+            </div>
+
+            <!-- Bên phải: Các liên kết khóa học & hotline -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="amlich.html" 
+                   class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 text-xs font-semibold transition"
+                   title="Xem Lịch Âm & Đếm ngược đến Tết Nguyên Đán">
+                    <span>🧧</span>
+                    <span class="hidden sm:inline">Lịch Âm & Tết</span>
+                </a>
+                <a href="index.html#lo-trinh" class="hidden lg:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-100 font-medium px-3 py-1.5 rounded-lg hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-graduation-cap text-emerald-400"></i>
+                    <span>Khóa học</span>
+                </a>
+                <a href="competition.html" class="hidden md:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-100 font-medium px-3 py-1.5 rounded-lg hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-code text-sky-400"></i>
+                    <span>Đề thi Chuyên Tin</span>
+                </a>
+                <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-sm transition">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                    <span>0915.514.419</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- PHẦN NỘI DUNG CHÍNH (MAIN WORKSPACE) -->
+    <!-- ========================================== -->
+    <main class="flex-1 flex flex-col items-center justify-center px-3 py-6 sm:py-10 max-w-5xl mx-auto w-full">
+        
+        <!-- Breadcrumb & Tiêu đề phụ giới thiệu -->
+        <div class="w-full max-w-lg mb-4 flex items-center justify-between text-xs text-slate-400">
+            <nav class="flex items-center gap-1.5" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-emerald-400 transition flex items-center gap-1">
+                    <i class="fa-solid fa-house text-[10px]"></i>
+                    <span>Trang chủ</span>
+                </a>
+                <span>/</span>
+                <span class="text-slate-300 font-medium">Tiện ích Pomodoro</span>
+            </nav>
+            <span class="hidden sm:inline-block text-[11px] text-slate-500 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded-md">
+                Phương pháp Focus 25/5
+            </span>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- KHỐI CHÍNH: HỘP ĐỒNG HỒ POMODORO (FULL TÍNH NĂNG) -->
+        <!-- ============================================================== -->
+        <div class="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-8 shadow-2xl flex flex-col items-center relative select-none backdrop-blur-xl">
+            
+            <!-- Header Hộp Đồng Hồ -->
+            <div class="w-full flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2.5">
+                    <span class="text-2xl filter drop-shadow">🍅</span>
+                    <div>
+                        <h1 class="font-bold text-sm tracking-wide text-slate-100 uppercase font-heading">Pomodoro Studio</h1>
+                        <p class="text-[10px] text-slate-400">Tự động phát nhạc & Chuyển phiên</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-2">
+                    <!-- Nút bật/tắt Tự Động (Auto-loop) nhanh -->
+                    <button id="toggle-autoloop-btn" onclick="toggleAutoLoop()" title="Tự động lặp lại liên tục không cần bấm nút" 
+                        class="px-2.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span>Tự động: BẬT</span>
+                    </button>
+
+                    <!-- Nút Mở Cài Đặt Âm Nhạc -->
+                    <button onclick="toggleSettingsModal(true)" title="Tùy chỉnh nhạc & âm thanh chi tiết" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition border border-slate-700/60 flex items-center gap-1 text-xs">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                        </svg>
+                        <span class="font-medium hidden sm:inline">Tùy chỉnh nhạc</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chế độ (Modes) -->
+            <div class="flex gap-1.5 bg-slate-950 p-1.5 rounded-2xl border border-slate-800 mb-5 w-full justify-between">
+                <button onclick="userSwitchMode('pomodoro')" id="btn-pomodoro" class="mode-btn flex-1 py-2 text-xs font-semibold rounded-xl transition bg-rose-500/20 text-rose-400">
+                    Tập trung
+                </button>
+                <button onclick="userSwitchMode('short')" id="btn-short" class="mode-btn flex-1 py-2 text-xs font-semibold rounded-xl transition text-slate-400 hover:text-slate-200">
+                    Nghỉ ngắn
+                </button>
+                <button onclick="userSwitchMode('long')" id="btn-long" class="mode-btn flex-1 py-2 text-xs font-semibold rounded-xl transition text-slate-400 hover:text-slate-200">
+                    Nghỉ dài
+                </button>
+            </div>
+
+            <!-- Vòng tròn đếm ngược -->
+            <div class="relative flex items-center justify-center mb-4">
+                <svg class="w-60 h-60 sm:w-64 sm:h-64">
+                    <circle class="text-slate-800" stroke-width="7" stroke="currentColor" fill="transparent" r="115" cx="128" cy="128" />
+                    <circle id="progress-ring" class="progress-ring__circle text-rose-500" stroke-width="7" stroke-linecap="round" stroke="currentColor" fill="transparent" r="115" cx="128" cy="128" />
+                </svg>
+                <div class="absolute flex flex-col items-center text-center px-4">
+                    <span id="time-display" class="timer-font text-5xl sm:text-6xl font-bold tracking-tight text-white mb-1">25:00</span>
+                    <span id="status-label" class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Sẵn sàng</span>
+                    
+                    <!-- Báo hiệu trạng thái nhạc đang phát -->
+                    <div id="audio-wave-badge" class="flex items-center gap-1.5 mt-2.5 px-3 py-1 rounded-full bg-slate-800/90 border border-slate-700/80 text-[11px] font-medium">
+                        <div class="flex items-center gap-0.5 h-3">
+                            <span class="w-1 bg-emerald-400 rounded-full wave-bar"></span>
+                            <span class="w-1 bg-emerald-400 rounded-full wave-bar"></span>
+                            <span class="w-1 bg-emerald-400 rounded-full wave-bar"></span>
+                            <span class="w-1 bg-emerald-400 rounded-full wave-bar"></span>
+                        </div>
+                        <span id="audio-badge-text" class="text-slate-300 truncate max-w-[170px]">Nhạc nền: Tạm dừng</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THANH ĐIỀU KHIỂN NHẠC NHANH TRÊN MÀN HÌNH CHÍNH -->
+            <div class="w-full bg-slate-950/70 p-3 rounded-2xl border border-slate-800/80 mb-5 flex flex-col gap-2.5">
+                <div class="flex items-center justify-between text-xs">
+                    <span class="text-slate-300 font-semibold flex items-center gap-1.5">
+                        <span>🎧</span> Nhạc nền lúc làm việc:
+                    </span>
+                    <button onclick="toggleSettingsModal(true, 'bg-music')" class="text-rose-400 hover:underline text-[11px] font-medium">
+                        Đổi bài / Tải file ➜
+                    </button>
+                </div>
+                
+                <div class="flex items-center gap-2">
+                    <!-- Chọn nhanh loại nhạc nền làm việc -->
+                    <select id="quick-work-bg-select" onchange="changeWorkBgQuick(this.value)" class="flex-1 bg-slate-900 border border-slate-700 text-xs rounded-xl px-2.5 py-1.5 text-slate-200 focus:outline-none focus:border-rose-500">
+                        <option value="rain">🌧️ Mưa rơi thư thái</option>
+                        <option value="brown">🧠 Tiếng ồn nâu (Deep Focus)</option>
+                        <option value="waves">🌊 Sóng biển dạt dào</option>
+                        <option value="lofi">🎹 Lo-Fi Synth Ambient</option>
+                        <option value="custom-file">📁 File nhạc riêng của bạn</option>
+                        <option value="custom-url">🔗 Link nhạc trực tuyến</option>
+                        <option value="none">🔇 Tắt nhạc nền làm việc</option>
+                    </select>
+
+                    <!-- Thanh chỉnh âm lượng nhạc nền nhanh -->
+                    <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-xl">
+                        <span class="text-xs text-slate-400">🔊</span>
+                        <input type="range" id="quick-bg-volume" min="0" max="100" value="50" oninput="updateBgVolume(this.value)" class="w-16 accent-rose-500 cursor-pointer">
+                        <span id="quick-bg-vol-label" class="text-[10px] text-slate-400 w-6 text-right">50%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nút điều khiển đếm giờ chính -->
+            <div class="flex items-center gap-3 w-full justify-center mb-4">
+                <button id="main-btn" onclick="toggleTimer()" class="flex-1 py-3.5 px-6 rounded-2xl font-bold text-sm transition-all bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-950/50 active:scale-95">
+                    BẮT ĐẦU TỰ ĐỘNG
+                </button>
+                
+                <!-- Chuyển ngay sang phiên tiếp theo -->
+                <button onclick="skipSession()" title="Bỏ qua phiên hiện tại (chuyển phiên ngay)" class="p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition active:scale-95 border border-slate-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                    </svg>
+                </button>
+
+                <!-- Đặt lại -->
+                <button onclick="resetTimer()" title="Đặt lại đồng hồ" class="p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition active:scale-95 border border-slate-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Nghe thử chuông & Chế độ Test nhanh -->
+            <div class="w-full flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                <div class="flex items-center gap-2">
+                    <button onclick="testBreakSound()" class="hover:text-emerald-400 transition flex items-center gap-1">
+                        <span>☕</span> Thử chuông nghỉ
+                    </button>
+                    <span>•</span>
+                    <button onclick="testWorkSound()" class="hover:text-rose-400 transition flex items-center gap-1">
+                        <span>🚀</span> Thử chuông làm việc
+                    </button>
+                </div>
+
+                <button id="test-mode-badge" onclick="toggleTestMode()" class="text-[11px] bg-slate-800 text-slate-300 border border-slate-700 px-2.5 py-1 rounded-xl cursor-pointer hover:bg-slate-700">
+                    ⚡ Test nhanh 10s: TẮT
+                </button>
+            </div>
+
+            <!-- Phiên hoàn thành & Thông báo -->
+            <div class="w-full flex items-center justify-between text-xs text-slate-400 mt-3 pt-2 border-t border-slate-800/50">
+                <div>Phiên tập trung hoàn thành: <span id="session-count" class="text-rose-400 font-bold">0</span></div>
+                <button id="notif-btn" onclick="requestNotifPermission()" class="text-amber-400 hover:underline hidden">
+                    Bật thông báo Win 11
+                </button>
+                <span id="notif-status-badge" class="text-emerald-500/80">🔔 Thông báo Win 11: Sẵn sàng</span>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- KHỐI THÔNG TIN: HƯỚNG DẪN ỨNG DỤNG POMODORO HỌC TẬP & CODE -->
+        <!-- ============================================================== -->
+        <section class="w-full max-w-2xl mt-8 pt-6 border-t border-slate-800/70 text-slate-300 text-xs sm:text-sm">
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 sm:p-6 backdrop-blur">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="text-lg">💡</span>
+                    <h2 class="font-bold text-sm sm:text-base text-slate-100 font-heading">
+                        Bí Quyết Ứng Dụng Pomodoro Cho Học Lập Trình & Rèn Luyện Tư Duy
+                    </h2>
+                </div>
+                
+                <p class="text-slate-400 leading-relaxed mb-4 text-xs sm:text-sm">
+                    Kỹ thuật Pomodoro giúp các bạn học sinh và lập trình viên chuyển hóa những tác vụ khó (như debug thuật toán C++, lắp ráp robot phức tạp hay lập trình game) thành các phiên ngắn 25 phút không gián đoạn, tránh tình trạng mỏi mắt và mất tập trung.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                        <div class="font-bold text-rose-400 mb-1 flex items-center gap-1.5">
+                            <span>1️⃣</span> 25 Phút Tập Trung Sâu (Deep Work)
+                        </div>
+                        <p class="text-slate-400 leading-normal">
+                            Đóng mạng xã hội, tắt thông báo điện thoại. Bật âm thanh <strong class="text-slate-300">Tiếng ồn nâu</strong> hoặc <strong class="text-slate-300">Lo-Fi Synth</strong> để não bộ lập tức đạt trạng thái tập trung cao nhất.
+                        </p>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                        <div class="font-bold text-emerald-400 mb-1 flex items-center gap-1.5">
+                            <span>2️⃣</span> 5 Phút Thư Giãn Tuyệt Đối
+                        </div>
+                        <p class="text-slate-400 leading-normal">
+                            Rời mắt khỏi màn hình máy tính. Uống 1 cốc nước, vươn vai hoặc nhìn ra xa để giảm tải cho mắt và tái tạo phản xạ tư duy nhanh nhạy.
+                        </p>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                        <div class="font-bold text-sky-400 mb-1 flex items-center gap-1.5">
+                            <span>3️⃣</span> Tự Động Lặp Lại Liên Tục (Auto-loop)
+                        </div>
+                        <p class="text-slate-400 leading-normal">
+                            Hệ thống tự động bật chuông đổi phiên và đọc giọng nói tiếng Việt nhắc nhở, bạn không cần phải chạm vào chuột hay canh thời gian.
+                        </p>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                        <div class="font-bold text-amber-400 mb-1 flex items-center gap-1.5">
+                            <span>4️⃣</span> Nghỉ Dài 15 Phút Sau 4 Phiên
+                        </div>
+                        <p class="text-slate-400 leading-normal">
+                            Hoàn thành 4 phiên (tương đương 100 phút học tập hiệu quả), bạn có thể nghỉ dài 15-30 phút để nạp lại đầy đủ năng lượng cho buổi học tiếp theo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Nút điều hướng nhanh về khóa học & trang chủ -->
+                <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <span class="text-slate-400">Bạn muốn tìm lộ trình học bài bản?</span>
+                    <div class="flex items-center gap-2">
+                        <a href="index.html#lo-trinh" class="text-emerald-400 hover:text-emerald-300 font-semibold hover:underline">
+                            Xem lộ trình 4 độ tuổi ➜
+                        </a>
+                        <span>•</span>
+                        <a href="index.html" class="text-slate-300 hover:text-white font-medium hover:underline">
+                            Về trang chủ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================== -->
+    <!-- MODAL TRUNG TÂM TÙY CHỈNH ÂM NHẠC & CÀI ĐẶT CHI TIẾT -->
+    <!-- ============================================================== -->
+    <div id="settings-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl p-5 sm:p-6 shadow-2xl relative text-slate-200 max-h-[92vh] flex flex-col">
+            
+            <!-- Header Modal -->
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">🎛️</span>
+                    <div>
+                        <h2 class="font-bold text-base text-white font-heading">Tùy Chỉnh Âm Nhạc & Chuông Báo</h2>
+                        <p class="text-[11px] text-slate-400">Chọn nguồn nhạc có sẵn hoặc tải file nhạc riêng từ máy tính</p>
+                    </div>
+                </div>
+                <button onclick="toggleSettingsModal(false)" class="text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-800 transition">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Tab Điều Hướng Trong Modal -->
+            <div class="flex gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 my-4 text-xs font-semibold">
+                <button onclick="switchSettingsTab('tab-work-bg')" id="btn-tab-work-bg" class="flex-1 py-1.5 rounded-lg transition bg-rose-600 text-white">
+                    1. Nhạc làm việc
+                </button>
+                <button onclick="switchSettingsTab('tab-break-bg')" id="btn-tab-break-bg" class="flex-1 py-1.5 rounded-lg transition text-slate-400 hover:text-slate-200">
+                    2. Nhạc nghỉ
+                </button>
+                <button onclick="switchSettingsTab('tab-alerts')" id="btn-tab-alerts" class="flex-1 py-1.5 rounded-lg transition text-slate-400 hover:text-slate-200">
+                    3. Chuông đổi phiên
+                </button>
+                <button onclick="switchSettingsTab('tab-timer')" id="btn-tab-timer" class="flex-1 py-1.5 rounded-lg transition text-slate-400 hover:text-slate-200">
+                    4. Thời gian
+                </button>
+            </div>
+
+            <!-- Nội dung các Tab (Cuộn được) -->
+            <div class="flex-1 overflow-y-auto pr-1 space-y-4 text-xs">
+
+                <!-- ================= TAB 1: NHẠC NỀN LÀM VIỆC ================= -->
+                <div id="tab-work-bg" class="settings-tab-content space-y-4">
+                    <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="font-bold text-sm text-slate-100 flex items-center gap-1.5">
+                                    <span>🔥</span> Mở nhạc nền liên tục khi làm việc
+                                </span>
+                                <p class="text-[11px] text-slate-400">Tự động phát suốt thời gian 25 phút tập trung, tự dừng khi nghỉ</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="work-bg-enabled" class="sr-only peer" checked onchange="saveAudioConfig()">
+                                <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-rose-600"></div>
+                            </label>
+                        </div>
+
+                        <!-- Chọn nguồn nhạc làm việc -->
+                        <div class="space-y-2.5">
+                            <label class="block font-medium text-slate-300">Chọn thể loại nhạc nền:</label>
+                            
+                            <!-- Danh sách radio lựa chọn -->
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-900 cursor-pointer hover:border-rose-500/50">
+                                    <input type="radio" name="work-bg-type" value="rain" checked onchange="setWorkBgType('rain')" class="accent-rose-500">
+                                    <span>🌧️ Mưa rơi nhẹ</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-900 cursor-pointer hover:border-rose-500/50">
+                                    <input type="radio" name="work-bg-type" value="brown" onchange="setWorkBgType('brown')" class="accent-rose-500">
+                                    <span>🧠 Tiếng ồn nâu</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-900 cursor-pointer hover:border-rose-500/50">
+                                    <input type="radio" name="work-bg-type" value="waves" onchange="setWorkBgType('waves')" class="accent-rose-500">
+                                    <span>🌊 Sóng biển</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-900 cursor-pointer hover:border-rose-500/50">
+                                    <input type="radio" name="work-bg-type" value="lofi" onchange="setWorkBgType('lofi')" class="accent-rose-500">
+                                    <span>🎹 Lo-Fi Ambient</span>
+                                </label>
+                            </div>
+
+                            <!-- Tải file nhạc riêng từ máy tính -->
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 mt-2">
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <label class="flex items-center gap-2 font-semibold text-slate-200 cursor-pointer">
+                                        <input type="radio" name="work-bg-type" value="custom-file" onchange="setWorkBgType('custom-file')" class="accent-rose-500">
+                                        <span>📁 Chọn file nhạc từ máy tính của bạn (MP3, WAV, FLAC, M4A...)</span>
+                                    </label>
+                                </div>
+                                <input type="file" id="work-bg-file-input" accept="audio/*" onchange="handleWorkFileUpload(event)" class="w-full text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-rose-600 file:text-white hover:file:bg-rose-500 cursor-pointer">
+                                <div id="work-bg-file-name" class="mt-1 text-[11px] text-emerald-400 truncate hidden">Đã chọn: <span id="work-file-name-span"></span></div>
+                            </div>
+
+                            <!-- Nhập URL nhạc trực tuyến -->
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+                                <label class="flex items-center gap-2 font-semibold text-slate-200 cursor-pointer mb-1.5">
+                                    <input type="radio" name="work-bg-type" value="custom-url" onchange="setWorkBgType('custom-url')" class="accent-rose-500">
+                                    <span>🔗 Nhập link nhạc trực tuyến (MP3 / Audio Stream)</span>
+                                </label>
+                                <input type="url" id="work-bg-url-input" placeholder="https://example.com/lofi-stream.mp3" oninput="handleWorkUrlInput(this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-rose-500">
+                            </div>
+
+                            <!-- Nút nghe thử nhạc làm việc -->
+                            <div class="flex items-center justify-between pt-2">
+                                <button onclick="togglePreviewWorkBg()" id="btn-preview-work-bg" class="py-1.5 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl border border-slate-700 font-medium flex items-center gap-1.5">
+                                    <span>▶️</span> <span id="preview-work-text">Nghe thử nhạc nền làm việc</span>
+                                </button>
+                                <span class="text-[11px] text-slate-400">Âm lượng được đồng bộ theo thanh trượt</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 2: NHẠC NỀN NGHỈ NGƠI ================= -->
+                <div id="tab-break-bg" class="settings-tab-content space-y-4 hidden">
+                    <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="font-bold text-sm text-slate-100 flex items-center gap-1.5">
+                                    <span>☕</span> Mở nhạc nền liên tục khi nghỉ ngơi
+                                </span>
+                                <p class="text-[11px] text-slate-400">Tự động phát suốt thời gian 5 phút nghỉ ngơi, tự tắt khi quay lại làm việc</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="break-bg-enabled" class="sr-only peer" checked onchange="saveAudioConfig()">
+                                <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+                            </label>
+                        </div>
+
+                        <!-- Chọn nguồn nhạc nghỉ ngơi -->
+                        <div class="space-y-2.5">
+                            <label class="block font-medium text-slate-300">Chọn thể loại nhạc nghỉ ngơi:</label>
+                            
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-900 cursor-pointer hover:border-emerald-500/50">
+                                    <input type="radio" name="break-bg-type" value="meditation" checked onchange="setBreakBgType('meditation')" class="accent-emerald-500">
+                                    <span>🧘 Thiền Spa Synth</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-900 cursor-pointer hover:border-emerald-500/50">
+                                    <input type="radio" name="break-bg-type" value="waves" onchange="setBreakBgType('waves')" class="accent-emerald-500">
+                                    <span>🌊 Sóng biển êm dịu</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-900 cursor-pointer hover:border-emerald-500/50">
+                                    <input type="radio" name="break-bg-type" value="rain" onchange="setBreakBgType('rain')" class="accent-emerald-500">
+                                    <span>🌧️ Mưa rơi nhẹ</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-900 cursor-pointer hover:border-emerald-500/50">
+                                    <input type="radio" name="break-bg-type" value="lofi" onchange="setBreakBgType('lofi')" class="accent-emerald-500">
+                                    <span>🎹 Lo-Fi thư giãn</span>
+                                </label>
+                            </div>
+
+                            <!-- Tải file nhạc riêng lúc nghỉ -->
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 mt-2">
+                                <label class="flex items-center gap-2 font-semibold text-slate-200 cursor-pointer mb-1.5">
+                                    <input type="radio" name="break-bg-type" value="custom-file" onchange="setBreakBgType('custom-file')" class="accent-emerald-500">
+                                    <span>📁 Chọn file nhạc nghỉ từ máy tính của bạn</span>
+                                </label>
+                                <input type="file" id="break-bg-file-input" accept="audio/*" onchange="handleBreakFileUpload(event)" class="w-full text-xs text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-600 file:text-white hover:file:bg-emerald-500 cursor-pointer">
+                                <div id="break-bg-file-name" class="mt-1 text-[11px] text-emerald-400 truncate hidden">Đã chọn: <span id="break-file-name-span"></span></div>
+                            </div>
+
+                            <!-- Nút nghe thử nhạc nghỉ -->
+                            <div class="flex items-center justify-between pt-2">
+                                <button onclick="togglePreviewBreakBg()" id="btn-preview-break-bg" class="py-1.5 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl border border-slate-700 font-medium flex items-center gap-1.5">
+                                    <span>▶️</span> <span id="preview-break-text">Nghe thử nhạc nền nghỉ ngơi</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB 3: CHUÔNG BÁO ĐỔI PHIÊN ================= -->
+                <div id="tab-alerts" class="settings-tab-content space-y-4 hidden">
+                    <!-- Chuông báo nghỉ -->
+                    <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-sm text-slate-100 flex items-center gap-1.5">
+                                <span>☕</span> Chuông báo khi ĐẾN GIỜ NGHỈ:
+                            </span>
+                            <button onclick="testBreakSound()" class="text-xs text-emerald-400 hover:underline">
+                                🔔 Nghe thử
+                            </button>
+                        </div>
+                        <select id="break-alert-select" onchange="saveAudioConfig()" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2 text-xs text-slate-200 mb-2 focus:outline-none focus:border-emerald-500">
+                            <option value="zen">Chuông ngũ cung êm dịu (Zen Bell Chime)</option>
+                            <option value="harp">Giai điệu đàn hạc thư giãn (Relaxing Harp)</option>
+                            <option value="digital">3 tiếng chuông kỹ thuật số (Modern Digital Ding)</option>
+                            <option value="custom">File âm thanh tùy chỉnh từ máy</option>
+                        </select>
+                        <div id="custom-break-alert-box" class="hidden">
+                            <input type="file" id="custom-break-alert-input" accept="audio/*" onchange="handleCustomBreakAlertUpload(event)" class="w-full text-xs text-slate-400 file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:text-xs file:bg-slate-800 file:text-slate-200">
+                        </div>
+                    </div>
+
+                    <!-- Chuông báo làm việc -->
+                    <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-sm text-slate-100 flex items-center gap-1.5">
+                                <span>🚀</span> Chuông báo khi HẾT NGHỈ, VÀO LÀM VIỆC:
+                            </span>
+                            <button onclick="testWorkSound()" class="text-xs text-rose-400 hover:underline">
+                                🔔 Nghe thử
+                            </button>
+                        </div>
+                        <select id="work-alert-select" onchange="saveAudioConfig()" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2 text-xs text-slate-200 mb-2 focus:outline-none focus:border-rose-500">
+                            <option value="fanfare">Khúc nhạc còi lệnh hưng phấn (Energetic Fanfare)</option>
+                            <option value="achievement">Âm thanh thành tựu (Level Up Chime)</option>
+                            <option value="gong">Tiếng cồng tĩnh tâm (Focus Gong)</option>
+                            <option value="custom">File âm thanh tùy chỉnh từ máy</option>
+                        </select>
+                        <div id="custom-work-alert-box" class="hidden">
+                            <input type="file" id="custom-work-alert-input" accept="audio/*" onchange="handleCustomWorkAlertUpload(event)" class="w-full text-xs text-slate-400 file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:text-xs file:bg-slate-800 file:text-slate-200">
+                        </div>
+                    </div>
+
+                    <!-- Trợ lý giọng nói tiếng Việt -->
+                    <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800 flex items-center justify-between">
+                        <div>
+                            <div class="font-bold text-slate-200">Trợ lý đọc giọng nói tiếng Việt</div>
+                            <div class="text-[11px] text-slate-400">Đọc thông báo khi hết phiên để không cần nhìn màn hình</div>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="setting-voice" class="sr-only peer" checked onchange="saveAudioConfig()">
+                            <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+                        </label>
+                    </div>
+
+                    <!-- Âm lượng chuông báo -->
+                    <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800">
+                        <div class="flex justify-between mb-1.5">
+                            <span class="font-medium text-slate-300">Âm lượng chuông báo:</span>
+                            <span id="alert-vol-val-label" class="text-slate-400">80%</span>
+                        </div>
+                        <input type="range" id="setting-alert-volume" min="0" max="100" value="80" oninput="updateAlertVolume(this.value)" class="w-full accent-emerald-500 cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- ================= TAB 4: THỜI GIAN & TỰ ĐỘNG ================= -->
+                <div id="tab-timer" class="settings-tab-content space-y-4 hidden">
+                    <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <div class="font-bold text-slate-200">Tự động chuyển phiên liên tục (Auto-loop)</div>
+                                <div class="text-[11px] text-slate-400">Tự đếm ngược tiếp mà người dùng không cần chạm vào đồng hồ</div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="setting-autoloop" class="sr-only peer" checked onchange="saveAudioConfig()">
+                                <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800">
+                        <div class="font-bold text-slate-200 mb-2">Tùy chỉnh thời lượng (phút):</div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div>
+                                <label class="block text-[11px] text-slate-400 mb-1">Tập trung</label>
+                                <input type="number" id="input-time-pomo" min="1" max="120" value="25" onchange="updateCustomTimes()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-center font-bold text-slate-200">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] text-slate-400 mb-1">Nghỉ ngắn</label>
+                                <input type="number" id="input-time-short" min="1" max="60" value="5" onchange="updateCustomTimes()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-center font-bold text-slate-200">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] text-slate-400 mb-1">Nghỉ dài</label>
+                                <input type="number" id="input-time-long" min="1" max="60" value="15" onchange="updateCustomTimes()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-center font-bold text-slate-200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Modal -->
+            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center">
+                <span class="text-[11px] text-slate-400">💡 Cài đặt & file nhạc được lưu tự động trên máy</span>
+                <button onclick="toggleSettingsModal(false)" class="px-5 py-2 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-bold transition">
+                    Đã xong & Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO PLAYER PHỤ DÙNG CHO FILE NHẠC TẢI LÊN / URL -->
+    <audio id="custom-audio-player" loop preload="auto" class="hidden"></audio>
+    <audio id="custom-alert-player" preload="auto" class="hidden"></audio>
+
+    <!-- ========================================== -->
+    <!-- CHÂN TRANG TỔNG THỂ (FOOTER) -->
+    <!-- ========================================== -->
+    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 text-xs py-6 mt-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded-lg bg-emerald-600 flex items-center justify-center text-white text-sm">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-slate-200">Lập Trình Robot</span>
+                    <span class="text-slate-500 ml-1">• Tiện ích Đồng hồ Pomodoro Auto-Focus</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 text-slate-400">
+                <a href="index.html" class="hover:text-emerald-400 transition font-medium">Trang chủ</a>
+                <span>•</span>
+                <a href="amlich.html" class="hover:text-amber-300 text-amber-400 font-medium transition">🧧 Lịch Âm & Tết</a>
+                <span>•</span>
+                <a href="scratch_curriculum_portal.html" class="hover:text-emerald-400 transition">Scratch (7-9 tuổi)</a>
+                <span>•</span>
+                <a href="pygame_curriculum_portal.html" class="hover:text-emerald-400 transition">Python (10-13 tuổi)</a>
+                <span>•</span>
+                <a href="esp32_iot_curriculum_portal.html" class="hover:text-emerald-400 transition">ESP32 IoT</a>
+                <span>•</span>
+                <a href="tin10.html" class="hover:text-emerald-400 transition">Chuyên Tin C++</a>
+            </div>
+
+            <div class="text-slate-500 text-[11px] text-center md:text-right">
+                Hotline: <a href="tel:0915514419" class="text-emerald-400 hover:underline font-semibold">0915.514.419</a> | Quận 12, TP.HCM
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================== -->
+    <!-- JAVASCRIPT ĐIỀU HÀNH POMODORO STUDIO TOÀN DIỆN -->
+    <!-- ============================================================== -->
+    <script>
+        // ==============================================================
+        // 1. CẤU HÌNH HỆ THỐNG & DỮ LIỆU
+        // ==============================================================
+        let MODES = {
+            pomodoro: { time: 25 * 60, color: 'text-rose-500', btnBg: 'bg-rose-600 hover:bg-rose-500', tabBg: 'bg-rose-500/20 text-rose-400', label: 'Đang tập trung' },
+            short:    { time: 5 * 60,  color: 'text-emerald-500', btnBg: 'bg-emerald-600 hover:bg-emerald-500', tabBg: 'bg-emerald-500/20 text-emerald-400', label: 'Nghỉ giải lao' },
+            long:     { time: 15 * 60, color: 'text-sky-500', btnBg: 'bg-sky-600 hover:bg-sky-500', tabBg: 'bg-sky-500/20 text-sky-400', label: 'Nghỉ ngơi dài' }
+        };
+
+        // CẤU HÌNH ÂM NHẠC & TỰ ĐỘNG
+        let audioConfig = {
+            // Nhạc nền làm việc
+            workBgEnabled: true,
+            workBgType: 'rain',         // 'rain' | 'brown' | 'waves' | 'lofi' | 'custom-file' | 'custom-url'
+            workBgCustomUrl: '',
+            workBgFileName: '',
+
+            // Nhạc nền nghỉ ngơi
+            breakBgEnabled: true,
+            breakBgType: 'meditation',   // 'meditation' | 'waves' | 'rain' | 'lofi' | 'custom-file'
+            breakBgFileName: '',
+
+            // Chuông báo
+            breakAlertSound: 'zen',      // 'zen' | 'harp' | 'digital' | 'custom'
+            workAlertSound: 'fanfare',   // 'fanfare' | 'achievement' | 'gong' | 'custom'
+
+            // Âm lượng & Giọng nói
+            bgVolume: 0.5,              // Âm lượng nhạc nền 50%
+            alertVolume: 0.8,           // Âm lượng chuông báo 80%
+            voiceEnabled: true,
+            autoLoop: true              // Tự động chuyển chu kỳ không cần chạm
+        };
+
+        let isTestMode = false;
+        let currentMode = 'pomodoro';
+        let totalTime = MODES.pomodoro.time;
+        let timeLeft = totalTime;
+        let timerId = null;
+        let isRunning = false;
+        let sessions = parseInt(localStorage.getItem('pomo_sessions') || '0');
+
+        // URL tạm thời cho file upload từ máy
+        let workFileBlobUrl = null;
+        let breakFileBlobUrl = null;
+        let customAlertBreakUrl = null;
+        let customAlertWorkUrl = null;
+
+        // Quản lý audio HTML5
+        const customAudioPlayer = document.getElementById('custom-audio-player');
+        const customAlertPlayer = document.getElementById('custom-alert-player');
+
+        // PHẦN TỬ GIAO DIỆN CHÍNH
+        const timeDisplay = document.getElementById('time-display');
+        const statusLabel = document.getElementById('status-label');
+        const mainBtn = document.getElementById('main-btn');
+        const ring = document.getElementById('progress-ring');
+        const sessionCountEl = document.getElementById('session-count');
+        const notifBtn = document.getElementById('notif-btn');
+        const notifStatusBadge = document.getElementById('notif-status-badge');
+        const audioWaveBadge = document.getElementById('audio-wave-badge');
+        const audioBadgeText = document.getElementById('audio-badge-text');
+        const toggleAutoloopBtn = document.getElementById('toggle-autoloop-btn');
+        const testModeBadge = document.getElementById('test-mode-badge');
+        const quickWorkBgSelect = document.getElementById('quick-work-bg-select');
+        const quickBgVolume = document.getElementById('quick-bg-volume');
+        const quickBgVolLabel = document.getElementById('quick-bg-vol-label');
+
+        // SVG Ring setup
+        const radius = ring.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        ring.style.strokeDasharray = `${circumference} ${circumference}`;
+        ring.style.strokeDashoffset = 0;
+
+        sessionCountEl.textContent = sessions;
+
+        // Khởi tạo IndexedDB để lưu file nhạc người dùng tải lên
+        initIndexedDB().then(() => {
+            loadSavedSettings();
+            checkNotificationStatus();
+            updateDisplay();
+        });
+
+        // ==============================================================
+        // 2. INDEXEDDB ĐỂ LƯU VÀ NHỚ FILE NHẠC TÙY CHỈNH
+        // ==============================================================
+        let dbInstance = null;
+        function initIndexedDB() {
+            return new Promise((resolve) => {
+                const req = indexedDB.open('PomodoroAudioDB', 1);
+                req.onupgradeneeded = (e) => {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains('sounds')) {
+                        db.createObjectStore('sounds');
+                    }
+                };
+                req.onsuccess = (e) => {
+                    dbInstance = e.target.result;
+                    resolve(dbInstance);
+                };
+                req.onerror = () => resolve(null);
+            });
+        }
+
+        async function saveAudioBlob(key, file) {
+            if (!dbInstance) return;
+            return new Promise((resolve) => {
+                const tx = dbInstance.transaction('sounds', 'readwrite');
+                tx.objectStore('sounds').put(file, key);
+                tx.oncomplete = () => resolve(true);
+                tx.onerror = () => resolve(false);
+            });
+        }
+
+        async function loadAudioBlob(key) {
+            if (!dbInstance) return null;
+            return new Promise((resolve) => {
+                const tx = dbInstance.transaction('sounds', 'readonly');
+                const req = tx.objectStore('sounds').get(key);
+                req.onsuccess = () => resolve(req.result || null);
+                req.onerror = () => resolve(null);
+            });
+        }
+
+        // ==============================================================
+        // 3. AUDIO ENGINE (WEB AUDIO API TỰ SINH & HTML5 AUDIO)
+        // ==============================================================
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        // Biến kiểm soát nhạc nền hiện tại
+        let activeBgSourceNode = null;
+        let activeBgGainNode = null;
+        let activeBgLfoNode = null;
+        let activeBgTimer = null;
+        let currentPlayingType = null;
+
+        // TẠO TIẾNG ỒN TRẮNG / NÂU / HỒNG CHO MƯA, SÓNG, FOCUS
+        function createNoiseBuffer(type = 'white', duration = 6) {
+            const ctx = getAudioContext();
+            const bufferSize = ctx.sampleRate * duration;
+            const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+
+            let lastOut = 0.0;
+            let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+
+            for (let i = 0; i < bufferSize; i++) {
+                const white = Math.random() * 2 - 1;
+
+                if (type === 'brown') {
+                    // Brownian / Deep focus noise
+                    data[i] = (lastOut + (0.025 * white)) / 1.025;
+                    lastOut = data[i];
+                    data[i] *= 3.5;
+                } else if (type === 'pink') {
+                    // Pink noise
+                    b0 = 0.99886 * b0 + white * 0.0555179;
+                    b1 = 0.99332 * b1 + white * 0.0750759;
+                    b2 = 0.96900 * b2 + white * 0.1538520;
+                    b3 = 0.86650 * b3 + white * 0.3104856;
+                    b4 = 0.55000 * b4 + white * 0.5329522;
+                    b5 = -0.7616 * b5 - white * 0.0168980;
+                    data[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
+                    b6 = white * 0.115926;
+                } else {
+                    data[i] = white * 0.5;
+                }
+            }
+            return buffer;
+        }
+
+        // PHÁT NHẠC NỀN THEO YÊU CẦU
+        function playBackgroundAudio(type) {
+            stopBackgroundAudio();
+            if (!type || type === 'none') {
+                updateAudioBadge('Tắt nhạc nền', false);
+                return;
+            }
+
+            const ctx = getAudioContext();
+            const now = ctx.currentTime;
+            currentPlayingType = type;
+
+            activeBgGainNode = ctx.createGain();
+            activeBgGainNode.gain.setValueAtTime(0.001, now);
+            activeBgGainNode.gain.exponentialRampToValueAtTime(Math.max(0.01, audioConfig.bgVolume), now + 1.2);
+            activeBgGainNode.connect(ctx.destination);
+
+            if (type === 'rain') {
+                // TIẾNG MƯA RƠI THƯ THÁI
+                const noiseBuf = createNoiseBuffer('pink', 8);
+                const source = ctx.createBufferSource();
+                source.buffer = noiseBuf;
+                source.loop = true;
+
+                const filter = ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(950, now);
+
+                source.connect(filter);
+                filter.connect(activeBgGainNode);
+                source.start(now);
+                activeBgSourceNode = source;
+                updateAudioBadge('🌧️ Đang phát: Mưa rơi thư thái', true);
+
+            } else if (type === 'brown') {
+                // TIẾNG ỒN NÂU (DEEP FOCUS NOISE)
+                const noiseBuf = createNoiseBuffer('brown', 8);
+                const source = ctx.createBufferSource();
+                source.buffer = noiseBuf;
+                source.loop = true;
+
+                const filter = ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(600, now);
+
+                source.connect(filter);
+                filter.connect(activeBgGainNode);
+                source.start(now);
+                activeBgSourceNode = source;
+                updateAudioBadge('🧠 Đang phát: Deep Focus (Brown Noise)', true);
+
+            } else if (type === 'waves') {
+                // SÓNG BIỂN DẠT DÀO
+                const noiseBuf = createNoiseBuffer('pink', 10);
+                const source = ctx.createBufferSource();
+                source.buffer = noiseBuf;
+                source.loop = true;
+
+                const filter = ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(400, now);
+
+                // LFO điều chế nhịp sóng (8 giây / đợt sóng)
+                const waveGain = ctx.createGain();
+                waveGain.gain.setValueAtTime(0.2, now);
+
+                const lfo = ctx.createOscillator();
+                lfo.frequency.setValueAtTime(0.12, now); // ~8.3 giây
+                const lfoGain = ctx.createGain();
+                lfoGain.gain.setValueAtTime(0.25, now);
+
+                lfo.connect(lfoGain);
+                lfoGain.connect(waveGain.gain);
+
+                source.connect(filter);
+                filter.connect(waveGain);
+                waveGain.connect(activeBgGainNode);
+
+                lfo.start(now);
+                source.start(now);
+
+                activeBgSourceNode = source;
+                activeBgLfoNode = lfo;
+                updateAudioBadge('🌊 Đang phát: Sóng biển dạt dào', true);
+
+            } else if (type === 'lofi' || type === 'meditation') {
+                // LO-FI HOẶC MEDITATION SYNTH PAD
+                const chords = type === 'lofi' 
+                    ? [
+                        [174.61, 220.00, 261.63, 329.63], // Fmaj7
+                        [164.81, 196.00, 246.94, 329.63], // Em7
+                        [146.83, 174.61, 220.00, 261.63], // Dm7
+                        [130.81, 164.81, 196.00, 246.94]  // Cmaj7
+                    ]
+                    : [
+                        [174.61, 220.00, 261.63, 329.63], // Fmaj7
+                        [164.81, 196.00, 246.94, 329.63], // Em7
+                        [220.00, 261.63, 329.63, 392.00], // Am7
+                        [196.00, 246.94, 293.66, 349.23]  // G7
+                    ];
+
+                let chordIdx = 0;
+                function playChord() {
+                    const t = ctx.currentTime;
+                    const freqs = chords[chordIdx % chords.length];
+                    chordIdx++;
+
+                    const filter = ctx.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.setValueAtTime(type === 'lofi' ? 620 : 450, t);
+                    filter.connect(activeBgGainNode);
+
+                    const chordGain = ctx.createGain();
+                    chordGain.gain.setValueAtTime(0.001, t);
+                    chordGain.gain.exponentialRampToValueAtTime(0.18, t + 1.2);
+                    chordGain.gain.setValueAtTime(0.18, t + 2.5);
+                    chordGain.gain.exponentialRampToValueAtTime(0.001, t + 4.0);
+                    chordGain.connect(filter);
+
+                    freqs.forEach((f, i) => {
+                        const osc = ctx.createOscillator();
+                        osc.type = i % 2 === 0 ? 'sine' : 'triangle';
+                        osc.frequency.setValueAtTime(f, t);
+                        osc.detune.setValueAtTime((i - 1.5) * 4, t);
+                        osc.connect(chordGain);
+                        osc.start(t);
+                        osc.stop(t + 4.1);
+                    });
+                }
+
+                playChord();
+                activeBgTimer = setInterval(playChord, 4000);
+                updateAudioBadge(type === 'lofi' ? '🎹 Đang phát: Lo-Fi Ambient' : '🧘 Đang phát: Thiền Spa Ambient', true);
+
+            } else if (type === 'custom-file' || type === 'custom-url') {
+                // PHÁT FILE NHẠC TẢI LÊN HOẶC LINK URL
+                let src = '';
+                if (currentMode === 'pomodoro') {
+                    src = type === 'custom-file' ? workFileBlobUrl : audioConfig.workBgCustomUrl;
+                } else {
+                    src = breakFileBlobUrl;
+                }
+
+                if (src) {
+                    customAudioPlayer.src = src;
+                    customAudioPlayer.volume = audioConfig.bgVolume;
+                    customAudioPlayer.play().then(() => {
+                        const name = currentMode === 'pomodoro' 
+                            ? (audioConfig.workBgFileName || 'File nhạc làm việc riêng')
+                            : (audioConfig.breakBgFileName || 'File nhạc nghỉ riêng');
+                        updateAudioBadge(`📁 Đang phát: ${name}`, true);
+                    }).catch(e => {
+                        console.log('Không thể phát file audio:', e);
+                        updateAudioBadge('Lỗi file nhạc', false);
+                    });
+                } else {
+                    updateAudioBadge('Chưa chọn file nhạc', false);
+                }
+            }
+        }
+
+        function stopBackgroundAudio() {
+            if (activeBgTimer) {
+                clearInterval(activeBgTimer);
+                activeBgTimer = null;
+            }
+            if (activeBgSourceNode) {
+                try { activeBgSourceNode.stop(); } catch(e) {}
+                activeBgSourceNode = null;
+            }
+            if (activeBgLfoNode) {
+                try { activeBgLfoNode.stop(); } catch(e) {}
+                activeBgLfoNode = null;
+            }
+            if (activeBgGainNode) {
+                try {
+                    const now = getAudioContext().currentTime;
+                    activeBgGainNode.gain.cancelScheduledValues(now);
+                    activeBgGainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+                } catch(e) {}
+                activeBgGainNode = null;
+            }
+            try {
+                customAudioPlayer.pause();
+                customAudioPlayer.currentTime = 0;
+            } catch(e) {}
+
+            currentPlayingType = null;
+            updateAudioBadge('Nhạc nền: Đã tắt', false);
+        }
+
+        function updateAudioBadge(text, isPlaying) {
+            if (isPlaying) {
+                audioBadgeText.textContent = text;
+                audioWaveBadge.classList.remove('hidden');
+            } else {
+                audioBadgeText.textContent = text;
+                audioWaveBadge.classList.add('hidden');
+            }
+        }
+
+        // ==============================================================
+        // 4. CHUÔNG BÁO ĐỔI PHIÊN (ALERTS)
+        // ==============================================================
+        function playBreakMelody() {
+            const ctx = getAudioContext();
+            const now = ctx.currentTime;
+            const sound = audioConfig.breakAlertSound;
+
+            if (sound === 'custom' && customAlertBreakUrl) {
+                customAlertPlayer.src = customAlertBreakUrl;
+                customAlertPlayer.volume = audioConfig.alertVolume;
+                customAlertPlayer.play();
+                return;
+            }
+
+            const masterGain = ctx.createGain();
+            masterGain.gain.setValueAtTime(audioConfig.alertVolume, now);
+            masterGain.connect(ctx.destination);
+
+            if (sound === 'digital') {
+                // 3 TIẾNG DING HIỆN ĐẠI
+                [880, 1174.66, 1760].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const g = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.15);
+                    g.gain.setValueAtTime(0.001, now + idx * 0.15);
+                    g.gain.exponentialRampToValueAtTime(0.25, now + idx * 0.15 + 0.02);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.15 + 0.6);
+                    osc.connect(g);
+                    g.connect(masterGain);
+                    osc.start(now + idx * 0.15);
+                    osc.stop(now + idx * 0.15 + 0.65);
+                });
+            } else if (sound === 'harp') {
+                // ĐÀN HẠC THƯ THÁI
+                const notes = [440, 554.37, 659.25, 880, 1108.73, 1318.51];
+                notes.forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const g = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.14);
+                    g.gain.setValueAtTime(0.001, now + idx * 0.14);
+                    g.gain.exponentialRampToValueAtTime(0.2, now + idx * 0.14 + 0.03);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.14 + 1.2);
+                    osc.connect(g);
+                    g.connect(masterGain);
+                    osc.start(now + idx * 0.14);
+                    osc.stop(now + idx * 0.14 + 1.3);
+                });
+            } else {
+                // ZEN BELL MẶC ĐỊNH
+                const notes = [
+                    { f: 523.25, time: 0.0, dur: 1.4 },
+                    { f: 659.25, time: 0.28, dur: 1.4 },
+                    { f: 783.99, time: 0.58, dur: 1.6 },
+                    { f: 987.77, time: 0.90, dur: 1.8 },
+                    { f: 1046.50, time: 1.25, dur: 2.2 },
+                    { f: 1318.51, time: 1.65, dur: 2.5 }
+                ];
+                notes.forEach(n => {
+                    const osc = ctx.createOscillator();
+                    const g = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(n.f, now + n.time);
+                    g.gain.setValueAtTime(0.0001, now + n.time);
+                    g.gain.exponentialRampToValueAtTime(0.28, now + n.time + 0.04);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + n.time + n.dur);
+                    osc.connect(g);
+                    g.connect(masterGain);
+                    osc.start(now + n.time);
+                    osc.stop(now + n.time + n.dur + 0.1);
+                });
+            }
+        }
+
+        function playWorkMelody() {
+            const ctx = getAudioContext();
+            const now = ctx.currentTime;
+            const sound = audioConfig.workAlertSound;
+
+            if (sound === 'custom' && customAlertWorkUrl) {
+                customAlertPlayer.src = customAlertWorkUrl;
+                customAlertPlayer.volume = audioConfig.alertVolume;
+                customAlertPlayer.play();
+                return;
+            }
+
+            const masterGain = ctx.createGain();
+            masterGain.gain.setValueAtTime(audioConfig.alertVolume, now);
+            masterGain.connect(ctx.destination);
+
+            if (sound === 'achievement') {
+                // TIẾNG THÀNH TỰU (LEVEL UP)
+                [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, idx) => {
+                    const osc = ctx.createOscillator();
+                    const g = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+                    g.gain.setValueAtTime(0.001, now + idx * 0.12);
+                    g.gain.exponentialRampToValueAtTime(0.25, now + idx * 0.12 + 0.02);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.12 + 0.8);
+                    osc.connect(g);
+                    g.connect(masterGain);
+                    osc.start(now + idx * 0.12);
+                    osc.stop(now + idx * 0.12 + 0.85);
+                });
+            } else if (sound === 'gong') {
+                // TIẾNG CỒNG TĨNH TÂM (FOCUS GONG)
+                const osc = ctx.createOscillator();
+                const g = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(261.63, now); // C4
+                g.gain.setValueAtTime(0.001, now);
+                g.gain.exponentialRampToValueAtTime(0.35, now + 0.04);
+                g.gain.exponentialRampToValueAtTime(0.0001, now + 2.8);
+                osc.connect(g);
+                g.connect(masterGain);
+                osc.start(now);
+                osc.stop(now + 2.9);
+            } else {
+                // FANFARE MẶC ĐỊNH
+                const notes = [
+                    { f: 392.00, time: 0.0, dur: 0.35, type: 'triangle' },
+                    { f: 523.25, time: 0.18, dur: 0.35, type: 'triangle' },
+                    { f: 659.25, time: 0.36, dur: 0.45, type: 'triangle' },
+                    { f: 783.99, time: 0.54, dur: 0.55, type: 'triangle' },
+                    { f: 1046.50, time: 0.75, dur: 1.8, type: 'sine' },
+                    { f: 523.25, time: 0.75, dur: 1.8, type: 'sine' },
+                    { f: 659.25, time: 0.75, dur: 1.8, type: 'sine' }
+                ];
+                notes.forEach(n => {
+                    const osc = ctx.createOscillator();
+                    const g = ctx.createGain();
+                    osc.type = n.type || 'sine';
+                    osc.frequency.setValueAtTime(n.f, now + n.time);
+                    g.gain.setValueAtTime(0.0001, now + n.time);
+                    g.gain.exponentialRampToValueAtTime(0.3, now + n.time + 0.03);
+                    g.gain.exponentialRampToValueAtTime(0.0001, now + n.time + n.dur);
+                    osc.connect(g);
+                    g.connect(masterGain);
+                    osc.start(now + n.time);
+                    osc.stop(now + n.time + n.dur + 0.1);
+                });
+            }
+        }
+
+        // 5. TRỢ LÝ GIỌNG NÓI TIẾNG VIỆT
+        function speakNotification(text) {
+            if (!audioConfig.voiceEnabled || !('speechSynthesis' in window)) return;
+            try {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = 'vi-VN';
+                utter.rate = 1.0;
+                utter.volume = audioConfig.alertVolume;
+                const voices = window.speechSynthesis.getVoices();
+                const viVoice = voices.find(v => v.lang.includes('vi') || v.lang.includes('VN'));
+                if (viVoice) utter.voice = viVoice;
+                window.speechSynthesis.speak(utter);
+            } catch(e) {}
+        }
+
+        // ==============================================================
+        // 5. ĐIỀU KHIỂN ĐỒNG HỒ & CHU TRÌNH TỰ ĐỘNG
+        // ==============================================================
+        function updateDisplay() {
+            const mins = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const secs = (timeLeft % 60).toString().padStart(2, '0');
+            const formatted = `${mins}:${secs}`;
+            
+            timeDisplay.textContent = formatted;
+            document.title = isRunning ? `(${formatted}) ${MODES[currentMode].label} | Pomodoro Studio` : 'Đồng Hồ Pomodoro Auto-Focus | Lập Trình Robot';
+
+            const offset = circumference - (timeLeft / totalTime) * circumference;
+            ring.style.strokeDashoffset = offset;
+        }
+
+        function switchMode(mode, keepRunning = false) {
+            currentMode = mode;
+            totalTime = MODES[mode].time;
+            timeLeft = totalTime;
+
+            // Đổi giao diện tab
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.className = 'mode-btn flex-1 py-2 text-xs font-semibold rounded-xl transition text-slate-400 hover:text-slate-200';
+            });
+            document.getElementById(`btn-${mode}`).className = `mode-btn flex-1 py-2 text-xs font-semibold rounded-xl transition ${MODES[mode].tabBg}`;
+
+            // Đổi màu vòng tròn & nút chính
+            ring.className = `progress-ring__circle ${MODES[mode].color}`;
+            mainBtn.className = `flex-1 py-3.5 px-6 rounded-2xl font-bold text-sm transition-all text-white shadow-lg active:scale-95 ${MODES[mode].btnBg}`;
+            
+            statusLabel.textContent = isRunning ? MODES[mode].label : 'Sẵn sàng';
+            updateDisplay();
+
+            if (keepRunning) {
+                startTimer();
+            }
+        }
+
+        function userSwitchMode(mode) {
+            pauseTimer();
+            switchMode(mode, false);
+            mainBtn.textContent = 'BẮT ĐẦU TỰ ĐỘNG';
+        }
+
+        function toggleTimer() {
+            getAudioContext();
+            if ('Notification' in window && Notification.permission === 'default') {
+                requestNotifPermission();
+            }
+            isRunning ? pauseTimer() : startTimer();
+        }
+
+        function startTimer() {
+            getAudioContext();
+            isRunning = true;
+            mainBtn.textContent = 'TẠM DỪNG';
+            statusLabel.textContent = MODES[currentMode].label;
+
+            // BẬT NHẠC NỀN THEO PHIÊN TƯƠNG ỨNG
+            if (currentMode === 'pomodoro') {
+                if (audioConfig.workBgEnabled) {
+                    playBackgroundAudio(audioConfig.workBgType);
+                }
+            } else {
+                if (audioConfig.breakBgEnabled) {
+                    playBackgroundAudio(audioConfig.breakBgType);
+                }
+            }
+
+            const endTime = Date.now() + timeLeft * 1000;
+            if (timerId) clearInterval(timerId);
+            timerId = setInterval(() => {
+                timeLeft = Math.round((endTime - Date.now()) / 1000);
+                if (timeLeft <= 0) {
+                    timeLeft = 0;
+                    updateDisplay();
+                    clearInterval(timerId);
+                    completeSession();
+                } else {
+                    updateDisplay();
+                }
+            }, 250);
+        }
+
+        function pauseTimer() {
+            isRunning = false;
+            if (timerId) clearInterval(timerId);
+            mainBtn.textContent = 'TIẾP TỤC';
+            if (timeLeft === totalTime) mainBtn.textContent = 'BẮT ĐẦU TỰ ĐỘNG';
+            statusLabel.textContent = 'Tạm dừng';
+            document.title = 'Đồng Hồ Pomodoro Auto-Focus | Lập Trình Robot';
+            stopBackgroundAudio();
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timeLeft = totalTime;
+            mainBtn.textContent = 'BẮT ĐẦU TỰ ĐỘNG';
+            statusLabel.textContent = 'Sẵn sàng';
+            updateDisplay();
+        }
+
+        function skipSession() {
+            completeSession();
+        }
+
+        // HOÀN THÀNH PHIÊN & CHUYỂN TIẾP TỰ ĐỘNG
+        function completeSession() {
+            if (timerId) clearInterval(timerId);
+            isRunning = false;
+            stopBackgroundAudio(); // Tắt nhạc nền phiên cũ
+
+            if (currentMode === 'pomodoro') {
+                // KẾT THÚC LÀM VIỆC -> BẮT ĐẦU NGHỈ
+                sessions++;
+                localStorage.setItem('pomo_sessions', sessions);
+                sessionCountEl.textContent = sessions;
+
+                // Phát chuông báo nghỉ
+                playBreakMelody();
+                speakNotification('Đã hết giờ làm việc. Mời bạn nghỉ ngơi thư giãn.');
+                sendDesktopNotification('☕ Giờ nghỉ ngơi!', 'Đã hoàn thành phiên tập trung. Hãy thả lỏng và thư giãn.');
+
+                const nextMode = (sessions % 4 === 0) ? 'long' : 'short';
+                switchMode(nextMode, false);
+
+                // TỰ ĐỘNG BẬT NGHỈ NGƠI VÀ PHÁT NHẠC NỀN NGHỈ NGƠI
+                if (audioConfig.autoLoop) {
+                    statusLabel.textContent = 'Tự động bắt đầu nghỉ...';
+                    setTimeout(() => {
+                        startTimer(); // Sẽ tự bật nhạc nền nghỉ ngơi
+                    }, 1200);
+                } else {
+                    mainBtn.textContent = 'BẮT ĐẦU NGHỈ';
+                    statusLabel.textContent = 'Chờ bắt đầu nghỉ';
+                }
+
+            } else {
+                // KẾT THÚC NGHỈ -> QUAY LẠI LÀM VIỆC
+                // Phát chuông báo làm việc
+                playWorkMelody();
+                speakNotification('Đã hết giờ nghỉ ngơi. Mời bạn tiếp tục quay lại làm việc.');
+                sendDesktopNotification('🚀 Bắt đầu làm việc!', 'Hết giờ nghỉ. Cùng tiếp tục phiên tập trung mới nào!');
+
+                switchMode('pomodoro', false);
+
+                // TỰ ĐỘNG BẬT LÀM VIỆC VÀ PHÁT NHẠC NỀN LÀM VIỆC LIÊN TỤC
+                if (audioConfig.autoLoop) {
+                    statusLabel.textContent = 'Tự động bắt đầu làm việc...';
+                    setTimeout(() => {
+                        startTimer(); // Sẽ tự bật nhạc nền làm việc
+                    }, 1200);
+                } else {
+                    mainBtn.textContent = 'BẮT ĐẦU TẬP TRUNG';
+                    statusLabel.textContent = 'Chờ bắt đầu làm việc';
+                }
+            }
+        }
+
+        // ==============================================================
+        // 6. XỬ LÝ TÙY CHỈNH & TẢI FILE NHẠC
+        // ==============================================================
+        function setWorkBgType(val) {
+            audioConfig.workBgType = val;
+            quickWorkBgSelect.value = val;
+            saveAudioConfig();
+            if (isRunning && currentMode === 'pomodoro') {
+                playBackgroundAudio(val);
+            }
+        }
+
+        function changeWorkBgQuick(val) {
+            if (val === 'none') {
+                audioConfig.workBgEnabled = false;
+                document.getElementById('work-bg-enabled').checked = false;
+                stopBackgroundAudio();
+            } else {
+                audioConfig.workBgEnabled = true;
+                document.getElementById('work-bg-enabled').checked = true;
+                setWorkBgType(val);
+            }
+            saveAudioConfig();
+        }
+
+        function setBreakBgType(val) {
+            audioConfig.breakBgType = val;
+            saveAudioConfig();
+            if (isRunning && currentMode !== 'pomodoro') {
+                playBackgroundAudio(val);
+            }
+        }
+
+        async function handleWorkFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            workFileBlobUrl = URL.createObjectURL(file);
+            audioConfig.workBgFileName = file.name;
+            audioConfig.workBgType = 'custom-file';
+
+            document.getElementById('work-file-name-span').textContent = file.name;
+            document.getElementById('work-bg-file-name').classList.remove('hidden');
+            document.querySelector("input[name='work-bg-type'][value='custom-file']").checked = true;
+            quickWorkBgSelect.value = 'custom-file';
+
+            await saveAudioBlob('workBgFile', file);
+            saveAudioConfig();
+            if (isRunning && currentMode === 'pomodoro') {
+                playBackgroundAudio('custom-file');
+            }
+        }
+
+        async function handleBreakFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            breakFileBlobUrl = URL.createObjectURL(file);
+            audioConfig.breakBgFileName = file.name;
+            audioConfig.breakBgType = 'custom-file';
+
+            document.getElementById('break-file-name-span').textContent = file.name;
+            document.getElementById('break-bg-file-name').classList.remove('hidden');
+            document.querySelector("input[name='break-bg-type'][value='custom-file']").checked = true;
+
+            await saveAudioBlob('breakBgFile', file);
+            saveAudioConfig();
+            if (isRunning && currentMode !== 'pomodoro') {
+                playBackgroundAudio('custom-file');
+            }
+        }
+
+        function handleWorkUrlInput(url) {
+            audioConfig.workBgCustomUrl = url.trim();
+            saveAudioConfig();
+        }
+
+        async function handleCustomBreakAlertUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            customAlertBreakUrl = URL.createObjectURL(file);
+            await saveAudioBlob('breakAlertFile', file);
+        }
+
+        async function handleCustomWorkAlertUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            customAlertWorkUrl = URL.createObjectURL(file);
+            await saveAudioBlob('workAlertFile', file);
+        }
+
+        // NGHE THỬ NHẠC NỀN TRONG MODAL
+        let isPreviewingWork = false;
+        function togglePreviewWorkBg() {
+            getAudioContext();
+            const btn = document.getElementById('btn-preview-work-bg');
+            const text = document.getElementById('preview-work-text');
+            if (isPreviewingWork) {
+                stopBackgroundAudio();
+                isPreviewingWork = false;
+                text.textContent = 'Nghe thử nhạc nền làm việc';
+                btn.classList.remove('bg-rose-600', 'text-white');
+            } else {
+                playBackgroundAudio(audioConfig.workBgType);
+                isPreviewingWork = true;
+                text.textContent = '■ Dừng nghe thử';
+                btn.classList.add('bg-rose-600', 'text-white');
+            }
+        }
+
+        let isPreviewingBreak = false;
+        function togglePreviewBreakBg() {
+            getAudioContext();
+            const btn = document.getElementById('btn-preview-break-bg');
+            const text = document.getElementById('preview-break-text');
+            if (isPreviewingBreak) {
+                stopBackgroundAudio();
+                isPreviewingBreak = false;
+                text.textContent = 'Nghe thử nhạc nền nghỉ ngơi';
+                btn.classList.remove('bg-emerald-600', 'text-white');
+            } else {
+                playBackgroundAudio(audioConfig.breakBgType);
+                isPreviewingBreak = true;
+                text.textContent = '■ Dừng nghe thử';
+                btn.classList.add('bg-emerald-600', 'text-white');
+            }
+        }
+
+        function testBreakSound() {
+            getAudioContext();
+            playBreakMelody();
+            speakNotification('Nghe thử: Đã hết giờ làm việc, mời bạn nghỉ ngơi.');
+        }
+
+        function testWorkSound() {
+            getAudioContext();
+            playWorkMelody();
+            speakNotification('Nghe thử: Hết giờ nghỉ ngơi, mời bạn tiếp tục làm việc.');
+        }
+
+        function updateBgVolume(val) {
+            audioConfig.bgVolume = val / 100;
+            quickBgVolLabel.textContent = `${val}%`;
+            quickBgVolume.value = val;
+            if (activeBgGainNode) {
+                activeBgGainNode.gain.setValueAtTime(audioConfig.bgVolume, getAudioContext().currentTime);
+            }
+            if (customAudioPlayer) {
+                customAudioPlayer.volume = audioConfig.bgVolume;
+            }
+            saveAudioConfig();
+        }
+
+        function updateAlertVolume(val) {
+            audioConfig.alertVolume = val / 100;
+            document.getElementById('alert-vol-val-label').textContent = `${val}%`;
+            document.getElementById('setting-alert-volume').value = val;
+            saveAudioConfig();
+        }
+
+        // ==============================================================
+        // 7. GIAO DIỆN MODAL & LƯU TRỮ
+        // ==============================================================
+        function toggleSettingsModal(show, tab = null) {
+            const modal = document.getElementById('settings-modal');
+            if (show) {
+                modal.classList.remove('hidden');
+                if (tab === 'bg-music') {
+                    switchSettingsTab('tab-work-bg');
+                }
+            } else {
+                modal.classList.add('hidden');
+                if (isPreviewingWork) togglePreviewWorkBg();
+                if (isPreviewingBreak) togglePreviewBreakBg();
+            }
+        }
+
+        function switchSettingsTab(tabId) {
+            document.querySelectorAll('.settings-tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+
+            const tabBtns = {
+                'tab-work-bg': document.getElementById('btn-tab-work-bg'),
+                'tab-break-bg': document.getElementById('btn-tab-break-bg'),
+                'tab-alerts': document.getElementById('btn-tab-alerts'),
+                'tab-timer': document.getElementById('btn-tab-timer')
+            };
+
+            Object.values(tabBtns).forEach(b => {
+                b.className = 'flex-1 py-1.5 rounded-lg transition text-slate-400 hover:text-slate-200';
+            });
+            tabBtns[tabId].className = 'flex-1 py-1.5 rounded-lg transition bg-rose-600 text-white font-bold';
+        }
+
+        function toggleAutoLoop() {
+            audioConfig.autoLoop = !audioConfig.autoLoop;
+            updateAutoLoopUI();
+            saveAudioConfig();
+        }
+
+        function updateAutoLoopUI() {
+            if (audioConfig.autoLoop) {
+                toggleAutoloopBtn.className = "px-2.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30";
+                toggleAutoloopBtn.innerHTML = `
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span>Tự động: BẬT</span>
+                `;
+            } else {
+                toggleAutoloopBtn.className = "px-2.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700";
+                toggleAutoloopBtn.innerHTML = `
+                    <span class="inline-flex rounded-full h-2 w-2 bg-slate-500"></span>
+                    <span>Tự động: TẮT</span>
+                `;
+            }
+            document.getElementById('setting-autoloop').checked = audioConfig.autoLoop;
+        }
+
+        function toggleTestMode() {
+            isTestMode = !isTestMode;
+            if (isTestMode) {
+                MODES.pomodoro.time = 10;
+                MODES.short.time = 5;
+                MODES.long.time = 8;
+                testModeBadge.className = "text-[11px] bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2.5 py-1 rounded-xl cursor-pointer font-bold";
+                testModeBadge.textContent = "⚡ Test 10s: BẬT";
+            } else {
+                updateCustomTimes();
+                testModeBadge.className = "text-[11px] bg-slate-800 text-slate-300 border border-slate-700 px-2.5 py-1 rounded-xl cursor-pointer hover:bg-slate-700";
+                testModeBadge.textContent = "⚡ Test nhanh 10s: TẮT";
+            }
+            userSwitchMode(currentMode);
+        }
+
+        function updateCustomTimes() {
+            if (isTestMode) return;
+            const pTime = parseInt(document.getElementById('input-time-pomo').value) || 25;
+            const sTime = parseInt(document.getElementById('input-time-short').value) || 5;
+            const lTime = parseInt(document.getElementById('input-time-long').value) || 15;
+
+            MODES.pomodoro.time = pTime * 60;
+            MODES.short.time = sTime * 60;
+            MODES.long.time = lTime * 60;
+
+            localStorage.setItem('pomo_time_pomo', pTime);
+            localStorage.setItem('pomo_time_short', sTime);
+            localStorage.setItem('pomo_time_long', lTime);
+
+            totalTime = MODES[currentMode].time;
+            if (!isRunning) {
+                timeLeft = totalTime;
+                updateDisplay();
+            }
+        }
+
+        function saveAudioConfig() {
+            audioConfig.workBgEnabled = document.getElementById('work-bg-enabled').checked;
+            audioConfig.breakBgEnabled = document.getElementById('break-bg-enabled').checked;
+            audioConfig.breakAlertSound = document.getElementById('break-alert-select').value;
+            audioConfig.workAlertSound = document.getElementById('work-alert-select').value;
+            audioConfig.voiceEnabled = document.getElementById('setting-voice').checked;
+            audioConfig.autoLoop = document.getElementById('setting-autoloop').checked;
+
+            document.getElementById('custom-break-alert-box').style.display = audioConfig.breakAlertSound === 'custom' ? 'block' : 'none';
+            document.getElementById('custom-work-alert-box').style.display = audioConfig.workAlertSound === 'custom' ? 'block' : 'none';
+
+            localStorage.setItem('pomo_audio_config', JSON.stringify(audioConfig));
+            updateAutoLoopUI();
+        }
+
+        async function loadSavedSettings() {
+            const saved = localStorage.getItem('pomo_audio_config');
+            if (saved) {
+                try {
+                    audioConfig = { ...audioConfig, ...JSON.parse(saved) };
+                } catch(e) {}
+            }
+
+            document.getElementById('work-bg-enabled').checked = audioConfig.workBgEnabled;
+            document.getElementById('break-bg-enabled').checked = audioConfig.breakBgEnabled;
+            document.getElementById('break-alert-select').value = audioConfig.breakAlertSound;
+            document.getElementById('work-alert-select').value = audioConfig.workAlertSound;
+            document.getElementById('setting-voice').checked = audioConfig.voiceEnabled;
+            document.getElementById('setting-autoloop').checked = audioConfig.autoLoop;
+
+            quickWorkBgSelect.value = audioConfig.workBgType;
+            quickBgVolume.value = Math.round(audioConfig.bgVolume * 100);
+            quickBgVolLabel.textContent = `${Math.round(audioConfig.bgVolume * 100)}%`;
+            document.getElementById('setting-alert-volume').value = Math.round(audioConfig.alertVolume * 100);
+            document.getElementById('alert-vol-val-label').textContent = `${Math.round(audioConfig.alertVolume * 100)}%`;
+
+            // Radio selections
+            const workRadio = document.querySelector(`input[name='work-bg-type'][value='${audioConfig.workBgType}']`);
+            if (workRadio) workRadio.checked = true;
+
+            const breakRadio = document.querySelector(`input[name='break-bg-type'][value='${audioConfig.breakBgType}']`);
+            if (breakRadio) breakRadio.checked = true;
+
+            if (audioConfig.workBgCustomUrl) {
+                document.getElementById('work-bg-url-input').value = audioConfig.workBgCustomUrl;
+            }
+
+            // Phục hồi file nhạc đã lưu từ IndexedDB
+            const savedWorkBlob = await loadAudioBlob('workBgFile');
+            if (savedWorkBlob) {
+                workFileBlobUrl = URL.createObjectURL(savedWorkBlob);
+                document.getElementById('work-file-name-span').textContent = audioConfig.workBgFileName || 'File đã lưu';
+                document.getElementById('work-bg-file-name').classList.remove('hidden');
+            }
+
+            const savedBreakBlob = await loadAudioBlob('breakBgFile');
+            if (savedBreakBlob) {
+                breakFileBlobUrl = URL.createObjectURL(savedBreakBlob);
+                document.getElementById('break-file-name-span').textContent = audioConfig.breakBgFileName || 'File đã lưu';
+                document.getElementById('break-bg-file-name').classList.remove('hidden');
+            }
+
+            const savedAlertBreakBlob = await loadAudioBlob('breakAlertFile');
+            if (savedAlertBreakBlob) customAlertBreakUrl = URL.createObjectURL(savedAlertBreakBlob);
+
+            const savedAlertWorkBlob = await loadAudioBlob('workAlertFile');
+            if (savedAlertWorkBlob) customAlertWorkUrl = URL.createObjectURL(savedAlertWorkBlob);
+
+            // Thời gian
+            const pTime = parseInt(localStorage.getItem('pomo_time_pomo') || '25');
+            const sTime = parseInt(localStorage.getItem('pomo_time_short') || '5');
+            const lTime = parseInt(localStorage.getItem('pomo_time_long') || '15');
+
+            document.getElementById('input-time-pomo').value = pTime;
+            document.getElementById('input-time-short').value = sTime;
+            document.getElementById('input-time-long').value = lTime;
+
+            MODES.pomodoro.time = pTime * 60;
+            MODES.short.time = sTime * 60;
+            MODES.long.time = lTime * 60;
+
+            updateAutoLoopUI();
+        }
+
+        // ==============================================================
+        // 8. WINDOWS NOTIFICATIONS
+        // ==============================================================
+        function checkNotificationStatus() {
+            if ('Notification' in window) {
+                if (Notification.permission === 'granted') {
+                    notifBtn.classList.add('hidden');
+                    notifStatusBadge.classList.remove('hidden');
+                } else {
+                    notifBtn.classList.remove('hidden');
+                    notifStatusBadge.classList.add('hidden');
+                }
+            } else {
+                notifBtn.classList.add('hidden');
+                notifStatusBadge.classList.add('hidden');
+            }
+        }
+
+        function requestNotifPermission() {
+            if ('Notification' in window) {
+                Notification.requestPermission().then(() => checkNotificationStatus());
+            }
+        }
+
+        function sendDesktopNotification(title, body) {
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification(title, {
+                    body: body,
+                    icon: 'https://cdn-icons-png.flaticon.com/512/2972/2972531.png'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+

@@ -48,6 +48,22 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Tiện ích Pomodoro Focus Studio -->
+  <url>
+    <loc>https://laptrinhrobot.com/pomodoro.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Tiện ích Lịch Âm Dương & Đếm Ngược Tết -->
+  <url>
+    <loc>https://laptrinhrobot.com/amlich.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- Khóa học theo độ tuổi & Chuyên đề -->
   <url>
     <loc>https://laptrinhrobot.com/course-7-9.html</loc>

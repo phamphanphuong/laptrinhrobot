@@ -365,11 +365,27 @@
         </span>
       </a>
 
-      <!-- Bên phải: Nút Đăng Ký Học Thử (cuộn mượt xuống biểu mẫu cuối trang) -->
-      <a href="#dang-ky"
-        class="bg-[#EA580C] hover:bg-[#C2410C] text-white font-bold text-sm sm:text-base px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl transition-colors shrink-0 shadow-sm">
-        Đăng Ký Học Thử
-      </a>
+      <!-- Bên phải: Tiện ích Lịch Âm, Pomodoro & Nút Đăng Ký Học Thử -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+        <a href="amlich.html"
+          class="inline-flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-bold text-xs sm:text-sm px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl transition-colors shadow-sm"
+          title="Xem Lịch Âm & Đếm ngược đến Tết Nguyên Đán">
+          <span class="text-sm sm:text-base">🧧</span>
+          <span class="hidden xs:inline sm:inline">Lịch Âm</span>
+        </a>
+
+        <a href="pomodoro.html"
+          class="inline-flex items-center gap-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold text-xs sm:text-sm px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl transition-colors shadow-sm"
+          title="Mở đồng hồ Pomodoro tập trung học tập & lập trình">
+          <span class="text-sm sm:text-base">🍅</span>
+          <span class="hidden xs:inline sm:inline">Pomodoro</span>
+        </a>
+
+        <a href="#dang-ky"
+          class="bg-[#EA580C] hover:bg-[#C2410C] text-white font-bold text-xs sm:text-sm px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl transition-colors shadow-sm">
+          Đăng Ký Học Thử
+        </a>
+      </div>
     </div>
   </header>
 
@@ -875,10 +891,18 @@
             </li>
           </ul>
 
-          <!-- Danh sách liên kết các chương trình chuyên biệt (Đưa từ Khối 5 xuống đây) -->
+          <!-- Danh sách liên kết các chương trình chuyên biệt & tiện ích -->
           <div class="mt-5 pt-4 border-t border-gray-100">
-            <h4 class="text-sm font-bold text-gray-700 mb-2">Các khóa học chuyên biệt khác:</h4>
-            <div class="flex flex-wrap gap-2 text-sm text-gray-700">
+            <h4 class="text-sm font-bold text-gray-700 mb-2">Các khóa học & tiện ích học tập:</h4>
+            <div class="flex flex-wrap items-center gap-2 text-sm text-gray-700">
+              <a href="amlich.html" class="inline-flex items-center gap-1 text-amber-800 hover:text-amber-900 hover:underline font-bold bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-lg">
+                <span>🧧</span> Lịch Âm & Đếm Ngược Tết
+              </a>
+              <span>|</span>
+              <a href="pomodoro.html" class="inline-flex items-center gap-1 text-rose-600 hover:text-rose-700 hover:underline font-bold bg-rose-50 border border-rose-200 px-2.5 py-0.5 rounded-lg">
+                <span>🍅</span> Đồng hồ Pomodoro
+              </a>
+              <span>|</span>
               <a href="tin10.html" class="text-emerald-700 hover:underline font-semibold">Luyện thi Chuyên Tin C++ (Lớp 10)</a>
               <span>|</span>
               <a href="competition.html" class="text-emerald-700 hover:underline font-semibold">Thư viện đề thi Chuyên Tin</a>
@@ -930,6 +954,10 @@
       <div class="pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm sm:text-base text-gray-600">
         <p>&copy; 2026 Lập Trình Robot. Bản quyền được bảo hộ.</p>
         <div class="flex flex-wrap gap-3 items-center">
+          <a href="amlich.html" class="hover:text-amber-700 hover:underline font-semibold text-amber-800 flex items-center gap-1"><span>🧧</span> Lịch Âm & Tết</a>
+          <span>•</span>
+          <a href="pomodoro.html" class="hover:text-rose-600 hover:underline font-semibold text-rose-600 flex items-center gap-1"><span>🍅</span> Tiện ích Pomodoro</a>
+          <span>•</span>
           <a href="lien-he.html" class="hover:text-emerald-700 hover:underline font-semibold text-emerald-800">📋 Trang Liên Hệ & Học Phí</a>
           <span>•</span>
           <a href="privacy.html" class="hover:text-emerald-700 hover:underline">Chính sách bảo mật</a>

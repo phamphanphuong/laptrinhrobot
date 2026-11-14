@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Âm Dương & Đếm Ngược Đến Tết Nguyên Đán | Tiện Ích Lập Trình Robot</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <meta name="description" content="Tra cứu ngày Âm lịch, Dương lịch, Can Chi, Giờ Hoàng Đạo, Tiết Khí và đồng hồ đếm ngược chính xác đến Tết Nguyên Đán. Tiện ích văn hóa truyền thống trang nhã từ Trung tâm Lập Trình Robot.">
+    <meta name="keywords" content="am lich, lich am, dem nguoc tet, bao nhieu ngay nua den tet, gio hoang dao, can chi, tet nguyen dan, lap trinh robot, tien ich hoc tap">
+    <meta name="theme-color" content="#1a0808">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        festive: ['Cinzel', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#059669',
+                            greenHover: '#047857',
+                            orange: '#EA580C',
+                        },
+                        festive: {
+                            red: '#991b1b',
+                            crimson: '#dc2626',
+                            gold: '#fbbf24',
+                            amber: '#f59e0b',
+                            darkGold: '#b45309',
+                            darkRed: '#450a0a',
+                        }
+                    },
+                    keyframes: {
+                        pulseSlow: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+                            '50%': { transform: 'scale(1.02)', opacity: '0.9' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulseSlow 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2.5s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f17;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(185, 28, 28, 0.16), transparent 35%),
+                radial-gradient(circle at 90% 10%, rgba(217, 119, 6, 0.14), transparent 32%),
+                radial-gradient(circle at 50% 85%, rgba(5, 150, 105, 0.10), transparent 40%),
+                linear-gradient(180deg, #0b0f17 0%, #080c14 100%);
+            background-attachment: fixed;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 45%, #ca8a04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .red-gradient-text {
+            background: linear-gradient(135deg, #fca5a5 0%, #ef4444 50%, #b91c1c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(245, 158, 11, 0.18);
+            box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-2px);
+            border-color: rgba(245, 158, 11, 0.35);
+            box-shadow: 0 20px 40px -10px rgba(220, 38, 38, 0.25);
+        }
+
+        .calendar-cell {
+            aspect-ratio: 1;
+            transition: all 0.2s ease;
+        }
+        .calendar-cell:hover {
+            background-color: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.4);
+            transform: scale(1.04);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0b0f17; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d97706; }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500/30 selection:text-amber-200">
+
+    <!-- ========================================== -->
+    <!-- THANH ĐIỀU HƯỚNG ĐẦU TRANG (STICKY HEADER) -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-xl">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <!-- Bên trái: Nút Quay về Trang chủ & Logo thương hiệu -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- NÚT QUAY VỀ TRANG CHỦ -->
+                <a href="index.html" 
+                   class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700/80 text-xs sm:text-sm font-semibold transition-all shadow-sm group"
+                   title="Quay trở lại Trang chủ Lập Trình Robot">
+                    <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1 text-amber-400"></i>
+                    <span>Trang chủ</span>
+                </a>
+
+                <!-- Logo Lập Trình Robot -->
+                <a href="index.html" class="flex items-center gap-2.5 text-decoration-none group" title="Về trang chủ Lập Trình Robot">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white text-base shadow-sm shrink-0 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <span class="font-heading font-extrabold text-sm sm:text-base text-white tracking-tight hidden md:inline">
+                        Lập Trình <span class="text-emerald-400">Robot</span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Ở giữa: Huy hiệu tiện ích Lịch Âm -->
+            <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-xs text-amber-300">
+                <span class="text-sm">🧧</span>
+                <span class="font-bold tracking-wide">Lịch Âm & Đếm Ngược Tết</span>
+            </div>
+
+            <!-- Bên phải: Chuyển tiện ích Pomodoro, Khóa học & Hotline -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="pomodoro.html" 
+                   class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 text-xs font-semibold transition"
+                   title="Chuyển sang Tiện ích Pomodoro Focus">
+                    <span>🍅</span>
+                    <span class="hidden xs:inline sm:inline">Pomodoro</span>
+                </a>
+                <a href="https://zalo.me/0915514419" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-sm transition">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                    <span>0915.514.419</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- PHẦN NỘI DUNG CHÍNH (MAIN CONTAINER) -->
+    <!-- ========================================== -->
+    <main class="flex-1 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 w-full space-y-8">
+        
+        <!-- Breadcrumb & Đồng hồ thời gian thực -->
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+            <nav class="flex items-center gap-1.5" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-emerald-400 transition flex items-center gap-1">
+                    <i class="fa-solid fa-house text-[10px]"></i>
+                    <span>Trang chủ</span>
+                </a>
+                <span>/</span>
+                <span class="text-amber-400 font-medium">Lịch Âm Dương & Đếm Ngược Tết</span>
+            </nav>
+            <div id="realtime-clock" class="font-mono text-slate-300 bg-slate-900/80 border border-slate-800 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span id="realtime-str">Đang đồng bộ...</span>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- 1. HERO BANNER: ĐỒNG HỒ ĐẾM NGƯỢC ĐẾN TẾT NGUYÊN ĐÁN -->
+        <!-- ============================================================== -->
+        <section class="glass-card rounded-3xl p-6 sm:p-10 relative overflow-hidden border border-amber-500/25 shadow-2xl">
+            <!-- Background Glow Effects -->
+            <div class="absolute -top-20 -left-20 w-64 h-64 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10 flex flex-col items-center text-center">
+                
+                <!-- Tiêu đề Tết & Năm Âm Lịch -->
+                <div class="inline-flex items-center gap-2 bg-gradient-to-r from-red-950/80 via-amber-950/60 to-red-950/80 border border-amber-500/40 px-4 py-1.5 rounded-full mb-4 shadow-sm">
+                    <span class="text-xl">🌸</span>
+                    <span id="tet-badge-text" class="text-amber-300 font-bold text-xs sm:text-sm tracking-wider uppercase font-heading">
+                        Đang tính toán mốc Tết...
+                    </span>
+                    <span class="text-xl">🧧</span>
+                </div>
+
+                <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold font-heading text-white tracking-tight mb-2">
+                    Đếm Ngược Đến <span id="tet-title-year" class="gold-gradient-text">Tết Nguyên Đán</span>
+                </h1>
+                
+                <p id="tet-exact-solar-str" class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto mb-6 sm:mb-8 font-medium">
+                    Khoảnh khắc Giao thừa thiêng liêng — Mùng 1 Tết Âm Lịch
+                </p>
+
+                <!-- KHỐI ĐỒNG HỒ ĐẾM NGƯỢC 4 Ô (NGÀY - GIỜ - PHÚT - GIÂY) -->
+                <div class="grid grid-cols-4 gap-2.5 sm:gap-5 w-full max-w-2xl mx-auto mb-6 select-none">
+                    <!-- Ô NGÀY -->
+                    <div class="bg-gradient-to-b from-slate-900/90 to-slate-950/95 border border-amber-500/30 rounded-2xl sm:rounded-3xl p-3 sm:p-5 flex flex-col items-center justify-center shadow-lg relative group overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-red-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <span id="cd-days" class="font-mono text-3xl sm:text-6xl md:text-7xl font-extrabold text-amber-300 tracking-tight leading-none drop-shadow">00</span>
+                        <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest mt-2">Ngày</span>
+                    </div>
+
+                    <!-- Ô GIỜ -->
+                    <div class="bg-gradient-to-b from-slate-900/90 to-slate-950/95 border border-amber-500/30 rounded-2xl sm:rounded-3xl p-3 sm:p-5 flex flex-col items-center justify-center shadow-lg relative group overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-red-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <span id="cd-hours" class="font-mono text-3xl sm:text-6xl md:text-7xl font-extrabold text-amber-300 tracking-tight leading-none drop-shadow">00</span>
+                        <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest mt-2">Giờ</span>
+                    </div>
+
+                    <!-- Ô PHÚT -->
+                    <div class="bg-gradient-to-b from-slate-900/90 to-slate-950/95 border border-amber-500/30 rounded-2xl sm:rounded-3xl p-3 sm:p-5 flex flex-col items-center justify-center shadow-lg relative group overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-red-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <span id="cd-mins" class="font-mono text-3xl sm:text-6xl md:text-7xl font-extrabold text-amber-300 tracking-tight leading-none drop-shadow">00</span>
+                        <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest mt-2">Phút</span>
+                    </div>
+
+                    <!-- Ô GIÂY -->
+                    <div class="bg-gradient-to-b from-slate-900/90 to-slate-950/95 border border-rose-500/40 rounded-2xl sm:rounded-3xl p-3 sm:p-5 flex flex-col items-center justify-center shadow-lg relative group overflow-hidden ring-1 ring-rose-500/20">
+                        <div class="absolute inset-0 bg-gradient-to-t from-red-600/20 to-transparent"></div>
+                        <span id="cd-secs" class="font-mono text-3xl sm:text-6xl md:text-7xl font-extrabold text-rose-400 tracking-tight leading-none drop-shadow animate-pulse">00</span>
+                        <span class="text-[10px] sm:text-xs font-bold text-rose-300 uppercase tracking-widest mt-2">Giây</span>
+                    </div>
+                </div>
+
+                <!-- CÁC MỐC THỜI GIAN ĐÓN TẾT QUAN TRỌNG -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 w-full max-w-2xl text-xs">
+                    <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 text-left">
+                        <span class="text-xl shrink-0">🎏</span>
+                        <div>
+                            <div class="font-bold text-slate-200">23 Tháng Chạp</div>
+                            <div id="countdown-ongtao" class="text-[11px] text-amber-400">Đưa Ông Táo về Trời</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 text-left">
+                        <span class="text-xl shrink-0">🎆</span>
+                        <div>
+                            <div class="font-bold text-slate-200">Đêm Giao Thừa</div>
+                            <div id="countdown-giaothua" class="text-[11px] text-rose-400">Tất niên & Đón năm mới</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2.5 text-left">
+                        <span class="text-xl shrink-0">🌺</span>
+                        <div>
+                            <div class="font-bold text-slate-200">Mùng 1 Tết</div>
+                            <div id="countdown-mung1" class="text-[11px] text-emerald-400">Khai Xuân Như Ý</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 2. TRỌNG TÂM: TỜ LỊCH BLỐC HÔM NAY & BẢNG GIỜ HOÀNG ĐẠO -->
+        <!-- ============================================================== -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- CỘT TRÁI (7 CỘT): TỜ LỊCH BLỐC TRUYỀN THỐNG HIỆN ĐẠI -->
+            <div class="lg:col-span-7 glass-card rounded-3xl p-5 sm:p-7 relative border-amber-500/25 flex flex-col justify-between">
+                
+                <!-- Header Lịch Blốc: Nút chuyển ngày & Tiêu đề Dương Lịch -->
+                <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-5">
+                    <button onclick="changeSelectedDay(-1)" title="Xem ngày hôm trước" 
+                            class="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-semibold border border-slate-700">
+                        <i class="fa-solid fa-chevron-left text-amber-400"></i>
+                        <span class="hidden sm:inline">Hôm trước</span>
+                    </button>
+
+                    <div class="text-center">
+                        <div id="block-dayofweek" class="text-rose-500 font-extrabold text-sm sm:text-base tracking-wider uppercase font-heading">
+                            THỨ BẢY
+                        </div>
+                        <div id="block-solar-monthyear" class="text-slate-400 text-xs font-medium">
+                            Tháng 11 Năm 2026
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-1.5">
+                        <button onclick="resetToToday()" title="Quay về ngày hôm nay" 
+                                class="px-2.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold transition">
+                            Hôm nay
+                        </button>
+                        <button onclick="changeSelectedDay(1)" title="Xem ngày hôm sau" 
+                                class="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-semibold border border-slate-700">
+                            <span class="hidden sm:inline">Hôm sau</span>
+                            <i class="fa-solid fa-chevron-right text-amber-400"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Thân tờ lịch: Số ngày Dương Lịch & Khối Ngày Âm Lịch Nổi Bật -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center py-2">
+                    
+                    <!-- Khối Ngày Dương Lịch -->
+                    <div class="flex flex-col items-center justify-center p-4 rounded-2xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800/90 text-center">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Dương Lịch</span>
+                        <div id="block-solar-day" class="font-mono text-7xl sm:text-8xl font-black text-white tracking-tighter leading-none my-2 drop-shadow-md">
+                            14
+                        </div>
+                        <div id="block-solar-full" class="text-xs font-semibold text-emerald-400 mt-1">
+                            14 / 11 / 2026
+                        </div>
+                    </div>
+
+                    <!-- Khối Ngày Âm Lịch (Điểm nhấn tinh hoa) -->
+                    <div class="flex flex-col items-center justify-center p-4 rounded-2xl bg-gradient-to-b from-red-950/60 to-slate-950 border border-red-500/30 text-center relative overflow-hidden group">
+                        <div class="absolute top-2 right-2 text-2xl opacity-20">🌕</div>
+                        <span class="text-[11px] font-bold text-rose-400 uppercase tracking-widest mb-1">Âm Lịch Việt Nam</span>
+                        <div id="block-lunar-day" class="font-mono text-7xl sm:text-8xl font-black gold-gradient-text tracking-tighter leading-none my-2 drop-shadow">
+                            06
+                        </div>
+                        <div id="block-lunar-month-name" class="text-xs font-bold text-amber-300 mt-1">
+                            Tháng 10 (Đủ)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chi tiết Can Chi & Trạng thái Hoàng Đạo -->
+                <div class="mt-5 pt-4 border-t border-slate-800 space-y-3">
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                        <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
+                            <span class="text-[10px] text-slate-400 block mb-0.5">Ngày</span>
+                            <strong id="block-canchi-day" class="text-slate-200">Nhâm Thìn</strong>
+                        </div>
+                        <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
+                            <span class="text-[10px] text-slate-400 block mb-0.5">Tháng</span>
+                            <strong id="block-canchi-month" class="text-slate-200">Kỷ Hợi</strong>
+                        </div>
+                        <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
+                            <span class="text-[10px] text-slate-400 block mb-0.5">Năm</span>
+                            <strong id="block-canchi-year" class="text-amber-300">Bính Ngọ</strong>
+                        </div>
+                    </div>
+
+                    <!-- Trạng thái Ngày Hoàng Đạo & Tiết Khí -->
+                    <div class="flex flex-wrap items-center justify-between gap-2 p-3 rounded-xl bg-slate-900/70 border border-slate-800/80 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span id="block-hoangdao-badge" class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                                ✨ Ngày Hoàng Đạo (Tư Mệnh)
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-slate-300">
+                            <span class="text-slate-400">Tiết khí:</span>
+                            <strong id="block-tietkhi" class="text-emerald-400 font-semibold">Lập đông</strong>
+                        </div>
+                    </div>
+
+                    <!-- Câu danh ngôn / Lời chúc mỗi ngày -->
+                    <div class="p-3 rounded-xl bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border border-slate-800/60 text-center">
+                        <p id="daily-quote" class="text-xs text-slate-300 italic">
+                            "Hành trình vạn dặm bắt đầu từ một bước chân. Kiên trì từng ngày sẽ tạo nên kỳ tích."
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CỘT PHẢI (5 CỘT): GIỜ HOÀNG ĐẠO & PHONG THỦY HỌC TẬP -->
+            <div class="lg:col-span-5 glass-card rounded-3xl p-5 sm:p-7 border-amber-500/25 flex flex-col justify-between">
+                
+                <div>
+                    <!-- Header cột phải -->
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">⏰</span>
+                            <h2 class="font-bold text-sm sm:text-base text-white font-heading">
+                                Giờ Hoàng Đạo Trong Ngày
+                            </h2>
+                        </div>
+                        <span class="text-[11px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-full font-semibold">
+                            6 Giờ Tốt
+                        </span>
+                    </div>
+
+                    <p class="text-xs text-slate-400 mb-3">
+                        Khung giờ thuận lợi để bắt đầu học tập, giải đề thi khó, khai trương hoặc khởi động công việc quan trọng:
+                    </p>
+
+                    <!-- Danh sách 12 giờ Can Chi trong ngày -->
+                    <div id="hours-list" class="grid grid-cols-2 gap-2 text-xs">
+                        <!-- Được render tự động bằng Javascript -->
+                    </div>
+                </div>
+
+                <!-- Thông tin xuất hành phong thủy -->
+                <div class="mt-5 pt-4 border-t border-slate-800 space-y-2 text-xs">
+                    <div class="flex items-center justify-between text-slate-300">
+                        <span class="text-slate-400">🧭 Hướng Hỷ Thần:</span>
+                        <strong id="fengshui-hy-than" class="text-amber-300">Chính Nam</strong>
+                    </div>
+                    <div class="flex items-center justify-between text-slate-300">
+                        <span class="text-slate-400">💰 Hướng Tài Thần:</span>
+                        <strong id="fengshui-tai-than" class="text-emerald-400">Chính Đông</strong>
+                    </div>
+                    <div class="flex items-center justify-between text-slate-300">
+                        <span class="text-slate-400">⚠️ Tuổi xung khắc:</span>
+                        <span id="fengshui-xung-khac" class="text-rose-400 font-medium">Bính Tuất, Giáp Tuất</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 3. LỊCH THÁNG TOÀN CẢNH (MONTHLY GRID CALENDAR) -->
+        <!-- ============================================================== -->
+        <section class="glass-card rounded-3xl p-5 sm:p-8 border-amber-500/25 shadow-2xl">
+            
+            <!-- Điều khiển tháng -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-800 mb-6">
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold font-heading text-white flex items-center gap-2">
+                        <span>📅</span>
+                        <span>Lịch Tháng: <span id="month-title-display" class="gold-gradient-text">Tháng 11 Năm 2026</span></span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-0.5">
+                        Số lớn là ngày Dương lịch, số nhỏ màu vàng/đỏ là ngày Âm lịch tương ứng
+                    </p>
+                </div>
+
+                <!-- Nút điều hướng tháng -->
+                <div class="flex items-center gap-2">
+                    <button onclick="changeMonthView(-1)" title="Tháng trước" 
+                            class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition flex items-center gap-1">
+                        <i class="fa-solid fa-chevron-left text-xs text-amber-400"></i>
+                        <span>Tháng trước</span>
+                    </button>
+                    <button onclick="changeMonthView(1)" title="Tháng sau" 
+                            class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition flex items-center gap-1">
+                        <span>Tháng sau</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-amber-400"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hàng tiêu đề các thứ trong tuần (T2 -> CN) -->
+            <div class="grid grid-cols-7 gap-1.5 sm:gap-2 mb-2 text-center text-xs font-bold font-heading">
+                <div class="py-2 text-slate-400">Thứ 2</div>
+                <div class="py-2 text-slate-400">Thứ 3</div>
+                <div class="py-2 text-slate-400">Thứ 4</div>
+                <div class="py-2 text-slate-400">Thứ 5</div>
+                <div class="py-2 text-slate-400">Thứ 6</div>
+                <div class="py-2 text-amber-400">Thứ 7</div>
+                <div class="py-2 text-rose-400">Chủ Nhật</div>
+            </div>
+
+            <!-- Lưới các ô ngày trong tháng (Render bằng JS) -->
+            <div id="month-grid" class="grid grid-cols-7 gap-1.5 sm:gap-2">
+                <!-- Các ô ngày sẽ được render động ở đây -->
+            </div>
+
+            <!-- Chú thích ký hiệu lịch tháng -->
+            <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded-md bg-amber-500/20 border border-amber-500"></span>
+                    <span>Ngày hôm nay</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded-md bg-rose-950/60 border border-rose-500 text-[10px] text-center font-bold text-rose-300 leading-3">1</span>
+                    <span>Mùng 1 Âm lịch</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded-md bg-yellow-950/60 border border-yellow-500 text-[10px] text-center font-bold text-yellow-300 leading-3">🌕</span>
+                    <span>Ngày Rằm (15)</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded-md bg-slate-900 border border-slate-700"></span>
+                    <span>Nhấp vào ô để xem chi tiết</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 4. TIỆN ÍCH: BỘ CHUYỂN ĐỔI NHANH DƯƠNG LỊCH ↔ ÂM LỊCH -->
+        <!-- ============================================================== -->
+        <section class="glass-card rounded-3xl p-5 sm:p-8 border-amber-500/25">
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-5">
+                    <h3 class="text-lg sm:text-xl font-bold font-heading text-white flex items-center justify-center gap-2">
+                        <span>🔍</span>
+                        <span>Tra Cứu & Đổi Ngày Dương Lịch ↔ Âm Lịch</span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-1">
+                        Chọn ngày bất kỳ để xem chính xác ngày Âm, Can Chi, và Hoàng đạo
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-3">
+                    <div class="flex-1 w-full">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Chọn ngày Dương Lịch:</label>
+                        <input type="date" id="input-converter-date" 
+                               class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-amber-500 font-mono">
+                    </div>
+                    <button onclick="handleQuickConvert()" 
+                            class="w-full sm:w-auto mt-0 sm:mt-5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-slate-950 font-bold text-sm shadow-lg transition active:scale-95">
+                        Tra cứu ngay
+                    </button>
+                </div>
+
+                <!-- Kết quả tra cứu nhanh -->
+                <div id="converter-result" class="mt-4 p-4 rounded-2xl bg-slate-950/70 border border-amber-500/30 hidden">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+                        <div>
+                            <span class="text-slate-400 text-[10px] block">Dương Lịch</span>
+                            <strong id="res-solar" class="text-slate-200">14/11/2026</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 text-[10px] block">Âm Lịch</span>
+                            <strong id="res-lunar" class="text-amber-300 font-bold">06/10/2026</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 text-[10px] block">Can Chi Ngày</span>
+                            <strong id="res-canchi" class="text-emerald-400">Nhâm Thìn</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 text-[10px] block">Đánh giá</span>
+                            <strong id="res-status" class="text-rose-400">Hoàng Đạo</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 5. VĂN HÓA & PHONG TỤC TẾT CỔ TRUYỀN VIỆT NAM -->
+        <!-- ============================================================== -->
+        <section class="glass-card rounded-3xl p-5 sm:p-8 border-amber-500/25">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="text-xl">🎋</span>
+                <h3 class="text-base sm:text-lg font-bold font-heading text-white">
+                    Nét Đẹp Phong Tục Tết & Truyền Thống Hiếu Học Của Người Việt
+                </h3>
+            </div>
+
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+                Tết Nguyên Đán không chỉ là dịp đoàn viên gia đình sau một năm nỗ lực, mà còn là thời khắc khởi đầu năm mới với tinh thần phấn khởi, hướng tới tri thức và tương lai sáng lạn:
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
+                    <div class="font-bold text-amber-400 text-sm mb-1.5 flex items-center gap-1.5">
+                        <span>✍️</span> Khai Bút Đầu Xuân
+                    </div>
+                    <p class="text-slate-400 leading-relaxed">
+                        Nghi thức đầu năm của học sinh, sinh viên và lập trình viên. Đặt bút viết dòng chữ hoặc dòng code đầu tiên để cầu chúc một năm tư duy hanh thông, học hành tấn tới.
+                    </p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
+                    <div class="font-bold text-rose-400 text-sm mb-1.5 flex items-center gap-1.5">
+                        <span>🍲</span> Bữa Cơm Tất Niên & Giao Thừa
+                    </div>
+                    <p class="text-slate-400 leading-relaxed">
+                        Thời khắc sum vầy linh thiêng nhất trong năm, bỏ lại những vất vả của năm cũ để cùng chúc nhau sức khỏe dồi dào, an khang thịnh vượng và vạn sự như ý.
+                    </p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
+                    <div class="font-bold text-emerald-400 text-sm mb-1.5 flex items-center gap-1.5">
+                        <span>🌱</span> Chúc Tết & Tri Ân Thầy Cô
+                    </div>
+                    <p class="text-slate-400 leading-relaxed">
+                        "Mùng một tết cha, mùng hai tết mẹ, mùng ba tết thầy" — truyền thống tôn sư trọng đạo ngàn đời, tri ân những người đã dìu dắt trên con đường học vấn.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- CHÂN TRANG ĐỒNG BỘ (FOOTER) -->
+    <!-- ========================================== -->
+    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 text-xs py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded-lg bg-emerald-600 flex items-center justify-center text-white text-sm">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-slate-200">Lập Trình Robot</span>
+                    <span class="text-slate-500 ml-1">• Tiện Ích Lịch Âm & Đếm Ngược Tết</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 text-slate-400">
+                <a href="index.html" class="hover:text-amber-400 transition font-medium">Trang chủ</a>
+                <span>•</span>
+                <a href="pomodoro.html" class="hover:text-rose-400 transition font-medium">🍅 Pomodoro</a>
+                <span>•</span>
+                <a href="scratch_curriculum_portal.html" class="hover:text-emerald-400 transition">Scratch (7-9T)</a>
+                <span>•</span>
+                <a href="pygame_curriculum_portal.html" class="hover:text-emerald-400 transition">Python (10-13T)</a>
+                <span>•</span>
+                <a href="tin10.html" class="hover:text-emerald-400 transition">Chuyên Tin C++</a>
+            </div>
+
+            <div class="text-slate-500 text-[11px] text-center md:text-right">
+                Hotline: <a href="tel:0915514419" class="text-emerald-400 hover:underline font-semibold">0915.514.419</a> | Quận 12, TP.HCM
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================== -->
+    <!-- JAVASCRIPT: THUẬT TOÁN ÂM LỊCH THIÊN VĂN & ĐỒNG HỒ ĐẾM NGƯỢC TẾT -->
+    <!-- ============================================================== -->
+    <script>
+        // ==============================================================
+        // 1. THUẬT TOÁN ÂM LỊCH THIÊN VĂN VIỆT NAM (CHUẨN TS. HỒ NGỌC ĐỨC)
+        // ==============================================================
+        const PI = Math.PI;
+        function INT(d) { return Math.floor(d); }
+
+        function jdFromDate(dd, mm, yy) {
+            let a = INT((14 - mm) / 12);
+            let y = yy + 4800 - a;
+            let m = mm + 12 * a - 3;
+            let jd = dd + INT((153 * m + 2) / 5) + 365 * y + INT(y / 4) - INT(y / 100) + INT(y / 400) - 32045;
+            if (jd < 2299161) {
+                jd = dd + INT((153 * m + 2) / 5) + 365 * y + INT(y / 4) - 32083;
+            }
+            return jd;
+        }
+
+        function jdToDate(jd) {
+            let a, b, c, d, e, m, day, month, year;
+            if (jd > 2299160) {
+                let alpha = INT((jd - 1867216.25) / 36524.25);
+                a = jd + 1 + alpha - INT(alpha / 4);
+            } else {
+                a = jd;
+            }
+            b = a + 1524;
+            c = INT((b - 122.1) / 365.25);
+            d = INT(365.25 * c);
+            e = INT((b - d) / 30.6001);
+            day = b - d - INT(30.6001 * e);
+            month = (e < 14) ? (e - 1) : (e - 13);
+            year = (month > 2) ? (c - 4716) : (c - 4715);
+            return [day, month, year];
+        }
+
+        function getNewMoonDay(k, timeZone) {
+            let T = k / 1236.85;
+            let T2 = T * T;
+            let T3 = T2 * T;
+            let dr = PI / 180;
+            let Jd1 = 2415020.75933 + 29.53058868 * k + 0.0001178 * T2 - 0.000000155 * T3;
+            let M = 359.2242 + 29.10535608 * k - 0.0000333 * T2 - 0.00000347 * T3;
+            let Mpr = 306.0253 + 385.81691806 * k + 0.0107306 * T2 + 0.00001236 * T3;
+            let F = 21.2964 + 390.67050646 * k - 0.0016528 * T2 - 0.00000239 * T3;
+            let C1 = (0.1734 - 0.000393 * T) * Math.sin(M * dr) + 0.0021 * Math.sin(2 * M * dr);
+            C1 = C1 - 0.4068 * Math.sin(Mpr * dr) + 0.0161 * Math.sin(2 * Mpr * dr);
+            C1 = C1 - 0.0004 * Math.sin(3 * Mpr * dr);
+            C1 = C1 + 0.0104 * Math.sin(2 * F * dr) - 0.0051 * Math.sin((M + Mpr) * dr);
+            C1 = C1 - 0.0074 * Math.sin((M - Mpr) * dr) + 0.0004 * Math.sin((2 * F + M) * dr);
+            C1 = C1 - 0.0004 * Math.sin((2 * F - M) * dr) - 0.0006 * Math.sin((2 * F + Mpr) * dr);
+            C1 = C1 + 0.0010 * Math.sin((2 * F - Mpr) * dr) + 0.0005 * Math.sin((2 * Mpr + M) * dr);
+            let deltat;
+            if (T < -11) {
+                deltat = 0.001 + 0.000839 * T + 0.0002261 * T2 - 0.00000845 * T3 - 0.00000081 * T * T3;
+            } else {
+                deltat = -0.000278 + 0.000726 * T + 0.000418 * T2 + 0.000024 * T3;
+            }
+            let JdNew = Jd1 + C1 - deltat;
+            return INT(JdNew + 0.5 + timeZone / 24);
+        }
+
+        function SunLongitude(jdn) {
+            let T = (jdn - 2451545.0) / 36525;
+            let T2 = T * T;
+            let dr = PI / 180;
+            let M = 357.52910 + 35999.05030 * T - 0.0001559 * T2 - 0.00000048 * T * T2;
+            let L0 = 280.46645 + 36000.76983 * T + 0.0003032 * T2;
+            let DL = (1.914600 - 0.004817 * T - 0.000014 * T2) * Math.sin(dr * M);
+            DL = DL + (0.019993 - 0.000101 * T) * Math.sin(dr * 2 * M) + 0.000290 * Math.sin(dr * 3 * M);
+            let L = (L0 + DL) * dr;
+            return L - PI * 2 * (INT(L / (PI * 2)));
+        }
+
+        function getSunLongitude(dayNumber, timeZone) {
+            return INT(SunLongitude(dayNumber - 0.5 - timeZone / 24) / PI * 6);
+        }
+
+        function getLunarMonth11(yy, timeZone) {
+            let off = jdFromDate(31, 12, yy) - 2415021;
+            let k = INT(off / 29.530588853);
+            let nm = getNewMoonDay(k, timeZone);
+            let sunLong = getSunLongitude(nm, timeZone);
+            if (sunLong >= 9) {
+                nm = getNewMoonDay(k - 1, timeZone);
+            }
+            return nm;
+        }
+
+        function getLeapMonthOffset(a11, timeZone) {
+            let k = INT((a11 - 2415021.076998695) / 29.530588853 + 0.5);
+            let last = 0;
+            let i = 1;
+            let arc = getSunLongitude(getNewMoonDay(k + i, timeZone), timeZone);
+            do {
+                last = arc;
+                i++;
+                arc = getSunLongitude(getNewMoonDay(k + i, timeZone), timeZone);
+            } while (arc !== last && i < 14);
+            return i;
+        }
+
+        function convertSolar2Lunar(dd, mm, yy, timeZone = 7) {
+            let dayNumber = jdFromDate(dd, mm, yy);
+            let k = INT((dayNumber - 2415021.076998695) / 29.530588853);
+            let monthStart = getNewMoonDay(k + 1, timeZone);
+            if (monthStart > dayNumber) {
+                monthStart = getNewMoonDay(k, timeZone);
+            }
+            let a11 = getLunarMonth11(yy, timeZone);
+            let b11 = a11;
+            let lunarYear = yy;
+            if (a11 >= monthStart) {
+                lunarYear = yy;
+                a11 = getLunarMonth11(yy - 1, timeZone);
+            } else {
+                lunarYear = yy + 1;
+                b11 = getLunarMonth11(yy + 1, timeZone);
+            }
+            let lunarDay = dayNumber - monthStart + 1;
+            let diff = INT((monthStart - a11) / 29);
+            let lunarLeap = 0;
+            let lunarMonth = diff + 11;
+            if (b11 - a11 > 365) {
+                let leapOff = getLeapMonthOffset(a11, timeZone);
+                let leapMonth = leapOff - 2;
+                if (leapMonth < 0) leapMonth += 12;
+                if (diff >= leapOff) {
+                    lunarMonth = diff + 10;
+                    if (diff === leapOff) lunarLeap = 1;
+                }
+            }
+            if (lunarMonth > 12) lunarMonth = lunarMonth - 12;
+            if (lunarMonth >= 11 && diff < 4) lunarYear -= 1;
+            return [lunarDay, lunarMonth, lunarYear, lunarLeap];
+        }
+
+        function convertLunar2Solar(lunarDay, lunarMonth, lunarYear, lunarLeap = 0, timeZone = 7) {
+            let a11, b11;
+            if (lunarMonth < 11) {
+                a11 = getLunarMonth11(lunarYear - 1, timeZone);
+                b11 = getLunarMonth11(lunarYear, timeZone);
+            } else {
+                a11 = getLunarMonth11(lunarYear, timeZone);
+                b11 = getLunarMonth11(lunarYear + 1, timeZone);
+            }
+            let k = INT(0.5 + (a11 - 2415021.076998695) / 29.530588853);
+            let off = lunarMonth - 11;
+            if (off < 0) off += 12;
+            if (b11 - a11 > 365) {
+                let leapOff = getLeapMonthOffset(a11, timeZone);
+                let leapMonth = leapOff - 2;
+                if (leapMonth < 0) leapMonth += 12;
+                if (lunarLeap !== 0 && lunarMonth !== leapMonth) {
+                    return [0, 0, 0];
+                } else if (lunarLeap !== 0 || off >= leapOff) {
+                    off += 1;
+                }
+            }
+            let monthStart = getNewMoonDay(k + off, timeZone);
+            return jdToDate(monthStart + lunarDay - 1);
+        }
+
+        // ==============================================================
+        // 2. DỮ LIỆU CAN CHI, TIẾT KHÍ, HOÀNG ĐẠO
+        // ==============================================================
+        const CAN = ['Giáp', 'Ất', 'Bính', 'Đinh', 'Mậu', 'Kỷ', 'Canh', 'Tân', 'Nhâm', 'Quý'];
+        const CHI = ['Tý', 'Sửu', 'Dần', 'Mão', 'Thìn', 'Tỵ', 'Ngọ', 'Mùi', 'Thân', 'Dậu', 'Tuất', 'Hợi'];
+        const CON_GIAP = ['Chuột 🐭', 'Trâu 🐂', 'Hổ 🐯', 'Mèo 🐱', 'Rồng 🐲', 'Rắn 🐍', 'Ngựa 🐎', 'Dê 🐐', 'Khỉ 🐒', 'Gà 🐓', 'Chó 🐕', 'Lợn 🐖'];
+        
+        const TIET_KHI = [
+            'Xuân phân', 'Thanh minh', 'Cốc vũ', 'Lập hạ', 'Tiểu mãn', 'Mang chủng',
+            'Hạ chí', 'Tiểu thử', 'Đại thử', 'Lập thu', 'Xử thử', 'Bạch lộ',
+            'Thu phân', 'Hàn lộ', 'Sương giáng', 'Lập đông', 'Tiểu tuyết', 'Đại tuyết',
+            'Đông chí', 'Tiểu hàn', 'Đại hàn', 'Lập xuân', 'Vũ thủy', 'Kinh trập'
+        ];
+
+        const GIO_CHI_RANGES = [
+            { name: 'Tý', time: '23h - 01h', startHour: 23, endHour: 1 },
+            { name: 'Sửu', time: '01h - 03h', startHour: 1, endHour: 3 },
+            { name: 'Dần', time: '03h - 05h', startHour: 3, endHour: 5 },
+            { name: 'Mão', time: '05h - 07h', startHour: 5, endHour: 7 },
+            { name: 'Thìn', time: '07h - 09h', startHour: 7, endHour: 9 },
+            { name: 'Tỵ', time: '09h - 11h', startHour: 9, endHour: 11 },
+            { name: 'Ngọ', time: '11h - 13h', startHour: 11, endHour: 13 },
+            { name: 'Mùi', time: '13h - 15h', startHour: 13, endHour: 15 },
+            { name: 'Thân', time: '15h - 17h', startHour: 15, endHour: 17 },
+            { name: 'Dậu', time: '17h - 19h', startHour: 17, endHour: 19 },
+            { name: 'Tuất', time: '19h - 21h', startHour: 19, endHour: 21 },
+            { name: 'Hợi', time: '21h - 23h', startHour: 21, endHour: 23 }
+        ];
+
+        // 6 Nhóm giờ Hoàng đạo theo Chi của Ngày (dayChi % 6)
+        const HOANG_DAO_HOURS_MAP = {
+            0: [0, 1, 3, 6, 8, 9],     // Tý, Ngọ
+            1: [2, 3, 5, 8, 10, 11],   // Sửu, Mùi
+            2: [0, 1, 4, 5, 7, 10],    // Dần, Thân
+            3: [0, 2, 3, 6, 7, 9],     // Mão, Dậu
+            4: [2, 4, 5, 8, 9, 11],    // Thìn, Tuất
+            5: [1, 4, 6, 7, 10, 11]    // Tỵ, Hợi
+        };
+
+        const THAN_NAMES = [
+            { name: 'Thanh Long', isGood: true },
+            { name: 'Minh Đường', isGood: true },
+            { name: 'Thiên Hình', isGood: false },
+            { name: 'Chu Tước', isGood: false },
+            { name: 'Kim Quỹ', isGood: true },
+            { name: 'Bảo Quang (Thiên Đức)', isGood: true },
+            { name: 'Bạch Hổ', isGood: false },
+            { name: 'Ngọc Đường', isGood: true },
+            { name: 'Thiên Lao', isGood: false },
+            { name: 'Huyền Vũ', isGood: false },
+            { name: 'Tư Mệnh', isGood: true },
+            { name: 'Câu Trận', isGood: false }
+        ];
+
+        const QUOTES = [
+            "Hành trình vạn dặm bắt đầu từ một bước chân. Kiên trì từng ngày sẽ tạo nên kỳ tích.",
+            "Tư duy lập trình là chìa khóa mở ra cánh cửa thế giới số và khoa học công nghệ.",
+            "Học mà không suy nghĩ thì mờ mịt, suy nghĩ mà không học thì hiểm nghèo.",
+            "Thành công là tổng hòa của những nỗ lực nhỏ bé lặp đi lặp lại mỗi ngày.",
+            "Mỗi ngày tích lũy thêm một kiến thức là bạn đã tiến gần hơn tới ước mơ.",
+            "Vững kiến thức, sáng tư duy — tự tin làm chủ tương lai số."
+        ];
+
+        function getCanChiYear(lYear) {
+            let can = CAN[(lYear + 6) % 10];
+            let chi = CHI[(lYear + 8) % 12];
+            let animal = CON_GIAP[(lYear + 8) % 12];
+            return { name: `${can} ${chi}`, can, chi, animal };
+        }
+
+        function getCanChiMonth(lMonth, lYear) {
+            let yearCanIdx = (lYear + 6) % 10;
+            let monthCan = CAN[((yearCanIdx % 5) * 2 + 2 + lMonth - 1) % 10];
+            let monthChi = CHI[(lMonth + 1) % 12];
+            return `${monthCan} ${monthChi}`;
+        }
+
+        function getCanChiDay(dd, mm, yy) {
+            let jd = jdFromDate(dd, mm, yy);
+            let dayCan = CAN[(jd + 9) % 10];
+            let dayChi = CHI[(jd + 1) % 12];
+            let chiIdx = (jd + 1) % 12;
+            return { name: `${dayCan} ${dayChi}`, can: dayCan, chi: dayChi, chiIdx, jd };
+        }
+
+        function getDayTietKhi(dd, mm, yy) {
+            let jd = jdFromDate(dd, mm, yy);
+            let sunLong = SunLongitude(jd - 0.5 - 7 / 24);
+            let idx = INT(sunLong / (PI / 12));
+            return TIET_KHI[idx];
+        }
+
+        function getDayHoangDaoStatus(lMonth, dayChiIdx) {
+            let startChi = ((lMonth - 1) % 6) * 2;
+            let offset = (dayChiIdx - startChi + 12) % 12;
+            return THAN_NAMES[offset];
+        }
+
+        // ==============================================================
+        // 3. TÍNH TOÁN ĐẾM NGƯỢC ĐẾN TẾT NGUYÊN ĐÁN
+        // ==============================================================
+        function getUpcomingTetInfo(currentDate) {
+            let d = currentDate.getDate();
+            let m = currentDate.getMonth() + 1;
+            let y = currentDate.getFullYear();
+            let [lDay, lMonth, lYear] = convertSolar2Lunar(d, m, y, 7);
+            
+            let targetLunarYear = lYear + 1;
+            let [tDay, tMonth, tYear] = convertLunar2Solar(1, 1, targetLunarYear, 0, 7);
+            let tetTarget = new Date(tYear, tMonth - 1, tDay, 0, 0, 0);
+
+            // Nếu đã vượt qua Tết của năm đó (ví dụ mùng 2, 3 Tết)
+            if (currentDate.getTime() >= tetTarget.getTime()) {
+                targetLunarYear++;
+                let [t2D, t2M, t2Y] = convertLunar2Solar(1, 1, targetLunarYear, 0, 7);
+                tetTarget = new Date(t2Y, t2M - 1, t2D, 0, 0, 0);
+            }
+
+            let canChi = getCanChiYear(targetLunarYear);
+
+            // Tính các mốc 23 tháng Chạp & Đêm Giao thừa (29 hoặc 30 tháng Chạp)
+            let prevLunarYear = targetLunarYear - 1;
+            let [otDay, otMonth, otYear] = convertLunar2Solar(23, 12, prevLunarYear, 0, 7);
+            let ongTaoDate = new Date(otYear, otMonth - 1, otDay, 0, 0, 0);
+
+            // Giao thừa là ngày ngay trước Mùng 1 Tết
+            let giaoThuaDate = new Date(tetTarget.getTime() - 24 * 60 * 60 * 1000);
+
+            return {
+                tetDate: tetTarget,
+                targetLunarYear,
+                canChi,
+                ongTaoDate,
+                giaoThuaDate
+            };
+        }
+
+        // ==============================================================
+        // 4. QUẢN LÝ TRẠNG THÁI & HIỂN THỊ
+        // ==============================================================
+        let todayDate = new Date();
+        let selectedDate = new Date(); // Ngày đang được chọn để hiển thị trên Lịch Blốc
+        let viewMonth = todayDate.getMonth() + 1;
+        let viewYear = todayDate.getFullYear();
+
+        // Cập nhật đồng hồ thời gian thực & đếm ngược Tết
+        function tickCountdown() {
+            let now = new Date();
+            
+            // Cập nhật thanh giờ thực
+            const clockEl = document.getElementById('realtime-str');
+            if (clockEl) {
+                const pad = n => n.toString().padStart(2, '0');
+                clockEl.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())} - ${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`;
+            }
+
+            let tetInfo = getUpcomingTetInfo(now);
+            let diffMs = tetInfo.tetDate.getTime() - now.getTime();
+
+            if (diffMs > 0) {
+                let days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+                let secs = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+                const pad = n => n.toString().padStart(2, '0');
+                document.getElementById('cd-days').textContent = pad(days);
+                document.getElementById('cd-hours').textContent = pad(hours);
+                document.getElementById('cd-mins').textContent = pad(mins);
+                document.getElementById('cd-secs').textContent = pad(secs);
+
+                document.getElementById('tet-badge-text').textContent = `Tết Nguyên Đán ${tetInfo.canChi.name} ${tetInfo.canChi.animal}`;
+                document.getElementById('tet-title-year').textContent = `${tetInfo.canChi.name} ${tetInfo.targetLunarYear}`;
+                
+                let tDay = tetInfo.tetDate.getDate();
+                let tMonth = tetInfo.tetDate.getMonth() + 1;
+                let tYear = tetInfo.tetDate.getFullYear();
+                document.getElementById('tet-exact-solar-str').textContent = `Mùng 1 Tết sẽ rơi vào Thứ ${getDayOfWeekName(tetInfo.tetDate.getDay())}, Ngày ${tDay}/${tMonth}/${tYear} Dương Lịch`;
+
+                // Cập nhật mốc 23 tháng chạp
+                let diffOT = Math.ceil((tetInfo.ongTaoDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+                document.getElementById('countdown-ongtao').textContent = diffOT > 0 ? `Còn ${diffOT} ngày nữa` : (diffOT === 0 ? 'Hôm nay là 23 Chạp' : 'Đã qua');
+
+                // Mốc giao thừa
+                let diffGT = Math.ceil((tetInfo.giaoThuaDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+                document.getElementById('countdown-giaothua').textContent = diffGT > 0 ? `Còn ${diffGT} ngày nữa` : (diffGT === 0 ? 'Đêm nay Giao thừa!' : 'Đã qua');
+
+                document.getElementById('countdown-mung1').textContent = `Còn ${days} ngày nữa`;
+            } else {
+                document.getElementById('cd-days').textContent = '00';
+                document.getElementById('cd-hours').textContent = '00';
+                document.getElementById('cd-mins').textContent = '00';
+                document.getElementById('cd-secs').textContent = '00';
+                document.getElementById('tet-badge-text').textContent = '🎉 CHÚC MỪNG NĂM MỚI! 🎉';
+            }
+        }
+
+        function getDayOfWeekName(dayIdx) {
+            const names = ['Chủ Nhật', 'Hai', 'Ba', 'Tư', 'Năm', 'Sáu', 'Bảy'];
+            return names[dayIdx];
+        }
+
+        // ==============================================================
+        // 5. HIỂN THỊ TỜ LỊCH BLỐC NGÀY ĐANG CHỌN
+        // ==============================================================
+        function renderBlockCalendar(date) {
+            let d = date.getDate();
+            let m = date.getMonth() + 1;
+            let y = date.getFullYear();
+
+            let dayOfWeek = date.getDay();
+            let dowName = dayOfWeek === 0 ? 'CHỦ NHẬT' : `THỨ ${getDayOfWeekName(dayOfWeek).toUpperCase()}`;
+
+            // Tính âm lịch
+            let [lDay, lMonth, lYear, lLeap] = convertSolar2Lunar(d, m, y, 7);
+            let canChiDay = getCanChiDay(d, m, y);
+            let canChiMonth = getCanChiMonth(lMonth, lYear);
+            let canChiYear = getCanChiYear(lYear);
+            let tietKhi = getDayTietKhi(d, m, y);
+            let hoangDao = getDayHoangDaoStatus(lMonth, canChiDay.chiIdx);
+
+            // Render phần Dương Lịch
+            document.getElementById('block-dayofweek').textContent = dowName;
+            document.getElementById('block-solar-monthyear').textContent = `Tháng ${m} Năm ${y}`;
+            document.getElementById('block-solar-day').textContent = d.toString().padStart(2, '0');
+            document.getElementById('block-solar-full').textContent = `${d} / ${m} / ${y} (Dương Lịch)`;
+
+            // Render phần Âm Lịch
+            document.getElementById('block-lunar-day').textContent = lDay.toString().padStart(2, '0');
+            let leapText = lLeap === 1 ? ' (Nhuận)' : '';
+            document.getElementById('block-lunar-month-name').textContent = `Tháng ${lMonth}${leapText} - Năm ${canChiYear.name}`;
+
+            // Can chi
+            document.getElementById('block-canchi-day').textContent = canChiDay.name;
+            document.getElementById('block-canchi-month').textContent = canChiMonth;
+            document.getElementById('block-canchi-year').textContent = `${canChiYear.name} (${canChiYear.animal})`;
+
+            // Tiết khí
+            document.getElementById('block-tietkhi').textContent = tietKhi;
+
+            // Huy hiệu Hoàng đạo / Hắc đạo
+            let badge = document.getElementById('block-hoangdao-badge');
+            if (hoangDao.isGood) {
+                badge.className = "px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40";
+                badge.textContent = `✨ Ngày Hoàng Đạo (${hoangDao.name})`;
+            } else {
+                badge.className = "px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-800 text-slate-400 border border-slate-700";
+                badge.textContent = `Ngày Hắc Đạo (${hoangDao.name})`;
+            }
+
+            // Danh ngôn ngẫu nhiên theo ngày
+            let qIdx = (d + m) % QUOTES.length;
+            document.getElementById('daily-quote').textContent = `"${QUOTES[qIdx]}"`;
+
+            // Render 12 giờ Can Chi và Giờ Hoàng Đạo trong ngày
+            renderHoursList(canChiDay.chiIdx);
+        }
+
+        // Render bảng 12 giờ trong ngày và chỉ ra giờ Hoàng đạo
+        function renderHoursList(dayChiIdx) {
+            let container = document.getElementById('hours-list');
+            container.innerHTML = '';
+
+            let groupIdx = dayChiIdx % 6;
+            let goodHours = HOANG_DAO_HOURS_MAP[groupIdx] || [];
+
+            let nowHour = new Date().getHours();
+
+            GIO_CHI_RANGES.forEach((item, idx) => {
+                let isGood = goodHours.includes(idx);
+
+                // Kiểm tra xem giờ này có đang diễn ra hiện tại không
+                let isCurrent = false;
+                if (item.startHour === 23) {
+                    isCurrent = (nowHour >= 23 || nowHour < 1);
+                } else {
+                    isCurrent = (nowHour >= item.startHour && nowHour < item.endHour);
+                }
+
+                let el = document.createElement('div');
+                el.className = `p-2 rounded-xl border flex items-center justify-between text-[11px] transition ${
+                    isCurrent 
+                        ? 'bg-amber-500/20 border-amber-500/60 shadow-sm' 
+                        : (isGood ? 'bg-slate-900/90 border-slate-800' : 'bg-slate-950/60 border-slate-800/60 opacity-70')
+                }`;
+
+                el.innerHTML = `
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-bold ${isGood ? 'text-amber-300' : 'text-slate-400'}">${item.name}</span>
+                        <span class="text-slate-400 text-[10px]">(${item.time})</span>
+                    </div>
+                    <div>
+                        ${isGood ? '<span class="text-emerald-400 font-semibold text-[10px]">Hoàng đạo</span>' : '<span class="text-slate-500 text-[10px]">Hắc đạo</span>'}
+                        ${isCurrent ? '<span class="ml-1 px-1 rounded bg-amber-400 text-slate-950 font-bold text-[9px]">Hiện tại</span>' : ''}
+                    </div>
+                `;
+
+                container.appendChild(el);
+            });
+        }
+
+        function changeSelectedDay(delta) {
+            selectedDate = new Date(selectedDate.getTime() + delta * 24 * 60 * 60 * 1000);
+            renderBlockCalendar(selectedDate);
+            // Đồng bộ nếu chuyển sang tháng khác
+            if (selectedDate.getMonth() + 1 !== viewMonth || selectedDate.getFullYear() !== viewYear) {
+                viewMonth = selectedDate.getMonth() + 1;
+                viewYear = selectedDate.getFullYear();
+                renderMonthGrid(viewYear, viewMonth);
+            }
+        }
+
+        function resetToToday() {
+            selectedDate = new Date();
+            viewMonth = selectedDate.getMonth() + 1;
+            viewYear = selectedDate.getFullYear();
+            renderBlockCalendar(selectedDate);
+            renderMonthGrid(viewYear, viewMonth);
+        }
+
+        // ==============================================================
+        // 6. RENDER LƯỚI LỊCH THÁNG (MONTHLY GRID)
+        // ==============================================================
+        function renderMonthGrid(year, month) {
+            let container = document.getElementById('month-grid');
+            container.innerHTML = '';
+
+            document.getElementById('month-title-display').textContent = `Tháng ${month} Năm ${year}`;
+
+            // Số ngày trong tháng
+            let totalDays = new Date(year, month, 0).getDate();
+            
+            // Ngày đầu tiên của tháng là thứ mấy? (0 = CN, 1 = T2... -> chuyển sang T2 = 0)
+            let firstDayOfWeek = (new Date(year, month - 1, 1).getDay() + 6) % 7;
+
+            // Số ngày của tháng trước (dùng cho padding)
+            let prevMonthDays = new Date(year, month - 1, 0).getDate();
+
+            // 1. Ô đệm tháng trước
+            for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+                let pDay = prevMonthDays - i;
+                let cell = document.createElement('div');
+                cell.className = "calendar-cell p-1.5 rounded-xl border border-slate-800/40 bg-slate-950/30 text-slate-600 flex flex-col justify-between cursor-default opacity-40";
+                cell.innerHTML = `
+                    <span class="text-xs font-semibold">${pDay}</span>
+                    <span class="text-[9px] text-right">--</span>
+                `;
+                container.appendChild(cell);
+            }
+
+            // 2. Các ngày trong tháng hiện tại
+            let now = new Date();
+            let isCurrentMonth = (now.getMonth() + 1 === month && now.getFullYear() === year);
+
+            for (let day = 1; day <= totalDays; day++) {
+                let cellDate = new Date(year, month - 1, day);
+                let dayOfWeek = cellDate.getDay();
+                let [lDay, lMonth, lYear, lLeap] = convertSolar2Lunar(day, month, year, 7);
+
+                let isToday = isCurrentMonth && (day === now.getDate());
+                let isSelected = (selectedDate.getDate() === day && selectedDate.getMonth() + 1 === month && selectedDate.getFullYear() === year);
+                let isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
+
+                let isFirstOfLunar = (lDay === 1);
+                let isFullMoon = (lDay === 15);
+
+                let cell = document.createElement('div');
+                cell.className = `calendar-cell p-1 sm:p-1.5 rounded-xl border cursor-pointer flex flex-col justify-between transition relative ${
+                    isSelected 
+                        ? 'bg-amber-500/20 border-amber-400 ring-2 ring-amber-400/30'
+                        : (isToday 
+                            ? 'bg-emerald-500/15 border-emerald-500' 
+                            : 'bg-slate-900/70 border-slate-800 hover:border-amber-500/40')
+                }`;
+
+                let solarColor = isWeekend ? (dayOfWeek === 0 ? 'text-rose-400' : 'text-amber-400') : 'text-slate-100';
+                
+                let lunarBadge = '';
+                if (isFirstOfLunar) {
+                    lunarBadge = `<span class="text-[9px] px-1 rounded bg-rose-600 text-white font-bold">M.1</span>`;
+                } else if (isFullMoon) {
+                    lunarBadge = `<span class="text-[9px] px-1 rounded bg-yellow-500 text-slate-950 font-bold">15</span>`;
+                } else {
+                    lunarBadge = `<span class="text-[10px] text-amber-300 font-medium">${lDay}</span>`;
+                }
+
+                cell.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs sm:text-sm font-bold ${solarColor}">${day}</span>
+                        ${isToday ? '<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>' : ''}
+                    </div>
+                    <div class="text-right">
+                        ${lunarBadge}
+                    </div>
+                `;
+
+                cell.onclick = () => {
+                    selectedDate = new Date(year, month - 1, day);
+                    renderBlockCalendar(selectedDate);
+                    renderMonthGrid(year, month);
+                };
+
+                container.appendChild(cell);
+            }
+        }
+
+        function changeMonthView(delta) {
+            viewMonth += delta;
+            if (viewMonth > 12) {
+                viewMonth = 1;
+                viewYear++;
+            } else if (viewMonth < 1) {
+                viewMonth = 12;
+                viewYear--;
+            }
+            renderMonthGrid(viewYear, viewMonth);
+        }
+
+        // ==============================================================
+        // 7. BỘ TRA CỨU ĐỔI NGÀY DƯƠNG ↔ ÂM
+        // ==============================================================
+        function handleQuickConvert() {
+            let inputVal = document.getElementById('input-converter-date').value;
+            if (!inputVal) return;
+
+            let parts = inputVal.split('-');
+            let y = parseInt(parts[0]);
+            let m = parseInt(parts[1]);
+            let d = parseInt(parts[2]);
+
+            let [lDay, lMonth, lYear, lLeap] = convertSolar2Lunar(d, m, y, 7);
+            let canChiDay = getCanChiDay(d, m, y);
+            let hoangDao = getDayHoangDaoStatus(lMonth, canChiDay.chiIdx);
+
+            document.getElementById('res-solar').textContent = `${d}/${m}/${y}`;
+            document.getElementById('res-lunar').textContent = `${lDay}/${lMonth}/${lYear}${lLeap ? ' (Nhuận)' : ''}`;
+            document.getElementById('res-canchi').textContent = canChiDay.name;
+            document.getElementById('res-status').textContent = hoangDao.isGood ? `Hoàng Đạo (${hoangDao.name})` : `Hắc Đạo (${hoangDao.name})`;
+
+            document.getElementById('converter-result').classList.remove('hidden');
+
+            // Cập nhật luôn lên tờ lịch chính
+            selectedDate = new Date(y, m - 1, d);
+            viewMonth = m;
+            viewYear = y;
+            renderBlockCalendar(selectedDate);
+            renderMonthGrid(viewYear, viewMonth);
+        }
+
+        // ==============================================================
+        // 8. KHỞI TẠO HỆ THỐNG
+        // ==============================================================
+        window.addEventListener('DOMContentLoaded', () => {
+            // Đặt mặc định ô datepicker là hôm nay
+            let todayStr = new Date().toISOString().split('T')[0];
+            document.getElementById('input-converter-date').value = todayStr;
+
+            renderBlockCalendar(selectedDate);
+            renderMonthGrid(viewYear, viewMonth);
+            tickCountdown();
+            setInterval(tickCountdown, 1000);
+        });
+    </script>
+</body>
+</html>
+
